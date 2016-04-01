@@ -2,6 +2,7 @@
 layout: post
 title: Introducing Harvesting Clouds
 comments: true
+permalink: Introducing-Harvesting-Clouds
 ---
 
 Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.
