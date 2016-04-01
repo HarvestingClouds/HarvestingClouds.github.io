@@ -4,7 +4,7 @@ title: About
 ---
 ![This was taken during fall 2015.](/assets/AmanSharma175by175.png)
 
-I am Senior Technical Consultant for Private and Public cloud. I am passionate about technology and how it can change the way we experience life. 
+I am Senior Technical Consultant for Private and Public cloud. I am passionate about technology and how it can change the way we experience life. You can connect with me on Twitter [@20aman](https://twitter.com/20aman){:target="_blank"}. You can also find me on [Linked In](https://www.linkedin.com/in/20aman){:target="_blank"}.
 
 My Moto:
 <p class="message">
@@ -32,8 +32,6 @@ I have been busy building solutions around:
 * Enterprise Datacenter Management solutions
 * System Center customization solutions
 * Windows Azure Pack customizations and resource providers
-
-You can connect with me on Twitter [@20aman](https://twitter.com/20aman){:target="_blank"}. You can also find me on [Linked In](https://www.linkedin.com/in/20aman){:target="_blank"}.
 
 Have questions or suggestions? Feel free to contact me on social media or on my email id at [20aman@gmail.com](mailto:20aman@gmail.com?subject=HarvestingClouds).
 
