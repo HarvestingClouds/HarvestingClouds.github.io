@@ -23,3 +23,8 @@ version:          1.0.0
 
 github:
   repo:           https://github.com/HarvestingClouds
+
+# Allow URL Redirects: 
+#  * https://help.github.com/articles/redirects-on-github-pages
+gems:
+  - jekyll-redirect-from
