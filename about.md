@@ -2,6 +2,7 @@
 layout: page
 title: About
 ---
+![This was taken during fall 2015.](/assets/AmanSharma.png)
 
 I am Senior Technical Consultant for Private and Public cloud. I am passionate about technology and how it can change the way we experience life. 
 
