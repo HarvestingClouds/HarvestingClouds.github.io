@@ -2,6 +2,7 @@
 layout: post
 title: Introducing Harvesting Clouds
 comments: true
+redirect_from: "/2016/04/01/introducing-harvestingclouds/"
 permalink: Introducing-Harvesting-Clouds
 ---
 
