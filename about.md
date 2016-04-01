@@ -32,8 +32,8 @@ I have been busy building solutions around:
 * System Center customization solutions
 * Windows Azure Pack customizations and resource providers
 
-You can connect with me on Twitter [@20aman](https://twitter.com/20aman). You can also find me on [Linked In](http://https://ca.linkedin.com/in/20aman).
+You can connect with me on Twitter [@20aman](https://twitter.com/20aman){:target="_blank"}. You can also find me on [Linked In](https://www.linkedin.com/in/20aman){:target="_blank"}.
 
-Have questions or suggestions? Feel free to contact me on social media or on my email id at [20aman@gmailcom](mailto:20aman@gmail.com?subject=HarvestingClouds).
+Have questions or suggestions? Feel free to contact me on social media or on my email id at [20aman@gmail.com](mailto:20aman@gmail.com?subject=HarvestingClouds).
 
 Thanks for reading!
