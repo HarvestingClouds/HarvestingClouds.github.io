@@ -1,7 +1,6 @@
 ---
 layout: page
 title: About
-comments: true
 ---
 ![This was taken during fall 2015.](/assets/AmanSharma175by175.png)
 
