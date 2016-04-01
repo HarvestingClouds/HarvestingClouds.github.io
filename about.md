@@ -27,7 +27,7 @@ Various technologies which I focus on, but not limited to, are:
 
 ## What I have been doing
 
-I have been busy building solutions around:
+I have been working with great companies like Infosys (2.5 yrs), [Microsoft (5 yrs)](www.microsoft.com) & [Infront Consulting Group (present)](http://www.infrontconsulting.com/). I have been working on various Microsoft products from within or outside Microsoft, working closely with their product teams. I have been busy building enterprise solutions around:
 
 * Azure Billing & Chargeback
 * Enterprise Datacenter Management solutions
