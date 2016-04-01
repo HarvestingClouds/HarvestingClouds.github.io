@@ -10,7 +10,7 @@ My Moto:
   Do it with Passion or Not at all!
 </p>
 
-Various technologies on which I focus on, but not limited to, are:
+Various technologies which I focus on, but not limited to, are:
 
 * Microsoft Azure & AWS Cloud Platforms
 * Azure Automation
