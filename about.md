@@ -3,28 +3,37 @@ layout: page
 title: About
 ---
 
+I am Senior Technical Consultant for Private and Public cloud. I am passionate about technology and how it can change the way we experience life. 
+
+My Moto:
 <p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
+  Do it with Passion or Not at all!
 </p>
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+Various technologies on which I focus on, but not limited to, are:
 
-There are currently two themes built on Poole:
+* Microsoft Azure & AWS Cloud Platforms
+* Azure Automation
+* PowerShell Scripting
+* System Center Products - esp. Orchestrator, Virtual Machine Manager, Service Manager, etc.
+* Application Insights
+* Visual Studio, Git, GitHub, TFS & Release Management
+* Dot Net Application development (esp. Web using MVC)
+* Windows Azure Pack (WAP)
+* Service Management Automation (SMA)
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
 
-Learn more and contribute on [GitHub](https://github.com/poole).
+## What I have been doing
 
-## Setup
+I have been busy building solutions around:
 
-Some fun facts about the setup of this project include:
+* Azure Billing & Chargeback
+* Enterprise Datacenter Management solutions
+* System Center customization solutions
+* Windows Azure Pack customizations and resource providers
 
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
+You can connect with me on Twitter [@20aman](https://twitter.com/20aman). You can also find me on [Linked In](http://https://ca.linkedin.com/in/20aman).
 
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
+Have questions or suggestions? Feel free to contact me on social media or on my email id at [20aman@gmailcom](mailto:20aman@gmail.com?subject=HarvestingClouds).
 
 Thanks for reading!
