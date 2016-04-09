@@ -17,7 +17,7 @@ The new features include:
 * Lean expeience for various ASR scenarios
 * Enhancements to the specific Site Recovery scenarios
 
-###Lets take a quick look at some of these.
+### Lets take a quick look at some of these.
 
 If you Browse and search for "Recovery" you get Recovery Services Vaults as Preview feature.
 ![Browse and Search](/assets/01ASRPreview/BrowseAndSearch.png "Browse and Search")
@@ -59,5 +59,5 @@ Notice in the screenshot above that the backup types available are:
 
 Selecting each option provides you with details for next steps. You can then create a backup policy and configure Items to backup.
 
-Give these features a try and let us know in comments below how you find the new feature.
+Give these features a try and let us know in comments below how you find the new features.
 Happy Exploring!
