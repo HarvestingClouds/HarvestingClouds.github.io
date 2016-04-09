@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Getting Started: Azure Site Recovery (ASR) In New Azure Portal
+title: Getting Started - Azure Site Recovery (ASR) In New Azure Portal
 comments: true
 redirect_from: "/2016/04/09/Azure-Site-Recovery-In-New-Portal/"
 permalink: Azure-Site-Recovery-In-New-Portal
