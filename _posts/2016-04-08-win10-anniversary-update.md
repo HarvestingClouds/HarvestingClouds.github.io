@@ -7,6 +7,7 @@ permalink: Windows-10-Anniversary-Update
 ---
 
 Windows 10 Anniversary Update is coming this summary. It will be available for free download for the following devices (which is almost every device):
+
 * PCs
 * Tablets
 * Phones
@@ -15,6 +16,7 @@ Windows 10 Anniversary Update is coming this summary. It will be available for f
 * IoT
 
 ## What this means to you:
+
 * Improved Biometric Security
 * Microsoft Edge browser
 * Windows Ink (where just one click of pen will bring up all the gamut available for use with your Pen device)
