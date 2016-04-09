@@ -21,4 +21,4 @@ Windows 10 Anniversary Update is coming this summary. It will be available for f
 * Universal Windows Platform or UWP apps are coming to XBox through a Unified Windows Store. Also if you own a XBox you will be able to turn it into a dev box and do development with it
 * Various improvements to Cortana
 
-[Check out more details here] (https://www.microsoft.com/en-us/windows/upcoming-features){:target="_blank"}
+[Check out more details here](https://www.microsoft.com/en-us/windows/upcoming-features){:target="_blank"}
