@@ -14,7 +14,7 @@ Azure Site Recovery or ASR is now available in the new portal (codename Ibiza) w
 The new features include:
 
 * All the goodness of Azure Resource Manager in ASR
-* Lean expeience for various ASR scenarios
+* Lean experience for various ASR scenarios
 * Enhancements to the specific Site Recovery scenarios
 
 ### Lets take a quick look at some of these.
