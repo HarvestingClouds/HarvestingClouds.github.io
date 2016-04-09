@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Windows 10 Anniversary Update
+title: Coming Soon - Windows 10 Anniversary Update
 comments: true
 redirect_from: "/2016/04/08/win10-anniversary-update/"
 permalink: Windows-10-Anniversary-Update
