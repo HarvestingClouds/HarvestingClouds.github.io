@@ -12,11 +12,13 @@ Azure Site Recovery or ASR is now available in the new portal (codename Ibiza) w
 ### What are the new features
 
 The new features include:
+
 * All the goodness of Azure Resource Manager in ASR
 * Lean expeience for various ASR scenarios
 * Enhancements to the specific Site Recovery scenarios
 
 ###Lets take a quick look at some of these.
+
 If you Browse and search for "Recovery" you get Recovery Services Vaults as Preview feature.
 ![Browse and Search](/assets/01ASRPreview/BrowseAndSearch.png "Browse and Search")
 
@@ -34,10 +36,12 @@ To find the options for replication go to Settings -> Getting Started section ->
 ![New Site Recovery Wizard](/assets/01ASRPreview/GettingStarted.png "New Site Recovery Wizard")
 
 The Scenario Types available are only two. But all the scenarios are covered here:
+
 * From my site to Azure
 * From my site to another site
 
 Based on the scenario you select you are asked for different options. The options for Virtualization/Management Server type for "From my site to Azure" are:
+
 * VMM
 * Stand alone Hyper-V hosts
 * vCenter
@@ -48,6 +52,7 @@ Based on the scenario you select you are asked for different options. The option
 Another feature is creation of Backups from the same vault. Click on the + icon for Backup in the Vault main blade and then follow the wizard for the preview feature.
 ![Backup In ASR](/assets/01ASRPreview/BackupInASR.png "Backup In ASR")
 Notice in the screenshot above that the backup types available are:
+
 * Azure virtual machine backup
 * File Folder backup
 * System Center Data Protection Manager
