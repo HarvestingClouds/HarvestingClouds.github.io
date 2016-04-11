@@ -6,7 +6,7 @@ redirect_from: "/2016/04/09/Azure-Site-Recovery-In-New-Portal/"
 permalink: Azure-Site-Recovery-In-New-Portal
 ---
 
-Azure Site Recovery or ASR is now available in the new portal (codename Ibiza) with modern user interface. It is in preview at this stage. But it is production ready for all the Hyper-V related scenarios.
+Azure Site Recovery or ASR is now available in the new Azure Resource Manager or ARM portal (codename Ibiza) with modern user interface. It is in preview at this stage. But it is production ready for all the Hyper-V related scenarios.
 **Your older Vaults (created via Classic ASM Azure Portal) will not be available in ASR preview feature.**
 
 ### What are the new features
