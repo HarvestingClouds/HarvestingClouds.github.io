@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- sitemap-generator-url="http://www.auditmypc.com/free-sitemap-generator.asp" -->
+<!-- This sitemap was created using the free tool found here: http://www.auditmypc.com/free-sitemap-generator.asp -->
+<!-- Audit My PC also offers free security tools to help keep you safe during internet travels -->
+<urlset 
+		xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
+		http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+>
+<url>
+    <loc>http://HarvestingClouds.com</loc>
+    <lastmod>2016-04-11T11:03:48-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/public/css/poole.css</loc>
+    <lastmod>2016-04-11T11:03:46-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/public/css/syntax.css</loc>
+    <lastmod>2016-04-11T11:03:46-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/public/css/hyde.css</loc>
+    <lastmod>2016-04-11T11:03:46-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/public/apple-touch-icon-144-precomposed.png</loc>
+    <lastmod>2016-04-11T11:03:46-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/public/favicon.ico</loc>
+    <lastmod>2016-04-11T11:03:46-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/atom.xml</loc>
+    <lastmod>2016-04-11T11:03:48-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/</loc>
+    <lastmod>2016-04-11T11:03:48-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/about/</loc>
+    <lastmod>2016-04-11T11:03:48-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/archive/</loc>
+    <lastmod>2016-04-11T11:03:48-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/Azure-Site-Recovery-In-New-Portal</loc>
+    <lastmod>2016-04-11T11:03:48-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/assets/01ASRPreview/BrowseAndSearch.png</loc>
+    <lastmod>2016-04-11T11:03:46-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/assets/01ASRPreview/ASRVault.png</loc>
+    <lastmod>2016-04-11T11:03:46-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/assets/01ASRPreview/VaultCreation.png</loc>
+    <lastmod>2016-04-11T11:03:46-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/assets/01ASRPreview/NewVault.png</loc>
+    <lastmod>2016-04-11T11:03:46-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/assets/01ASRPreview/GettingStarted.png</loc>
+    <lastmod>2016-04-11T11:03:46-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/assets/01ASRPreview/CreationOptions.png</loc>
+    <lastmod>2016-04-11T11:03:46-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/assets/01ASRPreview/BackupInASR.png</loc>
+    <lastmod>2016-04-11T11:03:46-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/Windows-10-Anniversary-Update</loc>
+    <lastmod>2016-04-11T11:03:48-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/Introducing-Harvesting-Clouds</loc>
+    <lastmod>2016-04-11T11:03:48-04:00</lastmod>
+</url>
+<url>
+    <loc>http://HarvestingClouds.com/assets/AmanSharma175by175.png</loc>
+    <lastmod>2016-04-11T11:03:46-04:00</lastmod>
+</url>
+</urlset>
