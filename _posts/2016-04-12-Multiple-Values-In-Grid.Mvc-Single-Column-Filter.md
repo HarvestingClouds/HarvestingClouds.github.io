@@ -18,8 +18,8 @@ I have also created a pull request for the same so that more people get benefit 
 
 ### What are the changes I have done?
 I have made changes to two files:
-1. DefaultColumnFilter.cs in "GridMvc" class library project under the Filters folder. I have updated the GetFilterExpression method to create multiple expressions based on the pipeline character in filter values.
-2. gridmvc.customwidgets.js file in "GridMvc.Site" web application project
+ 1. DefaultColumnFilter.cs in "GridMvc" class library project under the Filters folder. I have updated the GetFilterExpression method to create multiple expressions based on the pipeline character in filter values.
+ 2. gridmvc.customwidgets.js file in "GridMvc.Site" web application project
 
 Both of these paths are shown below:
 Location of DefaultColumnFilter.cs:
