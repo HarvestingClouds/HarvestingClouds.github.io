@@ -6,7 +6,9 @@ redirect_from: "/2016/04/12/Multiple-Values-In-Grid.Mvc-Single-Column-Filter/"
 permalink: Multiple-Values-In-Grid.Mvc-Single-Column-Filter
 ---
 
-I have been struggling to implement multiple filters on a single column in Grid.Mvc tool. I have solved this by altering the code and updating the custom widget.
+I have been struggling to implement multiple filters in a single column in Grid.Mvc tool. I have solved this by altering the code and updating the custom widget.
+**Note:** The WithMultipleFilters() option will not help you in this. That option enables multiple filters on different columns. To have multiple filters in the same column you need to update the way filtering works in the tool itself.
+
 I have used a list of checkboxes and any or all of the elements selected in this checkbox list will be used for filtering the column values.
 
 You can find the code in my fork of the official Grid.Mvc repo at below link:
@@ -18,7 +20,7 @@ I have also created a pull request for the same so that more people get benefit 
 I have made changes to two files:
 1. DefaultColumnFilter.cs in "GridMvc" class library project under the Filters folder. I have updated the GetFilterExpression method to create multiple expressions based on the pipeline character in filter values.
 2. gridmvc.customwidgets.js file in "GridMvc.Site" web application project
- 
+
 Both of these paths are shown below:
 Location of DefaultColumnFilter.cs:
 ![DefaultColumnFilter.cs](/assets/Grid.Mvc/CSFile.png "DefaultColumnFilter.cs")
