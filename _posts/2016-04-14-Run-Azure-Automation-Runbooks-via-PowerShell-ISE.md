@@ -42,7 +42,9 @@ Assets
  - Secret values (passwords, encrypted variables) are not downloaded automatically; they need to be set manually the first time the account is synced 
  - Values that haven't been downloaded will be highlighted 
  - Asset values you enter locally will not get overwritten when you sync from the cloud 
+
 Runbooks 
+
  - Native PowerShell and PowerShell Workflow runbooks are supported 
 
 Check the screenshot regarding this information below:
