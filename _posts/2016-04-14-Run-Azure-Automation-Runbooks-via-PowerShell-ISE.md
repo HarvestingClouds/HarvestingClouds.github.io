@@ -20,6 +20,7 @@ Find-Module AzureAutomationAuthoringToolkit | Install-Module -Scope CurrentUser
 ```
 
 Then import the module using below cmdlet:
+
 ```powershell
 Import-Module AzureAutomationAuthoringToolkit
 ```
