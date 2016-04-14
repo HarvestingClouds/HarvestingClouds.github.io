@@ -27,7 +27,9 @@ Import-Module AzureAutomationAuthoringToolkit
 You can configure the Add-On using a Configuration tab in the add-on and start getting your hands dirty. 
 
 ### Official Information from the Add-On Help
+
 #### Capabilities
+
  - Test runbooks on your local machine and in the Azure Automation service: 
  - Store and edit Automation Assets locally 
  - Use Automation Activities (Get-AutomationVariable, Get-AutomationPSCredential, etc) in local PowerShell scripts 
@@ -36,6 +38,7 @@ You can configure the Add-On using a Configuration tab in the add-on and start g
 
 #### Notes
 Assets
+
  - Secret values (passwords, encrypted variables) are not downloaded automatically; they need to be set manually the first time the account is synced 
  - Values that haven't been downloaded will be highlighted 
  - Asset values you enter locally will not get overwritten when you sync from the cloud 
