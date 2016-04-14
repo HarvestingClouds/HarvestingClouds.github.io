@@ -16,7 +16,7 @@ You can now buy it through the Direct program as well as through following optio
 To purchase, sign in to the [Office 365 Administration Portal](https://portal.office.com){:target="_blank"}
 
 You can also watch the below video for details:
-<iframe src="https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/How-to-Purchase-Azure-Active-Directory-Premium-Existing-Customer/player" width="960" height="540" allowFullScreen frameBorder="0"></iframe>
+<iframe src="https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/How-to-Purchase-Azure-Active-Directory-Premium-Existing-Customer/player" width="800" height="450" allowFullScreen frameBorder="0"></iframe>
 
 You can also engage a partner to assist you with the purchase and your Azure Active Directory related any requirements. 
 [Infront Consulting Group](http://www.infrontconsulting.com/){:target="_blank"} (where I currently work) is one such partner who are highly respected in market and are Microsoft Gold Certified Partner. 
