@@ -7,7 +7,8 @@ permalink: Run-Azure-Automation-Runbooks-via-PowerShell-ISE
 ---
 
 Today I came across this blog post from my friend:
-[Azure Automation PowerShell ISE add-on] (https://scomanswers.wordpress.com/2016/04/11/azure-automation-powershell-ise-add-on/){:target="_blank"}
+
+[Azure Automation PowerShell ISE add-on](https://scomanswers.wordpress.com/2016/04/11/azure-automation-powershell-ise-add-on/){:target="_blank"}
 
 What I came to know is that now you can Run the Azure Automation Runbooks via PowerShell ISE. This solves a big pain point for all Azure developers.
 Now you will be able to develop and test your scripts right from the convenience of your laptop's local PowerShell ISE. 
