@@ -2,7 +2,7 @@
 layout: post
 title: Various Options Added to Buy Microsoft Azure Active Directory Basic
 comments: true
-redirect_from: "/2016/04/14/Options-to-Buy-Microsoft-Azure-Active-Directory-Basic/"
+redirect_from: "/2016/04/13/Options-to-Buy-Microsoft-Azure-Active-Directory-Basic/"
 permalink: Options-to-Buy-Microsoft-Azure-Active-Directory-Basic
 ---
 
