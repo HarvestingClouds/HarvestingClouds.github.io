@@ -27,4 +27,4 @@ You can follow the instructions in the ReadMe file in the GitHub repo and start 
 
 I hope you find this usefull and this will avoid the trouble of figuring things out, which I have already undergone. 
 
-Let me know in the comments below if you have any questions of anything to add to this.
+Let me know in the comments below if you have any questions or anything to add to this.
