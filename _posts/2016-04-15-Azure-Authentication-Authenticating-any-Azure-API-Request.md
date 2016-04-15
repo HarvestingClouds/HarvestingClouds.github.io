@@ -7,7 +7,7 @@ permalink: Azure-Authentication-Authenticating-any-Azure-API-Request
 ---
 
 I have created a code sample to showcase how you can authenticate any request programatically with Azure. 
-This also contains **a reusable Authentication Helper class** which you can directly use in your code.
+This also contains **a Reusable Authentication Helper class** which you can directly use in your code.
 
 ### Where is the code
 
@@ -18,9 +18,9 @@ You can find the complete code sample along with the reusable Azure Authenticati
 
 You have the following options
 
- - Authenticating by Prompting for Credentials from end user. (This needs end user interaction)
- - Authenticating by Credentials i.e. using a password. (This does not need any end user interaction)
- - Authenticating by using a Certificate ( This also does not need any end user interaction)
+ - Authenticating by **Prompting** for Credentials from end user. (This needs end user interaction)
+ - Authenticating by **Credentials** i.e. using a password. (This does not need any end user interaction)
+ - Authenticating by using a **Certificate** ( This also does not need any end user interaction)
 
 I have provided this functionality in 3 separate methods, in a separate class file along with it's interface. 
 You can follow the instructions in the ReadMe file in the GitHub repo and start using any one of the method.
