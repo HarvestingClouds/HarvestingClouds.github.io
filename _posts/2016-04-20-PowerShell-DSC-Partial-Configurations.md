@@ -35,4 +35,4 @@ This is bit complex than the Push mode. In nutshell you only need couple of step
 To know more about DSC Partial configurations follow the below references:
   
    - [Official MSDN Article](https://msdn.microsoft.com/en-us/powershell/dsc/partialconfigs){:target="_blank"}
-   - [Detailed Blod by AutomationNext](https://automationnext.wordpress.com/2016/04/19/powershell-desired-state-configuration-partial-configurations-without-configurationid/){:target="_blank"}
+   - [Detailed Blog by AutomationNext with very valuable insights](https://automationnext.wordpress.com/2016/04/19/powershell-desired-state-configuration-partial-configurations-without-configurationid/){:target="_blank"}
