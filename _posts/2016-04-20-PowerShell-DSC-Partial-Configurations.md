@@ -6,7 +6,7 @@ redirect_from: "/2016/04/20/PowerShell-DSC-Partial-Configurations/"
 permalink: PowerShell-DSC-Partial-Configurations
 ---
 
-Partial Configurations is a new feature in PowerShell 5.0 Desired State Configuration or DSC. It allows the configurations to be delivered in parts or fragments. These configuratiosn can come from various sources.
+**Partial Configurations** is a new feature in PowerShell 5.0 Desired State Configuration or DSC. It allows the configurations to be delivered in parts or fragments. These configuratiosn can come from various sources.
 The Local Configuration Manager or LCM on the target node puts these partial configurations from different sources together and after that apply the same as a single configuration.
 
 This opens various possibilities for Enterprises to manage their infrastructure and designate the responsibility to various teams for a single node. The team expert in a particular field can focus on that feature without worrying about other features.
@@ -34,5 +34,5 @@ This is bit complex than the Push mode. In nutshell you only need couple of step
  
 To know more about DSC Partial configurations follow the below references:
   
-   - [Official MSDN Article](https://msdn.microsoft.com/en-us/powershell/dsc/partialconfigs)
-   - [Detailed Blod by AutomationNext](https://automationnext.wordpress.com/2016/04/19/powershell-desired-state-configuration-partial-configurations-without-configurationid/)
+   - [Official MSDN Article](https://msdn.microsoft.com/en-us/powershell/dsc/partialconfigs){:target="_blank"}
+   - [Detailed Blod by AutomationNext](https://automationnext.wordpress.com/2016/04/19/powershell-desired-state-configuration-partial-configurations-without-configurationid/){:target="_blank"}
