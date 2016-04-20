@@ -13,4 +13,4 @@ All the tools that you may be familiar with when working with a Container Servic
 
 You can find the announcement here: [GA for Azure Container Service](https://azure.microsoft.com/en-us/updates/general-availability-azure-container-service/)
 
-You can get accounted with the Container Service as offered by Azure on the product page here: [Azure Container Service](https://azure.microsoft.com/en-us/services/container-service/)
+You can learn more about the Container Service as offered by Azure on the product page here: [Azure Container Service](https://azure.microsoft.com/en-us/services/container-service/)
