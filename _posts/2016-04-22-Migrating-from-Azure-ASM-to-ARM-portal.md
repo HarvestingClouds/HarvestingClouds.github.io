@@ -2,7 +2,7 @@
 layout: post
 title: Migrating from Azure ASM to ARM portal
 comments: true
-redirect_from: "/2016/04/21/Migrating-from-Azure-ASM-to-ARM-portal/"
+redirect_from: "/2016/04/22/Migrating-from-Azure-ASM-to-ARM-portal/"
 permalink: Migrating-from-Azure-ASM-to-ARM-portal
 ---
 
