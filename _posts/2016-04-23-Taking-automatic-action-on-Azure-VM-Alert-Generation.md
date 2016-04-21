@@ -10,4 +10,4 @@ Using a new feature in Azure, now you can easily configure to trigger an Azure A
 
  > Note: This feature is supported only for the V2 Virtual Machines, i.e. the VMs created using ARM portal.
 
-Reference: [Azure Automation solution - remediate Azure VM alerts](https://azure.microsoft.com/en-us/documentation/articles/automation-azure-vm-alert-integration/){:target="_blank"}
+**Reference:** [Azure Automation solution - remediate Azure VM alerts](https://azure.microsoft.com/en-us/documentation/articles/automation-azure-vm-alert-integration/){:target="_blank"}
