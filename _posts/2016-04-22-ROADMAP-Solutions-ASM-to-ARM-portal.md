@@ -6,7 +6,7 @@ redirect_from: "/2016/04/22/ROADMAP-Solutions-ASM-to-ARM-portal/"
 permalink: ROADMAP-Solutions-ASM-to-ARM-portal
 ---
 
-In additional to the tool I mentioned yesterday regarding [Migrating from Azure ASM to ARM portal](http://harvestingclouds.com/Migrating-from-Azure-ASM-to-ARM-portal){:target="_blank"} there are various more solutions in the pipeline. This post looks at the high level Roadmap for the same from Microsoft.
+In additional to the tool I mentioned yesterday regarding [Migrating from Azure ASM to ARM portal](http://harvestingclouds.com/Migrating-from-Azure-ASM-to-ARM-portal){:target="_blank"} there are various solutions in the pipeline. This post looks at the high level Roadmap for the same from Microsoft.
 
 Microsoft has promised that they are committed to make the migration more easier from ASM to ARM portal. Various solutions are already in the pipeline for this.
 Below are the details and roadmap for the tentative timelines for these solutions.
