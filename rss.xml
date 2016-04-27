@@ -121,7 +121,7 @@ Now you will be able to develop and test your scripts right from the convenience
 <li>Native PowerShell and PowerShell Workflow runbooks are supported </li>
 </ul>
 <p>Check the screenshot regarding this information below:
-<img src="/assets/AzureAutoPSAddOn/Notes.png" alt="Official Notes" title="Official Notes" /></p>
+<img src="http://HarvestingClouds.com/images/1461735632572050d069253.png" alt="Official Notes" title="Official Notes" /></p>
 <h3>How much time it would take me</h3>
 <p>In all it would take you under 10 mins to get setup and rolling.</p>
 <h3>Where is more information on this and screenshots</h3>
@@ -187,16 +187,16 @@ Location of DefaultColumnFilter.cs:
 </ul>
 <h3>Lets take a quick look at some of these.</h3>
 <p>If you Browse and search for &quot;Recovery&quot; you get Recovery Services Vaults as Preview feature.
-<img src="/assets/01ASRPreview/BrowseAndSearch.png" alt="Browse and Search" title="Browse and Search" /></p>
+<img src="http://HarvestingClouds.com/images/14617358075720517f78904.png" alt="Browse and Search" title="Browse and Search" /></p>
 <p>Clicking on it will open up the blade for &quot;Recovery Services valuts&quot;. Notice that Microsoft has PREVIEW text in this.
-<img src="/assets/01ASRPreview/ASRVault.png" alt="alt text" title="ASR Vault" /></p>
+<img src="http://HarvestingClouds.com/images/1461735702572051161683f.png" alt="alt text" title="ASR Vault" /></p>
 <p>Clicking on the Add button brings up the ASR vault creation blade. Notice the locations available for vault creation here.
-<img src="/assets/01ASRPreview/VaultCreation.png" alt="Vault Creation" title="Vault Creation" /></p>
+<img src="http://HarvestingClouds.com/images/14617359385720520210878.png" alt="Vault Creation" title="Vault Creation" /></p>
 <p>After you hit create the Vault gets deployed really quickly. I tested for East US location and it was created in under 10 secs.
 Refresh to view your newly created vault. Click on it to open the NEW ASR Vault features. Notice that the Backup feature is also there in the ASR vault now.
-<img src="/assets/01ASRPreview/NewVault.png" alt="New Vault" title="New Vault" /></p>
+<img src="http://HarvestingClouds.com/images/1461735907572051e31549a.png" alt="New Vault" title="New Vault" /></p>
 <p>To find the options for replication go to Settings -&gt; Getting Started section -&gt; Site Recovery -&gt; Follow Wizard.
-<img src="/assets/01ASRPreview/GettingStarted.png" alt="New Site Recovery Wizard" title="New Site Recovery Wizard" /></p>
+<img src="http://HarvestingClouds.com/images/1461735869572051bd2d6fa.png" alt="New Site Recovery Wizard" title="New Site Recovery Wizard" /></p>
 <p>The Scenario Types available are only two. But all the scenarios are covered here:</p>
 <ul>
 <li>From my site to Azure</li>
@@ -208,11 +208,11 @@ Refresh to view your newly created vault. Click on it to open the NEW ASR Vault 
 <li>Stand alone Hyper-V hosts</li>
 <li>vCenter</li>
 <li>Physical machines (not virtualized)
-<img src="/assets/01ASRPreview/CreationOptions.png" alt="Creation Options" title="Creation Options" /></li>
+<img src="http://HarvestingClouds.com/images/14617358385720519e578ba.png" alt="Creation Options" title="Creation Options" /></li>
 </ul>
 <h3>Backup in ASR vault</h3>
 <p>Another feature is creation of Backups from the same vault. Click on the + icon for Backup in the Vault main blade and then follow the wizard for the preview feature.
-<img src="/assets/01ASRPreview/BackupInASR.png" alt="Backup In ASR" title="Backup In ASR" />
+<img src="http://HarvestingClouds.com/images/14617357575720514d5d1d8.png" alt="Backup In ASR" title="Backup In ASR" />
 Notice in the screenshot above that the backup types available are:</p>
 <ul>
 <li>Azure virtual machine backup</li>
