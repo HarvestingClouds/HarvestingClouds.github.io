@@ -33,10 +33,10 @@
 			"title": "ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal",
 			"postDate": "22-04-2016",
 			"tags": [
-				"Azure",
 				"announcement",
 				"arm",
 				"asm",
+				"azure",
 				"azureresourcemanager",
 				"azureservicemanagement"
 			],
@@ -56,9 +56,9 @@
 			"title": "Migrating from Azure ASM to ARM portal",
 			"postDate": "21-04-2016",
 			"tags": [
-				"Azure",
 				"arm",
 				"asm",
+				"azure",
 				"azureresourcemanager",
 				"azureservicemanagement"
 			],
@@ -78,8 +78,8 @@
 			"title": "PowerShell DSC - Partial Configurations",
 			"postDate": "20-04-2016",
 			"tags": [
-				"PowerShell",
-				"dsc"
+				"dsc",
+				"powershell"
 			],
 			"category": "PowerShell",
 			"body": "<p><strong>Partial Configurations<\/strong> is a new feature in PowerShell 5.0 Desired State Configuration or DSC. It allows the configurations to be delivered in parts or fragments. These configurations can come from various sources.\nThe Local Configuration Manager or LCM on the target node puts these partial configurations from different sources together and after that apply the same as a single configuration.<\/p>\n<p>This opens various possibilities for Enterprises to manage their infrastructure and designate the responsibility to various teams for a single node. The team expert in a particular field can focus on that feature without worrying about other features.<\/p>\n<p>You can have partial configurations in following modes:<\/p>\n<ol>\n<li>Push Mode<\/li>\n<li>Pull Mode<\/li>\n<li>Hybrid Mode (i.e. combination of Push and Pull)<\/li>\n<\/ol>\n<h3>Configuration for the PUSH Mode<\/h3>\n<p>You need to follow three steps to configure Partial configurations for the PUSH mode:<\/p>\n<ul>\n<li>Configure the LCM, on the target node, to expect partial configurations<\/li>\n<li>Push each partial configuration from different sources using <strong>Publish-DSCConfiguration<\/strong> cmdlet. Target node will automatically combine the partial configurations into single configuration.<\/li>\n<li>Apply the configuration by calling the <strong>Start-DSCConfiguration<\/strong>cmdlet<\/li>\n<\/ul>\n<h3>Configuration for the PULL Mode<\/h3>\n<p>This is bit complex than the Push mode. In nutshell you only need couple of steps:<\/p>\n<ul>\n<li>Configure the LCM, on the target node, to receive partial configurations but from PULL servers<\/li>\n<li>Name and locate the configuration documents properly on the pull servers<\/li>\n<\/ul>\n<p>To know more about DSC Partial configurations follow the below references:<\/p>\n<ul>\n<li><a href=\"https:\/\/automationnext.wordpress.com\/2016\/04\/19\/powershell-desired-state-configuration-partial-configurations-without-configurationid\/\">Detailed Blog by AutomationNext with very valuable insights<\/a><\/li>\n<li><a href=\"https:\/\/msdn.microsoft.com\/en-us\/powershell\/dsc\/partialconfigs\">Official MSDN Article<\/a><\/li>\n<\/ul>",
@@ -97,8 +97,8 @@
 			"title": "Azure Container Service hits General Availability",
 			"postDate": "19-04-2016",
 			"tags": [
-				"Azure",
-				"General"
+				"azure",
+				"general"
 			],
 			"category": "Azure",
 			"body": "<p>Azure Container Service has finally hit General Availability today. <\/p>\n<p>If you don't know already, it is the &quot;container hosting solution&quot; which is optimized for Microsoft's Azure cloud.\nAll the tools that you may be familiar with when working with a Container Service should work like Apache Mesos or Docker Swarm. It only uses open source components in the orchestration layers to give you portability of full applications.<\/p>\n<p>You can find the announcement here: <a href=\"https:\/\/azure.microsoft.com\/en-us\/updates\/general-availability-azure-container-service\/\">GA for Azure Container Service<\/a><\/p>\n<p>You can learn more about the Container Service as offered by Azure on the product page here: <a href=\"https:\/\/azure.microsoft.com\/en-us\/services\/container-service\/\">Azure Container Service<\/a><\/p>",
@@ -108,6 +108,7 @@
 			"categoryslug": "azure",
 			"status": "publised",
 			"summary": "\n<p>Azure Container Service has finally hit General Availability today. <\/p>\n<p>If you don't know already, it is the \"container hosting solution\" which is optimized for Microsoft's Azure cloud.\nAll the tools that you may be familiar with when working with a Container Service should work lik...<\/p>\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		},
 		{
@@ -116,7 +117,7 @@
 			"postDate": "15-04-2016",
 			"tags": [
 				".net",
-				"Azure",
+				"azure",
 				"c#"
 			],
 			"category": "Azure",
@@ -127,6 +128,7 @@
 			"categoryslug": "azure",
 			"status": "publised",
 			"summary": "\n<p>I have created a code sample to showcase how you can authenticate any request programatically with Azure.\nThis also contains <strong>a Reusable Authentication Helper class<\/strong> which you can directly use in your code.<\/p>\n<h3>Where is the code<\/h3>\n<p>You can find the complete code sample alo...<\/p>\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		},
 		{
@@ -154,8 +156,10 @@
 			"title": "Various Options Added to Buy Microsoft Azure Active Directory Basic",
 			"postDate": "13-04-2016",
 			"tags": [
-				"Azure",
-				"general"
+				"azure",
+				"general",
+				"ad",
+				"activedirectory"
 			],
 			"category": "Azure",
 			"body": "<p>Today Microsoft announced that they have added various options to buy Microsoft Azure Active Directory (AAD) Basic.\nYou can now buy it through the Direct program as well as through following options:<\/p>\n<ul>\n<li><a href=\"https:\/\/www.microsoft.com\/en-us\/licensing\/licensing-programs\/enterprise.aspx?WT.mc_id=azurebg_email_Trans_1065_Tier2_Release_MOSP\">Microsoft Enterprise Agreement<\/a><\/li>\n<li><a href=\"https:\/\/www.microsoft.com\/en-us\/licensing\/licensing-programs\/open-license.aspx?WT.mc_id=azurebg_email_Trans_1065_Tier2_Release_MOSP\">Open Volume License Program<\/a><\/li>\n<li><a href=\"https:\/\/partner.microsoft.com\/en-US\/Solutions\/cloud-reseller-overview?WT.mc_id=azurebg_email_Trans_1065_Tier2_Release_MOSP\">Microsoft Cloud Solution Provider<\/a><\/li>\n<\/ul>\n<p>To purchase, sign in to the <a href=\"https:\/\/portal.office.com\">Office 365 Administration Portal<\/a><\/p>\n<p>You can also watch the below video for details. Although the video is for AAD Premium, the steps are essentially similar for AAD Basic.<\/p>\n<iframe src=\"https:\/\/channel9.msdn.com\/Series\/Azure-Active-Directory-Videos-Demos\/How-to-Purchase-Azure-Active-Directory-Premium-Existing-Customer\/player\" width=\"560\" height=\"315\" allowFullScreen frameBorder=\"0\"><\/iframe>\n<p>You can also engage a partner to assist you with the purchase and your Azure Active Directory related any requirements.\n<a href=\"http:\/\/www.infrontconsulting.com\/\">Infront Consulting Group<\/a> (where I currently work) is one such partner who are highly respected in market and are Microsoft Gold Certified Partner. <\/p>\n<p>Thanks for reading! If you have any questions please ask in the comments below.<\/p>",
@@ -194,8 +198,8 @@
 			"title": "Getting Started - Azure Site Recovery (ASR) In New Azure Portal",
 			"postDate": "09-04-2016",
 			"tags": [
-				"Azure",
-				"arm"
+				"arm",
+				"azure"
 			],
 			"category": "Azure",
 			"body": "<p>Azure Site Recovery or ASR is now available in the new Azure Resource Manager or ARM portal (codename Ibiza) with modern user interface. It is in preview at this stage. But it is production ready for all the Hyper-V related scenarios.\n<strong>Your older Vaults (created via Classic ASM Azure Portal) will not be available in ASR preview feature.<\/strong><\/p>\n<h3>What are the new features<\/h3>\n<p>The new features include:<\/p>\n<ul>\n<li>All the goodness of Azure Resource Manager in ASR<\/li>\n<li>Lean experience for various ASR scenarios<\/li>\n<li>Enhancements to the specific Site Recovery scenarios<\/li>\n<\/ul>\n<h3>Lets take a quick look at some of these.<\/h3>\n<p>If you Browse and search for &quot;Recovery&quot; you get Recovery Services Vaults as Preview feature.\n<img src=\"http:\/\/HarvestingClouds.com\/images\/14617358075720517f78904.png\" alt=\"Browse and Search\" title=\"Browse and Search\" \/><\/p>\n<p>Clicking on it will open up the blade for &quot;Recovery Services valuts&quot;. Notice that Microsoft has PREVIEW text in this.\n<img src=\"http:\/\/HarvestingClouds.com\/images\/1461735702572051161683f.png\" alt=\"alt text\" title=\"ASR Vault\" \/><\/p>\n<p>Clicking on the Add button brings up the ASR vault creation blade. Notice the locations available for vault creation here.\n<img src=\"http:\/\/HarvestingClouds.com\/images\/14617359385720520210878.png\" alt=\"Vault Creation\" title=\"Vault Creation\" \/><\/p>\n<p>After you hit create the Vault gets deployed really quickly. I tested for East US location and it was created in under 10 secs.\nRefresh to view your newly created vault. Click on it to open the NEW ASR Vault features. Notice that the Backup feature is also there in the ASR vault now.\n<img src=\"http:\/\/HarvestingClouds.com\/images\/1461735907572051e31549a.png\" alt=\"New Vault\" title=\"New Vault\" \/><\/p>\n<p>To find the options for replication go to Settings -&gt; Getting Started section -&gt; Site Recovery -&gt; Follow Wizard.\n<img src=\"http:\/\/HarvestingClouds.com\/images\/1461735869572051bd2d6fa.png\" alt=\"New Site Recovery Wizard\" title=\"New Site Recovery Wizard\" \/><\/p>\n<p>The Scenario Types available are only two. But all the scenarios are covered here:<\/p>\n<ul>\n<li>From my site to Azure<\/li>\n<li>From my site to another site<\/li>\n<\/ul>\n<p>Based on the scenario you select you are asked for different options. The options for Virtualization\/Management Server type for &quot;From my site to Azure&quot; are:<\/p>\n<ul>\n<li>VMM<\/li>\n<li>Stand alone Hyper-V hosts<\/li>\n<li>vCenter<\/li>\n<li>Physical machines (not virtualized)\n<img src=\"http:\/\/HarvestingClouds.com\/images\/14617358385720519e578ba.png\" alt=\"Creation Options\" title=\"Creation Options\" \/><\/li>\n<\/ul>\n<h3>Backup in ASR vault<\/h3>\n<p>Another feature is creation of Backups from the same vault. Click on the + icon for Backup in the Vault main blade and then follow the wizard for the preview feature.\n<img src=\"http:\/\/HarvestingClouds.com\/images\/14617357575720514d5d1d8.png\" alt=\"Backup In ASR\" title=\"Backup In ASR\" \/>\nNotice in the screenshot above that the backup types available are:<\/p>\n<ul>\n<li>Azure virtual machine backup<\/li>\n<li>File Folder backup<\/li>\n<li>System Center Data Protection Manager<\/li>\n<\/ul>\n<p>Selecting each option provides you with details for next steps. You can then create a backup policy and configure Items to backup.<\/p>\n<p>Give these features a try and let us know in comments below how you find the new features.\nHappy Exploring!<\/p>",
@@ -252,10 +256,10 @@
 			"title": "ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal",
 			"postDate": "22-04-2016",
 			"tags": [
-				"Azure",
 				"announcement",
 				"arm",
 				"asm",
+				"azure",
 				"azureresourcemanager",
 				"azureservicemanagement"
 			],
@@ -275,9 +279,9 @@
 			"title": "Migrating from Azure ASM to ARM portal",
 			"postDate": "21-04-2016",
 			"tags": [
-				"Azure",
 				"arm",
 				"asm",
+				"azure",
 				"azureresourcemanager",
 				"azureservicemanagement"
 			],
@@ -297,8 +301,8 @@
 			"title": "PowerShell DSC - Partial Configurations",
 			"postDate": "20-04-2016",
 			"tags": [
-				"PowerShell",
-				"dsc"
+				"dsc",
+				"powershell"
 			],
 			"category": "PowerShell",
 			"body": "<p><strong>Partial Configurations<\/strong> is a new feature in PowerShell 5.0 Desired State Configuration or DSC. It allows the configurations to be delivered in parts or fragments. These configurations can come from various sources.\nThe Local Configuration Manager or LCM on the target node puts these partial configurations from different sources together and after that apply the same as a single configuration.<\/p>\n<p>This opens various possibilities for Enterprises to manage their infrastructure and designate the responsibility to various teams for a single node. The team expert in a particular field can focus on that feature without worrying about other features.<\/p>\n<p>You can have partial configurations in following modes:<\/p>\n<ol>\n<li>Push Mode<\/li>\n<li>Pull Mode<\/li>\n<li>Hybrid Mode (i.e. combination of Push and Pull)<\/li>\n<\/ol>\n<h3>Configuration for the PUSH Mode<\/h3>\n<p>You need to follow three steps to configure Partial configurations for the PUSH mode:<\/p>\n<ul>\n<li>Configure the LCM, on the target node, to expect partial configurations<\/li>\n<li>Push each partial configuration from different sources using <strong>Publish-DSCConfiguration<\/strong> cmdlet. Target node will automatically combine the partial configurations into single configuration.<\/li>\n<li>Apply the configuration by calling the <strong>Start-DSCConfiguration<\/strong>cmdlet<\/li>\n<\/ul>\n<h3>Configuration for the PULL Mode<\/h3>\n<p>This is bit complex than the Push mode. In nutshell you only need couple of steps:<\/p>\n<ul>\n<li>Configure the LCM, on the target node, to receive partial configurations but from PULL servers<\/li>\n<li>Name and locate the configuration documents properly on the pull servers<\/li>\n<\/ul>\n<p>To know more about DSC Partial configurations follow the below references:<\/p>\n<ul>\n<li><a href=\"https:\/\/automationnext.wordpress.com\/2016\/04\/19\/powershell-desired-state-configuration-partial-configurations-without-configurationid\/\">Detailed Blog by AutomationNext with very valuable insights<\/a><\/li>\n<li><a href=\"https:\/\/msdn.microsoft.com\/en-us\/powershell\/dsc\/partialconfigs\">Official MSDN Article<\/a><\/li>\n<\/ul>",
@@ -316,8 +320,8 @@
 			"title": "Azure Container Service hits General Availability",
 			"postDate": "19-04-2016",
 			"tags": [
-				"Azure",
-				"General"
+				"azure",
+				"general"
 			],
 			"category": "Azure",
 			"body": "<p>Azure Container Service has finally hit General Availability today. <\/p>\n<p>If you don't know already, it is the &quot;container hosting solution&quot; which is optimized for Microsoft's Azure cloud.\nAll the tools that you may be familiar with when working with a Container Service should work like Apache Mesos or Docker Swarm. It only uses open source components in the orchestration layers to give you portability of full applications.<\/p>\n<p>You can find the announcement here: <a href=\"https:\/\/azure.microsoft.com\/en-us\/updates\/general-availability-azure-container-service\/\">GA for Azure Container Service<\/a><\/p>\n<p>You can learn more about the Container Service as offered by Azure on the product page here: <a href=\"https:\/\/azure.microsoft.com\/en-us\/services\/container-service\/\">Azure Container Service<\/a><\/p>",
@@ -327,6 +331,7 @@
 			"categoryslug": "azure",
 			"status": "publised",
 			"summary": "\n<p>Azure Container Service has finally hit General Availability today. <\/p>\n<p>If you don't know already, it is the \"container hosting solution\" which is optimized for Microsoft's Azure cloud.\nAll the tools that you may be familiar with when working with a Container Service should work lik...<\/p>\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		},
 		{
@@ -335,7 +340,7 @@
 			"postDate": "15-04-2016",
 			"tags": [
 				".net",
-				"Azure",
+				"azure",
 				"c#"
 			],
 			"category": "Azure",
@@ -346,6 +351,7 @@
 			"categoryslug": "azure",
 			"status": "publised",
 			"summary": "\n<p>I have created a code sample to showcase how you can authenticate any request programatically with Azure.\nThis also contains <strong>a Reusable Authentication Helper class<\/strong> which you can directly use in your code.<\/p>\n<h3>Where is the code<\/h3>\n<p>You can find the complete code sample alo...<\/p>\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		}
 	],
@@ -355,10 +361,10 @@
 			"title": "ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal",
 			"postDate": "22-04-2016",
 			"tags": [
-				"Azure",
 				"announcement",
 				"arm",
 				"asm",
+				"azure",
 				"azureresourcemanager",
 				"azureservicemanagement"
 			],
@@ -392,6 +398,6 @@
 			"categoryslug": "web-development"
 		}
 	],
-	"tagsCloud": "<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/net\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">net<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/announcement\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">announcement<\/a>\n<a style=\"font-size: 19px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/arm\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">arm<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/asm\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">asm<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/automation\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">automation<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azure\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">azure<\/a>\n<a style=\"font-size: 30px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azure\" title=\"6 total posts\" data-original-title=\"7 total posts\" data-toggle=\"tooltip\">Azure<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureresourcemanager\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">azureresourcemanager<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureservicemanagement\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">azureservicemanagement<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/c\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">c<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/dsc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">dsc<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/general\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">general<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/general\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">General<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/gridmvc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">gridmvc<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/mvc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">mvc<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/powershell\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">PowerShell<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/powershell\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">powershell<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/webdevelopment\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">webdevelopment<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/windows\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">windows<\/a>\n",
+	"tagsCloud": "<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/net\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">net<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/activedirectory\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">activedirectory<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/ad\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">ad<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/announcement\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">announcement<\/a>\n<a style=\"font-size: 18px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/arm\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">arm<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/asm\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">asm<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/automation\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">automation<\/a>\n<a style=\"font-size: 30px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azure\" title=\"7 total posts\" data-original-title=\"8 total posts\" data-toggle=\"tooltip\">azure<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureresourcemanager\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">azureresourcemanager<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureservicemanagement\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">azureservicemanagement<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/c\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">c<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/dsc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">dsc<\/a>\n<a style=\"font-size: 18px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/general\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">general<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/gridmvc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">gridmvc<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/mvc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">mvc<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/powershell\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">powershell<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/webdevelopment\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">webdevelopment<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/windows\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">windows<\/a>\n",
 	"archives": "<ul class=\"archives list-group\"><li class=\"list-group-item archive_link\"><a href=\"http:\/\/HarvestingClouds.com\/archive\/april-2016\">April 2016<\/a><\/li><\/ul>"
 }
