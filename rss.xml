@@ -164,11 +164,11 @@ You can now buy it through the Direct program as well as through following optio
 </ol>
 <p>Both of these paths are shown below:
 Location of DefaultColumnFilter.cs:
-<img src="/assets/Grid.Mvc/CSFile.png" alt="DefaultColumnFilter.cs" title="DefaultColumnFilter.cs" /></p>
+<img src="http://HarvestingClouds.com/images/146173541957204ffb99678.png" alt="DefaultColumnFilter.cs" title="DefaultColumnFilter.cs" /></p>
 <p>Location of gridmvc.customwidgets.js:
-<img src="/assets/Grid.Mvc/JSFile.png" alt="gridmvc.customwidgets.js" title="gridmvc.customwidgets.js" /></p>
+<img src="http://HarvestingClouds.com/images/146173543057205006529e6.png" alt="gridmvc.customwidgets.js" title="gridmvc.customwidgets.js" /></p>
 <p>How the end result look like:
-<img src="/assets/Grid.Mvc/EndResult.png" alt="Checkbox Filtering" title="Checkbox Filtering" /></p>
+<img src="http://HarvestingClouds.com/images/14617354255720500171fe7.png" alt="Checkbox Filtering" title="Checkbox Filtering" /></p>
 <p>You can directly use the code if you want. Just honor the license of the original author.</p>
 <p>Let me know in the comments below if you have any doubts and I will be happy to address them.</p>]]></description>
 <link>http://HarvestingClouds.com/post/multiple-values-in-gridmvc-single-column-filter-via-checkboxes-with-code-sample</link>

@@ -35,9 +35,7 @@
 			"tags": [
 				"Azure",
 				"arm",
-				"asm",
-				"azure resource manager",
-				"azure service management"
+				"asm"
 			],
 			"category": "Azure",
 			"body": "<p>In additional to the tool I mentioned yesterday regarding <a href=\"http:\/\/harvestingclouds.com\/Migrating-from-Azure-ASM-to-ARM-portal\">Migrating from Azure ASM to ARM portal<\/a> there are various solutions in the pipeline. This post looks at the high level Roadmap for the same from Microsoft.<\/p>\n<p>Microsoft has promised that they are committed to make the migration more easier from ASM (older) to ARM (newer) portal. Various solutions are already in the pipeline for this.\nBelow are the details and roadmap for the tentative timelines for these solutions.<\/p>\n<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\"> <tbody> <tr> <td valign=\"top\" width=\"29%\"> <p><b>Solution<\/b><\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p><b>Customer Experience<\/b><\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p><b>Expected availability in 2016<\/b><\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Script migration<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>VM is rebooted as it is recreated in the Resource Manager model. While the Virtual Machines for the environment are recreated, the network is disconnected.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q1<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines, no VNET<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>As all Virtual Machines deployed in the Resource Manager model must be in a VNet, Virtual Machines will be migrated and placed in a new VNET. This will result in a change in network configuration, requiring a reboot to reconnect.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q2<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines with VNET<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>Starting in Q2, the platform will offer Virtual Machine migration from ASM to Resource Manager model without disrupting the running Virtual Machine. This will require disconnecting any VNets connected on-premises, whether via ExpressRoute or VPN, before doing the migration.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q2<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines with basic hybrid (one connection)<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>Starting in Q3, the platform will offer Virtual Machine migration from ASM to Resource Manager model without disrupting the running Virtual Machine and with minimal disruption to a basic hybrid connection, limited to just one connection back on-premises. More complex connections will require disconnecting before doing the migration.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q3<\/p> <\/td> <\/tr> <\/tbody> <\/table>\n<p>Reference: <a href=\"https:\/\/azure.microsoft.com\/en-us\/blog\/transitioning-to-the-resource-manager-model\/\">Transitioning to the Resource Manager model<\/a><\/p>",
@@ -47,6 +45,7 @@
 			"categoryslug": "azure",
 			"status": "publised",
 			"summary": "\n<p>In additional to the tool I mentioned yesterday regarding <a href=\"http:\/\/harvestingclouds.com\/Migrating-from-Azure-ASM-to-ARM-portal\">Migrating from Azure ASM to ARM portal<\/a> there are various solutions in the pipeline. This post looks at the high level Roadmap for the same from Microsoft.<\/p>...\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		},
 		{
@@ -56,9 +55,7 @@
 			"tags": [
 				"Azure",
 				"arm",
-				"asm",
-				"azure resource manager",
-				"azure service management"
+				"asm"
 			],
 			"category": "Azure",
 			"body": "<p>With co-existing Azure Service Management or ASM portal (older) and Azure Resource Manager or ARM portal (newer) there has been lots of confusions and problems for IT administrators.\nThe bottom line of all the discussion around the two portals is that <strong>ARM is the future and is here to stay<\/strong>. It means that you need to <strong>plan and migrate<\/strong> your resources from ASM portal to the ARM portal.<\/p>\n<p>The key resource is your infrastructure which primarily consists of virtual machines. To migrate a single Virtual Machine (VM) from ASM portal to ARM portal you can leverage a set of PowerShell scripts called ASM2ARM.\nYou can download these scripts and check their description on <a href=\"https:\/\/github.com\/fullscale180\/asm2arm\">GitHub here on the <strong>ASM2ARM<\/strong> page<\/a>. You can check the detailed instructions there too.<\/p>\n<p>To plan this right now is very important as the transitioning to Azure Resource Manager model is already underway. Any future development and investment seems to be happening only in the newer portal only.<\/p>\n<p><strong>Reference:<\/strong> <a href=\"https:\/\/github.com\/fullscale180\/asm2arm\">ASM2ARM scripts on GitHub<\/a><\/p>",
@@ -68,6 +65,7 @@
 			"categoryslug": "azure",
 			"status": "publised",
 			"summary": "\n<p>With co-existing Azure Service Management or ASM portal (older) and Azure Resource Manager or ARM portal (newer) there has been lots of confusions and problems for IT administrators.\nThe bottom line of all the discussion around the two portals is that <strong>ARM is the future and is here to stay...<\/strong><\/p>\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		},
 		{
@@ -76,7 +74,6 @@
 			"postDate": "20-04-2016",
 			"tags": [
 				"PowerShell",
-				"desired state configurations",
 				"dsc"
 			],
 			"category": "PowerShell",
@@ -87,6 +84,7 @@
 			"categoryslug": "powershell",
 			"status": "publised",
 			"summary": "\n<p><strong>Partial Configurations<\/strong> is a new feature in PowerShell 5.0 Desired State Configuration or DSC. It allows the configurations to be delivered in parts or fragments. These configurations can come from various sources.\nThe Local Configuration Manager or LCM on the target node puts the...<\/p>\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		},
 		{
@@ -131,8 +129,8 @@
 			"title": "Run Azure Automation Runbooks via PowerShell ISE",
 			"postDate": "14-04-2016",
 			"tags": [
+				"automation",
 				"azure",
-				"azure automation",
 				"powershell"
 			],
 			"category": "Azure",
@@ -171,17 +169,17 @@
 			"postDate": "12-04-2016",
 			"tags": [
 				"c#",
-				"grid.mvc",
 				"mvc"
 			],
 			"category": "Web Development",
-			"body": "<p>I have been struggling to implement multiple filters in a single column in Grid.Mvc tool. I have solved this by altering the code and updating the custom widget.\n<strong>Note:<\/strong> The WithMultipleFilters() option will not help you in this. That option enables multiple filters on different columns. To have multiple filters in the same column you need to update the way filtering works in the tool itself.<\/p>\n<p>I have used a list of checkboxes and any or all of the elements selected in this checkbox list will be used for filtering the column values.<\/p>\n<p>You can find the code in my fork of the official Grid.Mvc repo at below link:\n<a href=\"https:\/\/github.com\/HarvestingClouds\/Grid.Mvc\" target=\"_blank\">Fork of Grid.Mvc repo with Advance Filters<\/a><\/p>\n<p>I have also created a pull request for the same so that more people get benefit from this if they refer the master branch of the main repo.<\/p>\n<h3>What are the changes I have done?<\/h3>\n<p>I have made changes to two files:<\/p>\n<ol>\n<li><strong>DefaultColumnFilter.cs<\/strong> file in &quot;<strong>GridMvc<\/strong>&quot; class library project under the Filters folder. I have updated the GetFilterExpression method to create multiple expressions based on the pipeline character in filter values.<\/li>\n<li><strong>gridmvc.customwidgets.js<\/strong> file in &quot;<strong>GridMvc.Site<\/strong>&quot; web application project<\/li>\n<\/ol>\n<p>Both of these paths are shown below:\nLocation of DefaultColumnFilter.cs:\n<img src=\"\/assets\/Grid.Mvc\/CSFile.png\" alt=\"DefaultColumnFilter.cs\" title=\"DefaultColumnFilter.cs\" \/><\/p>\n<p>Location of gridmvc.customwidgets.js:\n<img src=\"\/assets\/Grid.Mvc\/JSFile.png\" alt=\"gridmvc.customwidgets.js\" title=\"gridmvc.customwidgets.js\" \/><\/p>\n<p>How the end result look like:\n<img src=\"\/assets\/Grid.Mvc\/EndResult.png\" alt=\"Checkbox Filtering\" title=\"Checkbox Filtering\" \/><\/p>\n<p>You can directly use the code if you want. Just honor the license of the original author.<\/p>\n<p>Let me know in the comments below if you have any doubts and I will be happy to address them.<\/p>",
+			"body": "<p>I have been struggling to implement multiple filters in a single column in Grid.Mvc tool. I have solved this by altering the code and updating the custom widget.\n<strong>Note:<\/strong> The WithMultipleFilters() option will not help you in this. That option enables multiple filters on different columns. To have multiple filters in the same column you need to update the way filtering works in the tool itself.<\/p>\n<p>I have used a list of checkboxes and any or all of the elements selected in this checkbox list will be used for filtering the column values.<\/p>\n<p>You can find the code in my fork of the official Grid.Mvc repo at below link:\n<a href=\"https:\/\/github.com\/HarvestingClouds\/Grid.Mvc\" target=\"_blank\">Fork of Grid.Mvc repo with Advance Filters<\/a><\/p>\n<p>I have also created a pull request for the same so that more people get benefit from this if they refer the master branch of the main repo.<\/p>\n<h3>What are the changes I have done?<\/h3>\n<p>I have made changes to two files:<\/p>\n<ol>\n<li><strong>DefaultColumnFilter.cs<\/strong> file in &quot;<strong>GridMvc<\/strong>&quot; class library project under the Filters folder. I have updated the GetFilterExpression method to create multiple expressions based on the pipeline character in filter values.<\/li>\n<li><strong>gridmvc.customwidgets.js<\/strong> file in &quot;<strong>GridMvc.Site<\/strong>&quot; web application project<\/li>\n<\/ol>\n<p>Both of these paths are shown below:\nLocation of DefaultColumnFilter.cs:\n<img src=\"http:\/\/HarvestingClouds.com\/images\/146173541957204ffb99678.png\" alt=\"DefaultColumnFilter.cs\" title=\"DefaultColumnFilter.cs\" \/><\/p>\n<p>Location of gridmvc.customwidgets.js:\n<img src=\"http:\/\/HarvestingClouds.com\/images\/146173543057205006529e6.png\" alt=\"gridmvc.customwidgets.js\" title=\"gridmvc.customwidgets.js\" \/><\/p>\n<p>How the end result look like:\n<img src=\"http:\/\/HarvestingClouds.com\/images\/14617354255720500171fe7.png\" alt=\"Checkbox Filtering\" title=\"Checkbox Filtering\" \/><\/p>\n<p>You can directly use the code if you want. Just honor the license of the original author.<\/p>\n<p>Let me know in the comments below if you have any doubts and I will be happy to address them.<\/p>",
 			"addpost": "addpost",
 			"dated": "Apr 12, 2016",
 			"slug": "multiple-values-in-gridmvc-single-column-filter-via-checkboxes-with-code-sample",
 			"categoryslug": "web-development",
 			"status": "publised",
 			"summary": "\n<p>I have been struggling to implement multiple filters in a single column in Grid.Mvc tool. I have solved this by altering the code and updating the custom widget.\n<strong>Note:<\/strong> The WithMultipleFilters() option will not help you in this. That option enables multiple filters on different co...<\/p>\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		},
 		{
@@ -190,8 +188,7 @@
 			"postDate": "09-04-2016",
 			"tags": [
 				"Azure",
-				"arm",
-				"azure site recovery"
+				"arm"
 			],
 			"category": "Azure",
 			"body": "<p>Azure Site Recovery or ASR is now available in the new Azure Resource Manager or ARM portal (codename Ibiza) with modern user interface. It is in preview at this stage. But it is production ready for all the Hyper-V related scenarios.\n<strong>Your older Vaults (created via Classic ASM Azure Portal) will not be available in ASR preview feature.<\/strong><\/p>\n<h3>What are the new features<\/h3>\n<p>The new features include:<\/p>\n<ul>\n<li>All the goodness of Azure Resource Manager in ASR<\/li>\n<li>Lean experience for various ASR scenarios<\/li>\n<li>Enhancements to the specific Site Recovery scenarios<\/li>\n<\/ul>\n<h3>Lets take a quick look at some of these.<\/h3>\n<p>If you Browse and search for &quot;Recovery&quot; you get Recovery Services Vaults as Preview feature.\n<img src=\"\/assets\/01ASRPreview\/BrowseAndSearch.png\" alt=\"Browse and Search\" title=\"Browse and Search\" \/><\/p>\n<p>Clicking on it will open up the blade for &quot;Recovery Services valuts&quot;. Notice that Microsoft has PREVIEW text in this.\n<img src=\"\/assets\/01ASRPreview\/ASRVault.png\" alt=\"alt text\" title=\"ASR Vault\" \/><\/p>\n<p>Clicking on the Add button brings up the ASR vault creation blade. Notice the locations available for vault creation here.\n<img src=\"\/assets\/01ASRPreview\/VaultCreation.png\" alt=\"Vault Creation\" title=\"Vault Creation\" \/><\/p>\n<p>After you hit create the Vault gets deployed really quickly. I tested for East US location and it was created in under 10 secs.\nRefresh to view your newly created vault. Click on it to open the NEW ASR Vault features. Notice that the Backup feature is also there in the ASR vault now.\n<img src=\"\/assets\/01ASRPreview\/NewVault.png\" alt=\"New Vault\" title=\"New Vault\" \/><\/p>\n<p>To find the options for replication go to Settings -&gt; Getting Started section -&gt; Site Recovery -&gt; Follow Wizard.\n<img src=\"\/assets\/01ASRPreview\/GettingStarted.png\" alt=\"New Site Recovery Wizard\" title=\"New Site Recovery Wizard\" \/><\/p>\n<p>The Scenario Types available are only two. But all the scenarios are covered here:<\/p>\n<ul>\n<li>From my site to Azure<\/li>\n<li>From my site to another site<\/li>\n<\/ul>\n<p>Based on the scenario you select you are asked for different options. The options for Virtualization\/Management Server type for &quot;From my site to Azure&quot; are:<\/p>\n<ul>\n<li>VMM<\/li>\n<li>Stand alone Hyper-V hosts<\/li>\n<li>vCenter<\/li>\n<li>Physical machines (not virtualized)\n<img src=\"\/assets\/01ASRPreview\/CreationOptions.png\" alt=\"Creation Options\" title=\"Creation Options\" \/><\/li>\n<\/ul>\n<h3>Backup in ASR vault<\/h3>\n<p>Another feature is creation of Backups from the same vault. Click on the + icon for Backup in the Vault main blade and then follow the wizard for the preview feature.\n<img src=\"\/assets\/01ASRPreview\/BackupInASR.png\" alt=\"Backup In ASR\" title=\"Backup In ASR\" \/>\nNotice in the screenshot above that the backup types available are:<\/p>\n<ul>\n<li>Azure virtual machine backup<\/li>\n<li>File Folder backup<\/li>\n<li>System Center Data Protection Manager<\/li>\n<\/ul>\n<p>Selecting each option provides you with details for next steps. You can then create a backup policy and configure Items to backup.<\/p>\n<p>Give these features a try and let us know in comments below how you find the new features.\nHappy Exploring!<\/p>",
@@ -201,6 +198,7 @@
 			"categoryslug": "azure",
 			"status": "publised",
 			"summary": "\n<p>Azure Site Recovery or ASR is now available in the new Azure Resource Manager or ARM portal (codename Ibiza) with modern user interface. It is in preview at this stage. But it is production ready for all the Hyper-V related scenarios.\n<strong>Your older Vaults (created via Classic ASM Azure Porta...<\/strong><\/p>\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		},
 		{
@@ -208,8 +206,7 @@
 			"title": "Coming Soon - Windows 10 Anniversary Update",
 			"postDate": "08-04-2016",
 			"tags": [
-				"General",
-				"window 10"
+				"General"
 			],
 			"category": "General",
 			"body": "<p>Windows 10 Anniversary Update is coming this summary. It will be available for free download for the following devices (which is almost every device):<\/p>\n<ul>\n<li>PCs<\/li>\n<li>Tablets<\/li>\n<li>Phones<\/li>\n<li>Xbox One<\/li>\n<li>Microsoft HoloLens<\/li>\n<li>IoT<\/li>\n<\/ul>\n<h2>What this means to you:<\/h2>\n<ul>\n<li>Improved Biometric Security<\/li>\n<li>Microsoft Edge browser<\/li>\n<li>Windows Ink (where just one click of pen will bring up all the gamut available for use with your Pen device)<\/li>\n<li>Universal Windows Platform or UWP apps are coming to XBox through a Unified Windows Store. Also if you own a XBox you will be able to turn it into a dev box and do development with it<\/li>\n<li>Various improvements to Cortana<\/li>\n<\/ul>\n<p><a href=\"https:\/\/www.microsoft.com\/en-us\/windows\/upcoming-features\" target=\"_blank\">Check out more details here<\/a><\/p>",
@@ -219,6 +216,7 @@
 			"categoryslug": "general",
 			"status": "publised",
 			"summary": "\n<p>Windows 10 Anniversary Update is coming this summary. It will be available for free download for the following devices (which is almost every device):<\/p>\n<ul><li>PCs<\/li>\n<li>Tablets<\/li>\n<li>Phones<\/li>\n<li>Xbox One<\/li>\n<li>Microsoft HoloLens<\/li>\n<li>IoT<\/li>\n<\/ul><h2>What this means to you...<\/h2>\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		},
 		{
@@ -248,9 +246,7 @@
 			"tags": [
 				"Azure",
 				"arm",
-				"asm",
-				"azure resource manager",
-				"azure service management"
+				"asm"
 			],
 			"category": "Azure",
 			"body": "<p>In additional to the tool I mentioned yesterday regarding <a href=\"http:\/\/harvestingclouds.com\/Migrating-from-Azure-ASM-to-ARM-portal\">Migrating from Azure ASM to ARM portal<\/a> there are various solutions in the pipeline. This post looks at the high level Roadmap for the same from Microsoft.<\/p>\n<p>Microsoft has promised that they are committed to make the migration more easier from ASM (older) to ARM (newer) portal. Various solutions are already in the pipeline for this.\nBelow are the details and roadmap for the tentative timelines for these solutions.<\/p>\n<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\"> <tbody> <tr> <td valign=\"top\" width=\"29%\"> <p><b>Solution<\/b><\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p><b>Customer Experience<\/b><\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p><b>Expected availability in 2016<\/b><\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Script migration<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>VM is rebooted as it is recreated in the Resource Manager model. While the Virtual Machines for the environment are recreated, the network is disconnected.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q1<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines, no VNET<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>As all Virtual Machines deployed in the Resource Manager model must be in a VNet, Virtual Machines will be migrated and placed in a new VNET. This will result in a change in network configuration, requiring a reboot to reconnect.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q2<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines with VNET<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>Starting in Q2, the platform will offer Virtual Machine migration from ASM to Resource Manager model without disrupting the running Virtual Machine. This will require disconnecting any VNets connected on-premises, whether via ExpressRoute or VPN, before doing the migration.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q2<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines with basic hybrid (one connection)<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>Starting in Q3, the platform will offer Virtual Machine migration from ASM to Resource Manager model without disrupting the running Virtual Machine and with minimal disruption to a basic hybrid connection, limited to just one connection back on-premises. More complex connections will require disconnecting before doing the migration.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q3<\/p> <\/td> <\/tr> <\/tbody> <\/table>\n<p>Reference: <a href=\"https:\/\/azure.microsoft.com\/en-us\/blog\/transitioning-to-the-resource-manager-model\/\">Transitioning to the Resource Manager model<\/a><\/p>",
@@ -260,6 +256,7 @@
 			"categoryslug": "azure",
 			"status": "publised",
 			"summary": "\n<p>In additional to the tool I mentioned yesterday regarding <a href=\"http:\/\/harvestingclouds.com\/Migrating-from-Azure-ASM-to-ARM-portal\">Migrating from Azure ASM to ARM portal<\/a> there are various solutions in the pipeline. This post looks at the high level Roadmap for the same from Microsoft.<\/p>...\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		},
 		{
@@ -269,9 +266,7 @@
 			"tags": [
 				"Azure",
 				"arm",
-				"asm",
-				"azure resource manager",
-				"azure service management"
+				"asm"
 			],
 			"category": "Azure",
 			"body": "<p>With co-existing Azure Service Management or ASM portal (older) and Azure Resource Manager or ARM portal (newer) there has been lots of confusions and problems for IT administrators.\nThe bottom line of all the discussion around the two portals is that <strong>ARM is the future and is here to stay<\/strong>. It means that you need to <strong>plan and migrate<\/strong> your resources from ASM portal to the ARM portal.<\/p>\n<p>The key resource is your infrastructure which primarily consists of virtual machines. To migrate a single Virtual Machine (VM) from ASM portal to ARM portal you can leverage a set of PowerShell scripts called ASM2ARM.\nYou can download these scripts and check their description on <a href=\"https:\/\/github.com\/fullscale180\/asm2arm\">GitHub here on the <strong>ASM2ARM<\/strong> page<\/a>. You can check the detailed instructions there too.<\/p>\n<p>To plan this right now is very important as the transitioning to Azure Resource Manager model is already underway. Any future development and investment seems to be happening only in the newer portal only.<\/p>\n<p><strong>Reference:<\/strong> <a href=\"https:\/\/github.com\/fullscale180\/asm2arm\">ASM2ARM scripts on GitHub<\/a><\/p>",
@@ -281,6 +276,7 @@
 			"categoryslug": "azure",
 			"status": "publised",
 			"summary": "\n<p>With co-existing Azure Service Management or ASM portal (older) and Azure Resource Manager or ARM portal (newer) there has been lots of confusions and problems for IT administrators.\nThe bottom line of all the discussion around the two portals is that <strong>ARM is the future and is here to stay...<\/strong><\/p>\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		},
 		{
@@ -289,7 +285,6 @@
 			"postDate": "20-04-2016",
 			"tags": [
 				"PowerShell",
-				"desired state configurations",
 				"dsc"
 			],
 			"category": "PowerShell",
@@ -300,6 +295,7 @@
 			"categoryslug": "powershell",
 			"status": "publised",
 			"summary": "\n<p><strong>Partial Configurations<\/strong> is a new feature in PowerShell 5.0 Desired State Configuration or DSC. It allows the configurations to be delivered in parts or fragments. These configurations can come from various sources.\nThe Local Configuration Manager or LCM on the target node puts the...<\/p>\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		},
 		{
@@ -348,9 +344,7 @@
 			"tags": [
 				"Azure",
 				"arm",
-				"asm",
-				"azure resource manager",
-				"azure service management"
+				"asm"
 			],
 			"category": "Azure",
 			"body": "<p>In additional to the tool I mentioned yesterday regarding <a href=\"http:\/\/harvestingclouds.com\/Migrating-from-Azure-ASM-to-ARM-portal\">Migrating from Azure ASM to ARM portal<\/a> there are various solutions in the pipeline. This post looks at the high level Roadmap for the same from Microsoft.<\/p>\n<p>Microsoft has promised that they are committed to make the migration more easier from ASM (older) to ARM (newer) portal. Various solutions are already in the pipeline for this.\nBelow are the details and roadmap for the tentative timelines for these solutions.<\/p>\n<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\"> <tbody> <tr> <td valign=\"top\" width=\"29%\"> <p><b>Solution<\/b><\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p><b>Customer Experience<\/b><\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p><b>Expected availability in 2016<\/b><\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Script migration<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>VM is rebooted as it is recreated in the Resource Manager model. While the Virtual Machines for the environment are recreated, the network is disconnected.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q1<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines, no VNET<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>As all Virtual Machines deployed in the Resource Manager model must be in a VNet, Virtual Machines will be migrated and placed in a new VNET. This will result in a change in network configuration, requiring a reboot to reconnect.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q2<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines with VNET<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>Starting in Q2, the platform will offer Virtual Machine migration from ASM to Resource Manager model without disrupting the running Virtual Machine. This will require disconnecting any VNets connected on-premises, whether via ExpressRoute or VPN, before doing the migration.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q2<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines with basic hybrid (one connection)<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>Starting in Q3, the platform will offer Virtual Machine migration from ASM to Resource Manager model without disrupting the running Virtual Machine and with minimal disruption to a basic hybrid connection, limited to just one connection back on-premises. More complex connections will require disconnecting before doing the migration.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q3<\/p> <\/td> <\/tr> <\/tbody> <\/table>\n<p>Reference: <a href=\"https:\/\/azure.microsoft.com\/en-us\/blog\/transitioning-to-the-resource-manager-model\/\">Transitioning to the Resource Manager model<\/a><\/p>",
@@ -360,6 +354,7 @@
 			"categoryslug": "azure",
 			"status": "publised",
 			"summary": "\n<p>In additional to the tool I mentioned yesterday regarding <a href=\"http:\/\/harvestingclouds.com\/Migrating-from-Azure-ASM-to-ARM-portal\">Migrating from Azure ASM to ARM portal<\/a> there are various solutions in the pipeline. This post looks at the high level Roadmap for the same from Microsoft.<\/p>...\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		}
 	],
@@ -381,6 +376,6 @@
 			"categoryslug": "web-development"
 		}
 	],
-	"tagsCloud": "<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/net\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">net<\/a>\n<a style=\"font-size: 18px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/arm\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">arm<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/asm\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">asm<\/a>\n<a style=\"font-size: 30px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azure\" title=\"7 total posts\" data-original-title=\"8 total posts\" data-toggle=\"tooltip\">azure<\/a>\n<a style=\"font-size: 27px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azure\" title=\"6 total posts\" data-original-title=\"7 total posts\" data-toggle=\"tooltip\">Azure<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/automation\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">automation<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/resource\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">resource<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/manager\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">manager<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/service\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">service<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/management\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">management<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/site\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">site<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/recovery\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">recovery<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/c\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">c<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/desired\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">desired<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/state\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">state<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/configurations\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">configurations<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/dsc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">dsc<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/general\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">general<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/general\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">General<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/grid\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">grid<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/mvc\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">mvc<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/powershell\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">powershell<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/powershell\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">PowerShell<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/window\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">window<\/a>\n",
+	"tagsCloud": "<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/net\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">net<\/a>\n<a style=\"font-size: 19px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/arm\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">arm<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/asm\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">asm<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/automation\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">automation<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azure\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">azure<\/a>\n<a style=\"font-size: 30px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azure\" title=\"6 total posts\" data-original-title=\"7 total posts\" data-toggle=\"tooltip\">Azure<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/c\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">c<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/dsc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">dsc<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/general\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">General<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/general\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">general<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/mvc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">mvc<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/powershell\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">PowerShell<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/powershell\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">powershell<\/a>\n",
 	"archives": "<ul class=\"archives list-group\"><li class=\"list-group-item archive_link\"><a href=\"http:\/\/HarvestingClouds.com\/archive\/april-2016\">April 2016<\/a><\/li><\/ul>"
 }
