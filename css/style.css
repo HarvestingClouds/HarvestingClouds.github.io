@@ -1,0 +1,16 @@
+body {
+    margin-top: 75px;
+}
+
+.post-content, .page-content, .main-content {
+    margin-bottom: 20px;
+}
+
+.fa-rss {
+    background-color: #F4B83F;
+    color: #fff;
+}
+
+footer {
+    margin: 10px 0;
+}
