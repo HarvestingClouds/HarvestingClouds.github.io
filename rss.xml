@@ -14,7 +14,7 @@
 <p>To access this feature open your Virtual Machine. Then go to the Manage alerts section in the Settings:</p>
 <p><img src="http://HarvestingClouds.com/images/14618976705722c9c653752.png" alt="Setting - Manage alerts" /></p>
 <p>Then open an existing alert or click on &quot;Add alert&quot; to create a new one. Specify the criteria for the alert. Scroll down to the bottom and you can view the new section to link the alert to an Automation Runbook.</p>
-<p><img src="http://HarvestingClouds.com/images/14618978425722ca722a741.png" alt="Automation Runbook for Alert" /></p>
+<p><img src="http://HarvestingClouds.com/images/14618990795722cf4763dce.png" alt="Automation Runbook for Alert" /></p>
 <h3>Under the hood</h3>
 <p>The alert will send data to your Runbook in a special format. Your Runbook should be expecting this. Under the hood this happens via WebHooks. The alert data is passed via a HTTP POST request. The Automation webhook service extracts the alert data from the POST request and passes it to the runbook in a parameter called <strong>&quot;WebhookData&quot;</strong>. The Runbook will look like below:</p>
 <pre><code>[OutputType("PSAzureOperationResponse")]
