@@ -72,17 +72,35 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/roadmap-solutions-to-help-with-migration-from-azure-asm-to-arm-portal">ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/taking-automatic-remediation-action-on-azure-vm-alert-generation">Taking Automatic Remediation Action on Azure VM Alert Generation</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Apr 22, 2016
+                    <span class="glyphicon glyphicon-time"></span> Apr 27, 2016
                 
                         <hr>
-                        <p class="post-content"><p>In additional to the tool I mentioned yesterday regarding <a href="http://harvestingclouds.com/Migrating-from-Azure-ASM-to-ARM-portal">Migrating from Azure ASM to ARM portal</a> there are various solutions in the pipeline. This post looks at the high level Roadmap for the same from Microsoft.</p>
-<p>Microsoft has promised that they are committed to make the migration more easier from ASM (older) to ARM (newer) portal. Various solutions are already in the pipeline for this.
-Below are the details and roadmap for the tentative timelines for these solutions.</p>
-<table border="1" cellpadding="0" cellspacing="0"> <tbody> <tr> <td valign="top" width="29%"> <p><b>Solution</b></p> </td> <td valign="top" width="51%"> <p><b>Customer Experience</b></p> </td> <td valign="top" width="18%"> <p><b>Expected availability in 2016</b></p> </td> </tr> <tr> <td valign="top" width="29%"> <p>Script migration</p> </td> <td valign="top" width="51%"> <p>VM is rebooted as it is recreated in the Resource Manager model. While the Virtual Machines for the environment are recreated, the network is disconnected.</p> </td> <td valign="top" width="18%"> <p align="center">Q1</p> </td> </tr> <tr> <td valign="top" width="29%"> <p>Virtual Machines, no VNET</p> </td> <td valign="top" width="51%"> <p>As all Virtual Machines deployed in the Resource Manager model must be in a VNet, Virtual Machines will be migrated and placed in a new VNET. This will result in a change in network configuration, requiring a reboot to reconnect.</p> </td> <td valign="top" width="18%"> <p align="center">Q2</p> </td> </tr> <tr> <td valign="top" width="29%"> <p>Virtual Machines with VNET</p> </td> <td valign="top" width="51%"> <p>Starting in Q2, the platform will offer Virtual Machine migration from ASM to Resource Manager model without disrupting the running Virtual Machine. This will require disconnecting any VNets connected on-premises, whether via ExpressRoute or VPN, before doing the migration.</p> </td> <td valign="top" width="18%"> <p align="center">Q2</p> </td> </tr> <tr> <td valign="top" width="29%"> <p>Virtual Machines with basic hybrid (one connection)</p> </td> <td valign="top" width="51%"> <p>Starting in Q3, the platform will offer Virtual Machine migration from ASM to Resource Manager model without disrupting the running Virtual Machine and with minimal disruption to a basic hybrid connection, limited to just one connection back on-premises. More complex connections will require disconnecting before doing the migration.</p> </td> <td valign="top" width="18%"> <p align="center">Q3</p> </td> </tr> </tbody> </table>
-<p>Reference: <a href="https://azure.microsoft.com/en-us/blog/transitioning-to-the-resource-manager-model/">Transitioning to the Resource Manager model</a></p></p>
+                        <p class="post-content"><p>Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is triggered on an Azure Virtual Machine to take a remediation action. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation Runbook.</p>
+<blockquote>
+<p>Note: This feature is supported only for the V2 Virtual Machines, i.e. the VMs created using ARM portal.</p>
+</blockquote>
+<p>To access this feature open your Virtual Machine. Then go to the Manage alerts section in the Settings:</p>
+<p><img src="http://HarvestingClouds.com/images/14618976705722c9c653752.png" alt="Setting - Manage alerts" /></p>
+<p>Then open an existing alert or click on &quot;Add alert&quot; to create a new one. Specify the criteria for the alert. Scroll down to the bottom and you can view the new section to link the alert to an Automation Runbook.</p>
+<p><img src="http://HarvestingClouds.com/images/14618978425722ca722a741.png" alt="Automation Runbook for Alert" /></p>
+<h3>Under the hood</h3>
+<p>The alert will send data to your Runbook in a special format. Your Runbook should be expecting this. Under the hood this happens via WebHooks. The alert data is passed via a HTTP POST request. The Automation webhook service extracts the alert data from the POST request and passes it to the runbook in a parameter called <strong>&quot;WebhookData&quot;</strong>. The Runbook will look like below:</p>
+<pre><code>[OutputType("PSAzureOperationResponse")]
+
+param ( [object] $WebhookData )
+
+if ($WebhookData)
+{
+    # Get the data object from WebhookData
+    $WebhookBody = (ConvertFrom-Json -InputObject $WebhookData.RequestBody)
+
+    #Rest of the script comes here
+}</code></pre>
+<p><strong>In Nutshell</strong>, now you can now trigger Azure Automation Runbooks to take remediation actions on Virtual Machines in case an alert is triggered. </p>
+<p><strong>Reference with complete Runbook sample:</strong> <a href="https://azure.microsoft.com/en-us/documentation/articles/automation-azure-vm-alert-integration/">Azure Automation solution - remediate Azure VM alerts</a></p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -92,12 +110,11 @@ Below are the details and roadmap for the tentative timelines for these solution
                 
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
-                                <a href="http://HarvestingClouds.com/tag/announcement">announcement</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/arm">arm</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/asm">asm</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/automation">automation</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/azureresourcemanager">azureresourcemanager</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/azureservicemanagement">azureservicemanagement</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/azureautomation">azureautomation</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/virtualmachine">virtualmachine</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/vm">vm</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -144,11 +161,11 @@ Below are the details and roadmap for the tentative timelines for these solution
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/taking-automatic-remediation-action-on-azure-vm-alert-generation">Taking Automatic Remediation Action on Azure VM Alert Generation</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/roadmap-solutions-to-help-with-migration-from-azure-asm-to-arm-portal">ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/migrating-from-azure-asm-to-arm-portal">Migrating from Azure ASM to ARM portal</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/powershell-dsc-partial-configurations">PowerShell DSC - Partial Configurations</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-container-service-hits-general-availability">Azure Container Service hits General Availability</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-authentication-authenticating-any-azure-api-request-in-your-application">Azure Authentication - Authenticating any Azure API Request in your Application</a></li>
                 </ul>
             </div>
         
@@ -186,19 +203,22 @@ Below are the details and roadmap for the tentative timelines for these solution
                             <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/net" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">net</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">activedirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
-<a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">announcement</a>
-<a style="font-size: 18px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
-<a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">automation</a>
-<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">azure</a>
-<a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
-<a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
-<a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/csharp" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">csharp</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">announcement</a>
+<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
+<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/csharp" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">csharp</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/dsc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dsc</a>
-<a style="font-size: 18px" class="tag_cloud" href="http://HarvestingClouds.com/tag/general" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">general</a>
+<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/general" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">general</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/gridmvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">gridmvc</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
-<a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">powershell</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">powershell</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualmachine</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/webdevelopment" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">webdevelopment</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/windows" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">windows</a>
 

@@ -1,1 +1,0 @@
-This is where your static blog will be created. You can then upload this folder to your hosting provider to see your blog in action ;-)

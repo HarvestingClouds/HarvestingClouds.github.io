@@ -30,6 +30,29 @@
 	"posts": [
 		{
 			"author": "@20aman",
+			"title": "Taking Automatic Remediation Action on Azure VM Alert Generation",
+			"postDate": "27-04-2016",
+			"tags": [
+				"automation",
+				"azure",
+				"azureautomation",
+				"virtualmachine",
+				"vm"
+			],
+			"category": "Azure",
+			"body": "<p>Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is triggered on an Azure Virtual Machine to take a remediation action. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation Runbook.<\/p>\n<blockquote>\n<p>Note: This feature is supported only for the V2 Virtual Machines, i.e. the VMs created using ARM portal.<\/p>\n<\/blockquote>\n<p>To access this feature open your Virtual Machine. Then go to the Manage alerts section in the Settings:<\/p>\n<p><img src=\"http:\/\/HarvestingClouds.com\/images\/14618976705722c9c653752.png\" alt=\"Setting - Manage alerts\" \/><\/p>\n<p>Then open an existing alert or click on &quot;Add alert&quot; to create a new one. Specify the criteria for the alert. Scroll down to the bottom and you can view the new section to link the alert to an Automation Runbook.<\/p>\n<p><img src=\"http:\/\/HarvestingClouds.com\/images\/14618978425722ca722a741.png\" alt=\"Automation Runbook for Alert\" \/><\/p>\n<h3>Under the hood<\/h3>\n<p>The alert will send data to your Runbook in a special format. Your Runbook should be expecting this. Under the hood this happens via WebHooks. The alert data is passed via a HTTP POST request. The Automation webhook service extracts the alert data from the POST request and passes it to the runbook in a parameter called <strong>&quot;WebhookData&quot;<\/strong>. The Runbook will look like below:<\/p>\n<pre><code>[OutputType(\"PSAzureOperationResponse\")]\n\nparam ( [object] $WebhookData )\n\nif ($WebhookData)\n{\n    # Get the data object from WebhookData\n    $WebhookBody = (ConvertFrom-Json -InputObject $WebhookData.RequestBody)\n\n    #Rest of the script comes here\n}<\/code><\/pre>\n<p><strong>In Nutshell<\/strong>, now you can now trigger Azure Automation Runbooks to take remediation actions on Virtual Machines in case an alert is triggered. <\/p>\n<p><strong>Reference with complete Runbook sample:<\/strong> <a href=\"https:\/\/azure.microsoft.com\/en-us\/documentation\/articles\/automation-azure-vm-alert-integration\/\">Azure Automation solution - remediate Azure VM alerts<\/a><\/p>",
+			"savedraft": "savedraft",
+			"dated": "Apr 27, 2016",
+			"slug": "taking-automatic-remediation-action-on-azure-vm-alert-generation",
+			"categoryslug": "azure",
+			"status": "publised",
+			"summary": "\n<p>Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is triggered on an Azure Virtual Machine to take a remediation action. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation ...<\/p>\n",
+			"addpost": "addpost",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "@20aman",
 			"title": "ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal",
 			"postDate": "22-04-2016",
 			"tags": [
@@ -253,6 +276,29 @@
 	"latestPosts": [
 		{
 			"author": "@20aman",
+			"title": "Taking Automatic Remediation Action on Azure VM Alert Generation",
+			"postDate": "27-04-2016",
+			"tags": [
+				"automation",
+				"azure",
+				"azureautomation",
+				"virtualmachine",
+				"vm"
+			],
+			"category": "Azure",
+			"body": "<p>Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is triggered on an Azure Virtual Machine to take a remediation action. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation Runbook.<\/p>\n<blockquote>\n<p>Note: This feature is supported only for the V2 Virtual Machines, i.e. the VMs created using ARM portal.<\/p>\n<\/blockquote>\n<p>To access this feature open your Virtual Machine. Then go to the Manage alerts section in the Settings:<\/p>\n<p><img src=\"http:\/\/HarvestingClouds.com\/images\/14618976705722c9c653752.png\" alt=\"Setting - Manage alerts\" \/><\/p>\n<p>Then open an existing alert or click on &quot;Add alert&quot; to create a new one. Specify the criteria for the alert. Scroll down to the bottom and you can view the new section to link the alert to an Automation Runbook.<\/p>\n<p><img src=\"http:\/\/HarvestingClouds.com\/images\/14618978425722ca722a741.png\" alt=\"Automation Runbook for Alert\" \/><\/p>\n<h3>Under the hood<\/h3>\n<p>The alert will send data to your Runbook in a special format. Your Runbook should be expecting this. Under the hood this happens via WebHooks. The alert data is passed via a HTTP POST request. The Automation webhook service extracts the alert data from the POST request and passes it to the runbook in a parameter called <strong>&quot;WebhookData&quot;<\/strong>. The Runbook will look like below:<\/p>\n<pre><code>[OutputType(\"PSAzureOperationResponse\")]\n\nparam ( [object] $WebhookData )\n\nif ($WebhookData)\n{\n    # Get the data object from WebhookData\n    $WebhookBody = (ConvertFrom-Json -InputObject $WebhookData.RequestBody)\n\n    #Rest of the script comes here\n}<\/code><\/pre>\n<p><strong>In Nutshell<\/strong>, now you can now trigger Azure Automation Runbooks to take remediation actions on Virtual Machines in case an alert is triggered. <\/p>\n<p><strong>Reference with complete Runbook sample:<\/strong> <a href=\"https:\/\/azure.microsoft.com\/en-us\/documentation\/articles\/automation-azure-vm-alert-integration\/\">Azure Automation solution - remediate Azure VM alerts<\/a><\/p>",
+			"savedraft": "savedraft",
+			"dated": "Apr 27, 2016",
+			"slug": "taking-automatic-remediation-action-on-azure-vm-alert-generation",
+			"categoryslug": "azure",
+			"status": "publised",
+			"summary": "\n<p>Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is triggered on an Azure Virtual Machine to take a remediation action. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation ...<\/p>\n",
+			"addpost": "addpost",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "@20aman",
 			"title": "ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal",
 			"postDate": "22-04-2016",
 			"tags": [
@@ -333,49 +379,29 @@
 			"summary": "\n<p>Azure Container Service has finally hit General Availability today. <\/p>\n<p>If you don't know already, it is the \"container hosting solution\" which is optimized for Microsoft's Azure cloud.\nAll the tools that you may be familiar with when working with a Container Service should work lik...<\/p>\n",
 			"prevStatus": "publised",
 			"showbody": "1"
-		},
-		{
-			"author": "@20aman",
-			"title": "Azure Authentication - Authenticating any Azure API Request in your Application",
-			"postDate": "15-04-2016",
-			"tags": [
-				".net",
-				"azure",
-				"csharp"
-			],
-			"category": "Azure",
-			"body": "<p>I have created a code sample to showcase how you can authenticate any request programatically with Azure.\nThis also contains <strong>a Reusable Authentication Helper class<\/strong> which you can directly use in your code.<\/p>\n<h3>Where is the code<\/h3>\n<p>You can find the complete code sample along with the reusable Azure Authentication Helper class library from this GitHub repo:\n<a href=\"https:\/\/github.com\/HarvestingClouds\/AzureAuthentication\">Azure Authentication Sample<\/a><\/p>\n<h3>What are my authentication Options<\/h3>\n<p>You have the following options<\/p>\n<ul>\n<li>Authenticating by <strong>Prompting<\/strong> for Credentials from end user. (This needs end user interaction)<\/li>\n<li>Authenticating by <strong>Credentials<\/strong> i.e. using a password. (This does not need any end user interaction)<\/li>\n<li>Authenticating by using a <strong>Certificate<\/strong> ( This also does not need any end user interaction)<\/li>\n<\/ul>\n<p>I have provided this functionality in 3 separate methods, in a separate class file along with it's interface.\nYou can follow the instructions in the ReadMe file in the GitHub repo and start using any one of the method.<\/p>\n<p>I hope you find this usefull and this will avoid the trouble of figuring things out, which I have already undergone. <\/p>\n<p>Let me know in the comments below if you have any questions or anything to add to this.<\/p>",
-			"addpost": "addpost",
-			"dated": "Apr 15, 2016",
-			"slug": "azure-authentication-authenticating-any-azure-api-request-in-your-application",
-			"categoryslug": "azure",
-			"status": "publised",
-			"summary": "\n<p>I have created a code sample to showcase how you can authenticate any request programatically with Azure.\nThis also contains <strong>a Reusable Authentication Helper class<\/strong> which you can directly use in your code.<\/p>\n<h3>Where is the code<\/h3>\n<p>You can find the complete code sample alo...<\/p>\n",
-			"prevStatus": "publised",
-			"showbody": "1"
 		}
 	],
 	"homePosts": [
 		{
 			"author": "@20aman",
-			"title": "ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal",
-			"postDate": "22-04-2016",
+			"title": "Taking Automatic Remediation Action on Azure VM Alert Generation",
+			"postDate": "27-04-2016",
 			"tags": [
-				"announcement",
-				"arm",
-				"asm",
+				"automation",
 				"azure",
-				"azureresourcemanager",
-				"azureservicemanagement"
+				"azureautomation",
+				"virtualmachine",
+				"vm"
 			],
 			"category": "Azure",
-			"body": "<p>In additional to the tool I mentioned yesterday regarding <a href=\"http:\/\/harvestingclouds.com\/Migrating-from-Azure-ASM-to-ARM-portal\">Migrating from Azure ASM to ARM portal<\/a> there are various solutions in the pipeline. This post looks at the high level Roadmap for the same from Microsoft.<\/p>\n<p>Microsoft has promised that they are committed to make the migration more easier from ASM (older) to ARM (newer) portal. Various solutions are already in the pipeline for this.\nBelow are the details and roadmap for the tentative timelines for these solutions.<\/p>\n<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\"> <tbody> <tr> <td valign=\"top\" width=\"29%\"> <p><b>Solution<\/b><\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p><b>Customer Experience<\/b><\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p><b>Expected availability in 2016<\/b><\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Script migration<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>VM is rebooted as it is recreated in the Resource Manager model. While the Virtual Machines for the environment are recreated, the network is disconnected.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q1<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines, no VNET<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>As all Virtual Machines deployed in the Resource Manager model must be in a VNet, Virtual Machines will be migrated and placed in a new VNET. This will result in a change in network configuration, requiring a reboot to reconnect.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q2<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines with VNET<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>Starting in Q2, the platform will offer Virtual Machine migration from ASM to Resource Manager model without disrupting the running Virtual Machine. This will require disconnecting any VNets connected on-premises, whether via ExpressRoute or VPN, before doing the migration.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q2<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines with basic hybrid (one connection)<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>Starting in Q3, the platform will offer Virtual Machine migration from ASM to Resource Manager model without disrupting the running Virtual Machine and with minimal disruption to a basic hybrid connection, limited to just one connection back on-premises. More complex connections will require disconnecting before doing the migration.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q3<\/p> <\/td> <\/tr> <\/tbody> <\/table>\n<p>Reference: <a href=\"https:\/\/azure.microsoft.com\/en-us\/blog\/transitioning-to-the-resource-manager-model\/\">Transitioning to the Resource Manager model<\/a><\/p>",
-			"addpost": "addpost",
-			"dated": "Apr 22, 2016",
-			"slug": "roadmap-solutions-to-help-with-migration-from-azure-asm-to-arm-portal",
+			"body": "<p>Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is triggered on an Azure Virtual Machine to take a remediation action. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation Runbook.<\/p>\n<blockquote>\n<p>Note: This feature is supported only for the V2 Virtual Machines, i.e. the VMs created using ARM portal.<\/p>\n<\/blockquote>\n<p>To access this feature open your Virtual Machine. Then go to the Manage alerts section in the Settings:<\/p>\n<p><img src=\"http:\/\/HarvestingClouds.com\/images\/14618976705722c9c653752.png\" alt=\"Setting - Manage alerts\" \/><\/p>\n<p>Then open an existing alert or click on &quot;Add alert&quot; to create a new one. Specify the criteria for the alert. Scroll down to the bottom and you can view the new section to link the alert to an Automation Runbook.<\/p>\n<p><img src=\"http:\/\/HarvestingClouds.com\/images\/14618978425722ca722a741.png\" alt=\"Automation Runbook for Alert\" \/><\/p>\n<h3>Under the hood<\/h3>\n<p>The alert will send data to your Runbook in a special format. Your Runbook should be expecting this. Under the hood this happens via WebHooks. The alert data is passed via a HTTP POST request. The Automation webhook service extracts the alert data from the POST request and passes it to the runbook in a parameter called <strong>&quot;WebhookData&quot;<\/strong>. The Runbook will look like below:<\/p>\n<pre><code>[OutputType(\"PSAzureOperationResponse\")]\n\nparam ( [object] $WebhookData )\n\nif ($WebhookData)\n{\n    # Get the data object from WebhookData\n    $WebhookBody = (ConvertFrom-Json -InputObject $WebhookData.RequestBody)\n\n    #Rest of the script comes here\n}<\/code><\/pre>\n<p><strong>In Nutshell<\/strong>, now you can now trigger Azure Automation Runbooks to take remediation actions on Virtual Machines in case an alert is triggered. <\/p>\n<p><strong>Reference with complete Runbook sample:<\/strong> <a href=\"https:\/\/azure.microsoft.com\/en-us\/documentation\/articles\/automation-azure-vm-alert-integration\/\">Azure Automation solution - remediate Azure VM alerts<\/a><\/p>",
+			"savedraft": "savedraft",
+			"dated": "Apr 27, 2016",
+			"slug": "taking-automatic-remediation-action-on-azure-vm-alert-generation",
 			"categoryslug": "azure",
 			"status": "publised",
-			"summary": "\n<p>In additional to the tool I mentioned yesterday regarding <a href=\"http:\/\/harvestingclouds.com\/Migrating-from-Azure-ASM-to-ARM-portal\">Migrating from Azure ASM to ARM portal<\/a> there are various solutions in the pipeline. This post looks at the high level Roadmap for the same from Microsoft.<\/p>...\n",
+			"summary": "\n<p>Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is triggered on an Azure Virtual Machine to take a remediation action. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation ...<\/p>\n",
+			"addpost": "addpost",
 			"prevStatus": "publised",
 			"showbody": "1"
 		}
@@ -398,6 +424,6 @@
 			"categoryslug": "web-development"
 		}
 	],
-	"tagsCloud": "<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/net\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">net<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/activedirectory\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">activedirectory<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/ad\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">ad<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/announcement\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">announcement<\/a>\n<a style=\"font-size: 18px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/arm\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">arm<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/asm\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">asm<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/automation\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">automation<\/a>\n<a style=\"font-size: 30px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azure\" title=\"7 total posts\" data-original-title=\"8 total posts\" data-toggle=\"tooltip\">azure<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureresourcemanager\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">azureresourcemanager<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureservicemanagement\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">azureservicemanagement<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/csharp\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">csharp<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/dsc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">dsc<\/a>\n<a style=\"font-size: 18px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/general\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">general<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/gridmvc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">gridmvc<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/mvc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">mvc<\/a>\n<a style=\"font-size: 15px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/powershell\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">powershell<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/webdevelopment\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">webdevelopment<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/windows\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">windows<\/a>\n",
+	"tagsCloud": "<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/net\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">net<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/activedirectory\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">activedirectory<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/ad\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">ad<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/announcement\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">announcement<\/a>\n<a style=\"font-size: 17px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/arm\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">arm<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/asm\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">asm<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/automation\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">automation<\/a>\n<a style=\"font-size: 30px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azure\" title=\"8 total posts\" data-original-title=\"9 total posts\" data-toggle=\"tooltip\">azure<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureautomation\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">azureautomation<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureresourcemanager\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">azureresourcemanager<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureservicemanagement\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">azureservicemanagement<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/csharp\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">csharp<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/dsc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">dsc<\/a>\n<a style=\"font-size: 17px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/general\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">general<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/gridmvc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">gridmvc<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/mvc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">mvc<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/powershell\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">powershell<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/virtualmachine\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">virtualmachine<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/vm\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">vm<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/webdevelopment\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">webdevelopment<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/windows\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">windows<\/a>\n",
 	"archives": "<ul class=\"archives list-group\"><li class=\"list-group-item archive_link\"><a href=\"http:\/\/HarvestingClouds.com\/archive\/april-2016\">April 2016<\/a><\/li><\/ul>"
 }
