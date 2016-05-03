@@ -72,35 +72,23 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/taking-automatic-remediation-action-on-azure-vm-alert-generation">Taking Automatic Remediation Action on Azure VM Alert Generation</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/new-feature-azure-cool-blob-storage">NEW Feature - Azure Cool Blob Storage</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Apr 27, 2016
+                    <span class="glyphicon glyphicon-time"></span> May 02, 2016
                 
                         <hr>
-                        <p class="post-content"><p>Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is triggered on an Azure Virtual Machine to take a remediation action. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation Runbook.</p>
-<blockquote>
-<p>Note: This feature is supported only for the V2 Virtual Machines, i.e. the VMs created using ARM portal.</p>
-</blockquote>
-<p>To access this feature open your Virtual Machine. Then go to the Manage alerts section in the Settings:</p>
-<p><img src="http://HarvestingClouds.com/images/14618976705722c9c653752.png" alt="Setting - Manage alerts" /></p>
-<p>Then open an existing alert or click on &quot;Add alert&quot; to create a new one. Specify the criteria for the alert. Scroll down to the bottom and you can view the new section to link the alert to an Automation Runbook.</p>
-<p><img src="http://HarvestingClouds.com/images/14618990795722cf4763dce.png" alt="Automation Runbook for Alert" /></p>
-<h3>Under the hood</h3>
-<p>The alert will send data to your Runbook in a special format. Your Runbook should be expecting this. Under the hood this happens via WebHooks. The alert data is passed via a HTTP POST request. The Automation webhook service extracts the alert data from the POST request and passes it to the runbook in a parameter called <strong>&quot;WebhookData&quot;</strong>. The Runbook will look like below:</p>
-<pre><code>[OutputType("PSAzureOperationResponse")]
-
-param ( [object] $WebhookData )
-
-if ($WebhookData)
-{
-    # Get the data object from WebhookData
-    $WebhookBody = (ConvertFrom-Json -InputObject $WebhookData.RequestBody)
-
-    #Rest of the script comes here
-}</code></pre>
-<p><strong>In Nutshell</strong>, now you can now trigger Azure Automation Runbooks to take remediation actions on Virtual Machines in case an alert is triggered. </p>
-<p><strong>Reference with complete Runbook sample:</strong> <a href="https://azure.microsoft.com/en-us/documentation/articles/automation-azure-vm-alert-integration/">Azure Automation solution - remediate Azure VM alerts</a></p></p>
+                        <p class="post-content"><p>Have you heard about the new Azure Cool Blob Storage? </p>
+<p>If you haven’t heard about it, this is Microsoft's low-cost storage for <strong>cool</strong> object data. “Example use cases for cool storage include backups, media content, scientific data, compliance and archival data. In general, any data which lives for a longer period of time and is accessed less than once a month is a perfect candidate for cool storage.” It is similar to what Glacier storage tier does for Amazon Web Services.</p>
+<ul>
+<li><strong>Pricing:</strong> Its cost is as low as $0.01/GB.</li>
+<li><strong>Availability:</strong> 99% (as compared to 99.9% for Hot Storage). With Read-access geo-redundant storage (or RA-GRS) the SLA is 99.9% (as compared to 99.99% for Hot).</li>
+</ul>
+<p><strong>Resources to know more</strong>  </p>
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/blog/introducing-azure-cool-storage/" target="_blank">Official Announcement</a></li>
+<li><a href="https://azure.microsoft.com/en-us/documentation/articles/storage-blob-storage-tiers/" target="_blank">Getting started guide</a></li>
+</ul></p>
                         <br/>
                 
                         <div class="post-info">
@@ -110,11 +98,9 @@ if ($WebhookData)
                 
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
-                                <a href="http://HarvestingClouds.com/tag/automation">automation</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/announcement">announcement</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/azureautomation">azureautomation</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/virtualmachine">virtualmachine</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/vm">vm</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/storage">storage</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -161,11 +147,11 @@ if ($WebhookData)
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/new-feature-azure-cool-blob-storage">NEW Feature - Azure Cool Blob Storage</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/taking-automatic-remediation-action-on-azure-vm-alert-generation">Taking Automatic Remediation Action on Azure VM Alert Generation</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/roadmap-solutions-to-help-with-migration-from-azure-asm-to-arm-portal">ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/migrating-from-azure-asm-to-arm-portal">Migrating from Azure ASM to ARM portal</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/powershell-dsc-partial-configurations">PowerShell DSC - Partial Configurations</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-container-service-hits-general-availability">Azure Container Service hits General Availability</a></li>
                 </ul>
             </div>
         
@@ -189,7 +175,7 @@ if ($WebhookData)
                         <strong>Archives</strong>
                     </div>
         
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
                 </div>
         
             <!-- Tags -->
@@ -203,20 +189,21 @@ if ($WebhookData)
                             <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/net" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">net</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">activedirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">announcement</a>
-<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
+<a style="font-size: 16px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
+<a style="font-size: 16px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
-<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="9 total posts" data-original-title="10 total posts" data-toggle="tooltip">azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/csharp" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">csharp</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/dsc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dsc</a>
-<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/general" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">general</a>
+<a style="font-size: 16px" class="tag_cloud" href="http://HarvestingClouds.com/tag/general" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">general</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/gridmvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">gridmvc</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">powershell</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/storage" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">storage</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualmachine</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/webdevelopment" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">webdevelopment</a>

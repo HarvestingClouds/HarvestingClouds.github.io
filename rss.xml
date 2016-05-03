@@ -6,6 +6,22 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>NEW Feature - Azure Cool Blob Storage</title>
+<description><![CDATA[<p>Have you heard about the new Azure Cool Blob Storage? </p>
+<p>If you haven’t heard about it, this is Microsoft's low-cost storage for <strong>cool</strong> object data. “Example use cases for cool storage include backups, media content, scientific data, compliance and archival data. In general, any data which lives for a longer period of time and is accessed less than once a month is a perfect candidate for cool storage.” It is similar to what Glacier storage tier does for Amazon Web Services.</p>
+<ul>
+<li><strong>Pricing:</strong> Its cost is as low as $0.01/GB.</li>
+<li><strong>Availability:</strong> 99% (as compared to 99.9% for Hot Storage). With Read-access geo-redundant storage (or RA-GRS) the SLA is 99.9% (as compared to 99.99% for Hot).</li>
+</ul>
+<p><strong>Resources to know more</strong>  </p>
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/blog/introducing-azure-cool-storage/" target="_blank">Official Announcement</a></li>
+<li><a href="https://azure.microsoft.com/en-us/documentation/articles/storage-blob-storage-tiers/" target="_blank">Getting started guide</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/new-feature-azure-cool-blob-storage</link>
+<pubDate>Mon, 02 May 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Taking Automatic Remediation Action on Azure VM Alert Generation</title>
 <description><![CDATA[<p>Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is triggered on an Azure Virtual Machine to take a remediation action. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation Runbook.</p>
 <blockquote>

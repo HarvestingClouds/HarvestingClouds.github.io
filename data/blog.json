@@ -30,6 +30,26 @@
 	"posts": [
 		{
 			"author": "@20aman",
+			"title": "NEW Feature - Azure Cool Blob Storage",
+			"postDate": "02-05-2016",
+			"tags": [
+				"announcement",
+				"azure",
+				"storage"
+			],
+			"category": "Azure",
+			"body": "<p>Have you heard about the new Azure Cool Blob Storage? <\/p>\n<p>If you haven\u2019t heard about it, this is Microsoft's low-cost storage for <strong>cool<\/strong> object data. \u201cExample use cases for cool storage include backups, media content, scientific data, compliance and archival data. In general, any data which lives for a longer period of time and is accessed less than once a month is a perfect candidate for cool storage.\u201d It is similar to what Glacier storage tier does for Amazon Web Services.<\/p>\n<ul>\n<li><strong>Pricing:<\/strong> Its cost is as low as $0.01\/GB.<\/li>\n<li><strong>Availability:<\/strong> 99% (as compared to 99.9% for Hot Storage). With Read-access geo-redundant storage (or RA-GRS) the SLA is 99.9% (as compared to 99.99% for Hot).<\/li>\n<\/ul>\n<p><strong>Resources to know more<\/strong>  <\/p>\n<ul>\n<li><a href=\"https:\/\/azure.microsoft.com\/en-us\/blog\/introducing-azure-cool-storage\/\" target=\"_blank\">Official Announcement<\/a><\/li>\n<li><a href=\"https:\/\/azure.microsoft.com\/en-us\/documentation\/articles\/storage-blob-storage-tiers\/\" target=\"_blank\">Getting started guide<\/a><\/li>\n<\/ul>",
+			"addpost": "addpost",
+			"dated": "May 02, 2016",
+			"slug": "new-feature-azure-cool-blob-storage",
+			"categoryslug": "azure",
+			"status": "publised",
+			"summary": "\n<p>Have you heard about the new Azure Cool Blob Storage? <\/p>\n<p>If you haven&rsquo;t heard about it, this is Microsoft's low-cost storage for <strong>cool<\/strong> object data. &ldquo;Example use cases for cool storage include backups, media content, scientific data, compliance and archival data. I...<\/p>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "@20aman",
 			"title": "Taking Automatic Remediation Action on Azure VM Alert Generation",
 			"postDate": "27-04-2016",
 			"tags": [
@@ -276,6 +296,26 @@
 	"latestPosts": [
 		{
 			"author": "@20aman",
+			"title": "NEW Feature - Azure Cool Blob Storage",
+			"postDate": "02-05-2016",
+			"tags": [
+				"announcement",
+				"azure",
+				"storage"
+			],
+			"category": "Azure",
+			"body": "<p>Have you heard about the new Azure Cool Blob Storage? <\/p>\n<p>If you haven\u2019t heard about it, this is Microsoft's low-cost storage for <strong>cool<\/strong> object data. \u201cExample use cases for cool storage include backups, media content, scientific data, compliance and archival data. In general, any data which lives for a longer period of time and is accessed less than once a month is a perfect candidate for cool storage.\u201d It is similar to what Glacier storage tier does for Amazon Web Services.<\/p>\n<ul>\n<li><strong>Pricing:<\/strong> Its cost is as low as $0.01\/GB.<\/li>\n<li><strong>Availability:<\/strong> 99% (as compared to 99.9% for Hot Storage). With Read-access geo-redundant storage (or RA-GRS) the SLA is 99.9% (as compared to 99.99% for Hot).<\/li>\n<\/ul>\n<p><strong>Resources to know more<\/strong>  <\/p>\n<ul>\n<li><a href=\"https:\/\/azure.microsoft.com\/en-us\/blog\/introducing-azure-cool-storage\/\" target=\"_blank\">Official Announcement<\/a><\/li>\n<li><a href=\"https:\/\/azure.microsoft.com\/en-us\/documentation\/articles\/storage-blob-storage-tiers\/\" target=\"_blank\">Getting started guide<\/a><\/li>\n<\/ul>",
+			"addpost": "addpost",
+			"dated": "May 02, 2016",
+			"slug": "new-feature-azure-cool-blob-storage",
+			"categoryslug": "azure",
+			"status": "publised",
+			"summary": "\n<p>Have you heard about the new Azure Cool Blob Storage? <\/p>\n<p>If you haven&rsquo;t heard about it, this is Microsoft's low-cost storage for <strong>cool<\/strong> object data. &ldquo;Example use cases for cool storage include backups, media content, scientific data, compliance and archival data. I...<\/p>\n",
+			"prevStatus": "publised",
+			"showbody": "1"
+		},
+		{
+			"author": "@20aman",
 			"title": "Taking Automatic Remediation Action on Azure VM Alert Generation",
 			"postDate": "27-04-2016",
 			"tags": [
@@ -360,48 +400,26 @@
 			"summary": "\n<p><strong>Partial Configurations<\/strong> is a new feature in PowerShell 5.0 Desired State Configuration or DSC. It allows the configurations to be delivered in parts or fragments. These configurations can come from various sources.\nThe Local Configuration Manager or LCM on the target node puts the...<\/p>\n",
 			"prevStatus": "publised",
 			"showbody": "1"
-		},
-		{
-			"author": "@20aman",
-			"title": "Azure Container Service hits General Availability",
-			"postDate": "19-04-2016",
-			"tags": [
-				"azure",
-				"general"
-			],
-			"category": "Azure",
-			"body": "<p>Azure Container Service has finally hit General Availability today. <\/p>\n<p>If you don't know already, it is the &quot;container hosting solution&quot; which is optimized for Microsoft's Azure cloud.\nAll the tools that you may be familiar with when working with a Container Service should work like Apache Mesos or Docker Swarm. It only uses open source components in the orchestration layers to give you portability of full applications.<\/p>\n<p>You can find the announcement here: <a href=\"https:\/\/azure.microsoft.com\/en-us\/updates\/general-availability-azure-container-service\/\">GA for Azure Container Service<\/a><\/p>\n<p>You can learn more about the Container Service as offered by Azure on the product page here: <a href=\"https:\/\/azure.microsoft.com\/en-us\/services\/container-service\/\">Azure Container Service<\/a><\/p>",
-			"addpost": "addpost",
-			"dated": "Apr 19, 2016",
-			"slug": "azure-container-service-hits-general-availability",
-			"categoryslug": "azure",
-			"status": "publised",
-			"summary": "\n<p>Azure Container Service has finally hit General Availability today. <\/p>\n<p>If you don't know already, it is the \"container hosting solution\" which is optimized for Microsoft's Azure cloud.\nAll the tools that you may be familiar with when working with a Container Service should work lik...<\/p>\n",
-			"prevStatus": "publised",
-			"showbody": "1"
 		}
 	],
 	"homePosts": [
 		{
 			"author": "@20aman",
-			"title": "Taking Automatic Remediation Action on Azure VM Alert Generation",
-			"postDate": "27-04-2016",
+			"title": "NEW Feature - Azure Cool Blob Storage",
+			"postDate": "02-05-2016",
 			"tags": [
-				"automation",
+				"announcement",
 				"azure",
-				"azureautomation",
-				"virtualmachine",
-				"vm"
+				"storage"
 			],
 			"category": "Azure",
-			"body": "<p>Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is triggered on an Azure Virtual Machine to take a remediation action. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation Runbook.<\/p>\n<blockquote>\n<p>Note: This feature is supported only for the V2 Virtual Machines, i.e. the VMs created using ARM portal.<\/p>\n<\/blockquote>\n<p>To access this feature open your Virtual Machine. Then go to the Manage alerts section in the Settings:<\/p>\n<p><img src=\"http:\/\/HarvestingClouds.com\/images\/14618976705722c9c653752.png\" alt=\"Setting - Manage alerts\" \/><\/p>\n<p>Then open an existing alert or click on &quot;Add alert&quot; to create a new one. Specify the criteria for the alert. Scroll down to the bottom and you can view the new section to link the alert to an Automation Runbook.<\/p>\n<p><img src=\"http:\/\/HarvestingClouds.com\/images\/14618990795722cf4763dce.png\" alt=\"Automation Runbook for Alert\" \/><\/p>\n<h3>Under the hood<\/h3>\n<p>The alert will send data to your Runbook in a special format. Your Runbook should be expecting this. Under the hood this happens via WebHooks. The alert data is passed via a HTTP POST request. The Automation webhook service extracts the alert data from the POST request and passes it to the runbook in a parameter called <strong>&quot;WebhookData&quot;<\/strong>. The Runbook will look like below:<\/p>\n<pre><code>[OutputType(\"PSAzureOperationResponse\")]\n\nparam ( [object] $WebhookData )\n\nif ($WebhookData)\n{\n    # Get the data object from WebhookData\n    $WebhookBody = (ConvertFrom-Json -InputObject $WebhookData.RequestBody)\n\n    #Rest of the script comes here\n}<\/code><\/pre>\n<p><strong>In Nutshell<\/strong>, now you can now trigger Azure Automation Runbooks to take remediation actions on Virtual Machines in case an alert is triggered. <\/p>\n<p><strong>Reference with complete Runbook sample:<\/strong> <a href=\"https:\/\/azure.microsoft.com\/en-us\/documentation\/articles\/automation-azure-vm-alert-integration\/\">Azure Automation solution - remediate Azure VM alerts<\/a><\/p>",
-			"savedraft": "savedraft",
-			"dated": "Apr 27, 2016",
-			"slug": "taking-automatic-remediation-action-on-azure-vm-alert-generation",
+			"body": "<p>Have you heard about the new Azure Cool Blob Storage? <\/p>\n<p>If you haven\u2019t heard about it, this is Microsoft's low-cost storage for <strong>cool<\/strong> object data. \u201cExample use cases for cool storage include backups, media content, scientific data, compliance and archival data. In general, any data which lives for a longer period of time and is accessed less than once a month is a perfect candidate for cool storage.\u201d It is similar to what Glacier storage tier does for Amazon Web Services.<\/p>\n<ul>\n<li><strong>Pricing:<\/strong> Its cost is as low as $0.01\/GB.<\/li>\n<li><strong>Availability:<\/strong> 99% (as compared to 99.9% for Hot Storage). With Read-access geo-redundant storage (or RA-GRS) the SLA is 99.9% (as compared to 99.99% for Hot).<\/li>\n<\/ul>\n<p><strong>Resources to know more<\/strong>  <\/p>\n<ul>\n<li><a href=\"https:\/\/azure.microsoft.com\/en-us\/blog\/introducing-azure-cool-storage\/\" target=\"_blank\">Official Announcement<\/a><\/li>\n<li><a href=\"https:\/\/azure.microsoft.com\/en-us\/documentation\/articles\/storage-blob-storage-tiers\/\" target=\"_blank\">Getting started guide<\/a><\/li>\n<\/ul>",
+			"addpost": "addpost",
+			"dated": "May 02, 2016",
+			"slug": "new-feature-azure-cool-blob-storage",
 			"categoryslug": "azure",
 			"status": "publised",
-			"summary": "\n<p>Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is triggered on an Azure Virtual Machine to take a remediation action. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation ...<\/p>\n",
-			"addpost": "addpost",
+			"summary": "\n<p>Have you heard about the new Azure Cool Blob Storage? <\/p>\n<p>If you haven&rsquo;t heard about it, this is Microsoft's low-cost storage for <strong>cool<\/strong> object data. &ldquo;Example use cases for cool storage include backups, media content, scientific data, compliance and archival data. I...<\/p>\n",
 			"prevStatus": "publised",
 			"showbody": "1"
 		}
@@ -424,6 +442,6 @@
 			"categoryslug": "web-development"
 		}
 	],
-	"tagsCloud": "<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/net\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">net<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/activedirectory\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">activedirectory<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/ad\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">ad<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/announcement\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">announcement<\/a>\n<a style=\"font-size: 17px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/arm\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">arm<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/asm\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">asm<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/automation\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">automation<\/a>\n<a style=\"font-size: 30px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azure\" title=\"8 total posts\" data-original-title=\"9 total posts\" data-toggle=\"tooltip\">azure<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureautomation\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">azureautomation<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureresourcemanager\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">azureresourcemanager<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureservicemanagement\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">azureservicemanagement<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/csharp\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">csharp<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/dsc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">dsc<\/a>\n<a style=\"font-size: 17px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/general\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">general<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/gridmvc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">gridmvc<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/mvc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">mvc<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/powershell\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">powershell<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/virtualmachine\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">virtualmachine<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/vm\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">vm<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/webdevelopment\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">webdevelopment<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/windows\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">windows<\/a>\n",
-	"archives": "<ul class=\"archives list-group\"><li class=\"list-group-item archive_link\"><a href=\"http:\/\/HarvestingClouds.com\/archive\/april-2016\">April 2016<\/a><\/li><\/ul>"
+	"tagsCloud": "<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/net\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">net<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/activedirectory\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">activedirectory<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/ad\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">ad<\/a>\n<a style=\"font-size: 16px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/announcement\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">announcement<\/a>\n<a style=\"font-size: 16px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/arm\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">arm<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/asm\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">asm<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/automation\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">automation<\/a>\n<a style=\"font-size: 30px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azure\" title=\"9 total posts\" data-original-title=\"10 total posts\" data-toggle=\"tooltip\">azure<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureautomation\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">azureautomation<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureresourcemanager\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">azureresourcemanager<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/azureservicemanagement\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">azureservicemanagement<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/csharp\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">csharp<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/dsc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">dsc<\/a>\n<a style=\"font-size: 16px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/general\" title=\"3 total posts\" data-original-title=\"4 total posts\" data-toggle=\"tooltip\">general<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/gridmvc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">gridmvc<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/mvc\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">mvc<\/a>\n<a style=\"font-size: 14px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/powershell\" title=\"2 total posts\" data-original-title=\"3 total posts\" data-toggle=\"tooltip\">powershell<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/storage\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">storage<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/virtualmachine\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">virtualmachine<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/vm\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">vm<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/webdevelopment\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">webdevelopment<\/a>\n<a style=\"font-size: 12px\" class=\"tag_cloud\" href=\"http:\/\/HarvestingClouds.com\/tag\/windows\" title=\"1 total posts\" data-original-title=\"2 total posts\" data-toggle=\"tooltip\">windows<\/a>\n",
+	"archives": "<ul class=\"archives list-group\"><li class=\"list-group-item archive_link\"><a href=\"http:\/\/HarvestingClouds.com\/archive\/may-2016\">May 2016<\/a><\/li><li class=\"list-group-item archive_link\"><a href=\"http:\/\/HarvestingClouds.com\/archive\/april-2016\">April 2016<\/a><\/li><\/ul>"
 }

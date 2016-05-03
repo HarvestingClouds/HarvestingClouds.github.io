@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Azure Container Service hits General Availability :: Harvesting Clouds</title>
+    <title>Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -71,58 +71,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-            <article>
-                <h3>Azure Container Service hits General Availability</h3>
-                <span class="glyphicon glyphicon-user"></span> @20aman
-                &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> Apr 19, 2016
-                <hr>
-
-                <p class="post-content"><p>Azure Container Service has finally hit General Availability today. </p>
-<p>If you don't know already, it is the &quot;container hosting solution&quot; which is optimized for Microsoft's Azure cloud.
-All the tools that you may be familiar with when working with a Container Service should work like Apache Mesos or Docker Swarm. It only uses open source components in the orchestration layers to give you portability of full applications.</p>
-<p>You can find the announcement here: <a href="https://azure.microsoft.com/en-us/updates/general-availability-azure-container-service/">GA for Azure Container Service</a></p>
-<p>You can learn more about the Container Service as offered by Azure on the product page here: <a href="https://azure.microsoft.com/en-us/services/container-service/">Azure Container Service</a></p></p>
-                <br/><br/>
-
-                <div class="post-info">
-                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
-                        &nbsp;&nbsp;
-
-                    <span class="glyphicon glyphicon-bookmark"></span>
-
-                        <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/general">general</a>&nbsp;&nbsp;
-                </div>
-
-            </article>
+            <h1>Tag Posts</h1>
             <hr/>
+            <br/>
 
-            <div class="text-center clearfix">
-                <div class="col-sm-4 col-md-4">
-                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="btn btn-primary" href="http://HarvestingClouds.com/posts.html"><i class="fa fa-navicon"></i> View All
-                        Post</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
-                </div>
-            </div>
-
-            <hr/>
-            
-            <!-- Comment form -->
-            <div class="well">
-                <div id="disqus_thread"></div>
-                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
-                    powered by Disqus.</a></noscript>
-                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
-                    <span class="logo-disqus">Disqus</span></a>
-            </div>
-
+                <h3><a href="http://HarvestingClouds.com/post/new-feature-azure-cool-blob-storage">NEW Feature - Azure Cool Blob Storage</a></h3>
+                <span class="glyphicon glyphicon-time"></span> May 02, 2016
         </div>
 
         <div class="sidebar col-md-4">
@@ -217,7 +171,6 @@ All the tools that you may be familiar with when working with a Container Servic
                     </div>
                 </div>
             </div>
-
     </div>
 </div>
 
@@ -255,69 +208,3 @@ All the tools that you may be familiar with when working with a Container Servic
 
 </body>
 </html>
-<!-- for pagination -->
-<script>
-    $(function () {
-
-        ///////////////////////////////////////////////////
-        // class/id/selector of prev link
-        var $prevPostSelector = $('.prevpost');
-        var $nextPostSelector = $('.nextpost');
-        ///////////////////////////////////////////////////
-
-        var pageArray = document.location.href.split('/');
-        var currentPageSlug = pageArray[pageArray.length - 1];
-
-        if (!currentPageSlug) {
-            currentPageSlug = pageArray[pageArray.length - 2];
-        }
-
-        $.ajax({
-            url: __blogURL + "/data/blog.json",
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                if (data.posts !== undefined && data.posts !== null) {
-                    $.each(data.posts, function (i, post) {
-                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
-
-                            var prevPost = data.posts[i - 1];
-                            var nextPost = data.posts[i + 1];
-
-                            if (prevPost === undefined || prevPost === null) {
-                                // hide previous link if it is first post
-                                $prevPostSelector.hide();
-                            }
-                            else {
-                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
-                            }
-
-                            if (nextPost === undefined || nextPost === null) {
-                                // hide previous link if it is last post
-                                $nextPostSelector.hide();
-                            }
-                            else {
-                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
-                            }
-
-                            return false; // break out of each
-                        }
-                    });
-                }
-            },
-            error: function (e) {
-                $prevPostSelector.hide();
-                $nextPostSelector.hide();
-            }
-        });
-
-        // for Disqus
-        var disqus_shortname = 'harvestingclouds';
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-
-    });
-</script>
