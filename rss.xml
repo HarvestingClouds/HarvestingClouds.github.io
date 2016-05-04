@@ -7,13 +7,17 @@
 <language>en-us</language>
 <item>
 <title>NEW Feature - Azure Cool Blob Storage</title>
-<description><![CDATA[<p>Have you heard about the new Azure Cool Blob Storage? </p>
-<p>If you haven’t heard about it, this is Microsoft's low-cost storage for <strong>cool</strong> object data. “Example use cases for cool storage include backups, media content, scientific data, compliance and archival data. In general, any data which lives for a longer period of time and is accessed less than once a month is a perfect candidate for cool storage.” It is similar to what Glacier storage tier does for Amazon Web Services.</p>
+<description><![CDATA[<p>Have you heard about the new <strong>Azure Cool Blob Storage</strong>? </p>
+<p>If you haven’t heard about it, this is Microsoft's low-cost storage for <strong>Cool</strong> object data. “Example use cases for cool storage include backups, media content, scientific data, compliance and archival data. In general, any data which lives for a longer period of time and is accessed less than once a month is a perfect candidate for cool storage.” It is similar to what <strong>Glacier storage tier</strong> provides in Amazon Web Services.</p>
 <ul>
 <li><strong>Pricing:</strong> Its cost is as low as $0.01/GB.</li>
 <li><strong>Availability:</strong> 99% (as compared to 99.9% for Hot Storage). With Read-access geo-redundant storage (or RA-GRS) the SLA is 99.9% (as compared to 99.99% for Hot).</li>
+<li><strong>Deciding which AccessTier to use:</strong> If the objects in the storage account will be more frequently accessed, then go with <strong>Hot Tier</strong>. Select the <strong>Cold Tier</strong> for infrequently accessed data.</li>
 </ul>
-<p><strong>Resources to know more</strong>  </p>
+<p>Now when you go to New -&gt; &quot;Data + Storage&quot; -&gt; Storage Account, and try to create a Blob Storage account then you can select from one of the options for <strong>Access Tier</strong> from Cold or Hot tier. </p>
+<p><img src="http://HarvestingClouds.com/images/146232375357294a2980ece.png" alt="Storage Tiers" /></p>
+<p>Also, note that at the time of this writing, Blob storage account is <strong>only available in these locations</strong>: Central US, East US 2, North Central US, North Europe, West Europe, Southeast Asia, Japan East, Japan West, Central India, South India, West India.</p>
+<p><strong>Resources to know more:</strong>  </p>
 <ul>
 <li><a href="https://azure.microsoft.com/en-us/blog/introducing-azure-cool-storage/" target="_blank">Official Announcement</a></li>
 <li><a href="https://azure.microsoft.com/en-us/documentation/articles/storage-blob-storage-tiers/" target="_blank">Getting started guide</a></li>
