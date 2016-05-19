@@ -59,7 +59,7 @@ Get-AzureStorageBlobContent -Blob $BlobName -Container $ContainerName -Destinati
 <li><strong>Canada East</strong> - The second datacenter is located in Quebec City.</li>
 </ol>
 <p>Now when you are creating a new resource (like a Virtual Machine) you will see these two options.</p>
-<p><img src="http://HarvestingClouds.com/images/1463686099573e13d33d850.png" alt="New Locations" /></p>
+<p><img src="http://HarvestingClouds.com/images/1463686879573e16df4f64c.png" alt="New Locations" /></p>
 <p>Check out the brief announcement video by <strong>Janet Kennedy</strong>, President of Microsoft Canada:</p>
 <iframe src="https://channel9.msdn.com/Blogs/CANITPRO/The-Microsoft-Canada-Cloud-is-Open-for-Business/player" width="560" height="315" allowFullScreen frameBorder="0"></iframe>
 <h3>Key Resources:</h3>
