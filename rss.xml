@@ -51,7 +51,7 @@ Get-AzureStorageBlobContent -Blob $BlobName -Container $ContainerName -Destinati
 <pubDate>Wed, 18 May 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Azure comes to Canada</title>
+<title>Azure comes to Canada (along with Office 365)</title>
 <description><![CDATA[<p>Last week marked the general availability of Azure datacenter for Canada locations. Microsoft has set up 2 new datacenters in Canada. </p>
 <h3>Where Exactly are these datacenters located</h3>
 <ol>
@@ -59,10 +59,16 @@ Get-AzureStorageBlobContent -Blob $BlobName -Container $ContainerName -Destinati
 <li><strong>Canada East</strong> - The second datacenter is located in Quebec City.</li>
 </ol>
 <p>Now when you are creating a new resource (like a Virtual Machine) you will see these two options.</p>
-<p><img src="http://HarvestingClouds.com/images/1463673113573de1199a777.png" alt="New Locations" /></p>
-<p>These locations are also listed in the official Microsoft Regions list here: <a href="https://azure.microsoft.com/en-us/regions/#services?WT.mc_id=azurebg_email_Trans_1106_Tier2_Release_MOSP" target="_blank">Azure Regions</a></p>
-<p>You can read about this announcement and upcoming features here: <a href="https://azure.microsoft.com/en-us/blog/microsoft-cloud-accelerates-in-canada-and-expands-to-south-korea/?WT.mc_id=azurebg_email_Trans_1106_Tier2_Release_MOSP" target="_blank">Microsoft Cloud accelerates in Canada and expands to South Korea</a></p>]]></description>
-<link>http://HarvestingClouds.com/post/azure-comes-to-canada</link>
+<p>![New Locations](<a href="http://HarvestingClouds.com/images/1463673113573de1199a777.png">http://HarvestingClouds.com/images/1463673113573de1199a777.png</a> =170x251)</p>
+<p>Check out the brief announcement video by <strong>Janet Kennedy</strong>, President of Microsoft Canada:</p>
+<iframe src="https://channel9.msdn.com/Blogs/CANITPRO/The-Microsoft-Canada-Cloud-is-Open-for-Business/player" width="560" height="315" allowFullScreen frameBorder="0"></iframe>
+<h3>Key Resources:</h3>
+<ul>
+<li>These locations are also listed in the official Microsoft Regions list here: <a href="https://azure.microsoft.com/en-us/regions/#services?WT.mc_id=azurebg_email_Trans_1106_Tier2_Release_MOSP" target="_blank">Azure Regions</a></li>
+<li>Various resources and information for cloud in Canada are available here at <a href="https://www.microsoft.com/en-ca/sites/datacentre/default.aspx" target="_blank">Cloud Accelerate site for Canada</a>.</li>
+<li>You can read about this announcement and upcoming features here: <a href="https://azure.microsoft.com/en-us/blog/microsoft-cloud-accelerates-in-canada-and-expands-to-south-korea/?WT.mc_id=azurebg_email_Trans_1106_Tier2_Release_MOSP" target="_blank">Microsoft Cloud accelerates in Canada and expands to South Korea</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-comes-to-canada-along-with-office-365</link>
 <pubDate>Mon, 16 May 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
