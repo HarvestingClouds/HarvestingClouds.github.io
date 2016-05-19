@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Harvesting Clouds</title>
+    <title>Uploading and Downloading files securely from Azure Storage Blob via PowerShell :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -71,12 +71,95 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-            <h1>Tag Posts</h1>
-            <hr/>
-            <br/>
+            <article>
+                <h3>Uploading and Downloading files securely from Azure Storage Blob via PowerShell</h3>
+                <span class="glyphicon glyphicon-user"></span> @20aman
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> May 18, 2016
+                <hr>
 
-                <h3><a href="http://HarvestingClouds.com/post/multiple-values-in-gridmvc-single-column-filter-via-checkboxes-with-code-sample">Multiple Values In Grid.Mvc Single Column Filter via Checkboxes with Code Sample</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 12, 2016
+                <p class="post-content"><p><strong>Azure blob storage</strong> can provide a very highly available way to store your files in the cloud. You can dynamically add or remove the files in an automated fashion. These files can then be used for any number of purposes. E.g. A parameter file for ARM template can be kept in Azure blob storage and then dynamically read while creating resources from an ARM template.</p>
+<p><strong>The whole process can be broken down into 3 parts</strong>:</p>
+<ol>
+<li>Generating the context to the storage container</li>
+<li>Uploading the files using the context</li>
+<li>Downloading the files using the context</li>
+</ol>
+<h3>1. Generating the context to the storage container</h3>
+<p>The context to the storage blob container can be created in one of the 3 ways, based on your security requirements. All methods use the <code>New-AzureStorageContext</code> cmdlet to generate the storage context. The methods differ on how you pass the parameters to this cmdlet.</p>
+<p><strong>A. Via fetching the Azure Storage Key</strong></p>
+<p>This first method uses the <code>Get-AzureStorageKey</code> to fetch the storage key. This key is then used to generate the context as shown below.</p>
+<pre><code>$StorageAccountName = "yourstorageaccount"
+$StorageAccountKey = Get-AzureStorageKey -StorageAccountName $StorageAccountName
+$Ctx = New-AzureStorageContext $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary</code></pre>
+<p><strong>B. Via fetching the Azure Storage Container SAS Token</strong></p>
+<p>This second method uses the <code>New-AzureStorageContainerSASToken</code> to create a new SAS token to securely access the storage container. This token is then used to generate the context as shown below.</p>
+<pre><code>$sasToken = New-AzureStorageContainerSASToken -Container abc -Permission rl
+$Ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -SasToken $sasToken</code></pre>
+<p><strong>C. Via Connectin String</strong></p>
+<p>This third method uses a connection string, entered manually, which is then used to generate the context as shown below.</p>
+<pre><code>$ConnectionString = "DefaultEndpointsProtocol=http;BlobEndpoint=&lt;blobEndpoint&gt;;QueueEndpoint=&lt;QueueEndpoint&gt;;TableEndpoint=&lt;TableEndpoint&gt;;AccountName=&lt;AccountName&gt;;AccountKey=&lt;AccountKey&gt;"
+$Ctx = New-AzureStorageContext -ConnectionString $ConnectionString</code></pre>
+<h3>2. Uploading the files using the context</h3>
+<p>Now that you have the context to the storage account you can upload and download files from the storage blob container.
+Use the below code to upload a file named &quot;<em>Parameters.json</em>&quot;, located on the local machine at &quot;<em>C:\Temp</em>&quot; directory.</p>
+<pre><code>#Uploading File
+$BlobName = "Parameters.json"
+$localFile = "C:\Temp\" + $BlobName
+
+#Note the Force switch will overwrite if the file already exists in the Azure container
+Set-AzureStorageBlobContent -File $localFile -Container $ContainerName -Blob $BlobName -Context $Ctx -Force</code></pre>
+<h3>3. Downloading the files using the context</h3>
+<p>Download works in almost identical manner. You use the Get cmdlet instead of Set as shown below to download a file to a local folder, located at &quot;<em>C:\Downloads</em>&quot;.</p>
+<pre><code>#Download File
+$BlobName = "Parameters.json"
+$localTargetDirectory = "C:\Downloads"
+
+Get-AzureStorageBlobContent -Blob $BlobName -Container $ContainerName -Destination $localTargetDirectory -Context $ctx</code></pre>
+<p>I hope this helps simplify the automated usage of Azure Storage container. Let us know your concerns or questions if any.</p>
+<p><strong>Reference:</strong> <a href="https://azure.microsoft.com/en-us/documentation/articles/storage-powershell-guide-full/" target="_blank">Using Azure PowerShell with Azure Storage</a></p></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/powershell">powershell</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/storage">storage</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/blob">blob</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
+
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="http://HarvestingClouds.com/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
+            </div>
+
         </div>
 
         <div class="sidebar col-md-4">
@@ -173,6 +256,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
 </div>
 
@@ -210,3 +294,69 @@
 
 </body>
 </html>
+<!-- for pagination -->
+<script>
+    $(function () {
+
+        ///////////////////////////////////////////////////
+        // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
+        var $nextPostSelector = $('.nextpost');
+        ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
+
+        $.ajax({
+            url: __blogURL + "/data/blog.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.posts !== undefined && data.posts !== null) {
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
+                }
+            },
+            error: function (e) {
+                $prevPostSelector.hide();
+                $nextPostSelector.hide();
+            }
+        });
+
+        // for Disqus
+        var disqus_shortname = 'harvestingclouds';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+    });
+</script>

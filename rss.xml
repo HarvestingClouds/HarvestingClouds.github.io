@@ -6,6 +6,66 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Uploading and Downloading files securely from Azure Storage Blob via PowerShell</title>
+<description><![CDATA[<p><strong>Azure blob storage</strong> can provide a very highly available way to store your files in the cloud. You can dynamically add or remove the files in an automated fashion. These files can then be used for any number of purposes. E.g. A parameter file for ARM template can be kept in Azure blob storage and then dynamically read while creating resources from an ARM template.</p>
+<p><strong>The whole process can be broken down into 3 parts</strong>:</p>
+<ol>
+<li>Generating the context to the storage container</li>
+<li>Uploading the files using the context</li>
+<li>Downloading the files using the context</li>
+</ol>
+<h3>1. Generating the context to the storage container</h3>
+<p>The context to the storage blob container can be created in one of the 3 ways, based on your security requirements. All methods use the <code>New-AzureStorageContext</code> cmdlet to generate the storage context. The methods differ on how you pass the parameters to this cmdlet.</p>
+<p><strong>A. Via fetching the Azure Storage Key</strong></p>
+<p>This first method uses the <code>Get-AzureStorageKey</code> to fetch the storage key. This key is then used to generate the context as shown below.</p>
+<pre><code>$StorageAccountName = "yourstorageaccount"
+$StorageAccountKey = Get-AzureStorageKey -StorageAccountName $StorageAccountName
+$Ctx = New-AzureStorageContext $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary</code></pre>
+<p><strong>B. Via fetching the Azure Storage Container SAS Token</strong></p>
+<p>This second method uses the <code>New-AzureStorageContainerSASToken</code> to create a new SAS token to securely access the storage container. This token is then used to generate the context as shown below.</p>
+<pre><code>$sasToken = New-AzureStorageContainerSASToken -Container abc -Permission rl
+$Ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -SasToken $sasToken</code></pre>
+<p><strong>C. Via Connectin String</strong></p>
+<p>This third method uses a connection string, entered manually, which is then used to generate the context as shown below.</p>
+<pre><code>$ConnectionString = "DefaultEndpointsProtocol=http;BlobEndpoint=&lt;blobEndpoint&gt;;QueueEndpoint=&lt;QueueEndpoint&gt;;TableEndpoint=&lt;TableEndpoint&gt;;AccountName=&lt;AccountName&gt;;AccountKey=&lt;AccountKey&gt;"
+$Ctx = New-AzureStorageContext -ConnectionString $ConnectionString</code></pre>
+<h3>2. Uploading the files using the context</h3>
+<p>Now that you have the context to the storage account you can upload and download files from the storage blob container.
+Use the below code to upload a file named &quot;<em>Parameters.json</em>&quot;, located on the local machine at &quot;<em>C:\Temp</em>&quot; directory.</p>
+<pre><code>#Uploading File
+$BlobName = "Parameters.json"
+$localFile = "C:\Temp\" + $BlobName
+
+#Note the Force switch will overwrite if the file already exists in the Azure container
+Set-AzureStorageBlobContent -File $localFile -Container $ContainerName -Blob $BlobName -Context $Ctx -Force</code></pre>
+<h3>3. Downloading the files using the context</h3>
+<p>Download works in almost identical manner. You use the Get cmdlet instead of Set as shown below to download a file to a local folder, located at &quot;<em>C:\Downloads</em>&quot;.</p>
+<pre><code>#Download File
+$BlobName = "Parameters.json"
+$localTargetDirectory = "C:\Downloads"
+
+Get-AzureStorageBlobContent -Blob $BlobName -Container $ContainerName -Destination $localTargetDirectory -Context $ctx</code></pre>
+<p>I hope this helps simplify the automated usage of Azure Storage container. Let us know your concerns or questions if any.</p>
+<p><strong>Reference:</strong> <a href="https://azure.microsoft.com/en-us/documentation/articles/storage-powershell-guide-full/" target="_blank">Using Azure PowerShell with Azure Storage</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/uploading-and-downloading-files-securely-from-azure-storage-blob-via-powershell</link>
+<pubDate>Wed, 18 May 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure comes to Canada</title>
+<description><![CDATA[<p>Last week marked the general availability of Azure datacenter for Canada locations. Microsoft has set up 2 new datacenters in Canada. </p>
+<h3>Where Exactly are these datacenters located</h3>
+<ol>
+<li><strong>Canada Central</strong> - The first datacenter is located in Toronto.</li>
+<li><strong>Canada East</strong> - The second datacenter is located in Quebec City.</li>
+</ol>
+<p>Now when you are creating a new resource (like a Virtual Machine) you will see these two options.</p>
+<p><img src="http://HarvestingClouds.com/images/1463673113573de1199a777.png" alt="New Locations" /></p>
+<p>These locations are also listed in the official Microsoft Regions list here: <a href="https://azure.microsoft.com/en-us/regions/#services?WT.mc_id=azurebg_email_Trans_1106_Tier2_Release_MOSP" target="_blank">Azure Regions</a></p>
+<p>You can read about this announcement and upcoming features here: <a href="https://azure.microsoft.com/en-us/blog/microsoft-cloud-accelerates-in-canada-and-expands-to-south-korea/?WT.mc_id=azurebg_email_Trans_1106_Tier2_Release_MOSP" target="_blank">Microsoft Cloud accelerates in Canada and expands to South Korea</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-comes-to-canada</link>
+<pubDate>Mon, 16 May 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>NEW Feature - Azure Cool Blob Storage</title>
 <description><![CDATA[<p>Have you heard about the new <strong>Azure Cool Blob Storage</strong>? </p>
 <p>If you haven’t heard about it, this is Microsoft's low-cost storage for <strong>Cool</strong> object data. “Example use cases for cool storage include backups, media content, scientific data, compliance and archival data. In general, any data which lives for a longer period of time and is accessed less than once a month is a perfect candidate for cool storage.” It is similar to what <strong>Glacier storage tier</strong> provides in Amazon Web Services.</p>
