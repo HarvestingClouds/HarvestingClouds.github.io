@@ -6,6 +6,21 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>ASR Setup for VMs running in VMWare without VMware level User Access</title>
+<description><![CDATA[<h3>Problem Statement</h3>
+<p>Recently I was setting up <strong>Azure Site Recovery</strong> (or ASR) in an environment. We had multiple VMs in VMWare environment. The environment was managed by Third Party who did not want to give any service account for VMWare as their environment was shared with different customers. So we had access only to the VMs. Without relevant access, ASR for VMWare was out of the question for us.</p>
+<h3>Solution</h3>
+<p>We treated the VMs, in such environment, as physical machines when setting up ASR to replicate these machines to Azure.
+We used the option of &quot;<strong><em>Not virtualized/other</em></strong>&quot; in the &quot;<strong><em>Prepare Infrastructure</em></strong>&quot; wizard of ASR. We <strong>treated the VMs as physical servers</strong> and did not face any issues during the migration. </p>
+<p>Refer below screenshot for the exact option discussed above.</p>
+<p><img src="http://HarvestingClouds.com/images/14696297155798c513ea908.png" alt="Protection Goal" /></p>
+<p>Later when enabling the Replication for any Server, run the &quot;<strong><em>Enable Replication</em></strong>&quot; wizard by clicking on &quot;<strong>+Replicate</strong>&quot; on the ASR vault's blade. Then select &quot;<strong>Machine Type</strong>&quot; as &quot;<strong><em>Physical Machine</em></strong>&quot; and add the Physical Machines by mentioning their IP addresses. </p>
+<p><strong>Note:</strong> For this approach to work, the Configuration server should be on the same network as the VM being considered as Physical Machine.</p>
+<p>We were able to migrate many servers successfully and without any issues using this approach.</p>]]></description>
+<link>http://HarvestingClouds.com/post/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access</link>
+<pubDate>Tue, 26 Jul 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Uploading and Downloading files securely from Azure Storage Blob via PowerShell</title>
 <description><![CDATA[<p><strong>Azure blob storage</strong> can provide a very highly available way to store your files in the cloud. You can dynamically add or remove the files in an automated fashion. These files can then be used for any number of purposes. E.g. A parameter file for ARM template can be kept in Azure blob storage and then dynamically read while creating resources from an ARM template.</p>
 <p><strong>The whole process can be broken down into 3 parts</strong>:</p>

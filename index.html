@@ -72,52 +72,22 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/uploading-and-downloading-files-securely-from-azure-storage-blob-via-powershell">Uploading and Downloading files securely from Azure Storage Blob via PowerShell</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access">ASR Setup for VMs running in VMWare without VMware level User Access</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> May 18, 2016
+                    <span class="glyphicon glyphicon-time"></span> Jul 26, 2016
                 
                         <hr>
-                        <p class="post-content"><p><strong>Azure blob storage</strong> can provide a very highly available way to store your files in the cloud. You can dynamically add or remove the files in an automated fashion. These files can then be used for any number of purposes. E.g. A parameter file for ARM template can be kept in Azure blob storage and then dynamically read while creating resources from an ARM template.</p>
-<p><strong>The whole process can be broken down into 3 parts</strong>:</p>
-<ol>
-<li>Generating the context to the storage container</li>
-<li>Uploading the files using the context</li>
-<li>Downloading the files using the context</li>
-</ol>
-<h3>1. Generating the context to the storage container</h3>
-<p>The context to the storage blob container can be created in one of the 3 ways, based on your security requirements. All methods use the <code>New-AzureStorageContext</code> cmdlet to generate the storage context. The methods differ on how you pass the parameters to this cmdlet.</p>
-<p><strong>A. Via fetching the Azure Storage Key</strong></p>
-<p>This first method uses the <code>Get-AzureStorageKey</code> to fetch the storage key. This key is then used to generate the context as shown below.</p>
-<pre><code>$StorageAccountName = "yourstorageaccount"
-$StorageAccountKey = Get-AzureStorageKey -StorageAccountName $StorageAccountName
-$Ctx = New-AzureStorageContext $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary</code></pre>
-<p><strong>B. Via fetching the Azure Storage Container SAS Token</strong></p>
-<p>This second method uses the <code>New-AzureStorageContainerSASToken</code> to create a new SAS token to securely access the storage container. This token is then used to generate the context as shown below.</p>
-<pre><code>$sasToken = New-AzureStorageContainerSASToken -Container abc -Permission rl
-$Ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -SasToken $sasToken</code></pre>
-<p><strong>C. Via Connectin String</strong></p>
-<p>This third method uses a connection string, entered manually, which is then used to generate the context as shown below.</p>
-<pre><code>$ConnectionString = "DefaultEndpointsProtocol=http;BlobEndpoint=&lt;blobEndpoint&gt;;QueueEndpoint=&lt;QueueEndpoint&gt;;TableEndpoint=&lt;TableEndpoint&gt;;AccountName=&lt;AccountName&gt;;AccountKey=&lt;AccountKey&gt;"
-$Ctx = New-AzureStorageContext -ConnectionString $ConnectionString</code></pre>
-<h3>2. Uploading the files using the context</h3>
-<p>Now that you have the context to the storage account you can upload and download files from the storage blob container.
-Use the below code to upload a file named &quot;<em>Parameters.json</em>&quot;, located on the local machine at &quot;<em>C:\Temp</em>&quot; directory.</p>
-<pre><code>#Uploading File
-$BlobName = "Parameters.json"
-$localFile = "C:\Temp\" + $BlobName
-
-#Note the Force switch will overwrite if the file already exists in the Azure container
-Set-AzureStorageBlobContent -File $localFile -Container $ContainerName -Blob $BlobName -Context $Ctx -Force</code></pre>
-<h3>3. Downloading the files using the context</h3>
-<p>Download works in almost identical manner. You use the Get cmdlet instead of Set as shown below to download a file to a local folder, located at &quot;<em>C:\Downloads</em>&quot;.</p>
-<pre><code>#Download File
-$BlobName = "Parameters.json"
-$localTargetDirectory = "C:\Downloads"
-
-Get-AzureStorageBlobContent -Blob $BlobName -Container $ContainerName -Destination $localTargetDirectory -Context $ctx</code></pre>
-<p>I hope this helps simplify the automated usage of Azure Storage container. Let us know your concerns or questions if any.</p>
-<p><strong>Reference:</strong> <a href="https://azure.microsoft.com/en-us/documentation/articles/storage-powershell-guide-full/" target="_blank">Using Azure PowerShell with Azure Storage</a></p></p>
+                        <p class="post-content"><h3>Problem Statement</h3>
+<p>Recently I was setting up <strong>Azure Site Recovery</strong> (or ASR) in an environment. We had multiple VMs in VMWare environment. The environment was managed by Third Party who did not want to give any service account for VMWare as their environment was shared with different customers. So we had access only to the VMs. Without relevant access, ASR for VMWare was out of the question for us.</p>
+<h3>Solution</h3>
+<p>We treated the VMs, in such environment, as physical machines when setting up ASR to replicate these machines to Azure.
+We used the option of &quot;<strong><em>Not virtualized/other</em></strong>&quot; in the &quot;<strong><em>Prepare Infrastructure</em></strong>&quot; wizard of ASR. We <strong>treated the VMs as physical servers</strong> and did not face any issues during the migration. </p>
+<p>Refer below screenshot for the exact option discussed above.</p>
+<p><img src="http://HarvestingClouds.com/images/14696297155798c513ea908.png" alt="Protection Goal" /></p>
+<p>Later when enabling the Replication for any Server, run the &quot;<strong><em>Enable Replication</em></strong>&quot; wizard by clicking on &quot;<strong>+Replicate</strong>&quot; on the ASR vault's blade. Then select &quot;<strong>Machine Type</strong>&quot; as &quot;<strong><em>Physical Machine</em></strong>&quot; and add the Physical Machines by mentioning their IP addresses. </p>
+<p><strong>Note:</strong> For this approach to work, the Configuration server should be on the same network as the VM being considered as Physical Machine.</p>
+<p>We were able to migrate many servers successfully and without any issues using this approach.</p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -127,10 +97,10 @@ Get-AzureStorageBlobContent -Blob $BlobName -Container $ContainerName -Destinati
                 
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
-                                <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/powershell">powershell</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/storage">storage</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/blob">blob</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/ASR">ASR</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/AzureSiteRecovery">AzureSiteRecovery</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/VMWare">VMWare</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -177,11 +147,11 @@ Get-AzureStorageBlobContent -Blob $BlobName -Container $ContainerName -Destinati
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access">ASR Setup for VMs running in VMWare without VMware level User Access</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/uploading-and-downloading-files-securely-from-azure-storage-blob-via-powershell">Uploading and Downloading files securely from Azure Storage Blob via PowerShell</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-comes-to-canada-along-with-office-365">Azure comes to Canada (along with Office 365)</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/new-feature-azure-cool-blob-storage">NEW Feature - Azure Cool Blob Storage</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/taking-automatic-remediation-action-on-azure-vm-alert-generation">Taking Automatic Remediation Action on Azure VM Alert Generation</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/roadmap-solutions-to-help-with-migration-from-azure-asm-to-arm-portal">ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal</a></li>
                 </ul>
             </div>
         
@@ -205,7 +175,7 @@ Get-AzureStorageBlobContent -Blob $BlobName -Container $ContainerName -Destinati
                         <strong>Archives</strong>
                     </div>
         
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
                 </div>
         
             <!-- Tags -->
@@ -222,11 +192,14 @@ Get-AzureStorageBlobContent -Blob $BlobName -Container $ContainerName -Destinati
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
 <a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/blob" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">blob</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/csharp" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">csharp</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/datacenter" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">datacenter</a>
@@ -238,6 +211,7 @@ Get-AzureStorageBlobContent -Blob $BlobName -Container $ContainerName -Destinati
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/storage" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">storage</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualmachine</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vm</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vmware" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">VMWare</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/webdevelopment" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">webdevelopment</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/windows" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">windows</a>
 
