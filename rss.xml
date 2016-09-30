@@ -6,85 +6,19 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
-<title>Step by Step ARM Templates - What is in an ARM Template - Understanding All Components</title>
-<description><![CDATA[<p>As we discussed <a href="../step-by-step-azure-resource-manager-arm-templates-index/">earlier in the introduction</a> <strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources.</p>
-<p>In this post, we will deconstruct any basic ARM template and will understand it's various components.</p>
-<p>Any ARM Template will look like below:</p>
-<pre><code>{
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {},
-    "variables": {},
-    "resources": [ {}, {} ]
-}</code></pre>
-<p>Snapshot of the Template at root level, as generated via Visual Studio:</p>
-<p><img src="http://HarvestingClouds.com/images/147520488857edd71873f9b.png" alt="ARM Template Components" /></p>
-<p>As you can see the components (or properties) of any ARM template includes:</p>
+<title>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 2 - Parameters</title>
+<description><![CDATA[<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
 <ol>
-<li>Schema</li>
-<li>Content Version</li>
-<li>Parameters</li>
+<li>Understanding all components</li>
+<li>Parameters - This blog post</li>
 <li>Variables</li>
 <li>Resources</li>
+<li>Outputs</li>
 </ol>
-<p>Let's look at these in more detail.</p>
-<table border="1" cellpadding="4" cellspacing="4">
-        <colgroup>
-            <col>
-            <col>
-            <col>
-            <col>
-        </colgroup>
-        <tbody valign="top">
-            <tr>
-                <th>Element name</th>
-                <th>Required</th>
-                <th>JSON Type</th>
-                <th>Description</th>
-            </tr>
-            <tr>
-                <td>$schema</td>
-                <td>Yes</td>
-                <td>String Value</td>
-                <td>Location of the JSON schema file that describes the version of the template language.</td>
-            </tr>
-            <tr>
-                <td>contentVersion</td>
-                <td>Yes</td>
-                <td>String Value</td>
-                <td>Version of the template (such as 1.2.0.20). When deploying resources using the template, this value can be used to make sure that the right template is being used.</td>
-            </tr>
-            <tr>
-                <td>parameters</td>
-                <td>No</td>
-                <td>JSON Object</td>
-                <td>Values that are provided by the end user (manually or via a parameters file) when deployment is executed to customize resource deployment.</td>
-            </tr>
-            <tr>
-                <td>variables</td>
-                <td>No</td>
-                <td>JSON Object</td>
-                <td>Values that are reused multiple times in the template. You can update these values. They are different from Parameters as their value is known and they are not required as inputs from the end user.</td>
-            </tr>
-            <tr>
-                <td>resources</td>
-                <td>Yes</td>
-                <td>Array of Objects</td>
-                <td>Types of services that are deployed or updated in a resource group. Each JSON object in this Array denotes an Azure Resource.</td>
-            </tr>
-            <tr>
-                <td>outputs</td>
-                <td>No</td>
-                <td>JSON Object</td>
-                <td>Values that are returned after deployment.</td>
-            </tr>
-        </tbody>
-</table>
-<p>Now that you know what each part is at a high level, let us look at the 4 main components in detail.</p>
-<h2>1. Parameters</h2>
+<h2>Parameters</h2>
 <p>As mentioned earlier, parameters are the way to customize the templates, each time you deploy it to create resources in Azure. These parameters are the end-user inputs for various aspects of the template. E.g. If you are deploying an Azure Virtual Machine via an ARM Template then the name of the VM can be an input parameter. Operating System type can be another parameter.</p>
 <p>The parameters can be referred and used in other parts of the ARM Template.</p>
-<h3>Defining Parameters</h3>
+<h3>1. Defining Parameters</h3>
 <p>Parameters is a one huge JSON object with multiple JSON properties. Each property is one parameter which is represented as another JSON object. Let us look at it's structure at high level.</p>
 <pre><code>"parameters": {
                "parameter 1" : {},
@@ -135,14 +69,25 @@
         }</code></pre>
 <p>It has additional below properties:</p>
 <ol>
-<li><strong>Default Value</strong> - </li>
-<li><strong>Allowed Values</strong> - 
-<h2>2. Variables</h2></li>
+<li><strong>Default Value</strong> - This is the default value. End User will be able to change this value when deploying the template. If no value is provided then this value is picked.</li>
+<li><strong>Allowed Values</strong> - This is an Array of values which are allowed for the parameter. Only value from this set is allowed as an input.</li>
 </ol>
-<h2>3. Resources</h2>
-<h2>4. Outputs</h2>]]></description>
-<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components</link>
-<pubDate>Mon, 22 Aug 2016 00:00:00 +0500</pubDate>
+<h3>2. Using Parameters</h3>
+<p>Using parameters is easy. Wherever in your template (in variables or resources section) you want to use the value of a parameter, just use the parameter function as shown below with name of the parameter as input, enclosed in square brackets. </p>
+<pre><code>[parameters('windowsOSVersion')]</code></pre>
+<p>If the parameter value is supposed to be a string, then enclose it with double quotes, as shown below:</p>
+<pre><code>"sku": "[parameters('windowsOSVersion')]"</code></pre>
+<h3>3. Best Practices</h3>
+<ul>
+<li>Try to always provide Default Values</li>
+<li>Provide metadata so that you can provide insight as to what the parameter is meant for</li>
+<li>Provide complete descriptive names, no matter how long.</li>
+<li>Use <strong>Pascal Casing</strong> to name your parameters. i.e. First letter should be a small letter. Then every new word will have the first letter as a capital. No space between words. E.g. windowsOSVersion</li>
+<li>User properties like minLength and Allowed values to impose restrictions. This reduces any human errors.</li>
+</ul>
+<p>That's all there is to Parameters in ARM Templates. If you have any doubts, please comment in the below section.</p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters</link>
+<pubDate>Wed, 24 Aug 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Step by Step ARM Templates - What is in an ARM Template - Understanding All Components</title>
