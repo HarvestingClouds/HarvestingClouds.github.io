@@ -28,7 +28,7 @@
 <li>Resources</li>
 </ul>
 <p>Let's look at these in more detail.</p>
-<table>
+<table border="1" cellpadding="4" cellspacing="4">
         <colgroup>
             <col>
             <col>
@@ -37,10 +37,10 @@
         </colgroup>
         <tbody valign="top">
             <tr>
-                <td>Element name</td>
-                <td>Required</td>
-                <td>JSON Type</td>
-                <td>Description</td>
+                <th>Element name</th>
+                <th>Required</th>
+                <th>JSON Type</th>
+                <th>Description</th>
             </tr>
             <tr>
                 <td>$schema</td>
