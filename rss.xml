@@ -10,10 +10,10 @@
 <description><![CDATA[<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
 <ol>
 <li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
-<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters </a></li>
-<li>Variables</li>
-<li>Resources</li>
-<li>Outputs - This blog post</li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">Variables</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">Resources</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">Outputs - This blog post</a></li>
 </ol>
 <h2>Outputs</h2>
 <p>This section is used to output any values after the deployment of the ARM Template. This can output any Ids or connection strings based on the deployed resources. </p>
@@ -50,10 +50,10 @@
 <description><![CDATA[<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
 <ol>
 <li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
-<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters </a></li>
-<li>Variables</li>
-<li>Resources - This blog post</li>
-<li>Outputs</li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">Variables</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">Resources  - This blog post</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">Outputs</a></li>
 </ol>
 <h2>Resources</h2>
 <p>This is the major section of the whole ARM template. This is where you define what resources should be deployed in Azure. You also define dependencies between resources in this section. </p>
@@ -192,9 +192,9 @@ Within the object, various properties (and nested properties) are used to provid
 <ol>
 <li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
 <li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters</a></li>
-<li>Variables - This blog post</li>
-<li>Resources</li>
-<li>Outputs</li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">Variables - This blog post</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">Resources</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">Outputs</a></li>
 </ol>
 <h2>Variables</h2>
 <p>Variables are values that you either know beforehand or you can construct from the input parameters. These variables can then be reused at multiple locations in the resources section. If you later want to change the value of a variable then it automatically gets updated at all other locations. They can be used to define a resource property.</p>
@@ -409,10 +409,10 @@ Within the object, various properties (and nested properties) are used to provid
 </table>
 <p>Now that you know what each part is at a high level, in the next posts, we will look at the key 4 components in detail.</p>
 <ol>
-<li>Parameters</li>
-<li>Variables</li>
-<li>Resources</li>
-<li>Outputs</li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">Variables</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">Resources</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">Outputs</a></li>
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components</link>
 <pubDate>Mon, 22 Aug 2016 00:00:00 +0500</pubDate>
@@ -537,6 +537,11 @@ Within the object, various properties (and nested properties) are used to provid
 <ol>
 <li><a href="#">Index</a> </li>
 <li><a href="../step-by-step-arm-templates-json-101-for-it-administrators/">JSON 101 for IT Administrators</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">What is in an ARM Template - Understanding All Components</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">What is in an ARM Template - Understanding Components 2 - Parameters</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">What is in an ARM Template - Understanding Components 3 - Variables</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">What is in an ARM Template - Understanding Components 4 - Resources</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">What is in an ARM Template - Understanding Components 5 - Outputs</a></li>
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index</link>
 <pubDate>Mon, 15 Aug 2016 00:00:00 +0500</pubDate>
