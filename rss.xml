@@ -6,6 +6,84 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Step by Step ARM Templates - What is in an ARM Template - Understanding All Components</title>
+<description><![CDATA[<p>As we discussed <a href="../step-by-step-azure-resource-manager-arm-templates-index/">earlier in the introduction</a> <strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources.</p>
+<p>In this post, we will deconstruct any basic ARM template and will understand it's various components.</p>
+<p>Any ARM Template will look like below:</p>
+<pre><code>{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {},
+    "resources": [ {}, {} ]
+}</code></pre>
+<p>Snapshot of the Template at root level, as generated via Visual Studio:</p>
+<p><img src="http://HarvestingClouds.com/images/147520488857edd71873f9b.png" alt="ARM Template Components" /></p>
+<p>As you can see the components (or properties) of any ARM template includes:</p>
+<ul>
+<li>Schema</li>
+<li>Content Version</li>
+<li>Parameters</li>
+<li>Variables</li>
+<li>Resources</li>
+</ul>
+<p>Let's look at these in more detail.</p>
+<table>
+        <colgroup>
+            <col>
+            <col>
+            <col>
+            <col>
+        </colgroup>
+        <tbody valign="top">
+            <tr>
+                <td>Element name</td>
+                <td>Required</td>
+                <td>JSON Type</td>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td>$schema</td>
+                <td>Yes</td>
+                <td>String Value</td>
+                <td>Location of the JSON schema file that describes the version of the template language.</td>
+            </tr>
+            <tr>
+                <td>contentVersion</td>
+                <td>Yes</td>
+                <td>String Value</td>
+                <td>Version of the template (such as 1.2.0.20). When deploying resources using the template, this value can be used to make sure that the right template is being used.</td>
+            </tr>
+            <tr>
+                <td>parameters</td>
+                <td>No</td>
+                <td>JSON Object</td>
+                <td>Values that are provided by the end user (manually or via a parameters file) when deployment is executed to customize resource deployment.</td>
+            </tr>
+            <tr>
+                <td>variables</td>
+                <td>No</td>
+                <td>JSON Object</td>
+                <td>Values that are reused multiple times in the template. You can update these values. They are different from Parameters as their value is known and they are not required as inputs from the end user.</td>
+            </tr>
+            <tr>
+                <td>resources</td>
+                <td>Yes</td>
+                <td>Array of Objects</td>
+                <td>Types of services that are deployed or updated in a resource group. Each JSON object in this Array denotes an Azure Resource.</td>
+            </tr>
+            <tr>
+                <td>outputs</td>
+                <td>No</td>
+                <td>JSON Object</td>
+                <td>Values that are returned after deployment.</td>
+            </tr>
+        </tbody>
+</table>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components</link>
+<pubDate>Mon, 22 Aug 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Step by Step ARM Templates - JSON 101 for IT Administrators</title>
 <description><![CDATA[<p>Azure Resource Manager (ARM) templates are written in JSON or <strong>JavaScript Object Notation</strong>. To understand ARM templates, you need to understand few quick basics about JSON. These will enable you to lay a great foundation which will enable you to understand ARM templates very easily.</p>
 <p>JSON or JavaScript Object Notation (pronounce like &quot;Jay-son&quot;) is a text-based data format that's designed to be human-readable, lightweight, and easy to transmit between a server and a web client. Its syntax is derived from JavaScript. Think of this as an even more compact version of XML files.</p>
@@ -112,7 +190,7 @@
 </item>
 <item>
 <title>Step by Step Azure Resource Manager (ARM) Templates - Index</title>
-<description><![CDATA[<p><strong>Azure Resource Manager (ARM) Templates</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and repeatedly.</p>
+<description><![CDATA[<p><strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and repeatedly.</p>
 <p>ARM Templates can be used for the deployment of resources on both Azure and Azure Stack. Using these templates for all deployments provides you with various <strong>benefits</strong> including:</p>
 <ul>
 <li><strong>Declarative Deployment</strong> – All you need to do is declare what you need to deploy. You don't need to create any complex rules or write lengthy scripts.</li>
@@ -121,7 +199,7 @@
 <li><strong>Repitition without Errors</strong> - You can deploy the same infrastructure over and over again (e.g. in Dev-test environments and then in production).</li>
 </ul>
 <p>This series of posts try to decode and understand the ARM Templates &quot;Step By Step&quot;.</p>
-<p>This post is an index of all the posts, in sequence, for understanding the Azure Resource Manager (ARM) Templates.</p>
+<p>This post is an index of all the posts, in sequence, for understanding the Azure Resource Manager (ARM) Templates. This post will be updated regularly as more posts on this topic are added.</p>
 <ol>
 <li><a href="#">Index</a> </li>
 <li><a href="../step-by-step-arm-templates-json-101-for-it-administrators/">JSON 101 for IT Administrators</a></li>

@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Step by Step ARM Templates - JSON 101 for IT Administrators :: Harvesting Clouds</title>
+    <title>Step by Step ARM Templates - What is in an ARM Template - Understanding All Components :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -72,112 +72,85 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Step by Step ARM Templates - JSON 101 for IT Administrators</h3>
+                <h3>Step by Step ARM Templates - What is in an ARM Template - Understanding All Components</h3>
                 <span class="glyphicon glyphicon-user"></span> @20aman
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> Aug 17, 2016
+                <span class="glyphicon glyphicon-time"></span> Aug 22, 2016
                 <hr>
 
-                <p class="post-content"><p>Azure Resource Manager (ARM) templates are written in JSON or <strong>JavaScript Object Notation</strong>. To understand ARM templates, you need to understand few quick basics about JSON. These will enable you to lay a great foundation which will enable you to understand ARM templates very easily.</p>
-<p>JSON or JavaScript Object Notation (pronounce like &quot;Jay-son&quot;) is a text-based data format that's designed to be human-readable, lightweight, and easy to transmit between a server and a web client. Its syntax is derived from JavaScript. Think of this as an even more compact version of XML files.</p>
-<p>JSON is a popular notation for transmitting data through RESTful web services. The official internet media type for JSON is <code>application/json</code>, and JSON files typically have a <code>.json</code> extension.</p>
-<p>To understand JSON we need to understand <strong>3 main components</strong>. These components are like building blocks, using which you can build very complex JSON files.</p>
-<h2>1. Objects</h2>
-<p>Objects are the heart of JSON. Object denotes a real life object, e.g. an Employee. Just like a real life object, these have various properties and a value for each of these properties. E.g. An Employee will have Name property with value as John. Further, an employee object can have various another properties like Age, Salary, Department etc. So to denote an object in JSON you:</p>
+                <p class="post-content"><p>As we discussed <a href="../step-by-step-azure-resource-manager-arm-templates-index/">earlier in the introduction</a> <strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources.</p>
+<p>In this post, we will deconstruct any basic ARM template and will understand it's various components.</p>
+<p>Any ARM Template will look like below:</p>
+<pre><code>{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {},
+    "resources": [ {}, {} ]
+}</code></pre>
+<p>Snapshot of the Template at root level, as generated via Visual Studio:</p>
+<p><img src="http://HarvestingClouds.com/images/147520488857edd71873f9b.png" alt="ARM Template Components" /></p>
+<p>As you can see the components (or properties) of any ARM template includes:</p>
 <ul>
-<li>One object will be represented by curly brackets. It will begin from opening curly bracket i.e. <code>{</code> and will end at closing curly bracket i.e. <code>}</code></li>
-<li>Denote the property and corresponding values as <code>"key" : "value"</code> or <code>"property" : "value"</code> pairs.</li>
-<li>You can only use double quotes for Properties as they will always be of type string</li>
-<li>You will have double quotes around Values if they are of string type. You will not have any quotes in case of a number or a boolean value.</li>
-<li>Each property will be separated from next property by a comma</li>
+<li>Schema</li>
+<li>Content Version</li>
+<li>Parameters</li>
+<li>Variables</li>
+<li>Resources</li>
 </ul>
-<p><strong>Note:</strong> Each JSON file is also a single JSON object. At root level it starts with an opening curly bracket i.e. <code>{</code> and will end with closing curly bracket i.e. <code>}</code>. There can't be any other objects at the root level. Think of this similar to how in an XML file there can be only one element at the root level. </p>
-<p>Example Employee object is shown below:</p>
-<pre><code>{
-    "Name" : "John",
-    "Age" : 34,
-    "Department" : "Finance",
-    "Salary" : "100000",
-    "IsAdmin" : true
-}</code></pre>
-<h2>2. Arrays</h2>
-<p>Simply put, arrays are a collection of items. In JSON the <strong>square brackets</strong> represents an Array. E.g. An array of 3 employees will look like below:</p>
-<pre><code>[
-  {
-        "Name" : "John",
-        "Age" : 34
-    },
-   {
-        "Name" : "Mary",
-        "Age" : 32
-    },
-   {
-        "Name" : "Matthew",
-        "Age" : 29
-    }
-]</code></pre>
-<h2>3. Nesting of Objects</h2>
-<p>Now things get more interesting with nesting of Objects. What Nesting means is that one object can have it's property as another complex object. Don't worry if that sounds confusing. Let's understand that statement using an example. An Address where a person lives can be represented by an object. This object will look like below:</p>
-<pre><code>{
-  "StreetNumber" : "50",
-  "StreetName" : "Brian Harrison Way",
-  "Unit Number" : 22,
-  "City" : "Toronto",
-  "Country" : "Canada"
-}</code></pre>
-<p>Now an Employee Object will have an Address object as one of it's property (because employee need to live somewhere). This new complex Employee object will look like below, with nested Address object as one of it's property:</p>
-<pre><code> {
-        "Name" : "John",
-        "Age" : 34,
-        "Department" : "Finance",
-        "Salary" : "100000",
-        "IsAdmin" : true,
-        "Address" :   {
-                          "StreetNumber" : "50",
-                          "StreetName" : "Brian Harrison Way",
-                          "Unit Number" : 22,
-                          "City" : "Toronto",
-                          "Country" : "Canada"
-                       }
-    }</code></pre>
-<p>That's all there is to it. Now you can use these 3 components and build very complex json files/templates. Even the most complex template can be broken into these 3 components. </p>
-<p>Below is a complex example with all 3 components. </p>
-<pre><code>{
-    "Department": "Finance",
-    "TotalEmployees": 2,
-    "Employees": [
-        {
-            "Name": "John",
-            "Age": 34,
-            "Department": "Finance",
-            "Salary": "100000",
-            "IsAdmin": true,
-            "Address": {
-                "StreetNumber": "50",
-                "StreetName": "Brian Harrison Way",
-                "Unit Number": 22,
-                "City": "Toronto",
-                "Country": "Canada"
-            }
-        },
-        {
-            "Name": "John",
-            "Age": 34,
-            "Department": "Finance",
-            "Salary": "100000",
-            "IsAdmin": true,
-            "Address": {
-                "StreetNumber": "50",
-                "StreetName": "Brian Harrison Way",
-                "Unit Number": 22,
-                "City": "Toronto",
-                "Country": "Canada"
-            }
-        }
-    ]
-}</code></pre>
-<p>The above JSON object denotes one department with name as Finance and total number of employees as 2. Then the &quot;Employees&quot; object is an array of 2 emplyees. Each emplyee object further have a complex property as Address, which is another object. </p>
-<p>If you understood each of the 3 components, you should be able to build/understand most complex JSON files with ease.</p></p>
+<p>Let's look at these in more detail.</p>
+<table>
+        <colgroup>
+            <col>
+            <col>
+            <col>
+            <col>
+        </colgroup>
+        <tbody valign="top">
+            <tr>
+                <td>Element name</td>
+                <td>Required</td>
+                <td>JSON Type</td>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td>$schema</td>
+                <td>Yes</td>
+                <td>String Value</td>
+                <td>Location of the JSON schema file that describes the version of the template language.</td>
+            </tr>
+            <tr>
+                <td>contentVersion</td>
+                <td>Yes</td>
+                <td>String Value</td>
+                <td>Version of the template (such as 1.2.0.20). When deploying resources using the template, this value can be used to make sure that the right template is being used.</td>
+            </tr>
+            <tr>
+                <td>parameters</td>
+                <td>No</td>
+                <td>JSON Object</td>
+                <td>Values that are provided by the end user (manually or via a parameters file) when deployment is executed to customize resource deployment.</td>
+            </tr>
+            <tr>
+                <td>variables</td>
+                <td>No</td>
+                <td>JSON Object</td>
+                <td>Values that are reused multiple times in the template. You can update these values. They are different from Parameters as their value is known and they are not required as inputs from the end user.</td>
+            </tr>
+            <tr>
+                <td>resources</td>
+                <td>Yes</td>
+                <td>Array of Objects</td>
+                <td>Types of services that are deployed or updated in a resource group. Each JSON object in this Array denotes an Azure Resource.</td>
+            </tr>
+            <tr>
+                <td>outputs</td>
+                <td>No</td>
+                <td>JSON Object</td>
+                <td>Values that are returned after deployment.</td>
+            </tr>
+        </tbody>
+</table></p>
                 <br/><br/>
 
                 <div class="post-info">
@@ -191,7 +164,6 @@
                         <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
                         <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
                         <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/JSON">JSON</a>&nbsp;&nbsp;
                 </div>
 
             </article>
