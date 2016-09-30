@@ -72,91 +72,47 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 2 - Parameters</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 5 - Outputs</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Aug 24, 2016
+                    <span class="glyphicon glyphicon-time"></span> Aug 30, 2016
                 
                         <hr>
                         <p class="post-content"><p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
 <ol>
-<li>Understanding all components</li>
-<li>Parameters - This blog post</li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters </a></li>
 <li>Variables</li>
 <li>Resources</li>
-<li>Outputs</li>
+<li>Outputs - This blog post</li>
 </ol>
-<h2>Parameters</h2>
-<p>As mentioned earlier, parameters are the way to customize the templates, each time you deploy it to create resources in Azure. These parameters are the end-user inputs for various aspects of the template. E.g. If you are deploying an Azure Virtual Machine via an ARM Template then the name of the VM can be an input parameter. Operating System type can be another parameter.</p>
-<p>The parameters can be referred and used in other parts of the ARM Template.</p>
-<h3>1. Defining Parameters</h3>
-<p>Parameters is a one huge JSON object with multiple JSON properties. Each property is one parameter which is represented as another JSON object. Let us look at it's structure at high level.</p>
-<pre><code>"parameters": {
-               "parameter 1" : {},
-               "parameter 2" : {},
-               "parameter 3" : {}
+<h2>Outputs</h2>
+<p>This section is used to output any values after the deployment of the ARM Template. This can output any Ids or connection strings based on the deployed resources. </p>
+<p>This is a single JSON object with various output objects (just like Parameters. The overall JSON structure looks like below:</p>
+<pre><code>"outputs": { 
+    "output1" : {
+                     "type":"string",
+                     "value": "value1"
+      },
+    "output2" : {
+                     "type":"string",
+                     "value": "value2"
+      },
 }</code></pre>
-<p>E.g. If you are creating a template to deploy a Windows Virtual Machine then the parameters will look something like below:</p>
-<pre><code>"parameters": {
-               "VMName" : {},
-               "AdminUserName" : {},
-               "AdminPassword" : {},
-               "WindowsOSVersion" : {}
+<p>Each output object has 2 properties:</p>
+<ol>
+<li>Type - Data type of the output</li>
+<li>Value - value of the output</li>
+</ol>
+<p>A real life example with look like below:</p>
+<pre><code>"outputs": {
+    "adminUsername": {
+        "type": "string",
+        "value": "[parameters('adminUsername')]"
+    }
 }</code></pre>
-<p>Now let us look at one of the parameter. E.g. The AdminUserName parameter will look like:</p>
-<pre><code>"adminUsername": {
-            "type": "string",
-            "minLength": 1,
-            "metadata": {
-                "description": "Username for the Virtual Machine."
-            }
-        }</code></pre>
-<p>The parameter object, as shown above, has following parts:</p>
-<ol>
-<li><strong>Type</strong> - This is the data Type of the parameter.</li>
-<li><strong>minLength</strong> - This is the minimum lenth the parameter must have</li>
-<li><strong>Metadata</strong> - This is just to provide a description as to what the parameter means.</li>
-</ol>
-<p>The <strong>Data Type</strong> allowed for the parameter are:</p>
-<ul>
-<li>string or secureString – any valid JSON string</li>
-<li>int – any valid JSON integer</li>
-<li>bool – any valid JSON boolean </li>
-<li>object – any valid JSON object </li>
-<li>array – any valid JSON array</li>
-</ul>
-<p>A more complex parameter e.g. Windows OS Version, with few more properties, is shown below:</p>
-<pre><code>"windowsOSVersion": {
-            "type": "string",
-            "defaultValue": "2012-R2-Datacenter",
-            "allowedValues": [
-                "2008-R2-SP1",
-                "2012-Datacenter",
-                "2012-R2-Datacenter"
-            ],
-            "metadata": {
-                "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version. Allowed values: 2008-R2-SP1, 2012-Datacenter, 2012-R2-Datacenter."
-            }
-        }</code></pre>
-<p>It has additional below properties:</p>
-<ol>
-<li><strong>Default Value</strong> - This is the default value. End User will be able to change this value when deploying the template. If no value is provided then this value is picked.</li>
-<li><strong>Allowed Values</strong> - This is an Array of values which are allowed for the parameter. Only value from this set is allowed as an input.</li>
-</ol>
-<h3>2. Using Parameters</h3>
-<p>Using parameters is easy. Wherever in your template (in variables or resources section) you want to use the value of a parameter, just use the parameter function as shown below with name of the parameter as input, enclosed in square brackets. </p>
-<pre><code>[parameters('windowsOSVersion')]</code></pre>
-<p>If the parameter value is supposed to be a string, then enclose it with double quotes, as shown below:</p>
-<pre><code>"sku": "[parameters('windowsOSVersion')]"</code></pre>
-<h3>3. Best Practices</h3>
-<ul>
-<li>Try to always provide Default Values</li>
-<li>Provide metadata so that you can provide insight as to what the parameter is meant for</li>
-<li>Provide complete descriptive names, no matter how long.</li>
-<li>Use <strong>Pascal Casing</strong> to name your parameters. i.e. First letter should be a small letter. Then every new word will have the first letter as a capital. No space between words. E.g. windowsOSVersion</li>
-<li>User properties like minLength and Allowed values to impose restrictions. This reduces any human errors.</li>
-</ul>
-<p>That's all there is to Parameters in ARM Templates. If you have any doubts, please comment in the below section.</p></p>
+<p>The above example will output the administrator Username using the parameter from the template.</p>
+<p>That's all there is to Outputs in ARM Templates. If you have any doubts, please comment in the below section. Use the links at the Top to know all about other components in an ARM Template.</p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -216,11 +172,11 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 5 - Outputs</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 4 - Resources</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 3 - Variables</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 2 - Parameters</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components">Step by Step ARM Templates - What is in an ARM Template - Understanding All Components</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-json-101-for-it-administrators">Step by Step ARM Templates - JSON 101 for IT Administrators</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index">Step by Step Azure Resource Manager (ARM) Templates - Index</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access">ASR Setup for VMs running in VMWare without VMware level User Access</a></li>
                 </ul>
             </div>
         
@@ -259,15 +215,15 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">activedirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
-<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">ARM</a>
+<a style="font-size: 22px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">ARM</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
-<a style="font-size: 19px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 24px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
-<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">AzureResourceManager</a>
+<a style="font-size: 22px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
@@ -281,7 +237,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">powershell</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/storage" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">storage</a>
-<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">Templates</a>
+<a style="font-size: 22px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">Templates</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualmachine</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vmware" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">VMWare</a>
