@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Harvesting Clouds</title>
+    <title>Step by Step ARM Templates - JSON 101 for IT Administrators :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -71,42 +71,155 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-                <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-json-101-for-it-administrators">Step by Step ARM Templates - JSON 101 for IT Administrators</a></h3>
+            <article>
+                <h3>Step by Step ARM Templates - JSON 101 for IT Administrators</h3>
+                <span class="glyphicon glyphicon-user"></span> @20aman
+                &nbsp;&nbsp;
                 <span class="glyphicon glyphicon-time"></span> September 30, 2016 06:09 AM
-                <h3><a href="http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index">Step by Step Azure Resource Manager (ARM) Templates - Index</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Aug 15, 2016
-                <h3><a href="http://HarvestingClouds.com/post/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access">ASR Setup for VMs running in VMWare without VMware level User Access</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Jul 26, 2016
-                <h3><a href="http://HarvestingClouds.com/post/uploading-and-downloading-files-securely-from-azure-storage-blob-via-powershell">Uploading and Downloading files securely from Azure Storage Blob via PowerShell</a></h3>
-                <span class="glyphicon glyphicon-time"></span> May 18, 2016
-                <h3><a href="http://HarvestingClouds.com/post/azure-comes-to-canada-along-with-office-365">Azure comes to Canada (along with Office 365)</a></h3>
-                <span class="glyphicon glyphicon-time"></span> May 16, 2016
-                <h3><a href="http://HarvestingClouds.com/post/new-feature-azure-cool-blob-storage">NEW Feature - Azure Cool Blob Storage</a></h3>
-                <span class="glyphicon glyphicon-time"></span> May 02, 2016
-                <h3><a href="http://HarvestingClouds.com/post/taking-automatic-remediation-action-on-azure-vm-alert-generation">Taking Automatic Remediation Action on Azure VM Alert Generation</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 27, 2016
-                <h3><a href="http://HarvestingClouds.com/post/roadmap-solutions-to-help-with-migration-from-azure-asm-to-arm-portal">ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 22, 2016
-                <h3><a href="http://HarvestingClouds.com/post/migrating-from-azure-asm-to-arm-portal">Migrating from Azure ASM to ARM portal</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 21, 2016
-                <h3><a href="http://HarvestingClouds.com/post/powershell-dsc-partial-configurations">PowerShell DSC - Partial Configurations</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 20, 2016
-                <h3><a href="http://HarvestingClouds.com/post/azure-container-service-hits-general-availability">Azure Container Service hits General Availability</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 19, 2016
-                <h3><a href="http://HarvestingClouds.com/post/azure-authentication-authenticating-any-azure-api-request-in-your-application">Azure Authentication - Authenticating any Azure API Request in your Application</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 15, 2016
-                <h3><a href="http://HarvestingClouds.com/post/run-azure-automation-runbooks-via-powershell-ise">Run Azure Automation Runbooks via PowerShell ISE</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 14, 2016
-                <h3><a href="http://HarvestingClouds.com/post/various-options-added-to-buy-microsoft-azure-active-directory-basic">Various Options Added to Buy Microsoft Azure Active Directory Basic</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 13, 2016
-                <h3><a href="http://HarvestingClouds.com/post/multiple-values-in-gridmvc-single-column-filter-via-checkboxes-with-code-sample">Multiple Values In Grid.Mvc Single Column Filter via Checkboxes with Code Sample</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 12, 2016
-                <h3><a href="http://HarvestingClouds.com/post/getting-started-azure-site-recovery-asr-in-new-azure-portal">Getting Started - Azure Site Recovery (ASR) In New Azure Portal</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 09, 2016
-                <h3><a href="http://HarvestingClouds.com/post/coming-soon-windows-10-anniversary-update">Coming Soon - Windows 10 Anniversary Update</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 08, 2016
-                <h3><a href="http://HarvestingClouds.com/post/introducing-harvesting-clouds">Introducing Harvesting Clouds</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 01, 2016
+                <hr>
+
+                <p class="post-content"><p>Azure Resource Manager (ARM) templates are written in JSON or <strong>JavaScript Object Notation</strong>. To understand ARM templates, you need to understand few quick basics about JSON. These will enable you to lay a great foundation which will enable you to understand ARM templates very easily.</p>
+<p>JSON or JavaScript Object Notation (pronounce like &quot;Jay-son&quot;) is a text-based data format that's designed to be human-readable, lightweight, and easy to transmit between a server and a web client. Its syntax is derived from JavaScript. Think of this as an even more compact version of XML files.</p>
+<p>JSON is a popular notation for transmitting data through RESTful web services. The official internet media type for JSON is <code>application/json</code>, and JSON files typically have a <code>.json</code> extension.</p>
+<p>To understand JSON we need to understand <strong>3 main components</strong>. These components are like building blocks, using which you can build very complex JSON files.</p>
+<h2>1. Objects</h2>
+<p>Objects are the heart of JSON. Object denotes a real life object, e.g. an Employee. Just like a real life object, these have various properties and a value for each of these properties. E.g. An Employee will have Name property with value as John. Further, an employee object can have various another properties like Age, Salary, Department etc. So to denote an object in JSON you:</p>
+<ul>
+<li>One object will be represented by curly brackets. It will begin from opening curly bracket i.e. <code>{</code> and will end at closing curly bracket i.e. <code>}</code></li>
+<li>Denote the property and corresponding values as <code>"key" : "value"</code> or <code>"property" : "value"</code> pairs.</li>
+<li>You can only use double quotes for Properties as they will always be of type string</li>
+<li>You will have double quotes around Values if they are of string type. You will not have any quotes in case of a number or a boolean value.</li>
+<li>Each property will be separated from next property by a comma</li>
+</ul>
+<p><strong>Note:</strong> Each JSON file is also a single JSON object. At root level it starts with an opening curly bracket i.e. <code>{</code> and will end with closing curly bracket i.e. <code>}</code>. There can't be any other objects at the root level. Think of this similar to how in an XML file there can be only one element at the root level. </p>
+<p>Example Employee object is shown below:</p>
+<pre><code>{
+    "Name" : "John",
+    "Age" : 34,
+    "Department" : "Finance",
+    "Salary" : "100000",
+    "IsAdmin" : true
+}</code></pre>
+<h2>2. Arrays</h2>
+<p>Simply put, arrays are a collection of items. In JSON the <strong>square brackets</strong> represents an Array. E.g. An array of 3 employees will look like below:</p>
+<pre><code>[
+  {
+        "Name" : "John",
+        "Age" : 34
+    },
+   {
+        "Name" : "Mary",
+        "Age" : 32
+    },
+   {
+        "Name" : "Matthew",
+        "Age" : 29
+    }
+]</code></pre>
+<h2>3. Nesting of Objects</h2>
+<p>Now things get more interesting with nesting of Objects. What Nesting means is that one object can have it's property as another complex object. Don't worry if that sounds confusing. Let's understand that statement using an example. An Address where a person lives can be represented by an object. This object will look like below:</p>
+<pre><code>{
+  "StreetNumber" : "50",
+  "StreetName" : "Brian Harrison Way",
+  "Unit Number" : 22,
+  "City" : "Toronto",
+  "Country" : "Canada"
+}</code></pre>
+<p>Now an Employee Object will have an Address object as one of it's property (because employee need to live somewhere). This new complex Employee object will look like below, with nested Address object as one of it's property:</p>
+<pre><code> {
+        "Name" : "John",
+        "Age" : 34,
+        "Department" : "Finance",
+        "Salary" : "100000",
+        "IsAdmin" : true,
+        "Address" :   {
+                          "StreetNumber" : "50",
+                          "StreetName" : "Brian Harrison Way",
+                          "Unit Number" : 22,
+                          "City" : "Toronto",
+                          "Country" : "Canada"
+                       }
+    }</code></pre>
+<p>That's all there is to it. Now you can use these 3 components and build very complex json files/templates. Even the most complex template can be broken into these 3 components. </p>
+<p>Below is a complex example with all 3 components. </p>
+<pre><code>{
+    "Department": "Finance",
+    "TotalEmployees": 2,
+    "Employees": [
+        {
+            "Name": "John",
+            "Age": 34,
+            "Department": "Finance",
+            "Salary": "100000",
+            "IsAdmin": true,
+            "Address": {
+                "StreetNumber": "50",
+                "StreetName": "Brian Harrison Way",
+                "Unit Number": 22,
+                "City": "Toronto",
+                "Country": "Canada"
+            }
+        },
+        {
+            "Name": "John",
+            "Age": 34,
+            "Department": "Finance",
+            "Salary": "100000",
+            "IsAdmin": true,
+            "Address": {
+                "StreetNumber": "50",
+                "StreetName": "Brian Harrison Way",
+                "Unit Number": 22,
+                "City": "Toronto",
+                "Country": "Canada"
+            }
+        }
+    ]
+}</code></pre>
+<p>The above JSON object denotes one department with name as Finance and total number of employees as 2. Then the &quot;Employees&quot; object is an array of 2 emplyees. Each emplyee object further have a complex property as Address, which is another object. </p>
+<p>If you understood each of the 3 components, you should be able to build/understand most complex JSON files with ease.</p></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
+
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="http://HarvestingClouds.com/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
+            </div>
+
         </div>
 
         <div class="sidebar col-md-4">
@@ -210,6 +323,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
 </div>
 
@@ -247,3 +361,69 @@
 
 </body>
 </html>
+<!-- for pagination -->
+<script>
+    $(function () {
+
+        ///////////////////////////////////////////////////
+        // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
+        var $nextPostSelector = $('.nextpost');
+        ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
+
+        $.ajax({
+            url: __blogURL + "/data/blog.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.posts !== undefined && data.posts !== null) {
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
+                }
+            },
+            error: function (e) {
+                $prevPostSelector.hide();
+                $nextPostSelector.hide();
+            }
+        });
+
+        // for Disqus
+        var disqus_shortname = 'harvestingclouds';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+    });
+</script>

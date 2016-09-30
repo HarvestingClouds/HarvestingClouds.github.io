@@ -72,22 +72,112 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access">ASR Setup for VMs running in VMWare without VMware level User Access</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-json-101-for-it-administrators">Step by Step ARM Templates - JSON 101 for IT Administrators</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Jul 26, 2016
+                    <span class="glyphicon glyphicon-time"></span> September 30, 2016 06:09 AM
                 
                         <hr>
-                        <p class="post-content"><h3>Problem Statement</h3>
-<p>Recently I was setting up <strong>Azure Site Recovery</strong> (or ASR) in an environment. We had multiple VMs in VMWare environment. The environment was managed by Third Party who did not want to give any service account for VMWare as their environment was shared with different customers. So we had access only to the VMs. Without relevant access, ASR for VMWare was out of the question for us.</p>
-<h3>Solution</h3>
-<p>We treated the VMs, in such environment, as physical machines when setting up ASR to replicate these machines to Azure.
-We used the option of &quot;<strong><em>Not virtualized/other</em></strong>&quot; in the &quot;<strong><em>Prepare Infrastructure</em></strong>&quot; wizard of ASR. We <strong>treated the VMs as physical servers</strong> and did not face any issues during the migration. </p>
-<p>Refer below screenshot for the exact option discussed above.</p>
-<p><img src="http://HarvestingClouds.com/images/14696297155798c513ea908.png" alt="Protection Goal" /></p>
-<p>Later when enabling the Replication for any Server, run the &quot;<strong><em>Enable Replication</em></strong>&quot; wizard by clicking on &quot;<strong>+Replicate</strong>&quot; on the ASR vault's blade. Then select &quot;<strong>Machine Type</strong>&quot; as &quot;<strong><em>Physical Machine</em></strong>&quot; and add the Physical Machines by mentioning their IP addresses. </p>
-<p><strong>Note:</strong> For this approach to work, the Configuration server should be on the same network as the VM being considered as Physical Machine.</p>
-<p>We were able to migrate many servers successfully and without any issues using this approach.</p></p>
+                        <p class="post-content"><p>Azure Resource Manager (ARM) templates are written in JSON or <strong>JavaScript Object Notation</strong>. To understand ARM templates, you need to understand few quick basics about JSON. These will enable you to lay a great foundation which will enable you to understand ARM templates very easily.</p>
+<p>JSON or JavaScript Object Notation (pronounce like &quot;Jay-son&quot;) is a text-based data format that's designed to be human-readable, lightweight, and easy to transmit between a server and a web client. Its syntax is derived from JavaScript. Think of this as an even more compact version of XML files.</p>
+<p>JSON is a popular notation for transmitting data through RESTful web services. The official internet media type for JSON is <code>application/json</code>, and JSON files typically have a <code>.json</code> extension.</p>
+<p>To understand JSON we need to understand <strong>3 main components</strong>. These components are like building blocks, using which you can build very complex JSON files.</p>
+<h2>1. Objects</h2>
+<p>Objects are the heart of JSON. Object denotes a real life object, e.g. an Employee. Just like a real life object, these have various properties and a value for each of these properties. E.g. An Employee will have Name property with value as John. Further, an employee object can have various another properties like Age, Salary, Department etc. So to denote an object in JSON you:</p>
+<ul>
+<li>One object will be represented by curly brackets. It will begin from opening curly bracket i.e. <code>{</code> and will end at closing curly bracket i.e. <code>}</code></li>
+<li>Denote the property and corresponding values as <code>"key" : "value"</code> or <code>"property" : "value"</code> pairs.</li>
+<li>You can only use double quotes for Properties as they will always be of type string</li>
+<li>You will have double quotes around Values if they are of string type. You will not have any quotes in case of a number or a boolean value.</li>
+<li>Each property will be separated from next property by a comma</li>
+</ul>
+<p><strong>Note:</strong> Each JSON file is also a single JSON object. At root level it starts with an opening curly bracket i.e. <code>{</code> and will end with closing curly bracket i.e. <code>}</code>. There can't be any other objects at the root level. Think of this similar to how in an XML file there can be only one element at the root level. </p>
+<p>Example Employee object is shown below:</p>
+<pre><code>{
+    "Name" : "John",
+    "Age" : 34,
+    "Department" : "Finance",
+    "Salary" : "100000",
+    "IsAdmin" : true
+}</code></pre>
+<h2>2. Arrays</h2>
+<p>Simply put, arrays are a collection of items. In JSON the <strong>square brackets</strong> represents an Array. E.g. An array of 3 employees will look like below:</p>
+<pre><code>[
+  {
+        "Name" : "John",
+        "Age" : 34
+    },
+   {
+        "Name" : "Mary",
+        "Age" : 32
+    },
+   {
+        "Name" : "Matthew",
+        "Age" : 29
+    }
+]</code></pre>
+<h2>3. Nesting of Objects</h2>
+<p>Now things get more interesting with nesting of Objects. What Nesting means is that one object can have it's property as another complex object. Don't worry if that sounds confusing. Let's understand that statement using an example. An Address where a person lives can be represented by an object. This object will look like below:</p>
+<pre><code>{
+  "StreetNumber" : "50",
+  "StreetName" : "Brian Harrison Way",
+  "Unit Number" : 22,
+  "City" : "Toronto",
+  "Country" : "Canada"
+}</code></pre>
+<p>Now an Employee Object will have an Address object as one of it's property (because employee need to live somewhere). This new complex Employee object will look like below, with nested Address object as one of it's property:</p>
+<pre><code> {
+        "Name" : "John",
+        "Age" : 34,
+        "Department" : "Finance",
+        "Salary" : "100000",
+        "IsAdmin" : true,
+        "Address" :   {
+                          "StreetNumber" : "50",
+                          "StreetName" : "Brian Harrison Way",
+                          "Unit Number" : 22,
+                          "City" : "Toronto",
+                          "Country" : "Canada"
+                       }
+    }</code></pre>
+<p>That's all there is to it. Now you can use these 3 components and build very complex json files/templates. Even the most complex template can be broken into these 3 components. </p>
+<p>Below is a complex example with all 3 components. </p>
+<pre><code>{
+    "Department": "Finance",
+    "TotalEmployees": 2,
+    "Employees": [
+        {
+            "Name": "John",
+            "Age": 34,
+            "Department": "Finance",
+            "Salary": "100000",
+            "IsAdmin": true,
+            "Address": {
+                "StreetNumber": "50",
+                "StreetName": "Brian Harrison Way",
+                "Unit Number": 22,
+                "City": "Toronto",
+                "Country": "Canada"
+            }
+        },
+        {
+            "Name": "John",
+            "Age": 34,
+            "Department": "Finance",
+            "Salary": "100000",
+            "IsAdmin": true,
+            "Address": {
+                "StreetNumber": "50",
+                "StreetName": "Brian Harrison Way",
+                "Unit Number": 22,
+                "City": "Toronto",
+                "Country": "Canada"
+            }
+        }
+    ]
+}</code></pre>
+<p>The above JSON object denotes one department with name as Finance and total number of employees as 2. Then the &quot;Employees&quot; object is an array of 2 emplyees. Each emplyee object further have a complex property as Address, which is another object. </p>
+<p>If you understood each of the 3 components, you should be able to build/understand most complex JSON files with ease.</p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -97,10 +187,10 @@ We used the option of &quot;<strong><em>Not virtualized/other</em></strong>&quot
                 
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
-                                <a href="http://HarvestingClouds.com/tag/ASR">ASR</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/AzureSiteRecovery">AzureSiteRecovery</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/VMWare">VMWare</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -147,11 +237,11 @@ We used the option of &quot;<strong><em>Not virtualized/other</em></strong>&quot
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-json-101-for-it-administrators">Step by Step ARM Templates - JSON 101 for IT Administrators</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index">Step by Step Azure Resource Manager (ARM) Templates - Index</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access">ASR Setup for VMs running in VMWare without VMware level User Access</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/uploading-and-downloading-files-securely-from-azure-storage-blob-via-powershell">Uploading and Downloading files securely from Azure Storage Blob via PowerShell</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-comes-to-canada-along-with-office-365">Azure comes to Canada (along with Office 365)</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/new-feature-azure-cool-blob-storage">NEW Feature - Azure Cool Blob Storage</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/taking-automatic-remediation-action-on-azure-vm-alert-generation">Taking Automatic Remediation Action on Azure VM Alert Generation</a></li>
                 </ul>
             </div>
         
@@ -175,7 +265,7 @@ We used the option of &quot;<strong><em>Not virtualized/other</em></strong>&quot
                         <strong>Archives</strong>
                     </div>
         
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
                 </div>
         
             <!-- Tags -->
@@ -190,14 +280,16 @@ We used the option of &quot;<strong><em>Not virtualized/other</em></strong>&quot
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">activedirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ARM</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
 <a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Azure</a>
+<a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/blob" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">blob</a>
@@ -209,6 +301,7 @@ We used the option of &quot;<strong><em>Not virtualized/other</em></strong>&quot
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">powershell</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/storage" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">storage</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">Templates</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualmachine</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vmware" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">VMWare</a>
