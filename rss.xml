@@ -108,7 +108,7 @@
 <p>The above JSON object denotes one department with name as Finance and total number of employees as 2. Then the &quot;Employees&quot; object is an array of 2 emplyees. Each emplyee object further have a complex property as Address, which is another object. </p>
 <p>If you understood each of the 3 components, you should be able to build/understand most complex JSON files with ease.</p>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-arm-templates-json-101-for-it-administrators</link>
-<pubDate>Fri, 30 Sep 2016 06:09:00 +0500</pubDate>
+<pubDate>Wed, 17 Aug 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Step by Step Azure Resource Manager (ARM) Templates - Index</title>
@@ -124,6 +124,7 @@
 <p>This post is an index of all the posts, in sequence, for understanding the Azure Resource Manager (ARM) Templates.</p>
 <ol>
 <li><a href="#">Index</a> </li>
+<li><a href="../step-by-step-arm-templates-json-101-for-it-administrators/">JSON 101 for IT Administrators</a></li>
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index</link>
 <pubDate>Mon, 15 Aug 2016 00:00:00 +0500</pubDate>
