@@ -6,6 +6,57 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Step by Step ARM Templates - Helper Functions</title>
+<description><![CDATA[<p>ARM Templates has various dynamic constructs called <strong>Helper Functions</strong> which can make your template more generic. These constructs reduce the hard coded values in your templates. You can use the information from this blog to make your existing templates more dynamic and start writing new templates with a much generic approach.</p>
+<p>Let's look at the most important helper functions and their practical usage one by one. </p>
+<h3>1. Resource Id - Resource Function</h3>
+<p>You use this function to determine the ID of a resource. This is only used when the resource (whose ID is needed) is not being deployed in the current template and it already exists in Azure.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>resourceId ([subscriptionId], [resourceGroupName], resourceType, resourceName1, [resourceName2]...)</code></pre>
+<p>Only required parameters of this helper function are resourceType and resourceName1.</p>
+<p>These parameters are as follows:</p>
+<ul>
+<li>subscription ID - This is only needed if you want to refer a different subscription. Default value is the current subscription</li>
+<li>resource Group Name - Name of the resource group where the resource exists. Default is the current resource group, in which you are deploying the template</li>
+<li>resource Type - Type of resource including resource provider namespace</li>
+<li>resource Name 1  - Name of the resource</li>
+<li>resource Name 2  - Next resource name segment if resource is nested. E.g. a VM Extension</li>
+</ul>
+<p><strong>Example</strong></p>
+<pre><code>"vnetId1": "[resourceId('AE06-Mgmt-RG','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+"vnetId2": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"</code></pre>
+<p>The above example shows two ways of using the resource ID helper function to determine the Id of a virtual network. First one uses the resource group, resource type and resource name. Second example uses only the resource Type and resource name. Second example assumes the resource group to be same as the template being deployed to.</p>
+<h3>2. Resource Group - Resource Function</h3>
+<p>This helper function returns an object that represents the current resource group to which the template is being deployed.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>resourceGroup()</code></pre>
+<p>No parameters are needed in this helper function.</p>
+<p><strong>Example</strong></p>
+<pre><code>"vhdStorageName": "[concat('vhdstorage', uniqueString(resourceGroup().id))]",
+ "storageAccountResourceGroup": "[resourcegroup().name]",
+ "location": "[resourceGroup().location]"</code></pre>
+<p>The above example shows 3 uses of the resource group helper functions. First one uses the ID of the resource group, second uses the name property and third uses the location for the current resource group.</p>
+<h3>3. Subscription - Resource Function</h3>
+<p>The generic syntax to use this is:</p>
+<pre><code>subscription()</code></pre>
+<p>No parameters are needed in this helper function.</p>
+<p><strong>Example</strong></p>
+<pre><code>"subscriptionId": "[subscription().subscriptionId]"</code></pre>
+<p>The above example is straightforward. It fetches the subscription Id of the current subscription.</p>
+<h3>4. Concat - String Function</h3>
+<p>This function is used to concatinate (i.e. combine) two or more values.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>concat (array1, array2, array3, ...)</code></pre>
+<p>At least 1 array is needed for concat to work. </p>
+<p><strong>Example</strong></p>
+<pre><code>"subnetRef": "[concat(variables('vNetId'), '/subnets/', variables('subnetName'))]"</code></pre>
+<p>The above example combines (or concatinates) 3 text values. First value is the value of variable vNetId. Second value is a string &quot;/subnets/&quot;. Third value is the value of the variable subnet Name.</p>
+<p>These are the most common Helper functions that you will use in 80%-90% of the templates. </p>
+<p>To check the complete list of Helper Functions, check this official link: <a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-template-functions/#resource-functions">Azure Resource Manager template functions</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-helper-functions</link>
+<pubDate>Wed, 31 Aug 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 5 - Outputs</title>
 <description><![CDATA[<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
 <ol>
@@ -231,7 +282,7 @@ Within the object, various properties (and nested properties) are used to provid
 <li>location - This uses the &quot;location&quot; property of the current resource group.</li>
 <li>subscriptionId - This uses the &quot;<strong>subscription</strong>&quot; function as <code>"[subscription()]"</code> to find out the current subscription to which the current ARM template is being deployed.  Then it uses the subscription Id property of the subscription to get the required Id.</li>
 </ol>
-<p>Note that these constructs are very powerfull and can be used to dynamically construct your ARM template. </p>
+<p>Note that these constructs are very powerfull and can be used to dynamically construct your ARM template. These constructs are also known as Helper Functions and are explained in detail here: <a href="#">Step by Step ARM Templates - Helper Functions</a></p>
 <h3>Using Variables</h3>
 <p>Using variables is very easy and is similar to using parameters. In fact, you already saw the usage of variables above, while defining other variables.</p>
 <p>You use the square parenthesis to indicate to the ARM engine to evaluate whatever is inside the parenthesis. You use the &quot;variable&quot; keyword and then you pass the name of the variable as input. Check the example below.</p>

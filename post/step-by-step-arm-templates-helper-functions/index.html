@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Harvesting Clouds</title>
+    <title>Step by Step ARM Templates - Helper Functions :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -71,16 +71,101 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-            <h1>Tag Posts</h1>
-            <hr/>
-            <br/>
+            <article>
+                <h3>Step by Step ARM Templates - Helper Functions</h3>
+                <span class="glyphicon glyphicon-user"></span> @20aman
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> Aug 31, 2016
+                <hr>
 
-                <h3><a href="http://HarvestingClouds.com/post/azure-container-service-hits-general-availability">Azure Container Service hits General Availability</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 19, 2016
-                <h3><a href="http://HarvestingClouds.com/post/various-options-added-to-buy-microsoft-azure-active-directory-basic">Various Options Added to Buy Microsoft Azure Active Directory Basic</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 13, 2016
-                <h3><a href="http://HarvestingClouds.com/post/introducing-harvesting-clouds">Introducing Harvesting Clouds</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 01, 2016
+                <p class="post-content"><p>ARM Templates has various dynamic constructs called <strong>Helper Functions</strong> which can make your template more generic. These constructs reduce the hard coded values in your templates. You can use the information from this blog to make your existing templates more dynamic and start writing new templates with a much generic approach.</p>
+<p>Let's look at the most important helper functions and their practical usage one by one. </p>
+<h3>1. Resource Id - Resource Function</h3>
+<p>You use this function to determine the ID of a resource. This is only used when the resource (whose ID is needed) is not being deployed in the current template and it already exists in Azure.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>resourceId ([subscriptionId], [resourceGroupName], resourceType, resourceName1, [resourceName2]...)</code></pre>
+<p>Only required parameters of this helper function are resourceType and resourceName1.</p>
+<p>These parameters are as follows:</p>
+<ul>
+<li>subscription ID - This is only needed if you want to refer a different subscription. Default value is the current subscription</li>
+<li>resource Group Name - Name of the resource group where the resource exists. Default is the current resource group, in which you are deploying the template</li>
+<li>resource Type - Type of resource including resource provider namespace</li>
+<li>resource Name 1  - Name of the resource</li>
+<li>resource Name 2  - Next resource name segment if resource is nested. E.g. a VM Extension</li>
+</ul>
+<p><strong>Example</strong></p>
+<pre><code>"vnetId1": "[resourceId('AE06-Mgmt-RG','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+"vnetId2": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"</code></pre>
+<p>The above example shows two ways of using the resource ID helper function to determine the Id of a virtual network. First one uses the resource group, resource type and resource name. Second example uses only the resource Type and resource name. Second example assumes the resource group to be same as the template being deployed to.</p>
+<h3>2. Resource Group - Resource Function</h3>
+<p>This helper function returns an object that represents the current resource group to which the template is being deployed.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>resourceGroup()</code></pre>
+<p>No parameters are needed in this helper function.</p>
+<p><strong>Example</strong></p>
+<pre><code>"vhdStorageName": "[concat('vhdstorage', uniqueString(resourceGroup().id))]",
+ "storageAccountResourceGroup": "[resourcegroup().name]",
+ "location": "[resourceGroup().location]"</code></pre>
+<p>The above example shows 3 uses of the resource group helper functions. First one uses the ID of the resource group, second uses the name property and third uses the location for the current resource group.</p>
+<h3>3. Subscription - Resource Function</h3>
+<p>The generic syntax to use this is:</p>
+<pre><code>subscription()</code></pre>
+<p>No parameters are needed in this helper function.</p>
+<p><strong>Example</strong></p>
+<pre><code>"subscriptionId": "[subscription().subscriptionId]"</code></pre>
+<p>The above example is straightforward. It fetches the subscription Id of the current subscription.</p>
+<h3>4. Concat - String Function</h3>
+<p>This function is used to concatinate (i.e. combine) two or more values.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>concat (array1, array2, array3, ...)</code></pre>
+<p>At least 1 array is needed for concat to work. </p>
+<p><strong>Example</strong></p>
+<pre><code>"subnetRef": "[concat(variables('vNetId'), '/subnets/', variables('subnetName'))]"</code></pre>
+<p>The above example combines (or concatinates) 3 text values. First value is the value of variable vNetId. Second value is a string &quot;/subnets/&quot;. Third value is the value of the variable subnet Name.</p>
+<p>These are the most common Helper functions that you will use in 80%-90% of the templates. </p>
+<p>To check the complete list of Helper Functions, check this official link: <a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-template-functions/#resource-functions">Azure Resource Manager template functions</a></p></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
+
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="http://HarvestingClouds.com/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
+            </div>
+
         </div>
 
         <div class="sidebar col-md-4">
@@ -185,6 +270,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
 </div>
 
@@ -222,3 +308,69 @@
 
 </body>
 </html>
+<!-- for pagination -->
+<script>
+    $(function () {
+
+        ///////////////////////////////////////////////////
+        // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
+        var $nextPostSelector = $('.nextpost');
+        ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
+
+        $.ajax({
+            url: __blogURL + "/data/blog.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.posts !== undefined && data.posts !== null) {
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
+                }
+            },
+            error: function (e) {
+                $prevPostSelector.hide();
+                $nextPostSelector.hide();
+            }
+        });
+
+        // for Disqus
+        var disqus_shortname = 'harvestingclouds';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+    });
+</script>

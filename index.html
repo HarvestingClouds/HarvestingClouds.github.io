@@ -72,47 +72,58 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 5 - Outputs</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-helper-functions">Step by Step ARM Templates - Helper Functions</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Aug 30, 2016
+                    <span class="glyphicon glyphicon-time"></span> Aug 31, 2016
                 
                         <hr>
-                        <p class="post-content"><p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
-<ol>
-<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
-<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters</a></li>
-<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">Variables</a></li>
-<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">Resources</a></li>
-<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">Outputs - This blog post</a></li>
-</ol>
-<h2>Outputs</h2>
-<p>This section is used to output any values after the deployment of the ARM Template. This can output any Ids or connection strings based on the deployed resources. </p>
-<p>This is a single JSON object with various output objects (just like Parameters. The overall JSON structure looks like below:</p>
-<pre><code>"outputs": { 
-    "output1" : {
-                     "type":"string",
-                     "value": "value1"
-      },
-    "output2" : {
-                     "type":"string",
-                     "value": "value2"
-      },
-}</code></pre>
-<p>Each output object has 2 properties:</p>
-<ol>
-<li>Type - Data type of the output</li>
-<li>Value - value of the output</li>
-</ol>
-<p>A real life example with look like below:</p>
-<pre><code>"outputs": {
-    "adminUsername": {
-        "type": "string",
-        "value": "[parameters('adminUsername')]"
-    }
-}</code></pre>
-<p>The above example will output the administrator Username using the parameter from the template.</p>
-<p>That's all there is to Outputs in ARM Templates. If you have any doubts, please comment in the below section. Use the links at the Top to know all about other components in an ARM Template.</p></p>
+                        <p class="post-content"><p>ARM Templates has various dynamic constructs called <strong>Helper Functions</strong> which can make your template more generic. These constructs reduce the hard coded values in your templates. You can use the information from this blog to make your existing templates more dynamic and start writing new templates with a much generic approach.</p>
+<p>Let's look at the most important helper functions and their practical usage one by one. </p>
+<h3>1. Resource Id - Resource Function</h3>
+<p>You use this function to determine the ID of a resource. This is only used when the resource (whose ID is needed) is not being deployed in the current template and it already exists in Azure.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>resourceId ([subscriptionId], [resourceGroupName], resourceType, resourceName1, [resourceName2]...)</code></pre>
+<p>Only required parameters of this helper function are resourceType and resourceName1.</p>
+<p>These parameters are as follows:</p>
+<ul>
+<li>subscription ID - This is only needed if you want to refer a different subscription. Default value is the current subscription</li>
+<li>resource Group Name - Name of the resource group where the resource exists. Default is the current resource group, in which you are deploying the template</li>
+<li>resource Type - Type of resource including resource provider namespace</li>
+<li>resource Name 1  - Name of the resource</li>
+<li>resource Name 2  - Next resource name segment if resource is nested. E.g. a VM Extension</li>
+</ul>
+<p><strong>Example</strong></p>
+<pre><code>"vnetId1": "[resourceId('AE06-Mgmt-RG','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+"vnetId2": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"</code></pre>
+<p>The above example shows two ways of using the resource ID helper function to determine the Id of a virtual network. First one uses the resource group, resource type and resource name. Second example uses only the resource Type and resource name. Second example assumes the resource group to be same as the template being deployed to.</p>
+<h3>2. Resource Group - Resource Function</h3>
+<p>This helper function returns an object that represents the current resource group to which the template is being deployed.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>resourceGroup()</code></pre>
+<p>No parameters are needed in this helper function.</p>
+<p><strong>Example</strong></p>
+<pre><code>"vhdStorageName": "[concat('vhdstorage', uniqueString(resourceGroup().id))]",
+ "storageAccountResourceGroup": "[resourcegroup().name]",
+ "location": "[resourceGroup().location]"</code></pre>
+<p>The above example shows 3 uses of the resource group helper functions. First one uses the ID of the resource group, second uses the name property and third uses the location for the current resource group.</p>
+<h3>3. Subscription - Resource Function</h3>
+<p>The generic syntax to use this is:</p>
+<pre><code>subscription()</code></pre>
+<p>No parameters are needed in this helper function.</p>
+<p><strong>Example</strong></p>
+<pre><code>"subscriptionId": "[subscription().subscriptionId]"</code></pre>
+<p>The above example is straightforward. It fetches the subscription Id of the current subscription.</p>
+<h3>4. Concat - String Function</h3>
+<p>This function is used to concatinate (i.e. combine) two or more values.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>concat (array1, array2, array3, ...)</code></pre>
+<p>At least 1 array is needed for concat to work. </p>
+<p><strong>Example</strong></p>
+<pre><code>"subnetRef": "[concat(variables('vNetId'), '/subnets/', variables('subnetName'))]"</code></pre>
+<p>The above example combines (or concatinates) 3 text values. First value is the value of variable vNetId. Second value is a string &quot;/subnets/&quot;. Third value is the value of the variable subnet Name.</p>
+<p>These are the most common Helper functions that you will use in 80%-90% of the templates. </p>
+<p>To check the complete list of Helper Functions, check this official link: <a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-template-functions/#resource-functions">Azure Resource Manager template functions</a></p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -172,11 +183,11 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-helper-functions">Step by Step ARM Templates - Helper Functions</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 5 - Outputs</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 4 - Resources</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 3 - Variables</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 2 - Parameters</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components">Step by Step ARM Templates - What is in an ARM Template - Understanding All Components</a></li>
                 </ul>
             </div>
         
@@ -215,16 +226,16 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">activedirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
-<a style="font-size: 22px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">ARM</a>
+<a style="font-size: 24px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">ARM</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
 <a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
-<a style="font-size: 24px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">Azure</a>
+<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="9 total posts" data-original-title="10 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
-<a style="font-size: 22px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
+<a style="font-size: 24px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/blob" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">blob</a>
@@ -237,7 +248,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">powershell</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/storage" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">storage</a>
-<a style="font-size: 22px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">Templates</a>
+<a style="font-size: 24px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">Templates</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualmachine</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vmware" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">VMWare</a>
