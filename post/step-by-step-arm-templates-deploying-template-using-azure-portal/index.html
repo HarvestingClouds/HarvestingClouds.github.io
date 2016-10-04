@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>PowerShell DSC - Partial Configurations :: Harvesting Clouds</title>
+    <title>Step by Step ARM Templates - Deploying Template Using Azure Portal :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -72,50 +72,64 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>PowerShell DSC - Partial Configurations</h3>
+                <h3>Step by Step ARM Templates - Deploying Template Using Azure Portal</h3>
                 <span class="glyphicon glyphicon-user"></span> @20aman
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> Apr 20, 2016
+                <span class="glyphicon glyphicon-time"></span> Sep 08, 2016
                 <hr>
 
-                <p class="post-content"><p><strong>Partial Configurations</strong> is a new feature in PowerShell 5.0 Desired State Configuration or DSC. It allows the configurations to be delivered in parts or fragments. These configurations can come from various sources.
-The Local Configuration Manager or LCM on the target node puts these partial configurations from different sources together and after that apply the same as a single configuration.</p>
-<p>This opens various possibilities for Enterprises to manage their infrastructure and designate the responsibility to various teams for a single node. The team expert in a particular field can focus on that feature without worrying about other features.</p>
-<p>You can have partial configurations in following modes:</p>
+                <p class="post-content"><p>In the last blog you learned <a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">How to build your first ARM Template</a> . Now that you have a fully functional ARM template we want to deploy this template to Azure.</p>
+<p>There are various options to deploy a template to Azure. Using Azure portal is by far the easiest and most intuitive option for the deployment. Follow the steps in this blog to deploy your template to Azure.</p>
+<h2>Pre-requisites</h2>
+<p>Things you should know before deployment</p>
 <ol>
-<li>Push Mode</li>
-<li>Pull Mode</li>
-<li>Hybrid Mode (i.e. combination of Push and Pull)</li>
+<li><strong>Azure Subscription</strong> - where you want to deploy your template</li>
+<li><strong>Resource Group</strong> - This is the resource group in Azure where you will be deploying your template. you can create a new resource group for the resources that will be deployed by the template.</li>
+<li><strong>Parameters</strong> - Value of the input parameters to the template should be known to you for the deployment. Follow all your naming conventions when defining the parameters for deployments of resources in Azure.</li>
 </ol>
-<h3>Configuration for the PUSH Mode</h3>
-<p>You need to follow three steps to configure Partial configurations for the PUSH mode:</p>
-<ul>
-<li>Configure the LCM, on the target node, to expect partial configurations</li>
-<li>Push each partial configuration from different sources using <strong>Publish-DSCConfiguration</strong> cmdlet. Target node will automatically combine the partial configurations into single configuration.</li>
-<li>Apply the configuration by calling the <strong>Start-DSCConfiguration</strong>cmdlet</li>
-</ul>
-<h3>Configuration for the PULL Mode</h3>
-<p>This is bit complex than the Push mode. In nutshell you only need couple of steps:</p>
-<ul>
-<li>Configure the LCM, on the target node, to receive partial configurations but from PULL servers</li>
-<li>Name and locate the configuration documents properly on the pull servers</li>
-</ul>
-<p>To know more about DSC Partial configurations follow the below references:</p>
-<ul>
-<li><a href="https://automationnext.wordpress.com/2016/04/19/powershell-desired-state-configuration-partial-configurations-without-configurationid/">Detailed Blog by AutomationNext with very valuable insights</a></li>
-<li><a href="https://msdn.microsoft.com/en-us/powershell/dsc/partialconfigs">Official MSDN Article</a></li>
-</ul></p>
+<h2>Steps for Deployment</h2>
+<ol>
+<li>First, log into the Azure Portal.</li>
+<li>
+<p>Next, go to &quot;New&quot; and type &quot;Template Deployment&quot; in the search box and hit enter.</p>
+<p><img src="/images/147559616157f3cf81381da.png" alt="New Deployment" /></p>
+</li>
+<li>
+<p>Next, click on the Template Deployment and then click on &quot;Create&quot;</p>
+<p><img src="/images/147559654057f3d0fc1bf5c.png" alt="Create Deployment" /></p>
+</li>
+<li>
+<p>Now click on the &quot;Template (Edit Template)&quot;. It will open a panel to paste your template. Delete whatever is auto populated in the template area. Copy your whole json template and paste it here. Note that the left section in the new panel will update to show you what parameters, variables, and resources you have in the template. Click on &quot;Save&quot; once done.</p>
+<p><img src="/images/147559697957f3d2b32ff67.png" alt="Editing Template" /></p>
+</li>
+<li>
+<p>Next, click on the &quot;Parameters (Edit Parameters)&quot; on the left side. The parameters will be automatically picked from the template. The parameters for which the default value is provided will be automatically populated. Rest you will have to provide the inputs. Click Ok once done.</p>
+<p><img src="/images/147559719657f3d38c652e3.png" alt="Providing Parameters" /></p>
+</li>
+<li>
+<p>Next, you have the option to select the resource group. You can either create a new resource group (for all the resources that will be deployed via the template) or you can use and existing resource group.</p>
+<p><img src="/images/147559727457f3d3da45879.png" alt="Resource Group Selection" /></p>
+</li>
+<li>
+<p>The last option is to click on the &quot;Legal Terms&quot; and read through the terms. If you agree then click on the &quot;Purchase&quot; button. </p>
+<p><img src="/images/147559762057f3d534eae90.png" alt="Legal Terms" /></p>
+</li>
+<li>Finally, click on the create to submit the deployment. </li>
+</ol>
+<p>You can monitor the job performing the deployments and progress of the same. After some time the deployment will finish successfully and you can view the resources in the resource group you selected.</p></p>
                 <br/><br/>
 
                 <div class="post-info">
                         <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="http://HarvestingClouds.com/category/powershell">PowerShell</a>
+                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
                         &nbsp;&nbsp;
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="http://HarvestingClouds.com/tag/dsc">dsc</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/powershell">powershell</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/ASR">ASR</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
                 </div>
 
             </article>
