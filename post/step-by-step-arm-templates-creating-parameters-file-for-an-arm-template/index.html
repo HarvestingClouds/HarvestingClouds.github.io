@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>About Me :: Harvesting Clouds</title>
+    <title>Step by Step ARM Templates - Creating Parameters file for an ARM Template :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -69,43 +69,81 @@
     </div>
 </header>
 <div class="container">
-
     <div class="row">
         <div class="col-md-8 main-content">
-            <h3>About Me</h3>
+            <article>
+                <h3>Step by Step ARM Templates - Creating Parameters file for an ARM Template</h3>
+                <span class="glyphicon glyphicon-user"></span> @20aman
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> Sep 14, 2016
+                <hr>
+
+                <p class="post-content"><p>You can pass the input values for the Parameters in your ARM template using an additional JSON file. This additional file is what we will be referring to as <strong>Parameters File</strong>.</p>
+<p>The only restriction on a parameters file is that the size of the parameter file cannot be more than 64 KB.</p>
+<p>Parameters file follows a similar structure to the ARM Template. They are very simple as compared to the ARM template. In all they have 3 sections as explained below:</p>
+<ol>
+<li><strong>$schema</strong> - Required Object - Location of the JSON schema file that describes the version of the template language.</li>
+<li><strong>contentVersion</strong> - Required Object - Version of the template (such as 1.2.0.20). When deploying resources using the template, this value can be used to make sure that the right template is being used.</li>
+<li><strong>parameters</strong> - Required Object - This is a JSON object which contains various objects as it's members. Each object within the &quot;parameters&quot; object represent a value for a parameter corresponding to your ARM template.</li>
+</ol>
+<p>Let's check how the parameters file will look like for the ARM template we have built earlier for deploying Storage Account and a Virtual Network.</p>
+<pre><code>{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vhdStorageName": {
+            "value": "harvestingstorage101"
+        },
+        "virtualNetworkName": {
+            "value": "testvNet101"
+        }
+    }
+}</code></pre>
+<p>Note that the only 2 parameter values are provided. These correspond to the parameters in the ARM template. </p>
+<p><strong>Note:</strong> The parameter names should match to the parameters defined in the ARM template.</p></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/JSON">JSON</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
             <hr/>
 
-            <p class="page-content">
-                <p><img src="http://HarvestingClouds.com/images/14617319815720428d47326.png" alt="This was taken during fall 2015." /></p>
-<p>I am Senior Technical Consultant for Private and Public cloud. I am passionate about technology and how it can change the way we experience life. </p>
-<h3>My Moto</h3>
-<blockquote>
-<p>Do it with Passion or Not at all!</p>
-</blockquote>
-<h3>Technologies I focus on</h3>
-<p>Various technologies which I focus on, but not limited to, are:</p>
-<ul>
-<li>Microsoft Azure &amp; AWS Cloud Platforms</li>
-<li>Azure Automation</li>
-<li>PowerShell Scripting</li>
-<li>System Center Products - esp. Orchestrator, Virtual Machine Manager, Service Manager, etc.</li>
-<li>Application Insights</li>
-<li>Visual Studio, Git, GitHub, TFS &amp; Release Management</li>
-<li>Dot Net Application development (esp. Web using MVC)</li>
-<li>Windows Azure Pack (WAP)</li>
-<li>Service Management Automation (SMA)</li>
-</ul>
-<h3>What I have been doing</h3>
-<p>I have been working with great companies like Infosys (2.5 yrs), <a href="http://www.microsoft.com" target="_blank">Microsoft (5 yrs)</a> &amp; <a href="http://www.infrontconsulting.com/" target="_blank">Infront Consulting Group (current)</a>. I have been working on various Microsoft products from within or outside Microsoft, working closely with their product teams. I have been busy building enterprise solutions around:</p>
-<ul>
-<li>Azure Billing &amp; Chargeback</li>
-<li>Enterprise Datacenter Management solutions</li>
-<li>System Center customization solutions</li>
-<li>Windows Azure Pack customizations and resource providers</li>
-</ul>
-<p>Have questions or suggestions? Feel free to contact me on social media or on my email id at <a href="mailto:20aman@gmail.com?subject=HarvestingClouds">20aman@gmail.com</a>. You can connect with me on Twitter <a href="https://twitter.com/20aman" target="_blank">@20aman</a>. You can also find me on <a href="https://www.linkedin.com/in/20aman" target="_blank">Linked In</a>.</p>
-<p>Thanks for reading!</p>
-            </p>
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="http://HarvestingClouds.com/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
+            </div>
+
         </div>
 
         <div class="sidebar col-md-4">
@@ -211,6 +249,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
 </div>
 
@@ -248,3 +287,69 @@
 
 </body>
 </html>
+<!-- for pagination -->
+<script>
+    $(function () {
+
+        ///////////////////////////////////////////////////
+        // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
+        var $nextPostSelector = $('.nextpost');
+        ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
+
+        $.ajax({
+            url: __blogURL + "/data/blog.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.posts !== undefined && data.posts !== null) {
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
+                }
+            },
+            error: function (e) {
+                $prevPostSelector.hide();
+                $nextPostSelector.hide();
+            }
+        });
+
+        // for Disqus
+        var disqus_shortname = 'harvestingclouds';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+    });
+</script>

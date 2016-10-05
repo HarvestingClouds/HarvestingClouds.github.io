@@ -33,6 +33,102 @@
 <pubDate>Fri, 30 Sep 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Step by Step ARM Templates - Creating Parameters file for an ARM Template</title>
+<description><![CDATA[<p>You can pass the input values for the Parameters in your ARM template using an additional JSON file. This additional file is what we will be referring to as <strong>Parameters File</strong>.</p>
+<p>The only restriction on a parameters file is that the size of the parameter file cannot be more than 64 KB.</p>
+<p>Parameters file follows a similar structure to the ARM Template. They are very simple as compared to the ARM template. In all they have 3 sections as explained below:</p>
+<ol>
+<li><strong>$schema</strong> - Required Object - Location of the JSON schema file that describes the version of the template language.</li>
+<li><strong>contentVersion</strong> - Required Object - Version of the template (such as 1.2.0.20). When deploying resources using the template, this value can be used to make sure that the right template is being used.</li>
+<li><strong>parameters</strong> - Required Object - This is a JSON object which contains various objects as it's members. Each object within the &quot;parameters&quot; object represent a value for a parameter corresponding to your ARM template.</li>
+</ol>
+<p>Let's check how the parameters file will look like for the ARM template we have built earlier for deploying Storage Account and a Virtual Network.</p>
+<pre><code>{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vhdStorageName": {
+            "value": "harvestingstorage101"
+        },
+        "virtualNetworkName": {
+            "value": "testvNet101"
+        }
+    }
+}</code></pre>
+<p>Note that the only 2 parameter values are provided. These correspond to the parameters in the ARM template. </p>
+<p><strong>Note:</strong> The parameter names should match to the parameters defined in the ARM template.</p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-parameters-file-for-an-arm-template</link>
+<pubDate>Wed, 14 Sep 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Step by Step ARM Templates - Deploying Template Using Azure PowerShell</title>
+<description><![CDATA[<p>In the previous blog you learned <a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">How to build your first ARM Template</a> . Now that you have a fully functional ARM template we want to deploy this template to Azure.</p>
+<p>There are various options to deploy a template to Azure. We already saw in the last blog <a href="/post/step-by-step-arm-templates-deploying-template-using-azure-portal/">How to deploy template using <strong>Azure Portal</strong></a>. Now we will look at <strong>Azure PowerShell</strong> as more programmatic and automated way to deploy the template.</p>
+<h2>Pre-requisites</h2>
+<p>Things you should know before deployment</p>
+<ol>
+<li><strong>Azure PowerShell</strong> - This should be installed on the machine from where the Steps will be followed. If you don't have this then use this link to get it: <a href="https://azure.microsoft.com/en-us/documentation/articles/powershell-install-configure/">Get Azure PowerShell</a></li>
+<li><strong>Azure Subscription</strong> - where you want to deploy your template</li>
+<li><strong>Resource Group</strong> - This is the resource group in Azure where you will be deploying your template. You can create a new resource group (for the resources that will be deployed by the template) or use an existing one.</li>
+<li><strong>Parameters</strong> - Value of the input parameters to the template should be known to you for the deployment. Follow all your naming conventions when defining the parameters for deployments of resources in Azure. </li>
+<li><strong>Internet Connectivity</strong> - This should be present on the machine from where the Steps will be followed for connectivity to Azure</li>
+</ol>
+<h2>Steps for Deployment</h2>
+<ol>
+<li>First, launch a PowerShell window as an Administrator</li>
+<li>Then, log into the Azure account. </li>
+</ol>
+<p>Run the below cmdlet to log into Azure:</p>
+<pre><code>Add-AzureRmAccount</code></pre>
+<ol>
+<li>Select appropriate Azure Subscription</li>
+</ol>
+<p>You have two choices here. You can either use below cmdlet to use Subscription ID</p>
+<pre><code>Set-AzureRmContext -SubscriptionID &lt;YourSubscriptionId&gt;</code></pre>
+<p>Or you can use the Subscription name with the below cmdlet:</p>
+<pre><code>Select-AzureRmSubscription -SubscriptionName "&lt;Your Subscription Name&gt;"</code></pre>
+<ol>
+<li>Next, if you already have a resource group to which you want to deploy the template then skip this step. Else create a new resource group. A resource in Azure ARM architecture can only exist in a resource group. </li>
+</ol>
+<p>Use below cmdlet to create a new Resource Group:</p>
+<pre><code>New-AzureRmResourceGroup -Name TestResourceGroup01 -Location "Central US"</code></pre>
+<ol>
+<li>Before deploying the Resource Template to Azure, you should Test it. This step is optional but highly recommended.</li>
+</ol>
+<p>Use the below cmdlet to test and validate your template:</p>
+<pre><code>Test-AzureRmResourceGroupDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile &lt;PathToJsonTemplate&gt;</code></pre>
+<ol>
+<li>Now comes the last step i.e. to deploy the template. You have two options when deploying the template. You can either deploy a template without any parameters (if none are required) or you need to specify the parameters. Let's check both these options next.</li>
+</ol>
+<h3>Deploying Template which doesn't need Parameters</h3>
+<p>You can deploy such template using <code>New-AzureRmResourceGroupDeployment</code> cmdlet.
+If the template file is on a local directory then use the below cmdlet:</p>
+<pre><code>New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile &lt;PathToTemplate&gt;</code></pre>
+<p>If the template file is uploaded to some hosted location and is accessible via a link, then use the below cmdlet to deploy the template:</p>
+<pre><code>New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateUri &lt;LinkToTemplate&gt;</code></pre>
+<h3>Deploying Template with Parameters</h3>
+<p>Deploying of the template is exactly similar as the previous section. You use the same cmdlet. To specify the parameter, you have 4 options. Use the below cmdlets for the option you want to use.</p>
+<p><strong>Option 1</strong> - Using Inline Parameter</p>
+<pre><code>New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile &lt;PathToTemplate&gt; -myParameterName "parameterValue" -secondParameterName "secondParameterValue"</code></pre>
+<p><strong>Option 2</strong> - Using Parameter Object</p>
+<pre><code>$parameters = @{"&lt;ParameterName&gt;"="&lt;Parameter Value&gt;"}
+New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile &lt;PathToTemplate&gt; -TemplateParameterObject $parameters</code></pre>
+<p><strong>Option 3</strong> - Using Parameter file which is in local environment</p>
+<pre><code>New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile &lt;PathToTemplate&gt; -TemplateParameterFile &lt;PathToParameterFile&gt;</code></pre>
+<p><strong>Option 4</strong> - Using Parameter file which is located externally and can be referenced via Link</p>
+<pre><code>New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateUri &lt;LinkToTemplate&gt; -TemplateParameterUri &lt;LinkToParameterFile&gt;</code></pre>
+<h3>Key Gotchas</h3>
+<ol>
+<li>If you provide values for a parameter in both the local parameter file and inline, the inline value takes precedence.</li>
+<li>You cannot use inline parameters with an external parameter file. All inline parameters are ignored when you specify &quot;TemplateParameterUri&quot; parameter.</li>
+<li>As a best practice, do not store sensitive infomation in the parameters file e.g. Local admin password. Instead either provide these dynamically using inline parameters. Or store them using the Azure Key vault and then reference the key vault in your parameters file.</li>
+</ol>
+<p>You can find more details about these cmdlets here: <a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-template-deploy/#deploy-with-powershell">Deploy resources with Resource Manager templates and Azure PowerShell</a></p>
+<p>In the next blog, we will see how to create a Parameters File for providing parameters dynamically to the template.</p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-deploying-template-using-azure-powershell</link>
+<pubDate>Sun, 11 Sep 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Step by Step ARM Templates - Deploying Template Using Azure Portal</title>
 <description><![CDATA[<p>In the last blog you learned <a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">How to build your first ARM Template</a> . Now that you have a fully functional ARM template we want to deploy this template to Azure.</p>
 <p>There are various options to deploy a template to Azure. Using Azure portal is by far the easiest and most intuitive option for the deployment. Follow the steps in this blog to deploy your template to Azure.</p>
@@ -40,37 +136,37 @@
 <p>Things you should know before deployment</p>
 <ol>
 <li><strong>Azure Subscription</strong> - where you want to deploy your template</li>
-<li><strong>Resource Group</strong> - This is the resource group in Azure where you will be deploying your template. you can create a new resource group for the resources that will be deployed by the template.</li>
+<li><strong>Resource Group</strong> - This is the resource group in Azure where you will be deploying your template. You can create a new resource group (for the resources that will be deployed by the template) or use an existing one.</li>
 <li><strong>Parameters</strong> - Value of the input parameters to the template should be known to you for the deployment. Follow all your naming conventions when defining the parameters for deployments of resources in Azure.</li>
 </ol>
 <h2>Steps for Deployment</h2>
 <ol>
 <li>First, log into the Azure Portal.</li>
 <li>
-<p>Next, go to &quot;New&quot; and type &quot;Template Deployment&quot; in the search box and hit enter.</p>
+<p>Next, go to &quot;New&quot; and type &quot;Template deployment&quot; in the search box and hit enter.</p>
 <p><img src="/images/147559616157f3cf81381da.png" alt="New Deployment" /></p>
 </li>
 <li>
-<p>Next, click on the Template Deployment and then click on &quot;Create&quot;</p>
+<p>Next, click on the <strong>Template Deployment</strong> and then click on &quot;Create&quot;</p>
 <p><img src="/images/147559654057f3d0fc1bf5c.png" alt="Create Deployment" /></p>
 </li>
 <li>
-<p>Now click on the &quot;Template (Edit Template)&quot;. It will open a panel to paste your template. Delete whatever is auto populated in the template area. Copy your whole json template and paste it here. Note that the left section in the new panel will update to show you what parameters, variables, and resources you have in the template. Click on &quot;Save&quot; once done.</p>
+<p>Now click on the &quot;<strong>Template (Edit Template)</strong>&quot;. It will open a panel to paste your template. Delete whatever is auto populated in the template area. Copy your whole json template and paste it here. Note that the left section in the new panel will update to show you what parameters, variables, and resources you have in the template. Click on &quot;Save&quot; once done.</p>
 <p><img src="/images/147559697957f3d2b32ff67.png" alt="Editing Template" /></p>
 </li>
 <li>
-<p>Next, click on the &quot;Parameters (Edit Parameters)&quot; on the left side. The parameters will be automatically picked from the template. The parameters for which the default value is provided will be automatically populated. Rest you will have to provide the inputs. Click Ok once done.</p>
+<p>Next, click on the &quot;<strong>Parameters (Edit Parameters)</strong>&quot; on the left side. The parameters will be automatically picked from the template. The parameters for which the default value is provided will be automatically populated. Rest you will have to provide the inputs. Click Ok once done.</p>
 <p><img src="/images/147559719657f3d38c652e3.png" alt="Providing Parameters" /></p>
 </li>
 <li>
-<p>Next, you have the option to select the resource group. You can either create a new resource group (for all the resources that will be deployed via the template) or you can use and existing resource group.</p>
+<p>Next, you have the option to select the <strong>Resource Group</strong>. You can either create a new resource group (for all the resources that will be deployed via the template) or you can use and existing resource group.</p>
 <p><img src="/images/147559727457f3d3da45879.png" alt="Resource Group Selection" /></p>
 </li>
 <li>
-<p>The last option is to click on the &quot;Legal Terms&quot; and read through the terms. If you agree then click on the &quot;Purchase&quot; button. </p>
+<p>The last option is to click on the &quot;<strong>Legal Terms</strong>&quot; and read through the terms. If you agree then click on the &quot;Purchase&quot; button. </p>
 <p><img src="/images/147559762057f3d534eae90.png" alt="Legal Terms" /></p>
 </li>
-<li>Finally, click on the create to submit the deployment. </li>
+<li>Finally, click on the <strong>Create</strong> to submit the deployment. </li>
 </ol>
 <p>You can monitor the job performing the deployments and progress of the same. After some time the deployment will finish successfully and you can view the resources in the resource group you selected.</p>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-arm-templates-deploying-template-using-azure-portal</link>

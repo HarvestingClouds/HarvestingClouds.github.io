@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>About Me :: Harvesting Clouds</title>
+    <title>Step by Step ARM Templates - Deploying Template Using Azure PowerShell :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -69,43 +69,121 @@
     </div>
 </header>
 <div class="container">
-
     <div class="row">
         <div class="col-md-8 main-content">
-            <h3>About Me</h3>
+            <article>
+                <h3>Step by Step ARM Templates - Deploying Template Using Azure PowerShell</h3>
+                <span class="glyphicon glyphicon-user"></span> @20aman
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> Sep 11, 2016
+                <hr>
+
+                <p class="post-content"><p>In the previous blog you learned <a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">How to build your first ARM Template</a> . Now that you have a fully functional ARM template we want to deploy this template to Azure.</p>
+<p>There are various options to deploy a template to Azure. We already saw in the last blog <a href="/post/step-by-step-arm-templates-deploying-template-using-azure-portal/">How to deploy template using <strong>Azure Portal</strong></a>. Now we will look at <strong>Azure PowerShell</strong> as more programmatic and automated way to deploy the template.</p>
+<h2>Pre-requisites</h2>
+<p>Things you should know before deployment</p>
+<ol>
+<li><strong>Azure PowerShell</strong> - This should be installed on the machine from where the Steps will be followed. If you don't have this then use this link to get it: <a href="https://azure.microsoft.com/en-us/documentation/articles/powershell-install-configure/">Get Azure PowerShell</a></li>
+<li><strong>Azure Subscription</strong> - where you want to deploy your template</li>
+<li><strong>Resource Group</strong> - This is the resource group in Azure where you will be deploying your template. You can create a new resource group (for the resources that will be deployed by the template) or use an existing one.</li>
+<li><strong>Parameters</strong> - Value of the input parameters to the template should be known to you for the deployment. Follow all your naming conventions when defining the parameters for deployments of resources in Azure. </li>
+<li><strong>Internet Connectivity</strong> - This should be present on the machine from where the Steps will be followed for connectivity to Azure</li>
+</ol>
+<h2>Steps for Deployment</h2>
+<ol>
+<li>First, launch a PowerShell window as an Administrator</li>
+<li>Then, log into the Azure account. </li>
+</ol>
+<p>Run the below cmdlet to log into Azure:</p>
+<pre><code>Add-AzureRmAccount</code></pre>
+<ol>
+<li>Select appropriate Azure Subscription</li>
+</ol>
+<p>You have two choices here. You can either use below cmdlet to use Subscription ID</p>
+<pre><code>Set-AzureRmContext -SubscriptionID &lt;YourSubscriptionId&gt;</code></pre>
+<p>Or you can use the Subscription name with the below cmdlet:</p>
+<pre><code>Select-AzureRmSubscription -SubscriptionName "&lt;Your Subscription Name&gt;"</code></pre>
+<ol>
+<li>Next, if you already have a resource group to which you want to deploy the template then skip this step. Else create a new resource group. A resource in Azure ARM architecture can only exist in a resource group. </li>
+</ol>
+<p>Use below cmdlet to create a new Resource Group:</p>
+<pre><code>New-AzureRmResourceGroup -Name TestResourceGroup01 -Location "Central US"</code></pre>
+<ol>
+<li>Before deploying the Resource Template to Azure, you should Test it. This step is optional but highly recommended.</li>
+</ol>
+<p>Use the below cmdlet to test and validate your template:</p>
+<pre><code>Test-AzureRmResourceGroupDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile &lt;PathToJsonTemplate&gt;</code></pre>
+<ol>
+<li>Now comes the last step i.e. to deploy the template. You have two options when deploying the template. You can either deploy a template without any parameters (if none are required) or you need to specify the parameters. Let's check both these options next.</li>
+</ol>
+<h3>Deploying Template which doesn't need Parameters</h3>
+<p>You can deploy such template using <code>New-AzureRmResourceGroupDeployment</code> cmdlet.
+If the template file is on a local directory then use the below cmdlet:</p>
+<pre><code>New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile &lt;PathToTemplate&gt;</code></pre>
+<p>If the template file is uploaded to some hosted location and is accessible via a link, then use the below cmdlet to deploy the template:</p>
+<pre><code>New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateUri &lt;LinkToTemplate&gt;</code></pre>
+<h3>Deploying Template with Parameters</h3>
+<p>Deploying of the template is exactly similar as the previous section. You use the same cmdlet. To specify the parameter, you have 4 options. Use the below cmdlets for the option you want to use.</p>
+<p><strong>Option 1</strong> - Using Inline Parameter</p>
+<pre><code>New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile &lt;PathToTemplate&gt; -myParameterName "parameterValue" -secondParameterName "secondParameterValue"</code></pre>
+<p><strong>Option 2</strong> - Using Parameter Object</p>
+<pre><code>$parameters = @{"&lt;ParameterName&gt;"="&lt;Parameter Value&gt;"}
+New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile &lt;PathToTemplate&gt; -TemplateParameterObject $parameters</code></pre>
+<p><strong>Option 3</strong> - Using Parameter file which is in local environment</p>
+<pre><code>New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile &lt;PathToTemplate&gt; -TemplateParameterFile &lt;PathToParameterFile&gt;</code></pre>
+<p><strong>Option 4</strong> - Using Parameter file which is located externally and can be referenced via Link</p>
+<pre><code>New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateUri &lt;LinkToTemplate&gt; -TemplateParameterUri &lt;LinkToParameterFile&gt;</code></pre>
+<h3>Key Gotchas</h3>
+<ol>
+<li>If you provide values for a parameter in both the local parameter file and inline, the inline value takes precedence.</li>
+<li>You cannot use inline parameters with an external parameter file. All inline parameters are ignored when you specify &quot;TemplateParameterUri&quot; parameter.</li>
+<li>As a best practice, do not store sensitive infomation in the parameters file e.g. Local admin password. Instead either provide these dynamically using inline parameters. Or store them using the Azure Key vault and then reference the key vault in your parameters file.</li>
+</ol>
+<p>You can find more details about these cmdlets here: <a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-template-deploy/#deploy-with-powershell">Deploy resources with Resource Manager templates and Azure PowerShell</a></p>
+<p>In the next blog, we will see how to create a Parameters File for providing parameters dynamically to the template.</p></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/PowerShell">PowerShell</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
             <hr/>
 
-            <p class="page-content">
-                <p><img src="http://HarvestingClouds.com/images/14617319815720428d47326.png" alt="This was taken during fall 2015." /></p>
-<p>I am Senior Technical Consultant for Private and Public cloud. I am passionate about technology and how it can change the way we experience life. </p>
-<h3>My Moto</h3>
-<blockquote>
-<p>Do it with Passion or Not at all!</p>
-</blockquote>
-<h3>Technologies I focus on</h3>
-<p>Various technologies which I focus on, but not limited to, are:</p>
-<ul>
-<li>Microsoft Azure &amp; AWS Cloud Platforms</li>
-<li>Azure Automation</li>
-<li>PowerShell Scripting</li>
-<li>System Center Products - esp. Orchestrator, Virtual Machine Manager, Service Manager, etc.</li>
-<li>Application Insights</li>
-<li>Visual Studio, Git, GitHub, TFS &amp; Release Management</li>
-<li>Dot Net Application development (esp. Web using MVC)</li>
-<li>Windows Azure Pack (WAP)</li>
-<li>Service Management Automation (SMA)</li>
-</ul>
-<h3>What I have been doing</h3>
-<p>I have been working with great companies like Infosys (2.5 yrs), <a href="http://www.microsoft.com" target="_blank">Microsoft (5 yrs)</a> &amp; <a href="http://www.infrontconsulting.com/" target="_blank">Infront Consulting Group (current)</a>. I have been working on various Microsoft products from within or outside Microsoft, working closely with their product teams. I have been busy building enterprise solutions around:</p>
-<ul>
-<li>Azure Billing &amp; Chargeback</li>
-<li>Enterprise Datacenter Management solutions</li>
-<li>System Center customization solutions</li>
-<li>Windows Azure Pack customizations and resource providers</li>
-</ul>
-<p>Have questions or suggestions? Feel free to contact me on social media or on my email id at <a href="mailto:20aman@gmail.com?subject=HarvestingClouds">20aman@gmail.com</a>. You can connect with me on Twitter <a href="https://twitter.com/20aman" target="_blank">@20aman</a>. You can also find me on <a href="https://www.linkedin.com/in/20aman" target="_blank">Linked In</a>.</p>
-<p>Thanks for reading!</p>
-            </p>
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="http://HarvestingClouds.com/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
+            </div>
+
         </div>
 
         <div class="sidebar col-md-4">
@@ -211,6 +289,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
 </div>
 
@@ -248,3 +327,69 @@
 
 </body>
 </html>
+<!-- for pagination -->
+<script>
+    $(function () {
+
+        ///////////////////////////////////////////////////
+        // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
+        var $nextPostSelector = $('.nextpost');
+        ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
+
+        $.ajax({
+            url: __blogURL + "/data/blog.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.posts !== undefined && data.posts !== null) {
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
+                }
+            },
+            error: function (e) {
+                $prevPostSelector.hide();
+                $nextPostSelector.hide();
+            }
+        });
+
+        // for Disqus
+        var disqus_shortname = 'harvestingclouds';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+    });
+</script>
