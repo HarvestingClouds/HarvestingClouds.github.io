@@ -54,7 +54,7 @@
 <li>To get started just launch the Visual Studio from the Start menu.</li>
 <li>Next, Create a new Project of type "Azure Resource Group" by navigating to Templates -> Visual C# -> Cloud <br /><br />
 
-![New Project](/images/147576108957f653c1768fc.png)
+<img src="/images/147576108957f653c1768fc.png" alt="New Project" />
 
 </li>
 <li></li>
