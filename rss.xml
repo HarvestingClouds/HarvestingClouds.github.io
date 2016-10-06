@@ -28,9 +28,45 @@
 <li><a href="/post/step-by-step-arm-templates-helper-functions/">Helper Functions in ARM Templates</a></li>
 <li><a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">Building your first ARM Template</a></li>
 <li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-portal/">Deploying Template Using Azure Portal</a></li>
+<li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-powershell/">Deploying Template Using Azure PowerShell</a></li>
+<li><a href="/post/step-by-step-arm-templates-creating-parameters-file-for-an-arm-template/">Creating Parameters file for an ARM Template</a></li>
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index</link>
 <pubDate>Fri, 30 Sep 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Step by Step ARM Templates - Authoring ARM Templates using Visual Studio</title>
+<description><![CDATA[<p><strong>Visual Studio</strong> is a very powerful tool when it comes to authoring ARM Templates. </p>
+<p><strong>Key features</strong> which make it a tool of our choice are:</p>
+<ul>
+<li>In-house support for ARM Templates</li>
+<li>Smart IntelliSense</li>
+<li>Pre-populated templates for various Azure resources</li>
+<li>JSON Outlining</li>
+<li>Easy Deployment options</li>
+</ul>
+<p>The screenshots in this blog post are from Visual Studio 2013. You can use other newer versions as well.</p>
+<h3>Pre-Requisites</h3>
+<p>You need to have Azure SDK installed to get true power of Visual Studio with Azure integration. If you don't have it already, you can install the same from here: <a href="https://azure.microsoft.com/en-us/downloads/">Azure SDK Downloads</a></p>
+<h3>Authoring First ARM Template in Visual Studio</h3>
+<p>Authoring with Visual Studio is very easy. </p>
+<ol type="1">
+<li>To get started just launch the Visual Studio from the Start menu.</li>
+<li>Next, Create a new Project of type "Azure Resource Group" by navigating to Templates -> Visual C# -> Cloud <br /><br />
+
+![New Project](/images/147576108957f653c1768fc.png)
+
+</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio</link>
+<pubDate>Sat, 17 Sep 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Step by Step ARM Templates - Creating Parameters file for an ARM Template</title>
@@ -74,32 +110,32 @@
 <li><strong>Internet Connectivity</strong> - This should be present on the machine from where the Steps will be followed for connectivity to Azure</li>
 </ol>
 <h2>Steps for Deployment</h2>
-<ol>
+<ul>
 <li>First, launch a PowerShell window as an Administrator</li>
 <li>Then, log into the Azure account. </li>
-</ol>
+</ul>
 <p>Run the below cmdlet to log into Azure:</p>
 <pre><code>Add-AzureRmAccount</code></pre>
-<ol>
+<ul>
 <li>Select appropriate Azure Subscription</li>
-</ol>
+</ul>
 <p>You have two choices here. You can either use below cmdlet to use Subscription ID</p>
 <pre><code>Set-AzureRmContext -SubscriptionID &lt;YourSubscriptionId&gt;</code></pre>
 <p>Or you can use the Subscription name with the below cmdlet:</p>
 <pre><code>Select-AzureRmSubscription -SubscriptionName "&lt;Your Subscription Name&gt;"</code></pre>
-<ol>
+<ul>
 <li>Next, if you already have a resource group to which you want to deploy the template then skip this step. Else create a new resource group. A resource in Azure ARM architecture can only exist in a resource group. </li>
-</ol>
+</ul>
 <p>Use below cmdlet to create a new Resource Group:</p>
 <pre><code>New-AzureRmResourceGroup -Name TestResourceGroup01 -Location "Central US"</code></pre>
-<ol>
+<ul>
 <li>Before deploying the Resource Template to Azure, you should Test it. This step is optional but highly recommended.</li>
-</ol>
+</ul>
 <p>Use the below cmdlet to test and validate your template:</p>
 <pre><code>Test-AzureRmResourceGroupDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile &lt;PathToJsonTemplate&gt;</code></pre>
-<ol>
+<ul>
 <li>Now comes the last step i.e. to deploy the template. You have two options when deploying the template. You can either deploy a template without any parameters (if none are required) or you need to specify the parameters. Let's check both these options next.</li>
-</ol>
+</ul>
 <h3>Deploying Template which doesn't need Parameters</h3>
 <p>You can deploy such template using <code>New-AzureRmResourceGroupDeployment</code> cmdlet.
 If the template file is on a local directory then use the below cmdlet:</p>
