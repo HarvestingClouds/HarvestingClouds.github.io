@@ -55,15 +55,65 @@
 <li>Next, Create a new Project of type "Azure Resource Group" by navigating to Templates -> Visual C# -> Cloud <br /><br />
 
 <img src="/images/147576108957f653c1768fc.png" alt="New Project" />
+<br />
 
 </li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+
+<li>
+    Next, you will be presented with a dialog to "Select Azure Template". If you want to author from scratch then choose a Blank Template. Else select one of the starter template. For this blog, we will be using "Windows Virtual Machine" Template.<br /><br />
+    <img src="/images/147576828457f66fdc0f0e6.png" alt="Selecting Azure Template" />
+    <br />
+</li>
+
+<li>
+    Project is created with various folders and files. You can explore the project in the solution explorer in Visual Studio.<br /><br />
+    <img src="/images/147576986357f6760758619.png" alt="Solution Explorer" />
+    <br />
+
+Let us see what these folders and files are:
+        <ol type="a">
+            <li>**Scripts**: The single PS1 file is to create a new Resource Group and deploy the ARM Template. It uses "New-AzureRmResourceGroupDeployment" PowerShell cmdlet to deploy the template. </li>
+            <li>**Templates**: "*WindowsVirtualMachine.json*" is the main ARM Template file that we are interested in. Also, "*WindowsVirtualMachine.parameters.json*" is the parameters file for the ARM template.</li>
+            <li>**Tools**: This folder contains the "AzCopy.exe" file to help you copy any artifacts to Azure.</li>
+        </ol>
+</li>
+
+<li>
+    Double click and open the "*WindowsVirtualMachine.json*" file to open it. You will be presented with a huge JSON file. Collapse the section by clicking the small "-" signs to the left of the file. Also notice the **JSON Outline** panel to the left. This is your biggest friend in Visual Studio when authoring ARM Templates.<br /><br />
+    <img src="/images/147577487757f6899d297b5.png" alt="" />
+    <br />
+</li>
+
+<li>
+    <br /><br />
+    <img src="" alt="" />
+    <br />
+</li>
+
+<li>
+    <br /><br />
+    <img src="" alt="" />
+    <br />
+</li>
+
+<li>
+    <br /><br />
+    <img src="" alt="" />
+    <br />
+</li>
+
+<li>
+    <br /><br />
+    <img src="" alt="" />
+    <br />
+</li>
+
+<li>
+    <br /><br />
+    <img src="" alt="" />
+    <br />
+</li>
+
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio</link>
 <pubDate>Sat, 17 Sep 2016 00:00:00 +0500</pubDate>
