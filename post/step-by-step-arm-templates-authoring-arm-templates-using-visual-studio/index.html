@@ -130,16 +130,40 @@ You can immediately notice that key sections both in the template in the middle 
                    <li>variables</li>
                    <li>resources</li>
                </ol>
-<br />
 You can click on any of the elements in the left JSON Outline panel and the same section will be highlighted in the center, in the JSON template file.
     <br />
 
 </li>
 
 <li>
-    <br /><br />
-    <img src="" alt="" />
+    Next, let us look at JSON Outline panel and check how it can provide us more information and help us in authoring templates.<br /><br />
+    <img src="/images/147578115457f6a2226c2be.png" alt="JSON Outline Panel" />
     <br />
+    You can see that the panel provides a special icon for each type of the resource. In our current template the various resources listed are:
+    <ol type="a">
+        <li>StorageAccount</li>
+        <li>PublicIPAddress</li>
+        <li>VirtualNetwork</li>
+        <li>NetworkInterface</li>
+        <li>VirtualMachine</li>
+    </ol>
+
+Click on each of the resources and inspect how their JSON structure looks and differs. You will immediately notice that the major difference in each of these resources is in their <b>Type</b> and <b>Properties</b>.
+
+<h3>Adding New Resource</h3> <br />Let's assume you want to add a new resource to this template. You have 2 ways to achieve the same:
+    <ol>
+    <li><b>Method 1</b> - Create a new resource by modifying and adding the JSON for the new resource in the template.</li>
+    <li><b>Method 2</b> - Let Visual Studio add the resource for you. Right click anywhere in the resources area of the JSON Outline Panel or the small "+" box at the top left of the panel (as shown in the image above) and VS will give you a new popup to add the resource from pre-defined resources as shown below.</li>
+    </ol>
+    <img src="/images/147578170157f6a4457bae0.png" alt="Add Resource" />
+<br />
+Once you click Add the JSON for resource will be added to the template and the corresponding new element will appear in the JSON Outline Panel.
+<br />
+
+<h3>Deleting a Resource</h3> <br />
+If you need to delete a resource, simply right click on that resource in the JSON outline panel on the left and then select "Delete Resource".
+
+<br />
 </li>
 
 <li>
