@@ -82,6 +82,16 @@ Let us see what these folders and files are:
     Double click and open the "<i>WindowsVirtualMachine.json</i>" file to open it. You will be presented with a huge JSON file. Collapse the section by clicking the small "-" signs to the left of the file. Also notice the <b>JSON Outline</b> panel to the left. This is your biggest friend in Visual Studio when authoring ARM Templates.<br /><br />
     <img src="/images/147577487757f6899d297b5.png" alt="" />
     <br />
+You can immediately notice that key sections both in the template in the middle and in the JSON Oultine panel on the left (in the image above) are:
+               <ol type="a">
+                   <li>parameters</li>
+                   <li>variables</li>
+                   <li>resources</li>
+               </ol>
+<br />
+You can click on any of the elements in the left JSON Outline panel and the same section will be highlighted in the center, in the JSON template file.
+    <br />
+
 </li>
 
 <li>
