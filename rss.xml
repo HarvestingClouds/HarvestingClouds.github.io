@@ -36,6 +36,83 @@
 <pubDate>Fri, 30 Sep 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Step by Step ARM Templates - Deploying ARM Templates using Visual Studio</title>
+<description><![CDATA[<p>In the last blog we saw <a href="/post/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio/">How to use Visual Studio to author ARM templates</a>. In this blog we will see how to use Visual Studio (VS) to deploy the template without leaving VS.</p>
+<p>Deploying with Visual Studio is very simple, straightforward and very intuitive. Just follow the below steps.</p>
+<ol>
+
+    <li>
+Either go to the Solution Explorer -> Right Click on the project and select "Deploy -> New Deployment" as shown below:<br />
+<img src="/images/147578624957f6b6090d5eb.png" alt="New Deployment - Solution Explorer" /><br />
+
+Or you can go to the menu option Project -> Deploy -> New Deployment as shown below:<br />
+<img src="/images/147578624157f6b601b647b.png" alt="New Deployment - Project Menu" />
+
+<br />
+Once you click on the "New Deployment", you will be presented with the below Dialog for the deployment.<br />
+<img src="/images/147578742957f6baa5bfb1c.png" alt="New Deployment Dialog" /><br />
+
+If you are not logged in then it will ask you to log into your Azure account. 
+
+    </li>
+
+    <li>
+In the Dialog for "Deploy to Resource Group" select the Subscription by clicking on the first drop down.
+    </li>
+
+    <li>
+Next click on the drop down for the Resource Group. You can either select an existing Resource Group or you can click on "<Create New...>" option to create a new resource group for the current deployment.
+<br />
+<img src="/images/147578768757f6bba7dd5ec.png" alt="Resource Group creation" />
+<br />
+If you click on "<Create New...>" option to create a new Resource Group then you will be presented with an additional popup.
+<br />
+<img src="/images/147578794457f6bca893e66.png" alt="Resource Group creation additional Popup" /><br />
+In this additional popup, type the name for your new resoruce group and the location in Azure where this should be created. Click "Create" once done in the additional popup. <br />
+    </li>
+
+    <li>
+Next, we are going to provide the value for the parameters. Go ahead and click on the "Edit Parameters..." link in the "Deploy to Resource Group" dialog. This will open another popup to provide the parameters. <br />
+Button to edit parameters is shown below:<br />
+<img src="/images/147578820657f6bdae623f9.png" alt="Edit Parameters" /> <br />
+
+Additional dialog to provide parameters is shown below: <br />
+<img src="/images/147578821157f6bdb3ec989.png" alt="Providing Parameters" /> <br />
+
+Note the following points in the parameters:
+<ol type="a">
+<li>Corresponding to the string parameters, a text box is provided.</li>
+<li>For the secure string parameters like password, a secure password text box is provided.</li>
+<li>Corresponding to the parameters for which you have defined the "Allowed Values" in your template, a combo box (or drop Down) is provided with the "default Value" selected by default.</li>
+</ol>
+ Click Ok once done
+   </li>
+
+    <li>
+Next, click on the Deploy button to deploy the template to Azure.
+    </li>
+
+    <li>
+You can check the results in the <b>Outputs</b> window in the Visual Studio. Along with time stamp, it will show you what steps Visual Studio took to perform the deployment. It uses the values of parameters you provided and uses the PowerShell script to deploy the resources. You will notice the PowerShell window opening and prompt for the Admin Password. 
+<br />
+<b>Note 1: </b>The PowerShell window may not come above as active window. Just search and click on the window in your Taskbar. <br />
+Provide the password and hit Enter as shown below:
+<img src="/images/147578930357f6c1f7c0b65.png" alt="PowerShell window" /> <br />
+<br />
+<b>Note 2: </b>It may take some time to complete the deployment after that. Wait and do not close the PowerShell window. It should automatically close once done.
+<br />
+<b>Note 3: </b>Once the deployment completes the last line in Output window in Visual Studio will be: "Successfully deployed template..." as shown below:
+<br />
+<img src="/images/147578931057f6c1fecaa6a.png" alt="Success - Output Window" /> <br />
+
+    </li>
+
+</ol>
+<p>This is it! Navigate to the Azure portal and validate the deployed resources in your selected resource group.</p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-deploying-arm-templates-using-visual-studio</link>
+<pubDate>Tue, 20 Sep 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Step by Step ARM Templates - Authoring ARM Templates using Visual Studio</title>
 <description><![CDATA[<p><strong>Visual Studio</strong> is a very powerful tool when it comes to authoring ARM Templates. </p>
 <p><strong>Key features</strong> which make it a tool of our choice are:</p>
@@ -123,9 +200,7 @@ Once you click Add the JSON for resource will be added to the template and the c
 <h3>Deleting a Resource</h3> <br />
 If you need to delete a resource, simply right click on that resource in the JSON outline panel on the left and then select "Delete Resource".
 <br />
-</li>
 
-<li>
 <h3>Using Intellisense</h3>     
 The last thing to notice is the use of <b>Intellisense</b> in Visual Studio which helps you as you are editing the templates.<br /><br />
     <img src="/images/147578465457f6afce4debb.png" alt="Intellisense" />
