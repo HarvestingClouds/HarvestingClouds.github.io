@@ -26,6 +26,38 @@
 <pubDate>Mon, 10 Oct 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Step by Step Azure Resource Manager (ARM) Templates - Index</title>
+<description><![CDATA[<p><strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and repeatedly.</p>
+<p>ARM Templates can be used for the deployment of resources on both Azure and Azure Stack. Using these templates for all deployments provides you with various <strong>benefits</strong> including:</p>
+<ul>
+<li><strong>Declarative Deployment</strong> – All you need to do is declare what you need to deploy. You don't need to create any complex rules or write lengthy scripts.</li>
+<li><strong>Idempotency</strong> – You can deploy the same template over and over again without affecting the current resources.</li>
+<li><strong>Predictability</strong> - Using Templates you can have accurate predictability when performing large deployments. You reduce any manual errors.</li>
+<li><strong>Repitition without Errors</strong> - You can deploy the same infrastructure over and over again (e.g. in Dev-test environments and then in production).</li>
+</ul>
+<p>This series of posts try to decode and understand the ARM Templates &quot;Step By Step&quot;.</p>
+<p>This post is an index of all the posts, in sequence, for understanding the Azure Resource Manager (ARM) Templates. This post will be updated regularly as more posts on this topic are added.</p>
+<ol>
+<li><a href="#">Index</a> </li>
+<li><a href="/post/step-by-step-arm-templates-json-101-for-it-administrators/">JSON 101 for IT Administrators</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">What is in an ARM Template - Understanding All Components</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">What is in an ARM Template - Understanding Components 2 - Parameters</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">What is in an ARM Template - Understanding Components 3 - Variables</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">What is in an ARM Template - Understanding Components 4 - Resources</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">What is in an ARM Template - Understanding Components 5 - Outputs</a></li>
+<li><a href="/post/step-by-step-arm-templates-helper-functions/">Helper Functions in ARM Templates</a></li>
+<li><a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">Building your first ARM Template</a></li>
+<li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-portal/">Deploying Template Using Azure Portal</a></li>
+<li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-powershell/">Deploying Template Using Azure PowerShell</a></li>
+<li><a href="/post/step-by-step-arm-templates-creating-parameters-file-for-an-arm-template/">Creating Parameters file for an ARM Template</a></li>
+<li><a href="/post/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio/">Authoring ARM Templates using Visual Studio</a></li>
+<li><a href="/post/step-by-step-arm-templates-deploying-arm-templates-using-visual-studio/">Deploying ARM Templates using Visual Studio</a></li>
+<li><a href="/post/step-by-step-arm-templates-iterating-and-creating-multiple-instances-of-a-resource/">Iterating and creating multiple instances of a resource</a></li>
+</ol>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index</link>
+<pubDate>Fri, 07 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - Generate Azure Resources Report by Tags</title>
 <description><![CDATA[<p>When managing resources in Azure, Tags are there to help you. They add very valuable metadata to the Azure resources.
 In nutshell, tags are Key-Value pairs. E.g. &quot;Business Unit = Finance&quot;, &quot;Site = Central US&quot; are two such tags.</p>
@@ -58,37 +90,6 @@ In nutshell, tags are Key-Value pairs. E.g. &quot;Business Unit = Finance&quot;,
 <p>You are welcome to make changes and submit Pull Requests to this script or even fork and make your modifications. </p>]]></description>
 <link>http://HarvestingClouds.com/post/script-sample-generate-azure-resources-report-by-tags</link>
 <pubDate>Mon, 03 Oct 2016 00:00:00 +0500</pubDate>
-</item>
-<item>
-<title>Step by Step Azure Resource Manager (ARM) Templates - Index</title>
-<description><![CDATA[<p><strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and repeatedly.</p>
-<p>ARM Templates can be used for the deployment of resources on both Azure and Azure Stack. Using these templates for all deployments provides you with various <strong>benefits</strong> including:</p>
-<ul>
-<li><strong>Declarative Deployment</strong> – All you need to do is declare what you need to deploy. You don't need to create any complex rules or write lengthy scripts.</li>
-<li><strong>Idempotency</strong> – You can deploy the same template over and over again without affecting the current resources.</li>
-<li><strong>Predictability</strong> - Using Templates you can have accurate predictability when performing large deployments. You reduce any manual errors.</li>
-<li><strong>Repitition without Errors</strong> - You can deploy the same infrastructure over and over again (e.g. in Dev-test environments and then in production).</li>
-</ul>
-<p>This series of posts try to decode and understand the ARM Templates &quot;Step By Step&quot;.</p>
-<p>This post is an index of all the posts, in sequence, for understanding the Azure Resource Manager (ARM) Templates. This post will be updated regularly as more posts on this topic are added.</p>
-<ol>
-<li><a href="#">Index</a> </li>
-<li><a href="/post/step-by-step-arm-templates-json-101-for-it-administrators/">JSON 101 for IT Administrators</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">What is in an ARM Template - Understanding All Components</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">What is in an ARM Template - Understanding Components 2 - Parameters</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">What is in an ARM Template - Understanding Components 3 - Variables</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">What is in an ARM Template - Understanding Components 4 - Resources</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">What is in an ARM Template - Understanding Components 5 - Outputs</a></li>
-<li><a href="/post/step-by-step-arm-templates-helper-functions/">Helper Functions in ARM Templates</a></li>
-<li><a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">Building your first ARM Template</a></li>
-<li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-portal/">Deploying Template Using Azure Portal</a></li>
-<li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-powershell/">Deploying Template Using Azure PowerShell</a></li>
-<li><a href="/post/step-by-step-arm-templates-creating-parameters-file-for-an-arm-template/">Creating Parameters file for an ARM Template</a></li>
-<li><a href="/post/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio/">Authoring ARM Templates using Visual Studio</a></li>
-<li><a href="/post/step-by-step-arm-templates-deploying-arm-templates-using-visual-studio/">Deploying ARM Templates using Visual Studio</a></li>
-</ol>]]></description>
-<link>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index</link>
-<pubDate>Fri, 30 Sep 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Step by Step ARM Templates - Iterating and creating multiple instances of a resource</title>
