@@ -6,6 +6,26 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure RemoteApp is going away. New Purchases in portal are now stopped </title>
+<description><![CDATA[<p>Today I got an email saying &quot;Action recommended: Deleting unnecessary RemoteApp collections can save you money&quot;. This email is also a reminder from Microsoft that the RemoteApp is going away. We need to plan for the migration for the existing RemoteApps to other platforms.</p>
+<h3>What this means</h3>
+<p>This means various things to you. Most prominently:</p>
+<ul>
+<li>Over the next year, the support for Remote App is going away</li>
+<li>You need to plan and migrate the existing RemoteApp application to other platforms</li>
+<li>New Purchases in the Azure portal for RemoteApp are no longer available</li>
+</ul>
+<h3>When is the service coming to Stop</h3>
+<p>The service will have support through <strong>August 31st, 2017</strong>. That's when this service will come to a stop. New service purchase was stopped effective October 1st, 2016.</p>
+<h3>What are my Options</h3>
+<p>You have various options for migration. The option being <strong>recommended</strong> by Microsoft is using &quot;<strong>Citrix XenApp express</strong>&quot;. In fact, Microsoft is partnering up with Citrix on this. This service is not yet available and is currently under development. As this will be the native option in Azure this will be your best bet once it is announced. You can learn more about this solution here on Citrix site: <a href="https://www.citrix.com/global-partners/microsoft/remote-app.html">Citrix and Microsoft</a></p>
+<p>The second option is to use Remote Desktop Services (RDS) deployed on Azure IaaS. This means to set up the infrastructure yourself and then deploy and host the RDS solution on that infrastructure in Azure. You can know more about the steps here: <a href="https://technet.microsoft.com/en-us/windows-server-docs/compute/remote-desktop-services/host-desktops-and-apps-in-remote-desktop-services">Host desktops and apps in Remote Desktop Services on Azure</a></p>
+<p>Another option is to use  hosted solutions from various 3rd party vendors. You can find such solution from various partners from the Azure marketplace. You can also read and get to know the complete list of these hosting partners here: <a href="https://technet.microsoft.com/en-us/windows-server-docs/compute/remote-desktop-services/rds-hosting-partners">RDS - Partners for hosting desktops and apps</a></p>
+<p><strong>In conclusion,</strong> I will recommend to wait and look out for Citrix XenApp express solution. If you need new remote application solutions then you need to either deploy your own solution or use one of the hosted solutions by 3rd party vendors. You can read more about the official announcement here: <a href="https://blogs.technet.microsoft.com/enterprisemobility/2016/08/12/application-remoting-and-the-cloud/?WT.mc_id=azurebg_email_Trans_1218_No_Usage_Azure_RemoteApp">Application Remoting and the Cloud</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-remoteapp-is-going-away-new-purchases-in-portal-are-now-stopped</link>
+<pubDate>Mon, 10 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - Generate Azure Resources Report by Tags</title>
 <description><![CDATA[<p>When managing resources in Azure, Tags are there to help you. They add very valuable metadata to the Azure resources.
 In nutshell, tags are Key-Value pairs. E.g. &quot;Business Unit = Finance&quot;, &quot;Site = Central US&quot; are two such tags.</p>
@@ -69,6 +89,122 @@ In nutshell, tags are Key-Value pairs. E.g. &quot;Business Unit = Finance&quot;,
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index</link>
 <pubDate>Fri, 30 Sep 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Step by Step ARM Templates - Iterating and creating multiple instances of a resource</title>
+<description><![CDATA[<p>In Azure Resource Manager (ARM) templates, you can define the variable once and then iterate/loop over that definition and create multiple instances of that resource.
+There are 3 special constructs in ARM templates to help you with this. </p>
+<p>These <strong>constructs</strong> are:</p>
+<ul>
+<li><strong>copy</strong> - This is a property that is defined within the resource. This is the construct which when defined indicates that this resource needs to be looped over and created multiple times. It also specifies the number of times to iterate via &quot;count&quot; property.</li>
+<li><strong>copyIndex()</strong> - Used to access the current iteration value. Its value for the first iteration is <strong>zero</strong>. For the second iteration, its value is 1 and so on... You can pass it an integer (number) as a parameter. Whatever number you pass that will become the value for the first iteration and subsequent iterations. E.g. copyIndex(20) will compute to 20 in the first iteration, 21 in the second iteration and so on.</li>
+<li><strong>length</strong> - This is the method of arrays. It computes the number of elements in an array. It can be used to set the &quot;count&quot; property of &quot;copy&quot; construct.</li>
+</ul>
+<p><strong>Note:</strong> Arrays are always <strong>zero indexed</strong>. What that means is that the first element of the array is indexed at 0, the second element of the array is indexed at 1, and so on...</p>
+<h3>1. Simple Example</h3>
+<p>Let us understand these constructs using an example.</p>
+<pre><code>"parameters": { 
+  "count": { 
+    "type": "int", 
+    "defaultValue": 3 
+  } 
+}, 
+"resources": [ 
+  { 
+      "name": "[concat('HarvestingClouds-', copyIndex(100))]", 
+      "type": "Microsoft.Web/sites", 
+      "location": "Central US", 
+      "apiVersion": "2015-08-01",
+      "copy": { 
+         "name": "websitescopy", 
+         "count": "[parameters('count')]" 
+      }, 
+      "properties": {
+          "serverFarmId": "hostingPlanName"
+      }
+  } 
+]</code></pre>
+<p>The above example will <strong>result</strong> in creation of below 3 web apps in Azure:</p>
+<ul>
+<li>HarvestingClouds-100</li>
+<li>HarvestingClouds-101</li>
+<li>HarvestingClouds-102</li>
+</ul>
+<p>Note the usage of &quot;copy&quot; property in the above code example:</p>
+<pre><code> "copy": { 
+             "name": "websitescopy", 
+             "count": "[parameters('count')]" 
+          }</code></pre>
+<p>As you can notice above, the value of this property is another JSON object. This object has further two properties: </p>
+<ul>
+<li>First is the name property, which provides the name to the looping construct. This can be any meaningful name. </li>
+<li>The second property is the count, which specifies how many times this resource definition should be deployed. Note that the value is set to the parameter named &quot;count&quot;. The name of the parameter can be anything but the value of the parameter has to be a number (i.e. an integer).</li>
+</ul>
+<p>Next, note how the name of the web application is constructed using the copyIndex() helper function.</p>
+<pre><code>"name": "[concat('HarvestingClouds-', copyIndex(100))]"</code></pre>
+<p>The above value uses two helper functions. First is the &quot;concat()&quot; which is concatenating (i.e. joining) two values. First value is the prefix string &quot;HarvestingClouds-&quot;. Second parameter and the second helper function is <code>copyIndex(100)</code>. This specifies the current iteration value, which is offset with 100. So for the first iteration, the value will be 0+100 = 100, for the second iteration the value will be 1+100 = 101 and so on...</p>
+<h3>2. Example with an Array</h3>
+<p>Let's assume that you want to deploy multiple web apps for different purposes. You need one web app for Production, one for Staging or testing and one for Development. You want to name the web apps deployed with the purpose concatenated.
+The below example uses an array to set the values for the web app name:</p>
+<pre><code>"parameters": { 
+  "purpose": { 
+     "type": "array", 
+         "defaultValue": [ 
+         "Production", 
+         "Staging", 
+         "Development" 
+      ] 
+  }
+}, 
+"resources": [ 
+  { 
+      "name": "[concat('HarvestingClouds-', parameters('purpose')[copyIndex()])]", 
+      "type": "Microsoft.Web/sites", 
+      "location": "Central US", 
+      "apiVersion": "2015-08-01",
+      "copy": { 
+         "name": "websitescopy", 
+         "count": "[length(parameters('purpose'))]" 
+      }, 
+      "properties": {
+          "serverFarmId": "hostingPlanName"
+      } 
+  } 
+]</code></pre>
+<p>The <strong>output</strong> of the above sample will be 3 web apps deployed in Azure with following names:</p>
+<ul>
+<li>HarvestingClouds-Production</li>
+<li>HarvestingClouds-Staging</li>
+<li>HarvestingClouds-Development</li>
+</ul>
+<p>Note in the above code sample that the parameter &quot;purpose&quot; is an array with 3 values i.e. Production, Staging, and Development. Then in the &quot;copy&quot; construct the count property is set using the length of this array as shown below. As there are 3 elements in the array, the value of count will be 3 and the resource will be deployed 3 times.</p>
+<pre><code>"count": "[length(parameters('purpose'))]" </code></pre>
+<p>Next, the name of the web app is set using the copyIndex() and the array itself as shown below:</p>
+<pre><code>"name": "[concat('HarvestingClouds-', parameters('purpose')[copyIndex()])]"</code></pre>
+<p>As earlier, it uses concat helper function to add two strings. The first string is simple text i.e. &quot;HarvestingClouds-&quot;, which becomes the prefix for the web app name. Second is finding out the value of the array based on the current iteration. For the first iteration, copyIndex() will compute to zero, therefore the second parameter becomes <code>parameters('purpose')[0]</code>. This will fetch the 0th element of the array which is Production. Similarly, for the second iteration, copyIndex() will compute to 1, therefore the second parameter becomes <code>parameters('purpose')[1]</code>. This will fetch the second element of the array (or element at index value 1) which is Staging, and so on...</p>
+<h3>3. Depending upon resources being deployed by the copy Loop</h3>
+<p>Let's assume you want to deploy a storage account. But you want to deploy it only after all the web apps are deployed by the loop. In this scenario, the dependsOn property of a resource is set to the name of the &quot;copy&quot; property of the resource, rather than the resource itself.</p>
+<pre><code>    {
+        "apiVersion": "2015-06-15",
+        "type": "Microsoft.Storage/storageAccounts",
+        "name": "teststorage101",
+        "location": "[resourceGroup().location]",
+        "properties": {
+            "accountType": "Standard_LRS"
+         }
+       "dependsOn": ["websitescopy"]
+    }</code></pre>
+<p>Note above that the dependsOn property is set to the name property of the copy in the earlier web app example. This storage account will not be deployed until all 3 web apps are not deployed.</p>
+<h3>4. Limitations</h3>
+<p>There are two limitations on the use of the copy to iterate and create multiple resource instances:</p>
+<ol>
+<li><strong>Nested Resources</strong> - You cannot use a copy loop for a nested resource. If you need to create multiple instances of a resource that you typically define as nested within another resource, you must instead create the resource as a top-level resource and define the relationship with the parent resource through the <strong>type</strong> and <strong>name</strong> properties.</li>
+<li><strong>Looping Properties of a Resource</strong> - You can only use copy on resource types, not on properties within a resource type. E.g. Creating multiple data disks within a VM.</li>
+</ol>
+<p>That is all there is to iterate and creating multiple resources from a single definition. When your templates will start becoming complex then these constructs/helper functions will help you a lot. E.g. you may need to deploy multiple load balanced resources, then you can use the concepts defined in this post.</p>
+<p>You can also refer the official documentation here: <a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-create-multiple/">copy, copyIndex, and length</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-iterating-and-creating-multiple-instances-of-a-resource</link>
+<pubDate>Tue, 27 Sep 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Step by Step ARM Templates - Deploying ARM Templates using Visual Studio</title>

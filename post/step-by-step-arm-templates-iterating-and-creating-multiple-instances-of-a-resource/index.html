@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Harvesting Clouds</title>
+    <title>Step by Step ARM Templates - Iterating and creating multiple instances of a resource :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -71,26 +71,166 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-            <h1>Monthly Posts</h1>
-            <hr/>
-            <br/>
-
-                <h3><a href="http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index">Step by Step Azure Resource Manager (ARM) Templates - Index</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Sep 30, 2016
-                <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-iterating-and-creating-multiple-instances-of-a-resource">Step by Step ARM Templates - Iterating and creating multiple instances of a resource</a></h3>
+            <article>
+                <h3>Step by Step ARM Templates - Iterating and creating multiple instances of a resource</h3>
+                <span class="glyphicon glyphicon-user"></span> @20aman
+                &nbsp;&nbsp;
                 <span class="glyphicon glyphicon-time"></span> Sep 27, 2016
-                <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-deploying-arm-templates-using-visual-studio">Step by Step ARM Templates - Deploying ARM Templates using Visual Studio</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Sep 20, 2016
-                <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio">Step by Step ARM Templates - Authoring ARM Templates using Visual Studio</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Sep 17, 2016
-                <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-parameters-file-for-an-arm-template">Step by Step ARM Templates - Creating Parameters file for an ARM Template</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Sep 14, 2016
-                <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-deploying-template-using-azure-powershell">Step by Step ARM Templates - Deploying Template Using Azure PowerShell</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Sep 11, 2016
-                <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-deploying-template-using-azure-portal">Step by Step ARM Templates - Deploying Template Using Azure Portal</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Sep 08, 2016
-                <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-building-your-first-arm-template">Step by Step ARM Templates - Building your first ARM Template</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Sep 04, 2016
+                <hr>
+
+                <p class="post-content"><p>In Azure Resource Manager (ARM) templates, you can define the variable once and then iterate/loop over that definition and create multiple instances of that resource.
+There are 3 special constructs in ARM templates to help you with this. </p>
+<p>These <strong>constructs</strong> are:</p>
+<ul>
+<li><strong>copy</strong> - This is a property that is defined within the resource. This is the construct which when defined indicates that this resource needs to be looped over and created multiple times. It also specifies the number of times to iterate via &quot;count&quot; property.</li>
+<li><strong>copyIndex()</strong> - Used to access the current iteration value. Its value for the first iteration is <strong>zero</strong>. For the second iteration, its value is 1 and so on... You can pass it an integer (number) as a parameter. Whatever number you pass that will become the value for the first iteration and subsequent iterations. E.g. copyIndex(20) will compute to 20 in the first iteration, 21 in the second iteration and so on.</li>
+<li><strong>length</strong> - This is the method of arrays. It computes the number of elements in an array. It can be used to set the &quot;count&quot; property of &quot;copy&quot; construct.</li>
+</ul>
+<p><strong>Note:</strong> Arrays are always <strong>zero indexed</strong>. What that means is that the first element of the array is indexed at 0, the second element of the array is indexed at 1, and so on...</p>
+<h3>1. Simple Example</h3>
+<p>Let us understand these constructs using an example.</p>
+<pre><code>"parameters": { 
+  "count": { 
+    "type": "int", 
+    "defaultValue": 3 
+  } 
+}, 
+"resources": [ 
+  { 
+      "name": "[concat('HarvestingClouds-', copyIndex(100))]", 
+      "type": "Microsoft.Web/sites", 
+      "location": "Central US", 
+      "apiVersion": "2015-08-01",
+      "copy": { 
+         "name": "websitescopy", 
+         "count": "[parameters('count')]" 
+      }, 
+      "properties": {
+          "serverFarmId": "hostingPlanName"
+      }
+  } 
+]</code></pre>
+<p>The above example will <strong>result</strong> in creation of below 3 web apps in Azure:</p>
+<ul>
+<li>HarvestingClouds-100</li>
+<li>HarvestingClouds-101</li>
+<li>HarvestingClouds-102</li>
+</ul>
+<p>Note the usage of &quot;copy&quot; property in the above code example:</p>
+<pre><code> "copy": { 
+             "name": "websitescopy", 
+             "count": "[parameters('count')]" 
+          }</code></pre>
+<p>As you can notice above, the value of this property is another JSON object. This object has further two properties: </p>
+<ul>
+<li>First is the name property, which provides the name to the looping construct. This can be any meaningful name. </li>
+<li>The second property is the count, which specifies how many times this resource definition should be deployed. Note that the value is set to the parameter named &quot;count&quot;. The name of the parameter can be anything but the value of the parameter has to be a number (i.e. an integer).</li>
+</ul>
+<p>Next, note how the name of the web application is constructed using the copyIndex() helper function.</p>
+<pre><code>"name": "[concat('HarvestingClouds-', copyIndex(100))]"</code></pre>
+<p>The above value uses two helper functions. First is the &quot;concat()&quot; which is concatenating (i.e. joining) two values. First value is the prefix string &quot;HarvestingClouds-&quot;. Second parameter and the second helper function is <code>copyIndex(100)</code>. This specifies the current iteration value, which is offset with 100. So for the first iteration, the value will be 0+100 = 100, for the second iteration the value will be 1+100 = 101 and so on...</p>
+<h3>2. Example with an Array</h3>
+<p>Let's assume that you want to deploy multiple web apps for different purposes. You need one web app for Production, one for Staging or testing and one for Development. You want to name the web apps deployed with the purpose concatenated.
+The below example uses an array to set the values for the web app name:</p>
+<pre><code>"parameters": { 
+  "purpose": { 
+     "type": "array", 
+         "defaultValue": [ 
+         "Production", 
+         "Staging", 
+         "Development" 
+      ] 
+  }
+}, 
+"resources": [ 
+  { 
+      "name": "[concat('HarvestingClouds-', parameters('purpose')[copyIndex()])]", 
+      "type": "Microsoft.Web/sites", 
+      "location": "Central US", 
+      "apiVersion": "2015-08-01",
+      "copy": { 
+         "name": "websitescopy", 
+         "count": "[length(parameters('purpose'))]" 
+      }, 
+      "properties": {
+          "serverFarmId": "hostingPlanName"
+      } 
+  } 
+]</code></pre>
+<p>The <strong>output</strong> of the above sample will be 3 web apps deployed in Azure with following names:</p>
+<ul>
+<li>HarvestingClouds-Production</li>
+<li>HarvestingClouds-Staging</li>
+<li>HarvestingClouds-Development</li>
+</ul>
+<p>Note in the above code sample that the parameter &quot;purpose&quot; is an array with 3 values i.e. Production, Staging, and Development. Then in the &quot;copy&quot; construct the count property is set using the length of this array as shown below. As there are 3 elements in the array, the value of count will be 3 and the resource will be deployed 3 times.</p>
+<pre><code>"count": "[length(parameters('purpose'))]" </code></pre>
+<p>Next, the name of the web app is set using the copyIndex() and the array itself as shown below:</p>
+<pre><code>"name": "[concat('HarvestingClouds-', parameters('purpose')[copyIndex()])]"</code></pre>
+<p>As earlier, it uses concat helper function to add two strings. The first string is simple text i.e. &quot;HarvestingClouds-&quot;, which becomes the prefix for the web app name. Second is finding out the value of the array based on the current iteration. For the first iteration, copyIndex() will compute to zero, therefore the second parameter becomes <code>parameters('purpose')[0]</code>. This will fetch the 0th element of the array which is Production. Similarly, for the second iteration, copyIndex() will compute to 1, therefore the second parameter becomes <code>parameters('purpose')[1]</code>. This will fetch the second element of the array (or element at index value 1) which is Staging, and so on...</p>
+<h3>3. Depending upon resources being deployed by the copy Loop</h3>
+<p>Let's assume you want to deploy a storage account. But you want to deploy it only after all the web apps are deployed by the loop. In this scenario, the dependsOn property of a resource is set to the name of the &quot;copy&quot; property of the resource, rather than the resource itself.</p>
+<pre><code>    {
+        "apiVersion": "2015-06-15",
+        "type": "Microsoft.Storage/storageAccounts",
+        "name": "teststorage101",
+        "location": "[resourceGroup().location]",
+        "properties": {
+            "accountType": "Standard_LRS"
+         }
+       "dependsOn": ["websitescopy"]
+    }</code></pre>
+<p>Note above that the dependsOn property is set to the name property of the copy in the earlier web app example. This storage account will not be deployed until all 3 web apps are not deployed.</p>
+<h3>4. Limitations</h3>
+<p>There are two limitations on the use of the copy to iterate and create multiple resource instances:</p>
+<ol>
+<li><strong>Nested Resources</strong> - You cannot use a copy loop for a nested resource. If you need to create multiple instances of a resource that you typically define as nested within another resource, you must instead create the resource as a top-level resource and define the relationship with the parent resource through the <strong>type</strong> and <strong>name</strong> properties.</li>
+<li><strong>Looping Properties of a Resource</strong> - You can only use copy on resource types, not on properties within a resource type. E.g. Creating multiple data disks within a VM.</li>
+</ol>
+<p>That is all there is to iterate and creating multiple resources from a single definition. When your templates will start becoming complex then these constructs/helper functions will help you a lot. E.g. you may need to deploy multiple load balanced resources, then you can use the concepts defined in this post.</p>
+<p>You can also refer the official documentation here: <a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-create-multiple/">copy, copyIndex, and length</a></p></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
+
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="http://HarvestingClouds.com/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
+            </div>
+
         </div>
 
         <div class="sidebar col-md-4">
@@ -201,6 +341,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
 </div>
 
@@ -238,3 +379,69 @@
 
 </body>
 </html>
+<!-- for pagination -->
+<script>
+    $(function () {
+
+        ///////////////////////////////////////////////////
+        // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
+        var $nextPostSelector = $('.nextpost');
+        ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
+
+        $.ajax({
+            url: __blogURL + "/data/blog.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.posts !== undefined && data.posts !== null) {
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
+                }
+            },
+            error: function (e) {
+                $prevPostSelector.hide();
+                $nextPostSelector.hide();
+            }
+        });
+
+        // for Disqus
+        var disqus_shortname = 'harvestingclouds';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+    });
+</script>
