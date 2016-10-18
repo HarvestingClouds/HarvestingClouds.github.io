@@ -50,33 +50,44 @@ Ensure that the Enabled is set to Yes. Optionally you can set the activation and
 <p>We are now all set with our Key Vault. Next, we will be using the secret we created to set the local Administrator user's password.</p>
 <h3>Using the Key Vault Secret in ARM Template</h3>
 <p>Let us assume that you have a JSON ARM Template which deploys a VM. One of the parameters in this template is AdminPassword. You want to use the Key Vault Secret to provide the value for this parameter. </p>
-<ol>
-
-    <li>
-        First, ensure that the parameter is declared as <i>securestring</i> as shown below:
-
-    "adminPassword": {
-        "type": "securestring",
-        "metadata": {
-            "description": "Password for local admin account."
-        }
+<p><strong>First</strong>, ensure that the parameter is declared as <i>securestring</i> as shown below:</p>
+<pre><code>"adminPassword": {
+    "type": "securestring",
+    "metadata": {
+        "description": "Password for local admin account."
     }
-
-    </li>
-
-    <li>
-
-      Next, we need to use the parameters file for this template. If you don't have one already create a new one. We can provide the reference to the Key Vault Secret as the value of admin user's password parameter in this file.
-
-    </li>
-
-    <li>
-    </li>
-
-    <li>
-    </li>
-
-</ol>
+}</code></pre>
+<p><strong>Next</strong>, we need to use the parameters file for this template. If you don't have one already create a new one. We can provide the reference to the Key Vault Secret as the value of admin user's password parameter in this file. General Syntax of providing reference is as shown follow:</p>
+<pre><code>"adminPassword": {
+  "reference": {
+    "keyVault": {
+      "id": "Key Vault Id Here"
+    },
+    "secretName": "Name of the secret in Azure Key Vault"
+  }
+}</code></pre>
+<p>Now the ID in the above Syntax can be provided as:</p>
+<p><em>/subscriptions/{guid}/resourceGroups/{group-name}/providers/Microsoft.KeyVault/vaults/{vault-name}</em>. </p>
+<p>Note to replace the <em>{guid}</em> with actual GUID for the subscription (without the curly braces), replace <em>{group-name}</em> with the actual name of the resource group and <em>{vault-name}</em> with the actual name of the Key Vault.</p>
+<p>The complete parameter file looks like below:</p>
+<pre><code>{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "OtherParameter": {
+      "value": "otherValue"
+    },
+    "adminPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/11111aaa-1a11-1a11-a1aa-1a1111a111a1/resourceGroups/TestRG101/providers/Microsoft.KeyVault/vaults/TestKeyVault101"
+        },
+        "secretName": "AdminDefaultPasswordSecret"
+      }
+    }
+  }
+}</code></pre>
+<p>Next, deploy the template using PowerShell and pass this parameters file as explained here: <a href="/post/step-by-step-arm-templates-deploying-template-using-azure-powershell/">Deploying Template Using Azure PowerShell</a>. </p>
 <p>Now that you know how to use values from Key Vaults, you can make the automated deployment of resources more secure in your environment.</p>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates</link>
 <pubDate>Tue, 18 Oct 2016 00:00:00 +0500</pubDate>
@@ -218,6 +229,7 @@ Take a screenshot once you have repositioned the elements as per your requiremen
 <li><a href="/post/step-by-step-arm-templates-deploying-arm-templates-using-visual-studio/">Deploying ARM Templates using Visual Studio</a></li>
 <li><a href="/post/step-by-step-arm-templates-iterating-and-creating-multiple-instances-of-a-resource/">Iterating and creating multiple instances of a resource</a></li>
 <li><a href="/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams/">Visualizing ARM Templates and Generating Diagrams</a></li>
+<li><a href="/post/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates/">Using Key Vault to Securely Provide Information in ARM Templates</a></li>
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index</link>
 <pubDate>Fri, 07 Oct 2016 00:00:00 +0500</pubDate>
