@@ -72,7 +72,7 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-using-key-vault-to-securly-provide-information-in-arm-templates">Step by Step ARM Templates - Using Key Vault to Securly Provide Information in ARM Templates</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates">Step by Step ARM Templates - Using Key Vault to Securely Provide Information in ARM Templates</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
                     <span class="glyphicon glyphicon-time"></span> Oct 18, 2016
@@ -84,19 +84,20 @@
 <p>We first need to setup the Key Vault in Azure to be able to use it via ARM Template parameters.</p>
 <ol>
     <li>
-<b>Create a Key Vault in Azure</b> by going to <i>New -> Security + Identity -> Key Vault</i>. Provide a name, subscription, resource group etc. and provision the Key Vault. Once it is created navigate to it by clicking on "More Services" and searching for Key Vault. Click on the name of the vault you created.
+<b>Create a Key Vault in Azure</b> by going to <i>New -> Security + Identity -> Key Vault</i>. Provide a name, subscription, resource group etc. and provision the Key Vault. Once it is created navigate to it by clicking on "More Services" and searching for Key Vault. Click on the name of the vault you created. E.g. In this example we have named the key vault to "TestKeyVault101".
 
+<br />
 <b>Note</b> that this feature is in Preview  at the time of writing of this blog.
 
     </li>
 
     <li>
-        Next, we need to <b>Add a Secret</b> in the key vault. Click on the Secrets as shown below:
+        Next, we need to <b>Add a Secret</b> in the key vault. Click on the Secrets and then the + Add button at the top, as shown below:
 <br />
 <img alt="Adding Secret" src="/images/1476818644580676d447b16.png" />
 <br />
 Next, in the "Create a secret" blade, set the Upload Options to Manual. Provide a name and value to the secret. Value is the password you want to securely save.
-Ensure that the Enabled is set to Yes. Optionally you can set the activation and expiration dates
+Ensure that the Enabled is set to Yes. Optionally you can set the activation and expiration dates. In this example, we are setting the Secret Name to "DefaultAdminPasswordSecret".
 <img alt="Creating Secret" src="/images/1476818650580676da89fee.png" />
     </li>
 
@@ -118,7 +119,33 @@ Ensure that the Enabled is set to Yes. Optionally you can set the activation and
 
 </ol>
 <p>We are now all set with our Key Vault. Next, we will be using the secret we created to set the local Administrator user's password.</p>
-<h3>Using the Key Vault Secret in ARM Template</h3></p>
+<h3>Using the Key Vault Secret in ARM Template</h3>
+<p>Let us assume that you have a JSON ARM Template which deploys a VM. One of the parameters in this template is AdminPassword. You want to use the Key Vault Secret to provide the value for this parameter. </p>
+<ol>
+
+    <li>
+        First, ensure that the parameter is declared as <i>securestring</i> as shown below:
+
+    "adminPassword": {
+        "type": "securestring",
+        "metadata": {
+            "description": "Password for local admin account."
+        }
+    }
+
+    </li>
+
+    <li>
+    </li>
+
+    <li>
+    </li>
+
+    <li>
+    </li>
+
+</ol>
+<p>Now that you know how to use values from Key Vaults, you can make the automated deployment of resources more secure in your environment.</p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -131,8 +158,8 @@ Ensure that the Enabled is set to Yes. Optionally you can set the activation and
                                 <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/KeyVault">KeyVault</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -179,7 +206,7 @@ Ensure that the Enabled is set to Yes. Optionally you can set the activation and
                 </div>
         
                 <ul class="list-group">
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-using-key-vault-to-securly-provide-information-in-arm-templates">Step by Step ARM Templates - Using Key Vault to Securly Provide Information in ARM Templates</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates">Step by Step ARM Templates - Using Key Vault to Securely Provide Information in ARM Templates</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams">Step by Step ARM Templates - Visualizing ARM Templates and Generating Diagrams</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-automation-preview-solution-start-stop-vms-during-off-hours">Azure Automation Preview Solution - Start/Stop VMs during off-hours </a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-remoteapp-is-going-away-new-purchases-in-portal-are-now-stopped">Azure RemoteApp is going away. New Purchases in portal are now stopped </a></li>
@@ -228,8 +255,8 @@ Ensure that the Enabled is set to Yes. Optionally you can set the activation and
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
-<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 21px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
 <a style="font-size: 29px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="20 total posts" data-original-title="21 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
@@ -244,8 +271,8 @@ Ensure that the Enabled is set to Yes. Optionally you can set the activation and
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/json" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">JSON</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/keyvault" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">KeyVault</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">PowerShell</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">powershell</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">PowerShell</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/remoteapp" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">RemoteApp</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/runbooks" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Runbooks</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/sample" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Sample</a>
