@@ -72,67 +72,53 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams">Step by Step ARM Templates - Visualizing ARM Templates and Generating Diagrams</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-using-key-vault-to-securly-provide-information-in-arm-templates">Step by Step ARM Templates - Using Key Vault to Securly Provide Information in ARM Templates</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Oct 17, 2016
+                    <span class="glyphicon glyphicon-time"></span> Oct 18, 2016
                 
                         <hr>
-                        <p class="post-content"><p>When developing ARM Templates, from time to time you will need to:</p>
-<ul>
-<li>Visualize your ARM Templates</li>
-<li>Generate Diagrams for your ARM Templates</li>
-</ul>
-<p>Microsoft has provided an Open Source tool for this named &quot;ARMVIZ&quot; (short for ARM Visualizer). This tool can be accessed by navigating to the below URL:</p>
-<p><a href="http://armviz.io/"><a href="http://armviz.io/">http://armviz.io/</a></a></p>
-<h3>Navigating ARMVIZ</h3>
-<p>ARMVIZ is a nice in-browser application to visualize all the components in a template. It also shows the dependencies between various components. Using this web application you can:</p>
-<ul>
-<li>Either visualize your own developed template,</li>
-<li>Or inspect existing templates on GitHub</li>
-</ul>
-<p>Let's take a quick tour of the interface:</p>
-<p><img src="/images/14768067785806487ad77dd.png" alt="ARMVIZ Interface" /></p>
-<p>I have numbered various elements of the interface in the above diagram. Let's quickly review these elements:</p>
+                        <p class="post-content"><p>When providing passwords and other secure and confidential information in ARM Templates, you need to ensure that you don't hard code these values anywhere. You don't need to compromise the security of the system while trying to automate deployments. Your end goal is to try to automate as much as possible and reduce manual involvement. </p>
+<p><strong>Key Vaults</strong> are there to solve this problem without compromising any security. In fact, they make the whole solution more secure with least manual intervention.</p>
+<h3>Setting up the Key Vault</h3>
+<p>We first need to setup the Key Vault in Azure to be able to use it via ARM Template parameters.</p>
 <ol>
-
     <li>
-              <b>Designer</b> - This is represented by an "eye" icon on the left bar. This should be selected by default. If you are in the editor mode then you can click this and the diagram will be shown in the middle portion of the screen.
+<b>Create a Key Vault in Azure</b> by going to <i>New -> Security + Identity -> Key Vault</i>. Provide a name, subscription, resource group etc. and provision the Key Vault. Once it is created navigate to it by clicking on "More Services" and searching for Key Vault. Click on the name of the vault you created.
+
+<b>Note</b> that this feature is in Preview  at the time of writing of this blog.
+
     </li>
 
     <li>
-              <b>Editor</b> - This is represented by "</>" text for code on the left bar. Clicking on this will take you to the editor portion of the ARMVIZ tool. In this area, you can edit your template while still in the tool. You can add or remove components. You can even edit the components or add dependencies.
-    </li>
-
-     <li>
-              <b>Canvas area</b> - This is the main screen (the middle area) where the template is displayed.
-    </li>
-
-    <li>
-              <b>File Menu</b> - This is the main and simple menu in the whole web application in the top bar. It has two options:
-              <ol type="a">
-                       <li>
-                             <b>Open Local Template</b> - You can open an ARM Template JSON from your local computer to visualize using this menu option.
-                       </li>
-                       <li>
-                             <b>Download Template</b> - You can download the current template by using this menu option.
-                       </li>
-              </ol>
+        Next, we need to <b>Add a Secret</b> in the key vault. Click on the Secrets as shown below:
+<br />
+<img alt="Adding Secret" src="/images/1476818644580676d447b16.png" />
+<br />
+Next, in the "Create a secret" blade, set the Upload Options to Manual. Provide a name and value to the secret. Value is the password you want to securely save.
+Ensure that the Enabled is set to Yes. Optionally you can set the activation and expiration dates
+<img alt="Creating Secret" src="/images/1476818650580676da89fee.png" />
     </li>
 
     <li>
-              <b>Quickstart ARM Templates</b> - This is the link to external library of Quickstart ARM Templates on GitHub. These starter templates can help you save a lot of time. Instead of starting from scratch you can use these templates to fasten the ARM Templates Development.
+        Next, we will set the <b>Access Policies </b> to provide access to the user under the context of which the template will be deployed. This is the user which will be accessing the Key Vault. Go to Key Vault settings and select Access Policies. Add the new user as shown below:
+
+<img alt="Access Policies" src="/images/14768190995806789bad0c4.png" />
+<br />
+
+    </li>
+
+    <li>
+        Next, we will set the <b>Advanced Access Policies </b> to indicate that this key vault can be accessed via ARM Templates. Go to Key Vault settings and select Advanced Access Policies. Ensure that the checkbox for "<i>Enable access to Azure Resource Manager for template deployment</i>" is checked as shown below:
+
+<img alt="Access Policies" src="/images/1476819105580678a1cfc9f.png" />
+<br /> 
+
     </li>
 
 </ol>
-<p>This is how the Editor portion of the tool looks like. Use this area to edit or update your template.
-<strong>Note:</strong> If there will be mistakes, such as missing parenthesis in your template, the designer will not show any diagram. </p>
-<p><img src="/images/147680732358064a9ba1310.png" alt="Editor Area" /></p>
-<p>You can zoom into and zoom out of your template diagram by rolling the mouse wheel. You can also drag and reposition various elements.
-Take a screenshot once you have repositioned the elements as per your requirements and have zoomed into an appropriate level.</p>
-<p>Below screenshot is taken from a much more complex template.</p>
-<p><img src="/images/1476806791580648877fed3.png" alt="Complex ARM Template Diagram" /></p>
-<p>In conclusion, ARMVIZ can enable you to easily visualize your ARM Templates. It can empower you to generate diagrams for your documentation and to present to your team.</p></p>
+<p>We are now all set with our Key Vault. Next, we will be using the secret we created to set the local Administrator user's password.</p>
+<h3>Using the Key Vault Secret in ARM Template</h3></p>
                         <br/>
                 
                         <div class="post-info">
@@ -146,6 +132,7 @@ Take a screenshot once you have repositioned the elements as per your requiremen
                                 <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/KeyVault">KeyVault</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -192,11 +179,11 @@ Take a screenshot once you have repositioned the elements as per your requiremen
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-using-key-vault-to-securly-provide-information-in-arm-templates">Step by Step ARM Templates - Using Key Vault to Securly Provide Information in ARM Templates</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams">Step by Step ARM Templates - Visualizing ARM Templates and Generating Diagrams</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-automation-preview-solution-start-stop-vms-during-off-hours">Azure Automation Preview Solution - Start/Stop VMs during off-hours </a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-remoteapp-is-going-away-new-purchases-in-portal-are-now-stopped">Azure RemoteApp is going away. New Purchases in portal are now stopped </a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index">Step by Step Azure Resource Manager (ARM) Templates - Index</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/script-sample-generate-azure-resources-report-by-tags">Script Sample - Generate Azure Resources Report by Tags</a></li>
                 </ul>
             </div>
         
@@ -235,16 +222,16 @@ Take a screenshot once you have repositioned the elements as per your requiremen
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">activedirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
+<a style="font-size: 27px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="18 total posts" data-original-title="19 total posts" data-toggle="tooltip">ARM</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
-<a style="font-size: 27px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="17 total posts" data-original-title="18 total posts" data-toggle="tooltip">ARM</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
-<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="20 total posts" data-original-title="21 total posts" data-toggle="tooltip">Azure</a>
+<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 21px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
-<a style="font-size: 29px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="19 total posts" data-original-title="20 total posts" data-toggle="tooltip">AzureResourceManager</a>
+<a style="font-size: 29px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="20 total posts" data-original-title="21 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
@@ -255,6 +242,7 @@ Take a screenshot once you have repositioned the elements as per your requiremen
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/general" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">general</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/gridmvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">gridmvc</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/json" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">JSON</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/keyvault" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">KeyVault</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">PowerShell</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">powershell</a>
@@ -264,7 +252,7 @@ Take a screenshot once you have repositioned the elements as per your requiremen
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/script" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Script</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/storage" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">storage</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/tags" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Tags</a>
-<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="16 total posts" data-original-title="17 total posts" data-toggle="tooltip">Templates</a>
+<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="17 total posts" data-original-title="18 total posts" data-toggle="tooltip">Templates</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualmachine</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/visualstudio" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">VisualStudio</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vm</a>
