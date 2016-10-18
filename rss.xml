@@ -6,6 +6,74 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Step by Step ARM Templates - Visualizing ARM Templates and Generating Diagrams</title>
+<description><![CDATA[<p>When developing ARM Templates, from time to time you will need to:</p>
+<ul>
+<li>Visualize your ARM Templates</li>
+<li>Generate Diagrams for your ARM Templates</li>
+</ul>
+<p>Microsoft has provided an Open Source tool for this named &quot;ARMVIZ&quot; (short for ARM Visualizer). This tool can be accessed by navigating to the below URL:</p>
+<p><a href="http://armviz.io/"><a href="http://armviz.io/">http://armviz.io/</a></a></p>
+<h3>Navigating ARMVIZ</h3>
+<p>ARMVIZ is a nice in-browser application to visualize all the components in a template. It also shows the dependencies between various components. Using this web application you can:</p>
+<ul>
+<li>Either visualize your own developed template,</li>
+<li>Or inspect existing templates on GitHub</li>
+</ul>
+<p>Let's take a quick tour of the interface:</p>
+<p><img src="/images/14768067785806487ad77dd.png" alt="ARMVIZ Interface" /></p>
+<p>I have numbered various elements of the interface in the above diagram. Let's quickly review these elements:</p>
+<ol>
+
+    <li>
+              <b>Designer</b> - This is represented by an "eye" icon on the left bar. This should be selected by default. If you are in the editor mode then you can click this and the diagram will be shown in the middle portion of the screen.
+    </li>
+
+    <li>
+              <b>Editor</b> - This is represented by "</>" text for code on the left bar. Clicking on this will take you to the editor portion of the ARMVIZ tool. In this area, you can edit your template while still in the tool. You can add or remove components. You can even edit the components or add dependencies.
+    </li>
+
+     <li>
+              <b>Canvas area</b> - This is the main screen (the middle area) where the template is displayed.
+    </li>
+
+    <li>
+              <b>File Menu</b> - This is the main and simple menu in the whole web application in the top bar. It has two options:
+              <ol type="a">
+                       <li>
+                             <b>Open Local Template</b> - You can open an ARM Template JSON from your local computer to visualize using this menu option.
+                       </li>
+                       <li>
+                             <b>Download Template</b> - You can download the current template by using this menu option.
+                       </li>
+              </ol>
+    </li>
+
+    <li>
+              <b>Quickstart ARM Templates</b> - This is the link to external library of Quickstart ARM Templates on GitHub. These starter templates can help you save a lot of time. Instead of starting from scratch you can use these templates to fasten the ARM Templates Development.
+    </li>
+
+</ol>
+<p><br /></p>
+<p>This is how the Editor portion of the tool looks like. Use this area to edit or update your template.
+<strong>Note:</strong> If there will be mistakes, such as missing parenthesis in your template, the designer will not show any diagram. </p>
+<p><img src="/images/147680732358064a9ba1310.png" alt="Editor Area" /></p>
+<p>You can zoom into and zoom out of your template diagram by rolling the mouse wheel. You can also drag and reposition various elements.
+Take a screenshot once you have repositioned the elements as per your requirements and have zoomed into an appropriate level.</p>
+<p>Below screenshot is taken from a much more complex template.</p>
+<p><img src="/images/1476806791580648877fed3.png" alt="Complex ARM Template Diagram" /></p>
+<p>In conclusion, ARMVIZ can enable you to easily visualize your ARM Templates. It can empower you to generate diagrams for your documentation and to present to your team.</p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams</link>
+<pubDate>Mon, 17 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Automation Preview Solution - Start/Stop VMs during off-hours </title>
+<description><![CDATA[<p>Starting and Stopping VMs during off-hours can mean lots of cost optimizations for you. We have been implementing this via custom Runbooks and schedules for various customers. Now there is out of the box support for this within Azure. The feature is currently in Preview but you can build on this.</p>
+<p>Find out more here: <a href="https://azure.microsoft.com/en-us/documentation/articles/automation-solution-vm-management/">Start/Stop VMs during off-hours [Preview] solution in Automation</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-automation-preview-solution-start-stop-vms-during-off-hours</link>
+<pubDate>Tue, 11 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure RemoteApp is going away. New Purchases in portal are now stopped </title>
 <description><![CDATA[<p>Today I got an email saying &quot;Action recommended: Deleting unnecessary RemoteApp collections can save you money&quot;. This email is also a reminder from Microsoft that the RemoteApp is going away. We need to plan for the migration for the existing RemoteApps to other platforms.</p>
 <h3>What this means</h3>

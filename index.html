@@ -72,27 +72,68 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/azure-remoteapp-is-going-away-new-purchases-in-portal-are-now-stopped">Azure RemoteApp is going away. New Purchases in portal are now stopped </a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams">Step by Step ARM Templates - Visualizing ARM Templates and Generating Diagrams</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Oct 10, 2016
+                    <span class="glyphicon glyphicon-time"></span> Oct 17, 2016
                 
                         <hr>
-                        <p class="post-content"><p>Today I got an email saying &quot;Action recommended: Deleting unnecessary RemoteApp collections can save you money&quot;. This email is also a reminder from Microsoft that the RemoteApp is going away. We need to plan for the migration for the existing RemoteApps to other platforms.</p>
-<h3>What this means</h3>
-<p>This means various things to you. Most prominently:</p>
+                        <p class="post-content"><p>When developing ARM Templates, from time to time you will need to:</p>
 <ul>
-<li>Over the next year, the support for Remote App is going away</li>
-<li>You need to plan and migrate the existing RemoteApp application to other platforms</li>
-<li>New Purchases in the Azure portal for RemoteApp are no longer available</li>
+<li>Visualize your ARM Templates</li>
+<li>Generate Diagrams for your ARM Templates</li>
 </ul>
-<h3>When is the service coming to Stop</h3>
-<p>The service will have support through <strong>August 31st, 2017</strong>. That's when this service will come to a stop. New service purchase was stopped effective October 1st, 2016.</p>
-<h3>What are my Options</h3>
-<p>You have various options for migration. The option being <strong>recommended</strong> by Microsoft is using &quot;<strong>Citrix XenApp express</strong>&quot;. In fact, Microsoft is partnering up with Citrix on this. This service is not yet available and is currently under development. As this will be the native option in Azure this will be your best bet once it is announced. You can learn more about this solution here on Citrix site: <a href="https://www.citrix.com/global-partners/microsoft/remote-app.html">Citrix and Microsoft</a></p>
-<p>The second option is to use Remote Desktop Services (RDS) deployed on Azure IaaS. This means to set up the infrastructure yourself and then deploy and host the RDS solution on that infrastructure in Azure. You can know more about the steps here: <a href="https://technet.microsoft.com/en-us/windows-server-docs/compute/remote-desktop-services/host-desktops-and-apps-in-remote-desktop-services">Host desktops and apps in Remote Desktop Services on Azure</a></p>
-<p>Another option is to use  hosted solutions from various 3rd party vendors. You can find such solution from various partners from the Azure marketplace. You can also read and get to know the complete list of these hosting partners here: <a href="https://technet.microsoft.com/en-us/windows-server-docs/compute/remote-desktop-services/rds-hosting-partners">RDS - Partners for hosting desktops and apps</a></p>
-<p><strong>In conclusion,</strong> I will recommend to wait and look out for Citrix XenApp express solution. If you need new remote application solutions then you need to either deploy your own solution or use one of the hosted solutions by 3rd party vendors. You can read more about the official announcement here: <a href="https://blogs.technet.microsoft.com/enterprisemobility/2016/08/12/application-remoting-and-the-cloud/?WT.mc_id=azurebg_email_Trans_1218_No_Usage_Azure_RemoteApp">Application Remoting and the Cloud</a></p></p>
+<p>Microsoft has provided an Open Source tool for this named &quot;ARMVIZ&quot; (short for ARM Visualizer). This tool can be accessed by navigating to the below URL:</p>
+<p><a href="http://armviz.io/"><a href="http://armviz.io/">http://armviz.io/</a></a></p>
+<h3>Navigating ARMVIZ</h3>
+<p>ARMVIZ is a nice in-browser application to visualize all the components in a template. It also shows the dependencies between various components. Using this web application you can:</p>
+<ul>
+<li>Either visualize your own developed template,</li>
+<li>Or inspect existing templates on GitHub</li>
+</ul>
+<p>Let's take a quick tour of the interface:</p>
+<p><img src="/images/14768067785806487ad77dd.png" alt="ARMVIZ Interface" /></p>
+<p>I have numbered various elements of the interface in the above diagram. Let's quickly review these elements:</p>
+<ol>
+
+    <li>
+              <b>Designer</b> - This is represented by an "eye" icon on the left bar. This should be selected by default. If you are in the editor mode then you can click this and the diagram will be shown in the middle portion of the screen.
+    </li>
+
+    <li>
+              <b>Editor</b> - This is represented by "</>" text for code on the left bar. Clicking on this will take you to the editor portion of the ARMVIZ tool. In this area, you can edit your template while still in the tool. You can add or remove components. You can even edit the components or add dependencies.
+    </li>
+
+     <li>
+              <b>Canvas area</b> - This is the main screen (the middle area) where the template is displayed.
+    </li>
+
+    <li>
+              <b>File Menu</b> - This is the main and simple menu in the whole web application in the top bar. It has two options:
+              <ol type="a">
+                       <li>
+                             <b>Open Local Template</b> - You can open an ARM Template JSON from your local computer to visualize using this menu option.
+                       </li>
+                       <li>
+                             <b>Download Template</b> - You can download the current template by using this menu option.
+                       </li>
+              </ol>
+    </li>
+
+    <li>
+              <b>Quickstart ARM Templates</b> - This is the link to external library of Quickstart ARM Templates on GitHub. These starter templates can help you save a lot of time. Instead of starting from scratch you can use these templates to fasten the ARM Templates Development.
+    </li>
+
+</ol>
+<p><br /></p>
+<p>This is how the Editor portion of the tool looks like. Use this area to edit or update your template.
+<strong>Note:</strong> If there will be mistakes, such as missing parenthesis in your template, the designer will not show any diagram. </p>
+<p><img src="/images/147680732358064a9ba1310.png" alt="Editor Area" /></p>
+<p>You can zoom into and zoom out of your template diagram by rolling the mouse wheel. You can also drag and reposition various elements.
+Take a screenshot once you have repositioned the elements as per your requirements and have zoomed into an appropriate level.</p>
+<p>Below screenshot is taken from a much more complex template.</p>
+<p><img src="/images/1476806791580648877fed3.png" alt="Complex ARM Template Diagram" /></p>
+<p>In conclusion, ARMVIZ can enable you to easily visualize your ARM Templates. It can empower you to generate diagrams for your documentation and to present to your team.</p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -105,7 +146,7 @@
                                 <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/RemoteApp">RemoteApp</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -152,11 +193,11 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams">Step by Step ARM Templates - Visualizing ARM Templates and Generating Diagrams</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-automation-preview-solution-start-stop-vms-during-off-hours">Azure Automation Preview Solution - Start/Stop VMs during off-hours </a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-remoteapp-is-going-away-new-purchases-in-portal-are-now-stopped">Azure RemoteApp is going away. New Purchases in portal are now stopped </a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index">Step by Step Azure Resource Manager (ARM) Templates - Index</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/script-sample-generate-azure-resources-report-by-tags">Script Sample - Generate Azure Resources Report by Tags</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-iterating-and-creating-multiple-instances-of-a-resource">Step by Step ARM Templates - Iterating and creating multiple instances of a resource</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-deploying-arm-templates-using-visual-studio">Step by Step ARM Templates - Deploying ARM Templates using Visual Studio</a></li>
                 </ul>
             </div>
         
@@ -194,37 +235,39 @@
                             <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/net" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">net</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">activedirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
-<a style="font-size: 27px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="16 total posts" data-original-title="17 total posts" data-toggle="tooltip">ARM</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ASR</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
-<a style="font-size: 22px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
-<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="18 total posts" data-original-title="19 total posts" data-toggle="tooltip">Azure</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
+<a style="font-size: 27px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="17 total posts" data-original-title="18 total posts" data-toggle="tooltip">ARM</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ASR</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
+<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="20 total posts" data-original-title="21 total posts" data-toggle="tooltip">Azure</a>
+<a style="font-size: 21px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
-<a style="font-size: 28px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="17 total posts" data-original-title="18 total posts" data-toggle="tooltip">AzureResourceManager</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
+<a style="font-size: 29px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="19 total posts" data-original-title="20 total posts" data-toggle="tooltip">AzureResourceManager</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/blob" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">blob</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/csharp" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">csharp</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/csharp" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">csharp</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/datacenter" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">datacenter</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/dsc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dsc</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/general" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">general</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/general" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">general</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/gridmvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">gridmvc</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/json" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">JSON</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/json" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">JSON</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">powershell</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">PowerShell</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">powershell</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/remoteapp" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">RemoteApp</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/runbooks" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Runbooks</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/sample" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Sample</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/script" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Script</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/storage" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">storage</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/storage" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">storage</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/tags" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Tags</a>
-<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="15 total posts" data-original-title="16 total posts" data-toggle="tooltip">Templates</a>
+<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="16 total posts" data-original-title="17 total posts" data-toggle="tooltip">Templates</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualmachine</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/visualstudio" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">VisualStudio</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/visualstudio" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">VisualStudio</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vmware" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">VMWare</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/webdevelopment" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">webdevelopment</a>
