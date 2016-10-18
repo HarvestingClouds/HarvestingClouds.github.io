@@ -54,7 +54,6 @@
     </li>
 
 </ol>
-<p><br /></p>
 <p>This is how the Editor portion of the tool looks like. Use this area to edit or update your template.
 <strong>Note:</strong> If there will be mistakes, such as missing parenthesis in your template, the designer will not show any diagram. </p>
 <p><img src="/images/147680732358064a9ba1310.png" alt="Editor Area" /></p>
@@ -121,6 +120,7 @@ Take a screenshot once you have repositioned the elements as per your requiremen
 <li><a href="/post/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio/">Authoring ARM Templates using Visual Studio</a></li>
 <li><a href="/post/step-by-step-arm-templates-deploying-arm-templates-using-visual-studio/">Deploying ARM Templates using Visual Studio</a></li>
 <li><a href="/post/step-by-step-arm-templates-iterating-and-creating-multiple-instances-of-a-resource/">Iterating and creating multiple instances of a resource</a></li>
+<li><a href="/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams/">Visualizing ARM Templates and Generating Diagrams</a></li>
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index</link>
 <pubDate>Fri, 07 Oct 2016 00:00:00 +0500</pubDate>
