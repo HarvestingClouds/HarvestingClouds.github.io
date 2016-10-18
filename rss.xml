@@ -68,7 +68,28 @@ Take a screenshot once you have repositioned the elements as per your requiremen
 <item>
 <title>Azure Automation Preview Solution - Start/Stop VMs during off-hours </title>
 <description><![CDATA[<p>Starting and Stopping VMs during off-hours can mean lots of cost optimizations for you. We have been implementing this via custom Runbooks and schedules for various customers. Now there is out of the box support for this within Azure. The feature is currently in Preview but you can build on this.</p>
-<p>Find out more here: <a href="https://azure.microsoft.com/en-us/documentation/articles/automation-solution-vm-management/">Start/Stop VMs during off-hours [Preview] solution in Automation</a></p>]]></description>
+<h3>What do I need - Prerequisites</h3>
+<p>Before beginning check that your region has this feature available. Just like with any other automation solution, you will need to have:</p>
+<ol>
+<li>OMS Workspace (or you can create new while adding the solution)</li>
+<li>Automation Account (or you can create new)</li>
+<li>Azure Run As account (and not the Microsoft Account)</li>
+<li>For email support, Office 365 business-class subscription is required</li>
+</ol>
+<p>Note: The VMs that you want to manage should be in the same subscription and resource group as where the Automation account resides.</p>
+<h3>How to Add</h3>
+<p>To Add the solution, click on &quot;+ New&quot; symbol and search for &quot;Start/Stop VMs during off-hours&quot; </p>
+<p><img src="/images/1476808753580650317ab68.png" alt="Start and Stop VMs Preview Solution" /></p>
+<h3>What does it Contain</h3>
+<p>The solution is a combination of various automation assets:</p>
+<ol>
+<li>Runbooks</li>
+<li>Variables</li>
+<li>Schedules</li>
+<li>Credentials</li>
+</ol>
+<p>You can change some configurations during and some after the deployment. </p>
+<p>Find out more here: <a href="https://azure.microsoft.com/en-us/documentation/articles/automation-solution-vm-management/">Start/Stop VMs during off-hours [Preview]</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-automation-preview-solution-start-stop-vms-during-off-hours</link>
 <pubDate>Tue, 11 Oct 2016 00:00:00 +0500</pubDate>
 </item>
