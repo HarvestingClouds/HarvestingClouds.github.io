@@ -65,6 +65,9 @@ Ensure that the Enabled is set to Yes. Optionally you can set the activation and
     </li>
 
     <li>
+
+      Next, we need to use the parameters file for this template. If you don't have one already create a new one. We can provide the reference to the Key Vault Secret as the value of admin user's password parameter in this file.
+
     </li>
 
     <li>
