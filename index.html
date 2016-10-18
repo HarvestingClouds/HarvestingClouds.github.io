@@ -140,6 +140,8 @@ Ensure that the Enabled is set to Yes. Optionally you can set the activation and
 <p>Now the ID in the above Syntax can be provided as:</p>
 <p><em>/subscriptions/{guid}/resourceGroups/{group-name}/providers/Microsoft.KeyVault/vaults/{vault-name}</em>. </p>
 <p>Note to replace the <em>{guid}</em> with actual GUID for the subscription (without the curly braces), replace <em>{group-name}</em> with the actual name of the resource group and <em>{vault-name}</em> with the actual name of the Key Vault.</p>
+<p>You can also find the Resource ID for the Key Vault by navigating to it in the Azure Portal and then checking it's properties as shown below:</p>
+<p><img src="/images/147682308858068830f2f8e.png" alt="Key Vault Resource ID" /></p>
 <p>The complete parameter file looks like below:</p>
 <pre><code>{
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
@@ -153,12 +155,14 @@ Ensure that the Enabled is set to Yes. Optionally you can set the activation and
         "keyVault": {
           "id": "/subscriptions/11111aaa-1a11-1a11-a1aa-1a1111a111a1/resourceGroups/TestRG101/providers/Microsoft.KeyVault/vaults/TestKeyVault101"
         },
-        "secretName": "AdminDefaultPasswordSecret"
+        "secretName": "DefaultAdminPasswordSecret"
       }
     }
   }
 }</code></pre>
 <p>Next, deploy the template using PowerShell and pass this parameters file as explained here: <a href="/post/step-by-step-arm-templates-deploying-template-using-azure-powershell/">Deploying Template Using Azure PowerShell</a>. </p>
+<p>Example PowerShell cmdlet to deploy will look like:</p>
+<pre><code>New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile .\TemplateFile.json -TemplateParameterFile .\ParametersFile.json</code></pre>
 <p>Now that you know how to use values from Key Vaults, you can make the automated deployment of resources more secure in your environment.</p></p>
                         <br/>
                 
