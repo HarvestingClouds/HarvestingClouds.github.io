@@ -6,6 +6,86 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template</title>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>By providing PowerShell Scripts to Run after VM deployment via ARM Template, you can accomplish various activities. </p>
+<ul>
+<li>You can setup different features and roles on the VM. </li>
+<li>You can setup web server. </li>
+<li>You can setup SQL Database and configure it.</li>
+<li>You can configure custom policies</li>
+<li>And so on...</li>
+</ul>
+<p>You first need to have PowerShell script files uploaded to a storage account.
+To do this you add an <strong>Extension resource</strong> (<em>Microsoft.Compute/virtualMachines/extensions</em>) nested inside a VM. This extension resource should be of type &quot;<strong>CustomScriptExtension</strong>&quot;. You provide the URLs to the PowerShell scripts inside this custom script extension.</p>
+<h3>Preparation</h3>
+<p>As part of the preparation process you need to:</p>
+<ul>
+<li>Ensure that the PowerShell scripts are uploaded to the Storage Account and that you have the complete URL to the blob. </li>
+<li>Or you can upload the scripts to the GitHub and get the Raw file URL</li>
+<li>If there are more than one scripts then there should be one master script amongst all ps1 files which will internally invoke other files. This master file will be triggered via the template. Information of all file URLs will also be provided via the Template</li>
+</ul>
+<h3>Providing and configuring Scripts to Run After VM Deployment</h3>
+<p>Define the below resource to provide PowerShell scripts to be run after VM deployment:</p>
+<pre><code>{
+   "type": "Microsoft.Compute/virtualMachines/extensions",
+   "name": "MyCustomScriptExtension",
+   "apiVersion": "2015-05-01-preview",
+   "location": "[parameters('location')]",
+   "dependsOn": [
+       "[concat('Microsoft.Compute/virtualMachines/',parameters('vmName'))]"
+   ],
+   "properties": {
+       "publisher": "Microsoft.Compute",
+       "type": "CustomScriptExtension",
+       "typeHandlerVersion": "1.7",
+       "autoUpgradeMinorVersion":true,
+       "settings": {
+           "fileUris": [
+           "http://Yourstorageaccount.blob.core.windows.net/customscriptfiles/start.ps1",
+           "http://Yourstorageaccount.blob.core.windows.net/customscriptfiles/secondaryScript.ps1",
+
+       ],
+       "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File start.ps1"
+     }
+   }
+ }</code></pre>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>Both the files i.e. start.ps1 and secondaryScript.ps1 are picked up from the storage account after VM deployment. Ensure to replace the URLs with your actual storage account blob URLs. You can add more files if needed.</li>
+<li>The &quot;start.ps1&quot; is the main powerShell script which should be invoking the secondaryScript.ps1 internally</li>
+<li>CommandToExecutre property is used to invoke the start.ps1 powerShell script on the deployed VM</li>
+</ul>
+<h3>Passing Parameters to the PowerShell Script dynamically</h3>
+<p>To pass the parameters to the PowerShell script use commandToExecute property. </p>
+<p>One such example to pass the parameters is shown below:</p>
+<pre><code>       "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File start.ps1', ' -domainName ', parameters('domainNameParameter')]"</code></pre>
+<p>Note the use of &quot;concat&quot; helper function to create the value of the &quot;commandToExecute&quot;. Also note that there is starting and trailing space in the second argument of the concat i.e. &quot; -domainName &quot;.</p>
+<p>The parameter &quot;domainNameParameter&quot; should already be defined in the template in the parameters section. If the value of parameter &quot;domainNameParameter&quot; is &quot;testdomain.com&quot; then the dynamically generated command will become:</p>
+<pre><code>powershell.exe -ExecutionPolicy Unrestricted -File start.ps1 -domainName testdomain.com</code></pre>
+<h3>Securing the Access to the PowerShell Script File in Storage account</h3>
+<p>Let us assume you want to deploy Windows VM with Protected settings. Then use the below sample to provide the PowerShell files.</p>
+<pre><code>{
+    "publisher": "Microsoft.Compute",
+    "type": "CustomScriptExtension",
+    "typeHandlerVersion": "1.7",
+    "settings": {
+        "fileUris": [
+            "http: //Yourstorageaccount.blob.core.windows.net/customscriptfiles/start.ps1"
+        ]
+    },
+    "protectedSettings": {
+        "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -start.ps1",
+        "storageAccountName": "yourStorageAccountName",
+        "storageAccountKey": "yourStorageAccountKey"
+    }
+}</code></pre>
+<p>Note the use of &quot;protectedSettings&quot; above. This time you also specify the Storage Account Name and the Storage Account Key.</p>
+<p>You can also refer the official documentation here: <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-extensions-customscript/">Windows VM Custom Script extensions with Azure Resource Manager templates</a>.</p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-providing-powershell-scripts-to-run-after-vm-deployment-via-arm-template</link>
+<pubDate>Wed, 19 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Step by Step ARM Templates - Using Key Vault to Securely Provide Information in ARM Templates</title>
 <description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
 <p>When providing passwords and other secure and confidential information in ARM Templates, you need to ensure that you don't hard code these values anywhere. You don't need to compromise the security of the system while trying to automate deployments. Your end goal is to try to automate as much as possible and reduce manual involvement. </p>

@@ -72,99 +72,87 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates">Step by Step ARM Templates - Using Key Vault to Securely Provide Information in ARM Templates</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-providing-powershell-scripts-to-run-after-vm-deployment-via-arm-template">Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Oct 18, 2016
+                    <span class="glyphicon glyphicon-time"></span> Oct 19, 2016
                 
                         <hr>
                         <p class="post-content"><p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
-<p>When providing passwords and other secure and confidential information in ARM Templates, you need to ensure that you don't hard code these values anywhere. You don't need to compromise the security of the system while trying to automate deployments. Your end goal is to try to automate as much as possible and reduce manual involvement. </p>
-<p><strong>Key Vaults</strong> are there to solve this problem without compromising any security. In fact, they make the whole solution more secure with least manual intervention.</p>
-<h3>Setting up the Key Vault</h3>
-<p>We first need to setup the Key Vault in Azure to be able to use it via ARM Template parameters.</p>
-<ol>
-    <li>
-<b>Create a Key Vault in Azure</b> by going to <i>New -> Security + Identity -> Key Vault</i>. Provide a name, subscription, resource group etc. and provision the Key Vault. Once it is created navigate to it by clicking on "More Services" and searching for Key Vault. Click on the name of the vault you created. E.g. In this example we have named the key vault to "TestKeyVault101".
-
-<br />
-<b>Note</b> that this feature is in Preview  at the time of writing of this blog.
-
-    </li>
-
-    <li>
-        Next, we need to <b>Add a Secret</b> in the key vault. Click on the Secrets and then the + Add button at the top, as shown below:
-<br />
-<img alt="Adding Secret" src="/images/1476818644580676d447b16.png" />
-<br />
-Next, in the "Create a secret" blade, set the Upload Options to Manual. Provide a name and value to the secret. Value is the password you want to securely save.
-Ensure that the Enabled is set to Yes. Optionally you can set the activation and expiration dates. In this example, we are setting the Secret Name to "DefaultAdminPasswordSecret".
-<img alt="Creating Secret" src="/images/1476818650580676da89fee.png" />
-    </li>
-
-    <li>
-        Next, we will set the <b>Access Policies </b> to provide access to the user under the context of which the template will be deployed. This is the user which will be accessing the Key Vault. Go to Key Vault settings and select Access Policies. Add the new user as shown below:
-
-<img alt="Access Policies" src="/images/14768190995806789bad0c4.png" />
-<br />
-
-    </li>
-
-    <li>
-        Next, we will set the <b>Advanced Access Policies </b> to indicate that this key vault can be accessed via ARM Templates. Go to Key Vault settings and select Advanced Access Policies. Ensure that the checkbox for "<i>Enable access to Azure Resource Manager for template deployment</i>" is checked as shown below:
-
-<img alt="Access Policies" src="/images/1476819105580678a1cfc9f.png" />
-<br /> 
-
-    </li>
-
-</ol>
-<p>We are now all set with our Key Vault. Next, we will be using the secret we created to set the local Administrator user's password.</p>
-<h3>Using the Key Vault Secret in ARM Template</h3>
-<p>Let us assume that you have a JSON ARM Template which deploys a VM. One of the parameters in this template is AdminPassword. You want to use the Key Vault Secret to provide the value for this parameter. </p>
-<p><strong>First</strong>, ensure that the parameter is declared as <i>securestring</i> as shown below:</p>
-<pre><code>"adminPassword": {
-    "type": "securestring",
-    "metadata": {
-        "description": "Password for local admin account."
-    }
-}</code></pre>
-<p><strong>Next</strong>, we need to use the parameters file for this template. If you don't have one already create a new one. We can provide the reference to the Key Vault Secret as the value of admin user's password parameter in this file. General Syntax of providing reference is as shown follow:</p>
-<pre><code>"adminPassword": {
-  "reference": {
-    "keyVault": {
-      "id": "Key Vault Id Here"
-    },
-    "secretName": "Name of the secret in Azure Key Vault"
-  }
-}</code></pre>
-<p>Now the ID in the above Syntax can be provided as:</p>
-<p><em>/subscriptions/{guid}/resourceGroups/{group-name}/providers/Microsoft.KeyVault/vaults/{vault-name}</em>. </p>
-<p>Note to replace the <em>{guid}</em> with actual GUID for the subscription (without the curly braces), replace <em>{group-name}</em> with the actual name of the resource group and <em>{vault-name}</em> with the actual name of the Key Vault.</p>
-<p>You can also find the Resource ID for the Key Vault by navigating to it in the Azure Portal and then checking it's properties as shown below:</p>
-<p><img src="/images/147682308858068830f2f8e.png" alt="Key Vault Resource ID" /></p>
-<p>The complete parameter file looks like below:</p>
+<p>By providing PowerShell Scripts to Run after VM deployment via ARM Template, you can accomplish various activities. </p>
+<ul>
+<li>You can setup different features and roles on the VM. </li>
+<li>You can setup web server. </li>
+<li>You can setup SQL Database and configure it.</li>
+<li>You can configure custom policies</li>
+<li>And so on...</li>
+</ul>
+<p>You first need to have PowerShell script files uploaded to a storage account.
+To do this you add an <strong>Extension resource</strong> (<em>Microsoft.Compute/virtualMachines/extensions</em>) nested inside a VM. This extension resource should be of type &quot;<strong>CustomScriptExtension</strong>&quot;. You provide the URLs to the PowerShell scripts inside this custom script extension.</p>
+<h3>Preparation</h3>
+<p>As part of the preparation process you need to:</p>
+<ul>
+<li>Ensure that the PowerShell scripts are uploaded to the Storage Account and that you have the complete URL to the blob. </li>
+<li>Or you can upload the scripts to the GitHub and get the Raw file URL</li>
+<li>If there are more than one scripts then there should be one master script amongst all ps1 files which will internally invoke other files. This master file will be triggered via the template. Information of all file URLs will also be provided via the Template</li>
+</ul>
+<h3>Providing and configuring Scripts to Run After VM Deployment</h3>
+<p>Define the below resource to provide PowerShell scripts to be run after VM deployment:</p>
 <pre><code>{
-  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "OtherParameter": {
-      "value": "otherValue"
+   "type": "Microsoft.Compute/virtualMachines/extensions",
+   "name": "MyCustomScriptExtension",
+   "apiVersion": "2015-05-01-preview",
+   "location": "[parameters('location')]",
+   "dependsOn": [
+       "[concat('Microsoft.Compute/virtualMachines/',parameters('vmName'))]"
+   ],
+   "properties": {
+       "publisher": "Microsoft.Compute",
+       "type": "CustomScriptExtension",
+       "typeHandlerVersion": "1.7",
+       "autoUpgradeMinorVersion":true,
+       "settings": {
+           "fileUris": [
+           "http://Yourstorageaccount.blob.core.windows.net/customscriptfiles/start.ps1",
+           "http://Yourstorageaccount.blob.core.windows.net/customscriptfiles/secondaryScript.ps1",
+
+       ],
+       "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File start.ps1"
+     }
+   }
+ }</code></pre>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>Both the files i.e. start.ps1 and secondaryScript.ps1 are picked up from the storage account after VM deployment. Ensure to replace the URLs with your actual storage account blob URLs. You can add more files if needed.</li>
+<li>The &quot;start.ps1&quot; is the main powerShell script which should be invoking the secondaryScript.ps1 internally</li>
+<li>CommandToExecutre property is used to invoke the start.ps1 powerShell script on the deployed VM</li>
+</ul>
+<h3>Passing Parameters to the PowerShell Script dynamically</h3>
+<p>To pass the parameters to the PowerShell script use commandToExecute property. </p>
+<p>One such example to pass the parameters is shown below:</p>
+<pre><code>       "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File start.ps1', ' -domainName ', parameters('domainNameParameter')]"</code></pre>
+<p>Note the use of &quot;concat&quot; helper function to create the value of the &quot;commandToExecute&quot;. Also note that there is starting and trailing space in the second argument of the concat i.e. &quot; -domainName &quot;.</p>
+<p>The parameter &quot;domainNameParameter&quot; should already be defined in the template in the parameters section. If the value of parameter &quot;domainNameParameter&quot; is &quot;testdomain.com&quot; then the dynamically generated command will become:</p>
+<pre><code>powershell.exe -ExecutionPolicy Unrestricted -File start.ps1 -domainName testdomain.com</code></pre>
+<h3>Securing the Access to the PowerShell Script File in Storage account</h3>
+<p>Let us assume you want to deploy Windows VM with Protected settings. Then use the below sample to provide the PowerShell files.</p>
+<pre><code>{
+    "publisher": "Microsoft.Compute",
+    "type": "CustomScriptExtension",
+    "typeHandlerVersion": "1.7",
+    "settings": {
+        "fileUris": [
+            "http: //Yourstorageaccount.blob.core.windows.net/customscriptfiles/start.ps1"
+        ]
     },
-    "adminPassword": {
-      "reference": {
-        "keyVault": {
-          "id": "/subscriptions/11111aaa-1a11-1a11-a1aa-1a1111a111a1/resourceGroups/TestRG101/providers/Microsoft.KeyVault/vaults/TestKeyVault101"
-        },
-        "secretName": "DefaultAdminPasswordSecret"
-      }
+    "protectedSettings": {
+        "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -start.ps1",
+        "storageAccountName": "yourStorageAccountName",
+        "storageAccountKey": "yourStorageAccountKey"
     }
-  }
 }</code></pre>
-<p>Next, deploy the template using PowerShell and pass this parameters file as explained here: <a href="/post/step-by-step-arm-templates-deploying-template-using-azure-powershell/">Deploying Template Using Azure PowerShell</a>. </p>
-<p>Example PowerShell cmdlet to deploy will look like:</p>
-<pre><code>New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile .\TemplateFile.json -TemplateParameterFile .\ParametersFile.json</code></pre>
-<p>Now that you know how to use values from Key Vaults, you can make the automated deployment of resources more secure in your environment.</p></p>
+<p>Note the use of &quot;protectedSettings&quot; above. This time you also specify the Storage Account Name and the Storage Account Key.</p>
+<p>You can also refer the official documentation here: <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-extensions-customscript/">Windows VM Custom Script extensions with Azure Resource Manager templates</a>.</p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -177,7 +165,7 @@ Ensure that the Enabled is set to Yes. Optionally you can set the activation and
                                 <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/KeyVault">KeyVault</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/PowerShell">PowerShell</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
                         </div>
                 
@@ -225,11 +213,11 @@ Ensure that the Enabled is set to Yes. Optionally you can set the activation and
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-providing-powershell-scripts-to-run-after-vm-deployment-via-arm-template">Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates">Step by Step ARM Templates - Using Key Vault to Securely Provide Information in ARM Templates</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams">Step by Step ARM Templates - Visualizing ARM Templates and Generating Diagrams</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-automation-preview-solution-start-stop-vms-during-off-hours">Azure Automation Preview Solution - Start/Stop VMs during off-hours </a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-remoteapp-is-going-away-new-purchases-in-portal-are-now-stopped">Azure RemoteApp is going away. New Purchases in portal are now stopped </a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index">Step by Step Azure Resource Manager (ARM) Templates - Index</a></li>
                 </ul>
             </div>
         
@@ -268,16 +256,16 @@ Ensure that the Enabled is set to Yes. Optionally you can set the activation and
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">activedirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
-<a style="font-size: 27px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="18 total posts" data-original-title="19 total posts" data-toggle="tooltip">ARM</a>
+<a style="font-size: 27px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="19 total posts" data-original-title="20 total posts" data-toggle="tooltip">ARM</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ASR</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
-<a style="font-size: 21px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
-<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">Azure</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
+<a style="font-size: 20px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="22 total posts" data-original-title="23 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
-<a style="font-size: 29px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="20 total posts" data-original-title="21 total posts" data-toggle="tooltip">AzureResourceManager</a>
+<a style="font-size: 29px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
@@ -290,15 +278,15 @@ Ensure that the Enabled is set to Yes. Optionally you can set the activation and
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/json" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">JSON</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/keyvault" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">KeyVault</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PowerShell</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">powershell</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">PowerShell</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/remoteapp" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">RemoteApp</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/runbooks" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Runbooks</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/sample" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Sample</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/script" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Script</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/storage" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">storage</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/tags" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Tags</a>
-<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="17 total posts" data-original-title="18 total posts" data-toggle="tooltip">Templates</a>
+<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="18 total posts" data-original-title="19 total posts" data-toggle="tooltip">Templates</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualmachine</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/visualstudio" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">VisualStudio</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vm</a>
