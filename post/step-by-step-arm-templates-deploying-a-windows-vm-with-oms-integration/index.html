@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 5 - Outputs :: Harvesting Clouds</title>
+    <title>Step by Step ARM Templates - Deploying a Windows VM with OMS integration :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -72,48 +72,63 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 5 - Outputs</h3>
+                <h3>Step by Step ARM Templates - Deploying a Windows VM with OMS integration</h3>
                 <span class="glyphicon glyphicon-user"></span> @20aman
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> Aug 30, 2016
+                <span class="glyphicon glyphicon-time"></span> Oct 16, 2016
                 <hr>
 
                 <p class="post-content"><p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
-<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
+<p>You can deploy a Windows VM with OMS integration. You can have the OMS extension installed. And then you can onboard the VM to a specified workspace. </p>
+<h3>Prerequisites</h3>
+<p>You need already have an OMS workspace setup in your subscription. You need to have the following information about this OMS Workspace:</p>
 <ol>
-<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
-<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters</a></li>
-<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">Variables</a></li>
-<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">Resources</a></li>
-<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">Outputs - This blog post</a></li>
+<li>OMS workspace ID</li>
+<li>OMS workspace Key</li>
 </ol>
-<h2>Outputs</h2>
-<p>This section is used to output any values after the deployment of the ARM Template. This can output any Ids or connection strings based on the deployed resources. </p>
-<p>This is a single JSON object with various output objects (just like Parameters. The overall JSON structure looks like below:</p>
-<pre><code>"outputs": { 
-    "output1" : {
-                     "type":"string",
-                     "value": "value1"
-      },
-    "output2" : {
-                     "type":"string",
-                     "value": "value2"
-      },
-}</code></pre>
-<p>Each output object has 2 properties:</p>
-<ol>
-<li>Type - Data type of the output</li>
-<li>Value - value of the output</li>
-</ol>
-<p>A real life example with look like below:</p>
-<pre><code>"outputs": {
-    "adminUsername": {
-        "type": "string",
-        "value": "[parameters('adminUsername')]"
+<p>You may obtain the workspace ID and key by going to the Connected Sources tab in the Settings page in the OMS Portal or to the Direct Agent blade in the Azure portal.</p>
+<p>In the Azure Portal go to the Log Analytics -&gt; Click on the OMS Workspace you want to use. Click on the &quot;OMS Portal&quot; to navigate to the OMS Portal.</p>
+<p><img src="/images/14768464545806e3762d97c.png" alt="Link to OMS Portal" /></p>
+<p>In the OMS portal, navigate to the Settings.</p>
+<p><img src="/images/14768422705806d31e60125.png" alt="OMS Portal Settings" /></p>
+<p>In Settings, go to the Connected Sources -&gt; Windows Servers. Note the Workspace ID and the Primary Key as shown below:</p>
+<p><img src="/images/14768422755806d323b2caa.png" alt="OMS Portal ID and Key" /></p>
+<h3>ARM Template Sections for OMS integration</h3>
+<p>Within the VM resource, you need to define the OMS extension as shown below:</p>
+<pre><code>  "resources": [
+    {
+      "type": "extensions",
+      "name": "Microsoft.EnterpriseCloud.Monitoring",
+      "apiVersion": "[variables('apiVersion')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+      ],
+      "properties": {
+        "publisher": "Microsoft.EnterpriseCloud.Monitoring",
+        "type": "MicrosoftMonitoringAgent",
+        "typeHandlerVersion": "1.0",
+        "autoUpgradeMinorVersion": true,
+        "settings": {
+          "workspaceId": "Your Workspace ID Here"
+        },
+        "protectedSettings": {
+          "workspaceKey": "Your Workspace Key Here"
+        }
+      }
     }
-}</code></pre>
-<p>The above example will output the administrator Username using the parameter from the template.</p>
-<p>That's all there is to Outputs in ARM Templates. If you have any doubts, please comment in the below section. Use the links at the Top to know all about other components in an ARM Template.</p></p>
+  ]</code></pre>
+<p>The above configures the OMS on the VM. Note that you need the nested extension resource of type &quot;Microsoft.EnterpriseCloud.Monitoring&quot;. </p>
+<p>Also, note the Workspace Id and Key in the template section above. Enter the values as per your environment which we found in the Prerequisites section above. </p>
+<h3>Providing the Workspace ID and Workspace Key Dynamically</h3>
+<p>You can also provide the Workspace Id and the Workspace Key dynamically by only using the OMS Workspace name. Follow the below sample. Note the use of reference, listKeys, and resourceId helper functions.</p>
+<pre><code>"settings": {
+          "workspaceId": "[reference(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName')), '2015-03-20').customerId]"
+        },
+        "protectedSettings": {
+          "workspaceKey": "[listKeys(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName')), '2015-03-20').primarySharedKey]"
+        }</code></pre>
+<p><strong>Reference:</strong> You can check the complete quick starter template for OMS integration here: <a href="https://github.com/Azure/azure-quickstart-templates/tree/master/201-oms-extension-windows-vm">GitHub Sample - Deployment of a Windows VM with OMS Extension</a></p></p>
                 <br/><br/>
 
                 <div class="post-info">

@@ -59,7 +59,7 @@ To do this you add an <strong>Extension resource</strong> (<em>Microsoft.Compute
 <h3>Passing Parameters to the PowerShell Script dynamically</h3>
 <p>To pass the parameters to the PowerShell script use commandToExecute property. </p>
 <p>One such example to pass the parameters is shown below:</p>
-<pre><code>       "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File start.ps1', ' -domainName ', parameters('domainNameParameter')]"</code></pre>
+<pre><code>"commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File start.ps1', ' -domainName ', parameters('domainNameParameter')]"</code></pre>
 <p>Note the use of &quot;concat&quot; helper function to create the value of the &quot;commandToExecute&quot;. Also note that there is starting and trailing space in the second argument of the concat i.e. &quot; -domainName &quot;.</p>
 <p>The parameter &quot;domainNameParameter&quot; should already be defined in the template in the parameters section. If the value of parameter &quot;domainNameParameter&quot; is &quot;testdomain.com&quot; then the dynamically generated command will become:</p>
 <pre><code>powershell.exe -ExecutionPolicy Unrestricted -File start.ps1 -domainName testdomain.com</code></pre>
@@ -237,6 +237,62 @@ Take a screenshot once you have repositioned the elements as per your requiremen
 <p>In conclusion, ARMVIZ can enable you to easily visualize your ARM Templates. It can empower you to generate diagrams for your documentation and to present to your team.</p>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams</link>
 <pubDate>Mon, 17 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Step by Step ARM Templates - Deploying a Windows VM with OMS integration</title>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>You can deploy a Windows VM with OMS integration. You can have the OMS extension installed. And then you can onboard the VM to a specified workspace. </p>
+<h3>Prerequisites</h3>
+<p>You need already have an OMS workspace setup in your subscription. You need to have the following information about this OMS Workspace:</p>
+<ol>
+<li>OMS workspace ID</li>
+<li>OMS workspace Key</li>
+</ol>
+<p>You may obtain the workspace ID and key by going to the Connected Sources tab in the Settings page in the OMS Portal or to the Direct Agent blade in the Azure portal.</p>
+<p>In the Azure Portal go to the Log Analytics -&gt; Click on the OMS Workspace you want to use. Click on the &quot;OMS Portal&quot; to navigate to the OMS Portal.</p>
+<p><img src="/images/14768464545806e3762d97c.png" alt="Link to OMS Portal" /></p>
+<p>In the OMS portal, navigate to the Settings.</p>
+<p><img src="/images/14768422705806d31e60125.png" alt="OMS Portal Settings" /></p>
+<p>In Settings, go to the Connected Sources -&gt; Windows Servers. Note the Workspace ID and the Primary Key as shown below:</p>
+<p><img src="/images/14768422755806d323b2caa.png" alt="OMS Portal ID and Key" /></p>
+<h3>ARM Template Sections for OMS integration</h3>
+<p>Within the VM resource, you need to define the OMS extension as shown below:</p>
+<pre><code>  "resources": [
+    {
+      "type": "extensions",
+      "name": "Microsoft.EnterpriseCloud.Monitoring",
+      "apiVersion": "[variables('apiVersion')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+      ],
+      "properties": {
+        "publisher": "Microsoft.EnterpriseCloud.Monitoring",
+        "type": "MicrosoftMonitoringAgent",
+        "typeHandlerVersion": "1.0",
+        "autoUpgradeMinorVersion": true,
+        "settings": {
+          "workspaceId": "Your Workspace ID Here"
+        },
+        "protectedSettings": {
+          "workspaceKey": "Your Workspace Key Here"
+        }
+      }
+    }
+  ]</code></pre>
+<p>The above configures the OMS on the VM. Note that you need the nested extension resource of type &quot;Microsoft.EnterpriseCloud.Monitoring&quot;. </p>
+<p>Also, note the Workspace Id and Key in the template section above. Enter the values as per your environment which we found in the Prerequisites section above. </p>
+<h3>Providing the Workspace ID and Workspace Key Dynamically</h3>
+<p>You can also provide the Workspace Id and the Workspace Key dynamically by only using the OMS Workspace name. Follow the below sample. Note the use of reference, listKeys, and resourceId helper functions.</p>
+<pre><code>"settings": {
+          "workspaceId": "[reference(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName')), '2015-03-20').customerId]"
+        },
+        "protectedSettings": {
+          "workspaceKey": "[listKeys(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName')), '2015-03-20').primarySharedKey]"
+        }</code></pre>
+<p><strong>Reference:</strong> You can check the complete quick starter template for OMS integration here: <a href="https://github.com/Azure/azure-quickstart-templates/tree/master/201-oms-extension-windows-vm">GitHub Sample - Deployment of a Windows VM with OMS Extension</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-deploying-a-windows-vm-with-oms-integration</link>
+<pubDate>Sun, 16 Oct 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure Automation Preview Solution - Start/Stop VMs during off-hours </title>
