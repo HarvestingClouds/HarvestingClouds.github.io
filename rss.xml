@@ -6,18 +6,6 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
-<title>Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It</title>
-<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
-<p>This blog is for you if:</p>
-<ul>
-<li>You want to backup an Infrastructure configuration/setup in Azure and want to redeploy it to another environment then this blog is for you. </li>
-<li>You want to create similar infrastructure as one of an existing deployments in Azure</li>
-<li>You want to modify the configurations of existing Azure IaaS infrastructure and redeploy various elements</li>
-</ul>]]></description>
-<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it</link>
-<pubDate>Wed, 19 Oct 2016 00:00:00 +0500</pubDate>
-</item>
-<item>
 <title>Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template</title>
 <description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
 <p>By providing PowerShell Scripts to Run after VM deployment via ARM Template, you can accomplish various activities. </p>
@@ -390,6 +378,18 @@ Take a screenshot once you have repositioned the elements as per your requiremen
 <p><strong>In conclusion,</strong> I will recommend to wait and look out for Citrix XenApp express solution. If you need new remote application solutions then you need to either deploy your own solution or use one of the hosted solutions by 3rd party vendors. You can read more about the official announcement here: <a href="https://blogs.technet.microsoft.com/enterprisemobility/2016/08/12/application-remoting-and-the-cloud/?WT.mc_id=azurebg_email_Trans_1218_No_Usage_Azure_RemoteApp">Application Remoting and the Cloud</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-remoteapp-is-going-away-new-purchases-in-portal-are-now-stopped</link>
 <pubDate>Mon, 10 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It</title>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>This blog post is for you if:</p>
+<ul>
+<li>You want to backup an Infrastructure configuration/setup in Azure and want to redeploy it to another environment then this blog is for you. </li>
+<li>You want to create similar infrastructure as one of existing deployments in Azure</li>
+<li>You want to modify the configurations of existing Azure IaaS infrastructure and redeploy various elements</li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it</link>
+<pubDate>Sun, 09 Oct 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Script Sample - Generate Azure Resources Report by Tags</title>

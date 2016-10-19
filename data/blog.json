@@ -30,26 +30,6 @@
 	"posts": [
 		{
 			"author": "@20aman",
-			"title": "Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It",
-			"postDate": "19-10-2016",
-			"tags": [
-				"ARM",
-				"Azure",
-				"AzureResourceManager",
-				"Templates"
-			],
-			"category": "Azure",
-			"body": "<p><strong>Index<\/strong> of all blogs in this <strong>Step by Step ARM Templates series<\/strong> is located here: <a href=\"\/post\/step-by-step-azure-resource-manager-arm-templates-index\/\">Step by Step Azure Resource Manager (ARM) Templates - Index<\/a><\/p>\n<p>This blog is for you if:<\/p>\n<ul>\n<li>You want to backup an Infrastructure configuration\/setup in Azure and want to redeploy it to another environment then this blog is for you. <\/li>\n<li>You want to create similar infrastructure as one of an existing deployments in Azure<\/li>\n<li>You want to modify the configurations of existing Azure IaaS infrastructure and redeploy various elements<\/li>\n<\/ul>",
-			"addpost": "addpost",
-			"dated": "Oct 19, 2016",
-			"slug": "step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it",
-			"categoryslug": "azure",
-			"status": "publised",
-			"summary": "\n<p><strong>Index<\/strong> of all blogs in this <strong>Step by Step ARM Templates series<\/strong> is located here: <a href=\"\/post\/step-by-step-azure-resource-manager-arm-templates-index\/\">Step by Step Azure Resource Manager (ARM) Templates - Index<\/a><\/p>\n<p>This blog is for you if:<\/p>\n<ul><li>You...<\/li><\/ul>\n",
-			"showbody": "1"
-		},
-		{
-			"author": "@20aman",
 			"title": "Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template",
 			"postDate": "19-10-2016",
 			"tags": [
@@ -195,6 +175,27 @@
 			"categoryslug": "azure",
 			"status": "publised",
 			"summary": "\n<p>Today I got an email saying \"Action recommended: Deleting unnecessary RemoteApp collections can save you money\". This email is also a reminder from Microsoft that the RemoteApp is going away. We need to plan for the migration for the existing RemoteApps to other platforms.<\/p>\n<h3>What ...<\/h3>\n",
+			"showbody": "1"
+		},
+		{
+			"author": "@20aman",
+			"title": "Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It",
+			"postDate": "19-10-2016",
+			"tags": [
+				"ARM",
+				"Azure",
+				"AzureResourceManager",
+				"Templates"
+			],
+			"category": "Azure",
+			"body": "<p><strong>Index<\/strong> of all blogs in this <strong>Step by Step ARM Templates series<\/strong> is located here: <a href=\"\/post\/step-by-step-azure-resource-manager-arm-templates-index\/\">Step by Step Azure Resource Manager (ARM) Templates - Index<\/a><\/p>\n<p>This blog post is for you if:<\/p>\n<ul>\n<li>You want to backup an Infrastructure configuration\/setup in Azure and want to redeploy it to another environment then this blog is for you. <\/li>\n<li>You want to create similar infrastructure as one of existing deployments in Azure<\/li>\n<li>You want to modify the configurations of existing Azure IaaS infrastructure and redeploy various elements<\/li>\n<\/ul>",
+			"addpost": "addpost",
+			"dated": "Oct 09, 2016",
+			"slug": "step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it",
+			"categoryslug": "azure",
+			"status": "publised",
+			"summary": "\n<p><strong>Index<\/strong> of all blogs in this <strong>Step by Step ARM Templates series<\/strong> is located here: <a href=\"\/post\/step-by-step-azure-resource-manager-arm-templates-index\/\">Step by Step Azure Resource Manager (ARM) Templates - Index<\/a><\/p>\n<p>This blog post is for you if:<\/p>\n<ul><l...><\/l...><\/ul>\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		},
 		{
@@ -848,26 +849,6 @@
 	"latestPosts": [
 		{
 			"author": "@20aman",
-			"title": "Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It",
-			"postDate": "19-10-2016",
-			"tags": [
-				"ARM",
-				"Azure",
-				"AzureResourceManager",
-				"Templates"
-			],
-			"category": "Azure",
-			"body": "<p><strong>Index<\/strong> of all blogs in this <strong>Step by Step ARM Templates series<\/strong> is located here: <a href=\"\/post\/step-by-step-azure-resource-manager-arm-templates-index\/\">Step by Step Azure Resource Manager (ARM) Templates - Index<\/a><\/p>\n<p>This blog is for you if:<\/p>\n<ul>\n<li>You want to backup an Infrastructure configuration\/setup in Azure and want to redeploy it to another environment then this blog is for you. <\/li>\n<li>You want to create similar infrastructure as one of an existing deployments in Azure<\/li>\n<li>You want to modify the configurations of existing Azure IaaS infrastructure and redeploy various elements<\/li>\n<\/ul>",
-			"addpost": "addpost",
-			"dated": "Oct 19, 2016",
-			"slug": "step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it",
-			"categoryslug": "azure",
-			"status": "publised",
-			"summary": "\n<p><strong>Index<\/strong> of all blogs in this <strong>Step by Step ARM Templates series<\/strong> is located here: <a href=\"\/post\/step-by-step-azure-resource-manager-arm-templates-index\/\">Step by Step Azure Resource Manager (ARM) Templates - Index<\/a><\/p>\n<p>This blog is for you if:<\/p>\n<ul><li>You...<\/li><\/ul>\n",
-			"showbody": "1"
-		},
-		{
-			"author": "@20aman",
 			"title": "Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template",
 			"postDate": "19-10-2016",
 			"tags": [
@@ -951,13 +932,11 @@
 			"summary": "\n<p><strong>Index<\/strong> of all blogs in this <strong>Step by Step ARM Templates series<\/strong> is located here: <a href=\"\/post\/step-by-step-azure-resource-manager-arm-templates-index\/\">Step by Step Azure Resource Manager (ARM) Templates - Index<\/a><\/p>\n<p>You can deploy a Windows VM with OMS inte...<\/p>\n",
 			"prevStatus": "publised",
 			"showbody": "1"
-		}
-	],
-	"homePosts": [
+		},
 		{
 			"author": "@20aman",
-			"title": "Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It",
-			"postDate": "19-10-2016",
+			"title": "Step by Step Azure Resource Manager (ARM) Templates - Index",
+			"postDate": "15-08-2016",
 			"tags": [
 				"ARM",
 				"Azure",
@@ -965,13 +944,39 @@
 				"Templates"
 			],
 			"category": "Azure",
-			"body": "<p><strong>Index<\/strong> of all blogs in this <strong>Step by Step ARM Templates series<\/strong> is located here: <a href=\"\/post\/step-by-step-azure-resource-manager-arm-templates-index\/\">Step by Step Azure Resource Manager (ARM) Templates - Index<\/a><\/p>\n<p>This blog is for you if:<\/p>\n<ul>\n<li>You want to backup an Infrastructure configuration\/setup in Azure and want to redeploy it to another environment then this blog is for you. <\/li>\n<li>You want to create similar infrastructure as one of an existing deployments in Azure<\/li>\n<li>You want to modify the configurations of existing Azure IaaS infrastructure and redeploy various elements<\/li>\n<\/ul>",
-			"addpost": "addpost",
-			"dated": "Oct 19, 2016",
-			"slug": "step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it",
+			"body": "<p><strong>Azure Resource Manager (ARM) Template<\/strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and repeatedly.<\/p>\n<p>ARM Templates can be used for the deployment of resources on both Azure and Azure Stack. Using these templates for all deployments provides you with various <strong>benefits<\/strong> including:<\/p>\n<ul>\n<li><strong>Declarative Deployment<\/strong> \u2013 All you need to do is declare what you need to deploy. You don't need to create any complex rules or write lengthy scripts.<\/li>\n<li><strong>Idempotency<\/strong> \u2013 You can deploy the same template over and over again without affecting the current resources.<\/li>\n<li><strong>Predictability<\/strong> - Using Templates you can have accurate predictability when performing large deployments. You reduce any manual errors.<\/li>\n<li><strong>Repitition without Errors<\/strong> - You can deploy the same infrastructure over and over again (e.g. in Dev-test environments and then in production).<\/li>\n<\/ul>\n<p>This series of posts try to decode and understand the ARM Templates &quot;Step By Step&quot;.<\/p>\n<p>This post is an index of all the posts, in sequence, for understanding the Azure Resource Manager (ARM) Templates. This post will be updated regularly as more posts on this topic are added.<\/p>\n<ol>\n<li><a href=\"#\">Index<\/a> <\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-json-101-for-it-administrators\/\">JSON 101 for IT Administrators<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components\/\">What is in an ARM Template - Understanding All Components<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters\/\">What is in an ARM Template - Understanding Components 2 - Parameters<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables\/\">What is in an ARM Template - Understanding Components 3 - Variables<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources\/\">What is in an ARM Template - Understanding Components 4 - Resources<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs\/\">What is in an ARM Template - Understanding Components 5 - Outputs<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-helper-functions\/\">Helper Functions in ARM Templates<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-building-your-first-arm-template\/\">Building your first ARM Template<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-deploying-template-using-azure-portal\/\">Deploying Template Using Azure Portal<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-deploying-template-using-azure-powershell\/\">Deploying Template Using Azure PowerShell<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-creating-parameters-file-for-an-arm-template\/\">Creating Parameters file for an ARM Template<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio\/\">Authoring ARM Templates using Visual Studio<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-deploying-arm-templates-using-visual-studio\/\">Deploying ARM Templates using Visual Studio<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-iterating-and-creating-multiple-instances-of-a-resource\/\">Iterating and creating multiple instances of a resource<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams\/\">Visualizing ARM Templates and Generating Diagrams<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates\/\">Using Key Vault to Securely Provide Information in ARM Templates<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-providing-powershell-scripts-to-run-after-vm-deployment-via-arm-template\/\">Providing PowerShell Scripts to Run after VM deployment via ARM Template<\/a><\/li>\n<li><a href=\"\/post\/step-by-step-arm-templates-deploying-a-windows-vm-with-oms-integration\/\">Deploying a Windows VM with OMS integration<\/a><\/li>\n<\/ol>",
+			"savedraft": "savedraft",
+			"dated": "Oct 15, 2016",
+			"slug": "step-by-step-azure-resource-manager-arm-templates-index",
 			"categoryslug": "azure",
 			"status": "publised",
-			"summary": "\n<p><strong>Index<\/strong> of all blogs in this <strong>Step by Step ARM Templates series<\/strong> is located here: <a href=\"\/post\/step-by-step-azure-resource-manager-arm-templates-index\/\">Step by Step Azure Resource Manager (ARM) Templates - Index<\/a><\/p>\n<p>This blog is for you if:<\/p>\n<ul><li>You...<\/li><\/ul>\n",
+			"summary": "\n<p><strong>Azure Resource Manager (ARM) Template<\/strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and r...<\/p>\n",
+			"addpost": "addpost",
+			"prevStatus": "publised",
+			"showbody": "1"
+		}
+	],
+	"homePosts": [
+		{
+			"author": "@20aman",
+			"title": "Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template",
+			"postDate": "19-10-2016",
+			"tags": [
+				"ARM",
+				"Azure",
+				"AzureResourceManager",
+				"PowerShell",
+				"Templates"
+			],
+			"category": "Azure",
+			"body": "<p><strong>Index<\/strong> of all blogs in this <strong>Step by Step ARM Templates series<\/strong> is located here: <a href=\"\/post\/step-by-step-azure-resource-manager-arm-templates-index\/\">Step by Step Azure Resource Manager (ARM) Templates - Index<\/a><\/p>\n<p>By providing PowerShell Scripts to Run after VM deployment via ARM Template, you can accomplish various activities. <\/p>\n<ul>\n<li>You can setup different features and roles on the VM. <\/li>\n<li>You can setup web server. <\/li>\n<li>You can setup SQL Database and configure it.<\/li>\n<li>You can configure custom policies<\/li>\n<li>And so on...<\/li>\n<\/ul>\n<p>You first need to have PowerShell script files uploaded to a storage account.\nTo do this you add an <strong>Extension resource<\/strong> (<em>Microsoft.Compute\/virtualMachines\/extensions<\/em>) nested inside a VM. This extension resource should be of type &quot;<strong>CustomScriptExtension<\/strong>&quot;. You provide the URLs to the PowerShell scripts inside this custom script extension.<\/p>\n<h3>Preparation<\/h3>\n<p>As part of the preparation process you need to:<\/p>\n<ul>\n<li>Ensure that the PowerShell scripts are uploaded to the Storage Account and that you have the complete URL to the blob. <\/li>\n<li>Or you can upload the scripts to the GitHub and get the Raw file URL<\/li>\n<li>If there are more than one scripts then there should be one master script amongst all ps1 files which will internally invoke other files. This master file will be triggered via the template. Information of all file URLs will also be provided via the Template<\/li>\n<\/ul>\n<h3>Providing and configuring Scripts to Run After VM Deployment<\/h3>\n<p>Define the below resource to provide PowerShell scripts to be run after VM deployment:<\/p>\n<pre><code>{\n   \"type\": \"Microsoft.Compute\/virtualMachines\/extensions\",\n   \"name\": \"MyCustomScriptExtension\",\n   \"apiVersion\": \"2015-05-01-preview\",\n   \"location\": \"[parameters('location')]\",\n   \"dependsOn\": [\n       \"[concat('Microsoft.Compute\/virtualMachines\/',parameters('vmName'))]\"\n   ],\n   \"properties\": {\n       \"publisher\": \"Microsoft.Compute\",\n       \"type\": \"CustomScriptExtension\",\n       \"typeHandlerVersion\": \"1.7\",\n       \"autoUpgradeMinorVersion\":true,\n       \"settings\": {\n           \"fileUris\": [\n           \"http:\/\/Yourstorageaccount.blob.core.windows.net\/customscriptfiles\/start.ps1\",\n           \"http:\/\/Yourstorageaccount.blob.core.windows.net\/customscriptfiles\/secondaryScript.ps1\",\n\n       ],\n       \"commandToExecute\": \"powershell.exe -ExecutionPolicy Unrestricted -File start.ps1\"\n     }\n   }\n }<\/code><\/pre>\n<p><strong>How it works:<\/strong><\/p>\n<ul>\n<li>Both the files i.e. start.ps1 and secondaryScript.ps1 are picked up from the storage account after VM deployment. Ensure to replace the URLs with your actual storage account blob URLs. You can add more files if needed.<\/li>\n<li>The &quot;start.ps1&quot; is the main powerShell script which should be invoking the secondaryScript.ps1 internally<\/li>\n<li>CommandToExecutre property is used to invoke the start.ps1 powerShell script on the deployed VM<\/li>\n<\/ul>\n<h3>Passing Parameters to the PowerShell Script dynamically<\/h3>\n<p>To pass the parameters to the PowerShell script use commandToExecute property. <\/p>\n<p>One such example to pass the parameters is shown below:<\/p>\n<pre><code>\"commandToExecute\": \"[concat('powershell.exe -ExecutionPolicy Unrestricted -File start.ps1', ' -domainName ', parameters('domainNameParameter')]\"<\/code><\/pre>\n<p>Note the use of &quot;concat&quot; helper function to create the value of the &quot;commandToExecute&quot;. Also note that there is starting and trailing space in the second argument of the concat i.e. &quot; -domainName &quot;.<\/p>\n<p>The parameter &quot;domainNameParameter&quot; should already be defined in the template in the parameters section. If the value of parameter &quot;domainNameParameter&quot; is &quot;testdomain.com&quot; then the dynamically generated command will become:<\/p>\n<pre><code>powershell.exe -ExecutionPolicy Unrestricted -File start.ps1 -domainName testdomain.com<\/code><\/pre>\n<h3>Securing the Access to the PowerShell Script File in Storage account<\/h3>\n<p>Let us assume you want to deploy Windows VM with Protected settings. Then use the below sample to provide the PowerShell files.<\/p>\n<pre><code>{\n    \"publisher\": \"Microsoft.Compute\",\n    \"type\": \"CustomScriptExtension\",\n    \"typeHandlerVersion\": \"1.7\",\n    \"settings\": {\n        \"fileUris\": [\n            \"http: \/\/Yourstorageaccount.blob.core.windows.net\/customscriptfiles\/start.ps1\"\n        ]\n    },\n    \"protectedSettings\": {\n        \"commandToExecute\": \"powershell.exe -ExecutionPolicy Unrestricted -start.ps1\",\n        \"storageAccountName\": \"yourStorageAccountName\",\n        \"storageAccountKey\": \"yourStorageAccountKey\"\n    }\n}<\/code><\/pre>\n<p>Note the use of &quot;protectedSettings&quot; above. This time you also specify the Storage Account Name and the Storage Account Key.<\/p>\n<p>You can also refer the official documentation here: <a href=\"https:\/\/azure.microsoft.com\/en-us\/documentation\/articles\/virtual-machines-windows-extensions-customscript\/\">Windows VM Custom Script extensions with Azure Resource Manager templates<\/a>.<\/p>",
+			"addpost": "addpost",
+			"dated": "Oct 19, 2016",
+			"slug": "step-by-step-arm-templates-providing-powershell-scripts-to-run-after-vm-deployment-via-arm-template",
+			"categoryslug": "azure",
+			"status": "publised",
+			"summary": "\n<p><strong>Index<\/strong> of all blogs in this <strong>Step by Step ARM Templates series<\/strong> is located here: <a href=\"\/post\/step-by-step-azure-resource-manager-arm-templates-index\/\">Step by Step Azure Resource Manager (ARM) Templates - Index<\/a><\/p>\n<p>By providing PowerShell Scripts to Run af...<\/p>\n",
+			"prevStatus": "publised",
 			"showbody": "1"
 		}
 	],

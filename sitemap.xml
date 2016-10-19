@@ -5,12 +5,6 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-<loc>http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it/</loc>
-<lastmod>2016-10-19T00:00:00+05:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>1.00</priority>
-</url>
-<url>
 <loc>http://HarvestingClouds.com/post/step-by-step-arm-templates-providing-powershell-scripts-to-run-after-vm-deployment-via-arm-template/</loc>
 <lastmod>2016-10-19T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
@@ -49,6 +43,12 @@
 <url>
 <loc>http://HarvestingClouds.com/post/azure-remoteapp-is-going-away-new-purchases-in-portal-are-now-stopped/</loc>
 <lastmod>2016-10-10T00:00:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
+<loc>http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it/</loc>
+<lastmod>2016-10-09T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.00</priority>
 </url>
