@@ -29,6 +29,12 @@
 <priority>1.00</priority>
 </url>
 <url>
+<loc>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index/</loc>
+<lastmod>2016-10-15T00:00:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
 <loc>http://HarvestingClouds.com/post/azure-automation-preview-solution-start-stop-vms-during-off-hours/</loc>
 <lastmod>2016-10-11T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
@@ -37,12 +43,6 @@
 <url>
 <loc>http://HarvestingClouds.com/post/azure-remoteapp-is-going-away-new-purchases-in-portal-are-now-stopped/</loc>
 <lastmod>2016-10-10T00:00:00+05:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>1.00</priority>
-</url>
-<url>
-<loc>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index/</loc>
-<lastmod>2016-10-07T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.00</priority>
 </url>
