@@ -6,6 +6,18 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It</title>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>This blog is for you if:</p>
+<ul>
+<li>You want to backup an Infrastructure configuration/setup in Azure and want to redeploy it to another environment then this blog is for you. </li>
+<li>You want to create similar infrastructure as one of an existing deployments in Azure</li>
+<li>You want to modify the configurations of existing Azure IaaS infrastructure and redeploy various elements</li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it</link>
+<pubDate>Wed, 19 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template</title>
 <description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
 <p>By providing PowerShell Scripts to Run after VM deployment via ARM Template, you can accomplish various activities. </p>
@@ -103,27 +115,28 @@ To do this you add an <strong>Extension resource</strong> (<em>Microsoft.Compute
 
     <li>
         Next, we need to <b>Add a Secret</b> in the key vault. Click on the Secrets and then the + Add button at the top, as shown below:
-<br />
+<br /><br />
 <img alt="Adding Secret" src="/images/1476818644580676d447b16.png" />
-<br />
+<br /><br />
 Next, in the "Create a secret" blade, set the Upload Options to Manual. Provide a name and value to the secret. Value is the password you want to securely save.
 Ensure that the Enabled is set to Yes. Optionally you can set the activation and expiration dates. In this example, we are setting the Secret Name to "DefaultAdminPasswordSecret".
+<br /><br />
 <img alt="Creating Secret" src="/images/1476818650580676da89fee.png" />
     </li>
 
     <li>
         Next, we will set the <b>Access Policies </b> to provide access to the user under the context of which the template will be deployed. This is the user which will be accessing the Key Vault. Go to Key Vault settings and select Access Policies. Add the new user as shown below:
-
+<br /><br />
 <img alt="Access Policies" src="/images/14768190995806789bad0c4.png" />
-<br />
+<br /><br />
 
     </li>
 
     <li>
         Next, we will set the <b>Advanced Access Policies </b> to indicate that this key vault can be accessed via ARM Templates. Go to Key Vault settings and select Advanced Access Policies. Ensure that the checkbox for "<i>Enable access to Azure Resource Manager for template deployment</i>" is checked as shown below:
-
+<br /><br />
 <img alt="Access Policies" src="/images/1476819105580678a1cfc9f.png" />
-<br /> 
+<br /> <br />
 
     </li>
 
