@@ -14,15 +14,13 @@
 <li>You want to create similar infrastructure as one of existing deployments in Azure</li>
 <li>You want to modify the configurations of existing Azure IaaS infrastructure and redeploy various elements</li>
 </ul>
-<p>This Power Tip is really easy if you know just the option. </p>
+<p>This <strong>Power Tip</strong> is really easy if you know just the option. </p>
 <ol>
-<li>If you want to make the template for all the resources in a Resource Group in Azure, then go to the properties of the Resource Group and find the option for &quot;Automation Script&quot;.</li>
-<li>
-<p>If you want to get the template only for a particular resource, then navigate to that resource in the Azure Portal and then open it's settings. You will find the same &quot;Automation Script&quot; option. </p>
-<p><img src="/images/1477349409580e902123ab1.png" alt="Automation Script" /></p>
-</li>
+<li>If you want to make the template for all the resources in a Resource Group in Azure, then go to the properties of the Resource Group and find the option for &quot;<strong>Automation Script</strong>&quot;.</li>
+<li>If you want to get the template only for a particular resource, then navigate to that resource in the Azure Portal and then open it's settings. You will find the same &quot;<strong>Automation Script</strong>&quot; option. </li>
 </ol>
-<p>You can check this option in the above screenshot.</p>
+<p>You can check this option in the below screenshot.</p>
+<p><img src="/images/1477349409580e902123ab1.png" alt="Automation Script" /></p>
 <p>Once you click on the Automation Script option in the settings (of a resource group or a resource) then you will be presented with the complete JSON template along with the JSON outline on the right side (marked 2 above in the image).</p>
 <p>You have various options for the actions to take on the template (marked 3 in the image above):</p>
 <ul>
@@ -32,14 +30,51 @@
 </ul>
 <p>Normally, you would download the template to make edits to the same. After downloading, you should start cleaning up the template. There are only 4 major tasks that you need to perform as part of the cleanup:</p>
 <ol>
-<li>Remove any hard-coded values for various dependent resources e.g. NIC for a VM, VHD for a VM etc.</li>
+<li>Remove any <strong>hard-coded values</strong> for various dependent resources e.g. NIC for a VM, VHD for a VM etc.</li>
 <li>Remove any resources and dependent parameters that you don't need.</li>
-<li>Create Parameters for the values you want to change for each deployment and want the end user to provide during the deployment.</li>
-<li>Create Variables for the values which can have fixed values but are being used at multiple locations in your template.</li>
+<li>Create <strong>Parameters</strong> for the values you want to change for each deployment and want the end user to provide during the deployment.</li>
+<li>Create <strong>Variables</strong> for the values which can have fixed values but are being used at multiple locations in your template.</li>
 </ol>
 <p>That's all there is to it. Using this tip you can spearhead your ARM Template developments. You don't need to start from scratch and can base your templates on the existing deployments.</p>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it</link>
 <pubDate>Mon, 24 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Step by Step Azure Resource Manager (ARM) Templates - Index</title>
+<description><![CDATA[<p><strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and repeatedly.</p>
+<p>ARM Templates can be used for the deployment of resources on both Azure and Azure Stack. Using these templates for all deployments provides you with various <strong>benefits</strong> including:</p>
+<ul>
+<li><strong>Declarative Deployment</strong> – All you need to do is declare what you need to deploy. You don't need to create any complex rules or write lengthy scripts.</li>
+<li><strong>Idempotency</strong> – You can deploy the same template over and over again without affecting the current resources.</li>
+<li><strong>Predictability</strong> - Using Templates you can have accurate predictability when performing large deployments. You reduce any manual errors.</li>
+<li><strong>Repitition without Errors</strong> - You can deploy the same infrastructure over and over again (e.g. in Dev-test environments and then in production).</li>
+</ul>
+<p>This series of posts try to decode and understand the ARM Templates &quot;Step By Step&quot;.</p>
+<p>This post is an index of all the posts, in sequence, for understanding the Azure Resource Manager (ARM) Templates. This post will be updated regularly as more posts on this topic are added.</p>
+<ol>
+<li><a href="#">Index</a> </li>
+<li><a href="/post/step-by-step-arm-templates-json-101-for-it-administrators/">JSON 101 for IT Administrators</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">What is in an ARM Template - Understanding All Components</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">What is in an ARM Template - Understanding Components 2 - Parameters</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">What is in an ARM Template - Understanding Components 3 - Variables</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">What is in an ARM Template - Understanding Components 4 - Resources</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">What is in an ARM Template - Understanding Components 5 - Outputs</a></li>
+<li><a href="/post/step-by-step-arm-templates-helper-functions/">Helper Functions in ARM Templates</a></li>
+<li><a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">Building your first ARM Template</a></li>
+<li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-portal/">Deploying Template Using Azure Portal</a></li>
+<li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-powershell/">Deploying Template Using Azure PowerShell</a></li>
+<li><a href="/post/step-by-step-arm-templates-creating-parameters-file-for-an-arm-template/">Creating Parameters file for an ARM Template</a></li>
+<li><a href="/post/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio/">Authoring ARM Templates using Visual Studio</a></li>
+<li><a href="/post/step-by-step-arm-templates-deploying-arm-templates-using-visual-studio/">Deploying ARM Templates using Visual Studio</a></li>
+<li><a href="/post/step-by-step-arm-templates-iterating-and-creating-multiple-instances-of-a-resource/">Iterating and creating multiple instances of a resource</a></li>
+<li><a href="/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams/">Visualizing ARM Templates and Generating Diagrams</a></li>
+<li><a href="/post/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates/">Using Key Vault to Securely Provide Information in ARM Templates</a></li>
+<li><a href="/post/step-by-step-arm-templates-providing-powershell-scripts-to-run-after-vm-deployment-via-arm-template/">Providing PowerShell Scripts to Run after VM deployment via ARM Template</a></li>
+<li><a href="/post/step-by-step-arm-templates-deploying-a-windows-vm-with-oms-integration/">Deploying a Windows VM with OMS integration</a></li>
+<li><a href="/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it/">Creating ASR Template from an existing Azure Infrastructure and Modifying It</a></li>
+</ol>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index</link>
+<pubDate>Fri, 21 Oct 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template</title>
@@ -330,43 +365,6 @@ Take a screenshot once you have repositioned the elements as per your requiremen
 <p><strong>Reference:</strong> You can check the complete quick starter template for OMS integration here: <a href="https://github.com/Azure/azure-quickstart-templates/tree/master/201-oms-extension-windows-vm">GitHub Sample - Deployment of a Windows VM with OMS Extension</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-arm-templates-deploying-a-windows-vm-with-oms-integration</link>
 <pubDate>Sun, 16 Oct 2016 00:00:00 +0500</pubDate>
-</item>
-<item>
-<title>Step by Step Azure Resource Manager (ARM) Templates - Index</title>
-<description><![CDATA[<p><strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and repeatedly.</p>
-<p>ARM Templates can be used for the deployment of resources on both Azure and Azure Stack. Using these templates for all deployments provides you with various <strong>benefits</strong> including:</p>
-<ul>
-<li><strong>Declarative Deployment</strong> – All you need to do is declare what you need to deploy. You don't need to create any complex rules or write lengthy scripts.</li>
-<li><strong>Idempotency</strong> – You can deploy the same template over and over again without affecting the current resources.</li>
-<li><strong>Predictability</strong> - Using Templates you can have accurate predictability when performing large deployments. You reduce any manual errors.</li>
-<li><strong>Repitition without Errors</strong> - You can deploy the same infrastructure over and over again (e.g. in Dev-test environments and then in production).</li>
-</ul>
-<p>This series of posts try to decode and understand the ARM Templates &quot;Step By Step&quot;.</p>
-<p>This post is an index of all the posts, in sequence, for understanding the Azure Resource Manager (ARM) Templates. This post will be updated regularly as more posts on this topic are added.</p>
-<ol>
-<li><a href="#">Index</a> </li>
-<li><a href="/post/step-by-step-arm-templates-json-101-for-it-administrators/">JSON 101 for IT Administrators</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">What is in an ARM Template - Understanding All Components</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">What is in an ARM Template - Understanding Components 2 - Parameters</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">What is in an ARM Template - Understanding Components 3 - Variables</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">What is in an ARM Template - Understanding Components 4 - Resources</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">What is in an ARM Template - Understanding Components 5 - Outputs</a></li>
-<li><a href="/post/step-by-step-arm-templates-helper-functions/">Helper Functions in ARM Templates</a></li>
-<li><a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">Building your first ARM Template</a></li>
-<li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-portal/">Deploying Template Using Azure Portal</a></li>
-<li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-powershell/">Deploying Template Using Azure PowerShell</a></li>
-<li><a href="/post/step-by-step-arm-templates-creating-parameters-file-for-an-arm-template/">Creating Parameters file for an ARM Template</a></li>
-<li><a href="/post/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio/">Authoring ARM Templates using Visual Studio</a></li>
-<li><a href="/post/step-by-step-arm-templates-deploying-arm-templates-using-visual-studio/">Deploying ARM Templates using Visual Studio</a></li>
-<li><a href="/post/step-by-step-arm-templates-iterating-and-creating-multiple-instances-of-a-resource/">Iterating and creating multiple instances of a resource</a></li>
-<li><a href="/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams/">Visualizing ARM Templates and Generating Diagrams</a></li>
-<li><a href="/post/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates/">Using Key Vault to Securely Provide Information in ARM Templates</a></li>
-<li><a href="/post/step-by-step-arm-templates-providing-powershell-scripts-to-run-after-vm-deployment-via-arm-template/">Providing PowerShell Scripts to Run after VM deployment via ARM Template</a></li>
-<li><a href="/post/step-by-step-arm-templates-deploying-a-windows-vm-with-oms-integration/">Deploying a Windows VM with OMS integration</a></li>
-<li><a href="/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it/">Creating ASR Template from an existing Azure Infrastructure and Modifying It</a></li>
-</ol>]]></description>
-<link>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index</link>
-<pubDate>Sat, 15 Oct 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure Automation Preview Solution - Start/Stop VMs during off-hours </title>
