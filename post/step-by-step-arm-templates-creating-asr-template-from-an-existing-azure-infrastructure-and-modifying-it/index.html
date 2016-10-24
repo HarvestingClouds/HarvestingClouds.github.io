@@ -75,7 +75,7 @@
                 <h3>Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It</h3>
                 <span class="glyphicon glyphicon-user"></span> @20aman
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> Oct 09, 2016
+                <span class="glyphicon glyphicon-time"></span> Oct 24, 2016
                 <hr>
 
                 <p class="post-content"><p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
@@ -84,7 +84,31 @@
 <li>You want to backup an Infrastructure configuration/setup in Azure and want to redeploy it to another environment then this blog is for you. </li>
 <li>You want to create similar infrastructure as one of existing deployments in Azure</li>
 <li>You want to modify the configurations of existing Azure IaaS infrastructure and redeploy various elements</li>
-</ul></p>
+</ul>
+<p>This Power Tip is really easy if you know just the option. </p>
+<ol>
+<li>If you want to make the template for all the resources in a Resource Group in Azure, then go to the properties of the Resource Group and find the option for &quot;Automation Script&quot;.</li>
+<li>
+<p>If you want to get the template only for a particular resource, then navigate to that resource in the Azure Portal and then open it's settings. You will find the same &quot;Automation Script&quot; option. </p>
+<p><img src="/images/1477349409580e902123ab1.png" alt="Automation Script" /></p>
+</li>
+</ol>
+<p>You can check this option in the above screenshot.</p>
+<p>Once you click on the Automation Script option in the settings (of a resource group or a resource) then you will be presented with the complete JSON template along with the JSON outline on the right side (marked 2 above in the image).</p>
+<p>You have various options for the actions to take on the template (marked 3 in the image above):</p>
+<ul>
+<li>You can download the template</li>
+<li>Add to Library to deploy the same resources again and again in your subscription</li>
+<li>To directly deploy the resources again with the modifications you make. </li>
+</ul>
+<p>Normally, you would download the template to make edits to the same. After downloading, you should start cleaning up the template. There are only 4 major tasks that you need to perform as part of the cleanup:</p>
+<ol>
+<li>Remove any hard-coded values for various dependent resources e.g. NIC for a VM, VHD for a VM etc.</li>
+<li>Remove any resources and dependent parameters that you don't need.</li>
+<li>Create Parameters for the values you want to change for each deployment and want the end user to provide during the deployment.</li>
+<li>Create Variables for the values which can have fixed values but are being used at multiple locations in your template.</li>
+</ol>
+<p>That's all there is to it. Using this tip you can spearhead your ARM Template developments. You don't need to start from scratch and can base your templates on the existing deployments.</p></p>
                 <br/><br/>
 
                 <div class="post-info">
@@ -155,11 +179,11 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it">Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-providing-powershell-scripts-to-run-after-vm-deployment-via-arm-template">Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates">Step by Step ARM Templates - Using Key Vault to Securely Provide Information in ARM Templates</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams">Step by Step ARM Templates - Visualizing ARM Templates and Generating Diagrams</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-deploying-a-windows-vm-with-oms-integration">Step by Step ARM Templates - Deploying a Windows VM with OMS integration</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index">Step by Step Azure Resource Manager (ARM) Templates - Index</a></li>
                 </ul>
             </div>
         

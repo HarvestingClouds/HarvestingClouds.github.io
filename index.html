@@ -72,87 +72,43 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-providing-powershell-scripts-to-run-after-vm-deployment-via-arm-template">Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it">Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Oct 19, 2016
+                    <span class="glyphicon glyphicon-time"></span> Oct 24, 2016
                 
                         <hr>
                         <p class="post-content"><p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
-<p>By providing PowerShell Scripts to Run after VM deployment via ARM Template, you can accomplish various activities. </p>
+<p>This blog post is for you if:</p>
 <ul>
-<li>You can setup different features and roles on the VM. </li>
-<li>You can setup web server. </li>
-<li>You can setup SQL Database and configure it.</li>
-<li>You can configure custom policies</li>
-<li>And so on...</li>
+<li>You want to backup an Infrastructure configuration/setup in Azure and want to redeploy it to another environment then this blog is for you. </li>
+<li>You want to create similar infrastructure as one of existing deployments in Azure</li>
+<li>You want to modify the configurations of existing Azure IaaS infrastructure and redeploy various elements</li>
 </ul>
-<p>You first need to have PowerShell script files uploaded to a storage account.
-To do this you add an <strong>Extension resource</strong> (<em>Microsoft.Compute/virtualMachines/extensions</em>) nested inside a VM. This extension resource should be of type &quot;<strong>CustomScriptExtension</strong>&quot;. You provide the URLs to the PowerShell scripts inside this custom script extension.</p>
-<h3>Preparation</h3>
-<p>As part of the preparation process you need to:</p>
+<p>This Power Tip is really easy if you know just the option. </p>
+<ol>
+<li>If you want to make the template for all the resources in a Resource Group in Azure, then go to the properties of the Resource Group and find the option for &quot;Automation Script&quot;.</li>
+<li>
+<p>If you want to get the template only for a particular resource, then navigate to that resource in the Azure Portal and then open it's settings. You will find the same &quot;Automation Script&quot; option. </p>
+<p><img src="/images/1477349409580e902123ab1.png" alt="Automation Script" /></p>
+</li>
+</ol>
+<p>You can check this option in the above screenshot.</p>
+<p>Once you click on the Automation Script option in the settings (of a resource group or a resource) then you will be presented with the complete JSON template along with the JSON outline on the right side (marked 2 above in the image).</p>
+<p>You have various options for the actions to take on the template (marked 3 in the image above):</p>
 <ul>
-<li>Ensure that the PowerShell scripts are uploaded to the Storage Account and that you have the complete URL to the blob. </li>
-<li>Or you can upload the scripts to the GitHub and get the Raw file URL</li>
-<li>If there are more than one scripts then there should be one master script amongst all ps1 files which will internally invoke other files. This master file will be triggered via the template. Information of all file URLs will also be provided via the Template</li>
+<li>You can download the template</li>
+<li>Add to Library to deploy the same resources again and again in your subscription</li>
+<li>To directly deploy the resources again with the modifications you make. </li>
 </ul>
-<h3>Providing and configuring Scripts to Run After VM Deployment</h3>
-<p>Define the below resource to provide PowerShell scripts to be run after VM deployment:</p>
-<pre><code>{
-   "type": "Microsoft.Compute/virtualMachines/extensions",
-   "name": "MyCustomScriptExtension",
-   "apiVersion": "2015-05-01-preview",
-   "location": "[parameters('location')]",
-   "dependsOn": [
-       "[concat('Microsoft.Compute/virtualMachines/',parameters('vmName'))]"
-   ],
-   "properties": {
-       "publisher": "Microsoft.Compute",
-       "type": "CustomScriptExtension",
-       "typeHandlerVersion": "1.7",
-       "autoUpgradeMinorVersion":true,
-       "settings": {
-           "fileUris": [
-           "http://Yourstorageaccount.blob.core.windows.net/customscriptfiles/start.ps1",
-           "http://Yourstorageaccount.blob.core.windows.net/customscriptfiles/secondaryScript.ps1",
-
-       ],
-       "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File start.ps1"
-     }
-   }
- }</code></pre>
-<p><strong>How it works:</strong></p>
-<ul>
-<li>Both the files i.e. start.ps1 and secondaryScript.ps1 are picked up from the storage account after VM deployment. Ensure to replace the URLs with your actual storage account blob URLs. You can add more files if needed.</li>
-<li>The &quot;start.ps1&quot; is the main powerShell script which should be invoking the secondaryScript.ps1 internally</li>
-<li>CommandToExecutre property is used to invoke the start.ps1 powerShell script on the deployed VM</li>
-</ul>
-<h3>Passing Parameters to the PowerShell Script dynamically</h3>
-<p>To pass the parameters to the PowerShell script use commandToExecute property. </p>
-<p>One such example to pass the parameters is shown below:</p>
-<pre><code>"commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File start.ps1', ' -domainName ', parameters('domainNameParameter')]"</code></pre>
-<p>Note the use of &quot;concat&quot; helper function to create the value of the &quot;commandToExecute&quot;. Also note that there is starting and trailing space in the second argument of the concat i.e. &quot; -domainName &quot;.</p>
-<p>The parameter &quot;domainNameParameter&quot; should already be defined in the template in the parameters section. If the value of parameter &quot;domainNameParameter&quot; is &quot;testdomain.com&quot; then the dynamically generated command will become:</p>
-<pre><code>powershell.exe -ExecutionPolicy Unrestricted -File start.ps1 -domainName testdomain.com</code></pre>
-<h3>Securing the Access to the PowerShell Script File in Storage account</h3>
-<p>Let us assume you want to deploy Windows VM with Protected settings. Then use the below sample to provide the PowerShell files.</p>
-<pre><code>{
-    "publisher": "Microsoft.Compute",
-    "type": "CustomScriptExtension",
-    "typeHandlerVersion": "1.7",
-    "settings": {
-        "fileUris": [
-            "http: //Yourstorageaccount.blob.core.windows.net/customscriptfiles/start.ps1"
-        ]
-    },
-    "protectedSettings": {
-        "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -start.ps1",
-        "storageAccountName": "yourStorageAccountName",
-        "storageAccountKey": "yourStorageAccountKey"
-    }
-}</code></pre>
-<p>Note the use of &quot;protectedSettings&quot; above. This time you also specify the Storage Account Name and the Storage Account Key.</p>
-<p>You can also refer the official documentation here: <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-extensions-customscript/">Windows VM Custom Script extensions with Azure Resource Manager templates</a>.</p></p>
+<p>Normally, you would download the template to make edits to the same. After downloading, you should start cleaning up the template. There are only 4 major tasks that you need to perform as part of the cleanup:</p>
+<ol>
+<li>Remove any hard-coded values for various dependent resources e.g. NIC for a VM, VHD for a VM etc.</li>
+<li>Remove any resources and dependent parameters that you don't need.</li>
+<li>Create Parameters for the values you want to change for each deployment and want the end user to provide during the deployment.</li>
+<li>Create Variables for the values which can have fixed values but are being used at multiple locations in your template.</li>
+</ol>
+<p>That's all there is to it. Using this tip you can spearhead your ARM Template developments. You don't need to start from scratch and can base your templates on the existing deployments.</p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -165,7 +121,6 @@ To do this you add an <strong>Extension resource</strong> (<em>Microsoft.Compute
                                 <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/PowerShell">PowerShell</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
                         </div>
                 
@@ -213,11 +168,11 @@ To do this you add an <strong>Extension resource</strong> (<em>Microsoft.Compute
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it">Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-providing-powershell-scripts-to-run-after-vm-deployment-via-arm-template">Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates">Step by Step ARM Templates - Using Key Vault to Securely Provide Information in ARM Templates</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams">Step by Step ARM Templates - Visualizing ARM Templates and Generating Diagrams</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-deploying-a-windows-vm-with-oms-integration">Step by Step ARM Templates - Deploying a Windows VM with OMS integration</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index">Step by Step Azure Resource Manager (ARM) Templates - Index</a></li>
                 </ul>
             </div>
         
