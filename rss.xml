@@ -6,6 +6,35 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers</title>
+<description><![CDATA[<p>Let us assume that you have enabled the Azure Site Recovery (ASR) replication on various servers. These servers can be:</p>
+<ul>
+<li>On Premise VMWare VMs</li>
+<li>On Premise Physical Servers</li>
+<li>Azure ASM (older portal) VMs</li>
+</ul>
+<p>The purpose could be anything from setting up Disaster Recovery for your infrastructure or using ASR for Migrating workloads from on-premise to Azure. For any reason, you may need to suspend and resume ASR replication on one or more target servers.</p>
+<p>Currently, ASR does not have the feature to allow you to suspend and resume the ASR replication. But you can do this manually as easily. </p>
+<p>To <strong>Suspend</strong> the ASR replication on a particular server, all you need to do is:</p>
+<ol>
+<li>Log into the server on which ASR replication is currently going on and you want to suspend the replication.</li>
+<li>Open the Services (Run -&gt; services.msc)</li>
+<li>Locate the following services and Stop these services.
+<ul>
+<li>Azure Site Recovery VSS Provider</li>
+<li>InMage Scout Application Service</li>
+<li>InMage Scout VX Agent - Sentinel/Outpost</li>
+</ul></li>
+</ol>
+<p>Checkout these servers below:</p>
+<p><img src="/images/1477354219580ea2eb7f4e6.png" alt="Services 1" /></p>
+<p><img src="/images/1477354229580ea2f52b728.png" alt="Services 2" /></p>
+<p>To <strong>Resume</strong> the ASR replication, just do the opposite, i.e. Log into the server and Start these services. </p>
+<p>Until Azure adds this feature directly in the portal, this easy manual step is the workaround for suspending and resuming the replication on servers.</p>]]></description>
+<link>http://HarvestingClouds.com/post/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers</link>
+<pubDate>Tue, 25 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It</title>
 <description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
 <p>This blog post is for you if:</p>

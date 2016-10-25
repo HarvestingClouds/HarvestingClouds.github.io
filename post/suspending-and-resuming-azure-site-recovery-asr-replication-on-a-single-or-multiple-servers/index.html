@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Harvesting Clouds</title>
+    <title>Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -71,12 +71,78 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-            <h1>Tag Posts</h1>
-            <hr/>
-            <br/>
+            <article>
+                <h3>Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers</h3>
+                <span class="glyphicon glyphicon-user"></span> @20aman
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> Oct 25, 2016
+                <hr>
 
-                <h3><a href="http://HarvestingClouds.com/post/powershell-dsc-partial-configurations">PowerShell DSC - Partial Configurations</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 20, 2016
+                <p class="post-content"><p>Let us assume that you have enabled the Azure Site Recovery (ASR) replication on various servers. These servers can be:</p>
+<ul>
+<li>On Premise VMWare VMs</li>
+<li>On Premise Physical Servers</li>
+<li>Azure ASM (older portal) VMs</li>
+</ul>
+<p>The purpose could be anything from setting up Disaster Recovery for your infrastructure or using ASR for Migrating workloads from on-premise to Azure. For any reason, you may need to suspend and resume ASR replication on one or more target servers.</p>
+<p>Currently, ASR does not have the feature to allow you to suspend and resume the ASR replication. But you can do this manually as easily. </p>
+<p>To <strong>Suspend</strong> the ASR replication on a particular server, all you need to do is:</p>
+<ol>
+<li>Log into the server on which ASR replication is currently going on and you want to suspend the replication.</li>
+<li>Open the Services (Run -&gt; services.msc)</li>
+<li>Locate the following services and Stop these services.
+<ul>
+<li>Azure Site Recovery VSS Provider</li>
+<li>InMage Scout Application Service</li>
+<li>InMage Scout VX Agent - Sentinel/Outpost</li>
+</ul></li>
+</ol>
+<p>Checkout these servers below:</p>
+<p><img src="/images/1477354219580ea2eb7f4e6.png" alt="Services 1" /></p>
+<p><img src="/images/1477354229580ea2f52b728.png" alt="Services 2" /></p>
+<p>To <strong>Resume</strong> the ASR replication, just do the opposite, i.e. Log into the server and Start these services. </p>
+<p>Until Azure adds this feature directly in the portal, this easy manual step is the workaround for suspending and resuming the replication on servers.</p></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="http://HarvestingClouds.com/tag/ASR">ASR</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/AzureSiteRecovery">AzureSiteRecovery</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
+
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="http://HarvestingClouds.com/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
+            </div>
+
         </div>
 
         <div class="sidebar col-md-4">
@@ -190,6 +256,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
 </div>
 
@@ -227,3 +294,69 @@
 
 </body>
 </html>
+<!-- for pagination -->
+<script>
+    $(function () {
+
+        ///////////////////////////////////////////////////
+        // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
+        var $nextPostSelector = $('.nextpost');
+        ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
+
+        $.ajax({
+            url: __blogURL + "/data/blog.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.posts !== undefined && data.posts !== null) {
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
+                }
+            },
+            error: function (e) {
+                $prevPostSelector.hide();
+                $nextPostSelector.hide();
+            }
+        });
+
+        // for Disqus
+        var disqus_shortname = 'harvestingclouds';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+    });
+</script>

@@ -72,41 +72,36 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it">Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers">Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Oct 24, 2016
+                    <span class="glyphicon glyphicon-time"></span> Oct 25, 2016
                 
                         <hr>
-                        <p class="post-content"><p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
-<p>This blog post is for you if:</p>
+                        <p class="post-content"><p>Let us assume that you have enabled the Azure Site Recovery (ASR) replication on various servers. These servers can be:</p>
 <ul>
-<li>You want to backup an Infrastructure configuration/setup in Azure and want to redeploy it to another environment then this blog is for you. </li>
-<li>You want to create similar infrastructure as one of existing deployments in Azure</li>
-<li>You want to modify the configurations of existing Azure IaaS infrastructure and redeploy various elements</li>
+<li>On Premise VMWare VMs</li>
+<li>On Premise Physical Servers</li>
+<li>Azure ASM (older portal) VMs</li>
 </ul>
-<p>This <strong>Power Tip</strong> is really easy if you know just the option. </p>
+<p>The purpose could be anything from setting up Disaster Recovery for your infrastructure or using ASR for Migrating workloads from on-premise to Azure. For any reason, you may need to suspend and resume ASR replication on one or more target servers.</p>
+<p>Currently, ASR does not have the feature to allow you to suspend and resume the ASR replication. But you can do this manually as easily. </p>
+<p>To <strong>Suspend</strong> the ASR replication on a particular server, all you need to do is:</p>
 <ol>
-<li>If you want to make the template for all the resources in a Resource Group in Azure, then go to the properties of the Resource Group and find the option for &quot;<strong>Automation Script</strong>&quot;.</li>
-<li>If you want to get the template only for a particular resource, then navigate to that resource in the Azure Portal and then open it's settings. You will find the same &quot;<strong>Automation Script</strong>&quot; option. </li>
-</ol>
-<p>You can check this option in the below screenshot.</p>
-<p><img src="/images/1477349409580e902123ab1.png" alt="Automation Script" /></p>
-<p>Once you click on the Automation Script option in the settings (of a resource group or a resource) then you will be presented with the complete JSON template along with the JSON outline on the right side (marked 2 above in the image).</p>
-<p>You have various options for the actions to take on the template (marked 3 in the image above):</p>
+<li>Log into the server on which ASR replication is currently going on and you want to suspend the replication.</li>
+<li>Open the Services (Run -&gt; services.msc)</li>
+<li>Locate the following services and Stop these services.
 <ul>
-<li>You can download the template</li>
-<li>Add to Library to deploy the same resources again and again in your subscription</li>
-<li>To directly deploy the resources again with the modifications you make. </li>
-</ul>
-<p>Normally, you would download the template to make edits to the same. After downloading, you should start cleaning up the template. There are only 4 major tasks that you need to perform as part of the cleanup:</p>
-<ol>
-<li>Remove any <strong>hard-coded values</strong> for various dependent resources e.g. NIC for a VM, VHD for a VM etc.</li>
-<li>Remove any resources and dependent parameters that you don't need.</li>
-<li>Create <strong>Parameters</strong> for the values you want to change for each deployment and want the end user to provide during the deployment.</li>
-<li>Create <strong>Variables</strong> for the values which can have fixed values but are being used at multiple locations in your template.</li>
+<li>Azure Site Recovery VSS Provider</li>
+<li>InMage Scout Application Service</li>
+<li>InMage Scout VX Agent - Sentinel/Outpost</li>
+</ul></li>
 </ol>
-<p>That's all there is to it. Using this tip you can spearhead your ARM Template developments. You don't need to start from scratch and can base your templates on the existing deployments.</p></p>
+<p>Checkout these servers below:</p>
+<p><img src="/images/1477354219580ea2eb7f4e6.png" alt="Services 1" /></p>
+<p><img src="/images/1477354229580ea2f52b728.png" alt="Services 2" /></p>
+<p>To <strong>Resume</strong> the ASR replication, just do the opposite, i.e. Log into the server and Start these services. </p>
+<p>Until Azure adds this feature directly in the portal, this easy manual step is the workaround for suspending and resuming the replication on servers.</p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -116,10 +111,9 @@
                 
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
-                                <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/ASR">ASR</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/AzureSiteRecovery">AzureSiteRecovery</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -166,11 +160,11 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers">Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it">Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index">Step by Step Azure Resource Manager (ARM) Templates - Index</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-providing-powershell-scripts-to-run-after-vm-deployment-via-arm-template">Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates">Step by Step ARM Templates - Using Key Vault to Securely Provide Information in ARM Templates</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams">Step by Step ARM Templates - Visualizing ARM Templates and Generating Diagrams</a></li>
                 </ul>
             </div>
         
@@ -212,16 +206,16 @@
 <a style="font-size: 27px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">ARM</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ASR</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
+<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="25 total posts" data-original-title="26 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 19px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
-<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
-<a style="font-size: 29px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="23 total posts" data-original-title="24 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
+<a style="font-size: 28px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="23 total posts" data-original-title="24 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/blob" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">blob</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/csharp" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">csharp</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/datacenter" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">datacenter</a>
