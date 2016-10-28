@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Azure comes to Canada (along with Office 365) :: Harvesting Clouds</title>
+    <title>General Availability - Azure Active Directory (AD) Domain Services :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -72,28 +72,39 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Azure comes to Canada (along with Office 365)</h3>
+                <h3>General Availability - Azure Active Directory (AD) Domain Services</h3>
                 <span class="glyphicon glyphicon-user"></span> @20aman
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> May 16, 2016
+                <span class="glyphicon glyphicon-time"></span> Oct 27, 2016
                 <hr>
 
-                <p class="post-content"><p>Last week marked the general availability of Azure datacenter for Canada locations. Also Office 365 has been released last week. Microsoft has set up 2 new datacenters in Canada. </p>
-<h3>Where Exactly are these datacenters located</h3>
-<ol>
-<li><strong>Canada Central</strong> - The first datacenter is located in Toronto.</li>
-<li><strong>Canada East</strong> - The second datacenter is located in Quebec City.</li>
-</ol>
-<p>Now when you are creating a new resource (like a Virtual Machine) you will see these two options.</p>
-<p><img src="http://HarvestingClouds.com/images/1463686879573e16df4f64c.png" alt="New Locations" /></p>
-<p>Check out the brief announcement video by <strong>Janet Kennedy</strong>, President of Microsoft Canada:</p>
-<iframe src="https://channel9.msdn.com/Blogs/CANITPRO/The-Microsoft-Canada-Cloud-is-Open-for-Business/player" width="560" height="315" allowFullScreen frameBorder="0"></iframe>
-<h3>Key Resources:</h3>
+                <p class="post-content"><p><strong>Azure Active Directory Domain Services</strong> are here to revolutionize the way Domain Services are used. They are here to reduce even further the infrastructure management for IT Administrators. </p>
+<h3>What is this service</h3>
+<p>Using this service you can now setup domains without having to setup the domain controllers. You can set up your Domain in Azure using Domain Services and then you can have virtual machines joining to that domain. At no point, you need to set up any domain controllers. You can also use Group Policy with this service to securely administer your domain joined infrastructure.</p>
+<p>This service benefits all customers. For <strong>enterprise customers</strong>, they get the familiar enterprise grade service. For <strong>medium to small business customers</strong>, the service makes even more sense as they get enterprise level service for a smaller price due to small infrastructure and thus a small number of objects in AD.</p>
+<p>This service is out of the box a highly available service. It is hosted in globally distributed datacenters.</p>
+<h3>When is this service available</h3>
+<p>This service is now <strong>Generally Available</strong>. The pricing for this service will start from 1st December 2016.</p>
+<p>The payment model is Pay-As-You-Go. The usage will be charged per hour. The chargeback will be based on the total number of AD Objects in your AD Tenant. These objects include users, groups, and domain-joined computers. Directory size and hours are calculated and emitted daily. Usage is prorated to the minute.</p>
+<p>Currently, there are 3 tiers. </p>
 <ul>
-<li>These locations are also listed in the official Microsoft Regions list here: <a href="https://azure.microsoft.com/en-us/regions/#services?WT.mc_id=azurebg_email_Trans_1106_Tier2_Release_MOSP" target="_blank">Azure Regions</a></li>
-<li>Various resources and information for cloud in Canada are available here at <a href="https://www.microsoft.com/en-ca/sites/datacentre/default.aspx" target="_blank">Cloud Accelerate site for Canada</a>.</li>
-<li>You can read about this announcement and upcoming features here: <a href="https://azure.microsoft.com/en-us/blog/microsoft-cloud-accelerates-in-canada-and-expands-to-south-korea/?WT.mc_id=azurebg_email_Trans_1106_Tier2_Release_MOSP" target="_blank">Microsoft Cloud accelerates in Canada and expands to South Korea</a></li>
-</ul></p>
+<li>Less than 25,000 directory objects</li>
+<li>25,001 to 100,000 directory objects</li>
+<li>more than 100,000 directory objects</li>
+</ul>
+<h3>Is this service available in my region</h3>
+<p>At the time of writing of this blog post, this service is available in the following regions:</p>
+<ul>
+<li>East US</li>
+<li>East US 2</li>
+<li>Central US</li>
+<li>South Central US</li>
+<li>West US</li>
+</ul>
+<p>Check this link for most updated availability: <a href="https://azure.microsoft.com/en-us/regions/services/">Azure Products by Region</a></p>
+<p>Also, check the official ADDS page here: <a href="https://azure.microsoft.com/en-us/services/active-directory-ds/">Azure Active Directory Domain Services</a>
+And, check the upto date pricing here: <a href="https://azure.microsoft.com/en-us/pricing/details/active-directory-ds/">Pricing</a></p>
+<p>Now it is time for you to go and try this new service for yourself and enjoy it's benefits!</p></p>
                 <br/><br/>
 
                 <div class="post-info">
@@ -103,8 +114,9 @@
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/datacenter">datacenter</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/AD">AD</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/ActiveDirectory">ActiveDirectory</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
                 </div>
 
             </article>

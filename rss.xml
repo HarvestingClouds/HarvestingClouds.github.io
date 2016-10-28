@@ -6,6 +6,38 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>General Availability - Azure Active Directory (AD) Domain Services</title>
+<description><![CDATA[<p><strong>Azure Active Directory Domain Services</strong> are here to revolutionize the way Domain Services are used. They are here to reduce even further the infrastructure management for IT Administrators. </p>
+<h3>What is this service</h3>
+<p>Using this service you can now setup domains without having to setup the domain controllers. You can set up your Domain in Azure using Domain Services and then you can have virtual machines joining to that domain. At no point, you need to set up any domain controllers. You can also use Group Policy with this service to securely administer your domain joined infrastructure.</p>
+<p>This service benefits all customers. For <strong>enterprise customers</strong>, they get the familiar enterprise grade service. For <strong>medium to small business customers</strong>, the service makes even more sense as they get enterprise level service for a smaller price due to small infrastructure and thus a small number of objects in AD.</p>
+<p>This service is out of the box a highly available service. It is hosted in globally distributed datacenters.</p>
+<h3>When is this service available</h3>
+<p>This service is now <strong>Generally Available</strong>. The pricing for this service will start from 1st December 2016.</p>
+<p>The payment model is Pay-As-You-Go. The usage will be charged per hour. The chargeback will be based on the total number of AD Objects in your AD Tenant. These objects include users, groups, and domain-joined computers. Directory size and hours are calculated and emitted daily. Usage is prorated to the minute.</p>
+<p>Currently, there are 3 tiers. </p>
+<ul>
+<li>Less than 25,000 directory objects</li>
+<li>25,001 to 100,000 directory objects</li>
+<li>more than 100,000 directory objects</li>
+</ul>
+<h3>Is this service available in my region</h3>
+<p>At the time of writing of this blog post, this service is available in the following regions:</p>
+<ul>
+<li>East US</li>
+<li>East US 2</li>
+<li>Central US</li>
+<li>South Central US</li>
+<li>West US</li>
+</ul>
+<p>Check this link for most updated availability: <a href="https://azure.microsoft.com/en-us/regions/services/">Azure Products by Region</a></p>
+<p>Also, check the official ADDS page here: <a href="https://azure.microsoft.com/en-us/services/active-directory-ds/">Azure Active Directory Domain Services</a>
+And, check the upto date pricing here: <a href="https://azure.microsoft.com/en-us/pricing/details/active-directory-ds/">Pricing</a></p>
+<p>Now it is time for you to go and try this new service for yourself and enjoy it's benefits!</p>]]></description>
+<link>http://HarvestingClouds.com/post/general-availability-azure-active-directory-ad-domain-services</link>
+<pubDate>Thu, 27 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers</title>
 <description><![CDATA[<p>Let us assume that you have enabled the Azure Site Recovery (ASR) replication on various servers. These servers can be:</p>
 <ul>
