@@ -72,39 +72,69 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/general-availability-azure-active-directory-ad-domain-services">General Availability - Azure Active Directory (AD) Domain Services</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-not-working">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Oct 27, 2016
+                    <span class="glyphicon glyphicon-time"></span> Nov 15, 2016
                 
                         <hr>
-                        <p class="post-content"><p><strong>Azure Active Directory Domain Services</strong> are here to revolutionize the way Domain Services are used. They are here to reduce even further the infrastructure management for IT Administrators. </p>
-<h3>What is this service</h3>
-<p>Using this service you can now setup domains without having to setup the domain controllers. You can set up your Domain in Azure using Domain Services and then you can have virtual machines joining to that domain. At no point, you need to set up any domain controllers. You can also use Group Policy with this service to securely administer your domain joined infrastructure.</p>
-<p>This service benefits all customers. For <strong>enterprise customers</strong>, they get the familiar enterprise grade service. For <strong>medium to small business customers</strong>, the service makes even more sense as they get enterprise level service for a smaller price due to small infrastructure and thus a small number of objects in AD.</p>
-<p>This service is out of the box a highly available service. It is hosted in globally distributed datacenters.</p>
-<h3>When is this service available</h3>
-<p>This service is now <strong>Generally Available</strong>. The pricing for this service will start from 1st December 2016.</p>
-<p>The payment model is Pay-As-You-Go. The usage will be charged per hour. The chargeback will be based on the total number of AD Objects in your AD Tenant. These objects include users, groups, and domain-joined computers. Directory size and hours are calculated and emitted daily. Usage is prorated to the minute.</p>
-<p>Currently, there are 3 tiers. </p>
+                        <p class="post-content"><p>If you have the Azure Site Recovery (ASR) setup in your environment and are facing the issue where the data replication is stuck, then follow this blog to troubleshoot. The data replication can be stuck either during the initial replication or during the delta changes. This can occur for various reasons. We will inspect various components involved in ASR. Major of the troubleshooting is done on the Management Server i.e. the on-premise Configuration/Master target server.</p>
+<h3>1. Check Alerts Details</h3>
+<p>Go to the Azure Site Recovery Vault and navigate to the settings. Click on the <strong><em>Alerts and Events</em></strong>. Check the alerts for the data replication being blocked etc. Verify that the problem is related to data replication and not something else. </p>
+<p>You can also navigate to the &quot;<strong><em>Replicated Items</em></strong>&quot; in the ASR Vault settings. On the blade for replicated items, click on the server for which the data is not being replicated. A new blade will open for this server's properties Then click on the Error Details on the server properties blade's context menu (which you can access by clicking on the top right ellipse i.e. 3 dots).</p>
+<p>After verifying the issue, proceed to next sections to troubleshoot.</p>
+<h3>2. Check Resource Monitor</h3>
+<p>Check if you see any activity in the Resource Monitor. This is also to validate if the issue is there or not. Sometimes the <strong>Low Bandwidth</strong> and <strong>multiple servers</strong> configured against one Management server can cause this issue. Ensure that this is not the scenario in your case.</p>
+<p>From the Task manager, go to performance view and check for the bandwidth consumption. Then click on the &quot;Open Resource Monitor&quot; button to launch the Resource Monitor. From the CPU section in the Overview tab, select the below two services:</p>
 <ul>
-<li>Less than 25,000 directory objects</li>
-<li>25,001 to 100,000 directory objects</li>
-<li>more than 100,000 directory objects</li>
+<li>cxps.exe</li>
+<li>cbengine.exe</li>
 </ul>
-<h3>Is this service available in my region</h3>
-<p>At the time of writing of this blog post, this service is available in the following regions:</p>
+<p>Then click on the Network tab and see if there is any traffic going out to Azure. If the data transfer is going on without issues then you should be able to view entries against cbengine going out to a URL which will look something like &quot;blob.aaa1aaa1aa.core.windows.net&quot; and entries against the csps service .</p>
+<p><img src="/images/1479242042582b713a13d26.png" alt="Resource Monitor" /></p>
+<h3>3. Check ASR Infrastructure Setup</h3>
+<p>First of all, check if the ASR infrastructure setup is correct and nothing is wrong there. To view this, navigate to the ASR Vault. Go to the settings and click on the &quot;Site Recovery Infrastructure&quot;. In the next blade, click on the kind of infrastructure you have setup. E.g. If you are replicating from VMWare or Physical Machines from on-premise to Azure then click on the &quot;Configuration Servers&quot; under the &quot;For VMWare &amp; Physical Machines&quot; section.</p>
+<p><img src="/images/1479235374582b572e7bd28.png" alt="Site Recovery Infrastructure" /></p>
+<p>Here check if the Config Server is showing as &quot;Connected&quot;. If not then the problem is in the communication between Configuration Server and the Azure. Ensure that you are able to connect to the Azure portal from the config server. Also, ensure that all the public URLs for Azure are accessible. Check this link for exact URLs: <a href="https://docs.microsoft.com/en-us/azure/site-recovery/site-recovery-best-practices#verify-url-access">Verify URL Access</a>.</p>
+<p>Next, click on the configuration server. This will open another blade with details for the configuration server. Expand the section for &quot;Associated Servers&quot; as marked no. 2 in the screenshot below. Check if all the associated servers, i.e. Process Server, vCenter Server and Master Target servers are connected and showing green tick mark.</p>
+<p>Next, check the configuration server health as shown at no. 3 below. Check if all the services are running and showing healthy. Ensure that you have sufficient free space on the configuration server to send the replication data. If you see any services not running then go to the next section to check and start the services on the Management Server on-premise. </p>
+<p>You can try refreshing the server after making any configuration changes on it, e.g. increasing memory or freeing up disk space. Click on the &quot;Refresh Server&quot; button as shown at no. 4, at the top of the blade for the configuration server.</p>
+<p><img src="/images/1479235804582b58dc26f55.png" alt="Config Server Settings" /></p>
+<h3>4. Checking Services on the Management Server</h3>
+<p>Check if the services on the Management Server are up and running. You need to check for the below services:</p>
 <ul>
-<li>East US</li>
-<li>East US 2</li>
-<li>Central US</li>
-<li>South Central US</li>
-<li>West US</li>
+<li>InMage PushInstall</li>
+<li>InMage Scout Application Service</li>
+<li>InMage Scout VX Agent - Sentinel/Outpost</li>
+<li>INMAGE-AppScheduler</li>
+<li>Microsoft Azure Recovery Services Agent</li>
+<li>Microsoft Azure Site Recovery Service</li>
+<li>cxprocessserver (This is important service. It is the service for the InMage CX Process Server)</li>
+<li>tmansvc (This is the service for the InMage Volsync Thread Manager Service)</li>
 </ul>
-<p>Check this link for most updated availability: <a href="https://azure.microsoft.com/en-us/regions/services/">Azure Products by Region</a></p>
-<p>Also, check the official ADDS page here: <a href="https://azure.microsoft.com/en-us/services/active-directory-ds/">Azure Active Directory Domain Services</a>
-And, check the upto date pricing here: <a href="https://azure.microsoft.com/en-us/pricing/details/active-directory-ds/">Pricing</a></p>
-<p>Now it is time for you to go and try this new service for yourself and enjoy it's benefits!</p></p>
+<p>Start any service which is not running and check if the problem still exists. 90% of the time the problem is going to be because of something related to these services (e.g. a restart or patch stopped one of these services).</p>
+<h3>5. Checking Services on the Server being replicated</h3>
+<p>Check if the services on the Server being replicated are up and running. You need to check for the below services:</p>
+<ul>
+<li>Azure Site Recovery VSS Provider</li>
+<li>InMage Scout Application Service</li>
+<li>InMage Scout VX Agent - Sentinel/Outpost</li>
+</ul>
+<p>Start any service which is not running and check if the problem still exists.</p>
+<h3>6. Verify Service Account credentials are correct and have required access</h3>
+<p>The replication can stop if the service account is not correct or it doesn't have required access. Check if the service account's password expired or changed. </p>
+<p>You can use the Configuration Server config tool to check and update the service accounts. This tool can be accessed from this directory path: &quot;<em>D:\Program Files (x86)\Microsoft Azure Site Recovery\home\svsystems\bin</em>&quot; where D is your install directory for ASR setup. The tool name under this directory is &quot;<strong>cspsconfigtool.exe</strong>&quot;.</p>
+<p><img src="/images/1479238579582b63b3688bd.png" alt="CSPS Config Tool" /></p>
+<h3>7. Check Logs</h3>
+<p>There are various ASR logs that gets generated in the Management server. Two key logs that you should check are as shown below. This assumes that D is the directory where ASR is installed.</p>
+<ul>
+<li><strong>Monitoring Logs</strong> - These logs are located at &quot;<em>D:\Program Files (x86)\Microsoft Azure Site Recovery\home\svsystems\var</em>&quot;. Name of the file you should check is &quot;<strong>monitor_ps</strong>&quot;.</li>
+<li><strong>VM-Specific ASR Logs</strong> - These logs are located at &quot;<em>D:\Program Files (x86)\Microsoft Azure Site Recovery\home\svsystems</em>&quot;. Then there will be a folder with the name as a GUID for each VM. Navigate to the folder with the Guid and try to find the folder for your VM's GUID. One indication will be the number of disks and the disk sizes. Once you have located the folder for one of the VM having replication problems. Then navigate to internal folders and locate the perf.log file for your VM's disks. Check to see if there are any errors here.</li>
+</ul>
+<p>These logs should give you an idea as to what may have been causing the issues.</p>
+<h3>In Conclusion</h3>
+<p>After all these steps and any changes you should Refresh the Configuration Server as shown in the point 3 above. </p>
+<p>Let me know if this blog helped in your scenario. </p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -114,9 +144,9 @@ And, check the upto date pricing here: <a href="https://azure.microsoft.com/en-u
                 
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
-                                <a href="http://HarvestingClouds.com/tag/AD">AD</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/ActiveDirectory">ActiveDirectory</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/ASR">ASR</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/AzureSiteRecovery">AzureSiteRecovery</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -163,11 +193,11 @@ And, check the upto date pricing here: <a href="https://azure.microsoft.com/en-u
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-not-working">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/general-availability-azure-active-directory-ad-domain-services">General Availability - Azure Active Directory (AD) Domain Services</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers">Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it">Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index">Step by Step Azure Resource Manager (ARM) Templates - Index</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-providing-powershell-scripts-to-run-after-vm-deployment-via-arm-template">Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template</a></li>
                 </ul>
             </div>
         
@@ -191,7 +221,7 @@ And, check the upto date pricing here: <a href="https://azure.microsoft.com/en-u
                         <strong>Archives</strong>
                     </div>
         
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2016">October 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2016">November 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2016">October 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
                 </div>
         
             <!-- Tags -->
@@ -208,19 +238,19 @@ And, check the upto date pricing here: <a href="https://azure.microsoft.com/en-u
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AD</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
-<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">ARM</a>
+<a style="font-size: 25px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">ARM</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">ASR</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
-<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="26 total posts" data-original-title="27 total posts" data-toggle="tooltip">Azure</a>
-<a style="font-size: 19px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
+<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="27 total posts" data-original-title="28 total posts" data-toggle="tooltip">Azure</a>
+<a style="font-size: 18px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
 <a style="font-size: 27px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="23 total posts" data-original-title="24 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/blob" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">blob</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/csharp" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">csharp</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/datacenter" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">datacenter</a>
@@ -230,8 +260,8 @@ And, check the upto date pricing here: <a href="https://azure.microsoft.com/en-u
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/json" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">JSON</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/keyvault" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">KeyVault</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PowerShell</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">powershell</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PowerShell</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/remoteapp" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">RemoteApp</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/runbooks" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Runbooks</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/sample" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Sample</a>

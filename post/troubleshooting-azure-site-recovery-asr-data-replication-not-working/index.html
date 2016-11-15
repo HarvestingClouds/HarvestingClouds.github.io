@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Harvesting Clouds</title>
+    <title>Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -71,12 +71,111 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-            <h1>Tag Posts</h1>
-            <hr/>
-            <br/>
+            <article>
+                <h3>Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working</h3>
+                <span class="glyphicon glyphicon-user"></span> @20aman
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> Nov 15, 2016
+                <hr>
 
-                <h3><a href="http://HarvestingClouds.com/post/multiple-values-in-gridmvc-single-column-filter-via-checkboxes-with-code-sample">Multiple Values In Grid.Mvc Single Column Filter via Checkboxes with Code Sample</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 12, 2016
+                <p class="post-content"><p>If you have the Azure Site Recovery (ASR) setup in your environment and are facing the issue where the data replication is stuck, then follow this blog to troubleshoot. The data replication can be stuck either during the initial replication or during the delta changes. This can occur for various reasons. We will inspect various components involved in ASR. Major of the troubleshooting is done on the Management Server i.e. the on-premise Configuration/Master target server.</p>
+<h3>1. Check Alerts Details</h3>
+<p>Go to the Azure Site Recovery Vault and navigate to the settings. Click on the <strong><em>Alerts and Events</em></strong>. Check the alerts for the data replication being blocked etc. Verify that the problem is related to data replication and not something else. </p>
+<p>You can also navigate to the &quot;<strong><em>Replicated Items</em></strong>&quot; in the ASR Vault settings. On the blade for replicated items, click on the server for which the data is not being replicated. A new blade will open for this server's properties Then click on the Error Details on the server properties blade's context menu (which you can access by clicking on the top right ellipse i.e. 3 dots).</p>
+<p>After verifying the issue, proceed to next sections to troubleshoot.</p>
+<h3>2. Check Resource Monitor</h3>
+<p>Check if you see any activity in the Resource Monitor. This is also to validate if the issue is there or not. Sometimes the <strong>Low Bandwidth</strong> and <strong>multiple servers</strong> configured against one Management server can cause this issue. Ensure that this is not the scenario in your case.</p>
+<p>From the Task manager, go to performance view and check for the bandwidth consumption. Then click on the &quot;Open Resource Monitor&quot; button to launch the Resource Monitor. From the CPU section in the Overview tab, select the below two services:</p>
+<ul>
+<li>cxps.exe</li>
+<li>cbengine.exe</li>
+</ul>
+<p>Then click on the Network tab and see if there is any traffic going out to Azure. If the data transfer is going on without issues then you should be able to view entries against cbengine going out to a URL which will look something like &quot;blob.aaa1aaa1aa.core.windows.net&quot; and entries against the csps service .</p>
+<p><img src="/images/1479242042582b713a13d26.png" alt="Resource Monitor" /></p>
+<h3>3. Check ASR Infrastructure Setup</h3>
+<p>First of all, check if the ASR infrastructure setup is correct and nothing is wrong there. To view this, navigate to the ASR Vault. Go to the settings and click on the &quot;Site Recovery Infrastructure&quot;. In the next blade, click on the kind of infrastructure you have setup. E.g. If you are replicating from VMWare or Physical Machines from on-premise to Azure then click on the &quot;Configuration Servers&quot; under the &quot;For VMWare &amp; Physical Machines&quot; section.</p>
+<p><img src="/images/1479235374582b572e7bd28.png" alt="Site Recovery Infrastructure" /></p>
+<p>Here check if the Config Server is showing as &quot;Connected&quot;. If not then the problem is in the communication between Configuration Server and the Azure. Ensure that you are able to connect to the Azure portal from the config server. Also, ensure that all the public URLs for Azure are accessible. Check this link for exact URLs: <a href="https://docs.microsoft.com/en-us/azure/site-recovery/site-recovery-best-practices#verify-url-access">Verify URL Access</a>.</p>
+<p>Next, click on the configuration server. This will open another blade with details for the configuration server. Expand the section for &quot;Associated Servers&quot; as marked no. 2 in the screenshot below. Check if all the associated servers, i.e. Process Server, vCenter Server and Master Target servers are connected and showing green tick mark.</p>
+<p>Next, check the configuration server health as shown at no. 3 below. Check if all the services are running and showing healthy. Ensure that you have sufficient free space on the configuration server to send the replication data. If you see any services not running then go to the next section to check and start the services on the Management Server on-premise. </p>
+<p>You can try refreshing the server after making any configuration changes on it, e.g. increasing memory or freeing up disk space. Click on the &quot;Refresh Server&quot; button as shown at no. 4, at the top of the blade for the configuration server.</p>
+<p><img src="/images/1479235804582b58dc26f55.png" alt="Config Server Settings" /></p>
+<h3>4. Checking Services on the Management Server</h3>
+<p>Check if the services on the Management Server are up and running. You need to check for the below services:</p>
+<ul>
+<li>InMage PushInstall</li>
+<li>InMage Scout Application Service</li>
+<li>InMage Scout VX Agent - Sentinel/Outpost</li>
+<li>INMAGE-AppScheduler</li>
+<li>Microsoft Azure Recovery Services Agent</li>
+<li>Microsoft Azure Site Recovery Service</li>
+<li>cxprocessserver (This is important service. It is the service for the InMage CX Process Server)</li>
+<li>tmansvc (This is the service for the InMage Volsync Thread Manager Service)</li>
+</ul>
+<p>Start any service which is not running and check if the problem still exists. 90% of the time the problem is going to be because of something related to these services (e.g. a restart or patch stopped one of these services).</p>
+<h3>5. Checking Services on the Server being replicated</h3>
+<p>Check if the services on the Server being replicated are up and running. You need to check for the below services:</p>
+<ul>
+<li>Azure Site Recovery VSS Provider</li>
+<li>InMage Scout Application Service</li>
+<li>InMage Scout VX Agent - Sentinel/Outpost</li>
+</ul>
+<p>Start any service which is not running and check if the problem still exists.</p>
+<h3>6. Verify Service Account credentials are correct and have required access</h3>
+<p>The replication can stop if the service account is not correct or it doesn't have required access. Check if the service account's password expired or changed. </p>
+<p>You can use the Configuration Server config tool to check and update the service accounts. This tool can be accessed from this directory path: &quot;<em>D:\Program Files (x86)\Microsoft Azure Site Recovery\home\svsystems\bin</em>&quot; where D is your install directory for ASR setup. The tool name under this directory is &quot;<strong>cspsconfigtool.exe</strong>&quot;.</p>
+<p><img src="/images/1479238579582b63b3688bd.png" alt="CSPS Config Tool" /></p>
+<h3>7. Check Logs</h3>
+<p>There are various ASR logs that gets generated in the Management server. Two key logs that you should check are as shown below. This assumes that D is the directory where ASR is installed.</p>
+<ul>
+<li><strong>Monitoring Logs</strong> - These logs are located at &quot;<em>D:\Program Files (x86)\Microsoft Azure Site Recovery\home\svsystems\var</em>&quot;. Name of the file you should check is &quot;<strong>monitor_ps</strong>&quot;.</li>
+<li><strong>VM-Specific ASR Logs</strong> - These logs are located at &quot;<em>D:\Program Files (x86)\Microsoft Azure Site Recovery\home\svsystems</em>&quot;. Then there will be a folder with the name as a GUID for each VM. Navigate to the folder with the Guid and try to find the folder for your VM's GUID. One indication will be the number of disks and the disk sizes. Once you have located the folder for one of the VM having replication problems. Then navigate to internal folders and locate the perf.log file for your VM's disks. Check to see if there are any errors here.</li>
+</ul>
+<p>These logs should give you an idea as to what may have been causing the issues.</p>
+<h3>In Conclusion</h3>
+<p>After all these steps and any changes you should Refresh the Configuration Server as shown in the point 3 above. </p>
+<p>Let me know if this blog helped in your scenario. </p></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="http://HarvestingClouds.com/tag/ASR">ASR</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/AzureSiteRecovery">AzureSiteRecovery</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
+
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="http://HarvestingClouds.com/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
+            </div>
+
         </div>
 
         <div class="sidebar col-md-4">
@@ -192,6 +291,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
 </div>
 
@@ -229,3 +329,69 @@
 
 </body>
 </html>
+<!-- for pagination -->
+<script>
+    $(function () {
+
+        ///////////////////////////////////////////////////
+        // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
+        var $nextPostSelector = $('.nextpost');
+        ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
+
+        $.ajax({
+            url: __blogURL + "/data/blog.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.posts !== undefined && data.posts !== null) {
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
+                }
+            },
+            error: function (e) {
+                $prevPostSelector.hide();
+                $nextPostSelector.hide();
+            }
+        });
+
+        // for Disqus
+        var disqus_shortname = 'harvestingclouds';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+    });
+</script>
