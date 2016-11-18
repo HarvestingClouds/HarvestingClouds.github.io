@@ -6,6 +6,36 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure Site Recovery (ASR) - New feature added to target Resource Groups</title>
+<description><![CDATA[<p>A new feature is now added to Azure Site Recovery (ASR) which enables you to target the Resource Groups for failover. You can target a separate Resource Group for each Server/VM being protected. Now post failover, this target Resource Group will be used. Earlier,  during a failover, a new resource group was created with the same name as the server being failed over.</p>
+<p>You can configure this setting in two ways:</p>
+<ol>
+
+<li>
+When you are enabling replication of new servers then at the settings for "Target" you will have two new options. 
+
+<ul><li>The first option is "Post-failover resource group" along with a drop down. This is where you select the target Resource Group. You can select one of the existing Resource group here. If you haven't created the one you want to use as a target then please create before enabling replication. </li> 
+
+<li>The second new option is to select "Post-failover deployment model" which has only two options. These options are "Classic" and "Resource Manager". The later will be selected by default and should be the one you should be using to leverage all the new features which Azure has to offer.</li>
+</ul>
+
+<br/>
+<img src="/images/1479492534582f43b603632.png" alt="Compute and Network settings">
+</li>
+
+<li>
+If you have servers which were protected before this feature was introduced or if you configured wrong Resource Group during enabling of replication and now want to change the Resource Group then you can do so using this alternate way. Go to your ASR Vault and then go to Settings. Then go to the "Replicated Items" and click on the server for which you want to change the resource group. Click on "Compute and Network" in the server properties as shown below. You will see a new option here to select or change the target Resource Group. Click "Save" at the top of the blade after selecting or changing the value.
+
+<br/>
+
+<img src="/images/1479492540582f43bc310dc.png" alt="Compute and Network settings">
+</li>
+</ol>
+<p>This new option makes the failover process in Azure Site Recovery (ASR) much more manageable and overall a better experience.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-site-recovery-asr-new-feature-added-to-target-resource-groups</link>
+<pubDate>Thu, 17 Nov 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working</title>
 <description><![CDATA[<p>If you have the Azure Site Recovery (ASR) setup in your environment and are facing the issue where the data replication is stuck, then follow this blog to troubleshoot. The data replication can be stuck either during the initial replication or during the delta changes. This can occur for various reasons. We will inspect various components involved in ASR. Major of the troubleshooting is done on the Management Server i.e. the on-premise Configuration/Master target server.</p>
 <h3>1. Check Alerts Details</h3>

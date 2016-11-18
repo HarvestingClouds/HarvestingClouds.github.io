@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template :: Harvesting Clouds</title>
+    <title>Azure Site Recovery (ASR) - New feature added to target Resource Groups :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -72,87 +72,37 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Step by Step ARM Templates - Providing PowerShell Scripts to Run after VM deployment via ARM Template</h3>
+                <h3>Azure Site Recovery (ASR) - New feature added to target Resource Groups</h3>
                 <span class="glyphicon glyphicon-user"></span> @20aman
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> Oct 19, 2016
+                <span class="glyphicon glyphicon-time"></span> Nov 17, 2016
                 <hr>
 
-                <p class="post-content"><p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
-<p>By providing PowerShell Scripts to Run after VM deployment via ARM Template, you can accomplish various activities. </p>
-<ul>
-<li>You can setup different features and roles on the VM. </li>
-<li>You can setup web server. </li>
-<li>You can setup SQL Database and configure it.</li>
-<li>You can configure custom policies</li>
-<li>And so on...</li>
-</ul>
-<p>You first need to have PowerShell script files uploaded to a storage account.
-To do this you add an <strong>Extension resource</strong> (<em>Microsoft.Compute/virtualMachines/extensions</em>) nested inside a VM. This extension resource should be of type &quot;<strong>CustomScriptExtension</strong>&quot;. You provide the URLs to the PowerShell scripts inside this custom script extension.</p>
-<h3>Preparation</h3>
-<p>As part of the preparation process you need to:</p>
-<ul>
-<li>Ensure that the PowerShell scripts are uploaded to the Storage Account and that you have the complete URL to the blob. </li>
-<li>Or you can upload the scripts to the GitHub and get the Raw file URL</li>
-<li>If there are more than one scripts then there should be one master script amongst all ps1 files which will internally invoke other files. This master file will be triggered via the template. Information of all file URLs will also be provided via the Template</li>
-</ul>
-<h3>Providing and configuring Scripts to Run After VM Deployment</h3>
-<p>Define the below resource to provide PowerShell scripts to be run after VM deployment:</p>
-<pre><code>{
-   "type": "Microsoft.Compute/virtualMachines/extensions",
-   "name": "MyCustomScriptExtension",
-   "apiVersion": "2015-05-01-preview",
-   "location": "[parameters('location')]",
-   "dependsOn": [
-       "[concat('Microsoft.Compute/virtualMachines/',parameters('vmName'))]"
-   ],
-   "properties": {
-       "publisher": "Microsoft.Compute",
-       "type": "CustomScriptExtension",
-       "typeHandlerVersion": "1.7",
-       "autoUpgradeMinorVersion":true,
-       "settings": {
-           "fileUris": [
-           "http://Yourstorageaccount.blob.core.windows.net/customscriptfiles/start.ps1",
-           "http://Yourstorageaccount.blob.core.windows.net/customscriptfiles/secondaryScript.ps1",
+                <p class="post-content"><p>A new feature is now added to Azure Site Recovery (ASR) which enables you to target the Resource Groups for failover. You can target a separate Resource Group for each Server/VM being protected. Now post failover, this target Resource Group will be used. Earlier,  during a failover, a new resource group was created with the same name as the server being failed over.</p>
+<p>You can configure this setting in two ways:</p>
+<ol>
 
-       ],
-       "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File start.ps1"
-     }
-   }
- }</code></pre>
-<p><strong>How it works:</strong></p>
-<ul>
-<li>Both the files i.e. start.ps1 and secondaryScript.ps1 are picked up from the storage account after VM deployment. Ensure to replace the URLs with your actual storage account blob URLs. You can add more files if needed.</li>
-<li>The &quot;start.ps1&quot; is the main powerShell script which should be invoking the secondaryScript.ps1 internally</li>
-<li>CommandToExecutre property is used to invoke the start.ps1 powerShell script on the deployed VM</li>
+<li>
+When you are enabling replication of new servers then at the settings for "Target" you will have two new options. 
+
+<ul><li>The first option is "Post-failover resource group" along with a drop down. This is where you select the target Resource Group. You can select one of the existing Resource group here. If you haven't created the one you want to use as a target then please create before enabling replication. </li> 
+
+<li>The second new option is to select "Post-failover deployment model" which has only two options. These options are "Classic" and "Resource Manager". The later will be selected by default and should be the one you should be using to leverage all the new features which Azure has to offer.</li>
 </ul>
-<h3>Passing Parameters to the PowerShell Script dynamically</h3>
-<p>To pass the parameters to the PowerShell script use commandToExecute property. </p>
-<p>One such example to pass the parameters is shown below:</p>
-<pre><code>"commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File start.ps1', ' -domainName ', parameters('domainNameParameter')]"</code></pre>
-<p>Note the use of &quot;concat&quot; helper function to create the value of the &quot;commandToExecute&quot;. Also note that there is starting and trailing space in the second argument of the concat i.e. &quot; -domainName &quot;.</p>
-<p>The parameter &quot;domainNameParameter&quot; should already be defined in the template in the parameters section. If the value of parameter &quot;domainNameParameter&quot; is &quot;testdomain.com&quot; then the dynamically generated command will become:</p>
-<pre><code>powershell.exe -ExecutionPolicy Unrestricted -File start.ps1 -domainName testdomain.com</code></pre>
-<h3>Securing the Access to the PowerShell Script File in Storage account</h3>
-<p>Let us assume you want to deploy Windows VM with Protected settings. Then use the below sample to provide the PowerShell files.</p>
-<pre><code>{
-    "publisher": "Microsoft.Compute",
-    "type": "CustomScriptExtension",
-    "typeHandlerVersion": "1.7",
-    "settings": {
-        "fileUris": [
-            "http: //Yourstorageaccount.blob.core.windows.net/customscriptfiles/start.ps1"
-        ]
-    },
-    "protectedSettings": {
-        "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -start.ps1",
-        "storageAccountName": "yourStorageAccountName",
-        "storageAccountKey": "yourStorageAccountKey"
-    }
-}</code></pre>
-<p>Note the use of &quot;protectedSettings&quot; above. This time you also specify the Storage Account Name and the Storage Account Key.</p>
-<p>You can also refer the official documentation here: <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-extensions-customscript/">Windows VM Custom Script extensions with Azure Resource Manager templates</a>.</p></p>
+
+<br/>
+<img src="/images/1479492534582f43b603632.png" alt="Compute and Network settings">
+</li>
+
+<li>
+If you have servers which were protected before this feature was introduced or if you configured wrong Resource Group during enabling of replication and now want to change the Resource Group then you can do so using this alternate way. Go to your ASR Vault and then go to Settings. Then go to the "Replicated Items" and click on the server for which you want to change the resource group. Click on "Compute and Network" in the server properties as shown below. You will see a new option here to select or change the target Resource Group. Click "Save" at the top of the blade after selecting or changing the value.
+
+<br/>
+
+<img src="/images/1479492540582f43bc310dc.png" alt="Compute and Network settings">
+</li>
+</ol>
+<p>This new option makes the failover process in Azure Site Recovery (ASR) much more manageable and overall a better experience.</p></p>
                 <br/><br/>
 
                 <div class="post-info">
@@ -162,11 +112,10 @@ To do this you add an <strong>Extension resource</strong> (<em>Microsoft.Compute
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/ASR">ASR</a>&nbsp;&nbsp;
                         <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/PowerShell">PowerShell</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/AzureSiteRecovery">AzureSiteRecovery</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/ResourceGroups">ResourceGroups</a>&nbsp;&nbsp;
                 </div>
 
             </article>
