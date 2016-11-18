@@ -12,7 +12,7 @@
 <ol>
 
 <li>
-When you are enabling replication of new servers then at the settings for "Target" you will have two new options. 
+When you are <b>Enabling Replication of new servers</b> then at the settings for "Target" you will have two new options. 
 
 <ul><li>The first option is "Post-failover resource group" along with a drop down. This is where you select the target Resource Group. You can select one of the existing Resource group here. If you haven't created the one you want to use as a target then please create before enabling replication. </li> 
 
@@ -28,7 +28,7 @@ If you have servers which were protected before this feature was introduced or i
 
 <br/>
 
-<img src="/images/1479492540582f43bc310dc.png" alt="Compute and Network settings">
+<img src="/images/1479493236582f4674a80d3.png" alt="Compute and Network settings">
 </li>
 </ol>
 <p>This new option makes the failover process in Azure Site Recovery (ASR) much more manageable and overall a better experience.</p>]]></description>
