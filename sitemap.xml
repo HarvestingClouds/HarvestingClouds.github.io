@@ -5,6 +5,12 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
+<loc>http://HarvestingClouds.com/post/script-sample-generate-azure-resources-report-by-tags/</loc>
+<lastmod>2017-01-26T00:00:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
 <loc>http://HarvestingClouds.com/post/azure-application-insights-is-now-generally-available/</loc>
 <lastmod>2016-11-29T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
@@ -79,12 +85,6 @@
 <url>
 <loc>http://HarvestingClouds.com/post/azure-remoteapp-is-going-away-new-purchases-in-portal-are-now-stopped/</loc>
 <lastmod>2016-10-10T00:00:00+05:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>1.00</priority>
-</url>
-<url>
-<loc>http://HarvestingClouds.com/post/script-sample-generate-azure-resources-report-by-tags/</loc>
-<lastmod>2016-10-03T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.00</priority>
 </url>
