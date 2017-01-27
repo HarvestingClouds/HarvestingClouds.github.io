@@ -6,6 +6,12 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure Application Insights is now generally available</title>
+<description><![CDATA[<p>After a long time in Preview, Azure Application Insights is now generally available from Microsoft.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-application-insights-is-now-generally-available</link>
+<pubDate>Tue, 29 Nov 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Site Recovery (ASR) - New feature added to target Resource Groups</title>
 <description><![CDATA[<p>A new feature is now added to Azure Site Recovery (ASR) which enables you to target the Resource Groups for failover. You can target a separate Resource Group for each Server/VM being protected. Now post failover, this target Resource Group will be used. Earlier,  during a failover, a new resource group was created with the same name as the server being failed over.</p>
 <p>You can configure this setting in two ways:</p>
@@ -596,7 +602,7 @@ In nutshell, tags are Key-Value pairs. E.g. &quot;Business Unit = Finance&quot;,
 <li>Subscription Id</li>
 </ol>
 <p>You can find this script on GitHub here: <a href="https://github.com/HarvestingClouds/PowerShellSamples/blob/a4eb910aa8eb2cdd340c2866cde150282b47067e/Scripts/Azure%20Resources%20Report%20by%20Tags.ps1">Azure Resources Report by Tags</a></p>
-<p><a href="https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/a4eb910aa8eb2cdd340c2866cde150282b47067e/Scripts/Azure%20Resources%20Report%20by%20Tags.ps1">Direct Link to the Script here. Right click and choose Save As</a></p>
+<p><a href="https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/master/Scripts/Get-AzureRmTagsReport.ps1">Direct Link to the Script here. Right click and choose Save As</a></p>
 <p>You are welcome to make changes and submit Pull Requests to this script or even fork and make your modifications. </p>]]></description>
 <link>http://HarvestingClouds.com/post/script-sample-generate-azure-resources-report-by-tags</link>
 <pubDate>Mon, 03 Oct 2016 00:00:00 +0500</pubDate>

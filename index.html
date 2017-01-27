@@ -72,37 +72,13 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/azure-site-recovery-asr-new-feature-added-to-target-resource-groups">Azure Site Recovery (ASR) - New feature added to target Resource Groups</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/azure-application-insights-is-now-generally-available">Azure Application Insights is now generally available</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Nov 17, 2016
+                    <span class="glyphicon glyphicon-time"></span> Nov 29, 2016
                 
                         <hr>
-                        <p class="post-content"><p>A new feature is now added to Azure Site Recovery (ASR) which enables you to target the Resource Groups for failover. You can target a separate Resource Group for each Server/VM being protected. Now post failover, this target Resource Group will be used. Earlier,  during a failover, a new resource group was created with the same name as the server being failed over.</p>
-<p>You can configure this setting in two ways:</p>
-<ol>
-
-<li>
-When you are <b>Enabling Replication of new servers</b> then at the settings for "Target" you will have two new options. 
-
-<ul><li>The first option is "Post-failover resource group" along with a drop down. This is where you select the target Resource Group. You can select one of the existing Resource group here. If you haven't created the one you want to use as a target then please create before enabling replication. </li> 
-
-<li>The second new option is to select "Post-failover deployment model" which has only two options. These options are "Classic" and "Resource Manager". The later will be selected by default and should be the one you should be using to leverage all the new features which Azure has to offer.</li>
-</ul>
-
-<br/>
-<img src="/images/1479510199582f88b742692.png" alt="Enable Replication">
-</li>
-
-<li>
-If you have servers which were protected before this feature was introduced or if you configured wrong Resource Group during enabling of replication and now want to change the Resource Group then you can do so using this alternate way. Go to your ASR Vault and then go to Settings. Then go to the "Replicated Items" and click on the server for which you want to change the resource group. Click on "Compute and Network" in the server properties as shown below. You will see a new option here to select or change the target Resource Group. Click "Save" at the top of the blade after selecting or changing the value.
-
-<br/>
-
-<img src="/images/1479493236582f4674a80d3.png" alt="Compute and Network settings">
-</li>
-</ol>
-<p>This new option makes the failover process in Azure Site Recovery (ASR) much more manageable and overall a better experience.</p></p>
+                        <p class="post-content"><p>After a long time in Preview, Azure Application Insights is now generally available from Microsoft.</p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -112,10 +88,10 @@ If you have servers which were protected before this feature was introduced or i
                 
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
-                                <a href="http://HarvestingClouds.com/tag/ASR">ASR</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/AzureSiteRecovery">AzureSiteRecovery</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/ResourceGroups">ResourceGroups</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/ApplicationInsights">ApplicationInsights</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -162,11 +138,11 @@ If you have servers which were protected before this feature was introduced or i
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-application-insights-is-now-generally-available">Azure Application Insights is now generally available</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-site-recovery-asr-new-feature-added-to-target-resource-groups">Azure Site Recovery (ASR) - New feature added to target Resource Groups</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-not-working">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/general-availability-azure-active-directory-ad-domain-services">General Availability - Azure Active Directory (AD) Domain Services</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers">Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-creating-asr-template-from-an-existing-azure-infrastructure-and-modifying-it">Step by Step ARM Templates - Creating ASR Template from an existing Azure Infrastructure and Modifying It</a></li>
                 </ul>
             </div>
         
@@ -207,19 +183,20 @@ If you have servers which were protected before this feature was introduced or i
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AD</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
-<a style="font-size: 25px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">ARM</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/applicationinsights" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ApplicationInsights</a>
+<a style="font-size: 25px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="22 total posts" data-original-title="23 total posts" data-toggle="tooltip">ARM</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
 <a style="font-size: 18px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
-<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="28 total posts" data-original-title="29 total posts" data-toggle="tooltip">Azure</a>
+<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="29 total posts" data-original-title="30 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
+<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
-<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="23 total posts" data-original-title="24 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/blob" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">blob</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/csharp" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">csharp</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/datacenter" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">datacenter</a>
