@@ -8,5 +8,5 @@ URLs for Azure Government Cloud:<br/>
 <li>*.ugv.hypervrecoverymanager.windowsazure.us</li>
 <li>*.ugv.backup.windowsazure.us</li>
 <li>*.ugi.hypervrecoverymanager.windowsazure.us</li>
-<li>*.ugi.backup.windowsazure.us<li/>
+<li>*.ugi.backup.windowsazure.us</li>
 </ul>
