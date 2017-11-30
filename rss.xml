@@ -6,6 +6,75 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Introducing the Harvesting Clouds YouTube channel</title>
+<description><![CDATA[<p>I am happy to introduce the YouTube channel for Harvesting Clouds. The channel can be accessed here: <a href="https://www.youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw">Harvesting Clouds YouTube channel</a></p>
+<p>Do <strong>Subscribe</strong> to the channel to get notified of any new content on the channel. <strong>Like</strong> the content if you learned something new or got new perspective on the things you knew.</p>
+<p>Check out the author introduction video below:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8tLdzsg6YVk?rel=0" frameborder="0" allowfullscreen></iframe>
+<p>The managed and ordered content via <strong>playlists</strong> can be found here: <a href="https://www.youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw/playlists">Playlists - Harvesting Clouds</a></p>
+<p><strong>All videos</strong> on the channel can be found here: <a href="https://www.youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw/videos">All Videos - Harvesting Clouds</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/introducing-the-harvesting-clouds-youtube-channel</link>
+<pubDate>Wed, 29 Nov 2017 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Video - Azure Automation - Introduction</title>
+<description><![CDATA[<p>This is the first video in the series of Azure Automation. This video provides the introduction and talks about the various theoretical concepts about Azure Automation</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8tLdzsg6YVk?rel=0" frameborder="0" allowfullscreen></iframe>
+<p>You can view and subscribe to the YouTube channel here: <a href="https://www.youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw">HarvestingClouds on YouTube</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/video-azure-automation-introduction</link>
+<pubDate>Wed, 29 Nov 2017 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Introducing Azure Reserved VM Instances (RIs)</title>
+<description><![CDATA[<p>Azure Reserved VM Instances provides an easy option to save cost for predictive workloads. You commit to either one or three year options and pay the complete cost with discounts upfront. </p>
+<h2>When should you use this</h2>
+<p>If you know that your workload will be up and running then Azure Reserved VM instances are for you.
+The savings can be up to 72% with the use of Reserved VM instances. If your VM is not going to be up and running for most time and you have the option to automate and shut down the Virtual Machine then you don't need Reserved VM Instances.</p>
+<h2>How does the cost savings look like</h2>
+<p>The cost savings can be very significant especially when clubbed with Azure Hybrid Use Benefit. The below graphic is based on a Dv2 three-year RI with Azure Hybrid Benefit.</p>
+<p><img src="http://HarvestingClouds.com/images/15120755665a20712ed8b1b.png" alt="Potential Savings with Azure Reserved VM Instances" /></p>
+<h2>Other aspects</h2>
+<p>Other aspects of Azure Reserved VM Instances that you need to know are:</p>
+<ul>
+<li>You can assign RI benefit at either the enrollment level or at the subscription level</li>
+<li>The assignment is as easy as providing the Region, VM Series/size and providing the term. The two terms offered today are 1 year and 3 years</li>
+<li>You can exchange to a new instance and location as you need in the future</li>
+<li>You also have the option to cancel anytime directly with Microsoft for a pro-rated refund</li>
+</ul>
+<p>Reference: <a href="https://azure.microsoft.com/en-ca/pricing/reserved-vm-instances/">Azure Reserved VM Instances</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/introducing-azure-reserved-vm-instances-ris</link>
+<pubDate>Sun, 12 Nov 2017 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Why you should be using Azure Managed Disks now?</title>
+<description><![CDATA[<p>Azure Managed Disks bring lots of advantages and benefits to the table when compared to Azure Storage Account based VM disks. The first thing to note is that these are only related to VM disks and not general blob storage. In this post, lets take a look at what all benefits you get when you create your virtual machine with a managed disk instead of a storage account based disks.</p>
+<h3>More Controlled Access Management</h3>
+<p>Let's assume a scenario where all the disks for the virtual machines in your environment belonged to a particular storage account. Let us say that there are VMs belonging to Finance as well as HR departments. Now if you want to give access to a VHD file of a VM belonging to HR department, you will provide the access to the storage account. This was the lowest level where you could provide the access. This inadvertently opened the access to the Finance VM's VHD files as well.</p>
+<p>Managed Disks are individual resources in Azure. If a VM has 1 OS disk and 2 data disks, all implemented as a managed disk, then you can even provide the access to one of the data disk and not provide access to any of the other disks.</p>
+<h3>No Storage account service limits</h3>
+<p>Earlier with storage accounts there were Service Limits related to IOPS at the storage account level. When the infrastructure grew and there comes a time the number of disks grew to a point that this service limit will be hit and this can affect your architecture. With managed disks, you are no longer limited by the storage account limits.</p>
+<h3>Ability to take Snapshot</h3>
+<p>Now with managed disks you have the capability to take snapshots on the fly. You can later restore from these snapshots as required. You can take these snapshots onto a different storage account.</p>
+<h3>Ability to Capture better images</h3>
+<p>The images that you capture on the Vms, which are created using managed disks, will not just include the OS disk, but will also include all the data disk.</p>
+<h3>Ability to convert a Standard disk to Premium disk and vice versa</h3>
+<p>Earlier if you wanted to convert a standard disk to a premium disk (or vice versa) you needed to create a new storage account and copy over the disk. Now with managed disks, this is as easy as shutting down the virtual machine and just changing a value in a drop down.</p>
+<h3>Other benefits</h3>
+<p>Other benefits include:</p>
+<ul>
+<li>Better reliability for Availability Sets</li>
+<li>Highly durable and available with design for 99.999% availability</li>
+<li>Better Azure Backup service support with the ability to create a backup job with time-based backups, easy VM restoration, and backup retention policies</li>
+</ul>
+<p>Reference: </p>
+<ul>
+<li><a href="https://azure.microsoft.com/en-ca/services/managed-disks/">Managed Disks product page</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/managed-disks-overview">Managed Disks overview</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/why-you-should-be-using-azure-managed-disks-now</link>
+<pubDate>Sun, 05 Nov 2017 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - Generate Azure Resources Report by Tags</title>
 <description><![CDATA[<p>&lt;&lt;<strong>Update</strong>: This post and the sample script is now updated to support latest Azure PowerShell cmdlets&gt;&gt;</p>
 <p>When managing resources in Azure, Tags are there to help you. They add very valuable metadata to the Azure resources.
