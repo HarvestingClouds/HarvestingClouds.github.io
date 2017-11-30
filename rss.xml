@@ -7,12 +7,12 @@
 <language>en-us</language>
 <item>
 <title>Introducing the Harvesting Clouds YouTube channel</title>
-<description><![CDATA[<p>I am happy to introduce the YouTube channel for Harvesting Clouds. The channel can be accessed here: <a href="https://www.youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw">Harvesting Clouds YouTube channel</a></p>
+<description><![CDATA[<p>I am happy to introduce the YouTube channel for Harvesting Clouds. The channel can be accessed here: <a href="https://www.youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw" target="_blank">Harvesting Clouds YouTube Channel</a></p>
 <p>Do <strong>Subscribe</strong> to the channel to get notified of any new content on the channel. <strong>Like</strong> the content if you learned something new or got new perspective on the things you knew.</p>
 <p>Check out the author introduction video below:</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8tLdzsg6YVk?rel=0" frameborder="0" allowfullscreen></iframe>
-<p>The managed and ordered content via <strong>playlists</strong> can be found here: <a href="https://www.youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw/playlists">Playlists - Harvesting Clouds</a></p>
-<p><strong>All videos</strong> on the channel can be found here: <a href="https://www.youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw/videos">All Videos - Harvesting Clouds</a></p>]]></description>
+<p>The managed and ordered content via <strong>playlists</strong> can be found here: <a href="https://www.youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw/playlists" target="_blank">Playlists - Harvesting Clouds</a></p>
+<p><strong>All videos</strong> on the channel can be found here: <a href="https://www.youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw/videos" target="_blank">All Videos - Harvesting Clouds</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/introducing-the-harvesting-clouds-youtube-channel</link>
 <pubDate>Wed, 29 Nov 2017 00:00:00 +0500</pubDate>
 </item>
@@ -20,7 +20,7 @@
 <title>Video - Azure Automation - Introduction</title>
 <description><![CDATA[<p>This is the first video in the series of Azure Automation. This video provides the introduction and talks about the various theoretical concepts about Azure Automation</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8tLdzsg6YVk?rel=0" frameborder="0" allowfullscreen></iframe>
-<p>You can view and subscribe to the YouTube channel here: <a href="https://www.youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw">HarvestingClouds on YouTube</a></p>]]></description>
+<p>You can view and subscribe to the YouTube channel here: <a href="https://www.youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw" target="_blank">HarvestingClouds on YouTube</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/video-azure-automation-introduction</link>
 <pubDate>Wed, 29 Nov 2017 00:00:00 +0500</pubDate>
 </item>
@@ -41,7 +41,7 @@ The savings can be up to 72% with the use of Reserved VM instances. If your VM i
 <li>You can exchange to a new instance and location as you need in the future</li>
 <li>You also have the option to cancel anytime directly with Microsoft for a pro-rated refund</li>
 </ul>
-<p>Reference: <a href="https://azure.microsoft.com/en-ca/pricing/reserved-vm-instances/">Azure Reserved VM Instances</a></p>]]></description>
+<p>Reference: <a href="https://azure.microsoft.com/en-ca/pricing/reserved-vm-instances/" target="_blank">Azure Reserved VM Instances</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/introducing-azure-reserved-vm-instances-ris</link>
 <pubDate>Sun, 12 Nov 2017 00:00:00 +0500</pubDate>
 </item>
@@ -68,8 +68,8 @@ The savings can be up to 72% with the use of Reserved VM instances. If your VM i
 </ul>
 <p>Reference: </p>
 <ul>
-<li><a href="https://azure.microsoft.com/en-ca/services/managed-disks/">Managed Disks product page</a></li>
-<li><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/managed-disks-overview">Managed Disks overview</a></li>
+<li><a href="https://azure.microsoft.com/en-ca/services/managed-disks/" target="_blank">Managed Disks product page</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/managed-disks-overview" target="_blank">Managed Disks overview</a></li>
 </ul>]]></description>
 <link>http://HarvestingClouds.com/post/why-you-should-be-using-azure-managed-disks-now</link>
 <pubDate>Sun, 05 Nov 2017 00:00:00 +0500</pubDate>
