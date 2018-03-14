@@ -72,97 +72,46 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/great-way-to-learn-2018-microsoft-azure-community-study-groups">Great Way to learn - 2018 Microsoft Azure Community Study Groups</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues - Part 2</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Dec 05, 2017
+                    <span class="glyphicon glyphicon-time"></span> Jan 08, 2018
                 
                         <hr>
-                        <p class="post-content"><p>How many times have you started preparation for any Azure certification and have left it midway because of any reason? We all need a little extra nudge. Microsoft Azure Community Study Groups is just the thing you need to create and fulfill your next year resolutions. </p>
-<p>Here are the registration links, provided &quot;as is&quot;:</p>
-<table border="1" cellspacing="0" cellpadding="0">
-<tbody>
-<tr>
-<td width="461" valign="top">
-<p><b>Exam</b></p>
-</td>
-<td width="158" valign="top">
-<p><b>Registration Link</b></p>
-</td>
-<td width="208" valign="top">
-<p><b>Dates</b></p>
-</td>
-</tr>
-<tr>
-<td width="461" valign="top">
-<p><b>70-532: Developing Microsoft Azure Solutions</b></p>
-</td>
-<td width="158" valign="top">
-<p><a href="https://aka.ms/532asg">https://aka.ms/532asg</a></p>
-</td>
-<td width="208" valign="top">
-<p>March 23 – May 24, 2018</p>
-</td>
-</tr>
-<tr>
-<td width="461" valign="top">
-<p><b>70-533: Implementing Microsoft Azure Infrastructure Solutions</b></p>
-</td>
-<td width="158" valign="top">
-<p><a href="https://aka.ms/533asg">https://aka.ms/533asg</a></p>
-</td>
-<td width="208" valign="top">
-<p>January 12 – April 13, 2018</p>
-</td>
-</tr>
-<tr>
-<td width="461" valign="top">
-<p><b>70-535: Architecting Microsoft Azure Solutions </b></p>
-</td>
-<td width="158" valign="top">
-<p><a href="https://aka.ms/535asg">https://aka.ms/535asg</a></p>
-</td>
-<td width="208" valign="top">
-<p>January 12 – May 24, 2018</p>
-</td>
-</tr>
-<tr>
-<td width="461" valign="top">
-<p><b>70-483: Programing in C#</b></p>
-</td>
-<td width="158" valign="top">
-<p><a href="https://aka.ms/483asg">https://aka.ms/483asg</a></p>
-</td>
-<td width="208" valign="top">
-<p>January 12 – March 2, 2018</p>
-</td>
-</tr>
-<tr>
-<td width="461" valign="top">
-<p><b>70-486: Developing ASP.NET MVC Web Applications</b></p>
-</td>
-<td width="158" valign="top">
-<p><a href="https://aka.ms/486asg">https://aka.ms/486asg</a></p>
-</td>
-<td width="208" valign="top">
-<p>January 12 – March 23, 2018</p>
-</td>
-</tr>
-<tr>
-<td width="461" valign="top">
-<p><b>70-487: Developing Microsoft Azure and Web Services</b></p>
-</td>
-<td width="158" valign="top">
-<p><a href="https://aka.ms/487asg">https://aka.ms/487asg</a></p>
-</td>
-<td width="208" valign="top">
-<p>March 9 – May 11, 2018</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>You can access the main blog from here:
-<a href="https://blogs.technet.microsoft.com/uspartner_ts2team/2017/12/04/2018-microsoft-azure-community-study-groups/" target="_blank">2018 Microsoft Azure Community Study Groups</a></p></p>
+                        <p class="post-content"><p>This is the second part of troubleshooting Azure Site Recovery (ASR) Data replication issues. Part 1 is located here:  <a href="http://harvestingclouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-not-working/" target="_blank">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working</a></p>
+<p>Go through the part 1 before this blog as that talks about the location of logs and various preliminary steps. This blog talks about the issue where you are not even able to enable Data Replication for a server. </p>
+<h3>Preliminary Checks</h3>
+<p>Perform the following basic checks related to connectivity:</p>
+<ul>
+<li>Ensure that the ASR management server has connectivity with Azure.</li>
+<li>Ensure connectivity between the management server (process server) and the source machine which you are trying to replicate. Ensure that the source machine is accessible from the process server.
+<ul>
+<li>You will also need to enable and allow “File and Printer Sharing” on the source machine in the Windows Firewall. </li>
+</ul></li>
+<li>Ensure that the account that you use for enabling the protection has administrator rights on the source machine. This is needed for installation of the Mobility services agent on the source machine.</li>
+<li>Also allow Windows Management Instrumentation (WMI) in the Windows Firewall, if not already.</li>
+<li>Disable remote User Account Control (UAC) if you are using local administrator account to install the mobility service.</li>
+</ul>
+<h3>Checking Services</h3>
+<p>Also, check whether the following services are running and configured correctly on the source machine:</p>
+<ol>
+<li>If <strong>Volume Shadow Copy(VSS)</strong> service Startup Type is set to Disabled, change it to Automatic.</li>
+<li>If <strong>COM+ System Application(COMSysApp)</strong> service Startup Type is to Disabled, change it to Automatic.</li>
+<li>If the Microsoft <strong>Distributed Transaction Coordinator Service (MSDTC)</strong> Startup Type is set to Disabled, change it to Automatic.</li>
+<li>If the service Startup Types were already set to Automatic, check if COM+ enumeration succeeds. a) You check COM+ enumeration by Component Services (comexp.msc) b) Browse to Component Service -&gt; Computers -&gt; My Computer -&gt; COM+ Application. You should be able to expand the System Application node and see the contents under that node. c) Ensure that Volume Shadow Copy Service is listed under Component Service -&gt; Computers -&gt; My Computer -&gt; DCOM config</li>
+</ol>
+<h3>Alternate Option</h3>
+<p>If for any reason you can't enable any of the above steps, e.g. if you can't provide admin access to the service account on the source machine or disable remote UAC, then you have an alternative option. You can install the Mobility services agent on the source machine prior to enabling the protection. You will still need the services to be configured appropriately but will not need admin access while enabling the protection. To install the mobility services agent, you have various options:</p>
+<ul>
+<li><a href="vmware-azure-mobility-install-configuration-mgr.md">Install using software deployment tools like System Center Configuration Manager</a></li>
+<li><a href="vmware-azure-mobility-deploy-automation-dsc.md">Install with Azure Automation and Desired State Configuration (Automation DSC)</a></li>
+<li><a href="vmware-azure-install-mobility-service.md#install-mobility-service-manually-by-using-the-gui">Install manually from the UI</a></li>
+<li><a href="vmware-azure-install-mobility-service.md#install-mobility-service-manually-at-a-command-prompt">Install manually from a command prompt</a></li>
+<li><a href="vmware-azure-install-mobility-service.md#install-mobility-service-by-push-installation-from-azure-site-recovery">Install using the Site Recovery push installation</a></li>
+</ul>
+<p>All these options are described in details here: <a href="https://docs.microsoft.com/en-us/azure/site-recovery/vmware-azure-install-mobility-service" target="_blank">Install the Mobility service</a></p>
+<h3>Next Steps</h3>
+<p>Restart the job after ensuring all the pre-requisites as described in previous sections. If you are still facing issues, revisit the Part 1 of the troubleshooting series as mentioned at the beginning of this blog. Let us know in comments below if the issue persists. </p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -173,13 +122,10 @@
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
                                 <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/azureresourcemanager">azureresourcemanager</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/certifications">certifications</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/mcsa">mcsa</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/mcsd">mcsd</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/mcse">mcse</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/azuresiterecovery">azuresiterecovery</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/microsoft">microsoft</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/microsoftazure">microsoftazure</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/troubleshooting">troubleshooting</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -226,11 +172,11 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues - Part 2</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/great-way-to-learn-2018-microsoft-azure-community-study-groups">Great Way to learn - 2018 Microsoft Azure Community Study Groups</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/introducing-the-harvesting-clouds-youtube-channel">Introducing the Harvesting Clouds YouTube channel</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/video-azure-automation-introduction">Video - Azure Automation - Introduction</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/introducing-azure-reserved-vm-instances-ris">Introducing Azure Reserved VM Instances (RIs)</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/why-you-should-be-using-azure-managed-disks-now">Why you should be using Azure Managed Disks now?</a></li>
                 </ul>
             </div>
         
@@ -254,7 +200,7 @@
                         <strong>Archives</strong>
                     </div>
         
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/december-2017">December 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2017">November 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2017">October 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2017">January 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2016">November 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2016">October 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2018">January 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/december-2017">December 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2017">November 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2017">October 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2017">January 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2016">November 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2016">October 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
                 </div>
         
             <!-- Tags -->
@@ -266,24 +212,25 @@
                     <div class="panel-body">
                         <ul class="list-inline">
                             <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/net" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">net</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ActiveDirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">activedirectory</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AD</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ActiveDirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AD</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/applicationinsights" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ApplicationInsights</a>
 <a style="font-size: 25px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="22 total posts" data-original-title="23 total posts" data-toggle="tooltip">ARM</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">ASR</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">automation</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
-<a style="font-size: 22px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="18 total posts" data-original-title="19 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">automation</a>
 <a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="29 total posts" data-original-title="30 total posts" data-toggle="tooltip">Azure</a>
+<a style="font-size: 23px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="19 total posts" data-original-title="20 total posts" data-toggle="tooltip">azure</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">azureautomation</a>
-<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">azureresourcemanager</a>
+<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azuresiterecovery</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/bash" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">bash</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/blob" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">blob</a>
@@ -300,8 +247,8 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcsa" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsa</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcsd" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsd</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcse" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcse</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoft" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">microsoft</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoftazure" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">microsoftazure</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoft" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">microsoft</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoftazure" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">microsoftazure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">powershell</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PowerShell</a>
@@ -315,6 +262,7 @@
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/storage" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">storage</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/tags" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Tags</a>
 <a style="font-size: 24px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="20 total posts" data-original-title="21 total posts" data-toggle="tooltip">Templates</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/troubleshooting" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">troubleshooting</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">virtualmachine</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/visualstudio" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">VisualStudio</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">vm</a>

@@ -5,6 +5,12 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
+<loc>http://HarvestingClouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2/</loc>
+<lastmod>2018-01-08T00:00:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
 <loc>http://HarvestingClouds.com/post/great-way-to-learn-2018-microsoft-azure-community-study-groups/</loc>
 <lastmod>2017-12-05T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>

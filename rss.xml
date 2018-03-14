@@ -6,6 +6,45 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues - Part 2</title>
+<description><![CDATA[<p>This is the second part of troubleshooting Azure Site Recovery (ASR) Data replication issues. Part 1 is located here:  <a href="http://harvestingclouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-not-working/" target="_blank">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working</a></p>
+<p>Go through the part 1 before this blog as that talks about the location of logs and various preliminary steps. This blog talks about the issue where you are not even able to enable Data Replication for a server. </p>
+<h3>Preliminary Checks</h3>
+<p>Perform the following basic checks related to connectivity:</p>
+<ul>
+<li>Ensure that the ASR management server has connectivity with Azure.</li>
+<li>Ensure connectivity between the management server (process server) and the source machine which you are trying to replicate. Ensure that the source machine is accessible from the process server.
+<ul>
+<li>You will also need to enable and allow “File and Printer Sharing” on the source machine in the Windows Firewall. </li>
+</ul></li>
+<li>Ensure that the account that you use for enabling the protection has administrator rights on the source machine. This is needed for installation of the Mobility services agent on the source machine.</li>
+<li>Also allow Windows Management Instrumentation (WMI) in the Windows Firewall, if not already.</li>
+<li>Disable remote User Account Control (UAC) if you are using local administrator account to install the mobility service.</li>
+</ul>
+<h3>Checking Services</h3>
+<p>Also, check whether the following services are running and configured correctly on the source machine:</p>
+<ol>
+<li>If <strong>Volume Shadow Copy(VSS)</strong> service Startup Type is set to Disabled, change it to Automatic.</li>
+<li>If <strong>COM+ System Application(COMSysApp)</strong> service Startup Type is to Disabled, change it to Automatic.</li>
+<li>If the Microsoft <strong>Distributed Transaction Coordinator Service (MSDTC)</strong> Startup Type is set to Disabled, change it to Automatic.</li>
+<li>If the service Startup Types were already set to Automatic, check if COM+ enumeration succeeds. a) You check COM+ enumeration by Component Services (comexp.msc) b) Browse to Component Service -&gt; Computers -&gt; My Computer -&gt; COM+ Application. You should be able to expand the System Application node and see the contents under that node. c) Ensure that Volume Shadow Copy Service is listed under Component Service -&gt; Computers -&gt; My Computer -&gt; DCOM config</li>
+</ol>
+<h3>Alternate Option</h3>
+<p>If for any reason you can't enable any of the above steps, e.g. if you can't provide admin access to the service account on the source machine or disable remote UAC, then you have an alternative option. You can install the Mobility services agent on the source machine prior to enabling the protection. You will still need the services to be configured appropriately but will not need admin access while enabling the protection. To install the mobility services agent, you have various options:</p>
+<ul>
+<li><a href="vmware-azure-mobility-install-configuration-mgr.md">Install using software deployment tools like System Center Configuration Manager</a></li>
+<li><a href="vmware-azure-mobility-deploy-automation-dsc.md">Install with Azure Automation and Desired State Configuration (Automation DSC)</a></li>
+<li><a href="vmware-azure-install-mobility-service.md#install-mobility-service-manually-by-using-the-gui">Install manually from the UI</a></li>
+<li><a href="vmware-azure-install-mobility-service.md#install-mobility-service-manually-at-a-command-prompt">Install manually from a command prompt</a></li>
+<li><a href="vmware-azure-install-mobility-service.md#install-mobility-service-by-push-installation-from-azure-site-recovery">Install using the Site Recovery push installation</a></li>
+</ul>
+<p>All these options are described in details here: <a href="https://docs.microsoft.com/en-us/azure/site-recovery/vmware-azure-install-mobility-service" target="_blank">Install the Mobility service</a></p>
+<h3>Next Steps</h3>
+<p>Restart the job after ensuring all the pre-requisites as described in previous sections. If you are still facing issues, revisit the Part 1 of the troubleshooting series as mentioned at the beginning of this blog. Let us know in comments below if the issue persists. </p>]]></description>
+<link>http://HarvestingClouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2</link>
+<pubDate>Mon, 08 Jan 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Great Way to learn - 2018 Microsoft Azure Community Study Groups</title>
 <description><![CDATA[<p>How many times have you started preparation for any Azure certification and have left it midway because of any reason? We all need a little extra nudge. Microsoft Azure Community Study Groups is just the thing you need to create and fulfill your next year resolutions. </p>
 <p>Here are the registration links, provided &quot;as is&quot;:</p>
