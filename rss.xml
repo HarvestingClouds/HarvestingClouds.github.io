@@ -6,6 +6,22 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure Site Recovery (ASR) - Series Index</title>
+<description><![CDATA[<p>Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. </p>
+<p>This series talks about various aspects of working with <strong>Azure Site Recovery</strong> or <strong>ASR</strong>. </p>
+<p>This blog is an <strong>Index</strong> of various blogs in the series:</p>
+<ul>
+<li><a href="http://harvestingclouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-not-working/" target="_blank">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working</a></li>
+<li><a href="http://harvestingclouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2/" target="_blank">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-site-recovery-asr-new-feature-added-to-target-resource-groups/" target="_blank">Azure Site Recovery (ASR) - New feature added to target Resource Groups</a></li>
+<li><a href="http://harvestingclouds.com/post/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers/" target="_blank">Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers</a></li>
+<li><a href="http://harvestingclouds.com/post/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access/" target="_blank">ASR Setup for VMs running in VMWare without VMware level User Access</a></li>
+<li><a href="http://harvestingclouds.com/post/getting-started-azure-site-recovery-asr-in-new-azure-portal/" target="_blank">Getting Started - Azure Site Recovery (ASR) In New Azure Portal</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-site-recovery-asr-series-index</link>
+<pubDate>Mon, 19 Feb 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues - Part 2</title>
 <description><![CDATA[<p>This is the second part of troubleshooting Azure Site Recovery (ASR) Data replication issues. Part 1 is located here:  <a href="http://harvestingclouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-not-working/" target="_blank">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working</a></p>
 <p>Go through the part 1 before this blog as that talks about the location of logs and various preliminary steps. This blog talks about the issue where you are not even able to enable Data Replication for a server. </p>
