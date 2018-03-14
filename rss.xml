@@ -6,6 +6,96 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Great Way to learn - 2018 Microsoft Azure Community Study Groups</title>
+<description><![CDATA[<p>How many times have you started preparation for any Azure certification and have left it midway because of any reason? We all need a little extra nudge. Microsoft Azure Community Study Groups is just the thing you need to create and fulfill your next year resolutions. </p>
+<p>Here are the registration links, provided &quot;as is&quot;:</p>
+<table border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td width="461" valign="top">
+<p><b>Exam</b></p>
+</td>
+<td width="158" valign="top">
+<p><b>Registration Link</b></p>
+</td>
+<td width="208" valign="top">
+<p><b>Dates</b></p>
+</td>
+</tr>
+<tr>
+<td width="461" valign="top">
+<p><b>70-532: Developing Microsoft Azure Solutions</b></p>
+</td>
+<td width="158" valign="top">
+<p><a href="https://aka.ms/532asg">https://aka.ms/532asg</a></p>
+</td>
+<td width="208" valign="top">
+<p>March 23 – May 24, 2018</p>
+</td>
+</tr>
+<tr>
+<td width="461" valign="top">
+<p><b>70-533: Implementing Microsoft Azure Infrastructure Solutions</b></p>
+</td>
+<td width="158" valign="top">
+<p><a href="https://aka.ms/533asg">https://aka.ms/533asg</a></p>
+</td>
+<td width="208" valign="top">
+<p>January 12 – April 13, 2018</p>
+</td>
+</tr>
+<tr>
+<td width="461" valign="top">
+<p><b>70-535: Architecting Microsoft Azure Solutions </b></p>
+</td>
+<td width="158" valign="top">
+<p><a href="https://aka.ms/535asg">https://aka.ms/535asg</a></p>
+</td>
+<td width="208" valign="top">
+<p>January 12 – May 24, 2018</p>
+</td>
+</tr>
+<tr>
+<td width="461" valign="top">
+<p><b>70-483: Programing in C#</b></p>
+</td>
+<td width="158" valign="top">
+<p><a href="https://aka.ms/483asg">https://aka.ms/483asg</a></p>
+</td>
+<td width="208" valign="top">
+<p>January 12 – March 2, 2018</p>
+</td>
+</tr>
+<tr>
+<td width="461" valign="top">
+<p><b>70-486: Developing ASP.NET MVC Web Applications</b></p>
+</td>
+<td width="158" valign="top">
+<p><a href="https://aka.ms/486asg">https://aka.ms/486asg</a></p>
+</td>
+<td width="208" valign="top">
+<p>January 12 – March 23, 2018</p>
+</td>
+</tr>
+<tr>
+<td width="461" valign="top">
+<p><b>70-487: Developing Microsoft Azure and Web Services</b></p>
+</td>
+<td width="158" valign="top">
+<p><a href="https://aka.ms/487asg">https://aka.ms/487asg</a></p>
+</td>
+<td width="208" valign="top">
+<p>March 9 – May 11, 2018</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>You can access the main blog from here:
+<a href="https://blogs.technet.microsoft.com/uspartner_ts2team/2017/12/04/2018-microsoft-azure-community-study-groups/" target="_blank">2018 Microsoft Azure Community Study Groups</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/great-way-to-learn-2018-microsoft-azure-community-study-groups</link>
+<pubDate>Tue, 05 Dec 2017 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Introducing the Harvesting Clouds YouTube channel</title>
 <description><![CDATA[<p>I am happy to introduce the YouTube channel for Harvesting Clouds. The channel can be accessed here: <a href="https://www.youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw" target="_blank">Harvesting Clouds YouTube Channel</a></p>
 <p>Do <strong>Subscribe</strong> to the channel to get notified of any new content on the channel. <strong>Like</strong> the content if you learned something new or got new perspective on the things you knew.</p>
@@ -73,6 +163,49 @@ The savings can be up to 72% with the use of Reserved VM instances. If your VM i
 </ul>]]></description>
 <link>http://HarvestingClouds.com/post/why-you-should-be-using-azure-managed-disks-now</link>
 <pubDate>Sun, 05 Nov 2017 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Cloud Shell - Introduction</title>
+<description><![CDATA[<p><strong>Azure Cloud Shell</strong> is a very convenient option to run your automation scripts against your subscriptions. </p>
+<p>The shell is provided in two flavors:</p>
+<ul>
+<li>Bash based shell</li>
+<li>PowerShell in Cloud Shell (currently in Preview)</li>
+</ul>
+<p>The Cloud Shell is a Browser based experience. What this means is that you do not need to install any dependencies for the Azure commands to run. Also, there is no dependency on your machine's hardware. You can work irrespective of your local machine's configurations.</p>
+<h3>Support for various tools</h3>
+<p>Azure Cloud Shell comes preloaded with various tools depending upon the shell type selected. It comes loaded with Linux tools like bash, sh, tmux and dig. The Azure tools which are preloaded are Azure CLI 2.0 and 1.0, AzCopy,etc.Text editors include vim and nano. Git source control tools are also included. Various other Build, Containers, Databases, etc. tools are also included. It also comes with language support for .net version 2.0.0, Java version 1.8, Node.js 6.9.4, PowerShell 6.0(beta) and Python 2.7 and 3.5 etc. Check the References section for the full list and up to date version of Tools and Language support.</p>
+<h3>Key Concepts</h3>
+<p>Below are some of the key concepts (in nutshell) about the cloud shell.</p>
+<ol>
+<li>You can opt for any one of the two shell options available, as per your preferences. You can choose to have a <strong>Bash shell</strong> or <strong>PowerShell in Cloud shell</strong></li>
+<li>You can easily switch between the two shells at any time</li>
+<li>If you are logged into Azure portal then you are also automatically authenticated into the Azure Cloud Shell</li>
+</ol>
+<p>Other important concepts as per Microsoft documentation are:</p>
+<ol>
+<li>Cloud Shell runs on a temporary host provided on a per-session,
+per-user basis </li>
+<li>Cloud Shell times out after 20 minutes without
+interactive activity </li>
+<li>Cloud Shell requires an Azure file share to be
+mounted </li>
+<li>Cloud Shell uses the same Azure file share for both Bash and
+PowerShell </li>
+<li>Cloud Shell is assigned one machine per user account </li>
+<li>Bash persists $Home using a 5-GB image held in your file share</li>
+<li>Permissions are set as a regular Linux user in Bash</li>
+</ol>
+<h3>Pricing</h3>
+<p>Cloud Shell does not have any direct cost linked to it. The charge for Cloud Shell is only for the usage of the underlying Azure Storage. The exact charge depends on the amount you store on that storage and the type of the storage. By default, Locally Redundant Storage is created. </p>
+<p><strong>References</strong>:</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/cloud-shell/overview" target="_blank">Azure Cloud Shell Overview</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/cloud-shell/features" target="_blank">Azure Cloud Shell Features and Tools</a></li>
+<li>&lt;a href=&quot;<a href="https://docs.microsoft.com/en-us/azure/cloud-shell/features-powershell">https://docs.microsoft.com/en-us/azure/cloud-shell/features-powershell</a>&quot; target=_blank&quot;&gt;Features &amp; tools for PowerShell in Azure Cloud Shell</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-cloud-shell-introduction</link>
+<pubDate>Sun, 08 Oct 2017 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Script Sample - Generate Azure Resources Report by Tags</title>

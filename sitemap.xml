@@ -5,6 +5,12 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
+<loc>http://HarvestingClouds.com/post/great-way-to-learn-2018-microsoft-azure-community-study-groups/</loc>
+<lastmod>2017-12-05T00:00:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
 <loc>http://HarvestingClouds.com/post/introducing-the-harvesting-clouds-youtube-channel/</loc>
 <lastmod>2017-11-29T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
@@ -25,6 +31,12 @@
 <url>
 <loc>http://HarvestingClouds.com/post/why-you-should-be-using-azure-managed-disks-now/</loc>
 <lastmod>2017-11-05T00:00:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
+<loc>http://HarvestingClouds.com/post/azure-cloud-shell-introduction/</loc>
+<lastmod>2017-10-08T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.00</priority>
 </url>
