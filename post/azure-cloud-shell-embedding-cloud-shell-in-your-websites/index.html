@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Run Azure Automation Runbooks via PowerShell ISE :: Harvesting Clouds</title>
+    <title>Azure Cloud Shell - Embedding Cloud Shell in your Websites :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -72,48 +72,32 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Run Azure Automation Runbooks via PowerShell ISE</h3>
+                <h3>Azure Cloud Shell - Embedding Cloud Shell in your Websites</h3>
                 <span class="glyphicon glyphicon-user"></span> @20aman
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> Apr 14, 2016
+                <span class="glyphicon glyphicon-time"></span> Oct 16, 2017
                 <hr>
 
-                <p class="post-content"><p>Today I came across this blog post from my friend: <a href="https://scomanswers.wordpress.com/2016/04/11/azure-automation-powershell-ise-add-on/">Azure Automation PowerShell ISE add-on</a></p>
-<p>What I came to know is that now you can Run the Azure Automation Runbooks via PowerShell ISE. This solves a big pain point for all Azure developers.
-Now you will be able to develop and test your scripts right from the convenience of your laptop's local PowerShell ISE. </p>
-<h3>What you need to do</h3>
-<p>All you need to do is install the PowerShell Add-On using the below cmdlet:</p>
-<pre><code class="language-powershell">Find-Module AzureAutomationAuthoringToolkit | Install-Module -Scope CurrentUser</code></pre>
-<p>Then import the module using below cmdlet:</p>
-<pre><code class="language-powershell">Import-Module AzureAutomationAuthoringToolkit</code></pre>
-<p>You can configure the Add-On using a Configuration tab in the add-on and start getting your hands dirty. </p>
-<h3>Official Information from the Add-On Help</h3>
-<h4>Capabilities</h4>
+                <p class="post-content"><p>Embedding Azure Cloud Shell in your websites gives your visitors an option to directly interact with Azure, without even leaving your website. Your website may be talking about a code sample that your visitor may want to try in Azure. Instead of opening a new instance of Azure Portal, the visitors can try the command right from your site if you have embedded the cloud shell in your website.</p>
+<p>All you need is the embed code and you are all set. Just add this code to your site and then you will be able to launch the cloud shell right from there with just a click of a button.Behind the scene, this is nothing but hyperlinking to the URL: <a href="https://shell.azure.com">https://shell.azure.com</a></p>
+<h3>Embed Code</h3>
+<p>The embed code is as follows if you are using Markdown</p>
+<pre><code>[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com)</code></pre>
+<p>If you are building a website in HTML then the embed code will look like:</p>
+<pre><code>&lt;a style="cursor:pointer" onclick='javascript:window.open("https://shell.azure.com", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,menubar=no,location=no,status=no")'&gt;&lt;image src="https://shell.azure.com/images/launchcloudshell.png" /&gt;&lt;/a&gt;</code></pre>
+<h3>Code in Action</h3>
+<p>Clicking on below image will open a popup. It will navigate you to the <a href="https://shell.azure.com">https://shell.azure.com</a> URL within the popup. You can login to Azure and try any commands. I encourage to inspect the link below and compare with the above embed code.</p>
+<p><a style="cursor:pointer" onclick='javascript:window.open("https://shell.azure.com", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,menubar=no,location=no,status=no")'><image src="https://shell.azure.com/images/launchcloudshell.png" /></a></p>
+<h3>Choosing Shell Type</h3>
+<p>The above examples will open the most recently used cloud shell. If you want to encourage visitors to experience a specific cloud shell, then update the URL section above embed code. Update as below by adding the last part to the URLs:</p>
 <ul>
-<li>Test runbooks on your local machine and in the Azure Automation service: </li>
-<li>Store and edit Automation Assets locally </li>
-<li>Use Automation Activities (Get-AutomationVariable, Get-AutomationPSCredential, etc) in local PowerShell scripts </li>
-<li>Sync changes back to your Automation Account </li>
-<li>Run test jobs in Automation and view results </li>
+<li>Bash Shell - <a href="https://shell.azure.com/bash">https://shell.azure.com/bash</a></li>
+<li>PowerShell Shell - <a href="https://shell.azure.com/powershell">https://shell.azure.com/powershell</a></li>
 </ul>
-<h4>Notes</h4>
-<p>Assets</p>
+<h3>Reference:</h3>
 <ul>
-<li>Secret values (passwords, encrypted variables) are not downloaded automatically; they need to be set manually the first time the account is synced </li>
-<li>Values that haven't been downloaded will be highlighted </li>
-<li>Asset values you enter locally will not get overwritten when you sync from the cloud </li>
-</ul>
-<p>Runbooks </p>
-<ul>
-<li>Native PowerShell and PowerShell Workflow runbooks are supported </li>
-</ul>
-<p>Check the screenshot regarding this information below:
-<img src="http://HarvestingClouds.com/images/1461735632572050d069253.png" alt="Official Notes" title="Official Notes" /></p>
-<h3>How much time it would take me</h3>
-<p>In all it would take you under 10 mins to get setup and rolling.</p>
-<h3>Where is more information on this and screenshots</h3>
-<p>Go to the official <a href="https://blogs.technet.microsoft.com/msoms/2016/04/08/the-way-cool-azure-automation-powershell-ise-add-on/">Technet blog by clicking HERE.</a></p>
-<p>Start playing around and let us know your initial impression in the comments below. If you have any doubts and I will be happy to address them.</p></p>
+<li><a href="https://docs.microsoft.com/en-us/azure/cloud-shell/embed-cloud-shell" target="_blank">Embed Azure Cloud Shell</a></li>
+</ul></p>
                 <br/><br/>
 
                 <div class="post-info">
@@ -123,9 +107,11 @@ Now you will be able to develop and test your scripts right from the convenience
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="http://HarvestingClouds.com/tag/automation">automation</a>&nbsp;&nbsp;
                         <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/bash">bash</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/cloud">cloud</a>&nbsp;&nbsp;
                         <a href="http://HarvestingClouds.com/tag/powershell">powershell</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/shell">shell</a>&nbsp;&nbsp;
                 </div>
 
             </article>

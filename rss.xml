@@ -165,6 +165,31 @@ The savings can be up to 72% with the use of Reserved VM instances. If your VM i
 <pubDate>Sun, 05 Nov 2017 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure Cloud Shell - Embedding Cloud Shell in your Websites</title>
+<description><![CDATA[<p>Embedding Azure Cloud Shell in your websites gives your visitors an option to directly interact with Azure, without even leaving your website. Your website may be talking about a code sample that your visitor may want to try in Azure. Instead of opening a new instance of Azure Portal, the visitors can try the command right from your site if you have embedded the cloud shell in your website.</p>
+<p>All you need is the embed code and you are all set. Just add this code to your site and then you will be able to launch the cloud shell right from there with just a click of a button.Behind the scene, this is nothing but hyperlinking to the URL: <a href="https://shell.azure.com">https://shell.azure.com</a></p>
+<h3>Embed Code</h3>
+<p>The embed code is as follows if you are using Markdown</p>
+<pre><code>[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com)</code></pre>
+<p>If you are building a website in HTML then the embed code will look like:</p>
+<pre><code>&lt;a style="cursor:pointer" onclick='javascript:window.open("https://shell.azure.com", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,menubar=no,location=no,status=no")'&gt;&lt;image src="https://shell.azure.com/images/launchcloudshell.png" /&gt;&lt;/a&gt;</code></pre>
+<h3>Code in Action</h3>
+<p>Clicking on below image will open a popup. It will navigate you to the <a href="https://shell.azure.com">https://shell.azure.com</a> URL within the popup. You can login to Azure and try any commands. I encourage to inspect the link below and compare with the above embed code.</p>
+<p><a style="cursor:pointer" onclick='javascript:window.open("https://shell.azure.com", "_blank", "toolbar=no,scrollbars=yes,resizable=yes,menubar=no,location=no,status=no")'><image src="https://shell.azure.com/images/launchcloudshell.png" /></a></p>
+<h3>Choosing Shell Type</h3>
+<p>The above examples will open the most recently used cloud shell. If you want to encourage visitors to experience a specific cloud shell, then update the URL section above embed code. Update as below by adding the last part to the URLs:</p>
+<ul>
+<li>Bash Shell - <a href="https://shell.azure.com/bash">https://shell.azure.com/bash</a></li>
+<li>PowerShell Shell - <a href="https://shell.azure.com/powershell">https://shell.azure.com/powershell</a></li>
+</ul>
+<h3>Reference:</h3>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/cloud-shell/embed-cloud-shell" target="_blank">Embed Azure Cloud Shell</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-cloud-shell-embedding-cloud-shell-in-your-websites</link>
+<pubDate>Mon, 16 Oct 2017 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Cloud Shell - Introduction</title>
 <description><![CDATA[<p><strong>Azure Cloud Shell</strong> is a very convenient option to run your automation scripts against your subscriptions. </p>
 <p>The shell is provided in two flavors:</p>

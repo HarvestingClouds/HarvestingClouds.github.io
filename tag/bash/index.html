@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Run Azure Automation Runbooks via PowerShell ISE :: Harvesting Clouds</title>
+    <title>Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -71,90 +71,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-            <article>
-                <h3>Run Azure Automation Runbooks via PowerShell ISE</h3>
-                <span class="glyphicon glyphicon-user"></span> @20aman
-                &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> Apr 14, 2016
-                <hr>
-
-                <p class="post-content"><p>Today I came across this blog post from my friend: <a href="https://scomanswers.wordpress.com/2016/04/11/azure-automation-powershell-ise-add-on/">Azure Automation PowerShell ISE add-on</a></p>
-<p>What I came to know is that now you can Run the Azure Automation Runbooks via PowerShell ISE. This solves a big pain point for all Azure developers.
-Now you will be able to develop and test your scripts right from the convenience of your laptop's local PowerShell ISE. </p>
-<h3>What you need to do</h3>
-<p>All you need to do is install the PowerShell Add-On using the below cmdlet:</p>
-<pre><code class="language-powershell">Find-Module AzureAutomationAuthoringToolkit | Install-Module -Scope CurrentUser</code></pre>
-<p>Then import the module using below cmdlet:</p>
-<pre><code class="language-powershell">Import-Module AzureAutomationAuthoringToolkit</code></pre>
-<p>You can configure the Add-On using a Configuration tab in the add-on and start getting your hands dirty. </p>
-<h3>Official Information from the Add-On Help</h3>
-<h4>Capabilities</h4>
-<ul>
-<li>Test runbooks on your local machine and in the Azure Automation service: </li>
-<li>Store and edit Automation Assets locally </li>
-<li>Use Automation Activities (Get-AutomationVariable, Get-AutomationPSCredential, etc) in local PowerShell scripts </li>
-<li>Sync changes back to your Automation Account </li>
-<li>Run test jobs in Automation and view results </li>
-</ul>
-<h4>Notes</h4>
-<p>Assets</p>
-<ul>
-<li>Secret values (passwords, encrypted variables) are not downloaded automatically; they need to be set manually the first time the account is synced </li>
-<li>Values that haven't been downloaded will be highlighted </li>
-<li>Asset values you enter locally will not get overwritten when you sync from the cloud </li>
-</ul>
-<p>Runbooks </p>
-<ul>
-<li>Native PowerShell and PowerShell Workflow runbooks are supported </li>
-</ul>
-<p>Check the screenshot regarding this information below:
-<img src="http://HarvestingClouds.com/images/1461735632572050d069253.png" alt="Official Notes" title="Official Notes" /></p>
-<h3>How much time it would take me</h3>
-<p>In all it would take you under 10 mins to get setup and rolling.</p>
-<h3>Where is more information on this and screenshots</h3>
-<p>Go to the official <a href="https://blogs.technet.microsoft.com/msoms/2016/04/08/the-way-cool-azure-automation-powershell-ise-add-on/">Technet blog by clicking HERE.</a></p>
-<p>Start playing around and let us know your initial impression in the comments below. If you have any doubts and I will be happy to address them.</p></p>
-                <br/><br/>
-
-                <div class="post-info">
-                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
-                        &nbsp;&nbsp;
-
-                    <span class="glyphicon glyphicon-bookmark"></span>
-
-                        <a href="http://HarvestingClouds.com/tag/automation">automation</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/powershell">powershell</a>&nbsp;&nbsp;
-                </div>
-
-            </article>
+            <h1>Tag Posts</h1>
             <hr/>
+            <br/>
 
-            <div class="text-center clearfix">
-                <div class="col-sm-4 col-md-4">
-                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="btn btn-primary" href="http://HarvestingClouds.com/posts.html"><i class="fa fa-navicon"></i> View All
-                        Post</a>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
-                </div>
-            </div>
-
-            <hr/>
-            
-            <!-- Comment form -->
-            <div class="well">
-                <div id="disqus_thread"></div>
-                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
-                    powered by Disqus.</a></noscript>
-                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
-                    <span class="logo-disqus">Disqus</span></a>
-            </div>
-
+                <h3><a href="http://HarvestingClouds.com/post/azure-cloud-shell-embedding-cloud-shell-in-your-websites">Azure Cloud Shell - Embedding Cloud Shell in your Websites</a></h3>
+                <span class="glyphicon glyphicon-time"></span> Oct 16, 2017
         </div>
 
         <div class="sidebar col-md-4">
@@ -283,7 +205,6 @@ Now you will be able to develop and test your scripts right from the convenience
                     </div>
                 </div>
             </div>
-
     </div>
 </div>
 
@@ -321,69 +242,3 @@ Now you will be able to develop and test your scripts right from the convenience
 
 </body>
 </html>
-<!-- for pagination -->
-<script>
-    $(function () {
-
-        ///////////////////////////////////////////////////
-        // class/id/selector of prev link
-        var $prevPostSelector = $('.prevpost');
-        var $nextPostSelector = $('.nextpost');
-        ///////////////////////////////////////////////////
-
-        var pageArray = document.location.href.split('/');
-        var currentPageSlug = pageArray[pageArray.length - 1];
-
-        if (!currentPageSlug) {
-            currentPageSlug = pageArray[pageArray.length - 2];
-        }
-
-        $.ajax({
-            url: __blogURL + "/data/blog.json",
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                if (data.posts !== undefined && data.posts !== null) {
-                    $.each(data.posts, function (i, post) {
-                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
-
-                            var prevPost = data.posts[i - 1];
-                            var nextPost = data.posts[i + 1];
-
-                            if (prevPost === undefined || prevPost === null) {
-                                // hide previous link if it is first post
-                                $prevPostSelector.hide();
-                            }
-                            else {
-                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
-                            }
-
-                            if (nextPost === undefined || nextPost === null) {
-                                // hide previous link if it is last post
-                                $nextPostSelector.hide();
-                            }
-                            else {
-                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
-                            }
-
-                            return false; // break out of each
-                        }
-                    });
-                }
-            },
-            error: function (e) {
-                $prevPostSelector.hide();
-                $nextPostSelector.hide();
-            }
-        });
-
-        // for Disqus
-        var disqus_shortname = 'harvestingclouds';
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-
-    });
-</script>
