@@ -19,7 +19,99 @@
 <li><a href="http://harvestingclouds.com/post/getting-started-azure-site-recovery-asr-in-new-azure-portal/" target="_blank">Getting Started - Azure Site Recovery (ASR) In New Azure Portal</a></li>
 </ul>]]></description>
 <link>http://HarvestingClouds.com/post/azure-site-recovery-asr-series-index</link>
+<pubDate>Mon, 19 Mar 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Resources - New Azure Log Analytics Language Cheat Sheets</title>
+<description><![CDATA[<p>Azure Log Analytics (part of the OMS suite) has a very versatile query language. To investigate and report on the data you need to know the query language at least at the basic level. Recently the language had a complete overhaul with new syntax coming in and various new features being incorporated into the new language. This blog post talks about the resources to quickly learn the new syntax. Specifically, if you know the older syntax or you know T-SQL syntax then how to translate that knowledge.</p>
+<h3>Older to new Query Language syntax</h3>
+<p>If you have been working with the older Log Analytics query syntax, then you have two options to convert that knowledge to newer query language syntax:</p>
+<ol>
+<li>Use the in portal legacy syntax converter and learn as you convert</li>
+<li>Use the Microsoft provided Cheat Sheet</li>
+</ol>
+<p>When you navigate to OMS log analytics portal and go to the Log search section, there you will see a link above the query text window for &quot;<strong>Show legacy language converter</strong>&quot;. When you click on this link a new text box will appear above the query text box. Type your legacy query and then click on &quot;<strong>Convert</strong>&quot; button. The query will be converted into the new language syntax. Click Run to execute the query. If there will be any errors in the query you will be notified of the same. </p>
+<img src="/images/15212342425aac314289ed9.png" alt="OMS Language Converter">
+<p>In the above example, &quot;Event&quot; type is being fetched and then only Source, EventLog, EventID properties are selected. In the older format the query syntax used to be:</p>
+<pre><code>Type=Event | select Source, EventLog, EventID</code></pre>
+<p>In the newer format the same query looks as below:</p>
+<pre><code>Event | project Source, EventLog, EventID</code></pre>
+<p>Pointers for key query syntax can be found in the complete cheat sheet which can be found here: <a href="https://docs.loganalytics.io/docs/Learn/References/Legacy-to-new-to-Azure-Log-Analytics-Language" target="_blank">Legacy to new Azure Log Analytics Query Language cheat sheet</a></p>
+<h3>T-SQL to new Query Language syntax</h3>
+<p>If you are well versed in the T-SQL query syntax and are new to OMS Azure Log Analytics, then you can easily translate that to the Log Analytics query language with the help of the cheat sheet provided by Microsoft for the key syntax.</p>
+<p>E.g. if we want to select records for only columns name and resultCode from a table named dependencies then the query syntax in T-SQL will look like:</p>
+<pre><code>SELECT name, resultCode FROM dependencies</code></pre>
+<p>Syntax for the same query in newer Log Analytics language will look like:</p>
+<pre><code>dependencies 
+| project name, resultCode</code></pre>
+<p>As you might have guessed already, &quot;project&quot; is a key word in newer language to select specific columns. Selecting a table is as simple as typing the name of the table.</p>
+<p>The complete cheat sheet can be found here: <a href="https://docs.loganalytics.io/docs/Learn/References/SQL-to-Azure-Log-Analytics" target="_blank">SQL to Azure Log Analytics query language cheat sheet</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/resources-new-azure-log-analytics-language-cheat-sheets</link>
 <pubDate>Mon, 19 Feb 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Fixing the error - The subscription is not registered to use provider</title>
+<description><![CDATA[<p>This blog shows you simple step to resolve the provider registration error, that you can come across while working programmatically with Azure (in Azure Resource Manager model).</p>
+<p>You can come across this error while running a PowerShell cmdlet or anywhere else: <strong>The subscription 'xxxxxx-xxxx-xxx-xxxx-xxxxxxxx' is not registered to use providername</strong>. E.g. in the below screenshot I got the error <em>The subscription '8c665920-2c37-419f-81fb-99d737cc4697' is not registered to use microsoft.insights</em>. </p>
+<img src="/images/15212142425aabe322e6b05.png" alt="Provider Error">
+<p>To resolve this error you will need to navigate to the Azure Portal (i.e. <a href="https://portal.azure.com">https://portal.azure.com</a> ). Authenticate to the portal with your credentials. Navigate to Subscriptions section. If you don't see this section then click on &quot;All Services&quot; and then search for Subscription. Once in the subscriptions blade, select the subscription for which you have been getting the error. If there was only one subscription then click on that. In the selected subscription's blade follow the below steps:</p>
+<ol>
+<li>Click on the Resource Providers</li>
+<li>In the list of providers, find the one for which you have been getting error and then click on &quot;Register&quot; link in front of it</li>
+<li>The provider will go into &quot;Registering&quot; state</li>
+<li>Once completed, the provider will then go into &quot;Registered&quot; state</li>
+</ol>
+<img src="/images/15212142785aabe346ede90.png" alt="Subscription Settings">
+<p>Now retry the cmdlet or API you were trying before. It will not generate the provider error now. </p>]]></description>
+<link>http://HarvestingClouds.com/post/fixing-the-error-the-subscription-is-not-registered-to-use-provider</link>
+<pubDate>Mon, 22 Jan 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Demystifying Azure Security - Just In Time VM access</title>
+<description><![CDATA[<p><strong>Just in time VM access</strong> is a feature under <strong>Azure Security Center</strong>. In simple terms it allows you to control access to a VM. When you enable JIT, all access is locked down on the VM on all ports. This is done via Network Security Group (NSG) rules. The access is granted only for the duration allowed and also only on the ports requested. And then everything is locked down again at the end of the duration.</p>
+<p>The attackers are leveraging various ways to get into your environment. One such way is using Bots to automate and Brute Force method to attempt entering in your environment. If you need to access a VM, in your environment, from Internet without VPN (e.g. to change some files on a Web app VM) then you are potentially opening up 3389 port on the VM and that can become a target for the attackers. Locking down the VM except when you need it and only for the duration of the requirement, reduces these risks significantly. </p>
+<h3>Pre-requisites</h3>
+<p>The key pre-requisites to be able to use this feature are:</p>
+<ol>
+<li>The Azure Security Center needs to be upgraded to Advanced Security as shown below</li>
+<li>The VM on which you want to configure JIT access should have a Network Security Group (NSG) linked to it. If it doesn't have any then you can create one and associate it with the network interface of the VM.</li>
+</ol>
+<p>The first pre-requisite requires you to upgrade the Security Center to Advanced Security that comes with <strong>Standard Tier</strong>. You can upgrade from any of the advanced features. The portal will automatically prompt you to upgrade as shown below:</p>
+<img src="/images/15212356695aac36d55f4be.png" alt="Advanced Security in Security Center">
+<h3>How to Access and Configure it</h3>
+<p>To configure this go to Azure <strong>Security Center</strong>. Within Security Center go to the &quot;Advanced Cloud Defense&quot; category and then click on &quot;Just in time VM access&quot; link as shown below:</p>
+<img src="/images/15212354315aac35e7b2c2d.png" alt="JIT in Security Center">
+<p>Next follow the below steps to enable JIT on a VM:</p>
+<ol>
+<li>Ensure that you are in the JIT section of Security Center</li>
+<li>Go to the &quot;Recommended&quot; tab. This will show you all the VMs in your environment. </li>
+<li>Click on the VM for which you want to enable Just in Time access. You can select multiple VMs here.</li>
+<li>Click on the &quot;Enable JIT on x VMs&quot; button</li>
+</ol>
+<img src="/images/15212369445aac3bd0c8b26.png" alt="Enabling JIT">
+<p>You will be presented with various settings for enabling JIT. These settings can be configured as:</p>
+<ol>
+<li>By default, various common ports are configured for JIT access with 3 hours time range. E.g. 3389 for RDP. Click on any of the default ports to tweak the settings.</li>
+<li>You can add more ports and protocols by clicking on the &quot;Add&quot; button at the top.</li>
+<li>Tweak the settings on the new blade that opens up.</li>
+<li>Click on &quot;Save&quot; to save your settings.</li>
+</ol>
+<img src="/images/15212369535aac3bd974b55.png" alt="Settings while enabling JIT">
+<p>That's all there is to it. Once JIT is configured you can view the VM in the &quot;Configured&quot; tab.</p>
+<h3>Requesting access and activity log in JIT</h3>
+<p>You can request access and perform various other management operations by following below steps:</p>
+<ol>
+<li>Once the JIT is configured, the VM will show up in the &quot;Configured&quot; tab as shown below. </li>
+<li>Click on the VM that you want to manage or request access to. </li>
+<li>As soon as you click, &quot;Request access&quot; button will start showing. You can click the button and it will ask for the number of hours that you need the access and the corresponding ports on which you need the access. Please note that only ports configured earlier can be granted access.</li>
+<li>Click on the ellipse i.e. 3 dots in front of the VM record and you will see various options. Using these options you can view Properties. You can view the Activity log for previous requests and any attempts on attack. You can also Edit or Remove the access.</li>
+</ol>
+<img src="/images/15212369585aac3bde79755.png" alt="Requesting access and activity log in JIT">
+<h3>Adding non-Azure computers</h3>
+<p>You can add non-Azure computers for an extra fee per Node. Cost is calculated based on 15 USD/Node/Month. Resources that count as a node are VMs and computers. The selected security tier will be applied to current and new resources. For more information, visit <a href="https://docs.microsoft.com/en-us/azure/security-center/security-center-pricing" target="_blank">Microsoft Security Center's Standard tier for enhanced security</a> information page.</p>
+<p>Ensure that you have onboarded the non-Azure computers to a linked Azure Log Analytics workspace. This is required in order to onboard non-Azure computers to Security Center.</p>]]></description>
+<link>http://HarvestingClouds.com/post/demystifying-azure-security-just-in-time-vm-access</link>
+<pubDate>Wed, 10 Jan 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues - Part 2</title>
