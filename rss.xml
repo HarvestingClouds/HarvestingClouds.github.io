@@ -50,6 +50,12 @@
 <pubDate>Mon, 19 Feb 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Demystifying Azure Security - Custom RBAC Roles</title>
+<description><![CDATA[<p>Azure Custom Roles</p>]]></description>
+<link>http://HarvestingClouds.com/post/demystifying-azure-security-custom-rbac-roles</link>
+<pubDate>Sun, 04 Feb 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Fixing the error - The subscription is not registered to use provider</title>
 <description><![CDATA[<p>This blog shows you simple step to resolve the provider registration error, that you can come across while working programmatically with Azure (in Azure Resource Manager model).</p>
 <p>You can come across this error while running a PowerShell cmdlet or anywhere else: <strong>The subscription 'xxxxxx-xxxx-xxx-xxxx-xxxxxxxx' is not registered to use providername</strong>. E.g. in the below screenshot I got the error <em>The subscription '8c665920-2c37-419f-81fb-99d737cc4697' is not registered to use microsoft.insights</em>. </p>
@@ -151,6 +157,39 @@
 <p>Restart the job after ensuring all the pre-requisites as described in previous sections. If you are still facing issues, revisit the Part 1 of the troubleshooting series as mentioned at the beginning of this blog. Let us know in comments below if the issue persists. </p>]]></description>
 <link>http://HarvestingClouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2</link>
 <pubDate>Mon, 08 Jan 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Demystifying Azure Security - RBAC Roles</title>
+<description><![CDATA[<p>Azure <strong>RBAC Roles</strong> are a great way to securely provide access to users with limited actions in Azure. The focus is to provide only the access necessary so that an account in your organization doesn't have more access than needed. In case the account gets compromised, this will ensure that does not leave your environment too much vulnerable. This means that if you grant an employee access to manage Virtual Machines in your environment, that employee can't alter the virtual networks by mistake or have any access to delete the storage accounts in the environment. </p>
+<h3>Roles Hierarchy</h3>
+<p>The RBAC Roles can be assigned at the following three levels in the order of hierarchy:</p>
+<ol>
+<li><strong>Subscription</strong></li>
+<li><strong>Resource Group</strong></li>
+<li><strong>Resource</strong></li>
+</ol>
+<p>Any Resource in Azure, must belong to a Resource Group (under the ARM model). And every Resource Group in Azure must belong to a single subscription.</p>
+<p>If a person is assigned scope at Subscription level then he/she will get access to all Resource Groups and to all resources within those resource groups. Next, if a person is assigned access at a Resource Group level then they will automatically get access to all the Resources within that Resource Group. Finally, if a person is provided access only to an individual Resource then they will get access only to that Resource.</p>
+<h3>Built-in Roles</h3>
+<p>There are various inbuilt roles for this purpose like:</p>
+<ol>
+<li>Contributor - create and manage but can't grant access to others</li>
+<li>Reader - can only view</li>
+<li>Owner - full access</li>
+</ol>
+<p>The complete list of Built-in roles can be viewed here: <a href="https://docs.microsoft.com/en-us/azure/active-directory/role-based-access-built-in-roles" target="_blank">Built-in roles for Azure role-based access control</a></p>
+<h3>Viewing and Adding Access</h3>
+<p>To view or Add access, first decide the scope where you want to provide the access. Select the scope, e.g. a Resource Group on which you want to view existing access and grant the access to someone. Then follow these steps (as per the image below):</p>
+<ol>
+<li>Click on &quot;Access Control (IAM)&quot; to access the RBAC access control</li>
+<li>View the access in the center area. Scroll down to view all type of roles and Users, Groups or Apps with the access</li>
+<li>Click on &quot;+Add&quot; button, as shown below, to add access to a new user, group or application</li>
+<li>In the new popup blade, select the Role (e.g. Contributor), Assignment scope and name/email address of the user or app to whom you want to grant the access. You can select multiple users/apps as well.</li>
+</ol>
+<img src="/images/15216952115ab339eba24e0.png" alt="Viewing and Adding RBAC Access">
+<p>Within each subscription, you can grant up to 2000 role assignments.</p>]]></description>
+<link>http://HarvestingClouds.com/post/demystifying-azure-security-rbac-roles</link>
+<pubDate>Wed, 20 Dec 2017 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Great Way to learn - 2018 Microsoft Azure Community Study Groups</title>
@@ -374,7 +413,7 @@ PowerShell </li>
 <ul>
 <li><a href="https://docs.microsoft.com/en-us/azure/cloud-shell/overview" target="_blank">Azure Cloud Shell Overview</a></li>
 <li><a href="https://docs.microsoft.com/en-us/azure/cloud-shell/features" target="_blank">Azure Cloud Shell Features and Tools</a></li>
-<li>&lt;a href=&quot;<a href="https://docs.microsoft.com/en-us/azure/cloud-shell/features-powershell">https://docs.microsoft.com/en-us/azure/cloud-shell/features-powershell</a>&quot; target=_blank&quot;&gt;Features &amp; tools for PowerShell in Azure Cloud Shell</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/cloud-shell/features-powershell" target="_blank">Features &amp; tools for PowerShell in Azure Cloud Shell</a></li>
 </ul>]]></description>
 <link>http://HarvestingClouds.com/post/azure-cloud-shell-introduction</link>
 <pubDate>Sun, 08 Oct 2017 00:00:00 +0500</pubDate>
