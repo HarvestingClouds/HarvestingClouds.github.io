@@ -78,7 +78,82 @@
                 <span class="glyphicon glyphicon-time"></span> Feb 04, 2018
                 <hr>
 
-                <p class="post-content"><p>Azure Custom Roles</p></p>
+                <p class="post-content"><p>Before going through this blog, please ensure that you have visited the basics of RBAC Roles in general, explained in a primer here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-rbac-roles/" target="_blank">Demystifying Azure Security - RBAC Roles</a>.</p>
+<p>This blog explains an easy approach to understand and create your own Custom RBAC Roles in Azure (ARM model). We will inspect an existing simple role and will reverse engineer the way to create Custom RBAC Roles. </p>
+<h3>Inspecting Existing Role's Definition</h3>
+<p>Start by inspecting any existing Role's Definition. To do this run the cmdlet <strong>Get-AzureRMRoleDefinition</strong> and provide the name of any built-in RBAC Role. For this blog, run the below script to inspect the &quot;Reader&quot; and &quot;Virtual Machine Contributor&quot; roles.</p>
+<pre><code>Login-AzureRMAccount
+
+Get-AzureRMRoleDefinition -Name "Reader" | ConvertTo-Json | Out-File C:\rbacrole-reader.json
+
+Get-AzureRMRoleDefinition -Name "Virtual Machine Contributor" | ConvertTo-Json | Out-File C:\rbacrole-VMContributor.json</code></pre>
+<p>If you open and inspect the &quot;rbacrole-reader.json&quot; file you will see the JSON similar to below:</p>
+<pre><code>{
+    "Name":  "Reader",
+    "Id":  "aaaa11a1-3333-48ef-bd42-f606fba81ae7",
+    "IsCustom":  false,
+    "Description":  "Lets you view everything, but not make any changes.",
+    "Actions":  [
+                    "*/read"
+                ],
+    "NotActions":  [
+
+                   ],
+    "AssignableScopes":  [
+                             "/"
+                         ]
+}</code></pre>
+<p>Notice above that there are below sections in the definition:</p>
+<ol>
+<li><strong>Name</strong> - Name of the role</li>
+<li><strong>Id</strong> - unique guid for the role</li>
+<li><strong>IsCustom</strong> - boolean value. &quot;true&quot; for the Custom Roles and &quot;false&quot; for the built-in roles</li>
+<li><strong>Description</strong> - description of the role</li>
+<li><strong>Actions</strong> - Allowed list of actions for the Role</li>
+<li><strong>NotActions</strong> - Not Allowed list of actions for the Role</li>
+<li><strong>AssignableScopes</strong> - Scope at which this role can be assigned. E.g. all the subscription Ids. It's mandatory that the RBAC role contains the explicit subscription IDs where it is used otherwise you will not be able to use the role.</li>
+</ol>
+<h3>Understanding Actions and NotActions</h3>
+<p>As mentioned before, Actions describe the allowed list of action for the Role whereas the NotActions describe the not allowed actions for the Role. You can use wildcard * and special syntax to define the Actions and NotActions, as per the Microsoft documentation here: <a href="https://docs.microsoft.com/en-us/azure/active-directory/role-based-access-control-custom-roles" target="_blank">Create custom roles for Azure Role-Based Access Control</a>:</p>
+<p>Operation strings that contain wildcards (*) grant access to all operations that match the operation string. For instance:</p>
+<ul>
+<li><code>*/read</code> grants access to read operations for all resource types of all Azure resource providers.</li>
+<li><code>Microsoft.Compute/*</code> grants access to all operations for all resource types in the Microsoft.Compute resource provider.</li>
+<li><code>Microsoft.Network/*/read</code> grants access to read operations for all resource types in the Microsoft.Network resource provider of Azure.</li>
+<li><code>Microsoft.Compute/virtualMachines/*</code> grants access to all operations of virtual machines and its child resource types.</li>
+<li><code>Microsoft.Web/sites/restart/Action</code> grants access to restart websites.</li>
+</ul>
+<p>Use <code>Get-AzureRmProviderOperation</code> (in PowerShell) or <code>azure provider operations show</code> (in Azure CLI) to list operations of Azure resource providers. You may also use these commands to verify that an operation string is valid and to expand wildcard operation strings.</p>
+<pre><code>Get-AzureRMProviderOperation Microsoft.Compute/virtualMachines/*/action | FT Operation, OperationName
+
+Get-AzureRMProviderOperation Microsoft.Network/*</code></pre>
+<h3>Defining a Custom role</h3>
+<p>Let's define a custom role, who can start or restart a VM in Azure but can't open a support ticket.</p>
+<p>Save the following code as &quot;yourCustomRole01.json&quot; file on your C drive (or any other location).</p>
+<pre><code>{
+  "Name": "Virtual Machine Start and Restart",
+  "Id": "7ed03a9f-b372-4341-ba8d-38ef8e614038",
+  "IsCustom": true,
+  "Description": "Can restart virtual machines but can't open support tickets.",
+  "Actions": [
+    "Microsoft.Compute/virtualMachines/start/action",
+    "Microsoft.Compute/virtualMachines/restart/action"
+  ],
+  "NotActions": [
+    "Microsoft.Support/*"
+  ],
+  "AssignableScopes": [
+    "/subscriptions/aaaaaaaa-1111-1111-1111-111111111111",
+    "/subscriptions/aaaaaaaa-2222-2222-2222-222222222222",
+    "/subscriptions/aaaaaaaa-3333-3333-3333-333333333333/resourceGroups/RG-Prod-USE2"
+  ]
+}</code></pre>
+<p>Notice the Action and NotAction area are set as per the requirements.</p>
+<p>Also, note that under Assignable Scope the role is available for assignment to all Resources and Resource Groups in the first two subscriptions but only in Resource Group named &quot;RG-Prod-USE2&quot; for the third subscription in the list.</p>
+<h3>Creating New Custom role</h3>
+<p>Once you have the definition ready in a JSON file, you can use the &quot;<strong>New-AzureRMRoleDefinition</strong>&quot; cmdlet to create the Custom Role Definition, as shown below. Make sure to alter the path to the json file as per your environment.</p>
+<pre><code>New-AzureRMRoleDefinition -InputFile "C:\yourCustomRole01.json"</code></pre>
+<p>Now you will be able to use this new Custom Role while assigning access to someone. You will be able to tweak the access and provide only the access that you need to your internal and external resources.</p></p>
                 <br/><br/>
 
                 <div class="post-info">
@@ -168,10 +243,10 @@
         
                 <ul class="list-group">
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-site-recovery-asr-series-index">Azure Site Recovery (ASR) - Series Index</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/demystifying-azure-security-series-index">Demystifying Azure Security - Series Index</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/resources-new-azure-log-analytics-language-cheat-sheets">Resources - New Azure Log Analytics Language Cheat Sheets</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/demystifying-azure-security-custom-rbac-roles">Demystifying Azure Security - Custom RBAC Roles</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/fixing-the-error-the-subscription-is-not-registered-to-use-provider">Fixing the error - The subscription is not registered to use provider</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/demystifying-azure-security-just-in-time-vm-access">Demystifying Azure Security - Just In Time VM access</a></li>
                 </ul>
             </div>
         
@@ -208,8 +283,8 @@
                     <div class="panel-body">
                         <ul class="list-inline">
                             <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/net" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">net</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ActiveDirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">activedirectory</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ActiveDirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AD</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/analytics" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">analytics</a>
@@ -218,17 +293,17 @@
 <a style="font-size: 25px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="22 total posts" data-original-title="23 total posts" data-toggle="tooltip">ARM</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">asr</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">ASR</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">automation</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">asr</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">automation</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azue" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azue</a>
 <a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="29 total posts" data-original-title="30 total posts" data-toggle="tooltip">Azure</a>
-<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 27px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="25 total posts" data-original-title="26 total posts" data-toggle="tooltip">azure</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">azureautomation</a>
 <a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 16px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">azureresourcemanager</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresecurity" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">azuresecurity</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresecurity" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">azuresecurity</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azuresiterecovery</a>
@@ -252,8 +327,8 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcsa" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsa</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcsd" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsd</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcse" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcse</a>
-<a style="font-size: 18px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoft" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">microsoft</a>
-<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoftazure" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">microsoftazure</a>
+<a style="font-size: 19px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoft" title="12 total posts" data-original-title="13 total posts" data-toggle="tooltip">microsoft</a>
+<a style="font-size: 18px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoftazure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">microsoftazure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/oms" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">oms</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">powershell</a>
@@ -267,7 +342,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/runbooks" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Runbooks</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/sample" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Sample</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/script" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Script</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/security" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">security</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/security" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">security</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/shell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">shell</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/storage" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">storage</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/tags" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Tags</a>
