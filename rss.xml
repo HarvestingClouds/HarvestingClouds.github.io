@@ -6,6 +6,17 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Book published on Amazon - Quick and Practical Guide to ARM Templates</title>
+<description><![CDATA[<p><strong>Quick and Practical Guide to ARM Templates</strong> is a very non-conventional book. The objective of the book is to help you &quot;Become Experts in Developing ARM Templates for Microsoft Azure without any prior knowledge&quot;. This book is for both a beginner and intermediate users. </p>
+<p>This is a quick and practical approach to learning ARM Templates for Azure. It covers only the most essential topics that you will need 95% of the time while working with ARM Templates. The goal is to have you working faster and quicker on ARM Templates without compromising any of the best practices. </p>
+<p>The book assumes that you do not have prior knowledge of ARM Templates. If you have no development background then this book is for you. It starts by building the fundamentals on which ARM Templates are built.  The more practical approach means less theory and more focus on the practical aspects that can help you start working and delivering on ARM Templates.</p>
+<p>You can view the book on Amazon.com at this link: <a href="https://www.amazon.com/dp/B07C8LSBSN" target="_blank"><a href="https://www.amazon.com/dp/B07C8LSBSN">https://www.amazon.com/dp/B07C8LSBSN</a></a></p>
+<p>You can also search for the book in your local Amazon marketplace.</p>
+<img src="/images/15217860175ab49ca149064.png" alt="Quick and Practical Guide to ARM Templates">]]></description>
+<link>http://HarvestingClouds.com/post/book-published-on-amazon-quick-and-practical-guide-to-arm-templates</link>
+<pubDate>Fri, 23 Mar 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Site Recovery (ASR) - Series Index</title>
 <description><![CDATA[<p>Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. </p>
 <p>This series talks about various aspects of working with <strong>Azure Site Recovery</strong> or <strong>ASR</strong>. </p>
@@ -247,6 +258,49 @@ Get-AzureRMProviderOperation Microsoft.Network/*</code></pre>
 <pubDate>Mon, 08 Jan 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Demystifying Azure Security - Azure Policies - 2 - Assigning a Policy</title>
+<description><![CDATA[<p>In this post, we will view the policies in action. Policy assignment is very easy on the Azure Portal. We will be assigning a built-in policy at a subscription scope.</p>
+<h3>Accessing the Policies in the Azure portal</h3>
+<p>Begin by accessing the Policies in the Azure Portal. To do this follow the below steps:</p>
+<ol>
+<li>Navigate to <strong>Subscriptions</strong> (via All Services or the navigation sidebar)</li>
+<li>Select the subscription for which you want to view the Policies</li>
+<li>Scroll down to the &quot;Settings&quot; category in the menu of the subscription</li>
+<li>Click on &quot;<strong>Policies</strong>&quot; to access the policies in Azure</li>
+</ol>
+<h3>Assigning the Built-in Policies</h3>
+<p>To perform the assignment, click on &quot;Assign Policy&quot; from either Compliance or the Assignment tabs.</p>
+<img src="/images/15217866825ab49f3a81d6a.png" alt="Assign Policy">
+<p>In the new blade, provide the value for the:</p>
+<ol>
+<li>Policy to be applied</li>
+<li>Name and Description of the Policy. The name will be the name of the policy selected by default. As a best practice ensure to provide the detailed description.</li>
+<li>Assigned by will be your name by default</li>
+<li>You can select the pricing tier between Free and Standard. You will get the compliance evaluation of the resources in your environment against the policy with the Standard pricing tier</li>
+<li>Scope for the Policy</li>
+<li>Exclusions from the Policy</li>
+<li>Any additional parameters related to the policy</li>
+</ol>
+<p>To select from the policies, click on the blue button with an ellipse (i.e. 3 dots) in front of the Policy box. This will popup another blade for all the Policy definitions.</p>
+<img src="/images/15217894075ab4a9df6a23e.png" alt="Assign Policy Blade details">
+<p>Scroll through various Built-in policies. Once we define any custom user-defined policies, they will also be displayed here. Select the policy &quot;Allowed locations&quot; from the list of the policies as an example. Click on &quot;Select&quot; once done.</p>
+<img src="/images/15217894445ab4aa0494a0d.png" alt="Selecting Policy">
+<p>Select the Scope for applying the policy. You can leave the default to the Subscription level. Or you can click on the blue button in front of scope text box and select the Resource Groups under the subscription on which you want to apply the policy.</p>
+<p>You can also select the Exclusions if you require. These Resource Group or resources will not be evaluated against the policy.</p>
+<img src="/images/15217894615ab4aa15470ec.png" alt="Selecting Scope">
+<p>Lastly, you will have additional parameters for the policy related values. These parameters will vary and will depend on the policy you have selected. E.g. For &quot;Allowed locations&quot; policy, you will see the parameter for allowed locations. Select &quot;East US&quot; and &quot;East US 2&quot; for the locations as an example.</p>
+<img src="/images/15217894765ab4aa248f15f.png" alt="Providing value for Policy related Parameters">
+<p>Once you complete the configurations, click on the &quot;<strong>Assign</strong>&quot; button to apply the policy</p>
+<h3>Validating the Policy</h3>
+<p>To validate the policy for &quot;Allowed locations&quot; follow these steps:</p>
+<ol>
+<li>Try to deploy a Storage Account or a VM or any other resource in a location that is NOT allowed. E.g. try deploying a storage account in the &quot;West US&quot; location. This should fail with the validation error stating the policy id.</li>
+<li>Perform the same deployment but to one of the allowed location. E.g. try deploying a storage account in the &quot;East US&quot; location. This should succeed without any erros. </li>
+</ol>]]></description>
+<link>http://HarvestingClouds.com/post/demystifying-azure-security-azure-policies-2-assigning-a-policy</link>
+<pubDate>Wed, 27 Dec 2017 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Demystifying Azure Security - RBAC Roles</title>
 <description><![CDATA[<p>Azure <strong>RBAC Roles</strong> are a great way to securely provide access to users with limited actions in Azure. The focus is to provide only the access necessary so that an account in your organization doesn't have more access than needed. In case the account gets compromised, this will ensure that does not leave your environment too much vulnerable. This means that if you grant an employee access to manage Virtual Machines in your environment, that employee can't alter the virtual networks by mistake or have any access to delete the storage accounts in the environment. </p>
 <h3>Roles Hierarchy</h3>
@@ -279,6 +333,42 @@ Get-AzureRMProviderOperation Microsoft.Network/*</code></pre>
 <p>Learn about creating Custom RBAC Roles here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-custom-rbac-roles/" target="_blank">Demystifying Azure Security - Custom RBAC Roles</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/demystifying-azure-security-rbac-roles</link>
 <pubDate>Wed, 20 Dec 2017 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Demystifying Azure Security - Azure Policies - 1 - Basics</title>
+<description><![CDATA[<p><strong>Azure Policies</strong> are a great tool to make access to Azure more secure by prohibiting certain operations and enforcing various rules in your environment. The policies make your environment compliant and ensure that you adhere to the service level agreements and standards set within your organization. If the end user tries to deploy a resource violating the policies then the deployment fails at the validation step ensuring that your environment remains compliant. If you already have resources which are not compliant then you will be able to review those and take necessary actions.</p>
+<h3>Examples of Azure Policies</h3>
+<p>Here are a few of most commonly used policies:</p>
+<ol>
+<li><strong>Restricting the Allowed locations</strong> where a resource can be deployed. You can restrict the allowed locations where resources can be deployed to the ones that are closer to your geographic location. This also ensures that the users within your organization can't deploy resources to noncompliant locations. </li>
+<li><strong>Enforcing a Tag</strong> and it's Value. E.g. You have a Resource Group for the Finance department. You want to ensure that any resource deployed in that Resource Group should be tagged with a &quot;CostCenter&quot; and a specific value for that cost center. You can enforce this using a Policy.</li>
+<li><strong>Not Allowed Resource Types</strong>. Using this policy you can prohibit the deployment of certain resource types in your environment. </li>
+</ol>
+<p>There are various other built-in Policies. You can also create your own policies which we will discuss in more detail later.</p>
+<h3>Scope where a Policy is Assigned</h3>
+<p>A Policy can be assigned at the below levels:</p>
+<ol>
+<li><strong>Subscription</strong> level - Applied to all Resource Groups and Resources within the subscription</li>
+<li><strong>Resource Group</strong> level - Applied only to the Resources within the selected Resource Groups</li>
+</ol>
+<p><strong>Exclusions</strong>: In addition to the assignment scope, you can exclude certain Resource Groups or individual Resources from the Policy assignments. The Policy will be applied to all the Resources in the scope except the ones excluded by defining the Exclusions. </p>
+<h3>How are Policies different from Role-Based Access Control (RBAC)</h3>
+<p>Through <strong>Role-Based Access Control (RBAC)</strong>, you focus on the role and scope of access that a user can have in Azure. You provide the access control (IAM) within Azure for Subscription, Resource Group or an individual Resource. You define a role for the user/app/group like Contributor, Reader etc.  You can use the built-in roles or can define custom roles.</p>
+<p>With <strong>Policies</strong>, you focus on the properties of the resources with which the user can work at the defined scope. You define what properties are allowed and what is restricted. You can use the built-in policies or can define your own.</p>
+<p>E.g. Through RBAC you define that a particular user has Reader role at the subscription and Contributor role at a particular Resource Group. This will mean that the user can view all the resources in the subscription but can only modify or create resources in the Resource Group where he has Contributor access.</p>
+<p>Now if you define a policy which restricts the type of resources deployed ( as discussed in the examples above), the user will not be able to deploy the restricted resource types, even though he has contributor access to a Resource Group.</p>
+<h3>Accessing Policies in the Azure portal</h3>
+<p>To access the Policies in the Azure portal:</p>
+<ol>
+<li>Navigate to <strong>Subscriptions</strong> (via All Services or the navigation sidebar)</li>
+<li>Select the subscription for which you want to view the Policies</li>
+<li>Scroll down to the &quot;Settings&quot; category in the menu of the subscription</li>
+<li>Click on &quot;<strong>Policies</strong>&quot; to access the policies in Azure</li>
+</ol>
+<img src="/images/15217849365ab4986888c88.png" alt="Policies in Azure Portal">
+<p>We will be discussing more about the Azure Policies in later blogs.</p>]]></description>
+<link>http://HarvestingClouds.com/post/demystifying-azure-security-azure-policies-1-basics</link>
+<pubDate>Sun, 10 Dec 2017 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Great Way to learn - 2018 Microsoft Azure Community Study Groups</title>
