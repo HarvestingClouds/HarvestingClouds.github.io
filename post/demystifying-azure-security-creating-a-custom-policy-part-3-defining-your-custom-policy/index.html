@@ -158,15 +158,14 @@
 <li>Provide the policy definition's location. This will be your subscription in which you want the definition to exist.</li>
 <li>Provide a Display Name and Description of the policy. Try to be as descriptive as possible</li>
 <li>Either create a new Category for the policy or use one of the existing ones</li>
-<li>
-<p>Copy and paste your policy definition. In the portal, only provide the &quot;policyRule&quot; section. The section will look something similar to:</p>
-<p>{
-&quot;policyRule&quot;: {
-&lt;<all content here>&gt;
-}
-}</p>
-</li>
+<li>Copy and paste your policy definition. In the portal, only provide the &quot;policyRule&quot; section. </li>
 </ol>
+<p>The section for policyRule will look something similar to below.</p>
+<pre><code>{
+    "policyRule": {
+      all content here
+    }
+}</code></pre>
 <img src="/images/15218358165ab55f28ad5a4.png" alt="New Policy Definition Blade">
 <p>Hit <strong>Save</strong> to create the Policy Definition. You can now start assigning this policy in your environment.</p>
 <h3>Defining Policy using PowerShell</h3>
