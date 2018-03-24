@@ -37,13 +37,16 @@
 <description><![CDATA[<p>Understanding the security is of utmost importance in designing any application architecture. When bringing your applications or infrastructure to Azure or even designing new applications in Azure, you need to be aware of all the ways you can make your application/design more secure by leveraging various features Azure has to offer.</p>
 <p>This series talks about various aspects of <strong>security</strong> as related to different aspects of Azure.</p>
 <p>This blog is an <strong>Index</strong> of various blogs in the series &quot;Demystifying Azure Security&quot;:</p>
-<ul>
+<ol>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-rbac-roles/" target="_blank">Understanding RBAC Roles</a></li>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-custom-rbac-roles/" target="_blank">Custom RBAC Roles</a></li>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-just-in-time-vm-access/" target="_blank">Just In Time VM access</a></li>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-policies-1-basics/" target="_blank">Azure Policies - 1 - Basics</a></li>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-policies-2-assigning-a-policy/" target="_blank">Azure Policies - 2 - Assigning a Policy</a></li>
-</ul>]]></description>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-creating-a-custom-policy-part-1-viewing-definition-of-an-existing-policy/" target="_blank">Creating a Custom Policy - Part 1 - Viewing Definition of an existing Policy</a></li>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-creating-a-custom-policy-part-2-understanding-the-policy-structure/" target="_blank">Creating a Custom Policy - Part 2 - Understanding the Policy Structure</a></li>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-creating-a-custom-policy-part-3-defining-your-custom-policy/" target="_blank">Creating a Custom Policy - Part 3 - Defining your Custom Policy</a></li>
+</ol>]]></description>
 <link>http://HarvestingClouds.com/post/demystifying-azure-security-series-index</link>
 <pubDate>Sun, 11 Mar 2018 00:00:00 +0500</pubDate>
 </item>
@@ -556,7 +559,8 @@ Get-AzureRMProviderOperation Microsoft.Network/*</code></pre>
 </item>
 <item>
 <title>Demystifying Azure Security - RBAC Roles</title>
-<description><![CDATA[<p>Azure <strong>RBAC Roles</strong> are a great way to securely provide access to users with limited actions in Azure. The focus is to provide only the access necessary so that an account in your organization doesn't have more access than needed. In case the account gets compromised, this will ensure that does not leave your environment too much vulnerable. This means that if you grant an employee access to manage Virtual Machines in your environment, that employee can't alter the virtual networks by mistake or have any access to delete the storage accounts in the environment. </p>
+<description><![CDATA[<p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
+<p>Azure <strong>RBAC Roles</strong> are a great way to securely provide access to users with limited actions in Azure. The focus is to provide only the access necessary so that an account in your organization doesn't have more access than needed. In case the account gets compromised, this will ensure that does not leave your environment too much vulnerable. This means that if you grant an employee access to manage Virtual Machines in your environment, that employee can't alter the virtual networks by mistake or have any access to delete the storage accounts in the environment. </p>
 <h3>Roles Hierarchy</h3>
 <p>The RBAC Roles can be assigned at the following three levels in the order of hierarchy:</p>
 <ol>
