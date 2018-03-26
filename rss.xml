@@ -17,22 +17,6 @@
 <pubDate>Fri, 23 Mar 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Azure Site Recovery (ASR) - Series Index</title>
-<description><![CDATA[<p>Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. </p>
-<p>This series talks about various aspects of working with <strong>Azure Site Recovery</strong> or <strong>ASR</strong>. </p>
-<p>This blog is an <strong>Index</strong> of various blogs in the series:</p>
-<ul>
-<li><a href="http://harvestingclouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-not-working/" target="_blank">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working</a></li>
-<li><a href="http://harvestingclouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2/" target="_blank">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues</a></li>
-<li><a href="http://harvestingclouds.com/post/azure-site-recovery-asr-new-feature-added-to-target-resource-groups/" target="_blank">Azure Site Recovery (ASR) - New feature added to target Resource Groups</a></li>
-<li><a href="http://harvestingclouds.com/post/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers/" target="_blank">Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers</a></li>
-<li><a href="http://harvestingclouds.com/post/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access/" target="_blank">ASR Setup for VMs running in VMWare without VMware level User Access</a></li>
-<li><a href="http://harvestingclouds.com/post/getting-started-azure-site-recovery-asr-in-new-azure-portal/" target="_blank">Getting Started - Azure Site Recovery (ASR) In New Azure Portal</a></li>
-</ul>]]></description>
-<link>http://HarvestingClouds.com/post/azure-site-recovery-asr-series-index</link>
-<pubDate>Mon, 19 Mar 2018 00:00:00 +0500</pubDate>
-</item>
-<item>
 <title>Demystifying Azure Security - Series Index</title>
 <description><![CDATA[<p>Understanding the security is of utmost importance in designing any application architecture. When bringing your applications or infrastructure to Azure or even designing new applications in Azure, you need to be aware of all the ways you can make your application/design more secure by leveraging various features Azure has to offer.</p>
 <p>This series talks about various aspects of <strong>security</strong> as related to different aspects of Azure.</p>
@@ -47,9 +31,27 @@
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-creating-a-custom-policy-part-2-understanding-the-policy-structure/" target="_blank">Creating a Custom Policy - Part 2 - Understanding the Policy Structure</a></li>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-creating-a-custom-policy-part-3-defining-your-custom-policy/" target="_blank">Creating a Custom Policy - Part 3 - Defining your Custom Policy</a></li>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-policies-initiative-definitions/" target="_blank">Azure Policies - Initiative Definitions</a></li>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-transparent-data-encryption/" target="_blank">Transparent Data Encryption</a></li>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-auditing-threat-detection-in-azure-sql-database/" target="_blank">Auditing &amp; Threat Detection in Azure SQL Database</a></li>
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/demystifying-azure-security-series-index</link>
-<pubDate>Sun, 11 Mar 2018 00:00:00 +0500</pubDate>
+<pubDate>Tue, 20 Mar 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Site Recovery (ASR) - Series Index</title>
+<description><![CDATA[<p>Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. </p>
+<p>This series talks about various aspects of working with <strong>Azure Site Recovery</strong> or <strong>ASR</strong>. </p>
+<p>This blog is an <strong>Index</strong> of various blogs in the series:</p>
+<ul>
+<li><a href="http://harvestingclouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-not-working/" target="_blank">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working</a></li>
+<li><a href="http://harvestingclouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2/" target="_blank">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-site-recovery-asr-new-feature-added-to-target-resource-groups/" target="_blank">Azure Site Recovery (ASR) - New feature added to target Resource Groups</a></li>
+<li><a href="http://harvestingclouds.com/post/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers/" target="_blank">Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers</a></li>
+<li><a href="http://harvestingclouds.com/post/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access/" target="_blank">ASR Setup for VMs running in VMWare without VMware level User Access</a></li>
+<li><a href="http://harvestingclouds.com/post/getting-started-azure-site-recovery-asr-in-new-azure-portal/" target="_blank">Getting Started - Azure Site Recovery (ASR) In New Azure Portal</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-site-recovery-asr-series-index</link>
+<pubDate>Mon, 19 Mar 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Resources - New Azure Log Analytics Language Cheat Sheets</title>
@@ -85,12 +87,13 @@
 <p><strong>Transparent Data Encryption</strong> (<strong>TDE</strong>) is the automated encryption of your data at rest. If configured it encrypts your database, backups of the database and transactional log files at rest. Normally this is configured by default to provide you with an additional layer of security. If this is not configured then you will get a recommendation to configure it in the Azure Security Center. </p>
 <p>Turing Off Transparent data encryption will result in decryption of the complete database and will leave your data vulnerable. When you turn it back On then the database will be encrypted again. Depending upon the size of your database, it may take some time to turn the TDE on or off due to the underlying encryption/decryption process.</p>
 <p>This service does not require any changes at the application level. Behind the scene, transparent data encryption performs real-time I/O encryption and decryption of the data at the page level. Each page is decrypted when it's read into memory and then encrypted before being written to disk.</p>
-<p>Note: Even if the database is encrypted with TDE, when you take an export of the database (e.g. creation of BACPAK file) then the backup file is created without encryption. You need to ensure that you safeguard/encrypt the backup files before sharing these on an open network.</p>
+<p><strong>Note</strong>: Even if the database is encrypted with TDE, when you take an export of the database (e.g. creation of BACPAK file) then the backup file is created without encryption. You need to ensure that you safeguard/encrypt the backup files before sharing these on an open network.</p>
 <h3>Configuring TDE at the Database level</h3>
-<p>Transparent Data Encryption can be enabled or disabled at every individual Database level. The configuration is a very simple toggle between on and off. To configure this, navigate to your Azure SQL Database. In the settings, select &quot;Transparent Data Encryption&quot;. The set the value for &quot;Data Encryption&quot; On or Off. Notice the Encryption status. If you want your data to be encrypted, then the encryption status should say &quot;Encrypted&quot; with a green tick mark. </p>
+<p><strong>Transparent Data Encryption</strong> (<strong>TDE</strong>) can be enabled or disabled at every individual Database level. The configuration is a very simple toggle between on and off. To configure this, navigate to your Azure SQL Database. In the settings, select &quot;Transparent Data Encryption&quot;. The set the value for &quot;Data Encryption&quot; On or Off. </p>
+<p>Notice the Encryption status. If you want your data to be encrypted, then the encryption status should say &quot;Encrypted&quot; with a green tick mark. </p>
 <img src="/images/15221022915ab9701353492.png" alt="Configuring Transparent Data Encryption">
 <h3>Configuring to use your own Key with TDE</h3>
-<p>You can use your own Key for encryption with Transparent Data Encryption. If you do not configure to use your own key, then a service managed certificate is used for encryption and decryption.</p>
+<p>You can <strong>use your own Key for encryption</strong> with Transparent Data Encryption. If you do not configure to use your own key, then a service managed certificate is used for encryption and decryption.</p>
 <p>To do this you will need to upload your key to an Azure Key Vault or generate a new key within the Key Vault, which is very easy to configure. Once you have a key in an Azure Key Vault, you will be able to use the same with Transparent Data Encryption (TDE). </p>
 <p>This setting can't be configured at a Database level. Instead, this has to be configured at the server level. Navigate to the underlying Azure SQL Server (where the SQL Database is hosted). Then follow the below steps:</p>
 <ol>
@@ -107,7 +110,7 @@
 <item>
 <title>Demystifying Azure Security - Auditing & Threat Detection in Azure SQL Database</title>
 <description><![CDATA[<p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
-<p><strong>Auditing &amp; Threat Detection</strong> in Azure SQL Database is a very simple to configure yet very powerful security feature. <strong>Auditing</strong> feature audits all activity to a Storage Account. You can determine the days for which you want to retain the data. It helps you remain compliant. In an event of any failure or compliance breach, you can go to the audit logs and can pinpoint the exact cause of the issue if this feature is enabled. </p>
+<p><strong>Auditing &amp; Threat Detection</strong> in Azure SQL Database is a very simple to configure yet very powerful security feature. <strong>Auditing</strong> feature audits all activity on your database to a Storage Account. You can determine the number of days for which you want to retain the data. It helps you remain compliant. In an event of any failure or compliance breach, you can go to the audit logs and can pinpoint the exact cause of the issue if this feature is enabled. </p>
 <p><strong>Threat Detection</strong> is an advanced feature, where Microsoft runs various algorithms under the hood and determines the pattern and identifies any potential attacks on your data. E.g. SQL Injection or patterns like SQL Injection can be detected when this feature is enabled. Please note that the Threat Detection feature has additional cost linked to it. It costs $15/server/month. It will be free for the first 60 days. Note that you can enable Auditing without enabling Threat Detection. But you can't enable Threat Detection without enabling Auditing on the data first. </p>
 <p>SQL Threat Detection integrates alerts with Azure Security Center. If any anomalous activity is detected an alert is raised, you can get notification via email and can also review the same within the portal. You get real-time actionable alerts. Each alert also contains the information regarding how to mitigate the alert.</p>
 <h3>Configurations</h3>
