@@ -163,7 +163,7 @@ Get-AzureRMProviderOperation Microsoft.Network/*</code></pre>
 <item>
 <title>Demystifying Azure Security - Azure Policies - Initiative Definitions</title>
 <description><![CDATA[<p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
-<p><strong>Initiative Definitions</strong> are a great way to combine and apply multiple policies together. They are a group of policy definitions to achieve a singular goal. These are the Microsoft recommended way to use the Policies. </p>
+<p><strong>Initiative Definitions</strong> are a great way to combine and apply multiple policies together. They are a group of policy definitions to achieve a singular goal. These are the Microsoft recommended way to use the Policies.  </p>
 <p>E.g. You want to combine a set of policy definitions for the compute and related resources. You want to apply following set of policies:</p>
 <ol>
 <li>Allowed locations - to restrict locations where resources can be deployed</li>
