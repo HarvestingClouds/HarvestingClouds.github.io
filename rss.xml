@@ -55,7 +55,7 @@
 </item>
 <item>
 <title>Resources - New Azure Log Analytics Language Cheat Sheets</title>
-<description><![CDATA[<p>Azure Log Analytics (part of the OMS suite) has a very versatile query language. To investigate and report on the data you need to know the query language at least at the basic level. Recently the language had a complete overhaul with new syntax coming in and various new features being incorporated into the new language. This blog post talks about the resources to quickly learn the new syntax. Specifically, if you know the older syntax or you know T-SQL syntax then how to translate that knowledge.</p>
+<description><![CDATA[<p>Azure Log Analytics (part of the OMS suite) has a very versatile query language. To investigate and report on the data you need to know the query language at least at the basic level. Recently the language had a complete overhaul with new syntax coming in and various new features being incorporated into the new language. This blog post talks about the resources to quickly learn the new syntax. Specifically, if you know the older syntax or you know T-SQL syntax then how to translate that knowledge. </p>
 <h3>Older to new Query Language syntax</h3>
 <p>If you have been working with the older Log Analytics query syntax, then you have two options to convert that knowledge to newer query language syntax:</p>
 <ol>
