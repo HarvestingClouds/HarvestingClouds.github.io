@@ -8,13 +8,52 @@
 <item>
 <title>Book published on Amazon - Quick and Practical Guide to ARM Templates</title>
 <description><![CDATA[<p><strong>Quick and Practical Guide to ARM Templates</strong> is a very non-conventional book. The objective of the book is to help you &quot;Become Experts in Developing ARM Templates for Microsoft Azure without any prior knowledge&quot;. This book is for both a beginner and intermediate users. </p>
+<p><strong>Update [03-27-2018]</strong>: This book is available for <strong>FREE</strong> for a limited time only (on 27, 28 and 29th March, 2018 till midnight Pacific Time). <a href="https://www.amazon.com/dp/B07C8LSBSN" target="_blank"><strong>Download Now!!!</strong></a></p>
 <p>This is a quick and practical approach to learning ARM Templates for Azure. It covers only the most essential topics that you will need 95% of the time while working with ARM Templates. The goal is to have you working faster and quicker on ARM Templates without compromising any of the best practices. </p>
 <p>The book assumes that you do not have prior knowledge of ARM Templates. If you have no development background then this book is for you. It starts by building the fundamentals on which ARM Templates are built.  The more practical approach means less theory and more focus on the practical aspects that can help you start working and delivering on ARM Templates.</p>
-<p>You can view the book on Amazon.com at this link: <a href="https://www.amazon.com/dp/B07C8LSBSN" target="_blank"><a href="https://www.amazon.com/dp/B07C8LSBSN">https://www.amazon.com/dp/B07C8LSBSN</a></a></p>
+<p>You can view the book on Amazon.com here:</p>
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=qf_sp_asin_til&ad_type=product_link&tracking_id=harvestingclo-20&marketplace=amazon&region=US&placement=B07C8LSBSN&asins=B07C8LSBSN&linkId=961e9d0dd6262ef7737bb6418f772a82&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff">
+    </iframe>
 <p>You can also search for the book in your local Amazon marketplace.</p>
 <img src="/images/15217860175ab49ca149064.png" alt="Quick and Practical Guide to ARM Templates">]]></description>
 <link>http://HarvestingClouds.com/post/book-published-on-amazon-quick-and-practical-guide-to-arm-templates</link>
-<pubDate>Fri, 23 Mar 2018 00:00:00 +0500</pubDate>
+<pubDate>Tue, 27 Mar 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Getting Started with Virtual Machine Serial Console access</title>
+<description><![CDATA[<p>This is the feature we all have been waiting for. This gives power back to administrators in the cloud. <strong>Virtual Machine Console Access</strong> is now available in Preview in Azure. The console is called <strong>Special Administrative Console</strong> (SAC). With this you can perform advanced troubleshooting like correcting firewall rules by fixing iptables, recovering filesystems, locking down the network, interacting and modifying the bootloader etc. </p>
+<p><strong>Note</strong>: Windows images on Azure do not have <strong>Special Administrative Console</strong> (SAC) enabled by default. SAC is supported on server versions of Windows but is not available on client versions (e.g. Windows 10, Windows 8 or Windows 7).</p>
+<h3>How to Enable SAC on Windows VM</h3>
+<p>On a Linux VM, the serial access will be available but for Windows VM you need to perform additional steps in the VM to enable this. The steps to enable are:</p>
+<ul>
+<li>Login to your VM via Remote Desktop</li>
+<li>
+<p>From an Administrative command prompt run the following commands </p>
+<p><code>bcdedit /ems {current} on</code></p>
+<p><code>bcdedit /emssettings EMSPORT:1 EMSBAUDRATE:115200</code></p>
+</li>
+</ul>
+<ul>
+<li>Reboot the system for the SAC console to be enabled</li>
+</ul>
+<h3>How to Access</h3>
+<p>Currently, this option (in Preview at the time of writing this blog) is available only via the portal. To access the Serial Console go to:</p>
+<ol>
+<li>The Virtual Machine (VM) for which you want to access the Serial Console</li>
+<li>Ensure that the VM is up and running</li>
+<li>Navigate to the  &quot;<strong>Serial console (Preview)</strong>&quot; option under &quot;Support + Troubleshooting&quot; section in VM settings</li>
+</ol>
+<p>If the VM is not up and running then you will view the below error.</p>
+<pre><code>The serial console connection to the VM encountered an error: 'Bad Request'
+ (400) - The VM is in a stopped deallocated state.  Please start the VM and retry the serial console connection.</code></pre>
+<p>When the VM is starting you will see the below message, which you are connected to the Serial Console.</p>
+<img src="/images/15222511335abbb57d69110.png" alt="Connecting to SAC">
+<p>Once connected you can run commands like <code>ch -?</code> for information on using channels and simply type <code>?</code> for general help.</p>
+<img src="/images/15222511405abbb5841a716.png" alt="Connected SAC and Help options">
+<p><strong>Note</strong>: The console automatically will disconnect after a period of inactivity.</p>
+<p>The access is being opened to more and more subscriptions and regions. If you don't see the access today, you just need to wait and it should be coming soon.</p>]]></description>
+<link>http://HarvestingClouds.com/post/getting-started-with-virtual-machine-serial-console-access</link>
+<pubDate>Mon, 26 Mar 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Demystifying Azure Security - Series Index</title>
