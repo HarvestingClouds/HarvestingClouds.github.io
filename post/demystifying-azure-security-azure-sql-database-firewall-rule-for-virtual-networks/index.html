@@ -79,9 +79,31 @@
                 <hr>
 
                 <p class="post-content"><p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
-<p>Demystifying Azure Security - Azure SQL Database - Firewall Rule for Virtual Networks</p>
+<p>Before going through this blog, please make sure you have covered these:</p>
+<ul>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-sql-database-set-server-firewall/" target="_blank">Set Server Firewall for Azure SQL Databases</a></li>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-sql-database-and-azure-storage-service-endpoints-on-virtual-network/" target="_blank">Service Endpoints for Azure SQL on Virtual Network</a>. <strong>Note</strong> that this is pre-requisite for the firewall rules to be configured on the Virtual Network level.</li>
+</ul>
+<p>Setting up the <strong>Firewall Rule for Virtual Networks</strong>, at the SQL Server level, enables you to allow access to a subnet in a Virtual Network in Azure on all the SQL Databases on the SQL Server. The firewall rules are always set at the server level, hence any rule you put will allow access on all the databases on the SQL Server.</p>
+<p>Setting up the Rules is very simple. You navigate to the firewall settings for the SQL Database/SQL Server (as discussed in the previous blog). Then you focus on the lower section on the blade for Virtual Network Firewall rules as shown below.</p>
+<img src="/images/15225265255abfe93da6c61.png" alt="Virtual Network Firewall Rules section">
+<p>Note that you can:</p>
+<ol>
+<li>Add existing virtual network</li>
+<li>Create a new virtual network (and provide access)</li>
+</ol>
+<p>As a best practice, you should plan the virtual network and subnets before the configurations on the SQL Server Firewall. </p>
+<p>When you click on &quot;Add existing virtual network&quot; you are presented with the below wizard. Here you select:</p>
+<ol>
+<li>The name for the rule. This could be any descriptive name for the rule.</li>
+<li>The Subscription where the virtual network exists</li>
+<li>Virtual network where you want to allow the access</li>
+<li>Subnet name within the Virtual network where you want to allow the access</li>
+</ol>
 <img src="/images/15224829335abf3ef529038.png" alt="Create/Update Virtual Network Firewall Rule">
-<img src="/images/15224829395abf3efbae000.png" alt="Virtual Network Firewall Rule Populated"></p>
+<p>Below, is the screenshot of the rule with values populated. If the Service Endpoint is not enabled for the &quot;Microsoft.Sql&quot; provider then you will view a message for the same and the wizard will attempt to enable the same.</p>
+<img src="/images/15224829395abf3efbae000.png" alt="Virtual Network Firewall Rule Populated">
+<p>Thats all there is to it. Just hit Ok and then hit Save to apply the rule.</p></p>
                 <br/><br/>
 
                 <div class="post-info">

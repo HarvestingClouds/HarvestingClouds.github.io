@@ -79,10 +79,21 @@
                 <hr>
 
                 <p class="post-content"><p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
-<p>Demystifying Azure Security - Azure SQL Database - Service Endpoints for SQL on Virtual Network</p>
+<p>Azure <strong>Service Endpoints</strong> allow access to SQL or Storage services over the network, without going out of the network. </p>
+<p>To configure this feature, you can navigate to your Virtual Network and then under the settings, select the &quot;<strong>Service endpoints</strong>&quot;. Click on &quot;+Add&quot; to add a Service Endpoint.</p>
 <img src="/images/15224831715abf3fe37c1c1.png" alt="Navigating to Service Endpoints">
+<p>In the popup, select the provider for which you want to configure the Service Endpoint. </p>
+<p>Service Endpoints on the Virtual Networks are available for:</p>
+<ol>
+<li>Microsoft.Sql provider</li>
+<li>Microsoft.Storage provider</li>
+</ol>
+<p>Also, select the subnet on which you want to configure the Service Endpoint and then hit &quot;<strong>Add</strong>&quot;.</p>
 <img src="/images/15224831785abf3fea2a4a8.png" alt="Adding Service Endpoint">
-<img src="/images/15224831835abf3fef3682d.png" alt="Deployed Service Endpoint"></p>
+<p>It will take some time (approximately 15 minutes) to configure the Service Endpoints at the backend. Once configured, you will see the configured endpoints in the portal as shown below.</p>
+<img src="/images/15224831835abf3fef3682d.png" alt="Deployed Service Endpoint">
+<p><strong>Note</strong> that even after you configure service endpoint for SQL you will need to allow access at the SQL Server level as well. Service Endpoint ensures that the communication will happen at the network level. The Firewall configuration for the network is needed to allow that communication via Firewall on the SQL Server. This is explained in detail here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-sql-database-firewall-rule-for-virtual-networks/" target="_blank">Azure SQL Database - Firewall Rule for Virtual Networks</a></p>
+<p>Overall, this is a very powerful feature that is easy to configure and provides you with lots of flexibility. </p></p>
                 <br/><br/>
 
                 <div class="post-info">
