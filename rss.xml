@@ -12,7 +12,7 @@
 <p>This is a quick and practical approach to learning ARM Templates for Azure. It covers only the most essential topics that you will need 95% of the time while working with ARM Templates. The goal is to have you working faster and quicker on ARM Templates without compromising any of the best practices. </p>
 <p>The book assumes that you do not have prior knowledge of ARM Templates. If you have no development background then this book is for you. It starts by building the fundamentals on which ARM Templates are built.  The more practical approach means less theory and more focus on the practical aspects that can help you start working and delivering on ARM Templates.</p>
 <p>You can view the book on Amazon.com here:</p>
-<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=qf_sp_asin_til&ad_type=product_link&tracking_id=harvestingclo-20&marketplace=amazon&region=US&placement=B07C8LSBSN&asins=B07C8LSBSN&linkId=961e9d0dd6262ef7737bb6418f772a82&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff">
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=qf_sp_asin_til&ad_type=product_link&tracking_id=harvestingclo-20&marketplace=amazon®ion=US&placement=B07C8LSBSN&asins=B07C8LSBSN&linkId=961e9d0dd6262ef7737bb6418f772a82&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff">
     </iframe>
 <p>You can also search for the book in your local Amazon marketplace.</p>
 <img src="/images/15217860175ab49ca149064.png" alt="Quick and Practical Guide to ARM Templates">]]></description>
@@ -93,6 +93,69 @@
 <pubDate>Mon, 19 Mar 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Demystifying Azure Security - Azure SQL Database - Dynamic Data Masking</title>
+<description><![CDATA[<p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
+<p>Demystifying Azure Security - Azure SQL Database - Dynamic Data Masking</p>
+<img src="/images/15224833815abf40b536b22.png" alt="Navigating to the Dynamic Data Masking Option">
+<img src="/images/15224833865abf40bad27e8.png" alt="Adding Masking Rule">]]></description>
+<link>http://HarvestingClouds.com/post/demystifying-azure-security-azure-sql-database-dynamic-data-masking</link>
+<pubDate>Sun, 11 Mar 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Demystifying Azure Security - Azure SQL Database - Service Endpoints for SQL on Virtual Network</title>
+<description><![CDATA[<p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
+<p>Demystifying Azure Security - Azure SQL Database - Service Endpoints for SQL on Virtual Network</p>
+<img src="/images/15224831715abf3fe37c1c1.png" alt="Navigating to Service Endpoints">
+<img src="/images/15224831785abf3fea2a4a8.png" alt="Adding Service Endpoint">
+<img src="/images/15224831835abf3fef3682d.png" alt="Deployed Service Endpoint">]]></description>
+<link>http://HarvestingClouds.com/post/demystifying-azure-security-azure-sql-database-service-endpoints-for-sql-on-virtual-network</link>
+<pubDate>Sat, 10 Mar 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Demystifying Azure Security - Azure SQL Database - Firewall Rule for Virtual Networks</title>
+<description><![CDATA[<p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
+<p>Demystifying Azure Security - Azure SQL Database - Firewall Rule for Virtual Networks</p>
+<img src="/images/15224829335abf3ef529038.png" alt="Create/Update Virtual Network Firewall Rule">
+<img src="/images/15224829395abf3efbae000.png" alt="Virtual Network Firewall Rule Populated">]]></description>
+<link>http://HarvestingClouds.com/post/demystifying-azure-security-azure-sql-database-firewall-rule-for-virtual-networks</link>
+<pubDate>Sun, 04 Mar 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Demystifying Azure Security - Azure SQL Database - Set Server Firewall</title>
+<description><![CDATA[<p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
+<p>Azure SQL Databases have a powerful layer of security at the SQL Server level. This layer is provided by the SQL Server <strong>Firewall</strong>. Azure provides you granular control to configure this firewall and to manage who gets access to your Azure SQL Database. By default, everything is blocked by the firewall. If you want to get access to Azure SQL Database then you will have to configure the Firewall at the SQL Server level. Only the IP addresses you configure have access to the SQL Databases on the Server.</p>
+<p>Another key point to understand is that once you configure a rule then because that rule is applied at the server level, it is applied to all the SQL Databases on that Server. So it is important to ensure that you segregate your databases on different SQL Servers if you don't want to share the access to those databases.</p>
+<h3>Accessing the Firewall Settings</h3>
+<p>You can access the firewall settings by navigating to your Azure SQL <strong>Database</strong>. Then at the top of the blade, you will find the option for &quot;<strong>Set server firewall</strong>&quot;. Click on this button to access the firewall settings.</p>
+<img src="/images/15224826395abf3dcf84ca9.png" alt="Set Server Firewall option on Azure SQL Database">
+<p>Another way to access the settings is on Azure SQL <strong>Servers</strong>. Navigate to the related Azure SQL Server for your database. Under the settings, find the option for &quot;<strong>Firewalls and virtual networks</strong>&quot;. Clicking on this will also take you to the same firewall settings as the settings are set at the server level in both ways.</p>
+<img src="/images/15224826455abf3dd50a424.png" alt="Firewall option on Azure SQL Server">
+<h3>Firewall Rule Settings</h3>
+<p>Let us look at the firewall rule settings in more details. </p>
+<ol>
+<li>First, you have the option to enable or disable the <strong>access to Azure services</strong> as the toggle for &quot;Allow access to Azure services&quot;. This is set to On by default when creating the Database and SQL server. You can disable it here. This option allows Azure services to provide monitoring data and recommend changes at the database level.</li>
+<li>Second, you have the option to <strong>configure a Rule</strong>. This is where you configure which IP Addresses have access to the SQL Server.</li>
+<li>One commonly used Rule is to open the access for <strong>Client IP</strong>. This is the IP address of the machine from where you are connected to the Azure Portal. This is provided for the common scenario where you want to connect and access the SQL database via SSMS (i.e. SQL Server Management Studio) or by any other way from your development box. There is a button to simply add the rule for allowing Client IP by clicking on &quot;<strong>+Add client IP</strong>&quot;. The client IP is also authomatically displayed under the &quot;Allow access to Azure services&quot; section</li>
+<li>Lastly, there is an option to allow access to the SQL databases from a particular Subnet in a Virtual Network in Azure, without having to manually configure their IP addresses. This feature requires <strong>Service Endpoints</strong> to be configured at the Virtual Network level. We will discuss this feature in a later blog. </li>
+</ol>
+<img src="/images/15224826505abf3ddaaf183.png" alt="Firewall Settings">
+<p>A typical Rule contains:</p>
+<ol>
+<li>A <strong>Rule Name</strong> - which could be any descriptive name for the rule. E.g. it could be name of the single VM for which you want to configure the access or it could be name of the network for which you are opening the access</li>
+<li><strong>Start IP</strong> - Start of the IP address range for which you want to open the access. E.g. if you want to open access for 10.20.1.0/24 then the Start IP will be 10.20.1.0</li>
+<li><strong>End IP</strong> - End of the IP address range for which you want to open the access. E.g. if you want to open access for 10.20.1.0/24 then the End IP will be 10.20.1.255</li>
+</ol>
+<p>Note: If you want to provide access to only one IP address then provide that IP address for both Start and End IP fields.</p>
+<p>Note in the image below that:</p>
+<ol>
+<li>The client IP rule was added by clicking on the &quot;+Client IP&quot; button. Note that the Start and End IP are same for this rule</li>
+<li>Second is a custom rule which allows access to the SQL Server from a specific VM hosting Website (which will need access to the database)</li>
+</ol>
+<img src="/images/15224826565abf3de09ea3f.png" alt="Setting Firewall Rules">]]></description>
+<link>http://HarvestingClouds.com/post/demystifying-azure-security-azure-sql-database-set-server-firewall</link>
+<pubDate>Fri, 02 Mar 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Resources - New Azure Log Analytics Language Cheat Sheets</title>
 <description><![CDATA[<p>Azure Log Analytics (part of the OMS suite) has a very versatile query language. To investigate and report on the data you need to know the query language at least at the basic level. Recently the language had a complete overhaul with new syntax coming in and various new features being incorporated into the new language. This blog post talks about the resources to quickly learn the new syntax. Specifically, if you know the older syntax or you know T-SQL syntax then how to translate that knowledge. </p>
 <h3>Older to new Query Language syntax</h3>
@@ -121,7 +184,7 @@
 <pubDate>Mon, 19 Feb 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Demystifying Azure Security - Transparent Data Encryption</title>
+<title>Demystifying Azure Security - Azure SQL Database - Transparent Data Encryption</title>
 <description><![CDATA[<p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
 <p><strong>Transparent Data Encryption</strong> (<strong>TDE</strong>) is the automated encryption of your data at rest. If configured it encrypts your database, backups of the database and transactional log files at rest. Normally this is configured by default to provide you with an additional layer of security. If this is not configured then you will get a recommendation to configure it in the Azure Security Center. </p>
 <p>Turing Off Transparent data encryption will result in decryption of the complete database and will leave your data vulnerable. When you turn it back On then the database will be encrypted again. Depending upon the size of your database, it may take some time to turn the TDE on or off due to the underlying encryption/decryption process.</p>
@@ -143,11 +206,11 @@
 </ol>
 <img src="/images/15221022965ab9701842974.png" alt="Using own Key for encryption with Transparent Data Encryption">
 <p>This option provides you with all the security at the data level (at rest) while ensuring you have complete control over the process.</p>]]></description>
-<link>http://HarvestingClouds.com/post/demystifying-azure-security-transparent-data-encryption</link>
+<link>http://HarvestingClouds.com/post/demystifying-azure-security-azure-sql-database-transparent-data-encryption</link>
 <pubDate>Sat, 17 Feb 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Demystifying Azure Security - Auditing & Threat Detection in Azure SQL Database</title>
+<title>Demystifying Azure Security - Azure SQL Database - Auditing & Threat Detection</title>
 <description><![CDATA[<p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
 <p><strong>Auditing &amp; Threat Detection</strong> in Azure SQL Database is a very simple to configure yet very powerful security feature. <strong>Auditing</strong> feature audits all activity on your database to a Storage Account. You can determine the number of days for which you want to retain the data. It helps you remain compliant. In an event of any failure or compliance breach, you can go to the audit logs and can pinpoint the exact cause of the issue if this feature is enabled. </p>
 <p><strong>Threat Detection</strong> is an advanced feature, where Microsoft runs various algorithms under the hood and determines the pattern and identifies any potential attacks on your data. E.g. SQL Injection or patterns like SQL Injection can be detected when this feature is enabled. Please note that the Threat Detection feature has additional cost linked to it. It costs $15/server/month. It will be free for the first 60 days. Note that you can enable Auditing without enabling Threat Detection. But you can't enable Threat Detection without enabling Auditing on the data first. </p>
@@ -175,7 +238,7 @@
 <p>If Blob Auditing or Threat Detection are enabled on the server, they will always apply to the database, regardless of the database settings.</p>
 <p>At the server level, the configuration is almost identical. You need to navigate to the related Azure SQL Server first (instead of the SQL Database). Notice at the top of the below screenshot, it says &quot;SQL server&quot; instead of &quot;SQL database&quot;. Then navigate to it's &quot;Auditing and Threat Detection&quot; section and perform the configurations similar to above sections. </p>
 <img src="/images/15220454945ab8923632728.png" alt="Audit and Threat Detection at the server level">]]></description>
-<link>http://HarvestingClouds.com/post/demystifying-azure-security-auditing-threat-detection-in-azure-sql-database</link>
+<link>http://HarvestingClouds.com/post/demystifying-azure-security-azure-sql-database-auditing-threat-detection</link>
 <pubDate>Sat, 10 Feb 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
