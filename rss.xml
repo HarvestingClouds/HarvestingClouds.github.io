@@ -99,9 +99,31 @@
 <item>
 <title>Demystifying Azure Security - Azure SQL Database - Dynamic Data Masking</title>
 <description><![CDATA[<p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
-<p>Demystifying Azure Security - Azure SQL Database - Dynamic Data Masking</p>
+<p><strong>Dynamic Data Masking</strong> is a feature of Azure SQL Databases, that allows you to hide the sensitive data. E.g. your database contains information regarding the Credit Cards of your customers. When exposing the database you want to ensure that the credit cards are not exposed. They should automatically be presented in the format &quot;xxxx xxxx xxxx 1234&quot; i.e. only exposing the last 4 digits. </p>
+<h3>Feature Basics</h3>
+<p>This feature can be accessed by navigating to your database and then clicking on the &quot;<strong>Dynamic Data Masking</strong>&quot; option under settings. By default, there are no masks applied. Click on &quot;<strong>+ Add mask</strong>&quot; to add a new mask.</p>
+<p><strong>Note</strong> that whatever masks you apply are not applied to the administrators. Additionally, you can provide the SQL users who should be excluded from masking. </p>
+<p>Azure SQL Database will also automatically try to recommend the fields that should be masked.</p>
 <img src="/images/15224833815abf40b536b22.png" alt="Navigating to the Dynamic Data Masking Option">
-<img src="/images/15224833865abf40bad27e8.png" alt="Adding Masking Rule">]]></description>
+<h3>Adding Masking Rules</h3>
+<p>When adding Masking Rules you provide below information:</p>
+<ol>
+<li>Name for the mask is auto-populated (based on your selections)</li>
+<li>Schema</li>
+<li>Table in that schema</li>
+<li>Column in the table, where mask should be applied</li>
+<li>Masking Criteria</li>
+</ol>
+<p><strong>Note</strong> that the Masking criteria vary based on the type of the column. E.g. If a column does not have numerical value then the masking criteria for &quot;Number (random number range)&quot; will show as disabled.</p>
+<img src="/images/15224833865abf40bad27e8.png" alt="Adding Masking Rule">
+<p>The different masking criteria that you can apply are:</p>
+<ol>
+<li>Default value  (0, xxxx, 01-01-1900)</li>
+<li>Credit Card value (xxxx-xxxx-xxxx-1234)</li>
+<li>Email (aXXX@XXXX.com)</li>
+<li>Number (random number range)</li>
+<li>Custom string (prefix [padding] suffix)</li>
+</ol>]]></description>
 <link>http://HarvestingClouds.com/post/demystifying-azure-security-azure-sql-database-dynamic-data-masking</link>
 <pubDate>Sun, 11 Mar 2018 00:00:00 +0500</pubDate>
 </item>
