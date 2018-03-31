@@ -70,8 +70,12 @@
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-creating-a-custom-policy-part-2-understanding-the-policy-structure/" target="_blank">Creating a Custom Policy - Part 2 - Understanding the Policy Structure</a></li>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-creating-a-custom-policy-part-3-defining-your-custom-policy/" target="_blank">Creating a Custom Policy - Part 3 - Defining your Custom Policy</a></li>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-policies-initiative-definitions/" target="_blank">Azure Policies - Initiative Definitions</a></li>
-<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-transparent-data-encryption/" target="_blank">Transparent Data Encryption</a></li>
-<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-auditing-threat-detection-in-azure-sql-database/" target="_blank">Auditing &amp; Threat Detection in Azure SQL Database</a></li>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-sql-database-transparent-data-encryption/" target="_blank">Azure SQL Database - Transparent Data Encryption</a></li>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-sql-database-auditing-threat-detection/" target="_blank">Azure SQL Database - Auditing &amp; Threat Detection</a></li>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-sql-database-set-server-firewall/" target="_blank">Azure SQL Database - Set Server Firewall</a></li>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-sql-database-firewall-rule-for-virtual-networks/" target="_blank">Azure SQL Database - Firewall Rule for Virtual Networks</a></li>
+<li><a href="" target="_blank">Azure SQL Database and Azure Storage - Service Endpoints on Virtual Network</a></li>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-sql-database-dynamic-data-masking/" target="_blank">Azure SQL Database - Dynamic Data Masking</a></li>
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/demystifying-azure-security-series-index</link>
 <pubDate>Tue, 20 Mar 2018 00:00:00 +0500</pubDate>
@@ -102,13 +106,13 @@
 <pubDate>Sun, 11 Mar 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Demystifying Azure Security - Azure SQL Database - Service Endpoints for SQL on Virtual Network</title>
+<title>Demystifying Azure Security - Azure SQL Database and Azure Storage - Service Endpoints on Virtual Network</title>
 <description><![CDATA[<p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
 <p>Demystifying Azure Security - Azure SQL Database - Service Endpoints for SQL on Virtual Network</p>
 <img src="/images/15224831715abf3fe37c1c1.png" alt="Navigating to Service Endpoints">
 <img src="/images/15224831785abf3fea2a4a8.png" alt="Adding Service Endpoint">
 <img src="/images/15224831835abf3fef3682d.png" alt="Deployed Service Endpoint">]]></description>
-<link>http://HarvestingClouds.com/post/demystifying-azure-security-azure-sql-database-service-endpoints-for-sql-on-virtual-network</link>
+<link>http://HarvestingClouds.com/post/demystifying-azure-security-azure-sql-database-and-azure-storage-service-endpoints-on-virtual-network</link>
 <pubDate>Sat, 10 Mar 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
