@@ -79,7 +79,7 @@
                 <hr>
 
                 <p class="post-content"><p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
-<p><strong>Dynamic Data Masking</strong> is a feature of Azure SQL Databases, that allows you to hide the sensitive data. E.g. your database contains information regarding the Credit Cards of your customers. When exposing the database you want to ensure that the credit cards are not exposed. They should automatically be presented in the format &quot;xxxx xxxx xxxx 1234&quot; i.e. only exposing the last 4 digits. </p>
+<p><strong>Dynamic Data Masking</strong> is a feature of Azure SQL Databases, that allows you to hide the sensitive data. E.g. your database contains information regarding the Credit Cards of your customers. When exposing the database you want to ensure that the credit cards are not exposed. They should automatically be presented in the format &quot;xxxx-xxxx-xxxx-1234&quot; i.e. only exposing the last 4 digits. </p>
 <h3>Feature Basics</h3>
 <p>This feature can be accessed by navigating to your database and then clicking on the &quot;<strong>Dynamic Data Masking</strong>&quot; option under settings. By default, there are no masks applied. Click on &quot;<strong>+ Add mask</strong>&quot; to add a new mask.</p>
 <p><strong>Note</strong> that whatever masks you apply are not applied to the administrators. Additionally, you can provide the SQL users who should be excluded from masking. </p>
