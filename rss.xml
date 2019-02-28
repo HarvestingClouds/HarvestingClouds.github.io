@@ -6,6 +6,128 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure Tips & Tricks -  Series Index</title>
+<description><![CDATA[<p>Microsoft Azure has lots of services to offer. Sometimes you can feel overwhelmed and lost. These tips and tricks will be your guiding star to make your tasks a bit easier. These will increase your efficiency. Even if you save a few seconds on the task at hand it can accumulate to huge time savings over a larger period of time. </p>
+<p>This blog is an <strong>Index</strong> of various blogs in the series &quot;Azure Tips &amp; Tricks&quot;:</p>
+<ol>
+<li><a href="" target="_blank">Quickly run commands or script on an Azure Virtual Machine (VM) without logging into the VM</a></li>
+<li><a href="" target="_blank">Bootstrap Automation for <strong>New</strong> resources for repeated deployments in multiple environments</a></li>
+<li><a href="" target="_blank">Bootstrap Automation for <strong>Existing</strong> resources for repeated deployments in multiple environments</a></li>
+<li><a href="" target="_blank">Find solutions to most common problems for any resource</a></li>
+<li><a href="" target="_blank">Quickly navigate Azure Portal and search documentation with ease</a></li>
+<li><a href="" target="_blank">Quickly assign and check the Azure Policy and Initiative Compliance status of your resources with new Azure feature</a></li>
+</ol>]]></description>
+<link>http://HarvestingClouds.com/post/azure-tips-tricks-series-index</link>
+<pubDate>Mon, 25 Feb 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Tips & Tricks - Quickly assign and check the Azure Policy and Initiative Compliance status of your resources with new Azure feature</title>
+<description><![CDATA[<p>Now you can assign policies, initiatives directly from the resource blade. You can also check the compliance status of the policies and take corrective actions on them.
+You can now access this feature, not just from the <strong>Subscriptions</strong> blade but also from the <strong>Resource Group</strong> and <strong>individual resources</strong> blade.</p>
+<p>To access this information from the Resource Group level, just navigate to your resource group and search for &quot;<strong>Policies</strong>&quot; option under Settings of the blade. </p>
+<img src="/images/15513074625c7712c6bf854.png" alt="Policies Setting at Resource Group level">
+<p>To access this from a resource e.g. a Virtual Machine, navigate to the VM and search for &quot;Policies&quot; setting. This is under &quot;Operations&quot; section of the VM. </p>
+<img src="/images/15513075245c7713047de46.png" alt="Policies Setting at Resource level">
+<p>In the above example, the policy to apply tag is not compliant. You can click on individual policy names and investigate further.  </p>
+<p>As soon as I apply the tags and the policies compliance is checked next time, it will change the status to Compliant (as shown below). As a best practice, you should be reviewing the compliance status of your environment at periodic intervals. </p>
+<img src="/images/15513126205c7726ec59bc7.png" alt="Policies Compliance status after taking corrective action">]]></description>
+<link>http://HarvestingClouds.com/post/azure-tips-tricks-quickly-assign-and-check-the-azure-policy-and-initiative-compliance-status-of-your-resources-with-new-azure-feature</link>
+<pubDate>Thu, 21 Feb 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Tips & Tricks - Quickly navigate Azure Portal and search documentation with ease</title>
+<description><![CDATA[<p>Navigating Azure Portal can become challenging. You want to navigate to different Azure Resources or Resource Groups or want to check a particular Service in Azure. Instead of going to &quot;All Services&quot; and searching for your resource, if you can save a little time by searching more efficiently, it can add up over time and make you more efficient as well. So here are few tips on how you can navigate with ease in Azure.</p>
+<h3>1. Pin/Favorite most common Services and re-ordering them</h3>
+<p>For a recent project, I was working with Azure Route Table a lot. I was navigating to these multiple times and making a lot of changes. Instead of going to &quot;All Services&quot; and searching for Route Table service every time, you search for it only once and Star it to mark it as Favorite. It will start showing up in the Services list to the left under Favorites.  </p>
+<img src="/images/15513414255c779771e2940.png" alt="Marking a Service as Favorite">
+<p>Next, you want to re-order the Services under Favorites, so you don't have to scroll to navigate to most common services. You can do so by hovering the cursor on the service name under Favorites, and then click and drag on the ellipse (i.e. 3 dots to the right of the service name) as shown below. </p>
+<img src="/images/15513414435c7797839cd64.png" alt="Re-ordering the service in Favorites">
+<p>Now you will have the most commonly visited service at the tip of your hands. </p>
+<h3>2. Pin most common Resources to your dashboard</h3>
+<p>Another scenario I faced in one of the projects was that every time I logged in, I had to make some changes to a VM and connect to the same using it's dynamically assigned Public IP. That meant navigating to this VM, every day and starting the VM and connecting to it. I had to start the VM as auto-shutdown was configured on the VM to save cost. Instead of navigating to the Virtual Machines and then searching for the VM and then navigating to it, you can simply Pin the VM to your dashboard. Next time you open the portal, the VM will be right there on the Dashboard. </p>
+<img src="/images/15513414555c77978fbf2b8.png" alt="Pinning a resource to a dashboard">
+<p>You can similarly Pin other resources like SQL Databases, etc.</p>
+<h3>3. Searching for Resources, Resource Groups, Services and Documentation using the new Search bar</h3>
+<p>One of the cool features I stumbled upon is the new search bar in the Azure portal. It had made navigating Azure portal so much easier. You just start searching for the resource or Resource Group or Service name in the text box at the top of the portal. You don't even have to type the whole thing. Just start typing and the results will start popping up. Look for different sections in the suggestions box the pops up under the text box. Click on your desired resource or Resource Group or Service. </p>
+<img src="/images/15513414665c77979a37437.png" alt="Navigating the smart way">
+<p>One advantage of this search box is that you can not just search for resources or resource groups or services, you can also search for Marketplace solutions and Documentation. I have leveraged this feature to search for documentation a lot. You can't remember everything and you have to reference documentation every now and then. Instead of googling the documentation, you can quickly search for it, without leaving the Azure portal and access it. You don't have to worry about navigating away from the Azure portal. The documentation will open up in a separate tab automatically. </p>
+<p>I hope that these tips will help you increase your efficiency. Let us know which tip helped you and which you already knew about, in the comments below. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-tips-tricks-quickly-navigate-azure-portal-and-search-documentation-with-ease</link>
+<pubDate>Fri, 01 Feb 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Tips & Tricks - Find solutions to most common problems for any resource</title>
+<description><![CDATA[<p>When working with Azure resources, you will be faced with the challenge of diagnosing, troubleshooting and solving issues related to your resources. Opening a Microsoft Support case should be the last resort. </p>
+<p>This tip is generic in nature that shows you where to look for various solutions to the most common problems related to a resource. You can find this option under any resource as &quot;<strong>Diagnose and solve problems</strong>&quot;</p>
+<img src="/images/15513430465c779dc6376de.png" alt="Diagnose and solve problems">
+<h3>Troubleshooting Workflow</h3>
+<p>Using this a common troubleshooting workflow will look like this:</p>
+<ol>
+<li>Click on the &quot;<em>Diagnose and solve problems</em>&quot; option under your resource's blade.</li>
+<li>Look for Resource Health. I have had a scenario where after a lot of troubleshooting around Azure Automation, we came to know that the service was experiencing issues in our intended region (US South Central). A quick check from this will rule out the obvious.</li>
+<li>Next, you want to check the &quot;<strong>Activity logs</strong>&quot;. You can check those right from this screen. You can find if anybody changed the configurations which might have resulted in errors you are observing. </li>
+<li>Next section shows you some of the <strong>most common issues</strong> and how to resolve these. Scroll through these. Sometimes these include step by step guides to help you. Follow these and ensure you did not miss a step.</li>
+<li>If nothing works, you can finally open a <strong>Microsoft Support request</strong> right from this screen. <strong>Note</strong>: If you can't find your issue under common problems, I highly recommend that you search for it in forums like StackOverflow etc. before you open the Microsoft Support request. If it is a business critical issue, then I would recommend that you open the support ticket first and then search for the issue in the interest of time. </li>
+</ol>]]></description>
+<link>http://HarvestingClouds.com/post/azure-tips-tricks-find-solutions-to-most-common-problems-for-any-resource</link>
+<pubDate>Fri, 25 Jan 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Tips & Tricks - Bootstrap Automation for Existing resources for repeated deployments in multiple environments</title>
+<description><![CDATA[<p>When you want to automate resource deployment you will either create the automation templates for an existing set of resources or you will create templates for resources that have not been created yet. For former situation, e.g. you have performed a Proof of Concept and now you want to automate the deployment of these set of resources. </p>
+<p>You want to automate this because you want to deploy these resources multiple times at different times. You want to deploy these in a predictive fashion without any errors due to manual mistakes creeping in. The number of resources can be fairly large and you will actually end up saving time on the creation of these automation templates instead of manually creating everything.</p>
+<h3>Generating Automation for an existing set of resources</h3>
+<p>To generate automation for an existing set of resources, either go to the resource group or to any of the resource. Under <strong>Settings</strong> look for the option for &quot;<strong>Automation script</strong>&quot;. Depending upon number of resources and type of resources, it may take some time to generate the template.</p>
+<p><strong>Note</strong>: Even though the option says &quot;Automation script&quot; it still generates an ARM Template for the automation. </p>
+<img src="/images/15513440755c77a1cb534d8.png" alt="Automation Template generation for the resources">
+<p>Once the template is ready you can do the following:</p>
+<ol>
+<li>You can inspect the template right there on the screen.</li>
+<li>You can download the template or directly add it to your library. Once in the library, you can modify it and share it with your team. Or you can directly Deploy it by clicking on the deploy button.</li>
+<li>Look out for the errors regarding the resources that can't be exported. E.g. Key vault policies can't be exported by this wizard.</li>
+<li>Next, the Template and Parameters are shown. You can also view, Azure CLI, PowerShell, .Net or Ruby code samples to deploy the template.</li>
+<li>Make sure that you inspect the template thoroughly. Remove the resources that you don't need. </li>
+<li>Also, there will be a lot of hard-coded values in this auto-generated template. It will still be better than starting everything from scratch and doing everything manually. </li>
+</ol>]]></description>
+<link>http://HarvestingClouds.com/post/azure-tips-tricks-bootstrap-automation-for-existing-resources-for-repeated-deployments-in-multiple-environments</link>
+<pubDate>Thu, 24 Jan 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Tips & Tricks - Bootstrap Automation for New resources for repeated deployments in multiple environments</title>
+<description><![CDATA[<p>When you want to automate resource deployment you will either create the automation templates for an existing set of resources or you will create templates for resources that have not been created yet. For the latter situation, e.g. automating the deployment of a new set of resources, you will have to start the automation from scratch. Instead of starting from scratch, you can bootstrap your automation via ARM Templates.</p>
+<h3>Reuse Existing</h3>
+<p>You can first search for your resources or scenarios in the Microsoft Quick Start templates. Note that these are sample templates from Microsoft and community members. These templates can be found here: <a href="https://github.com/Azure/azure-quickstart-templates" target="_blank">Azure Quickstart Templates</a>. </p>
+<p>When you click on a template name you will see multiple files as shown below. Actual template file will always be named as &quot;<strong><em>azuredeploy.json</em></strong>&quot;. The related parameters file will be named as &quot;<strong><em>azuredeploy.parameters.json</em></strong>&quot;. All other files are optional and are the supporting files for the template.</p>
+<img src="/images/15513749945c781a929e78b.png" alt="Sample Template in Quickstart Repo on GitHub">
+<p>You can download these files and edit them. You can fork them directly in GitHub and start editing in a source control environment, but your changes will be public (unless you change your repository to Private). If you do not want to make changes and want to directly deploy one of the template, simply click on the &quot;<strong>Deploy to Azure</strong>&quot; button. This will open Azure portal and you will need to sign into your subscription. Then the template deployment blade will open with the template information already populated. You will just need to select right Subscription, Resource Group and provide various parameters. </p>
+<p>It is really simple and saves you lot of time instead of authoring the template from scratch. Why re-invent the wheel. Reuse instead!</p>
+<h3>Generating template for new resource creation in Azure</h3>
+<p>If you are creating new resource from the Azure portal and you have to perform this same action multiple times, you should consider using an ARM Template. If you want to create an ARM Template for a resource for which you can't find a template, even then you can use Azure portal to bootstrap the template creation, rather than starting from scratch. </p>
+<p>Simple go ahead and start creating your resource from Azure portal. At the last screen, instead of actually creating the resource, look for a link with the name as &quot;<strong>Download a template for automation</strong>&quot;. This will open another blade which will show you the template. You can download the template from here. It will also include the related parameters file and a script to perform the deployment of your template. The below screenshot shows you the option for Storage Account creation.</p>
+<img src="/images/15513748915c781a2b8fa9a.png" alt="Option for Download a template for automation">
+<p><strong>Note</strong>: This option will not be available for all resource types. Microsoft is adding this option to more and more resources everyday. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-tips-tricks-bootstrap-automation-for-new-resources-for-repeated-deployments-in-multiple-environments</link>
+<pubDate>Tue, 15 Jan 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Tips & Tricks - Quickly run commands or script on an Azure Virtual Machine (VM) without logging into the VM</title>
+<description><![CDATA[<p>When you are working with Azure Virtual Machines (VM), multiple times you will need to run some command on the VM. For this, you will need to connect to the VM, login and then open the console to run the command and then actually execute it. Instead of going through the trouble of connecting to the VM and logging in during the connection process, you can simple Run the command on the VM directly from the Azure portal. </p>
+<p><strong>Note 1</strong>: This feature uses the Azure VM Agent on the VM and will not work if the agent is missing. </p>
+<p>To leverage this option navigate to your VM in the portal and select the option to &quot;<strong>Run Command</strong>&quot; under &quot;Operations&quot; section of the VM.</p>
+<img src="/images/15513791435c782ac72f69d.png" alt="Run Command Option">
+<p>As shown above, you can Run Complete PowerShell script right from this screen. There are various options for common scenarios like checking IP Config which simply executes &quot;<em>ipconfig /all</em>&quot;. You can check these common scenarios and the underlying script by clicking on them. If you want to execute then simply click &quot;Run&quot; in the popup blade. </p>
+<img src="/images/15513791525c782ad04aff0.png" alt="Running common scenarios">
+<p><strong>Note 2</strong>: You will need to wait for the Output to appear. It takes some time and you just have to be patient. Once you click run, it gets disabled and the operation is running. Once the operation is complete you will see the output in the window. Do not navigate away from this popup blade/window. </p>
+<h3>Example of Running PowerShell Script</h3>
+<p>Let us say that you want to install IIS on the VM for quick testing. This can be done easily by running the below PowerShell:</p>
+<pre><code>Install-WindowsFeature -name Web-Server -IncludeManagementTools</code></pre>
+<p>Click on the &quot;<strong>RunPowerShellScript</strong>&quot; option. In the popup blade, type the script and hit Run. Wait for the output to appear. Do not navigate away from the window. You can check the status as indicated below.</p>
+<img src="/images/15513791605c782ad85f19e.png" alt="Running any PowerShell Script">
+<p>That's all there is to it. For more information you can check the official documentation that can be found here: <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/run-command" target="_blank">Run PowerShell scripts in your Windows VM with Run Command</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-tips-tricks-quickly-run-commands-or-script-on-an-azure-virtual-machine-vm-without-logging-into-the-vm</link>
+<pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Book published on Amazon - Quick and Practical Guide to ARM Templates</title>
 <description><![CDATA[<p><strong>Quick and Practical Guide to ARM Templates</strong> is a very non-conventional book. The objective of the book is to help you &quot;Become Experts in Developing ARM Templates for Microsoft Azure without any prior knowledge&quot;. This book is for both a beginner and intermediate users. </p>
 <p><strong>Update [03-27-2018]</strong>: This book is available for <strong>FREE</strong> for a limited time only (on 27, 28 and 29th March, 2018 till midnight Pacific Time). <a href="https://www.amazon.com/dp/B07C8LSBSN" target="_blank"><strong>Download Now!!!</strong></a></p>
