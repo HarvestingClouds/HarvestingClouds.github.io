@@ -142,6 +142,28 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Script Sample - Format EA Billing Usage Csv for Tags</title>
+<description><![CDATA[<p>As a system administrator, you will need to work with Enterprise Agreement (EA) related billing data a lot. As such you will need to pull lots of reports based on this consumption and usage related csv file that you get from the EA portal i.e. at address: <a href="https://ea.azure.com" target="_blank"><a href="https://ea.azure.com">https://ea.azure.com</a></a>. Tagging is one of the important components. But it comes as a composite JSON in one column. You will want to split this into multiple columns, with one column for each tag. </p>
+<p>The script sample in this blog performs exactly this parsing for you. You will need to tweak the script to include the tags as per your environment. </p>
+<blockquote>
+<p><strong>Note</strong>: The EA portal is only available to the EA customer. If you are not an EA customer, then if you try to login, you will get the following error:Invalid User: The account provided is not a valid user of the Microsoft Azure Enterprise Portal. Please sign in with a valid account. If you believe you have received this message in error, please contact Support.</p>
+</blockquote>
+<h3>Sample Input EA Azure Billing CSV</h3>
+<p>The tags section in the CSV will look similar to below <strong>JSON format key-value pairs</strong> under the column for &quot;<strong>Tags</strong>&quot;:</p>
+<pre><code>{  "ApplicationOwner": "aman@domain.com",  "BusinessUnit": "Infrastructure",  "ApplicationType": "Test",  "Department": "Infrastructure"}</code></pre>
+<p>Now as a requirement, you will want to split this to separate columns for the Tags for &quot;Application Owner&quot;, &quot;Business Unit&quot;, &quot;ApplicationType&quot; and &quot;Department&quot;. </p>
+<h3>How does the script parse this JSON</h3>
+<p>The script parses the JSON by splitting it into multiple values and then saving the new object as an output CSV. Right now these tag values are hard coded into the script and needs to be tweaked as per your requirements. Look out for the names of the variables and output member names with same name as that of the Tags mentioned above. These are the ones that you will need to alter. </p>
+<p>The script also takes into factor if the tag was added incorrectly with space in the name instead of pascal casing (i.e. name with no space between two words and first letter capital for each word).</p>
+<h3>Location of the Script</h3>
+<p>The script is located in the GitHub along with samples for Input and Output CSV files at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Format-EABillingUsageCsvForTags" target="_blank">GitHub location for Format Billing CSV Script</a></p>
+<blockquote>
+<p><strong>Note</strong>: An alternative to using the billing related csv file is to leverage <strong>PowerBI</strong> and build dashboards by consuming the EA related billing APIs which are available out of the box. These are in preview at the time of the writing of this blog. Parsing tags is still an issue with these. We will cover these in one of the future blog post. </p>
+</blockquote>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-format-ea-billing-usage-csv-for-tags</link>
+<pubDate>Wed, 08 Aug 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Book published on Amazon - Quick and Practical Guide to ARM Templates</title>
 <description><![CDATA[<p><strong>Quick and Practical Guide to ARM Templates</strong> is a very non-conventional book. The objective of the book is to help you &quot;Become Experts in Developing ARM Templates for Microsoft Azure without any prior knowledge&quot;. This book is for both a beginner and intermediate users. </p>
 <p><strong>Update [03-27-2018]</strong>: This book is available for <strong>FREE</strong> for a limited time only (on 27, 28 and 29th March, 2018 till midnight Pacific Time). <a href="https://www.amazon.com/dp/B07C8LSBSN" target="_blank"><strong>Download Now!!!</strong></a></p>
