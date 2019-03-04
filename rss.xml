@@ -142,6 +142,70 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Script Sample - VM Operations - Convert VM to Managed Disk VM</title>
+<description><![CDATA[<p>If you want to convert multiple VMs from older Storage Account disks to Managed Disks you can leverage the automation capabilities provided by Microsoft via PowerShell. This script sample uses these capabilities in a managed and reusable way.</p>
+<h3>Script Requirements</h3>
+<p>The script requires you to populate the configurations CSV file. The sample CSV file is also provided along with the script. This configurations file should have the following columns:</p>
+<ol>
+<li>Computer - Name of the VM in Azure</li>
+<li>OSType - Windows or Linux</li>
+<li>ResourceGroupName - Resource Group of the VM</li>
+<li>ManagedDiskConversion - yes or no. Set this to yes for the VMs for which you want to perform the conversion from older disk type to Managed Disk VMs</li>
+</ol>
+<h3>Script Working</h3>
+<p>The process of Managed Disk conversion is different for a VM with Availability Set and one without it. For this reason the script first checks for the Availability Set of the VM.</p>
+<pre><code>$avSet = Get-AzureRmAvailabilitySet -ResourceGroupName $rgName -Name $asName -ErrorAction Stop</code></pre>
+<p>It then checks and sets the <strong>Managed</strong> flag on the Availability Set by using the following command.</p>
+<pre><code>Update-AzureRmAvailabilitySet -AvailabilitySet $avSet -Managed -ErrorAction Stop</code></pre>
+<p>It then stops the VM, converts it to Managed Disk Vm and then waits for 600 seconds. The conversion is performed by following command.</p>
+<pre><code>ConvertTo-AzureRmVMManagedDisk -ResourceGroupName $rgName -VMName $vm.Name</code></pre>
+<p><strong>Note</strong>: The script does not start the VM to avoid unnecessary costs. E.g. if the VM was stopped to begin with and you didn't want to start it. Unnecessary starting of a VM will incur you charges that you do not want. You can still update the script to start the VMs by simply adding the cmdlet for <strong><em>Start-AzureRmVM</em></strong> if you want.</p>
+<p>The script encapsulates all this logic into a reusable function. It also provides the best practices template to invoke this function.
+<strong>Note</strong>: Check the comments marked with &quot;<strong>ToDo</strong>&quot; where you should be making the changes. </p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Azure%20VM%20Operations" target="_blank">Convert-VMToManagedDisk.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-vm-operations-convert-vm-to-managed-disk-vm</link>
+<pubDate>Sun, 02 Dec 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Script Sample - VM Operations - Setting up the VM Backup</title>
+<description><![CDATA[<p>If you want to set up VM Backup for multiple VMs in your environment you can leverage this script. This script lets you provide a CSV file as an input to the script and configures the Backup on all the VMs as per the configurations.</p>
+<h3>Script Requirements</h3>
+<p>The script requires you to populate the configurations CSV file. The sample CSV file is also provided along with the script. This configurations file should have the following columns:</p>
+<ol>
+<li>Computer - Name of the VM in Azure</li>
+<li>OSType - Windows or Linux</li>
+<li>ResourceGroupName - Resource Group of the VM</li>
+<li>EnableBackup - yes or no</li>
+<li>RecoveryServicesVaultName - Recovery Services Vault Name for the Backup</li>
+<li>BackupProtectionPolicy - Backup Protection Policy name inside the Recovery Services Vault. E.g. Daily-30--Weekly-8--Monthly-6</li>
+</ol>
+<h3>Script Working</h3>
+<p>The script first fetches the Azure Recovery Services vault using the below command.</p>
+<pre><code>$recoveryServicesVault = Get-AzureRmRecoveryServicesVault -Name $RecoveryServicesVaultName</code></pre>
+<p>It then uses this information to set the Recovery Services Vault Context as shown below.</p>
+<pre><code>$recoveryServicesVault | Set-AzureRmRecoveryServicesVaultContext -ErrorAction Stop</code></pre>
+<p>It then fetches the container for the VM Backup using below command. Through this, it checks if the Backup is already configured on the VM or not. If it is already configured then no further action is taken. </p>
+<pre><code>$namedContainerCheck = Get-AzureRmRecoveryServicesBackupContainer -ContainerType "AzureVM" -Status "Registered" -FriendlyName $virtualMachineName</code></pre>
+<p>The Backup policy is fetched next:</p>
+<pre><code>$policy = Get-AzureRmRecoveryServicesBackupProtectionPolicy -WorkloadType "AzureVM" | where {$_.Name -eq $BackupProtectionPolicy}</code></pre>
+<p>Finally, the Backup is configured on the VM using the below command.</p>
+<pre><code>Enable-AzureRmRecoveryServicesBackupProtection -Policy $policy -Name $virtualMachineName -ResourceGroupName $ResourceGroupName -ErrorAction Stop</code></pre>
+<p>Once the Backup is successfully configured, as a best practice, we need to trigger an initial Backup of the VM. The same is performed by the below commands.</p>
+<pre><code>Write-Host "Fetching the Recovery Services Backup Container"
+$namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType "AzureVM" -Status "Registered" -FriendlyName $virtualMachineName
+Write-Host "Fetching the Recovery Services Backup Item"
+$item = Get-AzureRmRecoveryServicesBackupItem -Container $namedContainer -WorkloadType "AzureVM"
+Write-Host "Triggering a Backup on the VM"
+$job = Backup-AzureRmRecoveryServicesBackupItem -Item $item</code></pre>
+<p>The script encapsulates all this logic into a reusable function. It also provides the best practices template to invoke this function.
+<strong>Note</strong>: Check the comments marked with &quot;<strong>ToDo</strong>&quot; where you should be making the changes. </p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Azure%20VM%20Operations" target="_blank">Enable-VMBackup.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-vm-operations-setting-up-the-vm-backup</link>
+<pubDate>Fri, 23 Nov 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - Checking if the Prompt for current script is Elevated or not</title>
 <description><![CDATA[<p>Multiple times I have run into scenarios where the end users were reporting issues with the script but eventually, it turned out to be an access issue. The script required to be executed from an Elevated console (i.e. Run As Administrator) but the end user was trying to execute it as a normal user. Wouldn't it be nice if the script can check itself if it is being executed from an Elevated prompt or not and would report the same as a requirement.</p>
 <p>This script sample can be reused in multiple scenarios and in multiple scripts. It will ensure that the script is executed only via an elevated prompt or else it will throw error with relevant details for the end user to take corrective action. </p>
