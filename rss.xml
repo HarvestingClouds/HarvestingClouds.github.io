@@ -164,6 +164,28 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Wed, 08 Aug 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Script Sample - Export All Azure Automation Account Runbooks and Variables</title>
+<description><![CDATA[<p>When you work with Azure Automation, you build lots of Runbooks over time. When the volume grows, you can't just export each and every Runbook one by one. Add to it the fact, if you have multiple Azure Automation accounts. It becomes a nightmare to download all the Runbooks one by one. </p>
+<p>There are two ways to export all the Runbooks all at once. </p>
+<h3>First method - Using Azure Automation PowerShell ISE Add-On</h3>
+<p>You can install the Azure Automation PowerShell ISE Add-on and connect to your Azure Automation Account. Then you can download all the Runbooks locally and copy the same. This Add-On can be downloaded from GitHub or PowerShell gallery as per the instructions provided here: <a href="https://github.com/azureautomation/azure-automation-ise-addon" target="_blank">Azure Automation PowerShell ISE Add-On</a></p>
+<h3>Second method - Using this script sample</h3>
+<p>This script sample requires you to update the input variables for your environment i.e. related to your subscription, Azure Automation account name etc. Then it connects to the Azure using below cmdlet.</p>
+<pre><code>Add-AzureRmAccount
+Select-AzureRmSubscription -SubscriptionName $SubscriptionName</code></pre>
+<p>Then it exports the Azure Automation Runbooks using below cmdlets. Here it first fetches all the Runbooks and then uses &quot;<em>Export-AzureRmAutomationRunbook</em>&quot; cmdlet to export these to a local folder.</p>
+<pre><code>$AllRunbooks = Get-AzureRmAutomationRunbook -AutomationAccountName $AutomationAccountName -ResourceGroupName $ResourceGroupName
+$AllRunbooks | Export-AzureRmAutomationRunbook -OutputFolder $OutputFolder</code></pre>
+<p>Finally, it exports the variables in the environment by using the below cmdlets. Here it first fetches the variables and then uses &quot;Export-Csv&quot; cmdlet to export the variables to a csv file. </p>
+<pre><code>$variables = Get-AzureRmAutomationVariable -AutomationAccountName $AutomationAccountName -ResourceGroupName $ResourceGroupName
+$variablesFilePath = $OutputFolder + "\variables.csv"
+$variables | Export-Csv -Path $variablesFilePath -NoTypeInformation</code></pre>
+<h3>Location of the script</h3>
+<p>This script is located in the Github here: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Export-AllAutomationRunbooksAndVariables" target="_blank">Export Azure Automation Runbooks and Variables</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-export-all-azure-automation-account-runbooks-and-variables</link>
+<pubDate>Mon, 16 Jul 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Book published on Amazon - Quick and Practical Guide to ARM Templates</title>
 <description><![CDATA[<p><strong>Quick and Practical Guide to ARM Templates</strong> is a very non-conventional book. The objective of the book is to help you &quot;Become Experts in Developing ARM Templates for Microsoft Azure without any prior knowledge&quot;. This book is for both a beginner and intermediate users. </p>
 <p><strong>Update [03-27-2018]</strong>: This book is available for <strong>FREE</strong> for a limited time only (on 27, 28 and 29th March, 2018 till midnight Pacific Time). <a href="https://www.amazon.com/dp/B07C8LSBSN" target="_blank"><strong>Download Now!!!</strong></a></p>
@@ -3495,6 +3517,18 @@ Happy Exploring!</p>]]></description>
 Keep learning!</p>]]></description>
 <link>http://HarvestingClouds.com/post/introducing-harvesting-clouds</link>
 <pubDate>Fri, 01 Apr 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Script Sample - Export All OMS Log Analytics Saved Searches</title>
+<description><![CDATA[<p>If you work with OMS Log Analytics then you end up working with lots of queries. To manage the most used queries specific to your environment you save these as Saved Searches. These can be reusable in other projects as well. Therefore, you will want to export these saved searches. </p>
+<h3>How it works</h3>
+<p>This is the most simple but very useful script sample. It exports by simply using the below cmdlet. You can use the below cmdlet alone as well instead of using the whole script, if you are already logged into Azure and have the right subscription selected.</p>
+<pre><code>(Get-AzureRmOperationalInsightsSavedSearch -ResourceGroupName $ResourceGroupName -WorkspaceName $WorkspaceName).Value.Properties | ConvertTo-Json</code></pre>
+<p>Note that it uses &quot;<strong><em>ConvertTo-Json</em></strong>&quot; cmdlet to export the Saved Searches to JSON output. You can later reuse this JSON to import these saved searches into a different environment as well. </p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Export-OMSLogAnalyticsSavedSearches" target="_blank">Export Log Analytics Saved Searches</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-export-all-oms-log-analytics-saved-searches</link>
+<pubDate>Thu, 01 Jan 1970 00:00:00 +0500</pubDate>
 </item>
 </channel>
 </rss>
