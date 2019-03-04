@@ -142,6 +142,49 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Script Sample - Check for Pending Reboots on various VMs in your environment</title>
+<description><![CDATA[<p>Often times you will need to check if there are any VMs/Servers in your environment which have Pending Reboot on them. You will want to schedule and perform a planned reboot on these VMs after going through proper processes.</p>
+<p>The script sample in this post is about checking multiple Vms in your environment and check if there is any Pending Reboot on any of the VMs. The script uses WMI queries to check if there is any pending reboot on the machine. </p>
+<p>This script was not authored by me. I received it from one of my colleagues and I couldn't track the original author of this script. Nevertheless, this is a very useful script for system administrators. </p>
+<h3>Script Usage</h3>
+<p>The script can be used as shown below:</p>
+<pre><code>C:\Users\aman\Downloads&gt; import-module .\Get-PendingReboot.ps1
+C:\Users\aman\Downloads&gt; $Servers = Get-Content C:\Users\aman\Downloads\Servers.txt
+C:\Users\aman\Downloads&gt; Get-PendingReboot -Computer $Servers | Export-Csv C:\Users\aman\Downloads\PendingRebootReport.csv -NoTypeInformation</code></pre>
+<p>In the 2nd command above, the Server.txt file should simply have the list of names of the computers in your environment with one computer name per line. </p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Get-PendingReboot" target="_blank">Get-PendingReboot.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-check-for-pending-reboots-on-various-vms-in-your-environment</link>
+<pubDate>Mon, 15 Oct 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Script Sample - Apply Locks on Various Azure Resources</title>
+<description><![CDATA[<p>Locks is a very important but very less known feature in Azure. This feature is available for all resources in Azure. This prevents unintended operation on a particular resource. </p>
+<p>You have two types of locks in Azure:</p>
+<ol>
+<li><strong>ReadOnly</strong> - You won't' be able to alter any configuration of the resource</li>
+<li><strong>DoNotDelete</strong> - You will be able to add configurations but will not be able to remove configurations or even delete the resource</li>
+</ol>
+<p><strong>Do Not Delete</strong> is the lock, that as a best practice, you should apply on all critical resources in the environment. Once this lock is there on the resources, even the global administrator will not be able to delete the resources. The only way to delete the resources will be to delete the lock first and then delete the resources. </p>
+<h3>The Script Sample Details</h3>
+<p>This script sample leverages this concept of locks and uses the below cmdlet to apply the locks on various critical resources in the environment. </p>
+<pre><code>New-AzureRmResourceLock -LockLevel CanNotDelete -LockName DoNotDelete -ResourceName $vNet.Name -ResourceType $vNet.Type -ResourceGroupName $vNet.ResourceGroupName -LockNotes "Do Not Delete Lock" -Confirm -Force</code></pre>
+<p>The above command uses <strong><em>New-AzureRmResourceLock</em></strong> cmdlet to create the Do Not Delete lock on a Virtual Network. </p>
+<p>This script iterates through all subscriptions that your account has access to and then applies the lock to all resources of type:</p>
+<ol>
+<li>Virtual Network</li>
+<li>Route Tables</li>
+<li>Express Routes</li>
+<li>Virtual Network Gateways</li>
+<li>Virtual Network Gateway Connections</li>
+<li>Recovery Services Vaults (i.e. ASR Vaults)</li>
+</ol>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Apply-LocksOnVariousAzureResources" target="_blank">Apply-LocksOnVariousAzureResources.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-apply-locks-on-various-azure-resources</link>
+<pubDate>Thu, 11 Oct 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - Azure Automation - Check VM Availability</title>
 <description><![CDATA[<p>One of the most common scenarios is to check if a VM is available or not. If you want to connect to a VM and take some actions, it is a best practice to first check if the VM is available and responsive or not. This script sample performs multiple checks. You can tweak these checks to include only the ones that you need. </p>
 <p>Also, there are some pieces of information that you can get only from inside the VM. E.g. the domain to which a VM is connected. This scripts ensures that the script is available. If it is available then it can also fetch such pieces of information for you. </p>
@@ -163,7 +206,7 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 </ol>
 <p>The script requires a credential object with the name as &quot;<strong><em>AutomationCredentialName</em></strong>&quot;. These credential should have login and remoting access into the VM. </p>
 <h3>Location of the Script</h3>
-<p>You can find this script in GitHub at this location: <a href="" target="_blank"></a></p>]]></description>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Azure%20Automation%20-%20Check%20VM%20Availability" target="_blank">Check-VMAvailability.ps1</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/script-sample-azure-automation-check-vm-availability</link>
 <pubDate>Fri, 05 Oct 2018 00:00:00 +0500</pubDate>
 </item>
