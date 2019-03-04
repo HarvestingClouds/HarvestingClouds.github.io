@@ -142,6 +142,67 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Script Sample - Azure Automation - Get VM Information from actual Azure Virtual Machine</title>
+<description><![CDATA[<p>Many times, when automating your infrastructure, you will need to work with Azure Virtual Machines. Based on just the name of the VM and it's Resource Group, you will need to know about it's Network Interfaces and it's IP address. </p>
+<p>This Runbook sample connects to Azure using Service Principal and fetches various VM properties. The Runbook can be tweaked to fetch more or less information as per the requirements. </p>
+<h3>Script Input and Requirements</h3>
+<p>The script takes the below inputs:</p>
+<ol>
+<li>VM Name - name of the VM </li>
+<li>ResourceGroupNameofVM - name fo the Resource Group in which the VM exists</li>
+<li>Azure Tenant Id - Id of the Tenant. This is the Azure Active Directory's Id which can be found in Azure AD properties in the portal</li>
+<li>Subscription Id - Id of the Subscription in which the VM exists</li>
+</ol>
+<p>The VM also requires a credential Object i.e. a Service Pricipal, which will have access to the Virtual machine. </p>
+<h3>Working of the Script</h3>
+<p>The script uses the below command to log into the Azure using the Service Principal.</p>
+<pre><code>$AzureRMConn = Login-AzureRmAccount -ServicePrincipal -Credential $Cred -TenantId $AzureTenantId -ErrorAction SilentlyContinue -ErrorVariable LoginError</code></pre>
+<p>If the connection is successful then the Subscription is selected using below cmdlet.</p>
+<pre><code>$ConnSubs = Select-AzureRmSubscription -SubscriptionId $SubscriptionID</code></pre>
+<p>Then the actual VM information is fetched using below cmdlet.</p>
+<pre><code>$VM = Get-AzureRmVM -ResourceGroupName $VMResourceGroup -Name $VMName</code></pre>
+<p>This fetches basic VM information. To fetch detailed information regarding the network interface of the VM, below cmdlets are used.</p>
+<pre><code>$nicId = $VM.NetworkProfile.NetworkInterfaces[0].Id
+$VMNetowrkInterface = Get-AzureRmNetworkInterface -ResourceGroupName $VMResourceGroup -Name $nicId.Split('/')[8]
+$VMMainIPConfig = $VMNetowrkInterface | Get-AzureRmNetworkInterfaceIpConfig
+$strVMMainNicName = $VMMainIPConfig.Name
+$strVMMainNicIPAddress = $VMMainIPConfig.PrivateIpAddress</code></pre>
+<p>The first cmdlet above fetches the Id of the first Network Interface on the VM. Then the second cmdlet uses this Id to fetch the actual network interface. The third cmdlet uses Get-AzureRmNetwrokInterfaceIpConfig to fetch the IP configuration on this network interface. Then last two lines use this Ip configuration to fetch the Private IP address on the VM. </p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Azure%20Automation%20-%20Get%20VM%20Information%20From%20Azure" target="_blank">Get-VMInfoFromAzure.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-azure-automation-get-vm-information-from-actual-azure-virtual-machine</link>
+<pubDate>Mon, 24 Sep 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Script Sample - Azure Automation - Sending Email Notification</title>
+<description><![CDATA[<p>Sending email notifications from Azure Automation is a requirement that you will encounter a lot when working with any automation scenario. You may want to send an email notification on the completion of the job or on the failure of the job. </p>
+<p>This script sample helps you bootstrap the Runbook for you. </p>
+<h3>Script Inputs and Requirements</h3>
+<p>The script takes the following <strong>input parameters</strong>:</p>
+<ol>
+<li>SMTP Server URL</li>
+<li>SMTP Server Port</li>
+<li>User Credentials - Boolean value to check if user credentials are required or not</li>
+<li>Credential Name - Credential name for the credential asset in your Azure Automation Account</li>
+<li>EnableSsl - Boolean value to select if you want to enable SSL or not</li>
+<li>Email From - From address for the email</li>
+<li>Email To - Receipient of the email</li>
+<li>Email Subject - Subject of the email
+9 Message Body - This can be html. So you can compose your email to make it look more professional</li>
+</ol>
+<p>The script also requires you to have a Credential asset in your Azure Automation Account. It's name is specified in the 4rth parameter above. This credential is used to connect to the SMTP server. In the sample this smtp server is an O365 email account. </p>
+<h3>Script Working</h3>
+<p>The script uses a SMTP Client to send the email. This client is created using the below cmdlet.</p>
+<pre><code>$SmtpClient = New-Object System.Net.Mail.SmtpClient $SMTPServerUrl, $SMTPServerPort</code></pre>
+<p>where $SMTPServerUrl is the URL of the SMTP server and $SMTPServerPort is the port number used by the SMTP server.</p>
+<p>Later, this client is used to send the email by using it's <strong><em>send</em></strong> function as below. </p>
+<pre><code>$SmtpClient.Send($Message)</code></pre>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Azure%20Automation%20-%20Send%20Email%20Notification" target="_blank">Send-EmailNotificationFromAzureAutomationRunbook.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-azure-automation-sending-email-notification</link>
+<pubDate>Sat, 22 Sep 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - Azure Automation - Get VM Information from ASR Recovery Plan Context</title>
 <description><![CDATA[<p>This script sample is to parse the Recovery Plan Context from Azure Site Recovery. When an Azure Automation Runbook is invoked directly from Azure Site Recovery, it passes an object called <strong>Recovery Plan Context</strong>.  This has all the crucial information regarding the failover operation like:</p>
 <ol>
@@ -216,7 +277,7 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <h3>Location of the Script</h3>
 <p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Azure%20Automation%20-%20ASR%20Recovery%20Plan" target="_blank">ASR-RunbookForRecoveryPlans.ps1</a></p>
 <h3>Runbook for Parsing the Recovery Plan Context</h3>
-<p>The Runbook for parsing the Recovery Plan Context is discussed here: <a href="" target="_blank">Script Sample - Get VM's Information from ASR Context</a>. This Runbook/script is the one that is being invoked by the Runbook discussed in this blog post. </p>]]></description>
+<p>The Runbook for parsing the Recovery Plan Context is discussed here: <a href="http://harvestingclouds.com/post/script-sample-azure-automation-get-vm-information-from-asr-recovery-plan-context/" target="_blank">Script Sample - Get VM's Information from ASR Context</a>. The Runbook/script in that link is the one that is being invoked by the Runbook discussed in this blog post. </p>]]></description>
 <link>http://HarvestingClouds.com/post/script-sample-azure-automation-runbook-for-asr-recovery-plan</link>
 <pubDate>Wed, 05 Sep 2018 00:00:00 +0500</pubDate>
 </item>
