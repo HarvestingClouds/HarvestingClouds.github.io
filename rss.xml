@@ -142,6 +142,46 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Script Sample - Azure Automation - Runbook for ASR Recovery Plan</title>
+<description><![CDATA[<p>When you are automating Azure Site Recovery, you will be working with <strong>Azure Automation Runbooks</strong>. You will invoke these from within the <strong>Azure Site Recovery Plan</strong>.  The input parameter to this Runbook will be a <strong>Recovery Plan Context</strong>, that will automatically be passed by the ASR Recovery Plan. This Recovery plan context will contain information like: </p>
+<ol>
+<li>Recovery Plan Name</li>
+<li>Failover Type</li>
+<li>Failover DIrection</li>
+<li>Subscription Name</li>
+<li>Resource Group Name</li>
+<li>VM Name</li>
+</ol>
+<p>The Azure Automation Runbook should be able to receive this information and parse it. </p>
+<h3>Best Practice and this Script Sample</h3>
+<p>As a best practice, you should leverage the main Runbook to perform operational functions. E.g. If the automation that you want to trigger on Failover, requires connection to the company's internal network, then you would want it to run on a Hybrid worker (which will be connected to your internal network). As such, I recommend that the parsing of the recovery plan context should be done in another Runbook, which should be invoked by the main Runbook. </p>
+<p>This sample PowerShell Runbook accepts the Recovery Plan context and passes it to the second Runbook. That Runbook may or may not run on a Hybrid worker. </p>
+<h3>Sample Recovery Plan Context</h3>
+<p>A sample Recovery Plan Context looks like below. Please note that this is formatted appropriately here. In the Runbook it will look flattened i.e. instead of multiple lines, the context will be contiguous and will be presented in a single long line. Its data type is Object when coming from ASR Recovery Plan. </p>
+<pre><code>{
+   "RecoveryPlanName":"RecoveryPlan-Test",
+   "FailoverType":"Test",
+   "FailoverDirection":"PrimaryToSecondary",
+   "GroupId":"Group1",
+   "VmMap":{
+      "aaaaaa-1111-1111-1111-aaaaaaaaaaa":{
+         "SubscriptionId":"bbbbbbbb-2222-2222-2222-bbbbbbbbbbb",
+         "ResourceGroupName":"rg-dr-test-asr",
+         "CloudServiceName":null,
+         "RoleName":"VMName-test",
+         "RecoveryPointId":"cccccccccc-3333-3333-3333-cccccccccccc",
+         "RecoveryPointTime":"\/Date(1550773609103)\/"
+      }
+   }
+}</code></pre>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Azure%20Automation%20-%20ASR%20Recovery%20Plan" target="_blank">ASR-RunbookForRecoveryPlans.ps1</a></p>
+<h3>Runbook for Parsing the Recovery Plan Context</h3>
+<p>The Runbook for parsing the Recovery Plan Context is discussed here: <a href="" target="_blank">Script Sample - Get VM's Information from ASR Context</a>. This Runbook/script is the one that is being invoked by the Runbook discussed in this blog post. </p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-azure-automation-runbook-for-asr-recovery-plan</link>
+<pubDate>Wed, 05 Sep 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Updating a Custom RBAC Role in Azure</title>
 <description><![CDATA[<p>In one of the earlier blog, we saw how to add a custom role in Azure to manage Role Based Access Control (RBAC) at more granular level. You can review the earlier post here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-custom-rbac-roles/" target="_blank">Demystifying Azure Security - Custom RBAC Roles</a>.</p>
 <p>In this post, we will see how to make quick changes to this custom role leveraging Azure PowerShell script.</p>
