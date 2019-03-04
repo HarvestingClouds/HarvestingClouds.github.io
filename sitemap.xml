@@ -59,6 +59,12 @@
 <priority>1.00</priority>
 </url>
 <url>
+<loc>http://HarvestingClouds.com/post/script-sample-export-all-oms-log-analytics-saved-searches/</loc>
+<lastmod>2018-07-25T00:00:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
 <loc>http://HarvestingClouds.com/post/script-sample-export-all-azure-automation-account-runbooks-and-variables/</loc>
 <lastmod>2018-07-16T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
@@ -499,12 +505,6 @@
 <url>
 <loc>http://HarvestingClouds.com/post/introducing-harvesting-clouds/</loc>
 <lastmod>2016-04-01T00:00:00+05:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>1.00</priority>
-</url>
-<url>
-<loc>http://HarvestingClouds.com/post/script-sample-export-all-oms-log-analytics-saved-searches/</loc>
-<lastmod>1970-01-01T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.00</priority>
 </url>

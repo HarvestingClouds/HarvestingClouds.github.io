@@ -164,6 +164,18 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Wed, 08 Aug 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Script Sample - Export All OMS Log Analytics Saved Searches</title>
+<description><![CDATA[<p>If you work with OMS Log Analytics then you end up working with lots of queries. To manage the most used queries specific to your environment you save these as Saved Searches. These can be reusable in other projects as well. Therefore, you will want to export these saved searches. </p>
+<h3>How it works</h3>
+<p>This is the most simple but very useful script sample. It exports by simply using the below cmdlet. You can use the below cmdlet alone as well instead of using the whole script, if you are already logged into Azure and have the right subscription selected.</p>
+<pre><code>(Get-AzureRmOperationalInsightsSavedSearch -ResourceGroupName $ResourceGroupName -WorkspaceName $WorkspaceName).Value.Properties | ConvertTo-Json</code></pre>
+<p>Note that it uses &quot;<strong><em>ConvertTo-Json</em></strong>&quot; cmdlet to export the Saved Searches to JSON output. You can later reuse this JSON to import these saved searches into a different environment as well. </p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Export-OMSLogAnalyticsSavedSearches" target="_blank">Export Log Analytics Saved Searches</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-export-all-oms-log-analytics-saved-searches</link>
+<pubDate>Wed, 25 Jul 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - Export All Azure Automation Account Runbooks and Variables</title>
 <description><![CDATA[<p>When you work with Azure Automation, you build lots of Runbooks over time. When the volume grows, you can't just export each and every Runbook one by one. Add to it the fact, if you have multiple Azure Automation accounts. It becomes a nightmare to download all the Runbooks one by one. </p>
 <p>There are two ways to export all the Runbooks all at once. </p>
@@ -3517,18 +3529,6 @@ Happy Exploring!</p>]]></description>
 Keep learning!</p>]]></description>
 <link>http://HarvestingClouds.com/post/introducing-harvesting-clouds</link>
 <pubDate>Fri, 01 Apr 2016 00:00:00 +0500</pubDate>
-</item>
-<item>
-<title>Script Sample - Export All OMS Log Analytics Saved Searches</title>
-<description><![CDATA[<p>If you work with OMS Log Analytics then you end up working with lots of queries. To manage the most used queries specific to your environment you save these as Saved Searches. These can be reusable in other projects as well. Therefore, you will want to export these saved searches. </p>
-<h3>How it works</h3>
-<p>This is the most simple but very useful script sample. It exports by simply using the below cmdlet. You can use the below cmdlet alone as well instead of using the whole script, if you are already logged into Azure and have the right subscription selected.</p>
-<pre><code>(Get-AzureRmOperationalInsightsSavedSearch -ResourceGroupName $ResourceGroupName -WorkspaceName $WorkspaceName).Value.Properties | ConvertTo-Json</code></pre>
-<p>Note that it uses &quot;<strong><em>ConvertTo-Json</em></strong>&quot; cmdlet to export the Saved Searches to JSON output. You can later reuse this JSON to import these saved searches into a different environment as well. </p>
-<h3>Location of the Script</h3>
-<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Export-OMSLogAnalyticsSavedSearches" target="_blank">Export Log Analytics Saved Searches</a></p>]]></description>
-<link>http://HarvestingClouds.com/post/script-sample-export-all-oms-log-analytics-saved-searches</link>
-<pubDate>Thu, 01 Jan 1970 00:00:00 +0500</pubDate>
 </item>
 </channel>
 </rss>
