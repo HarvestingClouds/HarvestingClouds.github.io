@@ -142,6 +142,28 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Updating a Custom RBAC Role in Azure</title>
+<description><![CDATA[<p>In one of the earlier blog, we saw how to add a custom role in Azure to manage Role Based Access Control (RBAC) at more granular level. You can review the earlier post here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-custom-rbac-roles/" target="_blank">Demystifying Azure Security - Custom RBAC Roles</a>.</p>
+<p>In this post, we will see how to make quick changes to this custom role leveraging Azure PowerShell script.</p>
+<h3>Making the updates</h3>
+<p>Just like any other Azure PowerShell script, you will connect to Azure and select the right subscription by using the following cmdlets.</p>
+<pre><code>Add-AzureRmAccount
+Select-AzureRmSubscription -SubscriptionName $SubscriptionName</code></pre>
+<p>Then you will fetch the current custom role by using the below cmdlet.</p>
+<pre><code>$role = Get-AzureRmRoleDefinition $roleName</code></pre>
+<p>Optionally, if you want to <strong>inspect the current role</strong>, then you can use below cmdlet to generate JSON file for the current custom role.</p>
+<pre><code>Get-AzureRMRoleDefinition -Name $roleName | ConvertTo-Json</code></pre>
+<p>Then you can make updates to the &quot;$role&quot; object. One such sample could be as outlined below which adds the action to allow stopping of the VMs and then updates the description of the custom role.</p>
+<pre><code>$role.Actions.Add("Microsoft.Compute/virtualMachines/deallocate/action")
+$role.Description = "Can monitor, Start, Stop and restart virtual machines."</code></pre>
+<p>Finally, the role is updated back to the Azure portal by using the below cmdlet.</p>
+<pre><code>Set-AzureRmRoleDefinition -Role $role</code></pre>
+<h3>Location of the Complete Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Update-CustomRoleSample" target="_blank">Update-CustomRoleSample.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/updating-a-custom-rbac-role-in-azure</link>
+<pubDate>Wed, 29 Aug 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - Set Azure Site Recovery (ASR) Prerequisite Services</title>
 <description><![CDATA[<p>When you want to use Azure Site Recovery (ASR) either for Migration or for Disaster Recovery (DR), you will need to enable replication. Under the hood, this involves installation of the Mobility Services agent. This has few pre-requisites for some services to be enabled and set up appropriately. </p>
 <p>In the last script sample, we saw how to check remote computers if these services are set correctly or not. That sample can be found here: <a href="http://harvestingclouds.com/post/script-sample-check-azure-site-recovery-asr-prerequisite-services/" target="_blank">Script Sample - Check Azure Site Recovery (ASR) Pre-requisites</a>.</p>

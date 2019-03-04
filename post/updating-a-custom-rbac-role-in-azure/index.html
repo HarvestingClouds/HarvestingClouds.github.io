@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Migrating from Azure ASM to ARM portal :: Harvesting Clouds</title>
+    <title>Updating a Custom RBAC Role in Azure :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -72,32 +72,45 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Migrating from Azure ASM to ARM portal</h3>
+                <h3>Updating a Custom RBAC Role in Azure</h3>
                 <span class="glyphicon glyphicon-user"></span> @20aman
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> Apr 21, 2016
+                <span class="glyphicon glyphicon-time"></span> Aug 29, 2018
                 <hr>
 
-                <p class="post-content"><p>With co-existing Azure Service Management or ASM portal (older) and Azure Resource Manager or ARM portal (newer) there has been lots of confusions and problems for IT administrators.
-The bottom line of all the discussion around the two portals is that <strong>ARM is the future and is here to stay</strong>. It means that you need to <strong>plan and migrate</strong> your resources from ASM portal to the ARM portal.</p>
-<p>The key resource is your infrastructure which primarily consists of virtual machines. To migrate a single Virtual Machine (VM) from ASM portal to ARM portal you can leverage a set of PowerShell scripts called ASM2ARM.
-You can download these scripts and check their description on <a href="https://github.com/fullscale180/asm2arm">GitHub here on the <strong>ASM2ARM</strong> page</a>. You can check the detailed instructions there too.</p>
-<p>To plan this right now is very important as the transitioning to Azure Resource Manager model is already underway. Any future development and investment seems to be happening only in the newer portal only.</p>
-<p><strong>Reference:</strong> <a href="https://github.com/fullscale180/asm2arm">ASM2ARM scripts on GitHub</a></p></p>
+                <p class="post-content"><p>In one of the earlier blog, we saw how to add a custom role in Azure to manage Role Based Access Control (RBAC) at more granular level. You can review the earlier post here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-custom-rbac-roles/" target="_blank">Demystifying Azure Security - Custom RBAC Roles</a>.</p>
+<p>In this post, we will see how to make quick changes to this custom role leveraging Azure PowerShell script.</p>
+<h3>Making the updates</h3>
+<p>Just like any other Azure PowerShell script, you will connect to Azure and select the right subscription by using the following cmdlets.</p>
+<pre><code>Add-AzureRmAccount
+Select-AzureRmSubscription -SubscriptionName $SubscriptionName</code></pre>
+<p>Then you will fetch the current custom role by using the below cmdlet.</p>
+<pre><code>$role = Get-AzureRmRoleDefinition $roleName</code></pre>
+<p>Optionally, if you want to <strong>inspect the current role</strong>, then you can use below cmdlet to generate JSON file for the current custom role.</p>
+<pre><code>Get-AzureRMRoleDefinition -Name $roleName | ConvertTo-Json</code></pre>
+<p>Then you can make updates to the &quot;$role&quot; object. One such sample could be as outlined below which adds the action to allow stopping of the VMs and then updates the description of the custom role.</p>
+<pre><code>$role.Actions.Add("Microsoft.Compute/virtualMachines/deallocate/action")
+$role.Description = "Can monitor, Start, Stop and restart virtual machines."</code></pre>
+<p>Finally, the role is updated back to the Azure portal by using the below cmdlet.</p>
+<pre><code>Set-AzureRmRoleDefinition -Role $role</code></pre>
+<h3>Location of the Complete Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Update-CustomRoleSample" target="_blank">Update-CustomRoleSample.ps1</a></p></p>
                 <br/><br/>
 
                 <div class="post-info">
                         <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
+                        <a href="http://HarvestingClouds.com/category/azure-script-sample">Azure Script Sample</a>
                         &nbsp;&nbsp;
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="http://HarvestingClouds.com/tag/arm">arm</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/asm">asm</a>&nbsp;&nbsp;
                         <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/azureresourcemanager">azureresourcemanager</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/azureservicemanagement">azureservicemanagement</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/custom">custom</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/customroles">customroles</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/microsoft">microsoft</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/microsoftazure">microsoftazure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/roles">roles</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/sample">sample</a>&nbsp;&nbsp;
                 </div>
 
             </article>
