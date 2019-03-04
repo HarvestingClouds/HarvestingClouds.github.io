@@ -142,6 +142,45 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Script Sample - Azure Automation - Get VM Information from ASR Recovery Plan Context</title>
+<description><![CDATA[<p>This script sample is to parse the Recovery Plan Context from Azure Site Recovery. When an Azure Automation Runbook is invoked directly from Azure Site Recovery, it passes an object called <strong>Recovery Plan Context</strong>.  This has all the crucial information regarding the failover operation like:</p>
+<ol>
+<li>Recovery Plan Name</li>
+<li>Failover Type</li>
+<li>Failover DIrection</li>
+<li>Subscription Name</li>
+<li>Resource Group Name</li>
+<li>VM Name</li>
+</ol>
+<h3>Sample Recovery Plan Context</h3>
+<p>A sample Recovery Plan Context looks like below. Please note that this is formatted appropriately here. In the Runbook it will look flattened i.e. instead of multiple lines, the context will be contiguous and will be presented in a single long line. Its data type is Object when coming from ASR Recovery Plan.</p>
+<pre><code>{
+   "RecoveryPlanName":"RecoveryPlan-Test",
+   "FailoverType":"Test",
+   "FailoverDirection":"PrimaryToSecondary",
+   "GroupId":"Group1",
+   "VmMap":{
+      "aaaaaa-1111-1111-1111-aaaaaaaaaaa":{
+         "SubscriptionId":"bbbbbbbb-2222-2222-2222-bbbbbbbbbbb",
+         "ResourceGroupName":"rg-dr-test-asr",
+         "CloudServiceName":null,
+         "RoleName":"VMName-test",
+         "RecoveryPointId":"cccccccccc-3333-3333-3333-cccccccccccc",
+         "RecoveryPointTime":"\/Date(1550773609103)\/"
+      }
+   }
+}</code></pre>
+<h3>How does this Script work</h3>
+<p>The script first uses &quot;<strong><em>ConvertFrom-Json</em></strong>&quot; cmdlet to parses the object to valid PowerShell object. It then uses the VMMap property of the Recovery Plan Context object to get various pieces of the information. </p>
+<p>The script also uses a <strong><em>foreach</em></strong> look to factor for multiple Vms in the Recovery Plan. It will <strong>output</strong> an array of the VMs with the required information, which can then be consumed in your logic to perform actual functions on the VMs. E.g. You can then connect to the VM and install some extensions on it. </p>
+<h3>How to Invoke This Runbook/Script</h3>
+<p>This script can be directly invoked from Azure Site Recovery (ASR)'s Recovery Plan or can be invoked from a master Runbook. It is a best practice to invoke this Runbook from a master Runbook. A sample for this Runbook is provided and discussed here: <a href="http://harvestingclouds.com/post/script-sample-azure-automation-runbook-for-asr-recovery-plan/" target="_blank">Script Sample - Azure Automation - Runbook for ASR Recovery Plan</a></p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Azure%20Automation%20-%20ASR%20Recovery%20Plan" target="_blank">ASR-Get-VMSInfoFromASRContext.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-azure-automation-get-vm-information-from-asr-recovery-plan-context</link>
+<pubDate>Wed, 12 Sep 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - Azure Automation - Runbook for ASR Recovery Plan</title>
 <description><![CDATA[<p>When you are automating Azure Site Recovery, you will be working with <strong>Azure Automation Runbooks</strong>. You will invoke these from within the <strong>Azure Site Recovery Plan</strong>.  The input parameter to this Runbook will be a <strong>Recovery Plan Context</strong>, that will automatically be passed by the ASR Recovery Plan. This Recovery plan context will contain information like: </p>
 <ol>

@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Updating a Custom RBAC Role in Azure :: Harvesting Clouds</title>
+    <title>Script Sample - Azure Automation - Get VM Information from ASR Recovery Plan Context :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -72,29 +72,46 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Updating a Custom RBAC Role in Azure</h3>
+                <h3>Script Sample - Azure Automation - Get VM Information from ASR Recovery Plan Context</h3>
                 <span class="glyphicon glyphicon-user"></span> @20aman
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> Aug 29, 2018
+                <span class="glyphicon glyphicon-time"></span> Sep 12, 2018
                 <hr>
 
-                <p class="post-content"><p>In one of the earlier blog, we saw how to add a custom role in Azure to manage Role Based Access Control (RBAC) at more granular level. You can review the earlier post here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-custom-rbac-roles/" target="_blank">Demystifying Azure Security - Custom RBAC Roles</a>.</p>
-<p>In this post, we will see how to make quick changes to this custom role leveraging Azure PowerShell script.</p>
-<h3>Making the updates</h3>
-<p>Just like any other Azure PowerShell script, you will connect to Azure and select the right subscription by using the following cmdlets.</p>
-<pre><code>Add-AzureRmAccount
-Select-AzureRmSubscription -SubscriptionName $SubscriptionName</code></pre>
-<p>Then you will fetch the current custom role by using the below cmdlet.</p>
-<pre><code>$role = Get-AzureRmRoleDefinition $roleName</code></pre>
-<p>Optionally, if you want to <strong>inspect the current role</strong>, then you can use below cmdlet to generate JSON file for the current custom role.</p>
-<pre><code>Get-AzureRMRoleDefinition -Name $roleName | ConvertTo-Json</code></pre>
-<p>Then you can make updates to the &quot;$role&quot; object. One such sample could be as outlined below which adds the action to allow stopping of the VMs and then updates the description of the custom role.</p>
-<pre><code>$role.Actions.Add("Microsoft.Compute/virtualMachines/deallocate/action")
-$role.Description = "Can monitor, Start, Stop and restart virtual machines."</code></pre>
-<p>Finally, the role is updated back to the Azure portal by using the below cmdlet.</p>
-<pre><code>Set-AzureRmRoleDefinition -Role $role</code></pre>
-<h3>Location of the Complete Script</h3>
-<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Update-CustomRoleSample" target="_blank">Update-CustomRoleSample.ps1</a></p></p>
+                <p class="post-content"><p>This script sample is to parse the Recovery Plan Context from Azure Site Recovery. When an Azure Automation Runbook is invoked directly from Azure Site Recovery, it passes an object called <strong>Recovery Plan Context</strong>.  This has all the crucial information regarding the failover operation like:</p>
+<ol>
+<li>Recovery Plan Name</li>
+<li>Failover Type</li>
+<li>Failover DIrection</li>
+<li>Subscription Name</li>
+<li>Resource Group Name</li>
+<li>VM Name</li>
+</ol>
+<h3>Sample Recovery Plan Context</h3>
+<p>A sample Recovery Plan Context looks like below. Please note that this is formatted appropriately here. In the Runbook it will look flattened i.e. instead of multiple lines, the context will be contiguous and will be presented in a single long line. Its data type is Object when coming from ASR Recovery Plan.</p>
+<pre><code>{
+   "RecoveryPlanName":"RecoveryPlan-Test",
+   "FailoverType":"Test",
+   "FailoverDirection":"PrimaryToSecondary",
+   "GroupId":"Group1",
+   "VmMap":{
+      "aaaaaa-1111-1111-1111-aaaaaaaaaaa":{
+         "SubscriptionId":"bbbbbbbb-2222-2222-2222-bbbbbbbbbbb",
+         "ResourceGroupName":"rg-dr-test-asr",
+         "CloudServiceName":null,
+         "RoleName":"VMName-test",
+         "RecoveryPointId":"cccccccccc-3333-3333-3333-cccccccccccc",
+         "RecoveryPointTime":"\/Date(1550773609103)\/"
+      }
+   }
+}</code></pre>
+<h3>How does this Script work</h3>
+<p>The script first uses &quot;<strong><em>ConvertFrom-Json</em></strong>&quot; cmdlet to parses the object to valid PowerShell object. It then uses the VMMap property of the Recovery Plan Context object to get various pieces of the information. </p>
+<p>The script also uses a <strong><em>foreach</em></strong> look to factor for multiple Vms in the Recovery Plan. It will <strong>output</strong> an array of the VMs with the required information, which can then be consumed in your logic to perform actual functions on the VMs. E.g. You can then connect to the VM and install some extensions on it. </p>
+<h3>How to Invoke This Runbook/Script</h3>
+<p>This script can be directly invoked from Azure Site Recovery (ASR)'s Recovery Plan or can be invoked from a master Runbook. It is a best practice to invoke this Runbook from a master Runbook. A sample for this Runbook is provided and discussed here: <a href="http://harvestingclouds.com/post/script-sample-azure-automation-runbook-for-asr-recovery-plan/" target="_blank">Script Sample - Azure Automation - Runbook for ASR Recovery Plan</a></p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Azure%20Automation%20-%20ASR%20Recovery%20Plan" target="_blank">ASR-Get-VMSInfoFromASRContext.ps1</a></p></p>
                 <br/><br/>
 
                 <div class="post-info">
@@ -104,13 +121,14 @@ $role.Description = "Can monitor, Start, Stop and restart virtual machines."</co
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
+                        <a href="http://HarvestingClouds.com/tag/asr">asr</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/automation">automation</a>&nbsp;&nbsp;
                         <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/custom">custom</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/customroles">customroles</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/azureautomation">azureautomation</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/azuresiterecovery">azuresiterecovery</a>&nbsp;&nbsp;
                         <a href="http://HarvestingClouds.com/tag/microsoft">microsoft</a>&nbsp;&nbsp;
                         <a href="http://HarvestingClouds.com/tag/microsoftazure">microsoftazure</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/roles">roles</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/sample">sample</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/recovery">recovery</a>&nbsp;&nbsp;
                 </div>
 
             </article>
