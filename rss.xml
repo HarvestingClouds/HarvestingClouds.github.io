@@ -142,6 +142,47 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Script Sample - Checking if the Prompt for current script is Elevated or not</title>
+<description><![CDATA[<p>Multiple times I have run into scenarios where the end users were reporting issues with the script but eventually, it turned out to be an access issue. The script required to be executed from an Elevated console (i.e. Run As Administrator) but the end user was trying to execute it as a normal user. Wouldn't it be nice if the script can check itself if it is being executed from an Elevated prompt or not and would report the same as a requirement.</p>
+<p>This script sample can be reused in multiple scenarios and in multiple scripts. It will ensure that the script is executed only via an elevated prompt or else it will throw error with relevant details for the end user to take corrective action. </p>
+<h3>Script workings</h3>
+<p>The script first fetches the current Windows security principal by using the below commands:</p>
+<pre><code>$WindowsID = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+$WindowsPrincipal = New-Object System.Security.Principal.WindowsPrincipal($WindowsID)</code></pre>
+<p>It then fetches the Administrator Role related details using below commands:</p>
+<pre><code>$adminRole = [System.Security.Principal.WindowsBuiltInRole]::Administrator</code></pre>
+<p>Now that it have both the required information, the script checks if the current Windows Principal is part of the Administrator role or not by using below condition:</p>
+<pre><code>if ($WindowsPrincipal.IsInRole($adminRole))
+{
+    return $True
+}
+else
+{
+    return $False
+}</code></pre>
+<p>The <strong>complete script sample</strong> turns this into a reusable logic and provides a template for using this with other code. </p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Get-IsElevated" target="_blank">Get-IsElevated.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-checking-if-the-prompt-for-current-script-is-elevated-or-not</link>
+<pubDate>Mon, 19 Nov 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Script Sample - Creating Multiple Resource Groups with RBAC Role Assignment</title>
+<description><![CDATA[<p>You can automate the creation of the <strong>Resource Groups</strong> and also assign <strong>RBAC roles</strong> to these Resource Groups. This script sample shows you how you can accomplish this. It serves as a starting point for the automation of the resource group creation. You can modify the script as per your requirements.</p>
+<h3>How the Script works</h3>
+<p>The script takes the names of the Resource groups to be created as an array. You can modify the script to take this input from a CSV file along with other parameters like the location of the Resource Group and the related role assignments. </p>
+<p>The script uses the below command to create a Resource Group.</p>
+<pre><code>New-AzureRmResourceGroup -Name $rg -Location eastus</code></pre>
+<p>Note that the location is hard-coded in the above command. This can also be parameterized. </p>
+<p>It then uses the below command to make the role assignments on this Resource Group.</p>
+<pre><code>New-AzureRmRoleAssignment -ObjectId $ADGroup01.Id -RoleDefinitionName "Contributor" -ResourceGroupName $rg</code></pre>
+<p>Note that you can use the same command to make the assignments for a group, user or an app registration. You just need to provide the appropriate Id for the ObjectId parameter. </p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Create-ResourceGroupsWithRBACAssignments" target="_blank">Create-ResourceGroupsWithRBACAssignments.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-creating-multiple-resource-groups-with-rbac-role-assignment</link>
+<pubDate>Thu, 15 Nov 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - Set Tags on Azure Resources</title>
 <description><![CDATA[<p>Earlier we fetches the Azure resources report with the Tagging related information. You can review that script to fetch the report here: <a href="http://harvestingclouds.com/post/script-sample-generate-azure-resources-report-by-tags-v30/" target="_blank">Script Sample - Generate Azure Resources Report by Tags v3.0</a></p>
 <p>The output CSV generate by that script can be updated. It can be corrected for missing tag values or incorrect tag values, etc. The updated csv then can become an Input to the script sample discussed in this blog. This script will read from the updated CSV file and will apply the tags back to the Azure.</p>
@@ -161,7 +202,9 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <p><strong>What is updated in this version</strong>: This version now can parse the Tags. It even factors for the spacing between the tag names. You will need to tweak the script to parse your own tags. Sample is provided in the script. You will need to modify the lines between 87 and 145 in the lined script. </p>
 <p>You can still refer the older script here along with the details mentioned in that post: <a href="http://harvestingclouds.com/post/script-sample-generate-azure-resources-report-by-tags/" target="_blank">Script Sample - Generate Azure Resources Report by Tags</a></p>
 <h3>Location of the Script</h3>
-<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Tagging%20Reports" target="_blank">Get-AzureRmTagsReport - v3.0.ps1</a></p>]]></description>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Tagging%20Reports" target="_blank">Get-AzureRmTagsReport - v3.0.ps1</a></p>
+<h3>Next Steps - Setting the updated Tags</h3>
+<p>Now, what do you do witht he output CSV report that you got from running this script. You will update this csv file by making the corrections. If any resources will be missing any tags then you will add the same. After that this CSV file will become an input to another script, which will Set the changes for the Tags back to Azure resources. This script can be found here: <a href="http://harvestingclouds.com/post/script-sample-set-tags-on-azure-resources/" target="_blank">Script Sample - Set Tags on Azure Resources</a>.</p>]]></description>
 <link>http://HarvestingClouds.com/post/script-sample-generate-azure-resources-report-by-tags-v30</link>
 <pubDate>Sat, 03 Nov 2018 00:00:00 +0500</pubDate>
 </item>
