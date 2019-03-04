@@ -142,21 +142,26 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Script Sample - Check Azure Site Recovery (ASR) Prerequisite Services</title>
+<title>Script Sample - Set Azure Site Recovery (ASR) Prerequisite Services</title>
 <description><![CDATA[<p>When you want to use Azure Site Recovery (ASR) either for Migration or for Disaster Recovery (DR), you will need to enable replication. Under the hood, this involves installation of the Mobility Services agent. This has few pre-requisites for some services to be enabled and set up appropriately. </p>
-<p>If you have a large environment then you can do this in an automated fashion by leveraging this script sample. You can learn more about these services related requirements by checking the &quot;<strong><em>Checking Services</em></strong>&quot; section in here: <a href="http://harvestingclouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2/" target="_blank">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues - Part 2</a></p>
+<p>In the last script sample, we saw how to check remote computers if these services are set correctly or not. That sample can be found here: <a href="" target="_blank">Script Sample - Check Azure Site Recovery (ASR) Pre-requisites</a>.</p>
+<p>In this sample, we will see how to set these services correctly on the remote computers.</p>
 <h3>How it works</h3>
-<p>This script will query the remote computers and check for service status for the 3 ASR Required services, and export to CSV. These 3 services are:</p>
+<p>This script will query the remote computers and set the service status for the 3 ASR Required services. These 3 services are:</p>
 <ol>
 <li>Volume Shadow Copy(VSS) </li>
 <li>COM+ System Application(COMSysApp)</li>
 <li>Microsoft Distributed Transaction Coordinator Service (MSDTC)</li>
 </ol>
-<p>The script uses WMI to fetch the data from the remote computer(s) and checks if these services are in the &quot;<strong><em>running</em></strong>&quot; state and whether or not the startup type is set to &quot;<strong><em>automatic</em></strong>&quot;. If both conditions are not met then the state is reported as &quot;<em>Set Incorrectly</em>&quot;. If both conditions are met then the result is reported as &quot;<em>Set Correctly</em>&quot;</p>
+<p>The script will set the startup type of the services to &quot;<strong><em>automatic</em></strong>&quot; and will then &quot;<strong><em>start</em></strong>&quot; the service. It uses the below cmdlets to perform these actions.</p>
+<pre><code>Set-Service -name 'msdtc' -ComputerName $Computer -StartupType Automatic
+Start-Sleep -s 5
+Get-Service -Name 'msdtc' -ComputerName $computer| Start-Service</code></pre>
+<p>The cmdlets to configure other 2 services is similar. </p>
 <h3>Location of the Script</h3>
-<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/ASR%20Pre-Requisites" target="_blank">Check-ASRPrerequisiteServices.ps1 on GitHub</a></p>]]></description>
-<link>http://HarvestingClouds.com/post/script-sample-check-azure-site-recovery-asr-prerequisite-services</link>
-<pubDate>Mon, 20 Aug 2018 00:00:00 +0500</pubDate>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/ASR%20Pre-Requisites" target="_blank">Set-ASRPrerequisiteServivces.ps1 on GitHub</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-set-azure-site-recovery-asr-prerequisite-services</link>
+<pubDate>Thu, 23 Aug 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Script Sample - Check Azure Site Recovery (ASR) Prerequisite Services</title>
