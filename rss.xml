@@ -142,6 +142,32 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Script Sample - Azure Automation - Check VM Availability</title>
+<description><![CDATA[<p>One of the most common scenarios is to check if a VM is available or not. If you want to connect to a VM and take some actions, it is a best practice to first check if the VM is available and responsive or not. This script sample performs multiple checks. You can tweak these checks to include only the ones that you need. </p>
+<p>Also, there are some pieces of information that you can get only from inside the VM. E.g. the domain to which a VM is connected. This scripts ensures that the script is available. If it is available then it can also fetch such pieces of information for you. </p>
+<h3>What does the Script check</h3>
+<p>The script makes multiple checks which include:</p>
+<ol>
+<li>Ping check using the <strong><em>Test-Connection</em></strong> cmdlet</li>
+<li>PS Remoting checking by trying to open a PS Session using <strong><em>New-PSSession</em></strong> cmdlet</li>
+<li>The script also tries to connect to the WMI and list various object using <strong><em>Get-Wmiobject</em></strong> cmdlet</li>
+<li>Similar to the PS Remoting check it also checks for WS Man by using the <strong><em>Test-WSMan</em></strong> cmdlet</li>
+</ol>
+<p>It can then fetch VM related information by either remoting into it or by using WMI. E.g. it can fetch domain of the VM by using below WMI cmdlet.</p>
+<pre><code>$Domain = $wmi.GetStringValue($HKLM, $MachineKey, "NV Domain").sValue</code></pre>
+<h3>Script Inputs and Requirements</h3>
+<p>The script only takes below two input parameters:</p>
+<ol>
+<li>NameOfTheVM</li>
+<li>IPOfVM</li>
+</ol>
+<p>The script requires a credential object with the name as &quot;<strong><em>AutomationCredentialName</em></strong>&quot;. These credential should have login and remoting access into the VM. </p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="" target="_blank"></a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-azure-automation-check-vm-availability</link>
+<pubDate>Fri, 05 Oct 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - Azure Automation - Get VM Information from actual Azure Virtual Machine</title>
 <description><![CDATA[<p>Many times, when automating your infrastructure, you will need to work with Azure Virtual Machines. Based on just the name of the VM and it's Resource Group, you will need to know about it's Network Interfaces and it's IP address. </p>
 <p>This Runbook sample connects to Azure using Service Principal and fetches various VM properties. The Runbook can be tweaked to fetch more or less information as per the requirements. </p>

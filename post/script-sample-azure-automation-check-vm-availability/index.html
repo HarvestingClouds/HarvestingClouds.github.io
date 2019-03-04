@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>PowerShell DSC - Partial Configurations :: Harvesting Clouds</title>
+    <title>Script Sample - Azure Automation - Check VM Availability :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -72,50 +72,50 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>PowerShell DSC - Partial Configurations</h3>
+                <h3>Script Sample - Azure Automation - Check VM Availability</h3>
                 <span class="glyphicon glyphicon-user"></span> @20aman
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> Apr 20, 2016
+                <span class="glyphicon glyphicon-time"></span> Oct 05, 2018
                 <hr>
 
-                <p class="post-content"><p><strong>Partial Configurations</strong> is a new feature in PowerShell 5.0 Desired State Configuration or DSC. It allows the configurations to be delivered in parts or fragments. These configurations can come from various sources.
-The Local Configuration Manager or LCM on the target node puts these partial configurations from different sources together and after that apply the same as a single configuration.</p>
-<p>This opens various possibilities for Enterprises to manage their infrastructure and designate the responsibility to various teams for a single node. The team expert in a particular field can focus on that feature without worrying about other features.</p>
-<p>You can have partial configurations in following modes:</p>
+                <p class="post-content"><p>One of the most common scenarios is to check if a VM is available or not. If you want to connect to a VM and take some actions, it is a best practice to first check if the VM is available and responsive or not. This script sample performs multiple checks. You can tweak these checks to include only the ones that you need. </p>
+<p>Also, there are some pieces of information that you can get only from inside the VM. E.g. the domain to which a VM is connected. This scripts ensures that the script is available. If it is available then it can also fetch such pieces of information for you. </p>
+<h3>What does the Script check</h3>
+<p>The script makes multiple checks which include:</p>
 <ol>
-<li>Push Mode</li>
-<li>Pull Mode</li>
-<li>Hybrid Mode (i.e. combination of Push and Pull)</li>
+<li>Ping check using the <strong><em>Test-Connection</em></strong> cmdlet</li>
+<li>PS Remoting checking by trying to open a PS Session using <strong><em>New-PSSession</em></strong> cmdlet</li>
+<li>The script also tries to connect to the WMI and list various object using <strong><em>Get-Wmiobject</em></strong> cmdlet</li>
+<li>Similar to the PS Remoting check it also checks for WS Man by using the <strong><em>Test-WSMan</em></strong> cmdlet</li>
 </ol>
-<h3>Configuration for the PUSH Mode</h3>
-<p>You need to follow three steps to configure Partial configurations for the PUSH mode:</p>
-<ul>
-<li>Configure the LCM, on the target node, to expect partial configurations</li>
-<li>Push each partial configuration from different sources using <strong>Publish-DSCConfiguration</strong> cmdlet. Target node will automatically combine the partial configurations into single configuration.</li>
-<li>Apply the configuration by calling the <strong>Start-DSCConfiguration</strong>cmdlet</li>
-</ul>
-<h3>Configuration for the PULL Mode</h3>
-<p>This is bit complex than the Push mode. In nutshell you only need couple of steps:</p>
-<ul>
-<li>Configure the LCM, on the target node, to receive partial configurations but from PULL servers</li>
-<li>Name and locate the configuration documents properly on the pull servers</li>
-</ul>
-<p>To know more about DSC Partial configurations follow the below references:</p>
-<ul>
-<li><a href="https://automationnext.wordpress.com/2016/04/19/powershell-desired-state-configuration-partial-configurations-without-configurationid/">Detailed Blog by AutomationNext with very valuable insights</a></li>
-<li><a href="https://msdn.microsoft.com/en-us/powershell/dsc/partialconfigs">Official MSDN Article</a></li>
-</ul></p>
+<p>It can then fetch VM related information by either remoting into it or by using WMI. E.g. it can fetch domain of the VM by using below WMI cmdlet.</p>
+<pre><code>$Domain = $wmi.GetStringValue($HKLM, $MachineKey, "NV Domain").sValue</code></pre>
+<h3>Script Inputs and Requirements</h3>
+<p>The script only takes below two input parameters:</p>
+<ol>
+<li>NameOfTheVM</li>
+<li>IPOfVM</li>
+</ol>
+<p>The script requires a credential object with the name as &quot;<strong><em>AutomationCredentialName</em></strong>&quot;. These credential should have login and remoting access into the VM. </p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="" target="_blank"></a></p></p>
                 <br/><br/>
 
                 <div class="post-info">
                         <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="http://HarvestingClouds.com/category/powershell">PowerShell</a>
+                        <a href="http://HarvestingClouds.com/category/azure-script-sample">Azure Script Sample</a>
                         &nbsp;&nbsp;
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="http://HarvestingClouds.com/tag/dsc">dsc</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/azureautomation">azureautomation</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/microsoft">microsoft</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/microsoftazure">microsoftazure</a>&nbsp;&nbsp;
                         <a href="http://HarvestingClouds.com/tag/powershell">powershell</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/sample">sample</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/virtualmachine">virtualmachine</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/vm">vm</a>&nbsp;&nbsp;
                 </div>
 
             </article>
