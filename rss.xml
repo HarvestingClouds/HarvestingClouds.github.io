@@ -142,6 +142,42 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Script Sample - Check Azure Site Recovery (ASR) Prerequisite Services</title>
+<description><![CDATA[<p>When you want to use Azure Site Recovery (ASR) either for Migration or for Disaster Recovery (DR), you will need to enable replication. Under the hood, this involves installation of the Mobility Services agent. This has few pre-requisites for some services to be enabled and set up appropriately. </p>
+<p>If you have a large environment then you can do this in an automated fashion by leveraging this script sample. You can learn more about these services related requirements by checking the &quot;<strong><em>Checking Services</em></strong>&quot; section in here: <a href="http://harvestingclouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2/" target="_blank">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues - Part 2</a></p>
+<h3>How it works</h3>
+<p>This script will query the remote computers and check for service status for the 3 ASR Required services, and export to CSV. These 3 services are:</p>
+<ol>
+<li>Volume Shadow Copy(VSS) </li>
+<li>COM+ System Application(COMSysApp)</li>
+<li>Microsoft Distributed Transaction Coordinator Service (MSDTC)</li>
+</ol>
+<p>The script uses WMI to fetch the data from the remote computer(s) and checks if these services are in the &quot;<strong><em>running</em></strong>&quot; state and whether or not the startup type is set to &quot;<strong><em>automatic</em></strong>&quot;. If both conditions are not met then the state is reported as &quot;<em>Set Incorrectly</em>&quot;. If both conditions are met then the result is reported as &quot;<em>Set Correctly</em>&quot;</p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/ASR%20Pre-Requisites" target="_blank">Check-ASRPrerequisiteServices.ps1 on GitHub</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-check-azure-site-recovery-asr-prerequisite-services</link>
+<pubDate>Mon, 20 Aug 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Script Sample - Check Azure Site Recovery (ASR) Prerequisite Services</title>
+<description><![CDATA[<p>When you want to use Azure Site Recovery (ASR) either for Migration or for Disaster Recovery (DR), you will need to enable replication. Under the hood, this involves installation of the Mobility Services agent. This has few pre-requisites for some services to be enabled and set up appropriately. </p>
+<p>If you have a large environment then you can do this in an automated fashion by leveraging this script sample. You can learn more about these services related requirements by checking the &quot;<strong><em>Checking Services</em></strong>&quot; section in here: <a href="http://harvestingclouds.com/post/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2/" target="_blank">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues - Part 2</a></p>
+<h3>How it works</h3>
+<p>This script will query the remote computers and check for service status for the 3 ASR Required services, and export to CSV. These 3 services are:</p>
+<ol>
+<li>Volume Shadow Copy(VSS) </li>
+<li>COM+ System Application(COMSysApp)</li>
+<li>Microsoft Distributed Transaction Coordinator Service (MSDTC)</li>
+</ol>
+<p>The script uses WMI to fetch the data from the remote computer(s) and checks if these services are in the &quot;<strong><em>running</em></strong>&quot; state and whether or not the startup type is set to &quot;<strong><em>automatic</em></strong>&quot;. If both conditions are not met then the state is reported as &quot;<em>Set Incorrectly</em>&quot;. If both conditions are met then the result is reported as &quot;<em>Set Correctly</em>&quot;</p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/ASR%20Pre-Requisites" target="_blank">Check-ASRPrerequisiteServices.ps1 on GitHub</a></p>
+<h3>Next Script  - Setting these services automatically</h3>
+<p>Next, we will check the script sample to set these services appropriately. This sample can be found here: <a href="" target="_blank">Script Sample - Set Azure Site Recovery (ASR) Pre-requisite Services</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-check-azure-site-recovery-asr-prerequisite-services</link>
+<pubDate>Mon, 20 Aug 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - Format EA Billing Usage Csv for Tags</title>
 <description><![CDATA[<p>As a system administrator, you will need to work with Enterprise Agreement (EA) related billing data a lot. As such you will need to pull lots of reports based on this consumption and usage related csv file that you get from the EA portal i.e. at address: <a href="https://ea.azure.com" target="_blank"><a href="https://ea.azure.com">https://ea.azure.com</a></a>. Tagging is one of the important components. But it comes as a composite JSON in one column. You will want to split this into multiple columns, with one column for each tag. </p>
 <p>The script sample in this blog performs exactly this parsing for you. You will need to tweak the script to include the tags as per your environment. </p>
