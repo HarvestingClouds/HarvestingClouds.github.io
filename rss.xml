@@ -142,6 +142,90 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Script Sample - VM Operations - Export VM Configurations</title>
+<description><![CDATA[<p>Exporting a VM configuration is a best practice that you should be doing before altering any configurations on the Virtual Machine. Any action that can corrupt the VM or its configurations should be preceded by exporting of VM's configurations. This allows you to be able to refer back to these configurations and recreate the VM in case of any unexpected scenario. </p>
+<p>With the Script sample in this post, you can take the export of multiple VMs by providing the same in a csv configuration file. This file is very simple and the creation of this file itself can also be automated. </p>
+<p>The script can also be altered to take an export of all the VMs in the environment. </p>
+<h3>Script Requirements</h3>
+<p>The script requires you to populate the configurations CSV file. The sample CSV file is also provided along with the script. This configurations file should have the following columns:</p>
+<ol>
+<li>Computer - Name of the VM in Azure</li>
+<li>ResourceGroupName - Resource Group of the VM</li>
+</ol>
+<h3>Script Working</h3>
+<p>This is a very simple but one of the most reusable script. It simply takes the export in two steps.</p>
+<p>First it fetches the VM as shown below:</p>
+<pre><code>$currentVm = Get-AzureRmVM -ResourceGroupName $ResourceGroupName -Name $virtualMachineName -ErrorAction Stop</code></pre>
+<p>Then, it takes the export by using the below command.</p>
+<pre><code>$currentVm | ConvertTo-Json -Depth 100 | Out-File -FilePath $fileName</code></pre>
+<p><strong>The Trick</strong>: The most important thing is the Depth parameter when using ConvertTo-Json cmdlet. If you do not specify this then nested properties may not export properly. Specifying a large enough depth ensures that all nested properties are also exported. </p>
+<p>The script encapsulates all this logic into a reusable function. It also provides the best practices template to invoke this function.
+<strong>Note</strong>: Check the comments marked with &quot;<strong>ToDo</strong>&quot; where you should be making the changes. </p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Azure%20VM%20Operations" target="_blank">Export-VMConfig.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-vm-operations-export-vm-configurations</link>
+<pubDate>Tue, 11 Dec 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Script Sample - VM Operations - Apply HUB Licensing to Existing VMs</title>
+<description><![CDATA[<p>If you have older VMs in the environment and you wan to leverage Microsoft's Hybrid Use Benefit i.e. HUB licensing then this script can update multiple VMs in your environment in an automated way for you. </p>
+<p><strong>NOTE</strong>: </p>
+<ul>
+<li>Before you apply the HUB licensing, please make sure whether you are eligible for HUB licensing benefits or not. Refer the official documentation here: <a href="https://azure.microsoft.com/en-ca/pricing/hybrid-benefit/" target="_blank">Azure Hybrid Benefit</a></li>
+</ul>
+<h3>Script Requirements</h3>
+<p>The script requires you to populate the configurations CSV file. The sample CSV file is also provided along with the script. This configurations file should have the following columns:</p>
+<ol>
+<li>Computer - Name of the VM in Azure</li>
+<li>OSType - Windows or Linux</li>
+<li>ResourceGroupName - Resource Group of the VM</li>
+<li>HUBLicensingNeeded - yes or no. The HUB Licensing is set for only the VMs for which this value is set to yes.</li>
+</ol>
+<h3>Script Working</h3>
+<p>In its entirety, the HUB licensing is just a switch for &quot;<strong>LicenseType</strong>&quot; on the VM. For Windows servers, if it's value is set to &quot;<strong>Windows_Server</strong>&quot; then this means that you own a Windows Server license and are claiming the HUB Licensing benefits on this VM. </p>
+<p>The script applied the HUB licensing in 3 steps. First, it fetches the VM.</p>
+<pre><code>$currentVm = Get-AzureRmVM -ResourceGroupName $ResourceGroupName -Name $virtualMachineName -ErrorAction Stop</code></pre>
+<p>Then it applies the HUB licensing as shown below.</p>
+<pre><code>$currentVm.LicenseType = "Windows_Server"</code></pre>
+<p>Lastly, it updates the VM object.</p>
+<pre><code>Update-AzureRmVM -VM $currentVm -ResourceGroupName $ResourceGroupName</code></pre>
+<p><strong>Note</strong>: As a best practice, the script also checks whether the HUB Licensing is already applied or not. If the HUB licensing is already there on the VM then the Script does applies it again. There may be small downtime when the VM is updating and therefore a short downtime should be planned when doing this operation. </p>
+<p>The script encapsulates all this logic into a reusable function. It also provides the best practices template to invoke this function.
+<strong>Note</strong>: Check the comments marked with &quot;<strong>ToDo</strong>&quot; where you should be making the changes. </p>
+<p>You can find more related details in official documentation here: <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/hybrid-use-benefit-licensing#convert-an-existing-vm-using-azure-hybrid-benefit-for-windows-server" target="_blank">Azure Hybrid Benefit for Windows Server</a></p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Azure%20VM%20Operations" target="_blank">Apply-HubLicensing.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-vm-operations-apply-hub-licensing-to-existing-vms</link>
+<pubDate>Fri, 07 Dec 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Script Sample - VM Operations - Change Azure VM Size</title>
+<description><![CDATA[<p>If you want to change the size of multiple Azure VMs in your environment, then you can leverage this script sample to update the sizes in one go. You will want to change the size of the VMs periodically after thoroughly reviewing the consumption. This can optimize your environment and can save you money in the process as well. </p>
+<h3>Script Requirements</h3>
+<p>The script requires you to populate the configurations CSV file. The sample CSV file is also provided along with the script. This configurations file should have the following columns:</p>
+<ol>
+<li>Computer - Name of the VM in Azure</li>
+<li>OSType - Windows or Linux</li>
+<li>ResourceGroupName - Resource Group of the VM</li>
+<li>SizeConversionNeeded - yes or no</li>
+<li>NewVMComputeSize - new size of the VM. e.g. Standard_DS4_v2. This should conform to the VM size names. For Windows VMs these names can be found by navigating to one of the sizes related link here: <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes" target="_blank">Sizes for Windows virtual machines in Azure</a></li>
+</ol>
+<h3>Script Working</h3>
+<p>The script works in 3 simple steps. In the first step the script fetches the Azure VM using Get-AzureRmVM cmdlet and ensures that it exists. </p>
+<pre><code>$currentVm = Get-AzureRmVM -ResourceGroupName $ResourceGroupName -Name $virtualMachineName -ErrorAction Stop</code></pre>
+<p>The second step is to update the size property for the Hardware profile of the vm object.</p>
+<pre><code>$currentVm.HardwareProfile.VmSize = $vmSize </code></pre>
+<p>Lastly, the script updates the VM using the below command.</p>
+<pre><code>Update-AzureRmVM -VM $currentVm -ResourceGroupName $ResourceGroupName</code></pre>
+<p><strong>Note</strong> that there will be a restart on the VM during the size conversion. Do plan for an outage although very minimal. Do keep some buffer in the outage window to account for any unforeseen issues that may occur during the conversion. I have converted various VMs and have never encountered any issues. Still, when I plan for an outage, as a best practice I do plan for a larger window. </p>
+<p>The script encapsulates all this logic into a reusable function. It also provides the best practices template to invoke this function.
+<strong>Note</strong>: Check the comments marked with &quot;<strong>ToDo</strong>&quot; where you should be making the changes. </p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Azure%20VM%20Operations" target="_blank">Change-AzureVMSize.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-vm-operations-change-azure-vm-size</link>
+<pubDate>Mon, 03 Dec 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - VM Operations - Convert VM to Managed Disk VM</title>
 <description><![CDATA[<p>If you want to convert multiple VMs from older Storage Account disks to Managed Disks you can leverage the automation capabilities provided by Microsoft via PowerShell. This script sample uses these capabilities in a managed and reusable way.</p>
 <h3>Script Requirements</h3>
