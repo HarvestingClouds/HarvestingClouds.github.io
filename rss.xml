@@ -854,10 +854,13 @@ $variables | Export-Csv -Path $variablesFilePath -NoTypeInformation</code></pre>
 <item>
 <title>Book published on Amazon - Quick and Practical Guide to ARM Templates</title>
 <description><![CDATA[<p><strong>Quick and Practical Guide to ARM Templates</strong> is a very non-conventional book. The objective of the book is to help you &quot;Become Experts in Developing ARM Templates for Microsoft Azure without any prior knowledge&quot;. This book is for both a beginner and intermediate users. </p>
-<p><strong>Update [03-27-2018]</strong>: This book is available for <strong>FREE</strong> for a limited time only (on 27, 28 and 29th March, 2018 till midnight Pacific Time). <a href="https://www.amazon.com/dp/B07C8LSBSN" target="_blank"><strong>Download Now!!!</strong></a></p>
 <p>This is a quick and practical approach to learning ARM Templates for Azure. It covers only the most essential topics that you will need 95% of the time while working with ARM Templates. The goal is to have you working faster and quicker on ARM Templates without compromising any of the best practices. </p>
 <p>The book assumes that you do not have prior knowledge of ARM Templates. If you have no development background then this book is for you. It starts by building the fundamentals on which ARM Templates are built.  The more practical approach means less theory and more focus on the practical aspects that can help you start working and delivering on ARM Templates.</p>
-<p>You can view the book on Amazon.com here: <a href="https://www.amazon.com/dp/B07C8LSBSN">https://www.amazon.com/dp/B07C8LSBSN</a></p>
+<p>You can view the book on Amazon.com here: </p>
+<ul>
+<li><a href="https://www.amazon.com/dp/B07C8LSBSN" target="_blank"><strong>Kindle Edition</strong></a></li>
+<li><a href="https://www.amazon.com/Quick-Practical-Guide-ARM-Templates/dp/1980629757" target="_blank"><strong>Paperback Edition</strong></a></li>
+</ul>
 <p>You can also search for the book in your local Amazon marketplace.</p>
 <img src="/images/15217860175ab49ca149064.png" alt="Quick and Practical Guide to ARM Templates">]]></description>
 <link>http://HarvestingClouds.com/post/book-published-on-amazon-quick-and-practical-guide-to-arm-templates</link>
