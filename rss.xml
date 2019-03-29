@@ -85,6 +85,23 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <pubDate>Thu, 21 Feb 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure Updates - New VM-series for Confidential Computing</title>
+<description><![CDATA[<p>A new VM-series backed by specialized hardware, which will include the latest generation of Intel SGX. </p>
+<ul>
+<li>Based on Trusted Execution Environments: Intel SGX, Virtualization Based Security (VBS) </li>
+<li>Comm application patterns: Protect data confidentiality, integrity, and sensitive IP </li>
+<li>Protect data and code in use: Isolated portion of processor and memory, code and data cannot be viewed/modified </li>
+<li>Cloud offering: TEE-enabled compute platform, cloud attestation, first-party‒enabled services </li>
+<li>Centrally combine data sources, Communicate with secure endpoints, licensing and DRM</li>
+</ul>
+<img src="/images/15538714305c9e324654528.png" alt="Marking a Service as Favorite">
+<p>At the time of writing of this blog, this feature is limited preview access under NDA (announced via blog) of a specialized Virtual Machine Series (DC-series) that will become part of the  Azure Compute portfolio and the first installment of the broader Azure Confidential Computing (ACC) initiative. Put simply, confidential computing offers protection that to date has been missing from public clouds: <strong>encryption of data while in use</strong>.</p>
+<p>You can read more about this here: <a href="https://azure.microsoft.com/en-us/blog/azure-confidential-computing/" target="_blank">Azure confidential computing
+</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-updates-new-vm-series-for-confidential-computing</link>
+<pubDate>Mon, 04 Feb 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Tips & Tricks - Quickly navigate Azure Portal and search documentation with ease</title>
 <description><![CDATA[<p>Navigating Azure Portal can become challenging. You want to navigate to different Azure Resources or Resource Groups or want to check a particular Service in Azure. Instead of going to &quot;All Services&quot; and searching for your resource, if you can save a little time by searching more efficiently, it can add up over time and make you more efficient as well. So here are few tips on how you can navigate with ease in Azure.</p>
 <h3>1. Pin/Favorite most common Services and re-ordering them</h3>
@@ -854,13 +871,10 @@ $variables | Export-Csv -Path $variablesFilePath -NoTypeInformation</code></pre>
 <item>
 <title>Book published on Amazon - Quick and Practical Guide to ARM Templates</title>
 <description><![CDATA[<p><strong>Quick and Practical Guide to ARM Templates</strong> is a very non-conventional book. The objective of the book is to help you &quot;Become Experts in Developing ARM Templates for Microsoft Azure without any prior knowledge&quot;. This book is for both a beginner and intermediate users. </p>
+<p><strong>Update [03-27-2018]</strong>: This book is available for <strong>FREE</strong> for a limited time only (on 27, 28 and 29th March, 2018 till midnight Pacific Time). <a href="https://www.amazon.com/dp/B07C8LSBSN" target="_blank"><strong>Download Now!!!</strong></a></p>
 <p>This is a quick and practical approach to learning ARM Templates for Azure. It covers only the most essential topics that you will need 95% of the time while working with ARM Templates. The goal is to have you working faster and quicker on ARM Templates without compromising any of the best practices. </p>
 <p>The book assumes that you do not have prior knowledge of ARM Templates. If you have no development background then this book is for you. It starts by building the fundamentals on which ARM Templates are built.  The more practical approach means less theory and more focus on the practical aspects that can help you start working and delivering on ARM Templates.</p>
-<p>You can view the book on Amazon.com here: </p>
-<ul>
-<li><a href="https://www.amazon.com/dp/B07C8LSBSN" target="_blank"><strong>Kindle Edition</strong></a></li>
-<li><a href="https://www.amazon.com/Quick-Practical-Guide-ARM-Templates/dp/1980629757" target="_blank"><strong>Paperback Edition</strong></a></li>
-</ul>
+<p>You can view the book on Amazon.com here: <a href="https://www.amazon.com/dp/B07C8LSBSN">https://www.amazon.com/dp/B07C8LSBSN</a></p>
 <p>You can also search for the book in your local Amazon marketplace.</p>
 <img src="/images/15217860175ab49ca149064.png" alt="Quick and Practical Guide to ARM Templates">]]></description>
 <link>http://HarvestingClouds.com/post/book-published-on-amazon-quick-and-practical-guide-to-arm-templates</link>
