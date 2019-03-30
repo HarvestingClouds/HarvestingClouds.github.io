@@ -6,6 +6,22 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure Awareness Month - Webinar #5 Video - How to Use Azure Site Recovery for Backup, Migration, and Disaster Recovery</title>
+<description><![CDATA[<p>This last session in the Azure Awareness month covered Azure Site Recovery services which include Azure Backup and Azure Recovery Services. The session discussed how to provide Backup and Disaster Recovery. It also provided a brief strategy overview for Migration. As usual this is demo heavy session.</p>
+<p>You can check the video here:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NpAc1XFdkJM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></description>
+<link>http://HarvestingClouds.com/post/azure-awareness-month-webinar-5-video-how-to-use-azure-site-recovery-for-backup-migration-and-disaster-recovery</link>
+<pubDate>Sat, 30 Mar 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Awareness Month - Webinar #4 Video - Security in Azure - How to Make Your Environment More Secure</title>
+<description><![CDATA[<p>The fourth session in the Azure Awareness month was all about security in Azure. We discussed different options around security features available in Azure. The focus of this session was to make your environment more secure. </p>
+<p>You can check the video recording here:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/L95Ax9W-L2c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></description>
+<link>http://HarvestingClouds.com/post/azure-awareness-month-webinar-4-video-security-in-azure-how-to-make-your-environment-more-secure</link>
+<pubDate>Sat, 23 Mar 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Differences between Azure Functions and Azure Logic Apps</title>
 <description><![CDATA[<p><strong>Azure Functions</strong> and <strong>Azure Logic Apps</strong> are key offerings from Microsoft Azure that provide you <strong>Serverless Computing</strong>. They both can help run business logic for your applications and can also automate a lot of tasks in Azure. Azure Functions which can execute code in almost any modern language. Whereas Azure Logic Apps which are designed in a web-based designer and can execute logic triggered by Azure services without writing any code.</p>
 <p>The major difference between the two is that Azure Functions provide you with lot more control over the code that gets executed but you have to author and manage that code. Whereas with Azure Logic Apps you are working only in a designer and configuring the activities. You get less control but at the same time, you do not have to manage the underlying code as well. You only need to manage the properties of your activities (or <em>logic blocks</em>) in your <strong><em>workflow</em></strong>.</p>
@@ -75,6 +91,21 @@ tr:nth-child(even) {
 </table>]]></description>
 <link>http://HarvestingClouds.com/post/differences-between-azure-functions-and-azure-logic-apps</link>
 <pubDate>Tue, 19 Mar 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Awareness Month - Webinar #3 Video - ARM Template Basics: Automated & Repeatable Deployments in Microsoft Azure</title>
+<description><![CDATA[<p>This third webinar in the Azure Awareness month series was around ARM Template Basics. In this session, I talked about how to perform automated &amp; repeatable deployments in Microsoft Azure leveraging ARM Templates. We discussed how to author ARM Templates as well as how to kick start the development. </p>
+<p>You can check the video recording here:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MZTb9NtZOh4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></description>
+<link>http://HarvestingClouds.com/post/azure-awareness-month-webinar-3-video-arm-template-basics-automated-repeatable-deployments-in-microsoft-azure</link>
+<pubDate>Sun, 17 Mar 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Awareness Month - Webinar #2 Video - Automate Your Azure Environment with Azure Automation and Azure Functions</title>
+<description><![CDATA[<p>In this session around automating your environment, we looked at how to work with Azure Automation and Azure Functions. The session included demos to get you started in these technologies. You can check the video below. </p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Bl_6atthAOk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></description>
+<link>http://HarvestingClouds.com/post/azure-awareness-month-webinar-2-video-automate-your-azure-environment-with-azure-automation-and-azure-functions</link>
+<pubDate>Sat, 09 Mar 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure Awareness Month - Webinar #1 Video - Getting Started with Azure – Basics, Tips, and Tricks</title>
