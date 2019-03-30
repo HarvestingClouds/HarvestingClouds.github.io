@@ -6,6 +6,60 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Differences between Azure Functions and Azure Logic Apps</title>
+<description><![CDATA[<p><strong>Azure Functions</strong> and <strong>Azure Logic Apps</strong> are key offerings from Microsoft Azure that provide you <strong>Serverless Computing</strong>. They both can help run business logic for your applications and can also automate a lot of tasks in Azure. Azure Functions which can execute code in almost any modern language. Whereas Azure Logic Apps which are designed in a web-based designer and can execute logic triggered by Azure services without writing any code.</p>
+<p>The major difference between the two is that Azure Functions provide you with lot more control over the code that gets executed but you have to author and manage that code. Whereas with Azure Logic Apps you are working only in a designer and configuring the activities. You get less control but at the same time, you do not have to manage the underlying code as well. You only need to manage the properties of your activities (or <em>logic blocks</em>) in your <strong><em>workflow</em></strong>.</p>
+<p>Additionally, here are more differences between these two services:</p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>Functions</th>
+<th>Logic Apps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State</td>
+<td>Normally stateless, but Durable Functions provide state</td>
+<td>Stateful</td>
+</tr>
+<tr>
+<td>Development</td>
+<td>Code-first (imperative)</td>
+<td>Designer-first (declarative)</td>
+</tr>
+<tr>
+<td>Connectivity</td>
+<td>About a dozen built-in binding types, write code for custom bindings</td>
+<td>Large collection of connectors, Enterprise Integration Pack for B2B scenarios, build custom connectors</td>
+</tr>
+<tr>
+<td>Actions</td>
+<td>Each activity is an Azure function; write code for activity functions</td>
+<td>Large collection of ready-made actions</td>
+</tr>
+<tr>
+<td>Monitoring</td>
+<td>Azure Application Insights</td>
+<td>Azure portal, Log Analytics</td>
+</tr>
+<tr>
+<td>Management</td>
+<td>REST API, Visual Studio</td>
+<td>Azure portal, REST API, PowerShell, Visual Studio</td>
+</tr>
+<tr>
+<td>Execution context</td>
+<td>Can run locally or in the cloud</td>
+<td>Runs only in the cloud.</td>
+</tr>
+</tbody>
+</table>]]></description>
+<link>http://HarvestingClouds.com/post/differences-between-azure-functions-and-azure-logic-apps</link>
+<pubDate>Tue, 19 Mar 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Awareness Month - Webinar #1 Video - Getting Started with Azure – Basics, Tips, and Tricks</title>
 <description><![CDATA[<p>We started the Azure Awareness month with the first webinar in the series last Friday. This session was about &quot;Getting Started with Azure – Basics, Tips, and Tricks&quot;. If you missed this session then you can watch this recorded webinar below on YouTube.</p>
 <p>In this session we talked about:</p>
