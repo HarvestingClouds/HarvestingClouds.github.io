@@ -14,6 +14,34 @@
 <pubDate>Sat, 30 Mar 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Windows Virtual Desktop in Azure - Public Preview Alert</title>
+<description><![CDATA[<p><strong>Windows Virtual Desktop</strong> is a new service that is available as a Public Preview at the time of writing of this blog. This is a desktop and app virtualization service that runs on the cloud.</p>
+<h3>Pre-requisites</h3>
+<p>You need the following to be able to use this service:</p>
+<ol>
+<li>Azure AD (Active Directory) - If you have an Azure subscription, then you already have this. </li>
+<li>Windows Server Active Directory in sync with Azure Active Directory</li>
+<li>Azure subscription, containing a virtual network that either contains or is connected to the Windows Server Active Directory - this is where the virtualization will be created and configured</li>
+</ol>
+<p>Additionally, the Azure VM you create for Windows Virtual Desktop must be:</p>
+<ol>
+<li>Standard domain-joined or Hybrid AD-joined. Virtual machines can't be Azure AD-joined.</li>
+<li>Running one of the following supported OS images: Windows 10 Enterprise multi-session or Windows Server 2016</li>
+</ol>
+<h3>Working with the Service</h3>
+<p>At a very high level the steps involve the following:</p>
+<ol>
+<li>Grant Azure Active Directory permissions to the Windows Virtual Desktop Preview service</li>
+<li>Assign the TenantCreator application role to a user in your Azure Active Directory tenant</li>
+<li>Create a Windows Virtual Desktop Preview tenant</li>
+<li>Create a Windows Virtual Desktop Host Pool - available as an offering from the Azure Marketplace right now</li>
+</ol>
+<img src="/images/15540720605ca141fc3f08c.png" alt="Provision a host pool">
+<p>You can learn more about this preview and detailed step by step getting started guide here: <a href="https://docs.microsoft.com/en-us/azure/virtual-desktop/overview" target="_blank">Windows Virtual Desktop Preview</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/windows-virtual-desktop-in-azure-public-preview-alert</link>
+<pubDate>Mon, 25 Mar 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Awareness Month - Webinar #4 Video - Security in Azure - How to Make Your Environment More Secure</title>
 <description><![CDATA[<p>The fourth session in the Azure Awareness month was all about security in Azure. We discussed different options around security features available in Azure. The focus of this session was to make your environment more secure. </p>
 <p>You can check the video recording here:</p>
