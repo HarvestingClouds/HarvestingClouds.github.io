@@ -6,6 +6,18 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>General Availability Alert - Azure AD Password Protection is now GA</title>
+<description><![CDATA[<p>Azure Active Directory (AD) Password Protection feature is now generally available. </p>
+<p>In nutshell, this feature provides you with the ability to enforce or audit users who set passwords to common and weak passwords. When set in enforce mode this feature stops them from being able to set a weak or common password. E.g. you could stop the end users from using a password like &quot;test123&quot; or &quot;password1&quot; etc. You can add as many general passwords to ban. As a good practice, you should add your organization's name or any common internal password to this list with any variants you believe end users may use. The end goal is to try and make the password as much difficult and secure as possible. </p>
+<p>This feature also allows you to specify the thresholds to lock a user in case of failed sign-in attempts. It allows you to set the time for which the user will be locked out before they can try signing in again. </p>
+<p>This feature can be accessed by navigating to the Azure Active Directory and then selecting &quot;Authentication methods&quot; under the Security section. You will see the &quot;Password Protection&quot; option opened up in its own blade. </p>
+<img src="/images/15542607195ca422ef14a11.png" alt="Azure AD Password Protection">
+<p><strong>Note</strong>: <em>Preview customers MUST update the agents to the latest version (1.2.116.0 or higher) immediately. The current agents will stop working after July 1, 2019.</em></p>
+<p>For more information and the announcement blog from Microsoft, read here: <a href="https://techcommunity.microsoft.com/t5/Azure-Active-Directory-Identity/Azure-AD-Password-Protection-is-now-generally-available/ba-p/377487" target="_blank">Azure AD Password Protection is now generally available!</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/general-availability-alert-azure-ad-password-protection-is-now-ga</link>
+<pubDate>Wed, 03 Apr 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Awareness Month - Webinar #5 Video - How to Use Azure Site Recovery for Backup, Migration, and Disaster Recovery</title>
 <description><![CDATA[<p>This last session in the Azure Awareness month covered Azure Site Recovery services which include Azure Backup and Azure Recovery Services. The session discussed how to provide Backup and Disaster Recovery. It also provided a brief strategy overview for Migration. As usual this is demo heavy session.</p>
 <p>You can check the video here:</p>
