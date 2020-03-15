@@ -6,6 +6,41 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 04 - Differences in IOPS</title>
+<description><![CDATA[<p>Deciding the <strong>IOPS</strong> (Input/Output Operations Per Second, pronounced i-ops) is one of the most critical decisions when building your virtual machines. But this is also one of the most ignored aspect of the deployment. This performance measurement of your OS and Data Disks can alter your experience significantly. Let's see how it differs in the two platforms.</p>
+<h2>In AWS</h2>
+<ul>
+<li>For <strong>Provisioned IOPS (SSD)</strong> volumes, you can provision up to 50 IOPS per GiB. Provisioned IOPs (SSD) volumes can deliver up to 64000 IOPS, and are best for EBS-optimized instances.  </li>
+<li>For <strong>General Purpose (SSD)</strong> volumes, baseline performance is 3 IOPS per GiB, with a minimum of 100 IOPS and a maximum of 16000 IOPS. General Purpose (SSD) volumes
+under 1000 GiB can burst up to 3000 IOPS. </li>
+<li><strong>Magnetic volumes</strong>, previously called standard volumes, deliver 100 IOPS on average and
+can burst to hundreds of IOPS.</li>
+</ul>
+<p>If you remember when we were building the EC2 instances, you have the option to Add/tweak the storage in Step 4. Here you can see that you can select between the different type of Storage disks that we discussed above.</p>
+<img src="/images/15843064775e6e992deb746.png" alt="AWS1 - Adding Storage">
+<p>When you select the &quot;<em>Provisioned IOPS SSD (io1)</em>&quot; option, the column for IOPS turns into a text box and you can tweak the IOPS to your hearts' content. Please note that you can not go beyond 50 IOPS per GiB. E.g. If the disk you selected is 8 GiB in Size then you can't go beyond a maximum of 400 IOPS (i.e. 8x50). </p>
+<img src="/images/15843064855e6e9935a9a3a.png" alt="AWS2 - Provisioned IOPS">
+<h2>In Azure</h2>
+<ul>
+<li><strong>Premium SSD disks</strong> offer high-performance, low-latency disk support for I/O-intensive applications and production workloads. </li>
+<li><strong>Standard SSD Disks</strong> is a cost-effective storage option optimized for workloads that need consistent performance at lower IOPS levels. </li>
+<li>Use <strong>Standard HDD</strong> disks for Dev/Test scenarios and less critical workloads at the lowest cost.</li>
+</ul>
+<p>You can directly update the type of the disk for OS under the second screen of the Virtual Machine creation wizard i.e. under Disks category. You can select between the three types. The OS Disk size is determined by the VM Size selected. This can be increased later. You can click on &quot;Create and attach a new disk&quot; link and add a Data Disk to the VM.</p>
+<img src="/images/15843065145e6e99523d907.png" alt="Az1 Storage Types">
+<p>In the &quot;Create a new disk&quot; wizard, you can change the size of the disk. Now here you are shown based on the size, how much IOPS you will get. Microsoft defines different tiers and provides IOPS based on the tier selected i.e. based on the disk size selected. Below you see the IOPS for Premium SSD tiers.</p>
+<img src="/images/15843065925e6e99a0ab239.png" alt="Az2 ">
+<p>Below you see the IOPS for Standard SSD tiers.</p>
+<img src="/images/15843066025e6e99aa74b35.png" alt="Az3 ">
+<p>Below you see the IOPS for Standard HHD tiers.</p>
+<img src="/images/15843066145e6e99b6ba2ee.png" alt="Az4 ">
+<p>For more information, refer to the below links:
+<a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/managed-disks-overview" target="_blank">Microsoft Azure managed disks</a></p>
+<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html" target="_blank">Amazon EBS Volume Types</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-04-differences-in-iops</link>
+<pubDate>Thu, 09 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 03 - Creating Azure VMs</title>
 <description><![CDATA[<p>In the previous post, we covered how to create EC2 instances in AWS. You can revisit that post here: <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances/" target="_blank">Creating EC2 Instances in AWS</a></p>
 <p>In this post, we will check how to create a Virtual Machine in Azure. If you know one, it is very easy to translate the information to another platform. The essential part is to look out for the quirks of each platform and note how these differ from each other. Let's dive in.</p>
