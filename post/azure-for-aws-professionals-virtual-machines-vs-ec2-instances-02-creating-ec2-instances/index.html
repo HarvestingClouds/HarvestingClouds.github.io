@@ -80,28 +80,28 @@
 
                 <p class="post-content"><p>In this post, we will look at how to create EC2 instances in Amazon Web Service (AWS). </p>
 <p>You start by selecting the option to create or launch the instances.</p>
-<img src="/images/15842968305e6e737ee3631.jpg" alt="1 Creating Instances">
+<img src="/images/15842968305e6e737ee3631.png" alt="1 Creating Instances">
 <p>In the Instance creation wizard, the breadcrumb at the top show you where in the wizard you are currently at. The first screen is to choose an image for the VM or EC2 instance. The image is called an <strong>Amazon machine image</strong> or <strong>AMI</strong>. You can also search for an AMI. Under the image name, you can view the details of the image. Make sure you select the right image. Click on the Select button once decided. </p>
-<img src="/images/15842969145e6e73d2658a7.jpg" alt="2 Chossing the Amazon Machine Image or AMI">
+<img src="/images/15842969145e6e73d2658a7.png" alt="2 Chossing the Amazon Machine Image or AMI">
 <p>Next, select the instance type. Here you are selecting the actual compute details i.e. the number of vCPUs and the Memory in GiB. You are billed as per the instance type you select.</p>
-<img src="/images/15842969265e6e73dee9670.jpg" alt="3 Choosing the Instance Type">
+<img src="/images/15842969265e6e73dee9670.png" alt="3 Choosing the Instance Type">
 <p>Next, you select various Instance details. This screen is very vast and makes your deployment very configurable. In this post we will not go into each of these settings. Here you can decide to create an Auto Scaling Group, request spot instances, add placement group, select domain join directory, decide shutdown behavior etc. One key setting that you select here is the <strong>Networking details</strong>. You select your VPC (Virtual Private Cloud) network and the subnet for the instance.</p>
-<img src="/images/15842971165e6e749cf1a37.jpg" alt="4_1 Configuring Instance Details">
-<img src="/images/15842971535e6e74c198196.jpg" alt="4_2 Configuring Instance Details">
-<p>Next you configure the Storage details. You can tweak the default storage assigned and can also add more storage. Based on the IOPS requirements you select the Volume type. You can encrypt the storage as well.</p>
-<img src="/images/15842971705e6e74d26ab0e.jpg" alt="5 Adding Storage">
+<img src="/images/15842971165e6e749cf1a37.png" alt="4_1 Configuring Instance Details">
+<img src="/images/15842971535e6e74c198196.png" alt="4_2 Configuring Instance Details">
+<p>Next, you configure the Storage details. You can tweak the default storage assigned and can also add more storage. Based on the IOPS requirements you select the Volume type. You can encrypt the storage as well.</p>
+<img src="/images/15842971705e6e74d26ab0e.png" alt="5 Adding Storage">
 <p>Next, you add tags to your instance and underlying volumes. <strong>Tags</strong> are a great way to categorize resources. Below is just an example of a couple of tags assigned to the instance and underlying volumes. </p>
-<img src="/images/15842972035e6e74f3d9532.jpg" alt="6 Adding Tags">
+<img src="/images/15842972035e6e74f3d9532.png" alt="6 Adding Tags">
 <p>Now you configure the firewall on the Instance via Security Groups. You can create a new one or select an existing one. This is where you decide what can connect to your instance and what can not. In the screenshot below the RDP connectivity on port 3389 is open. Please note that the Source of &quot;0.0.0.0/0&quot; means that it is open for all internet. It is highly recommended that you change this setting to only your IP addresses from where you will connect. </p>
-<img src="/images/15842972215e6e750563278.jpg" alt="7 Configuring Security Group">
+<img src="/images/15842972215e6e750563278.png" alt="7 Configuring Security Group">
 <p>Finally, you review the details. If you need to view the details in detail just expand that category. Click the Edit buttons on the right to edit that setting. Hit Launch to trigger the instance provisioning.</p>
-<img src="/images/15842972375e6e751597c65.jpg" alt="8 Review details">
+<img src="/images/15842972375e6e751597c65.png" alt="8 Review details">
 <p>Before the instance can be provisioned, you are prompted with a popup to select a key pair or create a new one. This is a Private and Public key pair that is used to authenticate. You download and keep the Private key. Note that you can only download the Private key at the time of creation. You will not be able to access it later.</p>
-<img src="/images/15842972555e6e7527c1a67.jpg" alt="9 Creating or selecting Key Pair to connect to Instance">
-<p>You can check the launch status in the next screen. </p>
-<img src="/images/15842972725e6e75383a905.jpg" alt="10 Checking Launch Status">
-<p>Finally, you can view and check your instance. It will be listed in the list under Instances section under EC2 service.</p>
-<img src="/images/15842972895e6e7549a0a1c.jpg" alt="11 Instance in the console">
+<img src="/images/15842972555e6e7527c1a67.png" alt="9 Creating or selecting Key Pair to connect to Instance">
+<p>You can check the launch status on the next screen. </p>
+<img src="/images/15842972725e6e75383a905.png" alt="10 Checking Launch Status">
+<p>Finally, you can view and check your instance. It will be listed in the list under the Instances section under EC2 service.</p>
+<img src="/images/15842972895e6e7549a0a1c.png" alt="11 Instance in the console">
 <p>For more information, refer to the below links:
 <a href="https://aws.amazon.com/ec2/" target="_blank">Amazon Elastic Compute Cloud (EC2)</a></p></p>
                 <br/><br/>
