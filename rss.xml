@@ -6,6 +6,42 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 03 - Creating Azure VMs</title>
+<description><![CDATA[<p>In the previous post, we covered how to create EC2 instances in AWS. You can revisit that post here: <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances/" target="_blank">Creating EC2 Instances in AWS</a></p>
+<p>In this post, we will check how to create a Virtual Machine in Azure. If you know one, it is very easy to translate the information to another platform. The essential part is to look out for the quirks of each platform and note how these differ from each other. Let's dive in.</p>
+<p>You can create the VM resource in one of the two ways. Either by navigating to &quot;<em>Create a resource</em>&quot; and then finding the VM you want to build. </p>
+<img src="/images/15843034905e6e8d82e484b.png" alt="1 Create a resource">
+<p>Or you can navigate to the VMs section and then click on the <strong>Add</strong> button to build the VM.</p>
+<img src="/images/15843034975e6e8d89a4c41.png" alt="2 Add a VM">
+<p>You are presented with the &quot;Create a virtual machine&quot; wizard. Here you ensure that the subscription and the resource group is correct. <strong>Subscription</strong> is how to buy and use Azure. You have different plans like &quot;Pay as you go&quot; when subscribing to Azure. <strong>Resource Groups</strong> are nothing but a logical grouping of resources in Azure. </p>
+<p>You also provide the Instance details like the name of the VM, the region where the VM will be deployed, any redundancy options etc.</p>
+<p>You select the VM image that you want to build e.g. Windows Server 2016 Datacenter. This is similar to selecting the AMI or Amazon machine image in AWS. The Size decides how many vCPUs and Memory in GiB is allocated to the VM. This is also how you will be billed per month for the VM. Note that you only pay when the VM is running. If the VM is in Stopped and Deallocated state then you are not charged for the Compute consumption of the VM. Then you are only charged for the storage component of the VM.</p>
+<img src="/images/15843035325e6e8dacf35ce.png" alt="3_1 Creating a VM">
+<p>When you scroll down, this is also where you provide the credentials to be used with the VM. You also configure allowed ports for the VM. E.g. RDP is opened here. You can tweak this further in the Networking section ahead.</p>
+<p>The biggest difference here is that, if you own a Windows license on-premises then you can leverage that to <strong>save up to 49%</strong> in Azure via Azure Hybrid Benefit.</p>
+<img src="/images/15843035705e6e8dd294530.png" alt="3_1 Creating a VM">
+<p>Next, you select the VM disks. Here based on your selection you get faster and slower IOPS. You can also add new or existing disks as data disks.</p>
+<img src="/images/15843035815e6e8ddde551f.png" alt="4 VM Disks">
+<p>In the networking section, you can select an existing Virtual network or create a new one. You can select subnets within that network or create a new one as well. Same goes for the Public IP. This is also where you can tweak the network security group.</p>
+<img src="/images/15843035995e6e8def01069.png" alt="5 VM Networking">
+<p>Under the management section, you can configure Monitoring options. You can also configure Auto-shutdown configurations on the VM as well.</p>
+<img src="/images/15843036465e6e8e1e54144.png" alt="6 VM Management">
+<p>Under Advanced settings, you can install Microsoft or Third party extensions like Chef, Puppet etc. You can also automate one time installations in your linux VMs via Cloud init. </p>
+<img src="/images/15843036705e6e8e36f01e4.png" alt="7 Advanced settings">
+<p>Next, you can assign Tags to categorize the resources. These come in very handy when creating billing reports. Note that not just the VM but underlying resources like OS and Data disks, network interface cards, etc. will also be tagged.</p>
+<img src="/images/15843037255e6e8e6d768e8.png" alt="8 Adding Tags">
+<p>Finally, you can review the settings. Azure also gives you the option to &quot;Download a template for automation&quot;. This is your ARM Template including the JSON file, that you can leverage to automate or replicate the deployment of the instance multiple times across different environments.</p>
+<img src="/images/15843037395e6e8e7b2fa0c.png" alt="9 Reviewing Settings and Creating VM">
+<p>Then you are prompted with a screen where you can check the deployment status. Once succeeded you are provided with a link to directly navigate to the virtual machine resource.</p>
+<img src="/images/15843037505e6e8e86bb433.png" alt="10 Checking Deployment Status">
+<p>You can now view the provisioned VM under the Virtual Machines section.</p>
+<img src="/images/15843037695e6e8e99a4c74.png" alt="11 Viewing the provisioned VM">
+<p>For more information, refer to the below links:
+<a href="https://azure.microsoft.com/en-us/services/virtual-machines/" target="_blank">Microsoft Azure Virtual Machines</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-03-creating-azure-vms</link>
+<pubDate>Thu, 02 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 02 - Creating EC2 Instances</title>
 <description><![CDATA[<p>In this post, we will look at how to create EC2 instances in Amazon Web Service (AWS). </p>
 <p>You start by selecting the option to create or launch the instances.</p>

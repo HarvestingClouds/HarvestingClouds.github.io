@@ -72,38 +72,43 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances">Azure for AWS professionals - Virtual Machines vs EC2 instances - 02 - Creating EC2 Instances</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-03-creating-azure-vms">Azure for AWS professionals - Virtual Machines vs EC2 instances - 03 - Creating Azure VMs</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Apr 29, 2019
+                    <span class="glyphicon glyphicon-time"></span> May 02, 2019
                 
                         <hr>
-                        <p class="post-content"><p>In this post, we will look at how to create EC2 instances in Amazon Web Service (AWS). </p>
-<p>You start by selecting the option to create or launch the instances.</p>
-<img src="/images/15842968305e6e737ee3631.png" alt="1 Creating Instances">
-<p>In the Instance creation wizard, the breadcrumb at the top show you where in the wizard you are currently at. The first screen is to choose an image for the VM or EC2 instance. The image is called an <strong>Amazon machine image</strong> or <strong>AMI</strong>. You can also search for an AMI. Under the image name, you can view the details of the image. Make sure you select the right image. Click on the Select button once decided. </p>
-<img src="/images/15842969145e6e73d2658a7.png" alt="2 Chossing the Amazon Machine Image or AMI">
-<p>Next, select the instance type. Here you are selecting the actual compute details i.e. the number of vCPUs and the Memory in GiB. You are billed as per the instance type you select.</p>
-<img src="/images/15842969265e6e73dee9670.png" alt="3 Choosing the Instance Type">
-<p>Next, you select various Instance details. This screen is very vast and makes your deployment very configurable. In this post we will not go into each of these settings. Here you can decide to create an Auto Scaling Group, request spot instances, add placement group, select domain join directory, decide shutdown behavior etc. One key setting that you select here is the <strong>Networking details</strong>. You select your VPC (Virtual Private Cloud) network and the subnet for the instance.</p>
-<img src="/images/15842971165e6e749cf1a37.png" alt="4_1 Configuring Instance Details">
-<img src="/images/15842971535e6e74c198196.png" alt="4_2 Configuring Instance Details">
-<p>Next, you configure the Storage details. You can tweak the default storage assigned and can also add more storage. Based on the IOPS requirements you select the Volume type. You can encrypt the storage as well.</p>
-<img src="/images/15842971705e6e74d26ab0e.png" alt="5 Adding Storage">
-<p>Next, you add tags to your instance and underlying volumes. <strong>Tags</strong> are a great way to categorize resources. Below is just an example of a couple of tags assigned to the instance and underlying volumes. </p>
-<img src="/images/15842972035e6e74f3d9532.png" alt="6 Adding Tags">
-<p>Now you configure the firewall on the Instance via Security Groups. You can create a new one or select an existing one. This is where you decide what can connect to your instance and what can not. In the screenshot below the RDP connectivity on port 3389 is open. Please note that the Source of &quot;0.0.0.0/0&quot; means that it is open for all internet. It is highly recommended that you change this setting to only your IP addresses from where you will connect. </p>
-<img src="/images/15842972215e6e750563278.png" alt="7 Configuring Security Group">
-<p>Finally, you review the details. If you need to view the details in detail just expand that category. Click the Edit buttons on the right to edit that setting. Hit Launch to trigger the instance provisioning.</p>
-<img src="/images/15842972375e6e751597c65.png" alt="8 Review details">
-<p>Before the instance can be provisioned, you are prompted with a popup to select a key pair or create a new one. This is a Private and Public key pair that is used to authenticate. You download and keep the Private key. Note that you can only download the Private key at the time of creation. You will not be able to access it later.</p>
-<img src="/images/15842972555e6e7527c1a67.png" alt="9 Creating or selecting Key Pair to connect to Instance">
-<p>You can check the launch status on the next screen. </p>
-<img src="/images/15842972725e6e75383a905.png" alt="10 Checking Launch Status">
-<p>Finally, you can view and check your instance. It will be listed in the list under the Instances section under EC2 service.</p>
-<img src="/images/15842972895e6e7549a0a1c.png" alt="11 Instance in the console">
+                        <p class="post-content"><p>In the previous post, we covered how to create EC2 instances in AWS. You can revisit that post here: <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances/" target="_blank">Creating EC2 Instances in AWS</a></p>
+<p>In this post, we will check how to create a Virtual Machine in Azure. If you know one, it is very easy to translate the information to another platform. The essential part is to look out for the quirks of each platform and note how these differ from each other. Let's dive in.</p>
+<p>You can create the VM resource in one of the two ways. Either by navigating to &quot;<em>Create a resource</em>&quot; and then finding the VM you want to build. </p>
+<img src="/images/15843034905e6e8d82e484b.png" alt="1 Create a resource">
+<p>Or you can navigate to the VMs section and then click on the <strong>Add</strong> button to build the VM.</p>
+<img src="/images/15843034975e6e8d89a4c41.png" alt="2 Add a VM">
+<p>You are presented with the &quot;Create a virtual machine&quot; wizard. Here you ensure that the subscription and the resource group is correct. <strong>Subscription</strong> is how to buy and use Azure. You have different plans like &quot;Pay as you go&quot; when subscribing to Azure. <strong>Resource Groups</strong> are nothing but a logical grouping of resources in Azure. </p>
+<p>You also provide the Instance details like the name of the VM, the region where the VM will be deployed, any redundancy options etc.</p>
+<p>You select the VM image that you want to build e.g. Windows Server 2016 Datacenter. This is similar to selecting the AMI or Amazon machine image in AWS. The Size decides how many vCPUs and Memory in GiB is allocated to the VM. This is also how you will be billed per month for the VM. Note that you only pay when the VM is running. If the VM is in Stopped and Deallocated state then you are not charged for the Compute consumption of the VM. Then you are only charged for the storage component of the VM.</p>
+<img src="/images/15843035325e6e8dacf35ce.png" alt="3_1 Creating a VM">
+<p>When you scroll down, this is also where you provide the credentials to be used with the VM. You also configure allowed ports for the VM. E.g. RDP is opened here. You can tweak this further in the Networking section ahead.</p>
+<p>The biggest difference here is that, if you own a Windows license on-premises then you can leverage that to <strong>save up to 49%</strong> in Azure via Azure Hybrid Benefit.</p>
+<img src="/images/15843035705e6e8dd294530.png" alt="3_1 Creating a VM">
+<p>Next, you select the VM disks. Here based on your selection you get faster and slower IOPS. You can also add new or existing disks as data disks.</p>
+<img src="/images/15843035815e6e8ddde551f.png" alt="4 VM Disks">
+<p>In the networking section, you can select an existing Virtual network or create a new one. You can select subnets within that network or create a new one as well. Same goes for the Public IP. This is also where you can tweak the network security group.</p>
+<img src="/images/15843035995e6e8def01069.png" alt="5 VM Networking">
+<p>Under the management section, you can configure Monitoring options. You can also configure Auto-shutdown configurations on the VM as well.</p>
+<img src="/images/15843036465e6e8e1e54144.png" alt="6 VM Management">
+<p>Under Advanced settings, you can install Microsoft or Third party extensions like Chef, Puppet etc. You can also automate one time installations in your linux VMs via Cloud init. </p>
+<img src="/images/15843036705e6e8e36f01e4.png" alt="7 Advanced settings">
+<p>Next, you can assign Tags to categorize the resources. These come in very handy when creating billing reports. Note that not just the VM but underlying resources like OS and Data disks, network interface cards, etc. will also be tagged.</p>
+<img src="/images/15843037255e6e8e6d768e8.png" alt="8 Adding Tags">
+<p>Finally, you can review the settings. Azure also gives you the option to &quot;Download a template for automation&quot;. This is your ARM Template including the JSON file, that you can leverage to automate or replicate the deployment of the instance multiple times across different environments.</p>
+<img src="/images/15843037395e6e8e7b2fa0c.png" alt="9 Reviewing Settings and Creating VM">
+<p>Then you are prompted with a screen where you can check the deployment status. Once succeeded you are provided with a link to directly navigate to the virtual machine resource.</p>
+<img src="/images/15843037505e6e8e86bb433.png" alt="10 Checking Deployment Status">
+<p>You can now view the provisioned VM under the Virtual Machines section.</p>
+<img src="/images/15843037695e6e8e99a4c74.png" alt="11 Viewing the provisioned VM">
 <p>For more information, refer to the below links:
-<a href="https://aws.amazon.com/ec2/" target="_blank">Amazon Elastic Compute Cloud (EC2)</a></p></p>
+<a href="https://azure.microsoft.com/en-us/services/virtual-machines/" target="_blank">Microsoft Azure Virtual Machines</a></p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -118,7 +123,6 @@
                                 <a href="http://HarvestingClouds.com/tag/microsoft">microsoft</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/microsoftazure">microsoftazure</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/virtualmachine">virtualmachine</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/vm">vm</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -181,11 +185,11 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-03-creating-azure-vms">Azure for AWS professionals - Virtual Machines vs EC2 instances - 03 - Creating Azure VMs</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances">Azure for AWS professionals - Virtual Machines vs EC2 instances - 02 - Creating EC2 Instances</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-01-finding-resources">Azure for AWS professionals - Virtual Machines vs EC2 instances - 01 - Finding resources</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/general-availability-alert-azure-ad-password-protection-is-now-ga">General Availability Alert - Azure AD Password Protection is now GA</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-awareness-month-webinar-5-video-how-to-use-azure-site-recovery-for-backup-migration-and-disaster-recovery">Azure Awareness Month - Webinar #5 Video - How to Use Azure Site Recovery for Backup, Migration, and Disaster Recovery</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/windows-virtual-desktop-in-azure-public-preview-alert">Windows Virtual Desktop in Azure - Public Preview Alert</a></li>
                 </ul>
             </div>
         
@@ -212,7 +216,7 @@
                         <strong>Archives</strong>
                     </div>
         
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2019">April 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/march-2019">March 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/february-2019">February 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2019">January 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/december-2018">December 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2018">November 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2018">October 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2018">September 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2018">August 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2018">July 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/march-2018">March 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/february-2018">February 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2018">January 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/december-2017">December 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2017">November 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2017">October 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2017">January 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2016">November 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2016">October 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2019">May 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2019">April 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/march-2019">March 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/february-2019">February 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2019">January 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/december-2018">December 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2018">November 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2018">October 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2018">September 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2018">August 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2018">July 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/march-2018">March 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/february-2018">February 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2018">January 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/december-2017">December 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2017">November 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2017">October 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2017">January 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2016">November 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2016">October 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
                 </div>
         
             <!-- Tags -->
@@ -224,17 +228,17 @@
                     <div class="panel-body">
                         <ul class="list-inline">
                             <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/net" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">net</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ActiveDirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">activedirectory</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AD</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ActiveDirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ad</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AD</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/analytics" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">analytics</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/app" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">app</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/applicationinsights" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ApplicationInsights</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/appservice" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">appservice</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="22 total posts" data-original-title="23 total posts" data-toggle="tooltip">ARM</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/armtemplates" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">armtemplates</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">ASR</a>
@@ -244,7 +248,7 @@
 <a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="25 total posts" data-original-title="26 total posts" data-toggle="tooltip">automation</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/awareness" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">awareness</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/aws" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">aws</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/aws" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">aws</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azue" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">azue</a>
 <a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="74 total posts" data-original-title="75 total posts" data-toggle="tooltip">azure</a>
 <a style="font-size: 18px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="29 total posts" data-original-title="30 total posts" data-toggle="tooltip">Azure</a>
@@ -291,7 +295,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/dynamic" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dynamic</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/dynamicdatamasking" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dynamicdatamasking</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ebook" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ebook</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ec" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ec</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ec" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">ec</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/email" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">email</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/encryption" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">encryption</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/endpoint" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">endpoint</a>
@@ -324,8 +328,8 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcsa" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsa</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcsd" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsd</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcse" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcse</a>
-<a style="font-size: 28px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoft" title="69 total posts" data-original-title="70 total posts" data-toggle="tooltip">microsoft</a>
-<a style="font-size: 28px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoftazure" title="68 total posts" data-original-title="69 total posts" data-toggle="tooltip">microsoftazure</a>
+<a style="font-size: 29px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoft" title="70 total posts" data-original-title="71 total posts" data-toggle="tooltip">microsoft</a>
+<a style="font-size: 28px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoftazure" title="69 total posts" data-original-title="70 total posts" data-toggle="tooltip">microsoftazure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/migration" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">migration</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/navigate" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">navigate</a>
@@ -389,7 +393,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/udr" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">udr</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtual" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">virtual</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualdesktop" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualdesktop</a>
-<a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="16 total posts" data-original-title="17 total posts" data-toggle="tooltip">virtualmachine</a>
+<a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="17 total posts" data-original-title="18 total posts" data-toggle="tooltip">virtualmachine</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualnetwork" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">virtualnetwork</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/visualstudio" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">VisualStudio</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="14 total posts" data-original-title="15 total posts" data-toggle="tooltip">vm</a>
