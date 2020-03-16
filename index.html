@@ -72,21 +72,22 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-3">Azure for AWS professionals - Virtual Machines vs EC2 instances - 09 - Backing up EC2 instances Part 3</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-11-protecting-azure-vms">Azure for AWS professionals - Virtual Machines vs EC2 instances - 11 - Protecting Azure VMs</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Jun 09, 2019
+                    <span class="glyphicon glyphicon-time"></span> Jun 16, 2019
                 
                         <hr>
-                        <p class="post-content"><p>In this post, we will see how to create an <strong>on-demand backup</strong>. This type of backup is typically needed when you want to perform a critical operation and this can impact the functionality of the instance. Therefore, prior to performing such an operation, you want to ensure that you have the latest backup of the instance. </p>
-<p>You access the option to create the on-demand backup by navigating to the AWS Backup service and then selecting the &quot;<strong>Protected resources</strong>&quot;. You will see the button for creating the on-demand backup here.</p>
-<img src="/images/15843382255e6f15318fc95.png" alt="">
-<p>In the wizard to create the on-demand backup, you provide the resource for which you want to create the on-demand backup. You can trigger the backup rightaway or delay the start by specifying a backup window. You can also set the expiration of the backup under Lifecycle. You can select an existing vault or create a new one. </p>
-<img src="/images/15843382305e6f15364af96.png" alt="">
-<p>Finally, you select the IAM role that backup service will use to impersonate while creating the recovery point. Optionally you can also create and apply Tags. </p>
-<img src="/images/15843382345e6f153ab16b9.png" alt="">
-<p>For more information please check this link:
-<a href="https://aws.amazon.com/backup/?nc2=h_ql_prod_st_bu" target="_blank">AWS Backup</a></p></p>
+                        <p class="post-content"><p>For your mission-critical workloads, you can configure active replication of the VM to secondary geolocation. You can do so right from the settings of the VM. Under the hood it uses <strong>Azure Site Recovery</strong> to set up this disaster recovery.</p>
+<p>Navigate to your VM and under the Operations category, click on the &quot;<strong>Disaster recovery</strong>&quot;. Here you can select the Target region for the replication. This region becomes your secondary location and should be factored in your Disaster Recovery strategy. E.g. There should be appropriate infrastructure in place to allow for connectivity to this secondary location. </p>
+<img src="/images/15843419925e6f23e8d325d.png" alt="Disaster Recovery for a VM">
+<p>Next, you have Advanced Settings for the Disaster Recovery. You can select the settings for the <strong>Target</strong>, i.e. what the Resource Group, Virtual Network etc. is going to be in the target region, if we failover the VM to that region. You also have <strong>Storage</strong> settings, where you define the cache storage account (used to replicate the managed disks) and the source to target managed disk mappings. </p>
+<p>Replication and Extension settings can also be updated here if you require. I recommend that under Replication settings you ensure that the vault selected is appropriate one if you have more than one vaults in your environment. </p>
+<img src="/images/15843419995e6f23ef8d7d2.png" alt="DR advanced settings">
+<p>Finally, review all the settings and start the replication by click on the button as shown below. It triggers an initial replication. </p>
+<img src="/images/15843420065e6f23f61141f.png" alt="Review and start replication">
+<p>You always have an active copy of the VM in the secondary location (delay of up to 15 mins, depending on your replication policy). You can trigger Failover if anything goes wrong in the primary region. Once the DR even is over, you can also Failback to the original location.</p>
+<p>For more information check this link: <a href="https://docs.microsoft.com/en-us/azure/site-recovery/azure-to-azure-quickstart" target="_blank">Set up disaster recovery to a secondary Azure region for an Azure VM</a></p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -97,9 +98,12 @@
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
                                 <a href="http://HarvestingClouds.com/tag/aws">aws</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/azuresiterecovery">azuresiterecovery</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/disasterrecovery">disasterrecovery</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/ec2">ec2</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/microsoft">microsoft</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/microsoftazure">microsoftazure</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/recovery">recovery</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/virtualmachine">virtualmachine</a>&nbsp;&nbsp;
                         </div>
                 
@@ -163,11 +167,11 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-11-protecting-azure-vms">Azure for AWS professionals - Virtual Machines vs EC2 instances - 11 - Protecting Azure VMs</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-10-backing-up-azure-vms">Azure for AWS professionals - Virtual Machines vs EC2 instances - 10 - Backing up Azure VMs</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-3">Azure for AWS professionals - Virtual Machines vs EC2 instances - 09 - Backing up EC2 instances Part 3</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-2">Azure for AWS professionals - Virtual Machines vs EC2 instances - 09 - Backing up EC2 instances Part 2</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-1">Azure for AWS professionals - Virtual Machines vs EC2 instances - 09 - Backing up EC2 instances Part 1</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-08-azure-vm-insights">Azure for AWS professionals - Virtual Machines vs EC2 instances - 08 - Azure VM Insights</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-07-boot-diagnostics-of-azure-vms">Azure for AWS professionals - Virtual Machines vs EC2 instances - 07 - Boot Diagnostics of Azure VMs</a></li>
                 </ul>
             </div>
         
@@ -208,8 +212,8 @@
                             <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/net" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">net</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">activedirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ActiveDirectory</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AD</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/analytics" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">analytics</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/app" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">app</a>
@@ -219,29 +223,29 @@
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/armtemplates" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">armtemplates</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">asr</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/audit" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">audit</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/auditing" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">auditing</a>
 <a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="25 total posts" data-original-title="26 total posts" data-toggle="tooltip">automation</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/awareness" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">awareness</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/aws" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">aws</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/aws" title="12 total posts" data-original-title="13 total posts" data-toggle="tooltip">aws</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azue" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">azue</a>
 <a style="font-size: 18px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="29 total posts" data-original-title="30 total posts" data-toggle="tooltip">Azure</a>
-<a style="font-size: 29px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="74 total posts" data-original-title="75 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 28px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="74 total posts" data-original-title="75 total posts" data-toggle="tooltip">azure</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">azureautomation</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureawareness" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureawareness</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azurepolicies" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">azurepolicies</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureportal" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureportal</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">azureresourcemanager</a>
 <a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">AzureResourceManager</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">azureresourcemanager</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresecurity" title="18 total posts" data-original-title="19 total posts" data-toggle="tooltip">azuresecurity</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">azuresiterecovery</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">azuresiterecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresql" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">azuresql</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/backup" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">backup</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/backup" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">backup</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/bash" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">bash</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/blob" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">blob</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/book" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">book</a>
@@ -264,7 +268,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/desktop" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">desktop</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/detection" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">detection</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/diagnose" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">diagnose</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/disasterrecovery" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">disasterrecovery</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/disasterrecovery" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">disasterrecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/dnamicdatamask" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dnamicdatamask</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/document" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">document</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/documentation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">documentation</a>
@@ -273,7 +277,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/dynamic" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dynamic</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/dynamicdatamasking" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dynamicdatamasking</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ebook" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ebook</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ec" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">ec</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ec" title="12 total posts" data-original-title="13 total posts" data-toggle="tooltip">ec</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/email" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">email</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/encryption" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">encryption</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/endpoint" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">endpoint</a>
@@ -307,8 +311,8 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcsa" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsa</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcsd" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsd</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcse" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcse</a>
-<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoft" title="78 total posts" data-original-title="79 total posts" data-toggle="tooltip">microsoft</a>
-<a style="font-size: 29px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoftazure" title="77 total posts" data-original-title="78 total posts" data-toggle="tooltip">microsoftazure</a>
+<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoft" title="80 total posts" data-original-title="81 total posts" data-toggle="tooltip">microsoft</a>
+<a style="font-size: 29px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoftazure" title="79 total posts" data-original-title="80 total posts" data-toggle="tooltip">microsoftazure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/migration" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">migration</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/navigate" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">navigate</a>
@@ -326,7 +330,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/query" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">query</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/querylanguage" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">querylanguage</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/rbac" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">rbac</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/recovery" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">recovery</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/recovery" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">recovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/remoteapp" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">RemoteApp</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/report" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">report</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/reservedinstances" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">reservedinstances</a>
@@ -372,10 +376,10 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/udr" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">udr</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtual" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">virtual</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualdesktop" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualdesktop</a>
-<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">virtualmachine</a>
+<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="26 total posts" data-original-title="27 total posts" data-toggle="tooltip">virtualmachine</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualnetwork" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">virtualnetwork</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/visualstudio" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">VisualStudio</a>
-<a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="14 total posts" data-original-title="15 total posts" data-toggle="tooltip">vm</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="14 total posts" data-original-title="15 total posts" data-toggle="tooltip">vm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vmware" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">VMWare</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/webdevelopment" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">webdevelopment</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/webinar" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">webinar</a>

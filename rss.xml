@@ -6,6 +6,33 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 11 - Protecting Azure VMs</title>
+<description><![CDATA[<p>For your mission-critical workloads, you can configure active replication of the VM to secondary geolocation. You can do so right from the settings of the VM. Under the hood it uses <strong>Azure Site Recovery</strong> to set up this disaster recovery.</p>
+<p>Navigate to your VM and under the Operations category, click on the &quot;<strong>Disaster recovery</strong>&quot;. Here you can select the Target region for the replication. This region becomes your secondary location and should be factored in your Disaster Recovery strategy. E.g. There should be appropriate infrastructure in place to allow for connectivity to this secondary location. </p>
+<img src="/images/15843419925e6f23e8d325d.png" alt="Disaster Recovery for a VM">
+<p>Next, you have Advanced Settings for the Disaster Recovery. You can select the settings for the <strong>Target</strong>, i.e. what the Resource Group, Virtual Network etc. is going to be in the target region, if we failover the VM to that region. You also have <strong>Storage</strong> settings, where you define the cache storage account (used to replicate the managed disks) and the source to target managed disk mappings. </p>
+<p>Replication and Extension settings can also be updated here if you require. I recommend that under Replication settings you ensure that the vault selected is appropriate one if you have more than one vaults in your environment. </p>
+<img src="/images/15843419995e6f23ef8d7d2.png" alt="DR advanced settings">
+<p>Finally, review all the settings and start the replication by click on the button as shown below. It triggers an initial replication. </p>
+<img src="/images/15843420065e6f23f61141f.png" alt="Review and start replication">
+<p>You always have an active copy of the VM in the secondary location (delay of up to 15 mins, depending on your replication policy). You can trigger Failover if anything goes wrong in the primary region. Once the DR even is over, you can also Failback to the original location.</p>
+<p>For more information check this link: <a href="https://docs.microsoft.com/en-us/azure/site-recovery/azure-to-azure-quickstart" target="_blank">Set up disaster recovery to a secondary Azure region for an Azure VM</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-11-protecting-azure-vms</link>
+<pubDate>Sun, 16 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 10 - Backing up Azure VMs</title>
+<description><![CDATA[<p>Backing up a VM is the best practice from an operations perspective. The VM should be backed up on periodic intervals and these backups should be retained for some time as well.</p>
+<p>You can backup a VM, right from its settings. After you navigate to Azure Virtual Machines, click on the VM for which you want to configure backup. Then under the Operations category, click on the <strong>Backup</strong> option. Here to configure the backup, you select the Backup vault, Resource Group and the backup policy. </p>
+<p>You can also create a new backup policy on the fly. To do so, you need to click on the &quot;Create (or edit) a new policy&quot; link.</p>
+<img src="/images/15843409935e6f2001ca1a5.png" alt="Azure Backup from VM settings">
+<p>Under the create or edit Backup policy, you can configure how often and when the backup should be taken. You also configure for how long the backup should be retained. </p>
+<img src="/images/15843411115e6f207736d06.png" alt="Creating backup policy">
+<p>For more information check this link: <a href="https://docs.microsoft.com/en-in/azure/backup/backup-azure-vms-first-look-arm" target="_blank">Back up an Azure VM from the VM settings</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-10-backing-up-azure-vms</link>
+<pubDate>Wed, 12 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 09 - Backing up EC2 instances Part 3</title>
 <description><![CDATA[<p>In this post, we will see how to create an <strong>on-demand backup</strong>. This type of backup is typically needed when you want to perform a critical operation and this can impact the functionality of the instance. Therefore, prior to performing such an operation, you want to ensure that you have the latest backup of the instance. </p>
 <p>You access the option to create the on-demand backup by navigating to the AWS Backup service and then selecting the &quot;<strong>Protected resources</strong>&quot;. You will see the button for creating the on-demand backup here.</p>
