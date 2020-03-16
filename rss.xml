@@ -6,6 +6,76 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 08 - Azure VM Insights</title>
+<description><![CDATA[<p><strong>Azure Monitor for VMs</strong> or <strong>Insights</strong> is the enhanced version of the analytics on the VM. It includes the performance and dependencies related data for the virtual machines.</p>
+<p>This is very similar to &quot;<strong>Enable Detailed Monitoring</strong>&quot; using <strong>CloudWatch</strong> in AWS.</p>
+<h2>Setting Up</h2>
+<p>To set this up navigate to your virtual machine and then click on the <strong>Insights</strong> section under the <strong>Monitoring</strong> category. Click on the Enable button to start. Note that the VM should be in the running state for you to be able to enable this setting.</p>
+<img src="/images/15843246435e6ee023c978d.png" alt="Enabling Insights">
+<p>If you get any error while clicking on the Enable button, ensure that the VM is running. If it is already running then wait and retry after few minutes. Sometimes the VM bootup takes time to finish (depending on the Compute capacity of the VM).</p>
+<p>For the VM Insights to work, it needs to connect to a &quot;<strong>Log Analytics Workspace</strong>&quot;. When you will click Enable button, it will ask to connect to a workspace. When you click Enable, a Microsoft Monitoring Agent (MMA) extension is installed on the VM and is connected to the workspace selected.</p>
+<img src="/images/15843246505e6ee02a4df1a.png" alt="Configuring Workspace for Insights">
+<h2>Analytics Data</h2>
+<p>Once successfully enabled and the extension deployed, the Insights data will update to show actual data from the VM. If you don't see it or can't refresh the view, then navigate to any other section and come back to this section to force the refresh.</p>
+<p>The first tab is for the <strong>Performance</strong> data. This shows you interactive and filterable data. Some of the data includes Logical Disk Performance, CPU Utilization, Available Memory, Logical Disk analytics, Network data etc. </p>
+<img src="/images/15843250275e6ee1a30f550.png" alt="Performance Data">
+<p>Next tab is for Map or Service Map. This shows you the dependencies data. This shows you a graphical and interactive view of how the VM interacts with other VMs and outside the network, what ports it is communicating on, etc.</p>
+<img src="/images/15843250335e6ee1a9cf2a0.png" alt="Service Map">
+<p>For more information check this link:</p>
+<p><a href="https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview" target="_blank">Azure Monitor for VMs</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-08-azure-vm-insights</link>
+<pubDate>Fri, 31 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 07 - Boot Diagnostics of Azure VMs</title>
+<description><![CDATA[<p>Azure VM <strong>Boot diagnostics</strong> lets you diagnose what is happening under the hood during the boot up. If you face any issues with the boot up of the VM then this is where you will go to find the diagnostics data. </p>
+<h3>Where is this setting</h3>
+<p>You can find this setting when you navigate to the Azure Virtual Machines section and click on your VM. Under the settings menu, scroll all the way down to &quot;Support + troubleshooting&quot; category. You will find the Boot diagnostics option here.</p>
+<img src="/images/15843185965e6ec88424baa.png" alt="Boot Diagnostics setting">
+<h3>Setting up Boot Diagnostics</h3>
+<p>If this is not set up for your VM then you can do so easily. All you need is a storage account. You can also change this anytime. Click on the settings button at the top. Click <strong>On</strong> and select the storage account. You can also create a new one if you require it.</p>
+<img src="/images/15843192145e6ecaee02936.png" alt="Configuring Boot Diagnostics">
+<h3>Checking the Boot Diagnostics data</h3>
+<p>You can view the screenshot to check where the VM is at with the boot-up process under the hood. If you are not able to log into the VM then this is the main area you want to check to see if the VM is ready (or if there are any updates being applied to the VM). </p>
+<img src="/images/15843195455e6ecc39b0efa.png" alt="Screenshots">
+<p>You can download the Serial logs data for the VM as well if you need to do advanced troubleshooting. This is especially helpful in case of the Linux VMs.</p>
+<img src="/images/15843195525e6ecc401b32d.png" alt="Serial log">
+<p>For more information click here:
+<a href="https://docs.microsoft.com/en-us/azure/virtual-machines/troubleshooting/boot-diagnostics" target="_blank">How to use boot diagnostics to troubleshoot virtual machines in Azure</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-07-boot-diagnostics-of-azure-vms</link>
+<pubDate>Wed, 29 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 06 - Monitoring of Azure VMs</title>
+<description><![CDATA[<p>Within Azure, when you click on the Virtual Machine, you have a lot of control of various aspects of the VM right from one screen. When you navigate to the Azure Virtual Machines section, you are presented with all the virtual machines in your environment. Here when you click on any one VM, a new screen pops up. Microsoft calls this as new <strong>Blade</strong>. In this blade, the Overview section is the first one and is selected by default. It shows you lots of information for the VM like it's a subscription, resource group, public and private IP address, a button to connect to the VM, etc. </p>
+<p>When you scroll a little bit down you get the out of the box metrics for the VM. These metrics include CPU data, Network data, Disk IOPS, etc. You also have time filter at the top.</p>
+<img src="/images/15843136965e6eb56023024.png" alt="Azure VM Overview">
+<p>From the left-hand side menu of the selected Virtual Machine, scroll down to the Monitoring section. This has loads of information and options. The key option you want to explore is the &quot;<strong>Metrics</strong>&quot; option. Here you can build custom graphs to monitor different metrics by adding each one. Click on Add Metrics and select the same from the drop-down list. The graph will update to show all the selected matrices.</p>
+<img src="/images/15843137025e6eb566f2239.png" alt="Azure VM Metrics">
+<p>We will explore more options in the subsequent posts as well.</p>
+<p>For more information, refer to the below links:
+<a href="https://azure.microsoft.com/en-us/services/virtual-machines/" target="_blank">Microsoft Azure Virtual Machines</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-06-monitoring-of-azure-vms</link>
+<pubDate>Sat, 25 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 05 - Monitoring of EC2 instances</title>
+<description><![CDATA[<p>Monitoring is centralized in AWS via <strong>Cloud Watch</strong>. Few out of the box metrics are integrated into the EC2 instances screen. Various in-depth and detailed metrics are available in the Cloud Watch product. </p>
+<p>To view the monitoring data, navigate to the EC2 section and then go to the Instances section. Click on the EC2 instance for which you want to view the metrics. Then in the below section, you are showed the data for the instance. Here select the <strong>Monitoring</strong> tab. You have different settings here that can help you with monitoring your EC2 instance. The key settings include:</p>
+<ul>
+<li><strong>CloudWatch alarms</strong> - this is a way to set up the alarms or alerts</li>
+<li><strong>Enable Detailed Monitoring</strong> - this is to enable advanced diagnostics data capturing on the instance. With this, you get detailed monitoring of various metrics that you can also control</li>
+<li><strong>View all CloudWatch metrics</strong> - when you click on this option, it will take you to CloudWatch resource. There you can pick and choose various metrics for your EC2 instance and visualize the same.</li>
+<li>The <strong>bottom pane</strong> is where by default the key metrics for the instance are displayed. These metrics include CPU Utilization, Disk Read and Writes, Network analytics etc.</li>
+</ul>
+<img src="/images/15843122925e6eafe48349d.png" alt="AWS EC2 Instance monitoring">
+<p>For more information, refer to the below links:
+<a href="https://azure.microsoft.com/en-us/services/virtual-machines/" target="_blank">Microsoft Azure Virtual Machines</a></p>
+<p><a href="https://aws.amazon.com/ec2/" target="_blank">Amazon Elastic Compute Cloud (EC2)</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-05-monitoring-of-ec2-instances</link>
+<pubDate>Wed, 15 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 04 - Differences in IOPS</title>
 <description><![CDATA[<p>Deciding the <strong>IOPS</strong> (Input/Output Operations Per Second, pronounced i-ops) is one of the most critical decisions when building your virtual machines. But this is also one of the most ignored aspect of the deployment. This performance measurement of your OS and Data Disks can alter your experience significantly. Let's see how it differs in the two platforms.</p>
 <h2>In AWS</h2>
@@ -28,11 +98,12 @@ can burst to hundreds of IOPS.</li>
 </ul>
 <p>You can directly update the type of the disk for OS under the second screen of the Virtual Machine creation wizard i.e. under Disks category. You can select between the three types. The OS Disk size is determined by the VM Size selected. This can be increased later. You can click on &quot;Create and attach a new disk&quot; link and add a Data Disk to the VM.</p>
 <img src="/images/15843065145e6e99523d907.png" alt="Az1 Storage Types">
-<p>In the &quot;Create a new disk&quot; wizard, you can change the size of the disk. Now here you are shown based on the size, how much IOPS you will get. Microsoft defines different tiers and provides IOPS based on the tier selected i.e. based on the disk size selected. Below you see the IOPS for Premium SSD tiers.</p>
+<p>In the &quot;Create a new disk&quot; wizard, you can change the size of the disk. Now here you are shown based on the size, how much IOPS you will get. Microsoft defines different tiers and provides IOPS based on the tier selected i.e. based on the disk size selected. </p>
+<p>Below you see the IOPS for <strong>Premium SSD</strong> tiers.</p>
 <img src="/images/15843065925e6e99a0ab239.png" alt="Az2 ">
-<p>Below you see the IOPS for Standard SSD tiers.</p>
+<p>Below you see the IOPS for <strong>Standard SSD</strong> tiers.</p>
 <img src="/images/15843066025e6e99aa74b35.png" alt="Az3 ">
-<p>Below you see the IOPS for Standard HHD tiers.</p>
+<p>Below you see the IOPS for <strong>Standard HDD</strong> tiers.</p>
 <img src="/images/15843066145e6e99b6ba2ee.png" alt="Az4 ">
 <p>For more information, refer to the below links:
 <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/managed-disks-overview" target="_blank">Microsoft Azure managed disks</a></p>
