@@ -6,6 +6,143 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure for AWS professionals - Batch Services - AWS - Working with AWS Batch Service</title>
+<description><![CDATA[<h3>AWS Batch Service</h3>
+<p>AWS Batch Service has below main concepts:</p>
+<ul>
+<li><strong>Job</strong> - This is what is sent for execution to the Job Queue. This is the main work that you are trying to accomplish e.g. processing an image.</li>
+<li><strong>Job Queue</strong> - When you submit a job, it is sent to a job queue. This has linked compute resources. <strong>AWS Batch Scheduler</strong> places the job on a compute resource within a compute resource environment</li>
+<li><strong>Compute Environment</strong> - This is the logical grouping of compute resources i.e. EC2 instances that can receive jobs from a job queue</li>
+</ul>
+<p>AWS Batch automatically scales out your compute resources when there are jobs to work upon. It later scales it back when the job queue is empty.</p>
+<h3>Working with the Service</h3>
+<p>AWS Batch service can be found under all Services and then navigating to the Compute category. Click on <strong>Batch</strong> to launch the AWS Batch service.</p>
+<img src="/images/15844277715e7072fb5c4a9.png" alt="AWS Batch Service">
+<p>Here you are presented with the default &quot;<strong>Getting Started</strong>&quot; screen.  It gives you an overview of how the service works. </p>
+<p>Clicking on the Getting Started button takes you to the wizard to set up the service.</p>
+<img src="/images/15844277935e707311769a0.png" alt="Getting Started">
+<p>First, you define the Job and its details. You start with where you want to run your job and defining a run time for the job.</p>
+<img src="/images/15844278105e707322dfe0c.png" alt="Defining the Job and it's Runtime">
+<p>Next, you provide the container properties for the job. The command you define is what is executed when this job is run. This is where you define what compute power will be required to run the job. E.g. 2 vCPUs and 2000 MiB of Memory. You also define the number of attempts to be made to run the job successfully. Job Execution timeout is another thing you define here in the number of seconds. If the job does not finish up in this time then it is stopped and moved to the Failed queue.</p>
+<img src="/images/15844278255e70733101239.png" alt="Container Properties">
+<p>You can optionally define parameters and environment variables as well. </p>
+<img src="/images/15844278375e70733d56135.png" alt="Job Parameters and Environment Variables">
+<p>Under <strong>Step 2</strong>, you define the compute environment and set up the Job queue. Compute environment is where the job is run. You define its behavior in this section. You can choose between:</p>
+<ul>
+<li><strong>On-Demand</strong> - for any critical and business impacting jobs. This is most predictable</li>
+<li><strong>Spot</strong> - very cost-effective option. The cost savings are up to 90% of the On-demand option. It uses the EC2 Spot instances to do so.</li>
+</ul>
+<p>You can also define a minimum, desired and a maximum number of vCPUs here.</p>
+<img src="/images/15844278495e70734941b33.png" alt="Compute Environment">
+<p>You set up your networking next. Also, this is where you define the Job Queue and link it to the Compute environment. </p>
+<img src="/images/15844278605e707354139bf.png" alt="Networking for Compute Environment and Job Queue">
+<p>Hit <strong>Create</strong> and you should be all set. AWS creates the underlying resources and shows you the status. </p>
+<h3>Viewing the Resources and Logs</h3>
+<p>You can now navigate to the Dashboard and view the newly created resources.</p>
+<img src="/images/15844692465e7114fe97480.png" alt="AWS Batch Dashboard"> 
+<p>You can navigate to the Jobs section and find your job that was executed. It will look like a guid. Click on this job. In the popup, click on &quot;<strong>View logs</strong>&quot;. This will take you to the CloudWatch window and will show you the logs.</p>
+<img src="/images/15844695395e71162355651.png" alt="Log for the Jobs"> 
+<p>That's all there is to it. You can define simple jobs like execute some applications to very complex jobs like image and video processing.</p>
+<p>For more information check these link: </p>
+<ul>
+<li><a href="https://aws.amazon.com/batch/" target="_blank">AWS Batch service</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-batch-services-aws-working-with-aws-batch-service</link>
+<pubDate>Sat, 29 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Batch Services - Azure - 4 Creating Tasks in a Batch Job</title>
+<description><![CDATA[<p>So far we have seen that to consume Azure Batch service we need a <strong>Batch account</strong>. Within this Batch account, we create a <strong>Pool</strong>. Next, we create a <strong>Job</strong> that runs on this Pool. Finally, every Job has multiple <strong>Tasks</strong> that are actually executed within the Job (and on the Pool)</p>
+<p>In this post, we will create on such Task in a Job. </p>
+<p>To create a Task, you begin by navigating to your Batch account (if not there already). Next click on the Jobs option under the Features category. Find your job and click on the same.</p>
+<img src="/images/15843974675e6ffc9b9660f.png" alt="Navigating to Jobs">
+<p>Within the job, find the Tasks menu and click on that. You will see &quot;+Add&quot; option here to add a new Task.</p>
+<img src="/images/15843974735e6ffca175d8f.png" alt="Tasks section">
+<p>Next, a wizard will open up to add a new Task. Here primarily you provide a task Id, display name and Command line. Note, that this command line is where you specify what to run. </p>
+<p>A simple command line may look like below. This displays the Batch environment variable and then waits for 180 seconds. This is used in the screenshots and later output.</p>
+<p><code>cmd /c "set AZ_BATCH &amp; timeout /t 180 &gt; NUL"</code></p>
+<p>A more complex command line, to execute an app package may look like:</p>
+<p><code>cmd /c %AZ_BATCH_APP_PACKAGE_app01#1.0%\\myapp.exe</code></p>
+<img src="/images/15843974795e6ffca706a55.png" alt="Add Task wizard">
+<p>You can configure more settings like environment settings, task dependencies, and Application packages etc. Hit Submit when ready to create the Task.</p>
+<img src="/images/15843975025e6ffcbe8536b.png" alt="More settings">
+<p>To check the output of the task execution we will check the output stream. Navigate to your task. And then under the &quot;<strong>Task Files</strong>&quot; section click on the &quot;<strong>Files on node</strong>&quot; option. Here you will find the &quot;<strong>stdout.txt</strong>&quot; file. Click on this file to view the output.</p>
+<img src="/images/15843975075e6ffcc3b3739.png" alt="Checking the output">
+<p>The output stream (for the simple command line from above) will look like below. You can download this for offline usage if you require it.</p>
+<img src="/images/15843975135e6ffcc9bc468.png" alt="Checking the Task output stream">
+<p>This concludes a brief overview of how to consume Azure Batch service.</p>
+<p>For more information check this link: <a href="https://azure.microsoft.com/en-us/services/batch/#overview" target="_blank">Azure Batch service</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-batch-services-azure-4-creating-tasks-in-a-batch-job</link>
+<pubDate>Tue, 25 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Batch Services - Azure - 3 Creating Job in the Batch Pool</title>
+<description><![CDATA[<p>Once you have a Batch account set up with a Pool (of compute nodes) running, you will need a job running in this pool to consume all that computing power. </p>
+<p>To create a Job in the Batch Pool, you first navigate to your Batch account (if not there already). Then scroll down and select <strong>Jobs</strong>. Click on &quot;<strong>+Add</strong>&quot; to add new jobs.</p>
+<img src="/images/15843967305e6ff9ba4b7bb.png" alt="Jobs section">
+<p>In the blade to Add Job, provide a unique Job Id. Add this job to the appropriate pool by clicking on the &quot;<em>Select a pool to run the job on</em>&quot;. This will bring up another blade where all your pools will be listed. Selected the one you want and hit <strong>Select</strong> button.</p>
+<img src="/images/15843967365e6ff9c0b0724.png" alt="Adding a New Job">
+<p>Now that the job is also ready, you can start adding Tasks to this job. You can add multiple tasks to one job. We will check that next. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-batch-services-azure-3-creating-job-in-the-batch-pool</link>
+<pubDate>Mon, 24 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Batch Services - Azure - 2 Creating Batch Pool in an Account</title>
+<description><![CDATA[<p>Once we have a Batch account, we will need a pool of compute nodes. You can do that by creating a Pool in the Batch account. </p>
+<p>First, we will need to navigate to the Batch account. To do this first go to <strong>All Services</strong> in the Azure portal menu. </p>
+<img src="/images/15843956425e6ff57adedc0.png" alt="All Services">
+<p>Next, find <strong>Batch accounts</strong> under the Compute category.</p>
+<img src="/images/15843956515e6ff58397575.png" alt="Batch accounts">
+<p>Under Batch accounts, all your accounts will be listed. Click on the account in which you want to create the pool. Under the account settings, scroll down to the <strong>Features</strong> category and click on <strong>Pools</strong>. You will not have any pools. Click on &quot;+Add&quot; to create a new one.</p>
+<img src="/images/15843956625e6ff58e9db8f.png" alt="Option to Add Pool">
+<p>&quot;<strong>Add Pool</strong>&quot; blade will open up. Provide a pool ID and an optional display name. Provide the Operating system details that you want to target. You can use custom images or one of the marketplace image. E.g. in the screenshot below, the marketplace image for windows server 2016 Datacenter with small disk is selected.</p>
+<img src="/images/15843956685e6ff594b25aa.png" alt="Pool details and OS settings">
+<p>You can provide the node size for each compute node in the pool. You will be charged based on the no. of nodes and the size of each node. You can provide Scale settings. It can be pre-configured as shown below or can be set to auto-scale. </p>
+<img src="/images/15843957245e6ff5cc6fc98.png" alt="Node size and scaling options">
+<p>You can next configure a task to start on setting up the pool. You also have various other settings to customize the pool setup. </p>
+<img src="/images/15843957335e6ff5d50a9f0.png" alt="Task and other optional settings">
+<p>If you scroll down further, you will see the options to configure virtual network connectivity to the pool. E.g. if you want to run an app that has some network dependency, that you can also run that by configuring your pool to connect to your virtual network.  </p>
+<p>If you already own Windows Server licenses then you can configure Hybrid Use Benefit or HUB licensing. Note that this option will only show up for Windows server related compute nodes.</p>
+<img src="/images/15843957385e6ff5dacde39.png" alt="Virtual Network and HUB license settings">
+<p>Click Ok to create the pool. </p>
+<p>In the next post, we will create a Job in this pool. </p>
+<p>For more information check this link: <a href="https://azure.microsoft.com/en-us/services/batch/#overview" target="_blank">Azure Batch service</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-batch-services-azure-2-creating-batch-pool-in-an-account</link>
+<pubDate>Fri, 21 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Batch Services - Azure - 1 Creating Batch account</title>
+<description><![CDATA[<p>To consume the Azure Batch service, you need a <strong>Batch account</strong>. </p>
+<p>To create a Batch account navigate to Create a new service (from the 3 lines on the top left corner), then in the menu under the Compute category, find the &quot;<strong>Batch Services</strong>&quot; option.</p>
+<img src="/images/15843943555e6ff0737c790.png" alt="Creating Batch Service">
+<p>Just like any other resource, you provide a Subscription and a Resource Group. You also provide a name for the account. This name should only contain lowercase letters and should be unique in Azure's DNS space. This is used to uniquely identify your Batch account. You also select the location for your Batch service account.</p>
+<img src="/images/15843943635e6ff07b6da9f.png" alt="New Batch account wizard">
+<p>Next, you have advanced settings. Here you select the Pool allocation mode. You have a Batch Service or User subscription as two options. This setting specifies whether to provision compute node pools in a subscription managed by the Batch service, or in the subscription in which you are creating the new Batch account. In most cases, this should be set to default i.e. managed by Batch service.</p>
+<img src="/images/15843943555e6ff0737c790.png" alt="Advanced options">
+<p>Next, you can apply tags to categorize the resource and get better control over automation, reporting, and billing, etc. </p>
+<img src="/images/15843944135e6ff0ad21a6f.png" alt="Applying Tags">
+<p>Finally, you review the setting and create the Batch account. Note that you have the option to download the template here so that you can automate the deployment next time you need to deploy this or deploy it uniformly across different environments. </p>
+<img src="/images/15843944265e6ff0ba4b4a2.png" alt="Review and Create">
+<p>Azure immediately shows you the status of your deployment. This screen refreshes automatically and will update to show when the deployment is complete.</p>
+<img src="/images/15843944415e6ff0c9c13df.png" alt="Deployment Status">
+<p>In the next post, we will look at creating a <strong>Pool</strong> within the Batch account.</p>
+<p>For more information check this link: <a href="https://azure.microsoft.com/en-us/services/batch/#overview" target="_blank">Azure Batch service</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-batch-services-azure-1-creating-batch-account</link>
+<pubDate>Thu, 20 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Batch Services - Azure vs AWS</title>
+<description><![CDATA[<p>Both Microsoft Azure and Amazon Web Services provide Batch service. These services are very similar in nature as they are trying to solve the same issue. Both are trying to run large-scale parallel and high-performance computing applications efficiently in the cloud.</p>
+<p>We will explore each platform's service in detail in the upcoming posts.</p>
+<p>For more information check these link: </p>
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/services/batch/#overview" target="_blank">Azure Batch service</a></li>
+<li><a href="https://aws.amazon.com/batch/" target="_blank">AWS Batch service</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-batch-services-azure-vs-aws</link>
+<pubDate>Wed, 19 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 11 - Protecting Azure VMs</title>
 <description><![CDATA[<p>For your mission-critical workloads, you can configure active replication of the VM to secondary geolocation. You can do so right from the settings of the VM. Under the hood it uses <strong>Azure Site Recovery</strong> to set up this disaster recovery.</p>
 <p>Navigate to your VM and under the Operations category, click on the &quot;<strong>Disaster recovery</strong>&quot;. Here you can select the Target region for the replication. This region becomes your secondary location and should be factored in your Disaster Recovery strategy. E.g. There should be appropriate infrastructure in place to allow for connectivity to this secondary location. </p>
