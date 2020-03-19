@@ -6,6 +6,113 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure SQL Basics - Managing Backups for Azure SQL Database</title>
+<description><![CDATA[<p>In this post, we will discuss managing the backup for the Azure SQL database. Azure takes the back up at the most convenient time when the database is not much in use. We can’t control at what time the back up took but we can set up the days/week/years for how long we want to keep the backup files.</p>
+<p>To manage the backup setting, go to the <strong>Azure SQL Server</strong> under which our Azure SQL Database has been created. Navigate to the &quot;<em>Manage Backups</em>&quot; option under the Settings.
+Select the Azure SQL database from the list. Once you select the Database, it will enable the &quot;Configure retention&quot; button.</p>
+<img src="/images/15845865455e72df31cd825.png" alt="Managing Backups">
+<p>The configurations have mainly four types of retentions configurations settings.</p>
+<ol>
+<li><strong>PITR – Point in time restore</strong> configuration – This allows you to set the number of days you want to keep the backup. All Azure SQL databases (single, pooled, and managed instance databases) have a default backup retention period of seven days. You can change it to 14/21/28/35 days.</li>
+<li>
+<p><strong>Long-Term Retention Configurations</strong></p>
+<ul>
+<li><strong>Weekly LTR backups</strong> – You can specify the number between 1 and 520. This is for how many weeks you want to retains the backup.</li>
+<li><strong>Monthly LTR backups</strong> – You must specify the number between 1 and 120 month(s) and select the Months from the dropdown.</li>
+</ul>
+</li>
+</ol>
+<img src="/images/15845865535e72df397b04a.png" alt="Configuring Retention policies">]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-managing-backups-for-azure-sql-database</link>
+<pubDate>Fri, 29 Nov 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Azure Active Directory Admin - manage Azure SQL via AD Users</title>
+<description><![CDATA[<p><strong>Azure active directory admin</strong> allows managing the other active directory user to manage the Azure SQL database. SSMS provides an option to connect with the server using the &quot;<em>Azure active directory authentication</em>&quot;. To leverage this functionality, the Azure active directory admin has to provide access to the user.</p>
+<p>In this post, we are looking at this option and checking the way to add the Azure Active directory admin through Azure Portal.</p>
+<p>Go to All resources-&gt; SQL server -&gt; Settings-&gt; Active Directory Admin-&gt; Set Admin</p>
+<img src="/images/15845861825e72ddc67f2d8.png" alt="Set AD Admin option">
+<p>Add the user from the select dropdown. Once selected, you will be able to see the added user on the home page of active directory admin.</p>
+<img src="/images/15845861945e72ddd2511bd.png" alt="Add Admin wizard">
+<p>Now you are ready to have this AD user manage the database. Now this user can add other AD users to the database (instead of simple SQL users)</p>
+<p>To get more details about this, please refer to the Microsoft official link <a href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-aad-authentication" target="_blank">Use Azure Active Directory Authentication for authentication with SQL</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-azure-active-directory-admin-manage-azure-sql-via-ad-users</link>
+<pubDate>Wed, 27 Nov 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Creating Elastic Pool in Azure SQL Server</title>
+<description><![CDATA[<p>Azure SQL Database <strong>Elastic Pools</strong> are a simple, cost-effective solution for managing and scaling multiple databases that have varying and unpredictable usage demands. The databases in an elastic pool are on a single Azure SQL Database server and share a set number of resources at a set price.</p>
+<p>Elastic Pools exist only at the SQL Server level in Azure. These help to pool resources when you are building multiple databases on the same server. In this post, we will be checking how to create the elastic pool in the <strong>Azure SQL Server</strong>.</p>
+<p>To Navigate to the creation of an elastic pool, go to the server under which you want to create the elastic pool. </p>
+<img src="/images/15845857295e72dc01424da.png" alt="Option for New Elastic Pool">
+<p>To create the elastic pool, mention the valid name in the Elastic pool name section.
+To select the compute and storage, click on the configure elastic pool and it will show below the blade.</p>
+<img src="/images/15845857355e72dc07bc483.png" alt="Basic settings for new Elastic Pool creation">
+<p>Here you assign the total number of DTU’s and max database size of all the databases in the elastic pool.</p>
+<img src="/images/15845857475e72dc1334a17.png" alt="Standard configurations">
+<p>In the Databases section, you can add the databases which you want to add into this elastic pool that we are creating.</p>
+<img src="/images/15845857535e72dc1985b1e.png" alt="Adding Databases to the Elastic Pool">
+<p>In the ‘Per database settings’ section, you can provide the min and max DTU assigned to each database added in the elastic pool.</p>
+<img src="/images/15845857635e72dc23df3bd.png" alt="Per database settings">
+<p>You can also apply Tags during the creation (which is highly recommended). Finally, you review and create the resources. The deployment will be submitted and the pool created for you. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-creating-elastic-pool-in-azure-sql-server</link>
+<pubDate>Sat, 23 Nov 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Automatic Tuning and Performance recommendation</title>
+<description><![CDATA[<p>In this post, we will be discussing the performance recommendation and automatic tuning provided by Azure.   To make your SQL database perform better we need some insights to get better recommendations and it is provided by default by Azure.</p>
+<h3>Performance Recommendations</h3>
+<p>Performance overview provides a summary of your database performance and helps you with performance tuning and troubleshooting.</p>
+<img src="/images/15845063695e71a601ea489.png" alt="Performance recommendation">
+<p>(Per Microsoft documentation) the performance recommendation options available for single and pooled databases in Azure SQL Database are:</p>
+<ul>
+<li>Create index recommendations - Recommends the creation of indexes that may improve the performance of your workload.    </li>
+<li>Drop index recommendations - Recommends removal of redundant and duplicate indexes daily, except for unique indexes, and indexes that were not used for a long time (&gt;90 days). Please note that this option is not compatible with applications using partition switching and index hints. Dropping unused indexes is not supported for Premium and Business Critical service tiers.   </li>
+<li>Parameterize queries recommendations (preview) - Recommends forced parameterization in cases when you have one or more queries that are constantly being recompiled but end up with the same query execution plan.  </li>
+<li>Fix schema issues recommendations (preview) - Recommendations for schema correction appear when the SQL Database service notices an anomaly in the number of scheme-related SQL errors that are happening on your SQL database. Microsoft is currently deprecating the &quot;Fix schema issue&quot; recommendations.</li>
+</ul>
+<h3>Automatic Tuning</h3>
+<img src="/images/15845063775e71a60998da5.png" alt="Automatic Tuning">
+<p>Azure SQL Database automatic tuning provides peak performance and stable workloads through continuous performance tuning based on AI and machine learning.
+Automatic tuning is a fully managed intelligent performance service that uses built-in intelligence to continuously monitor queries executed on a database, and it automatically improves their performance. This is achieved by dynamically adapting the database to the changing workloads and applying tuning recommendations. Automatic tuning learns horizontally from all databases on Azure through AI and it dynamically improves its tuning actions. The longer a database runs with automatic tuning on, the better it performs.
+Azure SQL Database automatic tuning might be one of the most important features that you can enable to provide stable and peak performing database workloads.</p>
+<p>What can automatic tuning do for you:</p>
+<ul>
+<li>Automated performance tuning of Azure SQL databases</li>
+<li>Automated verification of performance gains</li>
+<li>Automated rollback and self-correction</li>
+<li>Tuning history</li>
+<li>Tuning action T-SQL scripts for manual deployments</li>
+<li>Proactive workload performance monitoring</li>
+<li>Scale-out capability on hundreds of thousands of databases</li>
+<li>The positive impact to DevOps resources and the total cost of ownership</li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-automatic-tuning-and-performance-recommendation</link>
+<pubDate>Thu, 21 Nov 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Query Performance Insights</title>
+<description><![CDATA[<p>In this post, we will be discussing the Azure SQL Database query performance insights which provide intelligent query analysis for single and pooled databases. It helps identify the top resource consuming and long-running queries in your workload. This helps you find the queries to optimize to improve overall workload performance and efficiently use the resource that you are paying for.</p>
+<p>To Navigate to the Query Performance Insight, navigate to All resources-&gt; SQL Databases-&gt; Select the database. Under the menu on the left hand side go to the Intelligent Performance category -&gt; select Query Performance Insights</p>
+<ul>
+<li>The panel describes the Deeper insight into your databases resource (DTU) consumption</li>
+<li>Details on top database queries by CPU, duration, and execution count </li>
+<li>The ability to drill down into details of a query, to view the query text and history of resource utilization</li>
+<li>Annotations that show performance recommendations from database advisors</li>
+</ul>
+<img src="/images/15845060335e71a4b13cd66.png" alt="Query Performance Insights">
+<p>Optionally, you can select the Custom tab to customize the view for:</p>
+<ul>
+<li>Metric (CPU, duration, execution count).</li>
+<li>Time interval (last 24 hours, past week, or past month).</li>
+<li>The number of queries.</li>
+<li>Aggregation function.</li>
+</ul>
+<img src="/images/15845060425e71a4ba590a8.png" alt="Customizations">]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-query-performance-insights</link>
+<pubDate>Sun, 17 Nov 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure SQL Basics - Advanced Data Security</title>
 <description><![CDATA[<p>In this post, we will be discussing the <strong>Advanced Data Security</strong> feature on the Azure SQL Servers. It is enabled at the server level and will be automatically enabled at the database level. It is a charged service. Once you enabled it, you will be charged per month for this service.
 To access the advanced data security, go to all resources and select the server for which you want to enable the ADS to feature and go to the Security section, and click on advanced data security.</p>
@@ -136,6 +243,82 @@ Data source by default is None.  If you want to import the backup file of some e
 <p>That's all there is to it.</p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-sql-basics-finding-azure-sql-databases-in-the-azure-portal</link>
 <pubDate>Sun, 20 Oct 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - Azure - 04 Viewing the Run History of VMSS</title>
+<description><![CDATA[<p>When you have an active Microsoft Azure <strong>Virtual Machine Scale Set</strong> or <strong>VMSS</strong> it is imperative that you monitor how your VMSS has been running over the period of time. This helps you tweak the autoscaling settings of your VMSS. You should monitor this continuously for any critical applications in your environment. Ideally, to begin with, this should be done in a test or QA environment with a simulated load on your application running for a long period of time. And then you should keep doing this in upper environments as a best practice. </p>
+<p>To access this setting, navigate to your VM scale set and navigate to the &quot;Scaling&quot; option under the Settings menu. Here click on the &quot;<strong>Run history</strong>&quot; tab. All the history for how the instances were scaled up and down will be visible here. You can filter the data based on time to reduce the window. At the bottom you also have Operations list view what operations occurred on the VMSS and at what times. </p>
+<img src="/images/15845936465e72faeeb9450.png" alt="Scaling Run History">
+<p>This option should be used in conjunction with the performance data for the app or workloads running on your VMSS for a complete picture. If you view any performance drops, you should tweak the settings to scale out earlier than what it is configured. E.g. If the scale out operation is configured if the Average CPU percentage goes above 75% and you still see performance hits, then you should tweak that setting from 75% to a lower value like 65%. </p>
+<p>There may also be some times during the day or week when there will be more load on your application. To ease this, you can add a schedule for scaling based on time. Note that there is no single best combination. The best settings for you depends upon your application. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-azure-04-viewing-the-run-history-of-vmss</link>
+<pubDate>Sat, 20 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - Azure - 03 Updating the Scaling policies of VMSS</title>
+<description><![CDATA[<p>In Microsoft Azure <strong>Virtual Machine Scale Sets</strong> or <strong>VMSS</strong>, understanding and setting up appropriate scaling settings is paramount. You have the option to either set the scaling settings manually or set them to auto-scale based on different criteria. </p>
+<p>To access these settings, navigate to your VMSS and go to the <strong>Scaling</strong> option under Settings. Ensure that &quot;Custom autoscale&quot; is selected. Then click on the &quot;<strong>Configure</strong>&quot; button from the top.</p>
+<img src="/images/15845924135e72f61d7810a.png" alt="Scaling configurations">
+<p>In the next screen, you can &quot;scale based on a metric&quot; to scale based on different metrics on the VM. Examples of such metrics include CPU percentage, Memory consumption, etc. Here you define: </p>
+<ul>
+<li><strong>Scale out</strong> - This is the setting for how the instance count should <em>increase</em>. E.g. if the Average CPU percentage increases beyond 75% then increase the count by 1.</li>
+<li><strong>Scale in</strong> - This is the setting for how the instance count should <em>decrease</em>. E.g. if the Average CPU percentage decreases below 25% then decrease the count by 1.</li>
+</ul>
+<p>You also have the option to scale to a specific instance count based on a time schedule.</p>
+<p>Another setting you have control over here is to set the <strong>Instance Limits</strong>. You define a minimum and a maximum number of instances with what the default or an initial number of instances is going to be. Note that the default value can only be between a minimum and a maximum number of instances. </p>
+<img src="/images/15845924185e72f622efeb6.png" alt="Scaling rules">
+<p>Another key point to note is that you can add multiple scaling conditions to ensure autoscaling occurs as you require. Now that you have the autoscaling set up, next you should simulate load on your application running on VMSS and validate that you are not facing any performance issues. If you do then you should tweak the autoscaling numbers.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-azure-03-updating-the-scaling-policies-of-vmss</link>
+<pubDate>Thu, 18 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - Azure - 02 View Running Instances in VMSS</title>
+<description><![CDATA[<p>When you have a Microsoft Azure <strong>Virtual Machine Scale Set</strong> or <strong>VMSS</strong> you want to view how many and what instances are running in your VMSS. You can do so very easily by navigating to your VMSS. </p>
+<p>From All Service -&gt; go to Virtual machine scale sets. Click on your VMSS to open up in it's own blade. Then from the left hand menu, navigate to the Settings category and click on <strong>Instances</strong>. This will show you all the instances in your VMSS along with their status. </p>
+<p>E.g. in the screen below, you can view 3 instances, 1 of which is in Running state and 2 are in Creating state. </p>
+<img src="/images/1111111.png" alt="Running Instances in VMSS">]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-azure-02-view-running-instances-in-vmss</link>
+<pubDate>Mon, 15 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - Azure - 01 Creating VMSS - Part 2</title>
+<description><![CDATA[<p>This is part 2 of the post for creating Microsoft Azure <strong>Virtual Machine Scale Sets</strong> or <strong>VMSS</strong>. Let's dive right in.</p>
+<p>In continuation of the creation of VMSS wizard, next up you have the <strong>Scaling</strong> options. You provide the initial instance count. If you want to set up autoscaling, I recommend you to set up Custom policy rather than manual. You can automate based on various conditions like CPU exceeding certain thresholds etc. You can also tweak these settings once the VMSS has been set up and can add multiple criteria.</p>
+<img src="/images/15845877715e72e3fb7a2ce.png" alt="Scaling Options">
+<p>Next, you have Management settings. Here you can provide Upgrade policies, set up monitoring for diagnostics, Identity, Automatic OS upgrades, Instance termination notifications etc. </p>
+<img src="/images/15845877795e72e40354599.png" alt="Management settings">
+<p>To monitor health, you can set up rules here. E.g. Let's say you have a web app running on the VMs in VMSS. You can set to monitor health by monitoring port HTTP 80 at a particular path of the app running on your workloads.</p>
+<img src="/images/15845896975e72eb811e4d8.png" alt="Monitoring Health">
+<p>Various advanced settings can be set up on the next screen. If you are running Linux VMs in your VMSS then you can leverage &quot;Cloud init&quot; to automate the configurations on the start-up of every new instance in VMSS. Proximity placement groups ensure that the different instances in your VMSS are deployed closer to each other physically in a datacenter. </p>
+<p>You can also decide between the VM generation etc. </p>
+<img src="/images/15845897035e72eb874aa00.png" alt="Advanced settings">
+<p>You can provide Tags next to better categorize the resources. </p>
+<img src="/images/15845897085e72eb8ccda8e.png" alt="Tags">
+<p>Finally, you review all the settings and hit Create to create the VMSS.</p>
+<img src="/images/15845897145e72eb9290347.png" alt="Review and Create">]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-azure-01-creating-vmss-part-2</link>
+<pubDate>Fri, 12 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - Azure - 01 Creating VMSS - Part 1</title>
+<description><![CDATA[<p>Microsoft Azure <strong>Virtual Machine Scale Sets</strong> or <strong>VMSS</strong> lets you deploy your workload into identical Virtual machines. These VMs are load-balanced internally and the load is also managed automatically for you. You can define various autoscaling schedules to scale your resources up and down based on the demand. E.g. if Average CPU percentage increases beyond a number then you can automate to increase the number of running instances i.e. scale up. Similarly, you can configure to reduce the instances i.e. scale down if the average CPU percentage goes down a certain number. This auto-scaling is provided out of the box with VMSS. </p>
+<p>Let's start working with VMSS by creating one.</p>
+<p>You will find VMSS under the <strong>Compute</strong> category.</p>
+<img src="/images/15845631905e7283f6d0d93.png" alt="VMSS under All Services">
+<p>When in the blade for VMSS, click on the &quot;+Add&quot; button</p>
+<img src="/images/15845631995e7283ffe9bdf.png" alt="Adding a new VMSS">
+<p>Provide the subscription and Resource Group just like for any other resource creation in Azure. Provide a name for the VMSS, a region where it will be deployed and Availability set if you want any.</p>
+<img src="/images/15845659695e728ed10ab92.png" alt="Creating VMSS - Basics">
+<p>Next, you provide the Instance details. This is very important. This is the underlying Image and it's compute size. This is the consumption that you will be having in your VMSS based on the number of instances running.</p>
+<p>You also provide authentication information for connectivity.</p>
+<img src="/images/15845659755e728ed77de6f.png" alt="Creating VMSS - More Basics">
+<p>Next, we need to provide the disk details (just like for a single VM). Here you can decide the type of disk to use for OS disk. You can also create and attach data disks here.</p>
+<img src="/images/15845659805e728edcda944.png" alt="Creating VMSS - Disk related options">
+<p>Next up we have networking details. You provide information regarding which virtual network the underlying VMs will be connected to in this VMSS. You also provide the Network Interface that VMSS will be using for connectivity.</p>
+<img src="/images/15845659885e728ee482698.png" alt="Creating VMSS - Networking details">
+<p>In part 2 we will continue with the wizard and setting up of VMSS. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-azure-01-creating-vmss-part-1</link>
+<pubDate>Thu, 11 Jul 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure for AWS professionals - Batch Services - AWS - Working with AWS Batch Service</title>
