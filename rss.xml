@@ -6,6 +6,70 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure SQL Basics - Setting up Private Endpoints on an Azure SQL Server</title>
+<description><![CDATA[<p>A <strong>Private Endpoint</strong> is a fundamental block for a private link in Azure. It enables Azure resources, like Virtual Machines (VMs), to communicate privately with linked resources. Under the hood, it creates a network interface card (NIC) on the Azure SQL Server and attaches that to your Virtual network. That way you get a private IP address assigned to your Azure SQL Server. Now from any other resource on this network, you can securely access the Azure SQL Server without the communication leaving the network at all. </p>
+<p>Microsoft also goes one step further by creating a <strong>Private DNS integration</strong>. It leverages a private DNS zone to provide a DNS name for your Azure SQL Database Server which is mapped to the Private IP address (instead of the usual Public). </p>
+<p>In this post, you will be setting up the private endpoints to the SQL server through Azure Portal. Then, you can securely access the Azure SQL Database Server from the VM.</p>
+<h3>Create a private endpoint</h3>
+<p>In this section, you will create a private endpoint to it.</p>
+<p>On the upper-left side of the screen in the Azure portal, select <em>Create a resource &gt; Private Link Center (Preview)</em>.</p>
+<img src="/images/15846633065e740b0ad1dc6.png" alt="Private Link Center">
+<p>In Private Link Center - Overview, on the option select Private Endpoints and click Add. </p>
+<img src="/images/15846633135e740b11c2d24.png" alt="Adding new Private Endpoint">
+<p>Enter or select this information:</p>
+<ul>
+<li><strong>Subscription</strong> - Select your subscription.</li>
+<li><strong>Resource group</strong> - Select myResourceGroup. You created this in the previous section.</li>
+</ul>
+<p>Under instance details provide:</p>
+<ul>
+<li><strong>Name</strong> - Enter myPrivateEndpoint. If this name is taken, create a unique name.</li>
+<li><strong>Region</strong> - Select the geo region where you want to deploy the underlying resources</li>
+</ul>
+<img src="/images/15846633635e740b43efd9a.png" alt="Creating a private endpoint wizard">
+<p>In the next screen for &quot;Create a private endpoint - Resource&quot;, enter or select this information:</p>
+<ul>
+<li><strong>Connection method</strong> - Select the radio button for &quot;<em>Connect to an Azure resource in my directory</em>&quot;</li>
+<li><strong>Subscription</strong> - Select your subscription.</li>
+<li><strong>Resource type</strong> - Select Microsoft.Sql/servers.</li>
+<li><strong>Resource</strong> - Select your server</li>
+<li><strong>Target sub-resource</strong> - Select sqlServer</li>
+</ul>
+<p>Click next once done. </p>
+<img src="/images/15846633725e740b4c2d6b4.png" alt="Adding resources">
+<p>In <strong>Create a private endpoint (Preview) - Configuration</strong>, enter or select this information:</p>
+<p>Under the networking section, provide:</p>
+<ul>
+<li><strong>Virtual network</strong> - Select MyVirtualNetwork.</li>
+<li><strong>Subnet</strong> - Select mySubnet.</li>
+</ul>
+<p>Under the Private DNS integration, provide:</p>
+<ul>
+<li><strong>Integrate with private DNS zone</strong> - Select Yes.</li>
+<li><strong>Private DNS Zone</strong> - Select (New)privatelink.database.windows.net</li>
+</ul>
+<img src="/images/15846633795e740b53043e2.png" alt="Networking and DNS integration configurations">
+<p>Select Review + create. You're taken to the Review + create page where Azure validates your configuration. When you see the &quot;Validation passed&quot; message, select Create.</p>
+<img src="/images/15846634125e740b746581c.png" alt="Review and Create">
+<p>Once the private endpoint is created your Azure SQL Server is ready to be connected via it's new Private IP address. This address will be in the Virtual network you connected it to. There will also be a network interface card (NIC) resource that actually links the Azure SQL Server to the Virtual Network.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-setting-up-private-endpoints-on-an-azure-sql-server</link>
+<pubDate>Thu, 20 Feb 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Restoring Azure SQL Database from the backup</title>
+<description><![CDATA[<p>From time to time, you will need to restore your database from an earlier backup. In this post, we will be discussing the restoring the Azure SQL database from the backup file.</p>
+<p>To restore the database, go to the Azure SQL database you want to restore. Once you select the SQL database, you can click on Restore as marked in the screenshot.</p>
+<img src="/images/15846591425e73fac672e6d.png" alt="Restore Option">
+<p>It will open the options to select the backfile for restore as shown below.</p>
+<img src="/images/15846591495e73facdc658b.png" alt="Settings to restore database backup">
+<p>The first dropdown is to select the type of backup. You can either select Point-in-time or the LTR (Long Term backup retention) to select the file. When you select the Point-in-time, it shows the earliest date when the restore is taken. It is the first time the Azure has taken the back up of your SQL database. Database Name would be the name by which the database will be restored at the server. You can change the name as per your requirement.</p>
+<p>The next one is the Restore point selection, it will show the dates highlighted for which backup is available. </p>
+<p>Then it will ask on which server you want to restore the backup. Once selected, then you can set up the tiered pricing for the restored SQL database.  </p>
+<p>That's it! You are all set now. Hit that button and restore your database.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-restoring-azure-sql-database-from-the-backup</link>
+<pubDate>Mon, 02 Dec 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure SQL Basics - Managing Backups for Azure SQL Database</title>
 <description><![CDATA[<p>In this post, we will discuss managing the backup for the Azure SQL database. Azure takes the back up at the most convenient time when the database is not much in use. We can’t control at what time the back up took but we can set up the days/week/years for how long we want to keep the backup files.</p>
 <p>To manage the backup setting, go to the <strong>Azure SQL Server</strong> under which our Azure SQL Database has been created. Navigate to the &quot;<em>Manage Backups</em>&quot; option under the Settings.
