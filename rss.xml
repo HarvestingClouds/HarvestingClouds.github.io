@@ -309,6 +309,24 @@ Data source by default is None.  If you want to import the backup file of some e
 <pubDate>Sun, 20 Oct 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure for AWS professionals - Storage - Microsoft Azure Storage Accounts vs AWS Simple Storage Service (S3)</title>
+<description><![CDATA[<p>For storing your blobs like your photos, videos and any other files, both the cloud platform have great services to offer. AWS calls its service as <strong>Simple Storage Service</strong> or more popularly known as <strong>S3</strong>. Microsoft Azure calls it's service as <strong>Storage Accounts</strong>. Microsoft has bundled below services within Storage Accounts:</p>
+<ul>
+<li>Blob storage - to securely store your blobs like photos, videos, and other files, etc.</li>
+<li>File shares - SMB file shares</li>
+<li>Table storage - Tabular storage to store non-relational data</li>
+<li>Queue storage - to scale apps</li>
+</ul>
+<p>From all these services, Azure blob storage within Storage accounts is the key comparable service to S3.  </p>
+<p>To access AWS S3, you can do so by navigating to all Services and navigating to S3 under the Storage category as shown below.</p>
+<img src="/images/15847321275e7517dfd8bdb.png" alt="AWS S3">
+<p>To access Microsoft Azure Storage Accounts, navigate to All services -&gt; Storage category -&gt; Storage accounts. </p>
+<img src="/images/15847321445e7517f07eece.png" alt="Storage accounts">
+<p>We will review how to get started with each of these services in the next couple of blogs.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-microsoft-azure-storage-accounts-vs-aws-simple-storage-service-s3</link>
+<pubDate>Sat, 24 Aug 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure for AWS professionals - Azure Managed Disks vs AWS Elastic Block Store (EBS)</title>
 <description><![CDATA[<p>Both Microsoft Azure and AWS provides a managed service for managing the disks of your virtual machine (or EC2 instance). It is the storage optimized for I/O intensive read/write operations. For use as high-performance Azure virtual machine storage. Microsoft Azure offering is called &quot;<strong>Managed disk</strong>&quot; whereas AWS calls it &quot;<strong>Elastic Block Store (EBS) Volume</strong>&quot;. </p>
 <h3>AWS - Elastic Block Store (EBS) Volume</h3>
