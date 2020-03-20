@@ -309,6 +309,150 @@ Data source by default is None.  If you want to import the backup file of some e
 <pubDate>Sun, 20 Oct 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure for AWS professionals - Azure Managed Disks vs AWS Elastic Block Store (EBS)</title>
+<description><![CDATA[<p>Both Microsoft Azure and AWS provides a managed service for managing the disks of your virtual machine (or EC2 instance). It is the storage optimized for I/O intensive read/write operations. For use as high-performance Azure virtual machine storage. Microsoft Azure offering is called &quot;<strong>Managed disk</strong>&quot; whereas AWS calls it &quot;<strong>Elastic Block Store (EBS) Volume</strong>&quot;. </p>
+<h3>AWS - Elastic Block Store (EBS) Volume</h3>
+<p>Let's look at AWS's offering first. When you create EC2 instances, you automatically get at least one volume (i.e. disk) for the OS disk. You can additionally add multiple volumes for the data disk. You can view all this data by navigating to EC2 and then under the settings go to the &quot;Elastic Block Store&quot; category. You will find your <strong>Volumes</strong> listed here. </p>
+<p>There is also an option to view the <strong>Snapshots</strong> which shows you any snapshots taken on the volume, taken manually or from AWS Backup service.</p>
+<img src="/images/15846787265e7447469a267.png" alt="Elastic Block Store (EBS) Volume">
+<h3>Microsoft Azure Managed disks</h3>
+<p>Within Microsoft Azure, the disks of Virtual Machines or VMs used to be VHD files sitting on a Storage account (similar to S3 bucket). Microsoft upgraded its offering to Managed Disks with loads of granular controls and optimizations. These disks can be switched from standard HDD to premium SDD by just switching a value from a dropdown. You can also control role-based access control of individual disks (a feature that was not available before in Microsoft Azure). </p>
+<p>You can find the managed disks under All services -&gt; Compute category. Click on Disks to view all the disks in your environment. </p>
+<p>If you want to view a specific disk on your VM then you can also navigate to your virtual machine and then find the Disks setting. The OS and any data disks will also be listed there. </p>
+<img src="/images/15846787485e74475c6b65d.png" alt="Managed Disks">
+<p>When you click on any one of the managed disk, it takes you to the overview page and you can see various details about the disk including the &quot;Owner VM&quot; to which this disk is connected. You can directly take a snapshot of the disk from here.</p>
+<img src="/images/15846787545e7447627a2b4.png" alt="Overview and Create Snapshot">
+<p>Under settings of the disk, one notable setting is the <strong>Configuration</strong> of the disk. You can quickly select the Storage type and Size of the disk. </p>
+<img src="/images/15846787605e74476830e4b.png" alt="Storage type and size">
+<p>For more information, please use these links:</p>
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/services/storage/disks/" target="_blank">Azure managed disks</a></li>
+<li><a href="https://aws.amazon.com/ebs/?ebs-whats-new.sort-by=item.additionalFields.postDateTime&ebs-whats-new.sort-order=desc" target="_blank">Elastic Block Store (EBS)</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-azure-managed-disks-vs-aws-elastic-block-store-ebs</link>
+<pubDate>Wed, 21 Aug 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - AWS - 05 AWS Auto Scaling service</title>
+<description><![CDATA[<p><strong>AWS Auto Scaling</strong> is the latest offering from AWS that enables you to quickly discover all scalable resources in your environment and then set up application scaling for you. You can either choose one of the AWS recommended settings to optimize performance or cost or both. Or you can also define your own custom scaling conditions. </p>
+<p>You start by navigating to the AWS Auto Scaling by going to All Services and then navigating to the Management and Governance section.</p>
+<img src="/images/15846760855e743cf508966.png" alt="AWS Auto Scaling">
+<p>You can create multiple scaling plans here. Start creating your scaling plan by clicking on the &quot;Get started&quot; button.</p>
+<img src="/images/15846760935e743cfd3ad6c.png" alt="Create a Scaling Plan">
+<p>Next, you find the scalable resources in the AWS environment. You can do so in various ways. You can search for resources on the AWS CloudFormation stack. Or you can search by Tags applied to the resources. Or you can directly select EC2 Auto Scaling groups. </p>
+<p>As shown below, we have selected our auto scaling group, that we created in one of the previous blog posts. </p>
+<img src="/images/15846761005e743d0417140.png" alt="Finding Scalable resources">
+<p>In the next step, you have the option to specify the scaling strategy. You start by providing a name and then scroll down for more details. </p>
+<img src="/images/15846761065e743d0a6c3da.png" alt="Specify Scaling Strategy">
+<p>You can either select one of the predefined auto scaling strategies optimized for availability or cost or both. You can even define your own Custom strategy and have more granular control over these settings. </p>
+<p>Expand the Configuration details to view the applied settings. </p>
+<img src="/images/15846761435e743d2f179b0.png" alt="Selecting or Defining the Scaling Strategy">
+<p>Next up you have various advanced settings like dynamic scaling and predictive scaling. To configure, first, select your auto scaling group and then expand the category you want to tweak. </p>
+<img src="/images/15846761505e743d364c23a.png" alt="Advanced Settings">
+<p>Finally, you review all the settings and create your scaling plan. </p>
+<img src="/images/15846761565e743d3cc39bf.png" alt="Review and Create">
+<p>Once the scaling plan is ready, it will do most of the heavy lifting for you by automating the scaling in and scaling out of the instances based on the scaling strategies defined in your plan. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-aws-05-aws-auto-scaling-service</link>
+<pubDate>Mon, 19 Aug 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - AWS - 04 Creating Auto Scaling Groups - Part 2</title>
+<description><![CDATA[<p>This is part 2 of the blog where we are creating the <strong>Auto Scaling Group</strong> in AWS. Let's dive right in, where we left off in the last blog.</p>
+<p>Now we are at <strong>Step 3</strong>, here we define the optional Load balancing details and Health checks. Later is something you should always have configured as a best practice.</p>
+<img src="/images/15846744185e7436723f0ec.png" alt="Step 3 - Load balancing and health checks">
+<p>In Step 4 we will configure the group size and scaling policies. You provide a minimum and maximum no. of instances along with a desired capacity which becomes the default no. of instances. </p>
+<img src="/images/15846744265e74367a0201a.png" alt="Step 4 - Group size and scaling policies">
+<p>Scrolling down you have the scaling policies. I recommend having a &quot;Target tracking scaling policy&quot;. There are different criteria that you can configure. In the screenshot below, you have the policy based on the average CPU utilization.</p>
+<img src="/images/15846744325e7436803c007.png" alt="Optional scaling policies">
+<p>You can configure various notifications on your auto scaling group next. </p>
+<img src="/images/15846744395e7436875ccda.png" alt="Notifications">
+<p>Finally, you have the option to configure tags on the auto scaling group.</p>
+<img src="/images/15846744735e7436a98e19d.png" alt="Tags">
+<p>Review all the settings and create the auto scaling group. That's all there is to it. Simulate some load on your application and monitor how the instances scale out and in compliance with your scaling policies. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-aws-04-creating-auto-scaling-groups-part-2</link>
+<pubDate>Thu, 15 Aug 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - AWS - 04 Creating Auto Scaling Groups - Part 1</title>
+<description><![CDATA[<p><strong>Auto Scale Groups</strong> is how you can have multiple instances hosting the same application running at the same time in AWS. This is what provides you with high availability for your applications deployed on EC2 instances in AWS. These scale in and out based on your scaling conditions. You can create auto scale groups in AWS using any one of the Launch Template or Launch configurations. Templates are the recommended way to go. </p>
+<p>You start by navigating to the EC2 in AWS.</p>
+<img src="/images/15846734155e743287b87b6.png" alt="EC2">
+<p>Scroll all the way down and navigate to <strong>Auto Scaling Groups</strong>. Click on the &quot;Create Auto Scaling group&quot; to start the creation wizard.</p>
+<img src="/images/15846734225e74328e1cd3e.png" alt="Auto Scaling Groups">
+<p>Right on the first screen, you provide a name for the Auto Scaling group. You also select if you want to use Launch Template or Launch Configurations. Whichever you decide you select the appropriate value from the drop-down.</p>
+<img src="/images/15846734275e743293ca4b1.png" alt="Choosing Launch Template or Configuration">
+<p>Once you select the template it shows you detailed settings that are configured inside the template.</p>
+<img src="/images/15846734345e74329a11ad3.png" alt="Providing Launch Template">
+<p>Under Step2, you configure the purchase options and instance types. You have the option of adhering to the template configurations as shown below. </p>
+<img src="/images/15846734645e7432b887b48.png" alt="Configure Settings - Adhering to the launch template">
+<p>Or you have the option of combining purchase options and instance types along with the settings from the template. You can provide cost optimization and instance type details here.</p>
+<img src="/images/15846734715e7432bf37e28.png" alt="Configure Settings - Combine purchase options and instance types">
+<p>We are only halfway here. We will continue creating the Auto Scaling Group in part 2 of this blog. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-aws-04-creating-auto-scaling-groups-part-1</link>
+<pubDate>Wed, 14 Aug 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - AWS - 03 Creating Launch Templates</title>
+<description><![CDATA[<p><strong>Launch Templates</strong> is the information about how to create an EC2 instance. It has all the relevant information to launch a new EC2 instance. It contains other instance-level settings, such as the Amazon Machine Image (AMI), instance type, key pair, and security groups, etc. This helps you to provide a predictable and repeatable way of deploying multiple EC2 instances in your environment.</p>
+<p>Please note that these provide similar functionality as <strong>Launch Configurations</strong> (which we will saw in the previous blog). Launch Templates is a new way of doing things. You can have multiple versions of a launch template but not for a launch configuration. Any new features are being added to the Launch Templates and that is what AWS recommends to use. </p>
+<p>Launch Template (or Launch Configuration) is also required for creating Auto Scaling Groups in AWS.</p>
+<p>Start by navigating to EC2 in AWS.</p>
+<img src="/images/15846717205e742be88d499.png" alt="EC2">
+<p>Navigate to the &quot;Launch Templates&quot; under the Instances category. If you will not have any templates here then you will be presented with the general information. Click on the &quot;Create launch template&quot; to start creating a new template.</p>
+<img src="/images/15846717275e742befc0f92.png" alt="Launch Templates">
+<p>You start by providing basic information like template name, version description,etc. Note that the version is one of the features that sets a launch template apart from a launch configuration in AWS. The later can not have any version. </p>
+<p>If you want to use this template with the Auto Scaling then make sure to check the box to provide guidance as shown below.</p>
+<img src="/images/15846717335e742bf5bca22.png" alt="Create Launch Template Wizard">
+<p>Next provide the AWS Machine Image, Instance type details and Key pair information for login. </p>
+<img src="/images/15846717435e742bff6dbf1.png" alt="Contents - AMI, Instance Type and Key Pair">
+<p>Next, you provide the networking details under Virtual Private Cloud to define the connectivity along with a security group. You also provide the Storage information. </p>
+<img src="/images/15846717725e742c1c1fd96.png" alt="VPC and Storage">
+<p>Finally, you can add tags to your launch template. You also should configure at least one network interface for your EC2 instances. Click on &quot;Create launch template&quot; to create the launch template with all the selected settings.</p>
+<img src="/images/15846717785e742c2218929.png" alt="Tags and Network Interfaces">
+<p>Now that we have the Launch Template, we are ready to use it to create Auto Scaling Groups. We will check this in the upcoming blog. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-aws-03-creating-launch-templates</link>
+<pubDate>Sat, 10 Aug 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - AWS - 02 Creating Launch Configurations</title>
+<description><![CDATA[<p><strong>Launch Configuration</strong> is the configuration information about how to create an EC2 instance. It has all the relevant information to launch a new EC2 instance. It also contains other instance-level settings, such as the Amazon Machine Image (AMI), instance type, key pair, and security groups, etc. This helps you to provide a predictable and repeatable way of deploying multiple EC2 instances in your environment.</p>
+<p>Please note that these provide similar functionality as <strong>Launch Templates</strong> (which we will check in the next blog). This is the older way of doing things. You can have multiple versions of a launch template but not for a launch configuration. Any new features are being added to the Launch Templates and that is what AWS recommends to use. </p>
+<p>This (or Launch Template) is also required for creating Auto Scaling Groups in AWS.</p>
+<p>You start by navigating to EC2 in AWS and then clicking on Launch Configurations under &quot;Auto Scaling&quot; category as shown below. Click on &quot;Create launch configuration&quot; to launch the wizard. </p>
+<img src="/images/15846706805e7427d88a518.png" alt="Option to create Launch Configurations">
+<p>The first thing you do, similar to creating a new EC2 instance, is to select an AWS Machine Image or AMI.</p>
+<img src="/images/15846706865e7427de7cc0d.png" alt="Selecting AMI">
+<p>Next, you select the Instance type. This defines your vCPUs and Memory for the underlying EC2 instance (that will be built using these configurations).</p>
+<img src="/images/15846706935e7427e5451a5.png" alt="Instance Type">
+<p>Next, you provide a name for your launch configurations. You can also configure to use Spot instances here to save on cost (for any non-critical workloads). You can also configure CloudWatch detailed monitoring. </p>
+<img src="/images/15846707005e7427ec0804d.png" alt="Launch Configuration identifiers">
+<p>Next up are the Storage settings. You update the settings for the OS disk and add more volumes if you need.</p>
+<img src="/images/15846707345e74280ecd65e.png" alt="Storage information">
+<p>Next, you provide the security group configurations. You can create a new one or reuse one of the existing ones.</p>
+<img src="/images/15846707415e742815f1da6.png" alt="Security Group configurations">
+<p>Finally, you review the settings and create your launch configurations.</p>
+<img src="/images/15846707485e74281cb7c57.png" alt="Review and create">
+<p>Before the launch configurations can be completed, you are also prompted to provide a key pair to be used to authenticate.</p>
+<img src="/images/15846707545e742822d5c82.png" alt="Key Pair settings">
+<p>That's it! Now you have a reusable configuration that you can use to build multiple EC2 instances in a predictable fashion.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-aws-02-creating-launch-configurations</link>
+<pubDate>Mon, 05 Aug 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - AWS - 01 All Related Resources for Auto Scaling</title>
+<description><![CDATA[<p>AWS has various features that provide autoscaling features. Each resource type has it's unique functionality and these resources can work with each other. </p>
+<p>These services are:</p>
+<ul>
+<li><strong>Launch Templates</strong> - the latest addition - this is a template for the EC2 instances. It has all the relevant information to launch a new EC2 instance. You can configure the compute, storage, networking, etc. inside your launch template. It also contains other instance-level settings, such as the Amazon Machine Image (AMI), instance type, key pair, and security groups, etc. This helps you to provide a predictable and repeatable way of deploying multiple EC2 instances in your environment.</li>
+<li><strong>Launch Configurations</strong> - this is very similar to launch templates. This is the older way of doing things. You can have multiple versions of a launch template but not for a launch configuration. </li>
+<li><strong>Auto Scale Groups</strong> - This is how you can have multiple instances hosting the same application running at the same time in AWS. This is what provides you with high availability. These scale in and out based on your scaling conditions. You can create auto scale groups in AWS using any one of the Launch Template or Launch configurations. Templates are the recommended way to go. </li>
+<li><strong>AWS Auto Scaling</strong> - This is the latest offering from AWS that enables you to quickly discover all scalable resources in your environment and then set up application scaling for you. You can either choose one of the AWS recommended settings to optimize performance or cost or both. Or you can also define your own custom scaling conditions. </li>
+</ul>
+<p>In the next few blog posts, we will take a practical look at these resources and how to work with each of these. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-aws-01-all-related-resources-for-auto-scaling</link>
+<pubDate>Sat, 03 Aug 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure for AWS professionals - Auto Scaling - Azure - 04 Viewing the Run History of VMSS</title>
 <description><![CDATA[<p>When you have an active Microsoft Azure <strong>Virtual Machine Scale Set</strong> or <strong>VMSS</strong> it is imperative that you monitor how your VMSS has been running over the period of time. This helps you tweak the autoscaling settings of your VMSS. You should monitor this continuously for any critical applications in your environment. Ideally, to begin with, this should be done in a test or QA environment with a simulated load on your application running for a long period of time. And then you should keep doing this in upper environments as a best practice. </p>
 <p>To access this setting, navigate to your VM scale set and navigate to the &quot;Scaling&quot; option under the Settings menu. Here click on the &quot;<strong>Run history</strong>&quot; tab. All the history for how the instances were scaled up and down will be visible here. You can filter the data based on time to reduce the window. At the bottom you also have Operations list view what operations occurred on the VMSS and at what times. </p>
