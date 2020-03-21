@@ -309,13 +309,197 @@ Data source by default is None.  If you want to import the backup file of some e
 <pubDate>Sun, 20 Oct 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Azure for AWS professionals - Storage - Microsoft Azure Storage Accounts vs AWS Simple Storage Service (S3)</title>
-<description><![CDATA[<p>For storing your blobs like your photos, videos and any other files, both the cloud platform have great services to offer. AWS calls its service as <strong>Simple Storage Service</strong> or more popularly known as <strong>S3</strong>. Microsoft Azure calls it's service as <strong>Storage Accounts</strong>. Microsoft has bundled below services within Storage Accounts:</p>
+<title>Azure for AWS professionals - Storage - Azure - 04 Securely Accessing Storage Accounts</title>
+<description><![CDATA[<p>When working with Microsoft Azure <strong>Storage accounts</strong>, you will need to access these accounts either from a program or programmatically from a script or code. There are two primary ways to securely access your storage accounts. In this post, we will review these and find out how to access their settings from the portal.</p>
+<h3>Access Keys</h3>
+<p>The first is to use the <strong>Access keys</strong>. Linked to every storage account, there are two access keys. These are referred to as primary and secondary keys or simply key1 and key2. To access these keys, navigate to your storage account and then click on the &quot;Access keys&quot; under settings. Note that you only need one key (anyone) to be able to connect to the storage account. Now when you are using a tool like Storage Explorer or PowerShell scripts to connect to your storage account, you can use this key along with the name of the storage account to connect and perform operations. </p>
+<img src="/images/15848161415e76600dcfaa4.png" alt="Access Keys">
+<p><strong>Note</strong> that these keys are like keys to the kingdom for your storage accounts. You can't tweak the control and restrict it in any way. These keys are meant only for the administrators and should not be used by anyone else. You also can't set any kind of expiry on these keys. So once somebody has these keys they can keep on using these to access the storage accounts. The only way to change is to access the keys and click on the refresh arrow symbol next to the key1 or key2 text to regenerate these keys. As a best practice, you should always use SAS tokens i.e. Shared Access Signature keys to perform any operations.</p>
+<h3>Shared Access Signature (SAS tokens)</h3>
+<p>SAS tokens are the way you should be accessing the storage accounts, programmatically or otherwise. These are what you should be using (with an expiry date) to give temporary access to anybody in your organization or even outside if there is any sensitive data on your storage accounts. </p>
+<p>From official page: &quot;A shared access signature (SAS) is a <strong><em>URI</em></strong> that grants restricted access rights to Azure Storage resources. You can provide a shared access signature to clients who should not be trusted with your storage account key but whom you wish to delegate access to certain storage account resources. By distributing a shared access signature URI to these clients, you grant them access to a resource for a specified period of time. An account-level SAS can delegate access to multiple storage services (i.e. blob, file, queue, table). Note that stored access policies are currently not supported for an account-level SAS.&quot;</p>
+<img src="/images/15847709465e75af829cea1.png" alt="Shared access signature">
+<p>Once you tweak all the settings for what kind of access you want to provide, then click on &quot;Generate SAS and connection string&quot; it will generate a Shared Access Signature (SAS token), and a connection string and various URIs using that SAS token. These URIs for storage account's blob, file share, tables and queue services. </p>
+<img src="/images/15848180835e7667a3f1e03.png" alt="Shared access signature Connection string and URLs">
+<p>Now you know the best way to connect to your storage accounts securely. Depending upon your situation ensure to use the correct approach. If in confusion, always go with Shared Access Signatures. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-azure-04-securely-accessing-storage-accounts</link>
+<pubDate>Sat, 07 Sep 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Storage - Azure - 03 Event driven automation of Azure Storage accounts</title>
+<description><![CDATA[<p>Microsoft Azure <strong>Storage accounts</strong> generate various events. You can automate these events and can take action when these events occur. </p>
+<p>Build reactive, event-driven apps with a fully managed event routing service that is built into Azure. Event Grid helps you build automation into your cloud infrastructure, create serverless apps, and integrate across services and clouds.</p>
+<p>Few examples could be:</p>
 <ul>
-<li>Blob storage - to securely store your blobs like photos, videos, and other files, etc.</li>
-<li>File shares - SMB file shares</li>
-<li>Table storage - Tabular storage to store non-relational data</li>
-<li>Queue storage - to scale apps</li>
+<li>When a user uploads a large video file, a time-to-live value is assigned to that file and that file can either be archived or deleted after that time. </li>
+<li>If some image is uploaded then immediately you can run Optical Character Recognition (OCR) on the image and can capture the data into a database.</li>
+<li>If someone uploads a document file then automatically that is processed and the details captured can be input into a database if the document adheres to a certain format</li>
+<li>Generating transcripts for video uploads etc. </li>
+</ul>
+<p>Note that this feature is available out of the box in V2 storage accounts. To access, simply navigate to your storage account resource and click on the Events option. </p>
+<img src="/images/15847641095e7594cd8119f.png" alt="Even driven automation">
+<p>The solution actually leverages other Azure resources to provide this automation. Some of these include:</p>
+<ol>
+<li>Azure <strong>Event Grid</strong> - it has built-in support for events coming from Azure Storage blobs</li>
+<li>Azure <strong>Logic Apps</strong> (serverless workflow and integration)</li>
+<li>Azure <strong>Functions</strong> (serverless code)</li>
+</ol>
+<p>You create a subscription to Event Grid. It receives the event notification and passes the information to the handlers to take some actions. Logic Apps and Azure Functions are two such handlers where you can write the automation. We will delve deeper with an example in a future post.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-azure-03-event-driven-automation-of-azure-storage-accounts</link>
+<pubDate>Tue, 03 Sep 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Storage - Azure - 02 Data Transfer Options</title>
+<description><![CDATA[<p>When you have a Storage account in Microsoft Azure, you want to transfer data to the blob storage to consume the storage. The initial data transfer can be huge and you want to optimize this data transfer. </p>
+<p>Navigate to your Storage account and click on &quot;<strong>Data transfer</strong>&quot; setting to view all the options that you have. Use this section to define your estimated data size for transfer, approximate estimated network bandwidth and transfer frequency. Based on your selection this wizard will show you relevant options that will best suit you to transfer your data.</p>
+<img src="/images/15847543155e756e8b95377.png" alt="Data Transfer options">
+<p>Let look at these options closely. The options you have are discussed below.</p>
+<h3>1. AzCopy</h3>
+<p>This is a command-line utility that allows the scripted or programmatic transfer.</p>
+<ul>
+<li>A command-line data transfer utility </li>
+<li>Copy data to and from Azure blobs, files, tables</li>
+<li>Best use: Resilient bulk data transfer at high throughput</li>
+</ul>
+<p>You can learn more about this service here: <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10?toc=%2fazure%2fstorage%2fblobs%2ftoc.json" target="_blank">AzCopy</a></p>
+<h3>2. Azure PowerShell or Azure CLI</h3>
+<p>These are actually two different options for scripted or programmatic transfer. </p>
+<ul>
+<li>A command-line interface to manage Azure Resources</li>
+<li>Best use: Build scripts to manage Azure resources and small data sets</li>
+<li><strong>Azure PowerShell</strong> installs on Windows or use in browser with Azure Cloud Shell</li>
+<li><strong>Azure CLI</strong> installs on macOS, Linux, Windows or use in browser with Azure Cloud Shell</li>
+</ul>
+<p>You can learn more about Azure PowerShell here: <a href="https://docs.microsoft.com/en-us/powershell/azure/get-started-azureps?view=azps-3.6.1&viewFallbackFrom=azps-1.4.0" target="_blank">Azure PowerShell</a>
+You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-us/powershell/azure/get-started-azureps?view=azps-3.6.1&viewFallbackFrom=azps-1.4.0" target="_blank">Azure CLI</a></p>
+<h3>3. Directly from the Azure Portal</h3>
+<p>This is the easiest option from all the options as using this you are directly uploading the data from the Azure portal.</p>
+<ul>
+<li>A web-based interface</li>
+<li>Explore files and upload new files one at a time</li>
+<li>Best use: If you don’t want to install tools or issue commands</li>
+</ul>
+<p>You can learn more about this service here: <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-solution-small-dataset-low-moderate-network" target="_blank">Data transfer for small datasets with low to moderate network bandwidth</a></p>
+<h3>4. Azure Data Factory</h3>
+<p>Here you are using managed data pipelines and have the most control over your data coming into the Azure storage account. </p>
+<ul>
+<li>A hybrid data integration service with enterprise-grade security</li>
+<li>Create, schedule, manage data integration at scale</li>
+<li>Best use: Build recurring data movement pipelines</li>
+</ul>
+<p>You can learn more about this service here: <a href="https://azure.microsoft.com/en-us/services/data-factory/" target="_blank">Azure Data Factory</a></p>
+<h3>5. Azure Storage Explorer</h3>
+<p>Another Graphical interface (GUI) option provided through a standalone software utility that you can install on your laptop or desktop.</p>
+<ul>
+<li>A GUI-based cross-platform client</li>
+<li>Upload or download from Azure blobs, files, tables, queues, and Azure Cosmos DB entities</li>
+<li>Best use: Easy file management</li>
+</ul>
+<p>You can learn more about this service here: <a href="https://azure.microsoft.com/en-us/features/storage-explorer/" target="_blank">Azure Storage Explorer</a></p>
+<h3>6. Azure Storage REST API/SDK</h3>
+<p>This option is directly leveraging the underlying APIs/SDK to transfer the data. This is a highly customizable option. You can even build your own utilities using this option. This option also allows for scripted or programmatic transfer by writing your own custom code to transfer the data.</p>
+<ul>
+<li>Programmatic access to Blob, Queue, Table, and File services in Azure</li>
+<li>Best use: Build your custom applications</li>
+</ul>
+<p>You can learn more about this service here: <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/" target="_blank">Azure Storage REST API Reference
+</a></p>
+<h3>7. Azure File Sync</h3>
+<p>This is the continuous sync and site-local caching option.</p>
+<ul>
+<li>Move files from a server to a cloud-native Azure file share with zero downtime</li>
+<li>Up to 100 TiB capacity per Azure file share</li>
+<li>Multi-site sync to multiple servers</li>
+</ul>
+<p>You can learn more about this service here: <a href="https://docs.microsoft.com/en-us/azure/storage/files/storage-sync-files-planning" target="_blank">Planning for an Azure File Sync deployment
+</a></p>
+<h3>8. Azure Data Box Edge and Data Box Gateway</h3>
+<p><strong>Azure Data Box Edge</strong> is an on-premises device.</p>
+<ul>
+<li>On-premises Microsoft physical network device. It supports SMB/NFS</li>
+<li>Edge compute processes data in local cache before fast, low bandwidth usage transfer to Azure</li>
+<li>Best use: Preprocess data, inference Azure ML, continuous ingestion, incremental transfer</li>
+</ul>
+<p>Whereas, <strong>Azure Data Box Gateway</strong> is a virtual device, also sitting on-premises. </p>
+<ul>
+<li>On-premises virtual network device in your hypervisor</li>
+<li>Local cache-based fast, low bandwidth usage transfer to Azure over SMB/NFS</li>
+<li>Best use: Continuous ingestion, cloud archival, incremental transfer</li>
+</ul>
+<p>You can learn more about this service here: <a href="https://azure.microsoft.com/en-us/products/azure-stack/edge/" target="_blank">Azure Stack Edge</a></p>
+<h3>9. Azure Data Box and Data Box Disk</h3>
+<p>Azure Data Box is the offline transfer via a device. </p>
+<p><strong>Time to transfer</strong>: Typically 80 TB/order in 10-20 days</p>
+<ul>
+<li>A 100 TB (80 TB usable) rugged, encrypted device shipped by Microsoft</li>
+<li>Offline transfer to Azure Files, blobs, managed disks, over SMB/NFS/REST</li>
+<li>Best use: Initial/recurring bulk data transfer for medium to large data sets</li>
+</ul>
+<p>Azure Data Box Disk is very similar to Data Box. it is also offline transfer via a device (in this case a disk).</p>
+<p><strong>Time to transfer</strong>: Typically 35 TB/order in 5-10 days</p>
+<ul>
+<li>A 40 TB (35 TB usable) set of up to five, encrypted, 8 TB SSDs shipped by Microsoft</li>
+<li>Mount USB 3.0/SATA disks as drives for transfer to Azure Files, blobs, managed disks</li>
+<li>Best use: Initial/recurring bulk transfer for small to medium data sets</li>
+</ul>
+<p>You can learn more about Azure Data box service here: <a href="https://azure.microsoft.com/en-us/services/databox/" target="_blank">Azure Data Box</a></p>
+<h3>10. Azure Import/Export</h3>
+<p>This is another offline transfer device option. Key features are:</p>
+<ul>
+<li>Ship up to 10 of your own disks to transfer data to and from Azure</li>
+<li>Mount disks as drives for offline transfer to Azure Files, Blobs</li>
+<li>Best use: Initial bulk transfer for small to medium data sets</li>
+</ul>
+<p>You can learn more about this service here: <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-import-export-service" target="_blank">Azure Import/Export</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-azure-02-data-transfer-options</link>
+<pubDate>Sun, 01 Sep 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Storage - Azure - 01 Creating Azure Storage Account</title>
+<description><![CDATA[<p><strong>Note</strong>: This blog has been updated with Private endpoints feature and latest screenshots.</p>
+<p>As we saw earlier, Microsoft Azure's <strong>Storage account</strong> is a managed service for storing your blobs like your photos, videos, and any other files. Microsoft has bundled below services within Storage Accounts:</p>
+<ul>
+<li><strong>Blob storage</strong> - to securely store your blobs like photos, videos, and other files, etc.</li>
+<li><strong>File shares</strong> - SMB file shares</li>
+<li><strong>Table storage</strong> - Tabular storage to store non-relational data</li>
+<li><strong>Queue storage</strong> - to scale apps</li>
+</ul>
+<p>To access Microsoft Azure Storage Accounts, navigate to All services -&gt; Storage category -&gt; Storage accounts. </p>
+<img src="/images/15847321445e7517f07eece.png" alt="Storage accounts">
+<p>Here you can view all your existing storage accounts (if you have any). Click on the &quot;+Add&quot; button to create a new Storage account.</p>
+<img src="/images/15847481625e75568229207.png" alt="Add new Storage Account">
+<p>For the basic settings, start with selecting the right subscription and creating or using an existing Resource Group.</p>
+<img src="/images/15847481685e755688bae7a.png" alt="Basic settings">
+<p>Provide a name for the storage account. The name can only contain small letters and have to be unique in Microsoft DNS space. Select the geo location for the deployment. Next, you have the performance setting between standard and premium.</p>
+<p>You also select between the two account kinds. There is version 1 and version 2. For all new storage accounts select Version 2.</p>
+<p>You decide the replication strategy and select the type of storage account based on the replication. You have options like Zone redundant storage (ZRS), Locally redundant storage (LRS), Globally redundant storage (GRS) and Read Accessible - Globally redundant storage (RA-GRS). For maximum replication, select RA-GRS.</p>
+<p>Next, decide if you want Hot or Cool access tier. The default is Hot. Cool is for archival storage. </p>
+<img src="/images/15847481765e755690cf5e2.png" alt="Instance details">
+<p>Under networking you have 3 options for connectivity:</p>
+<ul>
+<li>Public endpoint (all networks)</li>
+<li>Public endpoint (selected networks)</li>
+<li>Private endpoint</li>
+</ul>
+<p>The private endpoint is the latest option that assigns a network interface (and therefore a private IP address) to your storage account. With this you can access your storage account leveraging the nic card, securely from your virtual network, as if it was just another resource on that network.</p>
+<img src="/images/15847481845e75569840199.png" alt="Networking Details">
+<p>Under advanced settings, you select the security, large file shares, data protection, data lake storage etc.</p>
+<img src="/images/15847515165e75639c25286.png" alt="Advanced settings">
+<p>You can apply tags next to categorize the resource. It is optional but is highly recommended as a best practice.</p>
+<img src="/images/15847515235e7563a323b9b.png" alt="Tags">
+<p>Finally, review and create the storage account.</p>
+<img src="/images/15847515295e7563a98bbc4.png" alt="Review and Create">]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-azure-01-creating-azure-storage-account</link>
+<pubDate>Wed, 28 Aug 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Storage - Microsoft Azure Storage Accounts vs AWS Simple Storage Service (S3)</title>
+<description><![CDATA[<p>For storing your blobs like your photos, videos, and any other files, both the cloud platform have great services to offer. AWS calls its service as <strong>Simple Storage Service</strong> or more popularly known as <strong>S3</strong>. Microsoft Azure calls its service as <strong>Storage Accounts</strong>. Microsoft has bundled below services within Storage Accounts:</p>
+<ul>
+<li><strong>Blob storage</strong> - to securely store your blobs like photos, videos, and other files, etc.</li>
+<li><strong>File shares</strong> - SMB file shares</li>
+<li><strong>Table storage</strong> - Tabular storage to store non-relational data</li>
+<li><strong>Queue storage</strong> - to scale apps</li>
 </ul>
 <p>From all these services, Azure blob storage within Storage accounts is the key comparable service to S3.  </p>
 <p>To access AWS S3, you can do so by navigating to all Services and navigating to S3 under the Storage category as shown below.</p>
