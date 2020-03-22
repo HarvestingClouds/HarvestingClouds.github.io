@@ -56,6 +56,20 @@
 <pubDate>Thu, 20 Feb 2020 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure for AWS professionals - Storage - Azure - 06 Geo Replication on Storage accounts</title>
+<description><![CDATA[<p>Based on the replication strategy selected on your storage accounts, you can leverage the geo-replication option to restore your storage accounts to a secondary location. Azure Storage replication copies your data so that it is protected from transient hardware failures, network or power outages, and natural disasters. If an outage renders the primary endpoint unavailable, then you can initiate a failover to the secondary endpoint to rapidly restore write access to your data.</p>
+<p>You can access this option by navigating to your storage account and clicking on the &quot;<strong>Geo-replication</strong>&quot; option. </p>
+<img src="/images/15848219915e7676e74b844.png" alt="Geo replication">
+<p>This option shows you the replication you selected for your storage account while creating it. By clicking on the Storage endpoints option, you can see what the endpoints will look like if you failover to the secondary region. You copy and can keep these handy to update your application using these endpoints. </p>
+<p>Scroll down to view the primary and secondary regions and the button to prepare for the failover. </p>
+<img src="/images/15848219985e7676ee8f43f.png" alt="preparing for failover">
+<p>When you click on this button, a new popup will open and will give you the option to failover. The secondary region will become primary when you do. </p>
+<p>This option is very useful to perform any disaster recovery if there are any issues in your primary region. </p>
+<p>For more information click here: <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-disaster-recovery-guidance" target="_blank">Disaster recovery and account failover</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-azure-06-geo-replication-on-storage-accounts</link>
+<pubDate>Tue, 21 Jan 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure SQL Basics - Restoring Azure SQL Database from the backup</title>
 <description><![CDATA[<p>From time to time, you will need to restore your database from an earlier backup. In this post, we will be discussing the restoring the Azure SQL database from the backup file.</p>
 <p>To restore the database, go to the Azure SQL database you want to restore. Once you select the SQL database, you can click on Restore as marked in the screenshot.</p>
@@ -309,6 +323,174 @@ Data source by default is None.  If you want to import the backup file of some e
 <pubDate>Sun, 20 Oct 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure for AWS professionals - Storage - AWS - 07 Setting up Access Points on S3 bucket</title>
+<description><![CDATA[<p><strong>Access points</strong> can be used to provide access to your bucket securely from a network (VPC) or from the internet. To access bucket resources from a VPC access point, you’ll need to use the AWS CLI, AWS SDK, or Amazon S3 REST API.</p>
+<p>To create a new access point, navigate to your S3 bucket and navigate to the &quot;<strong>Access points</strong>&quot; tab. Click on the &quot;<em>+Create access point</em>&quot; button.</p>
+<img src="/images/15848383465e76b6ca1f068.png" alt="Access points">
+<p>Provide a name for the access point. Select if you want to create this access point for a virtual network (VPC) or the internet. If you select the former then provide an ID for the VPC.</p>
+<img src="/images/15848386815e76b819429c0.png" alt="Creating new Access Point">
+<p>That's all there is to it. Now you are ready to access your S3 bucket securely from a VPC.</p>
+<p>For more information click here: <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-vpc" target="_blank">Creating Access Points Restricted to a Virtual Private Cloud</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-aws-07-setting-up-access-points-on-s3-bucket</link>
+<pubDate>Sat, 28 Sep 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Storage - AWS - 06 Configuring replication on S3 buckets</title>
+<description><![CDATA[<p>For any <strong>S3 bucket</strong> with critical objects, you should always set up the data to replicate to a different bucket in a different region. You can do both cross-region replication or same-region replication using the replication rules.</p>
+<p>To begin, navigate to your S3 bucket and click on the &quot;<strong>Management</strong>&quot; tab. Then click on the &quot;<strong>Replication</strong>&quot; settings. Click on the &quot;<strong>+ Add rule</strong>&quot; to create a new rule.</p>
+<img src="/images/15848372115e76b25b0c547.png" alt="Replication">
+<p><strong>Pre-requisite</strong>: Versioning is a pre-requisite on the S3 bucket for you to be able to set up replication. If you haven't done so the wizard will give you an option to enable this setting here.</p>
+<img src="/images/15848372175e76b2614a71f.png" alt="Versioning Requirements">
+<p>Next, while setting sources, you can either set to replicate all the objects in the bucket or filter objects to be replicated based on the prefix or tags that they have.</p>
+<img src="/images/15848372235e76b2671f5a2.png" alt="Set source">
+<p>Next, you have to select a destination bucket. This can be in the same region or a different region. This can even reside in a different account altogether.</p>
+<img src="/images/15848372285e76b26c954f8.png" alt="Destination bucket">
+<p>If you don't have any bucket in the destination then you can create one right here while setting the destination.</p>
+<img src="/images/15848372635e76b28fbd692.png" alt="Creating new bucket in the destination">
+<p>While creating a new destination bucket, you can set its options like Storage class, object ownership, replication time control, etc.</p>
+<img src="/images/15848372705e76b29622e78.png" alt="Destination options">
+<p>Next up we have IAM role using which the data will be replicated. This should have appropriate access in both source and destination.</p>
+<img src="/images/15848372755e76b29bdefac.png" alt="IAM rule">
+<p>Finally, you review and create the replication rule.</p>
+<img src="/images/15848372815e76b2a192ad5.png" alt="Review and create">
+<p>Once the rule is set up the data will start getting copied over and protected.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-aws-06-configuring-replication-on-s3-buckets</link>
+<pubDate>Wed, 25 Sep 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Storage - AWS - 05 Adding Lifecycle Rules for S3 buckets</title>
+<description><![CDATA[<p>When you have object i.e. files in your <strong>S3 bucket</strong>, you are essentially paying for the space that these objects take up. After a certain period of time, you will either no longer need these objects or you may want to archive these. If we keep them lying and take actions manually then there are chances that we forget about these and end up paying for the extra space. <strong>Lifecycle</strong> within S3 buckets is a way to set an expiration date to the files and take automated actions at the expiration. </p>
+<p>To start you navigate to your S3 bucket and go to the <strong>Management</strong> tab. Click on the Lifecycle here. To create a new lifecycle rule click on the &quot;<em>+Add lifecycle rule</em>&quot; button. A new popup launches to set up a new rule. You can have as many rules as you want.</p>
+<img src="/images/15848362045e76ae6c6e798.png" alt="Add lifecycle rules">
+<p>To set up a lifecycle rule, set up a name for this rule. Also, set up a scope for this rule. You can either apply this rule to all objects in the S3 bucket or reduce the scope by using prefixes for the names or leveraging tags.</p>
+<img src="/images/15848362145e76ae76dade1.png" alt="Name and scope">
+<p><strong>Transitions</strong> is the setting for moving the storage objects from one storage class to another. In the example below, the transition is set from Standard storage to Standard-IA after 90 days. You can set more transitions here. E.g. you can move the data to Glacier storage after 180 days. </p>
+<img src="/images/15848362205e76ae7c37f14.png" alt="Transitions">
+<p>Under <strong>Expiration</strong> settings, you can set the objects to delete after a certain period of time.</p>
+<img src="/images/15848362265e76ae8205327.png" alt="Expiration">
+<p>Finally, review the settings and create the lifecycle rules.</p>
+<img src="/images/15848362315e76ae8734695.png" alt="Review and create">
+<p>Setting up lifecycle rules is a great way to optimize costs in the longer run. It is a best practice to set up a policy at your organization and adhere to that for every bucket. It may seem like an extra but can help save costs big time.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-aws-05-adding-lifecycle-rules-for-s3-buckets</link>
+<pubDate>Sat, 21 Sep 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Storage - AWS - 04 Setting Permissions on S3 Bucket</title>
+<description><![CDATA[<p>You can manage the access to the <strong>S3 bucket</strong> at a much granular level through its permission settings. You can access its settings by navigating to the S3 bucket and clicking on the &quot;<strong>Permissions</strong>&quot; tab. </p>
+<p>Here you have the option to modify:</p>
+<ul>
+<li>&quot;Block public access&quot; related policies</li>
+<li>Access Control Lists - modifying and creating them</li>
+<li>Bucket policies</li>
+<li>CORS configurations - i.e. Cross-Origin Resource Sharing for HTTP access</li>
+</ul>
+<p>The &quot;Block public access&quot; policies are those that you set up while creating the S3 bucket. You can modify these settings here by clicking on the Edit button and can set this up at a granular level.</p>
+<img src="/images/15848321455e769e91c01f4.png" alt="Permissions">
+<p>You can set up much more granular access for the below using Access Control Lists:</p>
+<ol>
+<li>Bucket Owner</li>
+<li>Public access</li>
+<li>S3 log delivery group</li>
+</ol>
+<p>You can set up or revoke the access for below operations:</p>
+<ul>
+<li>List objects</li>
+<li>Write objects</li>
+<li>Read bucket permissions</li>
+<li>Write bucket permissions</li>
+</ul>
+<img src="/images/15848321525e769e98475dc.png" alt="Access Control List">]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-aws-04-setting-permissions-on-s3-bucket</link>
+<pubDate>Thu, 19 Sep 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Storage - AWS - 03 Configuring S3 Bucket Properties</title>
+<description><![CDATA[<p>There are various settings on the <strong>S3 bucket</strong> that you can either toggle or configure. These properties can make your S3 bucket more secure or optimize performance or can help you to manage it better.</p>
+<p>To access these properties, simply navigate to your S3 bucket and click on the <strong>Properties</strong> tab.</p>
+<img src="/images/15848311515e769aafe830b.png" alt="Properties option">
+<p>When you click on anyone, it expands to show the details. Many of the properties are simply toggle switches. Others require a bit more configuration.</p>
+<p>Below you can view the settings for;</p>
+<ul>
+<li><strong>Versioning</strong> - allows you to keep a history of the changes. This is required as a pre-requisite for some features (that we will discuss in upcoming posts)</li>
+<li><strong>Server access logging</strong> - to log all events at the Server level</li>
+<li><strong>Static website hosting</strong> - This is one of the most useful feature of S3 buckets that is not available in Microsoft Azure. If you have a static website, i.e. simple HTML pages with no database etc. you can provide this as a website by simply copying all your files to a bucket and enabling this option. It provides you with a public URL that you can use to browse your website, starting with a startup page.</li>
+<li><strong>Object-level logging</strong> - to log all events at the object level i.e. at the level of each file. It uses CloudTrail service which should be deployed in the same geo region as the bucket. </li>
+</ul>
+<img src="/images/15848311605e769ab832e84.png" alt="Properties details">
+<p>Below is the setting for:</p>
+<ul>
+<li><strong>Default encryption</strong> - You can select to encrypt your objects i.e. all files in the bucket using either AES-256 or AWS-KMS.</li>
+</ul>
+<img src="/images/15848311665e769abe8af8c.png" alt="Details continued">
+<p>You can scroll further down to access more advanced settings like:</p>
+<ul>
+<li><strong>Object lock</strong> - prevents objects from accidental deletion</li>
+<li><strong>Tags</strong> - to organize resources and get better-categorized cost reporting</li>
+<li><strong>Transfer acceleration</strong> - enables optimizations to transfer data at fast speeds</li>
+<li><strong>Events</strong> - to set up notifications for specific events on the bucket</li>
+<li><strong>Requester pays</strong> - using this option, the requester pays for the data access instead of the owner of the data</li>
+</ul>
+<img src="/images/15848311735e769ac54643e.png" alt="Advanced settings">
+<p>Properties tab allows you loads of customizations on your S3 bucket in terms of how your data is stored and how it is accessed.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-aws-03-configuring-s3-bucket-properties</link>
+<pubDate>Wed, 18 Sep 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Storage - AWS - 02 Working with S3 bucket and uploading files</title>
+<description><![CDATA[<p>Once you have an S3 bucket in AWS, you can start uploading files to it and working with it. In this post, we will start working with the S3 bucket we created in an earlier post and will start uploading files to it.</p>
+<p>To start, simply navigate to the S3 service and click on your bucket. It will take you to the <strong>Overview</strong> screen. </p>
+<img src="/images/15848294615e7694151bdc7.png" alt="Overview">
+<p>The first thing you should do is to <strong>create a folder</strong>. As a best practice, try to organize your files systematically as much possible. While creating the folder, you can set it's encryption settings.</p>
+<img src="/images/15848294685e76941c685e0.png" alt="Creating folder">
+<p>Once inside the folder (or even from the root level), you can create more folders or directly upload files by clicking on the Upload button. This launches the <strong>upload files</strong> wizard. Simply drag and drop your files and folders here to start the upload.</p>
+<p>You not only just upload files but set some properties to it that we will visit next. </p>
+<img src="/images/15848294755e769423ecc98.png" alt="Uploading file">
+<p>Next, you set the <strong>permissions</strong> for the uploaded files. This defines who gets access to the files.</p>
+<img src="/images/15848294835e76942b15a01.png" alt="Setting permissions ">
+<p>You can set the storage class for the files uploaded. Standard is the default option. There are various other options that you can choose from based on your performance and cost requirements. Glacier storage tier is for the archival data, that is not available immediately but you can keep it archived for a long period of time. <strong>Note</strong> that you are billed based on your selection here so make sure that you select the appropriate Storage class.</p>
+<img src="/images/15848295135e76944953802.png" alt="Setting properties">
+<p>Scroll down to view more properties for <strong>Encryption</strong>, <strong>Metadata</strong>, and <strong>Tagging</strong>.</p>
+<img src="/images/15848295205e76945073b50.png" alt="More properties">
+<p>Finally, review all the settings and hit the Upload button to upload the files. </p>
+<img src="/images/15848295275e76945788722.png" alt="Review and upload">
+<p>Once the files are uploaded, you can select on each of these files and access a lot of actions from the &quot;Actions&quot; menu. These include downloading the files, changing it's storage class, adding tags, deleting it, etc.</p>
+<img src="/images/15848295345e76945e37c43.png" alt="Actions">
+<p>Now that we have started consuming the S3 bucket and it has some files in it, in the next few posts, we will delve a little deeper into the settings of an S3 bucket and it's functionality.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-aws-02-working-with-s3-bucket-and-uploading-files</link>
+<pubDate>Tue, 17 Sep 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Storage - AWS - 01 Creating Simple Storage Service or S3 buckets</title>
+<description><![CDATA[<p>AWS Simple Storage Service or S3 is the managed service provided by the AWS environment for storing your blobs like your photos, videos, and any other files. In this service, you create S3 buckets as resources. These are very similar to Microsoft Azure storage accounts.</p>
+<p>To start, navigate to S3 service from All services.</p>
+<img src="/images/15848281965e768f24a1f58.png" alt="S3 option">
+<p>Here you will see the option to create a new bucket. Click on the button to get started.</p>
+<img src="/images/15848282035e768f2bc5b44.png" alt="Creating bucket">
+<p>Provide a name and region for the bucket. Note that the name can only contain small letters and numbers and has to be unique within AWS space. The region should be closer to where you or your customer is located.</p>
+<img src="/images/15848282105e768f323d160.png" alt="Simple settings">
+<p>When you scroll down you have settings to control the access to the S3 bucket. Default is to &quot;Block all public access&quot;. You can tweak the settings and select more granular access by unchecking the main checkbox and then selecting the ones that applies to your situation.</p>
+<p>Also, to help prevent accidental deletion of your data you can enable the object locks on the S3 bucket.</p>
+<img src="/images/15848282165e768f3886296.png" alt="Advanced settings">
+<p>Once you hit the create button, the bucket is created for you. Next, we will start working with this S3 bucket.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-aws-01-creating-simple-storage-service-or-s3-buckets</link>
+<pubDate>Sun, 15 Sep 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Storage - Azure - 05 Configuring Firewall and vNet access on Storage accounts</title>
+<description><![CDATA[<p>To secure access to your <strong>Microsoft Azure Storage accounts</strong>, you can configure a firewall on these. You can allow only particular IP addresses or an address range (specified in CIDR format). Also, instead of specifying IP addresses you can configure access to only specific virtual networks (vNets) in your environment and therefore restrict access to other vNets. </p>
+<p>To access these settings, navigate to your storage account and under the settings, click on the &quot;<strong>Firewall and virtual networks</strong>&quot; option.</p>
+<img src="/images/15848208695e76728540e6d.png" alt="Firewall and vNet access">
+<p>Here you have multiple options and ways to configure the firewall. Let's look at these in a systematic way:</p>
+<ol>
+<li>First, you can either leave the access open to all networks or limit it to a specific virtual network. If you select the latter option, you should also select your virtual network for which you want to provide access. You do so by clicking on the &quot;+Add existing virtual network&quot; option. It will open up a new blade and here you can find your existing vNet and add the same.</li>
+<li>Next, you configure the Firewall and add IP addresses or a range of IP addresses (in CIDR format) for which the access needs to be opened up</li>
+<li>Finally, you have the exceptions. Unless the data is very critical and confidential, I recommend that you should always allow access to the Microsoft services by selecting the first checkbox. It should be automatically checked by default. You can also allow access to storage account logging and metrics from any network here.</li>
+</ol>
+<p>Firewall and vNet access is generally overlooked option. But you should always configure this in your environment to secure access to your storage accounts.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-azure-05-configuring-firewall-and-vnet-access-on-storage-accounts</link>
+<pubDate>Tue, 10 Sep 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure for AWS professionals - Storage - Azure - 04 Securely Accessing Storage Accounts</title>
 <description><![CDATA[<p>When working with Microsoft Azure <strong>Storage accounts</strong>, you will need to access these accounts either from a program or programmatically from a script or code. There are two primary ways to securely access your storage accounts. In this post, we will review these and find out how to access their settings from the portal.</p>
 <h3>Access Keys</h3>
@@ -464,6 +646,7 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 <li><strong>Table storage</strong> - Tabular storage to store non-relational data</li>
 <li><strong>Queue storage</strong> - to scale apps</li>
 </ul>
+<p>These are very similar to the AWS S3 buckets.</p>
 <p>To access Microsoft Azure Storage Accounts, navigate to All services -&gt; Storage category -&gt; Storage accounts. </p>
 <img src="/images/15847321445e7517f07eece.png" alt="Storage accounts">
 <p>Here you can view all your existing storage accounts (if you have any). Click on the &quot;+Add&quot; button to create a new Storage account.</p>
