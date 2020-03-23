@@ -323,6 +323,179 @@ Data source by default is None.  If you want to import the backup file of some e
 <pubDate>Sun, 20 Oct 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure for AWS professionals - Networking - AWS - 05 Security Groups</title>
+<description><![CDATA[<p><strong>Security Groups</strong> are another security feature in AWS Virtual Private Clouds (VPCs). It is like a firewall that restricts the traffic at the EC2 instance level. These are applied to the EC2 instances. Once the traffic is filtered by the Network ACLs at the subnet level, it is then filtered further by the security group.</p>
+<p><strong>NOTE</strong>: All the traffic is automatically denied in a Security Group. Only the traffic defined in a security group is allowed to EC2 instances.</p>
+<p>To access the security groups, navigate to the VPC section in AWS and then click on the &quot;<strong>Security Groups</strong>&quot; option in the Security menu on the left. You can view all your security groups here. Select one and view its properties in the bottom panel. These properties include Description, Inbound rules, Outbound rules, and Tags. You can either right-click on the security group or click on the Actions button to view the action that you can take on this security group. The key actions we are interested in includes:</p>
+<ul>
+<li>Edit Inbound rules</li>
+<li>Edit Outbound rules</li>
+</ul>
+<img src="/images/15849519495e78728d61791.png" alt="Security Groups">
+<p>&quot;<strong>Edit Inbound rules</strong>&quot; option is to edit the inbound rules. These govern what traffic will be allowed coming into the EC2 instances. Each rule contains:</p>
+<ol>
+<li><strong>Type</strong> - this determines the protocol or type of traffic. You have loads of pre-defined types, or you can add a custom option from the list</li>
+<li><strong>Protocol</strong> - this is determined by the type</li>
+<li><strong>Port Range</strong> - this is also dependent on the type selected. For pre-defined types, this is auto-populated. For custom type, you can define a custom port range.</li>
+<li><strong>Source</strong> - this is the place from where the communication will originate (that is coming into the associated subnet). You can have source as Anywhere or can define a custom IP address range via a CIDR</li>
+<li><strong>Description</strong> - description of the rule.</li>
+</ol>
+<img src="/images/15849519555e787293d9950.png" alt="Edit Inbound rules">
+<p>&quot;<strong>Edit Outbound rules</strong>&quot; option is to edit the outbound rules. These govern what traffic will be allowed coming out of the EC2 instance. These rules are very similar to the inbound rules. The only difference is that now the traffic is originating from the EC2 instance and is going outbound. Hence we need to specify a <strong>Destination</strong> (instead of a Source) while defining the outbound rules. </p>
+<img src="/images/15849519615e7872992c735.png" alt="Edit Outbound rules">
+<p><strong>Please Note</strong> that just like for Network ACLs, in a Security Group the address &quot;0.0.0.0/0&quot; means all IP addresses. This can be used for Source in inbound rules or Destination for outbound rules if the exact IP address or IP address range is unknown. Although this should be used with caution. As a best practice, this should be avoided at all costs and should be replaced with as small IP address ranges as possible.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-networking-aws-05-security-groups</link>
+<pubDate>Sun, 06 Oct 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Networking - AWS - 04 Network ACLs</title>
+<description><![CDATA[<p><strong>Network ACLs</strong> or <strong>Access Control Lists</strong> is like a firewall for your <strong>subnets</strong>.  There are inbound and outbound rules defined in these ACLs that determine what traffic is allowed in a subnet and what traffic will be blocked. These are great for the security of your network. </p>
+<p>To access the Network ACLs, navigate to the VPC section in AWS and then click on the &quot;Network ACLs&quot; option in the Security menu on the left. </p>
+<p>You can view all your ACLs here. Select one and view its properties in the bottom panel. These properties include Details, Inbound rules, Outbound rules, Subnet associations and Tags. You can either right-click on the ACL or click on the Actions button to view the action that you can take on this ACL. The key actions we are interested in includes:</p>
+<ul>
+<li>Edit Subnet associations</li>
+<li>Edit Inbound rules</li>
+<li>Edit Outbound rules</li>
+</ul>
+<img src="/images/15849508045e786e142efd4.png" alt="Network ACLs">
+<p>&quot;<strong>Edit Subnet associations</strong>&quot; option is to edit the linking of ACL to a subnet. You can associate an ACL to one or multiple subnets.</p>
+<img src="/images/15849508145e786e1e101b4.png" alt="Edit Subnet associations">
+<p>&quot;<strong>Edit Inbound rules</strong>&quot; option is to edit the inbound rules. These govern what traffic will be allowed coming into the subnet. Each rule contains:</p>
+<ol>
+<li><strong>Rule number</strong> or <strong>Rule #</strong> - this is the order in which the rules are executed. </li>
+<li><strong>Type</strong> - this determines the protocol or type of traffic. You have loads of pre-defined types, or you can add a custom option from the list</li>
+<li><strong>Protocol</strong> - this is determined by the type</li>
+<li><strong>Port Range</strong> - this is also dependent on the type selected. For pre-defined types, this is auto-populated. For custom type, you can define a custom port range.</li>
+<li><strong>Source</strong> - this is the place from where the communication will originate (that is coming into the associated subnet)</li>
+<li><strong>Allow/Deny</strong> - this determines if the inbound communication defined by your rule will be allowed or denied.</li>
+</ol>
+<img src="/images/15849508205e786e248864e.png" alt="Edit Inbound rules">
+<p>&quot;<strong>Edit Outbound rules</strong>&quot; option is to edit the outbound rules. These govern what traffic will be allowed coming out of the subnet. These rules are very similar to the inbound rules. The only difference is that now the traffic is originating from within this subnet and is going outbound. Hence we need to specify a <strong>Destination</strong> (instead of a Source) while defining the outbound rules. </p>
+<img src="/images/15849508265e786e2a5f74b.png" alt="Edit Outbound rules">
+<p><strong>Please Note</strong> that the address &quot;0.0.0.0/0&quot; means all IP addresses. This can be used for Source in inbound rules or Destination for outbound rules, if the exact IP address or IP address range is unknown. Although this should be used with caution. As a best practice, this should be avoided at all costs and should be replaced with as small IP address ranges as possible.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-networking-aws-04-network-acls</link>
+<pubDate>Fri, 04 Oct 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Networking - AWS - 03 Route Tables</title>
+<description><![CDATA[<p>A <strong>Route Table</strong> is just as the name suggests, it is a table consisting of the routes. This determines how the traffic is routed between the subnets and even out of the virtual network. Each entry in this table is called a &quot;<strong>route</strong>&quot;. When you create a VPC, one main route table is automatically created for your VPC and is associated with the subnet of the VPC. You can create custom route tables. E.g. you may want to send all traffic to a network virtual appliance i.e. a firewall. You may have Palo Alto or CheckPoint or any other firewall in your environment and you want the traffic to route via that firewall. You can achieve this via route tables.</p>
+<p>To start, navigate to your VPC section in AWS. Then from the left menu, click on the &quot;<strong>Route Tables</strong>&quot; option. You can create a new table here as well by clicking on the &quot;Create route table&quot; button. For now, we will work with an existing route table on our VPC. Select the route table that you want to view the details or edit. </p>
+<p>At the bottom panel, you will be able to view the following settings for the selected route table:</p>
+<ul>
+<li>Summary</li>
+<li>Routes</li>
+<li>Subnet Associations</li>
+<li>Edge Associations</li>
+<li>Route Propagation</li>
+<li>Tags</li>
+</ul>
+<p>You can also either right-click on your route table or click on the Actions button to view the options related to this route table. Two options that we are interested in are:</p>
+<ul>
+<li>Edit subnet associations</li>
+<li>Edit routes</li>
+</ul>
+<img src="/images/15849309795e7820a34d1b6.png" alt="Route Tables">
+<p>Under the &quot;<em>Edit subnet associations</em>&quot; section, you can view the currently associated subnets. You can also link other subnets to the selected route table. </p>
+<img src="/images/15849309875e7820ab3d05f.png" alt="Edit subnet associations">
+<p>Under the Edit routes option, you can edit the current routes and can also add new routes to the route table. A single route simply defines a Destination, Target, Status and Propagated. The destination is where the traffic (that originated in your subnet) is headed. A destination of &quot;<strong>0.0.0.0/0</strong>&quot; means all traffic. Note that all zeros i.e. all traffic-related route should be the last one. These routes are evaluated in order. </p>
+<p>If the traffic is destined for an IP address that is defined by 1st rule, then it will be sent to the device defined by the Target value of the route. The value &quot;<em>local</em>&quot; for the Target means to allow the traffic and keep it local, instead of sending anywhere else. You can also send the traffic to virtual appliances and gateways here.</p>
+<img src="/images/15849309945e7820b27526d.png" alt="Editing routes">
+<p>Routes tables are very powerful in determining how the traffic will flow in your environment and should be designed appropriately and tested thoroughly. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-networking-aws-03-route-tables</link>
+<pubDate>Wed, 02 Oct 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Networking - AWS - 02 Working with VPCs and Subnets</title>
+<description><![CDATA[<p>Once we have a <strong>Virtual Private Cloud or VPC in AWS</strong>, we can now start getting familiar with the AWS console options and how to work with VPC and the subnets in it. </p>
+<p>We will first need to navigate to VPC from All services and then the &quot;Network &amp; Content Delivery&quot; category. </p>
+<img src="/images/15849298305e781c26efab5.png" alt="VPC menu">
+<p>From the Dashboard, you can navigate to the &quot;<strong>Your VPCs</strong>&quot; option. Next, you select your VPC from the list of all VPCs. As a best practice, you should provide names for all the VPCs. As you can see from the screenshot below, the first VPC has a name but the second one does not. To provide a name you can simply hover over that VPC in the name column and it will give you an option to edit and provide a new name.</p>
+<p>Once you have selected your VPC, you can view it's Description, CIDR blocks, Flow logs and Tags related details at the bottom part of the screen. </p>
+<p>Next, you have your VPC selected, either right click on your VPC or click on the Actions menu at the top to view list of actions that you can perform on your VPC. One of this action is very useful. This is to &quot;<strong>Edit CIDRs</strong>&quot;.</p>
+<img src="/images/15849298395e781c2f9d2e3.png" alt="VPC Details">
+<p>While editing CIDRs, you can add a new CIDR by clicking on the &quot;Add IPv4 CIDR&quot; button. You will do this (for example) if the number of available IP addresses are enough and for increasing demand, you need to expand your VPC. </p>
+<img src="/images/15849298465e781c36d1e08.png" alt="Editing CIDRs">
+<p>For every VPC you have multiple Subnets under that VPC. You can view these under the Subnets menu from the left. As a best practice, here too you should have a name for each of the subnets. As you can see from the below screenshot, only one subnet has a name. When you select a subnet you can view it's details in the bottom part of the screen. These details include:</p>
+<ul>
+<li>Description</li>
+<li>Flow Logs</li>
+<li>Route Table</li>
+<li>Network ACL</li>
+<li>Tags</li>
+<li>Sharing</li>
+</ul>
+<p>You can also right-click on the selected subnet or click on the Actions button at the top to view the list of actions that you can perform on this subnet. Most important ones are for:</p>
+<ul>
+<li>Edit network ACL association</li>
+<li>Edit route table association </li>
+</ul>
+<img src="/images/15849298545e781c3e2a3ec.png" alt="Subnets">
+<p>We will look at other services related to VPCs and Subnets in the next few posts. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-networking-aws-02-working-with-vpcs-and-subnets</link>
+<pubDate>Tue, 01 Oct 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Networking - AWS - 01 Creating Virtual Private Cloud (VPC)</title>
+<description><![CDATA[<p><strong>Virtual Private Cloud</strong> or <strong>VPC</strong> is Amazon's virtual network capabilities as part of the Infrastructure as a Service (IaaS) offerings. It provides connectivity between various EC2 instances in that network. It can also extend the connectivity to other networks or even on-premises. </p>
+<h3>Accessing VPCs and Launching Create Wizard</h3>
+<p>Let's start by creating one in AWS. We will first need to navigate to VPC from All services and then the &quot;Network &amp; Content Delivery&quot; category. </p>
+<img src="/images/15849240565e780598df108.png" alt="VPC Option">
+<p>Here in the Dashboard (or even the VPC tab), click on the &quot;<strong>Launch VPC Wizard</strong>&quot; button to launch the wizard to create a new VPC.</p>
+<img src="/images/15849240665e7805a246c69.png" alt="Creating new VPC">
+<h3>Different Pre-packaged Networking Scenarios</h3>
+<p>When the wizard launches to create a VPC, there are 4 pre-packaged scenarios to choose from. <strong>Note</strong> that these scenarios can be built by performing the settings manually and building VPCs separately. These are just like the starter packs (or pre-baked templates) to get you started. </p>
+<p>The first one is to build a VPC with a Single Public Subnet. Here is the official description: &quot;Your instances run in a private, isolated section of the AWS cloud with direct access to the Internet. Network access control lists and security groups can be used to provide strict control over inbound and outbound network traffic to your instances.&quot;</p>
+<p>When you select this option it creates:
+A /16 network with a /24 subnet. Public subnet instances use Elastic IPs or Public IPs to access the Internet.</p>
+<img src="/images/15849240735e7805a95187d.png" alt="VPC with a Single Public subnet">
+<p>The next one is to build a VPC with Public and Private subnets. Here is the official description: &quot;In addition to containing a public subnet, this configuration adds a private subnet whose instances are not addressable from the Internet. Instances in the private subnet can establish outbound connections to the Internet via the public subnet using Network Address Translation (NAT).&quot;</p>
+<p>When you select this option it creates:
+A /16 network with two /24 subnets. Public subnet instances use Elastic IPs to access the Internet. Private subnet instances access the Internet via Network Address Translation (NAT). (Hourly charges for NAT devices apply.)</p>
+<img src="/images/15849240805e7805b0a307c.png" alt="VPC with Public and Private subnets">
+<p>The 3rd one is to build a VPC with Public and Private subnets and Hardware VPN access. Here is the official description: &quot;This configuration adds an IPsec Virtual Private Network (VPN) connection between your Amazon VPC and your data center - effectively extending your data center to the cloud while also providing direct access to the Internet for public subnet instances in your Amazon VPC.&quot;</p>
+<p>When you select this option it creates:
+A /16 network with two /24 subnets. One subnet is directly connected to the Internet while the other subnet is connected to your corporate network via IPsec VPN tunnel. (VPN charges apply.)</p>
+<img src="/images/15849241235e7805dba8a4f.png" alt="VPC with Public and Private subnets and Hardware VPN access">
+<p>The last one is to build a VPC with a Private subnet only and Hardware VPN access. Here is the official description: &quot;Your instances run in a private, isolated section of the AWS cloud with a private subnet whose instances are not addressable from the Internet. You can connect this private subnet to your corporate data center via an IPsec Virtual Private Network (VPN) tunnel.&quot;</p>
+<p>When you select this option it creates:
+A /16 network with a /24 subnet and provisions an IPsec VPN tunnel between your Amazon VPC and your corporate network. (VPN charges apply.)</p>
+<img src="/images/15849241315e7805e346e2b.png" alt="VPC with a Private subnet only and Hardware VPN access">
+<p>For this post, I have selected the first scenario and clicked Next.</p>
+<h3>Providing Key Details for VPC</h3>
+<p>In the next screen, you provide all the essential details to create your VPC along with the dependent resources like it's subnets etc. These settings are as follows (numbering follows the numbers in the screenshot below):</p>
+<ol>
+<li>IPv4 address space for the whole VPC. This is provided in the CIDR notation. </li>
+<li>Once you enter the IP address space for the VPC, this area shows you the number of available IP addresses. These are the maximum number of network interfaces that can join this virtual network (or EC2 instances that have these network interfaces). Note that this number is a little less than total number of IP addresses in the CIDR notation. This is because some IP addresses are reserved by AWS for it's own functionality.</li>
+<li>A name for the VPC to identify it</li>
+<li>Subnet's IPv4 CIDR address space. This should be contained inside the CIDR for the VPC and should be smaller than that. A subnet is a sub-part of the VPC and therefore will have lesser number of IP addresses than the complete VPC.</li>
+<li>A name for the subnet</li>
+<li>Service Endpoint, that allows your VPC to connect to a service like S3. You can set this up at a later point if you need.</li>
+<li>Enable DNS hostnames to allow DNS hostnames for the instances that can be connected using these hostnames instead of just IP addresses. </li>
+</ol>
+<img src="/images/15849241385e7805ea3634b.png" alt="Create VPC - all-important details">
+<p>Once you are done configuring, hit create to create the VPC. Now that we have a VPC we will start working with it next.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-networking-aws-01-creating-virtual-private-cloud-vpc</link>
+<pubDate>Mon, 30 Sep 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Networking - Azure Virtual Networks vs AWS Virtual Private Cloud (VPC)</title>
+<description><![CDATA[<p>Microsoft Azure and Amazon's AWS cloud platforms provide networking as part of the <strong>Infrastructure as a Service</strong> (<strong>IaaS</strong>). Both provide similar services with some differences in the implementation of these services. Microsoft has named it's service as &quot;<strong>Virtual Networks</strong>&quot;, whereas Amazon calls its service as &quot;<strong>Virtual Private Cloud</strong>&quot; or most commonly called as &quot;<strong>VPC</strong>&quot;.</p>
+<p>Both Microsoft Azure Virtual Networks and AWS VPC have &quot;<strong>Subnets</strong>&quot; inside a network. The VMs in Azure or EC2 instances in AWS has network interfaces that connects to the subnets within the Virtual Networks (or VPCs) and receive an IP address from that subnet. The traffic route inside these networks is governed by &quot;<strong>Route Tables</strong>&quot;. </p>
+<p>Traffic restrictions are implemented slightly differently in the two platforms. Microsoft Azure has &quot;<strong>Network Security Groups</strong>&quot;. These can be applied at either Subnet or Virtual Machine level. Whereas AWS has <strong>Network Access Control Lists</strong> or <strong>ACLs</strong> that are applied at the subnet level. Also, AWS has <strong>Security Groups</strong> that are applied to the EC2 instances. </p>
+<h3>Accessing Microsoft Azure Virtual Networks</h3>
+<p>To view Virtual Networks in Azure, navigate to All services and then &quot;Virtual Networks&quot; under the Networking category.</p>
+<img src="/images/15849220195e77fda35e356.png" alt="Virtual Networks">
+<h3>Accessing AWS Virtual Private Clouds or VPCs</h3>
+<p>To view the VPCs, navigate to All Services and then click on VPC under the Networking category.</p>
+<img src="/images/15849219905e77fd86c5057.png" alt="VPCs">
+<p>We will be looking at how to work with these services in detail in the next few posts. </p>
+<p>For more information, click on the below official links:
+<a href="https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview" target="_blank">Azure Virtual Network</a>
+<a href="https://aws.amazon.com/vpc/" target="_blank">Amazon Virtual Private Cloud</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-networking-azure-virtual-networks-vs-aws-virtual-private-cloud-vpc</link>
+<pubDate>Sun, 29 Sep 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure for AWS professionals - Storage - AWS - 07 Setting up Access Points on S3 bucket</title>
 <description><![CDATA[<p><strong>Access points</strong> can be used to provide access to your bucket securely from a network (VPC) or from the internet. To access bucket resources from a VPC access point, you’ll need to use the AWS CLI, AWS SDK, or Amazon S3 REST API.</p>
 <p>To create a new access point, navigate to your S3 bucket and navigate to the &quot;<strong>Access points</strong>&quot; tab. Click on the &quot;<em>+Create access point</em>&quot; button.</p>
