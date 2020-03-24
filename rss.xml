@@ -59,7 +59,7 @@
 <p><strong>Auto Scaling</strong></p>
 <p>a. Combined</p>
 <ol>
-<li><a href="" target="_blank"></a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-azure-vmss-vs-aws-auto-scaling/" target="_blank">Azure VMSS vs AWS Auto Scaling</a></li>
 </ol>
 <p>b. Azure</p>
 <ol>
@@ -163,15 +163,15 @@
 </ol>
 <h3>Azure Data Factory related posts</h3>
 <ol>
-<li><a href="" target="_blank"></a></li>
-<li><a href="" target="_blank"></a></li>
+<li><a href="http://harvestingclouds.com/post/azure-data-factory-basics-creating-a-data-factory" target="_blank">Creating a Data Factory</a></li>
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/azure-sql-and-data-factory-basics-index</link>
 <pubDate>Sat, 22 Feb 2020 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure SQL Basics - Setting up Private Endpoints on an Azure SQL Server</title>
-<description><![CDATA[<p>A <strong>Private Endpoint</strong> is a fundamental block for a private link in Azure. It enables Azure resources, like Virtual Machines (VMs), to communicate privately with linked resources. Under the hood, it creates a network interface card (NIC) on the Azure SQL Server and attaches that to your Virtual network. That way you get a private IP address assigned to your Azure SQL Server. Now from any other resource on this network, you can securely access the Azure SQL Server without the communication leaving the network at all. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p>A <strong>Private Endpoint</strong> is a fundamental block for a private link in Azure. It enables Azure resources, like Virtual Machines (VMs), to communicate privately with linked resources. Under the hood, it creates a network interface card (NIC) on the Azure SQL Server and attaches that to your Virtual network. That way you get a private IP address assigned to your Azure SQL Server. Now from any other resource on this network, you can securely access the Azure SQL Server without the communication leaving the network at all. </p>
 <p>Microsoft also goes one step further by creating a <strong>Private DNS integration</strong>. It leverages a private DNS zone to provide a DNS name for your Azure SQL Database Server which is mapped to the Private IP address (instead of the usual Public). </p>
 <p>In this post, you will be setting up the private endpoints to the SQL server through Azure Portal. Then, you can securely access the Azure SQL Database Server from the VM.</p>
 <h3>Create a private endpoint</h3>
@@ -221,7 +221,8 @@
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - Azure - 06 Geo Replication on Storage accounts</title>
-<description><![CDATA[<p>Based on the replication strategy selected on your storage accounts, you can leverage the geo-replication option to restore your storage accounts to a secondary location. Azure Storage replication copies your data so that it is protected from transient hardware failures, network or power outages, and natural disasters. If an outage renders the primary endpoint unavailable, then you can initiate a failover to the secondary endpoint to rapidly restore write access to your data.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Based on the replication strategy selected on your storage accounts, you can leverage the geo-replication option to restore your storage accounts to a secondary location. Azure Storage replication copies your data so that it is protected from transient hardware failures, network or power outages, and natural disasters. If an outage renders the primary endpoint unavailable, then you can initiate a failover to the secondary endpoint to rapidly restore write access to your data.</p>
 <p>You can access this option by navigating to your storage account and clicking on the &quot;<strong>Geo-replication</strong>&quot; option. </p>
 <img src="/images/15848219915e7676e74b844.png" alt="Geo replication">
 <p>This option shows you the replication you selected for your storage account while creating it. By clicking on the Storage endpoints option, you can see what the endpoints will look like if you failover to the secondary region. You copy and can keep these handy to update your application using these endpoints. </p>
@@ -235,7 +236,8 @@
 </item>
 <item>
 <title>Azure Data Factory Basics - Creating a Data Factory</title>
-<description><![CDATA[<p><strong>Azure Data Factory</strong> is a cloud-based <strong>ETL service</strong> to run the SSIS packages. You can lift and shift the existing SSIS packages in Azure and run them fully in ADF. It is code-free UI to run, monitor and manage the packages.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p><strong>Azure Data Factory</strong> is a cloud-based <strong>ETL service</strong> to run the SSIS packages. You can lift and shift the existing SSIS packages in Azure and run them fully in ADF. It is code-free UI to run, monitor and manage the packages.</p>
 <p>Using the Azure Data Factory, you can create and schedule data-driven workflows (called pipelines) that can ingest data from disparate data stores.</p>
 <p>To start, navigate to All services - &gt; Analytics -&gt; Data Factories.</p>
 <img src="/images/15850874675e7a83ebb9b2a.png" alt="Data Factories Option">
@@ -259,7 +261,8 @@
 </item>
 <item>
 <title>Azure SQL Basics - Restoring Azure SQL Database from the backup</title>
-<description><![CDATA[<p>From time to time, you will need to restore your database from an earlier backup. In this post, we will be discussing the restoring the Azure SQL database from the backup file.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p>From time to time, you will need to restore your database from an earlier backup. In this post, we will be discussing the restoring the Azure SQL database from the backup file.</p>
 <p>To restore the database, go to the Azure SQL database you want to restore. Once you select the SQL database, you can click on Restore as marked in the screenshot.</p>
 <img src="/images/15846591425e73fac672e6d.png" alt="Restore Option">
 <p>It will open the options to select the backfile for restore as shown below.</p>
@@ -273,7 +276,8 @@
 </item>
 <item>
 <title>Azure SQL Basics - Managing Backups for Azure SQL Database</title>
-<description><![CDATA[<p>In this post, we will discuss managing the backup for the Azure SQL database. Azure takes the back up at the most convenient time when the database is not much in use. We can’t control at what time the back up took but we can set up the days/week/years for how long we want to keep the backup files.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p>In this post, we will discuss managing the backup for the Azure SQL database. Azure takes the back up at the most convenient time when the database is not much in use. We can’t control at what time the back up took but we can set up the days/week/years for how long we want to keep the backup files.</p>
 <p>To manage the backup setting, go to the <strong>Azure SQL Server</strong> under which our Azure SQL Database has been created. Navigate to the &quot;<em>Manage Backups</em>&quot; option under the Settings.
 Select the Azure SQL database from the list. Once you select the Database, it will enable the &quot;Configure retention&quot; button.</p>
 <img src="/images/15845865455e72df31cd825.png" alt="Managing Backups">
@@ -294,7 +298,8 @@ Select the Azure SQL database from the list. Once you select the Database, it wi
 </item>
 <item>
 <title>Azure SQL Basics - Azure Active Directory Admin - manage Azure SQL via AD Users</title>
-<description><![CDATA[<p><strong>Azure active directory admin</strong> allows managing the other active directory user to manage the Azure SQL database. SSMS provides an option to connect with the server using the &quot;<em>Azure active directory authentication</em>&quot;. To leverage this functionality, the Azure active directory admin has to provide access to the user.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p><strong>Azure active directory admin</strong> allows managing the other active directory user to manage the Azure SQL database. SSMS provides an option to connect with the server using the &quot;<em>Azure active directory authentication</em>&quot;. To leverage this functionality, the Azure active directory admin has to provide access to the user.</p>
 <p>In this post, we are looking at this option and checking the way to add the Azure Active directory admin through Azure Portal.</p>
 <p>Go to All resources-&gt; SQL server -&gt; Settings-&gt; Active Directory Admin-&gt; Set Admin</p>
 <img src="/images/15845861825e72ddc67f2d8.png" alt="Set AD Admin option">
@@ -307,7 +312,8 @@ Select the Azure SQL database from the list. Once you select the Database, it wi
 </item>
 <item>
 <title>Azure SQL Basics - Creating Elastic Pool in Azure SQL Server</title>
-<description><![CDATA[<p>Azure SQL Database <strong>Elastic Pools</strong> are a simple, cost-effective solution for managing and scaling multiple databases that have varying and unpredictable usage demands. The databases in an elastic pool are on a single Azure SQL Database server and share a set number of resources at a set price.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p>Azure SQL Database <strong>Elastic Pools</strong> are a simple, cost-effective solution for managing and scaling multiple databases that have varying and unpredictable usage demands. The databases in an elastic pool are on a single Azure SQL Database server and share a set number of resources at a set price.</p>
 <p>Elastic Pools exist only at the SQL Server level in Azure. These help to pool resources when you are building multiple databases on the same server. In this post, we will be checking how to create the elastic pool in the <strong>Azure SQL Server</strong>.</p>
 <p>To Navigate to the creation of an elastic pool, go to the server under which you want to create the elastic pool. </p>
 <img src="/images/15845857295e72dc01424da.png" alt="Option for New Elastic Pool">
@@ -326,7 +332,8 @@ To select the compute and storage, click on the configure elastic pool and it wi
 </item>
 <item>
 <title>Azure SQL Basics - Automatic Tuning and Performance recommendation</title>
-<description><![CDATA[<p>In this post, we will be discussing the performance recommendation and automatic tuning provided by Azure.   To make your SQL database perform better we need some insights to get better recommendations and it is provided by default by Azure.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p>In this post, we will be discussing the performance recommendation and automatic tuning provided by Azure.   To make your SQL database perform better we need some insights to get better recommendations and it is provided by default by Azure.</p>
 <h3>Performance Recommendations</h3>
 <p>Performance overview provides a summary of your database performance and helps you with performance tuning and troubleshooting.</p>
 <img src="/images/15845063695e71a601ea489.png" alt="Performance recommendation">
@@ -358,7 +365,8 @@ Azure SQL Database automatic tuning might be one of the most important features 
 </item>
 <item>
 <title>Azure SQL Basics - Query Performance Insights</title>
-<description><![CDATA[<p>In this post, we will be discussing the Azure SQL Database query performance insights which provide intelligent query analysis for single and pooled databases. It helps identify the top resource consuming and long-running queries in your workload. This helps you find the queries to optimize to improve overall workload performance and efficiently use the resource that you are paying for.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p>In this post, we will be discussing the Azure SQL Database query performance insights which provide intelligent query analysis for single and pooled databases. It helps identify the top resource consuming and long-running queries in your workload. This helps you find the queries to optimize to improve overall workload performance and efficiently use the resource that you are paying for.</p>
 <p>To Navigate to the Query Performance Insight, navigate to All resources-&gt; SQL Databases-&gt; Select the database. Under the menu on the left hand side go to the Intelligent Performance category -&gt; select Query Performance Insights</p>
 <ul>
 <li>The panel describes the Deeper insight into your databases resource (DTU) consumption</li>
@@ -380,7 +388,8 @@ Azure SQL Database automatic tuning might be one of the most important features 
 </item>
 <item>
 <title>Azure SQL Basics - Advanced Data Security</title>
-<description><![CDATA[<p>In this post, we will be discussing the <strong>Advanced Data Security</strong> feature on the Azure SQL Servers. It is enabled at the server level and will be automatically enabled at the database level. It is a charged service. Once you enabled it, you will be charged per month for this service.
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p>In this post, we will be discussing the <strong>Advanced Data Security</strong> feature on the Azure SQL Servers. It is enabled at the server level and will be automatically enabled at the database level. It is a charged service. Once you enabled it, you will be charged per month for this service.
 To access the advanced data security, go to all resources and select the server for which you want to enable the ADS to feature and go to the Security section, and click on advanced data security.</p>
 <img src="/images/15845009925e7191001b780.png" alt="The ADS setting at the server level">
 <p>Below are the settings for ADS:</p>
@@ -409,7 +418,8 @@ To access the advanced data security, go to all resources and select the server 
 </item>
 <item>
 <title>Azure SQL Basics - Exploring the new Query Editor in the Azure Portal</title>
-<description><![CDATA[<p>In this post, we will see how to use a query editor in the Azure portal. Query Editor helps us to query the tables, view and stored procedure on the selected SQL databases.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p>In this post, we will see how to use a query editor in the Azure portal. Query Editor helps us to query the tables, view and stored procedure on the selected SQL databases.</p>
 <p>To navigate to the Query editor, go to the <em>All Resources-&gt; SQL database -&gt; select the database</em>.</p>
 <p>On the left-hand side, you can select the &quot;query editor(preview)&quot; menu option. It will give you the option for providing the login credentials to connect to the Database within your SQL Server.</p>
 <img src="/images/15844993115e718a6ff10a6.png" alt="Connecting to the Query Editor">
@@ -420,7 +430,8 @@ To access the advanced data security, go to all resources and select the server 
 </item>
 <item>
 <title>Azure SQL Basics - Data Masking of sensitive information</title>
-<description><![CDATA[<p>In this post, we will be managing the security of data within Azure SQL Databases by implementing the data masking on data. Via this option, you can mask the sensitive information from your database like credit card details, email addresses, etc. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p>In this post, we will be managing the security of data within Azure SQL Databases by implementing the data masking on data. Via this option, you can mask the sensitive information from your database like credit card details, email addresses, etc. </p>
 <p>Select the Azure SQL Database on which you want to implement the data masking. As shown below, it is under the security section. Once you click on it, it will open the blade on which you can set up the mask for different schema under your database. </p>
 <img src="/images/15844989265e7188eeb5982.png" alt="Data masking option">
 <p>SQL Users excluded from masking (administrators are always excluded): This option means the data will be visible without any masking to the admin users. You can add other users to whom you want to make all the data visible.</p>
@@ -432,7 +443,8 @@ To access the advanced data security, go to all resources and select the server 
 </item>
 <item>
 <title>Azure SQL Basics - Enabling Geo-Replication for Disaster Recovery</title>
-<description><![CDATA[<p>In this post, we will be checking how to enable Geo-replication for the Azure SQL database. Through this feature, you set up active replication to a different Geo location. This enables you to recover your database in case there is a disaster level event in your primary region. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p>In this post, we will be checking how to enable Geo-replication for the Azure SQL database. Through this feature, you set up active replication to a different Geo location. This enables you to recover your database in case there is a disaster level event in your primary region. </p>
 <p>To begin, select the Azure SQL database for which you want to enable the geo-replication as shown below.</p>
 <img src="/images/15844983315e71869b77f9a.png" alt="Your Azure SQL Database">
 <p>Once you click on the Azure SQL database, it will open up the properties of that SQL database. Click on the geo-replication as highlighted in the screenshot and it will open up the geo-replication window. #1 shows you the primary region we selected while creating the SQL database. #2 will provide the list of regions you can select for the replication. Once you select the region, the new blade will open to set up the secondary region for the SQL database.</p>
@@ -445,7 +457,8 @@ To access the advanced data security, go to all resources and select the server 
 </item>
 <item>
 <title>Azure SQL Basics - Connecting to Azure SQL DB using SSMS</title>
-<description><![CDATA[<h3>Connecting Azure SQL DB using SSMS</h3>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<h3>Connecting Azure SQL DB using SSMS</h3>
 <p>In this post, we will be showing how to connect SSMS (SQL Server Management Studio) to Azure SQL databases. Launch SSMS and the &quot;Connect to Server&quot; popup should open up automatically. Azure doesn’t support Windows Authentication. So you will need to log in using SQL server authentication with the username and password created in the Azure portal for the server or via AAD options. </p>
 <img src="/images/15844873805e715bd4012ad.png" alt="SSMS - Connect to SQL Server">
 <p>Before login, you will need the connectivity details and to get that follow the below steps.</p>
@@ -467,7 +480,8 @@ Once you click Save, you should be able to connect the Azure SQL databases using
 </item>
 <item>
 <title>Azure SQL Basics - Creating Azure SQL Databases</title>
-<description><![CDATA[<p>In my previous blog, I showed you how to search for Azure SQL databases. In this post we will see how to create the databases. To create the Azure SQL database, you need to know the subscription under you want to create the Azure SQL database.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p>In my previous blog, I showed you how to search for Azure SQL databases. In this post we will see how to create the databases. To create the Azure SQL database, you need to know the subscription under you want to create the Azure SQL database.</p>
 <p>Below is the first screen to start with the creation of the SQL database. Here you do the following:</p>
 <ol>
 <li>Select the <strong>Subscription</strong> under which you want to create the SQL database.</li>
@@ -498,7 +512,8 @@ Data source by default is None.  If you want to import the backup file of some e
 </item>
 <item>
 <title>Azure SQL Basics - Finding Azure SQL Databases in the Azure Portal</title>
-<description><![CDATA[<p>Azure SQL Database is Microsoft's Platform as a Service (PaaS) offering for the Microsoft SQL Server Database. In the next few weeks, we will be going back to the basics and delving into this service from basic to intermediate. We will visit all it's nitty gritty's and understanding in detail what this service has to offer. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
+<p>Azure SQL Database is Microsoft's Platform as a Service (PaaS) offering for the Microsoft SQL Server Database. In the next few weeks, we will be going back to the basics and delving into this service from basic to intermediate. We will visit all it's nitty gritty's and understanding in detail what this service has to offer. </p>
 <p>Let's start with where to find Azure SQL Databases with the Azure Portal. </p>
 <p>Start by going to <a href="http://portal.azure.com">http://portal.azure.com</a> and clicking on the “All services” as shown below. </p>
 <img src="/images/15844859395e7156334a480.png" alt="All Services">
@@ -512,7 +527,8 @@ Data source by default is None.  If you want to import the backup file of some e
 </item>
 <item>
 <title>Azure for AWS professionals - Networking - Azure - 05 Creating rules in NSGs and assigning NSGs</title>
-<description><![CDATA[<p>In the last post, we created a new Network Security Group or NSG. Now in this post, we will work with these NSGs and create some rules. We will also check how to assign these to a subnet (or network interface) in Azure. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>In the last post, we created a new Network Security Group or NSG. Now in this post, we will work with these NSGs and create some rules. We will also check how to assign these to a subnet (or network interface) in Azure. </p>
 <p>There are two types of rules that you define in an NSG:</p>
 <ol>
 <li><strong>Inbound Rules</strong> - these rules dictate what incoming traffic will be allowed. </li>
@@ -559,7 +575,8 @@ Data source by default is None.  If you want to import the backup file of some e
 </item>
 <item>
 <title>Azure for AWS professionals - Networking - Azure - 04 Creating Network Security Groups</title>
-<description><![CDATA[<p><strong>Network Security Groups</strong> or <strong>NSGs</strong> are kind of a firewall, where you define what traffic will be allowed and what traffic will be blocked. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>Network Security Groups</strong> or <strong>NSGs</strong> are kind of a firewall, where you define what traffic will be allowed and what traffic will be blocked. </p>
 <p><strong>Note</strong> that whereas AWS has Network ACLs at the subnet level and Security Groups at the EC2 instance level, Microsoft Azure only has NSGs. These can be applied both at the subnet level as well as at the network interface level (i.e. VM level). The way these are designed, they resemble Network ACLs a lot.</p>
 <p>You start by navigating to all services -&gt; Networking category -&gt; Network security groups. </p>
 <img src="/images/15850293135e79a0c109953.png" alt="Network Security Groups">
@@ -577,7 +594,8 @@ Data source by default is None.  If you want to import the backup file of some e
 </item>
 <item>
 <title>Azure for AWS professionals - Networking - Azure - 03 Service Endpoints</title>
-<description><![CDATA[<p><strong>Service Endpoints</strong> in Azure Virtual Networks provide the ability to connect to various Microsoft public services (like Azure SQL and Azure storage) securely. From official documentation: &quot;The endpoints also extend the identity of your VNet to the Azure services over a direct connection. Endpoints allow you to secure your critical Azure service resources to only your virtual networks. Traffic from your VNet to the Azure service always remains on the Microsoft Azure backbone network.&quot;. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>Service Endpoints</strong> in Azure Virtual Networks provide the ability to connect to various Microsoft public services (like Azure SQL and Azure storage) securely. From official documentation: &quot;The endpoints also extend the identity of your VNet to the Azure services over a direct connection. Endpoints allow you to secure your critical Azure service resources to only your virtual networks. Traffic from your VNet to the Azure service always remains on the Microsoft Azure backbone network.&quot;. </p>
 <p>When you enable Service Endpoints, the IP address for a Microsoft service, switches from a public IP address to a private IP address. If you have any firewall rules in place then those will need to be updated. E.g. a VM connecting to a Microsoft Azure SQL database. </p>
 <p><strong>Note</strong> that a service endpoint is always enabled on a <strong>Subnet</strong> level. </p>
 <p>To begin, navigate to the Virtual Networks and select the virtual network you require. Under settings menu, click on the &quot;Service endpoints&quot;. To create a new service endpoint click on the &quot;+Add&quot; button.</p>
@@ -592,7 +610,8 @@ Data source by default is None.  If you want to import the backup file of some e
 </item>
 <item>
 <title>Azure for AWS professionals - Networking - Azure - 02 Working with Virtual Networks (vNets) and Subnets</title>
-<description><![CDATA[<p>In this post, we will start working with the <strong>Virtual Networks</strong> (or <strong>vNets</strong>) and <strong>Subnets</strong>. To start, navigate to all services and then go to the Networking category. Find the option for Virtual network (the very first option) and click on this. All your vNets will be listed here. Find the one on which you want to work and click on the same.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>In this post, we will start working with the <strong>Virtual Networks</strong> (or <strong>vNets</strong>) and <strong>Subnets</strong>. To start, navigate to all services and then go to the Networking category. Find the option for Virtual network (the very first option) and click on this. All your vNets will be listed here. Find the one on which you want to work and click on the same.</p>
 <img src="/images/15850252995e7991134eb50.png" alt="Virtual Networks">
 <p>Under the Settings category, you will find the option for &quot;<strong>Address space</strong>&quot;. This is where you can view the complete address space for your virtual network. Also, this is where you can expand your virtual network by adding more address spaces. </p>
 <img src="/images/15850253055e799119629eb.png" alt="Address Spaces">
@@ -610,7 +629,8 @@ Data source by default is None.  If you want to import the backup file of some e
 </item>
 <item>
 <title>Azure for AWS professionals - Networking - Azure - 01 Creating Virtual Network</title>
-<description><![CDATA[<p>Microsoft Azure's virtual network capabilities as part of the <strong>Infrastructure as a Service</strong> (<strong>IaaS</strong>) offering is called <strong>Virtual Network</strong> or unofficially known as <strong>vNet</strong>. It provides connectivity between various virtual machines (or VMs) in that network. It can also extend the connectivity to other networks. You can also extend the virtual networks to your on-premises networks. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Microsoft Azure's virtual network capabilities as part of the <strong>Infrastructure as a Service</strong> (<strong>IaaS</strong>) offering is called <strong>Virtual Network</strong> or unofficially known as <strong>vNet</strong>. It provides connectivity between various virtual machines (or VMs) in that network. It can also extend the connectivity to other networks. You can also extend the virtual networks to your on-premises networks. </p>
 <p>In this post, we will be creating a new Virtual Network. To start creating the virtual networks, click on the 3 lines on the top left and then click on the &quot;<strong>+New</strong>&quot; button. Here click on the Virtual Network option under the Networking category.</p>
 <img src="/images/15849562375e78834d45fca.png" alt="Virtual Networks">
 <p>Alternatively, you can navigate to all services and then go to the Networking category. Find the option for Virtual network (the very first option) and click on this. All your vNets will be listed here (as shown below). You can click on the &quot;<strong>+Add</strong>&quot; button to create a new virtual network.</p>
@@ -631,7 +651,8 @@ Data source by default is None.  If you want to import the backup file of some e
 </item>
 <item>
 <title>Azure for AWS professionals - Networking - AWS - 06 Network ACLs vs Security Groups</title>
-<description><![CDATA[<p><strong>Network ACLs</strong> (or Access Control Lists) and <strong>Security Groups</strong> are very similar in their functionality. Both are acting as a firewall and restricting the traffic. There are few key differences between the two that we need to understand so that we can create and apply this appropriately to any situation at hand. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>Network ACLs</strong> (or Access Control Lists) and <strong>Security Groups</strong> are very similar in their functionality. Both are acting as a firewall and restricting the traffic. There are few key differences between the two that we need to understand so that we can create and apply this appropriately to any situation at hand. </p>
 <h3>Scope</h3>
 <p><strong>Network ACLs</strong> are applied at the <strong>Subnet</strong> level. These restrict the traffic, coming in or out of the subnet. ACLs are therefore automatically applied to all resources (e.g. EC2 instances) in the subnet. </p>
 <p>Whereas the <strong>Security Groups</strong> are applied at the <strong>EC2 instances</strong> level. </p>
@@ -652,7 +673,8 @@ Data source by default is None.  If you want to import the backup file of some e
 </item>
 <item>
 <title>Azure for AWS professionals - Networking - AWS - 05 Security Groups</title>
-<description><![CDATA[<p><strong>Security Groups</strong> are another security feature in AWS Virtual Private Clouds (VPCs). It is like a firewall that restricts the traffic at the EC2 instance level. These are applied to the EC2 instances. Once the traffic is filtered by the Network ACLs at the subnet level, it is then filtered further by the security group.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>Security Groups</strong> are another security feature in AWS Virtual Private Clouds (VPCs). It is like a firewall that restricts the traffic at the EC2 instance level. These are applied to the EC2 instances. Once the traffic is filtered by the Network ACLs at the subnet level, it is then filtered further by the security group.</p>
 <p><strong>NOTE</strong>: All the traffic is automatically denied in a Security Group. Only the traffic defined in a security group is allowed to EC2 instances.</p>
 <p>To access the security groups, navigate to the VPC section in AWS and then click on the &quot;<strong>Security Groups</strong>&quot; option in the Security menu on the left. You can view all your security groups here. Select one and view its properties in the bottom panel. These properties include Description, Inbound rules, Outbound rules, and Tags. You can either right-click on the security group or click on the Actions button to view the action that you can take on this security group. The key actions we are interested in includes:</p>
 <ul>
@@ -677,7 +699,8 @@ Data source by default is None.  If you want to import the backup file of some e
 </item>
 <item>
 <title>Azure for AWS professionals - Networking - AWS - 04 Network ACLs</title>
-<description><![CDATA[<p><strong>Network ACLs</strong> or <strong>Access Control Lists</strong> is like a firewall for your <strong>subnets</strong>.  There are inbound and outbound rules defined in these ACLs that determine what traffic is allowed in a subnet and what traffic will be blocked. These are great for the security of your network. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>Network ACLs</strong> or <strong>Access Control Lists</strong> is like a firewall for your <strong>subnets</strong>.  There are inbound and outbound rules defined in these ACLs that determine what traffic is allowed in a subnet and what traffic will be blocked. These are great for the security of your network. </p>
 <p>To access the Network ACLs, navigate to the VPC section in AWS and then click on the &quot;Network ACLs&quot; option in the Security menu on the left. </p>
 <p>You can view all your ACLs here. Select one and view its properties in the bottom panel. These properties include Details, Inbound rules, Outbound rules, Subnet associations and Tags. You can either right-click on the ACL or click on the Actions button to view the action that you can take on this ACL. The key actions we are interested in includes:</p>
 <ul>
@@ -706,7 +729,8 @@ Data source by default is None.  If you want to import the backup file of some e
 </item>
 <item>
 <title>Azure for AWS professionals - Networking - AWS - 03 Route Tables</title>
-<description><![CDATA[<p>A <strong>Route Table</strong> is just as the name suggests, it is a table consisting of the routes. This determines how the traffic is routed between the subnets and even out of the virtual network. Each entry in this table is called a &quot;<strong>route</strong>&quot;. When you create a VPC, one main route table is automatically created for your VPC and is associated with the subnet of the VPC. You can create custom route tables. E.g. you may want to send all traffic to a network virtual appliance i.e. a firewall. You may have Palo Alto or CheckPoint or any other firewall in your environment and you want the traffic to route via that firewall. You can achieve this via route tables.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>A <strong>Route Table</strong> is just as the name suggests, it is a table consisting of the routes. This determines how the traffic is routed between the subnets and even out of the virtual network. Each entry in this table is called a &quot;<strong>route</strong>&quot;. When you create a VPC, one main route table is automatically created for your VPC and is associated with the subnet of the VPC. You can create custom route tables. E.g. you may want to send all traffic to a network virtual appliance i.e. a firewall. You may have Palo Alto or CheckPoint or any other firewall in your environment and you want the traffic to route via that firewall. You can achieve this via route tables.</p>
 <p>To start, navigate to your VPC section in AWS. Then from the left menu, click on the &quot;<strong>Route Tables</strong>&quot; option. You can create a new table here as well by clicking on the &quot;Create route table&quot; button. For now, we will work with an existing route table on our VPC. Select the route table that you want to view the details or edit. </p>
 <p>At the bottom panel, you will be able to view the following settings for the selected route table:</p>
 <ul>
@@ -734,7 +758,8 @@ Data source by default is None.  If you want to import the backup file of some e
 </item>
 <item>
 <title>Azure for AWS professionals - Networking - AWS - 02 Working with VPCs and Subnets</title>
-<description><![CDATA[<p>Once we have a <strong>Virtual Private Cloud or VPC in AWS</strong>, we can now start getting familiar with the AWS console options and how to work with VPC and the subnets in it. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Once we have a <strong>Virtual Private Cloud or VPC in AWS</strong>, we can now start getting familiar with the AWS console options and how to work with VPC and the subnets in it. </p>
 <p>We will first need to navigate to VPC from All services and then the &quot;Network &amp; Content Delivery&quot; category. </p>
 <img src="/images/15849298305e781c26efab5.png" alt="VPC menu">
 <p>From the Dashboard, you can navigate to the &quot;<strong>Your VPCs</strong>&quot; option. Next, you select your VPC from the list of all VPCs. As a best practice, you should provide names for all the VPCs. As you can see from the screenshot below, the first VPC has a name but the second one does not. To provide a name you can simply hover over that VPC in the name column and it will give you an option to edit and provide a new name.</p>
@@ -764,7 +789,8 @@ Data source by default is None.  If you want to import the backup file of some e
 </item>
 <item>
 <title>Azure for AWS professionals - Networking - AWS - 01 Creating Virtual Private Cloud (VPC)</title>
-<description><![CDATA[<p><strong>Virtual Private Cloud</strong> or <strong>VPC</strong> is Amazon's virtual network capabilities as part of the Infrastructure as a Service (IaaS) offerings. It provides connectivity between various EC2 instances in that network. It can also extend the connectivity to other networks or even on-premises. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>Virtual Private Cloud</strong> or <strong>VPC</strong> is Amazon's virtual network capabilities as part of the Infrastructure as a Service (IaaS) offerings. It provides connectivity between various EC2 instances in that network. It can also extend the connectivity to other networks or even on-premises. </p>
 <h3>Accessing VPCs and Launching Create Wizard</h3>
 <p>Let's start by creating one in AWS. We will first need to navigate to VPC from All services and then the &quot;Network &amp; Content Delivery&quot; category. </p>
 <img src="/images/15849240565e780598df108.png" alt="VPC Option">
@@ -807,7 +833,8 @@ A /16 network with a /24 subnet and provisions an IPsec VPN tunnel between your 
 </item>
 <item>
 <title>Azure for AWS professionals - Networking - Azure Virtual Networks vs AWS Virtual Private Cloud (VPC)</title>
-<description><![CDATA[<p>Microsoft Azure and Amazon's AWS cloud platforms provide networking as part of the <strong>Infrastructure as a Service</strong> (<strong>IaaS</strong>). Both provide similar services with some differences in the implementation of these services. Microsoft has named it's service as &quot;<strong>Virtual Networks</strong>&quot;, whereas Amazon calls its service as &quot;<strong>Virtual Private Cloud</strong>&quot; or most commonly called as &quot;<strong>VPC</strong>&quot;.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Microsoft Azure and Amazon's AWS cloud platforms provide networking as part of the <strong>Infrastructure as a Service</strong> (<strong>IaaS</strong>). Both provide similar services with some differences in the implementation of these services. Microsoft has named it's service as &quot;<strong>Virtual Networks</strong>&quot;, whereas Amazon calls its service as &quot;<strong>Virtual Private Cloud</strong>&quot; or most commonly called as &quot;<strong>VPC</strong>&quot;.</p>
 <p>Both Microsoft Azure Virtual Networks and AWS VPC have &quot;<strong>Subnets</strong>&quot; inside a network. The VMs in Azure or EC2 instances in AWS has network interfaces that connects to the subnets within the Virtual Networks (or VPCs) and receive an IP address from that subnet. The traffic route inside these networks is governed by &quot;<strong>Route Tables</strong>&quot;. </p>
 <p>Traffic restrictions are implemented slightly differently in the two platforms. Microsoft Azure has &quot;<strong>Network Security Groups</strong>&quot;. These can be applied at either Subnet or Virtual Machine level. Whereas AWS has <strong>Network Access Control Lists</strong> or <strong>ACLs</strong> that are applied at the subnet level. Also, AWS has <strong>Security Groups</strong> that are applied to the EC2 instances. </p>
 <h3>Accessing Microsoft Azure Virtual Networks</h3>
@@ -825,7 +852,8 @@ A /16 network with a /24 subnet and provisions an IPsec VPN tunnel between your 
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - AWS - 07 Setting up Access Points on S3 bucket</title>
-<description><![CDATA[<p><strong>Access points</strong> can be used to provide access to your bucket securely from a network (VPC) or from the internet. To access bucket resources from a VPC access point, you’ll need to use the AWS CLI, AWS SDK, or Amazon S3 REST API.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>Access points</strong> can be used to provide access to your bucket securely from a network (VPC) or from the internet. To access bucket resources from a VPC access point, you’ll need to use the AWS CLI, AWS SDK, or Amazon S3 REST API.</p>
 <p>To create a new access point, navigate to your S3 bucket and navigate to the &quot;<strong>Access points</strong>&quot; tab. Click on the &quot;<em>+Create access point</em>&quot; button.</p>
 <img src="/images/15848383465e76b6ca1f068.png" alt="Access points">
 <p>Provide a name for the access point. Select if you want to create this access point for a virtual network (VPC) or the internet. If you select the former then provide an ID for the VPC.</p>
@@ -837,7 +865,8 @@ A /16 network with a /24 subnet and provisions an IPsec VPN tunnel between your 
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - AWS - 06 Configuring replication on S3 buckets</title>
-<description><![CDATA[<p>For any <strong>S3 bucket</strong> with critical objects, you should always set up the data to replicate to a different bucket in a different region. You can do both cross-region replication or same-region replication using the replication rules.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>For any <strong>S3 bucket</strong> with critical objects, you should always set up the data to replicate to a different bucket in a different region. You can do both cross-region replication or same-region replication using the replication rules.</p>
 <p>To begin, navigate to your S3 bucket and click on the &quot;<strong>Management</strong>&quot; tab. Then click on the &quot;<strong>Replication</strong>&quot; settings. Click on the &quot;<strong>+ Add rule</strong>&quot; to create a new rule.</p>
 <img src="/images/15848372115e76b25b0c547.png" alt="Replication">
 <p><strong>Pre-requisite</strong>: Versioning is a pre-requisite on the S3 bucket for you to be able to set up replication. If you haven't done so the wizard will give you an option to enable this setting here.</p>
@@ -860,7 +889,8 @@ A /16 network with a /24 subnet and provisions an IPsec VPN tunnel between your 
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - AWS - 05 Adding Lifecycle Rules for S3 buckets</title>
-<description><![CDATA[<p>When you have object i.e. files in your <strong>S3 bucket</strong>, you are essentially paying for the space that these objects take up. After a certain period of time, you will either no longer need these objects or you may want to archive these. If we keep them lying and take actions manually then there are chances that we forget about these and end up paying for the extra space. <strong>Lifecycle</strong> within S3 buckets is a way to set an expiration date to the files and take automated actions at the expiration. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>When you have object i.e. files in your <strong>S3 bucket</strong>, you are essentially paying for the space that these objects take up. After a certain period of time, you will either no longer need these objects or you may want to archive these. If we keep them lying and take actions manually then there are chances that we forget about these and end up paying for the extra space. <strong>Lifecycle</strong> within S3 buckets is a way to set an expiration date to the files and take automated actions at the expiration. </p>
 <p>To start you navigate to your S3 bucket and go to the <strong>Management</strong> tab. Click on the Lifecycle here. To create a new lifecycle rule click on the &quot;<em>+Add lifecycle rule</em>&quot; button. A new popup launches to set up a new rule. You can have as many rules as you want.</p>
 <img src="/images/15848362045e76ae6c6e798.png" alt="Add lifecycle rules">
 <p>To set up a lifecycle rule, set up a name for this rule. Also, set up a scope for this rule. You can either apply this rule to all objects in the S3 bucket or reduce the scope by using prefixes for the names or leveraging tags.</p>
@@ -877,7 +907,8 @@ A /16 network with a /24 subnet and provisions an IPsec VPN tunnel between your 
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - AWS - 04 Setting Permissions on S3 Bucket</title>
-<description><![CDATA[<p>You can manage the access to the <strong>S3 bucket</strong> at a much granular level through its permission settings. You can access its settings by navigating to the S3 bucket and clicking on the &quot;<strong>Permissions</strong>&quot; tab. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>You can manage the access to the <strong>S3 bucket</strong> at a much granular level through its permission settings. You can access its settings by navigating to the S3 bucket and clicking on the &quot;<strong>Permissions</strong>&quot; tab. </p>
 <p>Here you have the option to modify:</p>
 <ul>
 <li>&quot;Block public access&quot; related policies</li>
@@ -906,7 +937,8 @@ A /16 network with a /24 subnet and provisions an IPsec VPN tunnel between your 
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - AWS - 03 Configuring S3 Bucket Properties</title>
-<description><![CDATA[<p>There are various settings on the <strong>S3 bucket</strong> that you can either toggle or configure. These properties can make your S3 bucket more secure or optimize performance or can help you to manage it better.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>There are various settings on the <strong>S3 bucket</strong> that you can either toggle or configure. These properties can make your S3 bucket more secure or optimize performance or can help you to manage it better.</p>
 <p>To access these properties, simply navigate to your S3 bucket and click on the <strong>Properties</strong> tab.</p>
 <img src="/images/15848311515e769aafe830b.png" alt="Properties option">
 <p>When you click on anyone, it expands to show the details. Many of the properties are simply toggle switches. Others require a bit more configuration.</p>
@@ -938,7 +970,8 @@ A /16 network with a /24 subnet and provisions an IPsec VPN tunnel between your 
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - AWS - 02 Working with S3 bucket and uploading files</title>
-<description><![CDATA[<p>Once you have an S3 bucket in AWS, you can start uploading files to it and working with it. In this post, we will start working with the S3 bucket we created in an earlier post and will start uploading files to it.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Once you have an S3 bucket in AWS, you can start uploading files to it and working with it. In this post, we will start working with the S3 bucket we created in an earlier post and will start uploading files to it.</p>
 <p>To start, simply navigate to the S3 service and click on your bucket. It will take you to the <strong>Overview</strong> screen. </p>
 <img src="/images/15848294615e7694151bdc7.png" alt="Overview">
 <p>The first thing you should do is to <strong>create a folder</strong>. As a best practice, try to organize your files systematically as much possible. While creating the folder, you can set it's encryption settings.</p>
@@ -962,7 +995,8 @@ A /16 network with a /24 subnet and provisions an IPsec VPN tunnel between your 
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - AWS - 01 Creating Simple Storage Service or S3 buckets</title>
-<description><![CDATA[<p>AWS Simple Storage Service or S3 is the managed service provided by the AWS environment for storing your blobs like your photos, videos, and any other files. In this service, you create S3 buckets as resources. These are very similar to Microsoft Azure storage accounts.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>AWS Simple Storage Service or S3 is the managed service provided by the AWS environment for storing your blobs like your photos, videos, and any other files. In this service, you create S3 buckets as resources. These are very similar to Microsoft Azure storage accounts.</p>
 <p>To start, navigate to S3 service from All services.</p>
 <img src="/images/15848281965e768f24a1f58.png" alt="S3 option">
 <p>Here you will see the option to create a new bucket. Click on the button to get started.</p>
@@ -978,7 +1012,8 @@ A /16 network with a /24 subnet and provisions an IPsec VPN tunnel between your 
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - Azure - 05 Configuring Firewall and vNet access on Storage accounts</title>
-<description><![CDATA[<p>To secure access to your <strong>Microsoft Azure Storage accounts</strong>, you can configure a firewall on these. You can allow only particular IP addresses or an address range (specified in CIDR format). Also, instead of specifying IP addresses you can configure access to only specific virtual networks (vNets) in your environment and therefore restrict access to other vNets. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>To secure access to your <strong>Microsoft Azure Storage accounts</strong>, you can configure a firewall on these. You can allow only particular IP addresses or an address range (specified in CIDR format). Also, instead of specifying IP addresses you can configure access to only specific virtual networks (vNets) in your environment and therefore restrict access to other vNets. </p>
 <p>To access these settings, navigate to your storage account and under the settings, click on the &quot;<strong>Firewall and virtual networks</strong>&quot; option.</p>
 <img src="/images/15848208695e76728540e6d.png" alt="Firewall and vNet access">
 <p>Here you have multiple options and ways to configure the firewall. Let's look at these in a systematic way:</p>
@@ -993,7 +1028,8 @@ A /16 network with a /24 subnet and provisions an IPsec VPN tunnel between your 
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - Azure - 04 Securely Accessing Storage Accounts</title>
-<description><![CDATA[<p>When working with Microsoft Azure <strong>Storage accounts</strong>, you will need to access these accounts either from a program or programmatically from a script or code. There are two primary ways to securely access your storage accounts. In this post, we will review these and find out how to access their settings from the portal.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>When working with Microsoft Azure <strong>Storage accounts</strong>, you will need to access these accounts either from a program or programmatically from a script or code. There are two primary ways to securely access your storage accounts. In this post, we will review these and find out how to access their settings from the portal.</p>
 <h3>Access Keys</h3>
 <p>The first is to use the <strong>Access keys</strong>. Linked to every storage account, there are two access keys. These are referred to as primary and secondary keys or simply key1 and key2. To access these keys, navigate to your storage account and then click on the &quot;Access keys&quot; under settings. Note that you only need one key (anyone) to be able to connect to the storage account. Now when you are using a tool like Storage Explorer or PowerShell scripts to connect to your storage account, you can use this key along with the name of the storage account to connect and perform operations. </p>
 <img src="/images/15848161415e76600dcfaa4.png" alt="Access Keys">
@@ -1010,7 +1046,8 @@ A /16 network with a /24 subnet and provisions an IPsec VPN tunnel between your 
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - Azure - 03 Event driven automation of Azure Storage accounts</title>
-<description><![CDATA[<p>Microsoft Azure <strong>Storage accounts</strong> generate various events. You can automate these events and can take action when these events occur. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Microsoft Azure <strong>Storage accounts</strong> generate various events. You can automate these events and can take action when these events occur. </p>
 <p>Build reactive, event-driven apps with a fully managed event routing service that is built into Azure. Event Grid helps you build automation into your cloud infrastructure, create serverless apps, and integrate across services and clouds.</p>
 <p>Few examples could be:</p>
 <ul>
@@ -1033,7 +1070,8 @@ A /16 network with a /24 subnet and provisions an IPsec VPN tunnel between your 
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - Azure - 02 Data Transfer Options</title>
-<description><![CDATA[<p>When you have a Storage account in Microsoft Azure, you want to transfer data to the blob storage to consume the storage. The initial data transfer can be huge and you want to optimize this data transfer. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>When you have a Storage account in Microsoft Azure, you want to transfer data to the blob storage to consume the storage. The initial data transfer can be huge and you want to optimize this data transfer. </p>
 <p>Navigate to your Storage account and click on &quot;<strong>Data transfer</strong>&quot; setting to view all the options that you have. Use this section to define your estimated data size for transfer, approximate estimated network bandwidth and transfer frequency. Based on your selection this wizard will show you relevant options that will best suit you to transfer your data.</p>
 <img src="/images/15847543155e756e8b95377.png" alt="Data Transfer options">
 <p>Let look at these options closely. The options you have are discussed below.</p>
@@ -1139,7 +1177,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - Azure - 01 Creating Azure Storage Account</title>
-<description><![CDATA[<p><strong>Note</strong>: This blog has been updated with Private endpoints feature and latest screenshots.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>Note</strong>: This blog has been updated with Private endpoints feature and latest screenshots.</p>
 <p>As we saw earlier, Microsoft Azure's <strong>Storage account</strong> is a managed service for storing your blobs like your photos, videos, and any other files. Microsoft has bundled below services within Storage Accounts:</p>
 <ul>
 <li><strong>Blob storage</strong> - to securely store your blobs like photos, videos, and other files, etc.</li>
@@ -1178,7 +1217,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Storage - Microsoft Azure Storage Accounts vs AWS Simple Storage Service (S3)</title>
-<description><![CDATA[<p>For storing your blobs like your photos, videos, and any other files, both the cloud platform have great services to offer. AWS calls its service as <strong>Simple Storage Service</strong> or more popularly known as <strong>S3</strong>. Microsoft Azure calls its service as <strong>Storage Accounts</strong>. Microsoft has bundled below services within Storage Accounts:</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>For storing your blobs like your photos, videos, and any other files, both the cloud platform have great services to offer. AWS calls its service as <strong>Simple Storage Service</strong> or more popularly known as <strong>S3</strong>. Microsoft Azure calls its service as <strong>Storage Accounts</strong>. Microsoft has bundled below services within Storage Accounts:</p>
 <ul>
 <li><strong>Blob storage</strong> - to securely store your blobs like photos, videos, and other files, etc.</li>
 <li><strong>File shares</strong> - SMB file shares</li>
@@ -1196,7 +1236,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Azure Managed Disks vs AWS Elastic Block Store (EBS)</title>
-<description><![CDATA[<p>Both Microsoft Azure and AWS provides a managed service for managing the disks of your virtual machine (or EC2 instance). It is the storage optimized for I/O intensive read/write operations. For use as high-performance Azure virtual machine storage. Microsoft Azure offering is called &quot;<strong>Managed disk</strong>&quot; whereas AWS calls it &quot;<strong>Elastic Block Store (EBS) Volume</strong>&quot;. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Both Microsoft Azure and AWS provides a managed service for managing the disks of your virtual machine (or EC2 instance). It is the storage optimized for I/O intensive read/write operations. For use as high-performance Azure virtual machine storage. Microsoft Azure offering is called &quot;<strong>Managed disk</strong>&quot; whereas AWS calls it &quot;<strong>Elastic Block Store (EBS) Volume</strong>&quot;. </p>
 <h3>AWS - Elastic Block Store (EBS) Volume</h3>
 <p>Let's look at AWS's offering first. When you create EC2 instances, you automatically get at least one volume (i.e. disk) for the OS disk. You can additionally add multiple volumes for the data disk. You can view all this data by navigating to EC2 and then under the settings go to the &quot;Elastic Block Store&quot; category. You will find your <strong>Volumes</strong> listed here. </p>
 <p>There is also an option to view the <strong>Snapshots</strong> which shows you any snapshots taken on the volume, taken manually or from AWS Backup service.</p>
@@ -1220,7 +1261,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Auto Scaling - AWS - 05 AWS Auto Scaling service</title>
-<description><![CDATA[<p><strong>AWS Auto Scaling</strong> is the latest offering from AWS that enables you to quickly discover all scalable resources in your environment and then set up application scaling for you. You can either choose one of the AWS recommended settings to optimize performance or cost or both. Or you can also define your own custom scaling conditions. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>AWS Auto Scaling</strong> is the latest offering from AWS that enables you to quickly discover all scalable resources in your environment and then set up application scaling for you. You can either choose one of the AWS recommended settings to optimize performance or cost or both. Or you can also define your own custom scaling conditions. </p>
 <p>You start by navigating to the AWS Auto Scaling by going to All Services and then navigating to the Management and Governance section.</p>
 <img src="/images/15846760855e743cf508966.png" alt="AWS Auto Scaling">
 <p>You can create multiple scaling plans here. Start creating your scaling plan by clicking on the &quot;Get started&quot; button.</p>
@@ -1243,7 +1285,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Auto Scaling - AWS - 04 Creating Auto Scaling Groups - Part 2</title>
-<description><![CDATA[<p>This is part 2 of the blog where we are creating the <strong>Auto Scaling Group</strong> in AWS. Let's dive right in, where we left off in the last blog.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>This is part 2 of the blog where we are creating the <strong>Auto Scaling Group</strong> in AWS. Let's dive right in, where we left off in the last blog.</p>
 <p>Now we are at <strong>Step 3</strong>, here we define the optional Load balancing details and Health checks. Later is something you should always have configured as a best practice.</p>
 <img src="/images/15846744185e7436723f0ec.png" alt="Step 3 - Load balancing and health checks">
 <p>In Step 4 we will configure the group size and scaling policies. You provide a minimum and maximum no. of instances along with a desired capacity which becomes the default no. of instances. </p>
@@ -1260,7 +1303,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Auto Scaling - AWS - 04 Creating Auto Scaling Groups - Part 1</title>
-<description><![CDATA[<p><strong>Auto Scale Groups</strong> is how you can have multiple instances hosting the same application running at the same time in AWS. This is what provides you with high availability for your applications deployed on EC2 instances in AWS. These scale in and out based on your scaling conditions. You can create auto scale groups in AWS using any one of the Launch Template or Launch configurations. Templates are the recommended way to go. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>Auto Scale Groups</strong> is how you can have multiple instances hosting the same application running at the same time in AWS. This is what provides you with high availability for your applications deployed on EC2 instances in AWS. These scale in and out based on your scaling conditions. You can create auto scale groups in AWS using any one of the Launch Template or Launch configurations. Templates are the recommended way to go. </p>
 <p>You start by navigating to the EC2 in AWS.</p>
 <img src="/images/15846734155e743287b87b6.png" alt="EC2">
 <p>Scroll all the way down and navigate to <strong>Auto Scaling Groups</strong>. Click on the &quot;Create Auto Scaling group&quot; to start the creation wizard.</p>
@@ -1279,7 +1323,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Auto Scaling - AWS - 03 Creating Launch Templates</title>
-<description><![CDATA[<p><strong>Launch Templates</strong> is the information about how to create an EC2 instance. It has all the relevant information to launch a new EC2 instance. It contains other instance-level settings, such as the Amazon Machine Image (AMI), instance type, key pair, and security groups, etc. This helps you to provide a predictable and repeatable way of deploying multiple EC2 instances in your environment.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>Launch Templates</strong> is the information about how to create an EC2 instance. It has all the relevant information to launch a new EC2 instance. It contains other instance-level settings, such as the Amazon Machine Image (AMI), instance type, key pair, and security groups, etc. This helps you to provide a predictable and repeatable way of deploying multiple EC2 instances in your environment.</p>
 <p>Please note that these provide similar functionality as <strong>Launch Configurations</strong> (which we will saw in the previous blog). Launch Templates is a new way of doing things. You can have multiple versions of a launch template but not for a launch configuration. Any new features are being added to the Launch Templates and that is what AWS recommends to use. </p>
 <p>Launch Template (or Launch Configuration) is also required for creating Auto Scaling Groups in AWS.</p>
 <p>Start by navigating to EC2 in AWS.</p>
@@ -1301,7 +1346,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Auto Scaling - AWS - 02 Creating Launch Configurations</title>
-<description><![CDATA[<p><strong>Launch Configuration</strong> is the configuration information about how to create an EC2 instance. It has all the relevant information to launch a new EC2 instance. It also contains other instance-level settings, such as the Amazon Machine Image (AMI), instance type, key pair, and security groups, etc. This helps you to provide a predictable and repeatable way of deploying multiple EC2 instances in your environment.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>Launch Configuration</strong> is the configuration information about how to create an EC2 instance. It has all the relevant information to launch a new EC2 instance. It also contains other instance-level settings, such as the Amazon Machine Image (AMI), instance type, key pair, and security groups, etc. This helps you to provide a predictable and repeatable way of deploying multiple EC2 instances in your environment.</p>
 <p>Please note that these provide similar functionality as <strong>Launch Templates</strong> (which we will check in the next blog). This is the older way of doing things. You can have multiple versions of a launch template but not for a launch configuration. Any new features are being added to the Launch Templates and that is what AWS recommends to use. </p>
 <p>This (or Launch Template) is also required for creating Auto Scaling Groups in AWS.</p>
 <p>You start by navigating to EC2 in AWS and then clicking on Launch Configurations under &quot;Auto Scaling&quot; category as shown below. Click on &quot;Create launch configuration&quot; to launch the wizard. </p>
@@ -1326,7 +1372,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Auto Scaling - AWS - 01 All Related Resources for Auto Scaling</title>
-<description><![CDATA[<p>AWS has various features that provide autoscaling features. Each resource type has it's unique functionality and these resources can work with each other. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>AWS has various features that provide autoscaling features. Each resource type has it's unique functionality and these resources can work with each other. </p>
 <p>These services are:</p>
 <ul>
 <li><strong>Launch Templates</strong> - the latest addition - this is a template for the EC2 instances. It has all the relevant information to launch a new EC2 instance. You can configure the compute, storage, networking, etc. inside your launch template. It also contains other instance-level settings, such as the Amazon Machine Image (AMI), instance type, key pair, and security groups, etc. This helps you to provide a predictable and repeatable way of deploying multiple EC2 instances in your environment.</li>
@@ -1340,7 +1387,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Auto Scaling - Azure - 04 Viewing the Run History of VMSS</title>
-<description><![CDATA[<p>When you have an active Microsoft Azure <strong>Virtual Machine Scale Set</strong> or <strong>VMSS</strong> it is imperative that you monitor how your VMSS has been running over the period of time. This helps you tweak the autoscaling settings of your VMSS. You should monitor this continuously for any critical applications in your environment. Ideally, to begin with, this should be done in a test or QA environment with a simulated load on your application running for a long period of time. And then you should keep doing this in upper environments as a best practice. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>When you have an active Microsoft Azure <strong>Virtual Machine Scale Set</strong> or <strong>VMSS</strong> it is imperative that you monitor how your VMSS has been running over the period of time. This helps you tweak the autoscaling settings of your VMSS. You should monitor this continuously for any critical applications in your environment. Ideally, to begin with, this should be done in a test or QA environment with a simulated load on your application running for a long period of time. And then you should keep doing this in upper environments as a best practice. </p>
 <p>To access this setting, navigate to your VM scale set and navigate to the &quot;Scaling&quot; option under the Settings menu. Here click on the &quot;<strong>Run history</strong>&quot; tab. All the history for how the instances were scaled up and down will be visible here. You can filter the data based on time to reduce the window. At the bottom you also have Operations list view what operations occurred on the VMSS and at what times. </p>
 <img src="/images/15845936465e72faeeb9450.png" alt="Scaling Run History">
 <p>This option should be used in conjunction with the performance data for the app or workloads running on your VMSS for a complete picture. If you view any performance drops, you should tweak the settings to scale out earlier than what it is configured. E.g. If the scale out operation is configured if the Average CPU percentage goes above 75% and you still see performance hits, then you should tweak that setting from 75% to a lower value like 65%. </p>
@@ -1350,7 +1398,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Auto Scaling - Azure - 03 Updating the Scaling policies of VMSS</title>
-<description><![CDATA[<p>In Microsoft Azure <strong>Virtual Machine Scale Sets</strong> or <strong>VMSS</strong>, understanding and setting up appropriate scaling settings is paramount. You have the option to either set the scaling settings manually or set them to auto-scale based on different criteria. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>In Microsoft Azure <strong>Virtual Machine Scale Sets</strong> or <strong>VMSS</strong>, understanding and setting up appropriate scaling settings is paramount. You have the option to either set the scaling settings manually or set them to auto-scale based on different criteria. </p>
 <p>To access these settings, navigate to your VMSS and go to the <strong>Scaling</strong> option under Settings. Ensure that &quot;Custom autoscale&quot; is selected. Then click on the &quot;<strong>Configure</strong>&quot; button from the top.</p>
 <img src="/images/15845924135e72f61d7810a.png" alt="Scaling configurations">
 <p>In the next screen, you can &quot;scale based on a metric&quot; to scale based on different metrics on the VM. Examples of such metrics include CPU percentage, Memory consumption, etc. Here you define: </p>
@@ -1367,7 +1416,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Auto Scaling - Azure - 02 View Running Instances in VMSS</title>
-<description><![CDATA[<p>When you have a Microsoft Azure <strong>Virtual Machine Scale Set</strong> or <strong>VMSS</strong> you want to view how many and what instances are running in your VMSS. You can do so very easily by navigating to your VMSS. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>When you have a Microsoft Azure <strong>Virtual Machine Scale Set</strong> or <strong>VMSS</strong> you want to view how many and what instances are running in your VMSS. You can do so very easily by navigating to your VMSS. </p>
 <p>From All Service -&gt; go to Virtual machine scale sets. Click on your VMSS to open up in it's own blade. Then from the left hand menu, navigate to the Settings category and click on <strong>Instances</strong>. This will show you all the instances in your VMSS along with their status. </p>
 <p>E.g. in the screen below, you can view 3 instances, 1 of which is in Running state and 2 are in Creating state. </p>
 <img src="/images/1111111.png" alt="Running Instances in VMSS">]]></description>
@@ -1376,7 +1426,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Auto Scaling - Azure - 01 Creating VMSS - Part 2</title>
-<description><![CDATA[<p>This is part 2 of the post for creating Microsoft Azure <strong>Virtual Machine Scale Sets</strong> or <strong>VMSS</strong>. Let's dive right in.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>This is part 2 of the post for creating Microsoft Azure <strong>Virtual Machine Scale Sets</strong> or <strong>VMSS</strong>. Let's dive right in.</p>
 <p>In continuation of the creation of VMSS wizard, next up you have the <strong>Scaling</strong> options. You provide the initial instance count. If you want to set up autoscaling, I recommend you to set up Custom policy rather than manual. You can automate based on various conditions like CPU exceeding certain thresholds etc. You can also tweak these settings once the VMSS has been set up and can add multiple criteria.</p>
 <img src="/images/15845877715e72e3fb7a2ce.png" alt="Scaling Options">
 <p>Next, you have Management settings. Here you can provide Upgrade policies, set up monitoring for diagnostics, Identity, Automatic OS upgrades, Instance termination notifications etc. </p>
@@ -1395,7 +1446,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Auto Scaling - Azure - 01 Creating VMSS - Part 1</title>
-<description><![CDATA[<p>Microsoft Azure <strong>Virtual Machine Scale Sets</strong> or <strong>VMSS</strong> lets you deploy your workload into identical Virtual machines. These VMs are load-balanced internally and the load is also managed automatically for you. You can define various autoscaling schedules to scale your resources up and down based on the demand. E.g. if Average CPU percentage increases beyond a number then you can automate to increase the number of running instances i.e. scale up. Similarly, you can configure to reduce the instances i.e. scale down if the average CPU percentage goes down a certain number. This auto-scaling is provided out of the box with VMSS. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Microsoft Azure <strong>Virtual Machine Scale Sets</strong> or <strong>VMSS</strong> lets you deploy your workload into identical Virtual machines. These VMs are load-balanced internally and the load is also managed automatically for you. You can define various autoscaling schedules to scale your resources up and down based on the demand. E.g. if Average CPU percentage increases beyond a number then you can automate to increase the number of running instances i.e. scale up. Similarly, you can configure to reduce the instances i.e. scale down if the average CPU percentage goes down a certain number. This auto-scaling is provided out of the box with VMSS. </p>
 <p>Let's start working with VMSS by creating one.</p>
 <p>You will find VMSS under the <strong>Compute</strong> category.</p>
 <img src="/images/15845631905e7283f6d0d93.png" alt="VMSS under All Services">
@@ -1416,7 +1468,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Auto Scaling - Azure VMSS vs AWS Auto Scaling</title>
-<description><![CDATA[<p><strong>Autoscaling</strong> is a key aspect of Infrastructure as a Service (IaaS) in the cloud. The demand for the service and therefore the load on your applications will vary based on various factors. It will vary as per:</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>Autoscaling</strong> is a key aspect of Infrastructure as a Service (IaaS) in the cloud. The demand for the service and therefore the load on your applications will vary based on various factors. It will vary as per:</p>
 <ul>
 <li>The time of the day</li>
 <li>The day of the month</li>
@@ -1441,7 +1494,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Batch Services - AWS - Working with AWS Batch Service</title>
-<description><![CDATA[<h3>AWS Batch Service</h3>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<h3>AWS Batch Service</h3>
 <p>AWS Batch Service has below main concepts:</p>
 <ul>
 <li><strong>Job</strong> - This is what is sent for execution to the Job Queue. This is the main work that you are trying to accomplish e.g. processing an image.</li>
@@ -1486,7 +1540,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Batch Services - Azure - 4 Creating Tasks in a Batch Job</title>
-<description><![CDATA[<p>So far we have seen that to consume Azure Batch service we need a <strong>Batch account</strong>. Within this Batch account, we create a <strong>Pool</strong>. Next, we create a <strong>Job</strong> that runs on this Pool. Finally, every Job has multiple <strong>Tasks</strong> that are actually executed within the Job (and on the Pool)</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>So far we have seen that to consume Azure Batch service we need a <strong>Batch account</strong>. Within this Batch account, we create a <strong>Pool</strong>. Next, we create a <strong>Job</strong> that runs on this Pool. Finally, every Job has multiple <strong>Tasks</strong> that are actually executed within the Job (and on the Pool)</p>
 <p>In this post, we will create on such Task in a Job. </p>
 <p>To create a Task, you begin by navigating to your Batch account (if not there already). Next click on the Jobs option under the Features category. Find your job and click on the same.</p>
 <img src="/images/15843974675e6ffc9b9660f.png" alt="Navigating to Jobs">
@@ -1511,7 +1566,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Batch Services - Azure - 3 Creating Job in the Batch Pool</title>
-<description><![CDATA[<p>Once you have a Batch account set up with a Pool (of compute nodes) running, you will need a job running in this pool to consume all that computing power. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Once you have a Batch account set up with a Pool (of compute nodes) running, you will need a job running in this pool to consume all that computing power. </p>
 <p>To create a Job in the Batch Pool, you first navigate to your Batch account (if not there already). Then scroll down and select <strong>Jobs</strong>. Click on &quot;<strong>+Add</strong>&quot; to add new jobs.</p>
 <img src="/images/15843967305e6ff9ba4b7bb.png" alt="Jobs section">
 <p>In the blade to Add Job, provide a unique Job Id. Add this job to the appropriate pool by clicking on the &quot;<em>Select a pool to run the job on</em>&quot;. This will bring up another blade where all your pools will be listed. Selected the one you want and hit <strong>Select</strong> button.</p>
@@ -1522,7 +1578,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Batch Services - Azure - 2 Creating Batch Pool in an Account</title>
-<description><![CDATA[<p>Once we have a Batch account, we will need a pool of compute nodes. You can do that by creating a Pool in the Batch account. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Once we have a Batch account, we will need a pool of compute nodes. You can do that by creating a Pool in the Batch account. </p>
 <p>First, we will need to navigate to the Batch account. To do this first go to <strong>All Services</strong> in the Azure portal menu. </p>
 <img src="/images/15843956425e6ff57adedc0.png" alt="All Services">
 <p>Next, find <strong>Batch accounts</strong> under the Compute category.</p>
@@ -1546,7 +1603,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Batch Services - Azure - 1 Creating Batch account</title>
-<description><![CDATA[<p>To consume the Azure Batch service, you need a <strong>Batch account</strong>. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>To consume the Azure Batch service, you need a <strong>Batch account</strong>. </p>
 <p>To create a Batch account navigate to Create a new service (from the 3 lines on the top left corner), then in the menu under the Compute category, find the &quot;<strong>Batch Services</strong>&quot; option.</p>
 <img src="/images/15843943555e6ff0737c790.png" alt="Creating Batch Service">
 <p>Just like any other resource, you provide a Subscription and a Resource Group. You also provide a name for the account. This name should only contain lowercase letters and should be unique in Azure's DNS space. This is used to uniquely identify your Batch account. You also select the location for your Batch service account.</p>
@@ -1566,7 +1624,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Batch Services - Azure vs AWS</title>
-<description><![CDATA[<p>Both Microsoft Azure and Amazon Web Services provide Batch service. These services are very similar in nature as they are trying to solve the same issue. Both are trying to run large-scale parallel and high-performance computing applications efficiently in the cloud.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Both Microsoft Azure and Amazon Web Services provide Batch service. These services are very similar in nature as they are trying to solve the same issue. Both are trying to run large-scale parallel and high-performance computing applications efficiently in the cloud.</p>
 <p>Both the services leverage underlying computing infrastructure to execute the Jobs. Both have different mechanisms to save you cost. Where Microsoft leverages Hybrid Use Benefit (or HUB) licensing to reduce the cost of having Windows Server, AWS has integrated the usage of Spot instances directly to the AWS Batch service to reduce the cost of the underlying compute.</p>
 <p>We will explore each platform's service in detail in the upcoming posts.</p>
 <p>For more information check these link: </p>
@@ -1579,7 +1638,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 11 - Protecting Azure VMs</title>
-<description><![CDATA[<p>For your mission-critical workloads, you can configure active replication of the VM to secondary geolocation. You can do so right from the settings of the VM. Under the hood it uses <strong>Azure Site Recovery</strong> to set up this disaster recovery.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>For your mission-critical workloads, you can configure active replication of the VM to secondary geolocation. You can do so right from the settings of the VM. Under the hood it uses <strong>Azure Site Recovery</strong> to set up this disaster recovery.</p>
 <p>Navigate to your VM and under the Operations category, click on the &quot;<strong>Disaster recovery</strong>&quot;. Here you can select the Target region for the replication. This region becomes your secondary location and should be factored in your Disaster Recovery strategy. E.g. There should be appropriate infrastructure in place to allow for connectivity to this secondary location. </p>
 <img src="/images/15843419925e6f23e8d325d.png" alt="Disaster Recovery for a VM">
 <p>Next, you have Advanced Settings for the Disaster Recovery. You can select the settings for the <strong>Target</strong>, i.e. what the Resource Group, Virtual Network etc. is going to be in the target region, if we failover the VM to that region. You also have <strong>Storage</strong> settings, where you define the cache storage account (used to replicate the managed disks) and the source to target managed disk mappings. </p>
@@ -1594,7 +1654,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 10 - Backing up Azure VMs</title>
-<description><![CDATA[<p>Backing up a VM is the best practice from an operations perspective. The VM should be backed up on periodic intervals and these backups should be retained for some time as well.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Backing up a VM is the best practice from an operations perspective. The VM should be backed up on periodic intervals and these backups should be retained for some time as well.</p>
 <p>You can backup a VM, right from its settings. After you navigate to Azure Virtual Machines, click on the VM for which you want to configure backup. Then under the Operations category, click on the <strong>Backup</strong> option. Here to configure the backup, you select the Backup vault, Resource Group and the backup policy. </p>
 <p>You can also create a new backup policy on the fly. To do so, you need to click on the &quot;Create (or edit) a new policy&quot; link.</p>
 <img src="/images/15843409935e6f2001ca1a5.png" alt="Azure Backup from VM settings">
@@ -1606,7 +1667,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 09 - Backing up EC2 instances Part 3</title>
-<description><![CDATA[<p>In this post, we will see how to create an <strong>on-demand backup</strong>. This type of backup is typically needed when you want to perform a critical operation and this can impact the functionality of the instance. Therefore, prior to performing such an operation, you want to ensure that you have the latest backup of the instance. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>In this post, we will see how to create an <strong>on-demand backup</strong>. This type of backup is typically needed when you want to perform a critical operation and this can impact the functionality of the instance. Therefore, prior to performing such an operation, you want to ensure that you have the latest backup of the instance. </p>
 <p>You access the option to create the on-demand backup by navigating to the AWS Backup service and then selecting the &quot;<strong>Protected resources</strong>&quot;. You will see the button for creating the on-demand backup here.</p>
 <img src="/images/15843382255e6f15318fc95.png" alt="">
 <p>In the wizard to create the on-demand backup, you provide the resource for which you want to create the on-demand backup. You can trigger the backup rightaway or delay the start by specifying a backup window. You can also set the expiration of the backup under Lifecycle. You can select an existing vault or create a new one. </p>
@@ -1620,7 +1682,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 09 - Backing up EC2 instances Part 2</title>
-<description><![CDATA[<p>In the previous post, we configured the backup plans in <strong>AWS Backup</strong>. Now we will use those backup plans and assign some resources to that plan. Specifically, we will assign the EC2 instance to configure the backup for that instance</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>In the previous post, we configured the backup plans in <strong>AWS Backup</strong>. Now we will use those backup plans and assign some resources to that plan. Specifically, we will assign the EC2 instance to configure the backup for that instance</p>
 <h3>Assigning Resources</h3>
 <p>Once the Backup Plan has been created or there is one already in the system, then when you navigate to AWS Backup service, your view will be similar to below. From the left menu, click on Backup Plans (if not already selected). Click on &quot;<strong>Assign Resources</strong>&quot; button.</p>
 <img src="/images/15843325645e6eff1405a8e.png" alt="Assigning Resources">
@@ -1646,7 +1709,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 09 - Backing up EC2 instances Part 1</title>
-<description><![CDATA[<p>To backup EC2 instances, you use the <strong>AWS Backup</strong> service. This is a fully managed, centralized backup service simplifying the management of your backups for your Amazon Elastic Block Store (EBS) volumes, your databases (Amazon Relational Database Service (RDS) or Amazon DynamoDB), AWS Storage Gateway and your Amazon Elastic File System (EFS) filesystems. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>To backup EC2 instances, you use the <strong>AWS Backup</strong> service. This is a fully managed, centralized backup service simplifying the management of your backups for your Amazon Elastic Block Store (EBS) volumes, your databases (Amazon Relational Database Service (RDS) or Amazon DynamoDB), AWS Storage Gateway and your Amazon Elastic File System (EFS) filesystems. </p>
 <h3>Configuring Backup Plans</h3>
 <p>To be able to use AWS Backup you need Backup Plans configured and created. </p>
 <p>Let's first navigate to the service by going to <strong>Services</strong> and then &quot;<strong>AWS Backup</strong>&quot; service under the Storage category.</p>
@@ -1669,7 +1733,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 08 - Azure VM Insights</title>
-<description><![CDATA[<p><strong>Azure Monitor for VMs</strong> or <strong>Insights</strong> is the enhanced version of the analytics on the VM. It includes the performance and dependencies related data for the virtual machines.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p><strong>Azure Monitor for VMs</strong> or <strong>Insights</strong> is the enhanced version of the analytics on the VM. It includes the performance and dependencies related data for the virtual machines.</p>
 <p>This is very similar to &quot;<strong>Enable Detailed Monitoring</strong>&quot; using <strong>CloudWatch</strong> in AWS.</p>
 <h2>Setting Up</h2>
 <p>To set this up navigate to your virtual machine and then click on the <strong>Insights</strong> section under the <strong>Monitoring</strong> category. Click on the Enable button to start. Note that the VM should be in the running state for you to be able to enable this setting.</p>
@@ -1690,9 +1755,10 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 07 - Boot Diagnostics of Azure VMs</title>
-<description><![CDATA[<p>Azure VM <strong>Boot diagnostics</strong> lets you diagnose what is happening under the hood during the boot up. If you face any issues with the boot up of the VM then this is where you will go to find the diagnostics data. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Azure VM <strong>Boot diagnostics</strong> lets you diagnose what is happening under the hood during the boot-up. If you face any issues with the boot-up of the VM then this is where you will go to find the diagnostics data. </p>
 <h3>Where is this setting</h3>
-<p>You can find this setting when you navigate to the Azure Virtual Machines section and click on your VM. Under the settings menu, scroll all the way down to &quot;Support + troubleshooting&quot; category. You will find the Boot diagnostics option here.</p>
+<p>You can find this setting when you navigate to the Azure Virtual Machines section and click on your VM. Under the settings menu, scroll all the way down to the &quot;Support + troubleshooting&quot; category. You will find the Boot diagnostics option here.</p>
 <img src="/images/15843185965e6ec88424baa.png" alt="Boot Diagnostics setting">
 <h3>Setting up Boot Diagnostics</h3>
 <p>If this is not set up for your VM then you can do so easily. All you need is a storage account. You can also change this anytime. Click on the settings button at the top. Click <strong>On</strong> and select the storage account. You can also create a new one if you require it.</p>
@@ -1709,7 +1775,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 06 - Monitoring of Azure VMs</title>
-<description><![CDATA[<p>Within Azure, when you click on the Virtual Machine, you have a lot of control of various aspects of the VM right from one screen. When you navigate to the Azure Virtual Machines section, you are presented with all the virtual machines in your environment. Here when you click on any one VM, a new screen pops up. Microsoft calls this as new <strong>Blade</strong>. In this blade, the Overview section is the first one and is selected by default. It shows you lots of information for the VM like it's a subscription, resource group, public and private IP address, a button to connect to the VM, etc. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Within Azure, when you click on the Virtual Machine, you have a lot of control of various aspects of the VM right from one screen. When you navigate to the Azure Virtual Machines section, you are presented with all the virtual machines in your environment. Here when you click on any one VM, a new screen pops up. Microsoft calls this as new <strong>Blade</strong>. In this blade, the Overview section is the first one and is selected by default. It shows you lots of information for the VM like it's a subscription, resource group, public and private IP address, a button to connect to the VM, etc. </p>
 <p>When you scroll a little bit down you get the out of the box metrics for the VM. These metrics include CPU data, Network data, Disk IOPS, etc. You also have time filter at the top.</p>
 <img src="/images/15843136965e6eb56023024.png" alt="Azure VM Overview">
 <p>From the left-hand side menu of the selected Virtual Machine, scroll down to the Monitoring section. This has loads of information and options. The key option you want to explore is the &quot;<strong>Metrics</strong>&quot; option. Here you can build custom graphs to monitor different metrics by adding each one. Click on Add Metrics and select the same from the drop-down list. The graph will update to show all the selected matrices.</p>
@@ -1722,7 +1789,8 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 05 - Monitoring of EC2 instances</title>
-<description><![CDATA[<p>Monitoring is centralized in AWS via <strong>Cloud Watch</strong>. Few out of the box metrics are integrated into the EC2 instances screen. Various in-depth and detailed metrics are available in the Cloud Watch product. </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Monitoring is centralized in AWS via <strong>Cloud Watch</strong>. Few out of the box metrics are integrated into the EC2 instances screen. Various in-depth and detailed metrics are available in the Cloud Watch product. </p>
 <p>To view the monitoring data, navigate to the EC2 section and then go to the Instances section. Click on the EC2 instance for which you want to view the metrics. Then in the below section, you are showed the data for the instance. Here select the <strong>Monitoring</strong> tab. You have different settings here that can help you with monitoring your EC2 instance. The key settings include:</p>
 <ul>
 <li><strong>CloudWatch alarms</strong> - this is a way to set up the alarms or alerts</li>
@@ -1739,16 +1807,17 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 04 - Differences in IOPS</title>
-<description><![CDATA[<p>Deciding the <strong>IOPS</strong> (Input/Output Operations Per Second, pronounced i-ops) is one of the most critical decisions when building your virtual machines. But this is also one of the most ignored aspect of the deployment. This performance measurement of your OS and Data Disks can alter your experience significantly. Let's see how it differs in the two platforms.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Deciding the <strong>IOPS</strong> (Input/Output Operations Per Second, pronounced i-ops) is one of the most critical decisions when building your virtual machines. But this is also one of the most ignored aspects of the deployment. This performance measurement of your OS and Data Disks can alter your experience significantly. Let's see how it differs in the two platforms.</p>
 <h2>In AWS</h2>
 <ul>
-<li>For <strong>Provisioned IOPS (SSD)</strong> volumes, you can provision up to 50 IOPS per GiB. Provisioned IOPs (SSD) volumes can deliver up to 64000 IOPS, and are best for EBS-optimized instances.  </li>
+<li>For <strong>Provisioned IOPS (SSD)</strong> volumes, you can provision up to 50 IOPS per GiB. Provisioned IOPs (SSD) volumes can deliver up to 64000 IOPS and are best for EBS-optimized instances.  </li>
 <li>For <strong>General Purpose (SSD)</strong> volumes, baseline performance is 3 IOPS per GiB, with a minimum of 100 IOPS and a maximum of 16000 IOPS. General Purpose (SSD) volumes
 under 1000 GiB can burst up to 3000 IOPS. </li>
 <li><strong>Magnetic volumes</strong>, previously called standard volumes, deliver 100 IOPS on average and
-can burst to hundreds of IOPS.</li>
+can burst into hundreds of IOPS.</li>
 </ul>
-<p>If you remember when we were building the EC2 instances, you have the option to Add/tweak the storage in Step 4. Here you can see that you can select between the different type of Storage disks that we discussed above.</p>
+<p>If you remember when we were building the EC2 instances, you have the option to add/tweak the storage in Step 4. Here you can see that you can select between the different type of Storage disks that we discussed above.</p>
 <img src="/images/15843064775e6e992deb746.png" alt="AWS1 - Adding Storage">
 <p>When you select the &quot;<em>Provisioned IOPS SSD (io1)</em>&quot; option, the column for IOPS turns into a text box and you can tweak the IOPS to your hearts' content. Please note that you can not go beyond 50 IOPS per GiB. E.g. If the disk you selected is 8 GiB in Size then you can't go beyond a maximum of 400 IOPS (i.e. 8x50). </p>
 <img src="/images/15843064855e6e9935a9a3a.png" alt="AWS2 - Provisioned IOPS">
@@ -1758,7 +1827,7 @@ can burst to hundreds of IOPS.</li>
 <li><strong>Standard SSD Disks</strong> is a cost-effective storage option optimized for workloads that need consistent performance at lower IOPS levels. </li>
 <li>Use <strong>Standard HDD</strong> disks for Dev/Test scenarios and less critical workloads at the lowest cost.</li>
 </ul>
-<p>You can directly update the type of the disk for OS under the second screen of the Virtual Machine creation wizard i.e. under Disks category. You can select between the three types. The OS Disk size is determined by the VM Size selected. This can be increased later. You can click on &quot;Create and attach a new disk&quot; link and add a Data Disk to the VM.</p>
+<p>You can directly update the type of disk for OS under the second screen of the Virtual Machine creation wizard i.e. under the Disks category. You can select between the three types. The OS Disk size is determined by the VM Size selected. This can be increased later. You can click on &quot;Create and attach a new disk&quot; link and add a Data Disk to the VM.</p>
 <img src="/images/15843065145e6e99523d907.png" alt="Az1 Storage Types">
 <p>In the &quot;Create a new disk&quot; wizard, you can change the size of the disk. Now here you are shown based on the size, how much IOPS you will get. Microsoft defines different tiers and provides IOPS based on the tier selected i.e. based on the disk size selected. </p>
 <p>Below you see the IOPS for <strong>Premium SSD</strong> tiers.</p>
@@ -1775,7 +1844,8 @@ can burst to hundreds of IOPS.</li>
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 03 - Creating Azure VMs</title>
-<description><![CDATA[<p>In the previous post, we covered how to create EC2 instances in AWS. You can revisit that post here: <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances/" target="_blank">Creating EC2 Instances in AWS</a></p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>In the previous post, we covered how to create EC2 instances in AWS. You can revisit that post here: <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances/" target="_blank">Creating EC2 Instances in AWS</a></p>
 <p>In this post, we will check how to create a Virtual Machine in Azure. If you know one, it is very easy to translate the information to another platform. The essential part is to look out for the quirks of each platform and note how these differ from each other. Let's dive in.</p>
 <p>You can create the VM resource in one of the two ways. Either by navigating to &quot;<em>Create a resource</em>&quot; and then finding the VM you want to build. </p>
 <img src="/images/15843034905e6e8d82e484b.png" alt="1 Create a resource">
@@ -1811,7 +1881,8 @@ can burst to hundreds of IOPS.</li>
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 02 - Creating EC2 Instances</title>
-<description><![CDATA[<p>In this post, we will look at how to create EC2 instances in Amazon Web Service (AWS). </p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>In this post, we will look at how to create EC2 instances in Amazon Web Service (AWS). </p>
 <p>You start by selecting the option to create or launch the instances.</p>
 <img src="/images/15842968305e6e737ee3631.png" alt="1 Creating Instances">
 <p>In the Instance creation wizard, the breadcrumb at the top show you where in the wizard you are currently at. The first screen is to choose an image for the VM or EC2 instance. The image is called an <strong>Amazon machine image</strong> or <strong>AMI</strong>. You can also search for an AMI. Under the image name, you can view the details of the image. Make sure you select the right image. Click on the Select button once decided. </p>
@@ -1842,7 +1913,8 @@ can burst to hundreds of IOPS.</li>
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 01 - Finding resources</title>
-<description><![CDATA[<p>Virtual Machines is one of the key services for Infrastructure as a Service or <strong>IaaS</strong>. It is the virtualization of the OS and allows you to run your workloads in the cloud. Microsoft and Amazon have different branding and implementation of these services. Where Microsoft calls this as <strong>Azure Virtual Machines</strong>, Amazon refers to a similar offering as <strong>Elastic Compute Cloud</strong> or <strong>EC2</strong>.</p>
+<description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Virtual Machines is one of the key services for Infrastructure as a Service or <strong>IaaS</strong>. It is the virtualization of the OS and allows you to run your workloads in the cloud. Microsoft and Amazon have different branding and implementation of these services. Where Microsoft calls this as <strong>Azure Virtual Machines</strong>, Amazon refers to a similar offering as <strong>Elastic Compute Cloud</strong> or <strong>EC2</strong>.</p>
 <p>Let's look at where you find the EC2 services. You navigate to the All Services section in AWS and then under the <strong>Compute</strong> category, you find the <strong>EC2</strong> option. </p>
 <img src="/images/15842933915e6e660f0bdd7.png" alt="AWS - EC2 under all Services">
 <p>EC2 category has loads of information and your virtual machines or Instances are not shown right away. You have to click on Instances under Instances category as shown below. Then you will be able to view all your existing instances. Here you will also have the option to create a new Instance by click on &quot;<em>Launch Instance</em>&quot;. </p>

@@ -78,7 +78,8 @@
                 <span class="glyphicon glyphicon-time"></span> Aug 21, 2019
                 <hr>
 
-                <p class="post-content"><p>Both Microsoft Azure and AWS provides a managed service for managing the disks of your virtual machine (or EC2 instance). It is the storage optimized for I/O intensive read/write operations. For use as high-performance Azure virtual machine storage. Microsoft Azure offering is called &quot;<strong>Managed disk</strong>&quot; whereas AWS calls it &quot;<strong>Elastic Block Store (EBS) Volume</strong>&quot;. </p>
+                <p class="post-content"><p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>Both Microsoft Azure and AWS provides a managed service for managing the disks of your virtual machine (or EC2 instance). It is the storage optimized for I/O intensive read/write operations. For use as high-performance Azure virtual machine storage. Microsoft Azure offering is called &quot;<strong>Managed disk</strong>&quot; whereas AWS calls it &quot;<strong>Elastic Block Store (EBS) Volume</strong>&quot;. </p>
 <h3>AWS - Elastic Block Store (EBS) Volume</h3>
 <p>Let's look at AWS's offering first. When you create EC2 instances, you automatically get at least one volume (i.e. disk) for the OS disk. You can additionally add multiple volumes for the data disk. You can view all this data by navigating to EC2 and then under the settings go to the &quot;Elastic Block Store&quot; category. You will find your <strong>Volumes</strong> listed here. </p>
 <p>There is also an option to view the <strong>Snapshots</strong> which shows you any snapshots taken on the volume, taken manually or from AWS Backup service.</p>

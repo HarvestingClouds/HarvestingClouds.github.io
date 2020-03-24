@@ -78,7 +78,8 @@
                 <span class="glyphicon glyphicon-time"></span> Jun 16, 2019
                 <hr>
 
-                <p class="post-content"><p>For your mission-critical workloads, you can configure active replication of the VM to secondary geolocation. You can do so right from the settings of the VM. Under the hood it uses <strong>Azure Site Recovery</strong> to set up this disaster recovery.</p>
+                <p class="post-content"><p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
+<p>For your mission-critical workloads, you can configure active replication of the VM to secondary geolocation. You can do so right from the settings of the VM. Under the hood it uses <strong>Azure Site Recovery</strong> to set up this disaster recovery.</p>
 <p>Navigate to your VM and under the Operations category, click on the &quot;<strong>Disaster recovery</strong>&quot;. Here you can select the Target region for the replication. This region becomes your secondary location and should be factored in your Disaster Recovery strategy. E.g. There should be appropriate infrastructure in place to allow for connectivity to this secondary location. </p>
 <img src="/images/15843419925e6f23e8d325d.png" alt="Disaster Recovery for a VM">
 <p>Next, you have Advanced Settings for the Disaster Recovery. You can select the settings for the <strong>Target</strong>, i.e. what the Resource Group, Virtual Network etc. is going to be in the target region, if we failover the VM to that region. You also have <strong>Storage</strong> settings, where you define the cache storage account (used to replicate the managed disks) and the source to target managed disk mappings. </p>
