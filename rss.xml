@@ -6,6 +6,170 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure for AWS professionals - Index</title>
+<description><![CDATA[<p>This is the Index for the series regarding <strong>Microsoft Azure</strong>  and <strong>Amazon's AWS</strong> services comparisons. This series takes a very <strong>practical</strong> and <strong>hands-on</strong> approach (rather than just focusing on the theory). You don't need to follow all the blog posts. You can only check the ones where you want to draw the comparison or check how to work with specific services.</p>
+<p>If you are well versed with one platform this series is to cross-train you on the competitor platform. The intention is to know the pros and cons of each platform and begin with the basic services. You need to know the competition well before you can advocate any platform.</p>
+<p><strong>Disclaimer</strong>: I am a Microsoft Azure MVP and a bit biased towards Azure. I make every attempt to view both platforms impartially and list pros and cons as they are without any personal opinions. </p>
+<p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
+<ol>
+<li>
+<p><strong>Virtual Machines vs EC2 instances</strong></p>
+<p>a. Combined</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-01-finding-resources" target="_blank">Finding Resources</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-04-differences-in-iops" target="_blank">Differences in IOPS</a></li>
+</ol>
+<p>b. Azure</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-03-creating-azure-vms" target="_blank">Creating Azure Virtual Machines</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-06-monitoring-of-azure-vms" target="_blank">Monitoring of Azure VMs</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-07-boot-diagnostics-of-azure-vms" target="_blank">Boot Diagnostics of Azure VMs</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-08-azure-vm-insights" target="_blank">Azure VM Insights</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-10-backing-up-azure-vms" target="_blank">Backing up Azure VMs</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-11-protecting-azure-vms" target="_blank">Protecting Azure VMs</a></li>
+</ol>
+<p>c. AWS</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances" target="_blank">Creating EC2 Instances</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-05-monitoring-of-ec2-instances" target="_blank">Monitoring of EC2 instances</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-1" target="_blank">Backing up EC2 instances Part 1</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-2" target="_blank">Backing up EC2 instances Part 2</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-3" target="_blank">Backing up EC2 instances Part 3</a></li>
+</ol>
+</li>
+<li>
+<p><strong>Batch Services</strong></p>
+<p>a. Combined</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-batch-services-azure-vs-aws" target="_blank">Batch Services Comparision</a></li>
+</ol>
+<p>b. Azure</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-batch-services-azure-1-creating-batch-account" target="_blank">Creating Batch account</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-batch-services-azure-2-creating-batch-pool-in-an-account" target="_blank">Creating Batch Pool in an Account</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-batch-services-azure-3-creating-job-in-the-batch-pool" target="_blank">Creating Job in the Batch Pool</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-batch-services-azure-4-creating-tasks-in-a-batch-job" target="_blank">Creating Tasks in a Batch Job</a></li>
+</ol>
+<p>c. AWS</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-batch-services-aws-working-with-aws-batch-service" target="_blank">Working with AWS Batch Service</a></li>
+</ol>
+</li>
+<li>
+<p><strong>Auto Scaling</strong></p>
+<p>a. Combined</p>
+<ol>
+<li><a href="" target="_blank"></a></li>
+</ol>
+<p>b. Azure</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-azure-01-creating-vmss-part-1" target="_blank">Creating Virtual Machine Scale Sets (VMSS) - Part 1</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-azure-01-creating-vmss-part-2" target="_blank">Creating Virtual Machine Scale Sets (VMSS) - Part 2</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-azure-02-view-running-instances-in-vmss" target="_blank">View Running Instances in VMSS</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-azure-03-updating-the-scaling-policies-of-vmss" target="_blank">Updating the Scaling policies of VMSS</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-azure-04-viewing-the-run-history-of-vmss" target="_blank">Viewing the Run History of VMSS</a></li>
+</ol>
+<p>c. AWS</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-aws-01-all-related-resources-for-auto-scaling" target="_blank">All Related Resources for Auto Scaling</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-aws-02-creating-launch-configurations" target="_blank">Creating Launch Configurations</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-aws-03-creating-launch-templates/" target="_blank">Creating Launch Templates</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-aws-04-creating-auto-scaling-groups-part-1" target="_blank">Creating Auto Scaling Groups - Part 1</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-aws-04-creating-auto-scaling-groups-part-2" target="_blank">Creating Auto Scaling Groups - Part 2</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-aws-05-aws-auto-scaling-service" target="_blank">AWS Auto Scaling service</a></li>
+</ol>
+</li>
+<li>
+<p><strong>Disks</strong></p>
+<p>a. Combined</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-azure-managed-disks-vs-aws-elastic-block-store-ebs" target="_blank">Azure Managed Disks vs AWS Elastic Block Store (EBS)</a></li>
+</ol>
+</li>
+<li>
+<p><strong>Storage</strong></p>
+<p>a. Combined</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-microsoft-azure-storage-accounts-vs-aws-simple-storage-service-s3" target="_blank">Microsoft Azure Storage Accounts vs AWS Simple Storage Service (S3)</a></li>
+</ol>
+<p>b. Azure</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-azure-01-creating-azure-storage-account" target="_blank">Creating Azure Storage Account</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-azure-02-data-transfer-options" target="_blank">Data Transfer Options</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-azure-03-event-driven-automation-of-azure-storage-accounts" target="_blank">Event driven automation of Azure Storage accounts</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-azure-04-securely-accessing-storage-accounts" target="_blank">Securely Accessing Storage Accounts</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-azure-05-configuring-firewall-and-vnet-access-on-storage-accounts" target="_blank">Configuring Firewall and vNet access on Storage accounts</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-azure-06-geo-replication-on-storage-accounts" target="_blank">Geo Replication on Storage accounts</a></li>
+</ol>
+<p>c. AWS</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-01-creating-simple-storage-service-or-s3-buckets" target="_blank">Creating Simple Storage Service or S3 buckets</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-02-working-with-s3-bucket-and-uploading-files" target="_blank">Working with S3 bucket and uploading files</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-03-configuring-s3-bucket-properties" target="_blank">Configuring S3 Bucket Properties</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-04-setting-permissions-on-s3-bucket" target="_blank">Setting Permissions on S3 Bucket</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-05-adding-lifecycle-rules-for-s3-buckets" target="_blank">Adding Lifecycle Rules for S3 buckets</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-06-configuring-replication-on-s3-buckets" target="_blank">Configuring replication on S3 buckets</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-07-setting-up-access-points-on-s3-bucket" target="_blank">Setting up Access Points on S3 bucket</a></li>
+</ol>
+</li>
+<li>
+<p><strong>Networking</strong></p>
+<p>a. Combined</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-virtual-networks-vs-aws-virtual-private-cloud-vpc" target="_blank">Azure Virtual Networks vs AWS Virtual Private Cloud (VPC)</a></li>
+</ol>
+<p>b. Azure</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-01-creating-virtual-network" target="_blank">Creating Virtual Network</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-02-working-with-virtual-networks-vnets-and-subnets" target="_blank">Working with Virtual Networks (vNets) and Subnets</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-03-service-endpoints" target="_blank">Service Endpoints</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-04-creating-network-security-groups" target="_blank">Creating Network Security Groups (NSGs)</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-05-creating-rules-in-nsgs-and-assigning-nsgs" target="_blank">Creating rules in NSGs and assigning NSGs</a></li>
+</ol>
+<p>c. AWS</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-aws-01-creating-virtual-private-cloud-vpc" target="_blank">Creating Virtual Private Cloud (VPC)</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-aws-02-working-with-vpcs-and-subnets" target="_blank">Working with VPCs and Subnets</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-aws-03-route-tables" target="_blank">Route Tables</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-aws-04-network-acls" target="_blank">Network ACLs</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-aws-05-security-groups" target="_blank">Security Groups</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-aws-06-network-acls-vs-security-groups" target="_blank">Network ACLs vs Security Groups</a></li>
+</ol>
+</li>
+</ol>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-index</link>
+<pubDate>Thu, 05 Mar 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL and Data Factory Basics - Index</title>
+<description><![CDATA[<p>This is the index for the Azure SQL Basics. I received various requests to write posts around Azure SQL basics. This series is the practical and hands-on look at various features of Azure SQL from creating the service to working with it in detail.</p>
+<p>Below is the index for this series which is updated periodically.</p>
+<h3>Azure SQL related posts</h3>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-sql-basics-finding-azure-sql-databases-in-the-azure-portal" target="_blank">Finding Azure SQL Databases in the Azure Portal</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-sql-basics-creating-azure-sql-databases" target="_blank">Creating Azure SQL Databases</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-sql-basics-connecting-to-azure-sql-db-using-ssms" target="_blank">Connecting to Azure SQL DB using SSMS</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-sql-basics-enabling-geo-replication-for-disaster-recovery" target="_blank">Enabling Geo-Replication for Disaster Recovery</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-sql-basics-data-masking-of-sensitive-information" target="_blank">Data Masking of sensitive information</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-sql-basics-exploring-the-new-query-editor-in-the-azure-portal" target="_blank">Exploring the new Query Editor in the Azure Portal</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-sql-basics-advanced-data-security" target="_blank">Advanced Data Security</a></li>
+<li><a href="Query Performance Insights" target="_blank">Query Performance Insights</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-sql-basics-automatic-tuning-and-performance-recommendation" target="_blank">Automatic Tuning and Performance recommendation</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-sql-basics-creating-elastic-pool-in-azure-sql-server" target="_blank">Creating Elastic Pool in Azure SQL Server</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-sql-basics-azure-active-directory-admin-manage-azure-sql-via-ad-users" target="_blank">Azure Active Directory Admin - Manage Azure SQL via AD Users</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-sql-basics-managing-backups-for-azure-sql-database" target="_blank">Managing Backups for Azure SQL Database</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-sql-basics-restoring-azure-sql-database-from-the-backup" target="_blank">Restoring Azure SQL Database from the backup</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-sql-basics-setting-up-private-endpoints-on-an-azure-sql-server" target="_blank">Setting up Private Endpoints on an Azure SQL Server</a></li>
+</ol>
+<h3>Azure Data Factory related posts</h3>
+<ol>
+<li><a href="" target="_blank"></a></li>
+<li><a href="" target="_blank"></a></li>
+</ol>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-and-data-factory-basics-index</link>
+<pubDate>Sat, 22 Feb 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure SQL Basics - Setting up Private Endpoints on an Azure SQL Server</title>
 <description><![CDATA[<p>A <strong>Private Endpoint</strong> is a fundamental block for a private link in Azure. It enables Azure resources, like Virtual Machines (VMs), to communicate privately with linked resources. Under the hood, it creates a network interface card (NIC) on the Azure SQL Server and attaches that to your Virtual network. That way you get a private IP address assigned to your Azure SQL Server. Now from any other resource on this network, you can securely access the Azure SQL Server without the communication leaving the network at all. </p>
 <p>Microsoft also goes one step further by creating a <strong>Private DNS integration</strong>. It leverages a private DNS zone to provide a DNS name for your Azure SQL Database Server which is mapped to the Private IP address (instead of the usual Public). </p>
@@ -68,6 +232,30 @@
 <p>For more information click here: <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-disaster-recovery-guidance" target="_blank">Disaster recovery and account failover</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-azure-06-geo-replication-on-storage-accounts</link>
 <pubDate>Tue, 21 Jan 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Data Factory Basics - Creating a Data Factory</title>
+<description><![CDATA[<p><strong>Azure Data Factory</strong> is a cloud-based <strong>ETL service</strong> to run the SSIS packages. You can lift and shift the existing SSIS packages in Azure and run them fully in ADF. It is code-free UI to run, monitor and manage the packages.</p>
+<p>Using the Azure Data Factory, you can create and schedule data-driven workflows (called pipelines) that can ingest data from disparate data stores.</p>
+<p>To start, navigate to All services - &gt; Analytics -&gt; Data Factories.</p>
+<img src="/images/15850874675e7a83ebb9b2a.png" alt="Data Factories Option">
+<p>Click Add or Create Data Factory as highlighted below.</p>
+<img src="/images/15850874745e7a83f2bc355.png" alt="Adding new Data Factory">
+<p>Provide the following details in the below screen:</p>
+<ol>
+<li>Appropriate name to your data factory</li>
+<li>Select the v2 version. This is the latest version which includes the latest features of Azure data factory</li>
+<li>The next one is to select the subscription and resource group. Here you can create a new resource group in case you don’t want to use the existing resource group.</li>
+<li>Select the Location </li>
+<li>Enable GIT: If you have checked this option, you will need to provide the additional details about the GIT URL, repo URL, Branch Name and Root URL.</li>
+</ol>
+<p>Click Create. The deployment will be done in a couple of mins or so to get this done.</p>
+<img src="/images/15850874815e7a83f99e1af.png" alt="Basic information">
+<p>You can see we have created the Data Factory. Now you are ready to create the workflow pipelines for this Azure data factory.</p>
+<img src="/images/15850874905e7a84028c681.png" alt="Data Factory Resource">
+<p>I will be explaining about its monitoring section and how to create pipelines in my next blogs. So keep tuning in!</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-data-factory-basics-creating-a-data-factory</link>
+<pubDate>Sat, 04 Jan 2020 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure SQL Basics - Restoring Azure SQL Database from the backup</title>
@@ -1225,6 +1413,31 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 <p>In part 2 we will continue with the wizard and setting up of VMSS. </p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-azure-01-creating-vmss-part-1</link>
 <pubDate>Thu, 11 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - Azure VMSS vs AWS Auto Scaling</title>
+<description><![CDATA[<p><strong>Autoscaling</strong> is a key aspect of Infrastructure as a Service (IaaS) in the cloud. The demand for the service and therefore the load on your applications will vary based on various factors. It will vary as per:</p>
+<ul>
+<li>The time of the day</li>
+<li>The day of the month</li>
+<li>Any holidays</li>
+<li>Any special events etc. </li>
+</ul>
+<p>Your application needs to scale out or scale in based on the dynamic demands. You can NOT find a perfect mix and pre-determine the exact number of instances (of Virtual machines or EC2) that you need to run. If you will define the lower number then the performance will suffer. On the other hand, if you overestimate then you will be looking at costly bills. You always want to optimize between <strong>Cost</strong> and <strong>Performance</strong>. </p>
+<p>This is where Autoscaling comes into the picture. With this, you can have rules in place that will automatically scale out or scale in your number of instances running the application. </p>
+<p>As a <strong>pre-requisite</strong>, you need to have the application which can be deployed on multiple instances behind a load-balancer. </p>
+<p>Both Azure and AWS provide out of the box services for this functionality. In both platforms, you can define rules as to how the scaling should occur in an automated fashion. E.g. you can have the number of instances increase by 1 if the average CPU percentage usage increases more than 75%. And also another rule for decreasing the number of instances by 1 if the average CPU percentage usage reduces below 25%. </p>
+<p><strong>Microsoft Azure</strong> has package everything into one service called <strong>Virtual Machine Scale Set</strong> or more popularly known as <strong>VMSS</strong>. Even the automation for autoscaling is also built directly into this service and is as easy as setting up a few configurations. </p>
+<p><strong>Amazon's AWS</strong> also has this capability, although this is scattered over different services. These include:</p>
+<ul>
+<li>Launch Configurations - a pre-packaged set of configurations that define how to set up new EC2 instances</li>
+<li>Launch Templates - newer way to do the same thing as Launch Configurations. These have more features like versioning, etc.</li>
+<li>Auto Scaling Groups - a load-balanced group of EC2 instances</li>
+<li>AWS Auto Scaling - a newer service providing the automation for scaling out and scaling in of EC2 instances</li>
+</ul>
+<p>We will be working on these services in the next few posts and taking a closer look at each of these.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-azure-vmss-vs-aws-auto-scaling</link>
+<pubDate>Wed, 10 Jul 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure for AWS professionals - Batch Services - AWS - Working with AWS Batch Service</title>

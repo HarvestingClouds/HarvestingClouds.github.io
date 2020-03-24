@@ -72,71 +72,154 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/azure-sql-basics-setting-up-private-endpoints-on-an-azure-sql-server">Azure SQL Basics - Setting up Private Endpoints on an Azure SQL Server</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-index">Azure for AWS professionals - Index</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Feb 20, 2020
+                    <span class="glyphicon glyphicon-time"></span> Mar 05, 2020
                 
                         <hr>
-                        <p class="post-content"><p>A <strong>Private Endpoint</strong> is a fundamental block for a private link in Azure. It enables Azure resources, like Virtual Machines (VMs), to communicate privately with linked resources. Under the hood, it creates a network interface card (NIC) on the Azure SQL Server and attaches that to your Virtual network. That way you get a private IP address assigned to your Azure SQL Server. Now from any other resource on this network, you can securely access the Azure SQL Server without the communication leaving the network at all. </p>
-<p>Microsoft also goes one step further by creating a <strong>Private DNS integration</strong>. It leverages a private DNS zone to provide a DNS name for your Azure SQL Database Server which is mapped to the Private IP address (instead of the usual Public). </p>
-<p>In this post, you will be setting up the private endpoints to the SQL server through Azure Portal. Then, you can securely access the Azure SQL Database Server from the VM.</p>
-<h3>Create a private endpoint</h3>
-<p>In this section, you will create a private endpoint to it.</p>
-<p>On the upper-left side of the screen in the Azure portal, select <em>Create a resource &gt; Private Link Center (Preview)</em>.</p>
-<img src="/images/15846633065e740b0ad1dc6.png" alt="Private Link Center">
-<p>In Private Link Center - Overview, on the option select Private Endpoints and click Add. </p>
-<img src="/images/15846633135e740b11c2d24.png" alt="Adding new Private Endpoint">
-<p>Enter or select this information:</p>
-<ul>
-<li><strong>Subscription</strong> - Select your subscription.</li>
-<li><strong>Resource group</strong> - Select myResourceGroup. You created this in the previous section.</li>
-</ul>
-<p>Under instance details provide:</p>
-<ul>
-<li><strong>Name</strong> - Enter myPrivateEndpoint. If this name is taken, create a unique name.</li>
-<li><strong>Region</strong> - Select the geo region where you want to deploy the underlying resources</li>
-</ul>
-<img src="/images/15846633635e740b43efd9a.png" alt="Creating a private endpoint wizard">
-<p>In the next screen for &quot;Create a private endpoint - Resource&quot;, enter or select this information:</p>
-<ul>
-<li><strong>Connection method</strong> - Select the radio button for &quot;<em>Connect to an Azure resource in my directory</em>&quot;</li>
-<li><strong>Subscription</strong> - Select your subscription.</li>
-<li><strong>Resource type</strong> - Select Microsoft.Sql/servers.</li>
-<li><strong>Resource</strong> - Select your server</li>
-<li><strong>Target sub-resource</strong> - Select sqlServer</li>
-</ul>
-<p>Click next once done. </p>
-<img src="/images/15846633725e740b4c2d6b4.png" alt="Adding resources">
-<p>In <strong>Create a private endpoint (Preview) - Configuration</strong>, enter or select this information:</p>
-<p>Under the networking section, provide:</p>
-<ul>
-<li><strong>Virtual network</strong> - Select MyVirtualNetwork.</li>
-<li><strong>Subnet</strong> - Select mySubnet.</li>
-</ul>
-<p>Under the Private DNS integration, provide:</p>
-<ul>
-<li><strong>Integrate with private DNS zone</strong> - Select Yes.</li>
-<li><strong>Private DNS Zone</strong> - Select (New)privatelink.database.windows.net</li>
-</ul>
-<img src="/images/15846633795e740b53043e2.png" alt="Networking and DNS integration configurations">
-<p>Select Review + create. You're taken to the Review + create page where Azure validates your configuration. When you see the &quot;Validation passed&quot; message, select Create.</p>
-<img src="/images/15846634125e740b746581c.png" alt="Review and Create">
-<p>Once the private endpoint is created your Azure SQL Server is ready to be connected via it's new Private IP address. This address will be in the Virtual network you connected it to. There will also be a network interface card (NIC) resource that actually links the Azure SQL Server to the Virtual Network.</p></p>
+                        <p class="post-content"><p>This is the Index for the series regarding <strong>Microsoft Azure</strong>  and <strong>Amazon's AWS</strong> services comparisons. This series takes a very <strong>practical</strong> and <strong>hands-on</strong> approach (rather than just focusing on the theory). You don't need to follow all the blog posts. You can only check the ones where you want to draw the comparison or check how to work with specific services.</p>
+<p>If you are well versed with one platform this series is to cross-train you on the competitor platform. The intention is to know the pros and cons of each platform and begin with the basic services. You need to know the competition well before you can advocate any platform.</p>
+<p><strong>Disclaimer</strong>: I am a Microsoft Azure MVP and a bit biased towards Azure. I make every attempt to view both platforms impartially and list pros and cons as they are without any personal opinions. </p>
+<p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
+<ol>
+<li>
+<p><strong>Virtual Machines vs EC2 instances</strong></p>
+<p>a. Combined</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-01-finding-resources" target="_blank">Finding Resources</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-04-differences-in-iops" target="_blank">Differences in IOPS</a></li>
+</ol>
+<p>b. Azure</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-03-creating-azure-vms" target="_blank">Creating Azure Virtual Machines</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-06-monitoring-of-azure-vms" target="_blank">Monitoring of Azure VMs</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-07-boot-diagnostics-of-azure-vms" target="_blank">Boot Diagnostics of Azure VMs</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-08-azure-vm-insights" target="_blank">Azure VM Insights</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-10-backing-up-azure-vms" target="_blank">Backing up Azure VMs</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-11-protecting-azure-vms" target="_blank">Protecting Azure VMs</a></li>
+</ol>
+<p>c. AWS</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances" target="_blank">Creating EC2 Instances</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-05-monitoring-of-ec2-instances" target="_blank">Monitoring of EC2 instances</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-1" target="_blank">Backing up EC2 instances Part 1</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-2" target="_blank">Backing up EC2 instances Part 2</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-3" target="_blank">Backing up EC2 instances Part 3</a></li>
+</ol>
+</li>
+<li>
+<p><strong>Batch Services</strong></p>
+<p>a. Combined</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-batch-services-azure-vs-aws" target="_blank">Batch Services Comparision</a></li>
+</ol>
+<p>b. Azure</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-batch-services-azure-1-creating-batch-account" target="_blank">Creating Batch account</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-batch-services-azure-2-creating-batch-pool-in-an-account" target="_blank">Creating Batch Pool in an Account</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-batch-services-azure-3-creating-job-in-the-batch-pool" target="_blank">Creating Job in the Batch Pool</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-batch-services-azure-4-creating-tasks-in-a-batch-job" target="_blank">Creating Tasks in a Batch Job</a></li>
+</ol>
+<p>c. AWS</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-batch-services-aws-working-with-aws-batch-service" target="_blank">Working with AWS Batch Service</a></li>
+</ol>
+</li>
+<li>
+<p><strong>Auto Scaling</strong></p>
+<p>a. Combined</p>
+<ol>
+<li><a href="" target="_blank"></a></li>
+</ol>
+<p>b. Azure</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-azure-01-creating-vmss-part-1" target="_blank">Creating Virtual Machine Scale Sets (VMSS) - Part 1</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-azure-01-creating-vmss-part-2" target="_blank">Creating Virtual Machine Scale Sets (VMSS) - Part 2</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-azure-02-view-running-instances-in-vmss" target="_blank">View Running Instances in VMSS</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-azure-03-updating-the-scaling-policies-of-vmss" target="_blank">Updating the Scaling policies of VMSS</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-azure-04-viewing-the-run-history-of-vmss" target="_blank">Viewing the Run History of VMSS</a></li>
+</ol>
+<p>c. AWS</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-aws-01-all-related-resources-for-auto-scaling" target="_blank">All Related Resources for Auto Scaling</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-aws-02-creating-launch-configurations" target="_blank">Creating Launch Configurations</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-aws-03-creating-launch-templates/" target="_blank">Creating Launch Templates</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-aws-04-creating-auto-scaling-groups-part-1" target="_blank">Creating Auto Scaling Groups - Part 1</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-aws-04-creating-auto-scaling-groups-part-2" target="_blank">Creating Auto Scaling Groups - Part 2</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-auto-scaling-aws-05-aws-auto-scaling-service" target="_blank">AWS Auto Scaling service</a></li>
+</ol>
+</li>
+<li>
+<p><strong>Disks</strong></p>
+<p>a. Combined</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-azure-managed-disks-vs-aws-elastic-block-store-ebs" target="_blank">Azure Managed Disks vs AWS Elastic Block Store (EBS)</a></li>
+</ol>
+</li>
+<li>
+<p><strong>Storage</strong></p>
+<p>a. Combined</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-microsoft-azure-storage-accounts-vs-aws-simple-storage-service-s3" target="_blank">Microsoft Azure Storage Accounts vs AWS Simple Storage Service (S3)</a></li>
+</ol>
+<p>b. Azure</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-azure-01-creating-azure-storage-account" target="_blank">Creating Azure Storage Account</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-azure-02-data-transfer-options" target="_blank">Data Transfer Options</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-azure-03-event-driven-automation-of-azure-storage-accounts" target="_blank">Event driven automation of Azure Storage accounts</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-azure-04-securely-accessing-storage-accounts" target="_blank">Securely Accessing Storage Accounts</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-azure-05-configuring-firewall-and-vnet-access-on-storage-accounts" target="_blank">Configuring Firewall and vNet access on Storage accounts</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-azure-06-geo-replication-on-storage-accounts" target="_blank">Geo Replication on Storage accounts</a></li>
+</ol>
+<p>c. AWS</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-01-creating-simple-storage-service-or-s3-buckets" target="_blank">Creating Simple Storage Service or S3 buckets</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-02-working-with-s3-bucket-and-uploading-files" target="_blank">Working with S3 bucket and uploading files</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-03-configuring-s3-bucket-properties" target="_blank">Configuring S3 Bucket Properties</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-04-setting-permissions-on-s3-bucket" target="_blank">Setting Permissions on S3 Bucket</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-05-adding-lifecycle-rules-for-s3-buckets" target="_blank">Adding Lifecycle Rules for S3 buckets</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-06-configuring-replication-on-s3-buckets" target="_blank">Configuring replication on S3 buckets</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-storage-aws-07-setting-up-access-points-on-s3-bucket" target="_blank">Setting up Access Points on S3 bucket</a></li>
+</ol>
+</li>
+<li>
+<p><strong>Networking</strong></p>
+<p>a. Combined</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-virtual-networks-vs-aws-virtual-private-cloud-vpc" target="_blank">Azure Virtual Networks vs AWS Virtual Private Cloud (VPC)</a></li>
+</ol>
+<p>b. Azure</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-01-creating-virtual-network" target="_blank">Creating Virtual Network</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-02-working-with-virtual-networks-vnets-and-subnets" target="_blank">Working with Virtual Networks (vNets) and Subnets</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-03-service-endpoints" target="_blank">Service Endpoints</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-04-creating-network-security-groups" target="_blank">Creating Network Security Groups (NSGs)</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-05-creating-rules-in-nsgs-and-assigning-nsgs" target="_blank">Creating rules in NSGs and assigning NSGs</a></li>
+</ol>
+<p>c. AWS</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-aws-01-creating-virtual-private-cloud-vpc" target="_blank">Creating Virtual Private Cloud (VPC)</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-aws-02-working-with-vpcs-and-subnets" target="_blank">Working with VPCs and Subnets</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-aws-03-route-tables" target="_blank">Route Tables</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-aws-04-network-acls" target="_blank">Network ACLs</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-aws-05-security-groups" target="_blank">Security Groups</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-aws-06-network-acls-vs-security-groups" target="_blank">Network ACLs vs Security Groups</a></li>
+</ol>
+</li>
+</ol></p>
                         <br/>
                 
                         <div class="post-info">
                                 <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                                <a href="http://HarvestingClouds.com/category/azure-sql">Azure SQL</a>
+                                <a href="http://HarvestingClouds.com/category/azure-vs-aws">Azure vs AWS</a>
                                 &nbsp;&nbsp;
                 
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
-                                <a href="http://HarvestingClouds.com/tag/azuresql">azuresql</a>&nbsp;&nbsp;
+                                <a href="http://HarvestingClouds.com/tag/aws">aws</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/microsoft">microsoft</a>&nbsp;&nbsp;
                                 <a href="http://HarvestingClouds.com/tag/microsoftazure">microsoftazure</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/sql">sql</a>&nbsp;&nbsp;
-                                <a href="http://HarvestingClouds.com/tag/sqldatabase">sqldatabase</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -199,11 +282,11 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-index">Azure for AWS professionals - Index</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-sql-and-data-factory-basics-index">Azure SQL and Data Factory Basics - Index</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-sql-basics-setting-up-private-endpoints-on-an-azure-sql-server">Azure SQL Basics - Setting up Private Endpoints on an Azure SQL Server</a></li>
                         <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-for-aws-professionals-storage-azure-06-geo-replication-on-storage-accounts">Azure for AWS professionals - Storage - Azure - 06 Geo Replication on Storage accounts</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-sql-basics-restoring-azure-sql-database-from-the-backup">Azure SQL Basics - Restoring Azure SQL Database from the backup</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-sql-basics-managing-backups-for-azure-sql-database">Azure SQL Basics - Managing Backups for Azure SQL Database</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-sql-basics-azure-active-directory-admin-manage-azure-sql-via-ad-users">Azure SQL Basics - Azure Active Directory Admin - manage Azure SQL via AD Users</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-data-factory-basics-creating-a-data-factory">Azure Data Factory Basics - Creating a Data Factory</a></li>
                 </ul>
             </div>
         
@@ -231,7 +314,7 @@
                         <strong>Archives</strong>
                     </div>
         
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/february-2020">February 2020</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2020">January 2020</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/december-2019">December 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2019">November 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2019">October 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2019">September 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2019">August 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2019">July 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/june-2019">June 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2019">May 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2019">April 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/march-2019">March 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/february-2019">February 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2019">January 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/december-2018">December 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2018">November 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2018">October 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2018">September 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2018">August 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2018">July 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/march-2018">March 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/february-2018">February 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2018">January 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/december-2017">December 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2017">November 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2017">October 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2017">January 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2016">November 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2016">October 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/march-2020">March 2020</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/february-2020">February 2020</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2020">January 2020</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/december-2019">December 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2019">November 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2019">October 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2019">September 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2019">August 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2019">July 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/june-2019">June 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2019">May 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2019">April 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/march-2019">March 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/february-2019">February 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2019">January 2019</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/december-2018">December 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2018">November 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2018">October 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2018">September 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2018">August 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2018">July 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/march-2018">March 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/february-2018">February 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2018">January 2018</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/december-2017">December 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2017">November 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2017">October 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/january-2017">January 2017</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/november-2016">November 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/october-2016">October 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
                 </div>
         
             <!-- Tags -->
@@ -245,15 +328,15 @@
                             <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/net" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">net</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">activedirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ActiveDirectory</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AD</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/analytics" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">analytics</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/app" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">app</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/applicationinsights" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ApplicationInsights</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/appservice" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">appservice</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="22 total posts" data-original-title="23 total posts" data-toggle="tooltip">ARM</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/armtemplates" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">armtemplates</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">ASR</a>
@@ -263,7 +346,7 @@
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="25 total posts" data-original-title="26 total posts" data-toggle="tooltip">automation</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/awareness" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">awareness</a>
-<a style="font-size: 19px" class="tag_cloud" href="http://HarvestingClouds.com/tag/aws" title="55 total posts" data-original-title="56 total posts" data-toggle="tooltip">aws</a>
+<a style="font-size: 19px" class="tag_cloud" href="http://HarvestingClouds.com/tag/aws" title="57 total posts" data-original-title="58 total posts" data-toggle="tooltip">aws</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azue" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">azue</a>
 <a style="font-size: 22px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="75 total posts" data-original-title="76 total posts" data-toggle="tooltip">azure</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="29 total posts" data-original-title="30 total posts" data-toggle="tooltip">Azure</a>
@@ -277,7 +360,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">azuresiterecovery</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresql" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">azuresql</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresql" title="22 total posts" data-original-title="23 total posts" data-toggle="tooltip">azuresql</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/backup" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">backup</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/bash" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">bash</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/batch" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">batch</a>
@@ -294,9 +377,10 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/custom" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">custom</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/custompolicy" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">custompolicy</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/customroles" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">customroles</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/data" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">data</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/database" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">database</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/data" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">data</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/database" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">database</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/datacenter" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">datacenter</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/datafactory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">datafactory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/datamask" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">datamask</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/datasecurity" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">datasecurity</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/definitions" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">definitions</a>
@@ -317,6 +401,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/encryption" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">encryption</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/endpoint" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">endpoint</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/endpoints" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">endpoints</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/factory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">factory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/firewall" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">firewall</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/format" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">format</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/function" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">function</a>
@@ -346,8 +431,8 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcsa" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsa</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcsd" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsd</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mcse" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcse</a>
-<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoft" title="129 total posts" data-original-title="130 total posts" data-toggle="tooltip">microsoft</a>
-<a style="font-size: 29px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoftazure" title="128 total posts" data-original-title="129 total posts" data-toggle="tooltip">microsoftazure</a>
+<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoft" title="133 total posts" data-original-title="134 total posts" data-toggle="tooltip">microsoft</a>
+<a style="font-size: 29px" class="tag_cloud" href="http://HarvestingClouds.com/tag/microsoftazure" title="132 total posts" data-original-title="133 total posts" data-toggle="tooltip">microsoftazure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/migration" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">migration</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/navigate" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">navigate</a>
@@ -381,8 +466,8 @@
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/s" title="14 total posts" data-original-title="15 total posts" data-toggle="tooltip">s</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/sample" title="9 total posts" data-original-title="10 total posts" data-toggle="tooltip">sample</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/sample" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Sample</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/scale" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">scale</a>
-<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/scaleset" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">scaleset</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/scale" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">scale</a>
+<a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/scaleset" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">scaleset</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/script" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">script</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/script" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Script</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/search" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">search</a>
@@ -394,14 +479,14 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/session" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">session</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/shell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">shell</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/snapshots" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">snapshots</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/sql" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">sql</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/sqldatabase" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">sqldatabase</a>
+<a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/sql" title="23 total posts" data-original-title="24 total posts" data-toggle="tooltip">sql</a>
+<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/sqldatabase" title="22 total posts" data-original-title="23 total posts" data-toggle="tooltip">sqldatabase</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/storage" title="17 total posts" data-original-title="18 total posts" data-toggle="tooltip">storage</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/subnet" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">subnet</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/subnets" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">subnets</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/tag" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">tag</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/tags" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">tags</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/tags" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Tags</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/tags" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">tags</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/tde" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">tde</a>
 <a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="20 total posts" data-original-title="21 total posts" data-toggle="tooltip">Templates</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">templates</a>
