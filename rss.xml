@@ -141,9 +141,15 @@
 <pubDate>Thu, 05 Mar 2020 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Azure SQL and Data Factory Basics - Index</title>
-<description><![CDATA[<p>This is the index for the Azure SQL Basics. I received various requests to write posts around Azure SQL basics. This series is the practical and hands-on look at various features of Azure SQL from creating the service to working with it in detail.</p>
+<title>Data Factory Basics and Azure SQL Basics Series - Index</title>
+<description><![CDATA[<p>This is the index for the Azure Data Factory and Azure SQL Basics. I received various requests to write posts around these Azure resources. This series is the practical and hands-on look at various features from creating the service to working with it in detail.</p>
 <p>Below is the index for this series which is updated periodically.</p>
+<h3>Azure Data Factory related posts</h3>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-data-factory-basics-creating-a-data-factory" target="_blank">Creating a Data Factory</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-data-factory-basics-exploring-the-azure-data-factory-layout" target="_blank">Exploring the Azure Data Factory layout</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-data-factory-basics-creation-of-azure-ssis-integration-runtime-ir-into-azure-data-factory" target="_blank">Creation of Azure SSIS Integration Runtime (IR) into Azure Data Factory</a></li>
+</ol>
 <h3>Azure SQL related posts</h3>
 <ol>
 <li><a href="http://harvestingclouds.com/post/azure-sql-basics-finding-azure-sql-databases-in-the-azure-portal" target="_blank">Finding Azure SQL Databases in the Azure Portal</a></li>
@@ -160,12 +166,8 @@
 <li><a href="http://harvestingclouds.com/post/azure-sql-basics-managing-backups-for-azure-sql-database" target="_blank">Managing Backups for Azure SQL Database</a></li>
 <li><a href="http://harvestingclouds.com/post/azure-sql-basics-restoring-azure-sql-database-from-the-backup" target="_blank">Restoring Azure SQL Database from the backup</a></li>
 <li><a href="http://harvestingclouds.com/post/azure-sql-basics-setting-up-private-endpoints-on-an-azure-sql-server" target="_blank">Setting up Private Endpoints on an Azure SQL Server</a></li>
-</ol>
-<h3>Azure Data Factory related posts</h3>
-<ol>
-<li><a href="http://harvestingclouds.com/post/azure-data-factory-basics-creating-a-data-factory" target="_blank">Creating a Data Factory</a></li>
 </ol>]]></description>
-<link>http://HarvestingClouds.com/post/azure-sql-and-data-factory-basics-index</link>
+<link>http://HarvestingClouds.com/post/data-factory-basics-and-azure-sql-basics-series-index</link>
 <pubDate>Sat, 22 Feb 2020 00:00:00 +0500</pubDate>
 </item>
 <item>
