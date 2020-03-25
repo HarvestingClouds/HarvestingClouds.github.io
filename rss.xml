@@ -235,6 +235,104 @@
 <pubDate>Tue, 21 Jan 2020 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Leveraging Service Tags to define better rules in Network Security Groups</title>
+<description><![CDATA[<p><strong>Service Tags</strong> comes in very handy when you want to specify Sources for Inbound rules and Destination for Outbound rules. It makes your life a lot easier to define a complete service without specifying each and every IP address in that service. </p>
+<p>E.g. you can specify a complete Virtual Network or Microsoft Azure Backup as a source for Inbound rules very easily by simply leveraging Service tags. Even if the address space of that virtual network changes in the future, you will not need to alter its related Network Security Group (NSG) rules.</p>
+<p>Simply navigate to any NSG and then go to Inbound rules (or Outbound rules). Edit one of the existing rules or create a new one. For Souce in case of inbound rules (and destination in case of outbound rules), select &quot;Service Tag&quot; from the drop-down. From the drop-down for the &quot;Source service tag&quot; select the service tag for the service, for which you need the rule.</p>
+<img src="/images/15851213745e7b085e3ba29.png" alt="Service Tags">
+<p><strong>Note</strong> from the arrow in the above screenshot that the vertical scrollbar is huge. Since this feature was launched, so many services have been configured as Service Tags and have made administrators' life easier in terms of configurations required.</p>
+<p>For more information please check this link: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview" target="_blank">Virtual network service tags</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/leveraging-service-tags-to-define-better-rules-in-network-security-groups</link>
+<pubDate>Sun, 12 Jan 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Data Factory Basics - Creation of Azure SSIS Integration Runtime (IR) into Azure Data Factory</title>
+<description><![CDATA[<p>To run/migrate the SSIS packages to Azure Data factory, we need the <strong>Azure SSIS IR</strong> (<strong>Integration Runtime</strong>) in the <strong>Azure Data Factory</strong>. Azure-SSIS IR is the runtime environment that runs SSIS packages on Azure. </p>
+<p>An Azure-SSIS IR provisions:</p>
+<ul>
+<li>Running packages deployed into the SSIS catalog (SSISDB) hosted by an Azure SQL Database server or a managed instance (Project Deployment Model).</li>
+<li>Running packages deployed into file systems, file shares, or Azure Files (Package Deployment Model).</li>
+</ul>
+<p>You can create the self-hosted Azure-SSIS IR with your desired configuration or you can use the run time integration used by the Azure.</p>
+<img src="/images/15851224855e7b0cb528a7d.png" alt="Default IR">
+<p>Let’s create the Azure-SSIS IR as per below steps:</p>
+<p>1.) Go to data factory created in Azure Portal and Select the Author &amp; Monitor tile to open its Let's get started a page on a separate tab. There, you can continue to create your Azure-SSIS IR.</p>
+<img src="/images/15851224935e7b0cbd8bce6.png" alt="Configure SSIS Integrations">
+<p>2.)    After clicking on Configure SSIS Integration, it will open the integration runtime setup window. It requires as following parameters:</p>
+<ol>
+<li>Name – Provide the appropriate Name to your integration runtime</li>
+<li>Description – it’s not a mandatory parameter to provide</li>
+<li>Type is the default setting. You can’t change this one.</li>
+<li>Set the location</li>
+<li>Node size – Select the node size for your integration runtime cluster. Choose the higher number if you want to run packages that require more memory/computing power.</li>
+<li>Node Number – Choose the number from the list. Higher number if you want to run the many packages in parallel.</li>
+<li>Edition/license – Select the SQL server edition of your integration runtime. Select the enterprise if you want to choose the advanced features of integration runtime.</li>
+<li>Save money - select the Azure Hybrid Benefit option for your integration runtime: Yes or No. Select Yes if you want to bring your SQL Server license with Software Assurance to benefit from cost savings with hybrid use. </li>
+</ol>
+<p>Next is the Integration runtime setup general settings.</p>
+<img src="/images/15851225005e7b0cc465fe3.png" alt="IR Setup 1 - General settings">
+<p>Next up we have the Integration runtime setup SQL settings.</p>
+<img src="/images/15851225075e7b0ccb8236c.png" alt="IR Setup 2 - SQL Settings">
+<p>Next up we have the Integration runtime setup Advanced settings.</p>
+<img src="/images/15851225735e7b0d0d5207f.png" alt="IR Setup 3 - Advanced settings">
+<p>Finally, we have a summary for the IR setup.</p>
+<p>&lt;img src=&quot;/images/15851225805e7b0d1475046.png&quot; alt=&quot;IR Setup 4&quot; - Summary&gt;</p>
+<p>As you can see below in the screenshot, the self-hosted Azure-SSIS IR has been created.</p>
+<img src="/images/15851225875e7b0d1bf3edb.png" alt="Created IR for SSIS">
+<p>Alternatively, to create the Azure-SSIS IR on Azure Data Factory UI portal go to Edit tab -&gt; Connections -&gt; Integration runtimes and click New. </p>
+<img src="/images/15851225955e7b0d236f516.png" alt="New IR">
+<p>In the Integration Runtime Setup panel, select the Lift-and-shift existing SSIS packages to execute in Azure tile, and then select Next and proceed to create IR setup from here, similar to what we did earlier.</p>
+<img src="/images/15851226245e7b0d406364c.png" alt="IR Setup">
+<p>Now once we have the Integration Runtime we can start importing and running SSIS packages. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-data-factory-basics-creation-of-azure-ssis-integration-runtime-ir-into-azure-data-factory</link>
+<pubDate>Fri, 10 Jan 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Data Factory Basics - Exploring the Azure Data Factory layout</title>
+<description><![CDATA[<p>In this post, we will be looking at the Data factories section in Azure in detail. </p>
+<p>To manage the data factory pipelines, go to All resources -&gt; Data factories. You will see all the data factories have been added or created. Select the data factory you want to manage.</p>
+<img src="/images/15851220815e7b0b21ae939.png" alt="Data factories">
+<p>Once you select the data factory, it will open the new window (known as a blade in Azure) where you can manage your Data Factory.</p>
+<img src="/images/15851220875e7b0b27f36e5.png" alt="Data factory details">
+<p>Let’s discuss a few sections of the Data Factory page.</p>
+<h3>Section 1: General properties</h3>
+<ol>
+<li>Overview: The first page when you land on this window is the overview page. </li>
+<li>Activity log: Platform logs provide detailed diagnostic and auditing information for Azure resources and the Azure platform they depend on. They are automatically generated although you need to configure certain platform logs to be forwarded to one or more destinations to be retained.</li>
+<li>Access Control (IAM): Review the level of access a user, group, service principal, or managed identity has to this resource.</li>
+<li>Tags: This is used to provide some keywords to your resource.</li>
+<li>Diagnostic and solve problems: This provides you the list of troubleshooting links for the known issues a user can come across.</li>
+</ol>
+<h3>Section 2 Getting Started</h3>
+<p>Quick Start: This provide the basic tutorial/videos link on how to work with the Data factory. They have been provided by Microsoft and you can see the documentation about the subject. It is really helpful as it gives a quick understanding of the topic.</p>
+<h3>Section 3 Monitoring</h3>
+<ol>
+<li>Alerts: Configure alert rules and attend to fired alerts to efficiently monitor your Azure resources.</li>
+<li>Metrics: Configure alert rules and attend to fired alerts to efficiently monitor yourAzure resources. For more details, please refer to the Microsoft official documentation for Metrics
+at <a href="https://docs.microsoft.com/en-us/azure/azure-monitor/platform/metrics-getting-started">https://docs.microsoft.com/en-us/azure/azure-monitor/platform/metrics-getting-started</a></li>
+<li>Diagnostic settings: They are used to collect platform logs and metrics in Azure. To get more information on how to create the diagnostic settings using Azure Portal/CLI/Powershell, please refer to the official Microsoft documentation at <a href="https://docs.microsoft.com/en-us/azure/azure-monitor/platform/diagnostic-settings">https://docs.microsoft.com/en-us/azure/azure-monitor/platform/diagnostic-settings</a></li>
+</ol>
+<h3>Section 4 Author &amp; Monitor</h3>
+<p>Author and Monitor link is the most important link which takes you to the authoring console. This console opens up the new window. This is where you can create Azure-SSIS IR, pipelines, linked services, data sets, and data flow, etc.
+I will be explaining this more in the upcoming posts.</p>
+<h3>Section 5 Monitoring</h3>
+<p>This section is the summarization of the activities happening in the Azure Data Factory. Pipelines status whether it was successful or failed. TriggerRun information that when the pipelines ran. You can also check the CPU and Memory utilization of the IR. You can view or set up all these monitoring status on the Metrics mentioned in section 3.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-data-factory-basics-exploring-the-azure-data-factory-layout</link>
+<pubDate>Wed, 08 Jan 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Expose an Azure Function App via API Management</title>
+<description><![CDATA[<p>You can expose an <strong>Azure Function App</strong> via <strong>API Management</strong> directly from within an Azure Function app. This functionality is provided out of the box and all you need to do is, configure the link between an Azure Function App and an existing (or new) API Management App.</p>
+<p>To start, navigate to your Azure Function and click on the &quot;<em>Platform Features</em>&quot; tab. Here you will see the option for &quot;<em>API Management</em>&quot; as shown below.</p>
+<img src="/images/15851181855e7afbe967613.png" alt="Option for API Management">
+<p>Once you click on API Management, it takes you to a new blade. Here you can simply link your Function app to an existing API Management or even create a new one and then link the app. </p>
+<img src="/images/15851181975e7afbf58e686.png" alt="Linking API Management">
+<p>Now that the app is linked, you can now manage API operations, apply policies, edit and download OpenAPI specification files, or navigate to API Management instance for a full-featured experience.</p>
+<p>For more information please check this link: <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-openapi-definition" target="_blank">Create an OpenAPI definition for a serverless API using Azure API Management</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/expose-an-azure-function-app-via-api-management</link>
+<pubDate>Tue, 07 Jan 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Data Factory Basics - Creating a Data Factory</title>
 <description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-sql-and-data-factory-basics-index" target="_blank">Azure SQL and Data Factory Basics - Index</a></b></p>
 <p><strong>Azure Data Factory</strong> is a cloud-based <strong>ETL service</strong> to run the SSIS packages. You can lift and shift the existing SSIS packages in Azure and run them fully in ADF. It is code-free UI to run, monitor and manage the packages.</p>
@@ -258,6 +356,26 @@
 <p>I will be explaining about its monitoring section and how to create pipelines in my next blogs. So keep tuning in!</p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-data-factory-basics-creating-a-data-factory</link>
 <pubDate>Sat, 04 Jan 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Managing cost for both Microsoft Azure and AWS from within Azure</title>
+<description><![CDATA[<p>If you are leveraging both Microsoft Azure and Amazon's AWS for the cloud, you now have <strong>AWS Cloud connector</strong> to view your AWS <strong>billing data</strong>, directly from within the Microsoft Azure portal. Let's check out how to set this up.</p>
+<p>Start by navigating to the &quot;<strong><em>Cost Management + Billing</em></strong>&quot; section. Click on the &quot;<strong>Cost Management</strong>&quot; management option. In the new blade, click on the &quot;Connectors for AWS (Preview)&quot; option under the settings menu. You will see the option to configure the sync from AWS to Azure here by clicking on the &quot;<strong><em>Add connector</em></strong>&quot; button.</p>
+<img src="/images/15851189455e7afee1f0d49.png" alt="The option for Connection">
+<p>Under basic settings, just provide a display name, management group and a subscription for the connector. </p>
+<img src="/images/15851189575e7afeed0fcc1.png" alt="Creating Connector - Basics">
+<p>In the &quot;AWS properties&quot; section provide the value for:</p>
+<ul>
+<li>Role ARN</li>
+<li>External ID</li>
+<li>Report Name</li>
+</ul>
+<p>You need to take some steps in AWS to get these values. These steps are described in detail here: <a href="https://docs.microsoft.com/en-us/azure/cost-management-billing/costs/aws-integration-set-up-configure#create-a-role-and-policy-in-aws" target="_blank">Create a role and policy in AWS for Billing Connector in Azure</a></p>
+<img src="/images/15851189655e7afef56cc06.png" alt="Creating Connector - AWS Properties">
+<p>Finally, review all the settings and create the connector. Now you can view all the cost and billing data for both Microsoft Azure and Amazon's AWS in one place.</p>
+<p>For more information please check this link: <a href="https://docs.microsoft.com/en-us/azure/cost-management-billing/costs/aws-integration-set-up-configure" target="_blank">For more information please check this link: <a href="" target="_blank"></a></a></p>]]></description>
+<link>http://HarvestingClouds.com/post/managing-cost-for-both-microsoft-azure-and-aws-from-within-azure</link>
+<pubDate>Wed, 18 Dec 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure SQL Basics - Restoring Azure SQL Database from the backup</title>
@@ -726,6 +844,21 @@ Data source by default is None.  If you want to import the backup file of some e
 <p><strong>Please Note</strong> that the address &quot;0.0.0.0/0&quot; means all IP addresses. This can be used for Source in inbound rules or Destination for outbound rules, if the exact IP address or IP address range is unknown. Although this should be used with caution. As a best practice, this should be avoided at all costs and should be replaced with as small IP address ranges as possible.</p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-for-aws-professionals-networking-aws-04-network-acls</link>
 <pubDate>Fri, 04 Oct 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Introducing Azure VMware Solutions</title>
+<description><![CDATA[<p>Microsoft and VMWare have been competitors in the private cloud space. But in the public cloud space, this is no less than revolutionary to see VMWare VMs being supported on the Microsoft Azure platform. These solutions help customers to extend (and maybe move) their on-premises VMWare environments to Azure.</p>
+<p>When you go to create a new resource, search for VMWare and you will see the following 3 solutions:</p>
+<ul>
+<li><strong>VMware Solution by CloudSimple - Service</strong> - enables you to consume dedicated VMware Cloud environments on Azure. </li>
+<li><strong>VMware Solution by CloudSimple - Node</strong> - dedicated, isolated Azure bare metal infrastructure to create native VMware Cloud environments on Azure.</li>
+<li><strong>VMware Solution by CloudSimple - Virtual Machine</strong> - unified, consistent management of Virtual Machines deployed on your VMware Cloud.</li>
+</ul>
+<img src="/images/15851036775e7ac33d5a1ec.png" alt="VMWare Solutions">
+<p>For more information please check this link: <a href="https://azure.microsoft.com/en-us/overview/azure-vmware/" target="_blank">Azure VMware Solutions
+</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/introducing-azure-vmware-solutions</link>
+<pubDate>Wed, 02 Oct 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure for AWS professionals - Networking - AWS - 03 Route Tables</title>
@@ -1386,6 +1519,37 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 <pubDate>Sat, 03 Aug 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure AD activity logs now integrated with Log Analytics in Azure Monitor</title>
+<description><![CDATA[<p>I believe that there should be a <strong>single pane of glass</strong> approach to monitoring in Microsoft Azure where you can monitor different aspects of Azure in one place. Microsoft's latest logs integration is a step forward towards this vision. Now Azure AD activity logs are integrated with the Diagnostics Logs for Azure Monitor and Log Analytics in Azure Monitor. These Azure AD logs can now be retained for long term as well, leveraging Azure Storage accounts.</p>
+<p>One side benefit is that these logs can now be sent to any 3rd party SIEM tools as well.  </p>
+<p>To get started with this service, simply navigate to your Azure Active Directory and then scroll all the way down to Diagnostic settings. Click on &quot;<strong><em>+Add Diagnostic Setting</em></strong>&quot; to get started.</p>
+<img src="/images/15851017635e7abbc3a48ec.png" alt="Azure AD Diagnostic Settings">
+<p>Select the log type for &quot;Audit logs&quot; and for destination select &quot;Send to Log Analytics&quot; and configure your workspace. Save your settings.</p>
+<img src="/images/15851017755e7abbcfde306.png" alt="Integration with Log Analytics">
+<p>Now the Azure AD logs will start appearing in the Log Analytics workspace. You can query this data and can analyze the data in various ways as well.</p>
+<p>For more information check this official blog on this functionality in detail: </p>
+<ul>
+<li><a href="https://techcommunity.microsoft.com/t5/azure-active-directory-identity/azure-active-directory-activity-logs-in-azure-log-analytics-now/ba-p/274843" target="_blank">Azure Active Directory Activity logs in Azure Log Analytics</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/howto-integrate-activity-logs-with-log-analytics" target="_blank">How to set up the integration</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-ad-activity-logs-now-integrated-with-log-analytics-in-azure-monitor</link>
+<pubDate>Thu, 25 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Database now has a Serverless Compute Tier</title>
+<description><![CDATA[<p>Azure SQL Database now has a <strong>Serverless</strong> Compute Tier. Note that this option is only available with the newer vCore based pricing. This provides you with loads of advantages as this optimizes the pricing and enables all the goodness of the Serverless architecture for your SQL Databases.</p>
+<p>The key points are:</p>
+<ul>
+<li>The underlying compute resources (i.e. CPU and memory) are auto-scaled based on the demand</li>
+<li>The billing is done on a per-second basis based on the usage of vCores</li>
+</ul>
+<p>When you go to Configure pricing on your database (either during the creation or afterward from the settings), under the vCore based pricing model you now select the <strong>Serverless</strong> option. </p>
+<img src="/images/15851070515e7ad06b0dc18.png" alt="Azure SQL Database Serverless Compute Tier">
+<p>For more information please check this link: <a href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-serverless" target="_blank">Azure SQL Database serverless</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-database-now-has-a-serverless-compute-tier</link>
+<pubDate>Wed, 24 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure for AWS professionals - Auto Scaling - Azure - 04 Viewing the Run History of VMSS</title>
 <description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
 <p>When you have an active Microsoft Azure <strong>Virtual Machine Scale Set</strong> or <strong>VMSS</strong> it is imperative that you monitor how your VMSS has been running over the period of time. This helps you tweak the autoscaling settings of your VMSS. You should monitor this continuously for any critical applications in your environment. Ideally, to begin with, this should be done in a test or QA environment with a simulated load on your application running for a long period of time. And then you should keep doing this in upper environments as a best practice. </p>
@@ -1563,6 +1727,19 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 <p>For more information check this link: <a href="https://azure.microsoft.com/en-us/services/batch/#overview" target="_blank">Azure Batch service</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-for-aws-professionals-batch-services-azure-4-creating-tasks-in-a-batch-job</link>
 <pubDate>Fri, 05 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure App Service now has a free Linux tier and supports Python and Java</title>
+<description><![CDATA[<p>Azure App Service has expanded its capabilities to include Linux as it's hosting Operating System. With the goodness of Linux also comes the support for Python and Java natively. </p>
+<p>Now when you will create a new App Service in Microsoft Azure, you can view different Python versions that are currently supported.</p>
+<img src="/images/15851055505e7aca8e0e0a4.png" alt="Python support in App Service">
+<p>You can also view various supported Java versions.</p>
+<img src="/images/15851059115e7acbf74afb6.png" alt="Java Support">
+<p>Under the Operating System settings you can see the Linux as an option. Note that based on the Runtime stack selected, this option maybe pre-selected for you and you won't be able to change this setting. If you will select a Runtime Stack that is supported on both OS then you will have the option to switch between the two platforms. E.g. for .Net core you can select any one of the two platforms.</p>
+<img src="/images/15851059215e7acc01c3f2f.png" alt="Linux Tier">
+<p>For more information please check this link: <a href="https://azure.microsoft.com/en-us/blog/azure-app-service-update-free-linux-tier-python-and-java-support-and-more/" target="_blank"></a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-app-service-now-has-a-free-linux-tier-and-supports-python-and-java</link>
+<pubDate>Sun, 30 Jun 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure for AWS professionals - Batch Services - Azure - 3 Creating Job in the Batch Pool</title>
@@ -1754,6 +1931,16 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 <pubDate>Fri, 31 May 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure App Configuration Service</title>
+<description><![CDATA[<p>Azure App Configuration Service is a new service that let's application developers save their application related configurations separately in this service. These configurations are saved securely in this service. This service also allows for your application to scale without any dependency on the configuration data. </p>
+<p>As the configurations are stored separately from the application code, the developers and designers now have the flexibility to modify the app behavior without them requiring to alter the code multiple time and performing multiple deployments of the application.</p>
+<p>When you navigate to the new service creation wizard in Microsoft Azure, search for App Configurations. This should bring up this new service as shown below.</p>
+<img src="/images/15851052455e7ac95d09346.png" alt="App Configurations">
+<p>For more information please check this link: <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/overview" target="_blank">Azure App Configuration</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-app-configuration-service</link>
+<pubDate>Thu, 30 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 07 - Boot Diagnostics of Azure VMs</title>
 <description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
 <p>Azure VM <strong>Boot diagnostics</strong> lets you diagnose what is happening under the hood during the boot-up. If you face any issues with the boot-up of the VM then this is where you will go to find the diagnostics data. </p>
@@ -1788,6 +1975,20 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 <pubDate>Sat, 25 May 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>New Tiers in Azure Application Gateway - Standard v2 and WAF v2 SKUs</title>
+<description><![CDATA[<p>New tiers have been made generally available since last week for Application Gateway. These tiers are:</p>
+<ul>
+<li>Standard v2</li>
+<li>WAF v2</li>
+</ul>
+<p>These tiers are backed by Microsoft's SLA of 99.95% availability. These tiers have various optimizations in terms of Autoscaling, Zone redundancy, faster provisioning, improved performance, etc.</p>
+<p>You can see these new tiers when creating a new Application Gateway. For the <strong>Tier</strong> settings, in the drop-down, now you will see these two new SKUs also listed and available as well.</p>
+<img src="/images/15851034525e7ac25c699cb.png" alt="New Tiers in Application Gateway">
+<p>For more information please check this link: <a href="https://azure.microsoft.com/en-us/services/application-gateway/" target="_blank">Application Gateway</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/new-tiers-in-azure-application-gateway-standard-v2-and-waf-v2-skus</link>
+<pubDate>Fri, 17 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 05 - Monitoring of EC2 instances</title>
 <description><![CDATA[<p><strong>Note</strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-index" target="_blank">Azure for AWS professionals - Index</a></b></p>
 <p>Monitoring is centralized in AWS via <strong>Cloud Watch</strong>. Few out of the box metrics are integrated into the EC2 instances screen. Various in-depth and detailed metrics are available in the Cloud Watch product. </p>
@@ -1804,6 +2005,15 @@ You can learn more about Azure CLI here: <a href="https://docs.microsoft.com/en-
 <p><a href="https://aws.amazon.com/ec2/" target="_blank">Amazon Elastic Compute Cloud (EC2)</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-05-monitoring-of-ec2-instances</link>
 <pubDate>Wed, 15 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure now supports GitHub identity single sign-on</title>
+<description><![CDATA[<p>Azure now supports <strong>GitHub identity single sign-on</strong>. Now when you will try to log into the Azure portal you can use GitHub as an identity provider. If you already have a GitHub account then you don't need to create a new account. You can use the same account to log into the Azure portal (provided someone has given you access on some subscription).</p>
+<p>When you click on this link, it takes you to the GitHub website to authenticate you and then bring you back to the Azure portal once authenticated. </p>
+<img src="/images/15851077475e7ad323e447d.png" alt="GitHub as a login option">
+<p>For more information please check this link: <a href="https://azure.microsoft.com/en-ca/updates/azure-now-supports-github-identity-single-sign-on-2/" target="_blank">Azure now supports GitHub identity single sign-on</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-now-supports-github-identity-single-sign-on</link>
+<pubDate>Tue, 14 May 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 04 - Differences in IOPS</title>
@@ -1841,6 +2051,15 @@ can burst into hundreds of IOPS.</li>
 <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html" target="_blank">Amazon EBS Volume Types</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-04-differences-in-iops</link>
 <pubDate>Thu, 09 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>PowerShell support in Azure Functions</title>
+<description><![CDATA[<p>PowerShell support is now available in Azure Functions. This is the feature that I have been waiting for and many others have as well. If you have any reusable functions in your PowerShell scripts, now you can run those in the Serverless way via Azure Functions. Microsoft announced that this includes native support for PowerShell Core 6 as well as the Azure Az modules.</p>
+<p>To get started, create a new Function App in Azure. While you are creating a new one, now for the &quot;<strong>Runtime stack</strong>&quot; you can select &quot;<strong>PowerShell Core</strong>&quot; as the option. </p>
+<img src="/images/15851027185e7abf7e5de6c.png" alt="Function App creation">
+<p>For more information please check this link: <a href="https://azure.microsoft.com/en-us/blog/serverless-automation-using-powershell-preview-in-azure-functions/" target="_blank">Serverless automation using PowerShell preview in Azure Functions</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/powershell-support-in-azure-functions</link>
+<pubDate>Mon, 06 May 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 03 - Creating Azure VMs</title>
@@ -1910,6 +2129,41 @@ can burst into hundreds of IOPS.</li>
 <a href="https://aws.amazon.com/ec2/" target="_blank">Amazon Elastic Compute Cloud (EC2)</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances</link>
 <pubDate>Mon, 29 Apr 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Updates: Azure Front Door Service</title>
+<description><![CDATA[<p><strong>Azure Front Door</strong> is one of the latest services announced by Microsoft. This is a game-changer as it can do lot of heavy lifting for your applications. If your application is deployed in multiple regions then Front Door service is a no-brainer for your organization. </p>
+<p>It works at the application layer, i.e. layer 7. It monitors the global routing and automatically routes to the best available host to optimize the performance. The routing is based on the URL paths. It also provides instant failover at the global level. It uses smart health probes to check if your application is available or not. It can also perform SSL offloading to encrypt all the traffic.</p>
+<p>To configure a Front Door, you define:</p>
+<ul>
+<li>Frontend host</li>
+<li>Backend pools</li>
+<li>Routing rules</li>
+</ul>
+<img src="/images/15850995455e7ab319037b6.png" alt="3 steps to configure Front Door">
+<p>For more information check this official links: </p>
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/services/frontdoor/" target="_blank">Azure Front Door</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/frontdoor/front-door-overview" target="_blank">Front Door Overview</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-updates-azure-front-door-service</link>
+<pubDate>Sun, 28 Apr 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Updates: ExpressRoute Direct and Global Reach</title>
+<description><![CDATA[<p>ExpressRoute Direct and ExpressRoute Global Reach are available to be used now. These services extend the capabilities of ExpressRoute. </p>
+<p><strong>ExpressRoute Direct</strong> gives you the ability to connect directly into Microsoft’s global network at peering locations strategically distributed across the world. This is different from simple ExpressRoute connectivity in the way that now you are not just connecting to one region but getting access to the complete Microsoft global network. It helps you with massive data ingestion to storage, physical isolation, dedicated capacity, and burst capacity to use Microsoft’s global backbone to access Azure regions at tremendous scale.</p>
+<p><strong>ExpressRoute Global Reach</strong> is the service where if you have two datacenters, which are located at different geo-locations and both are connected to Microsoft Azure via Express Route then these two datacenters can also connect to each other securely via Microsoft's backbone. </p>
+<p>As shown in the below example, the two locations i.e. San Francisco and London are connected to Azure via ExpressRoute. Due to the Global Reach feature, now the traffic between these two datacenters can also traverse on the Microsoft backbone securely (as shown in the green color).</p>
+<img src="/images/15850965485e7aa764c6048.png" alt="Global Reach">
+<p>(Image source: Microsoft)</p>
+<p>For more information check here: </p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/expressroute/expressroute-erdirect-about" target="_blank">ExpressRoute Direct</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/expressroute/expressroute-global-reach" target="_blank">ExpressRoute Global Reach</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-updates-expressroute-direct-and-global-reach</link>
+<pubDate>Sat, 27 Apr 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 01 - Finding resources</title>
