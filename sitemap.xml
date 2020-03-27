@@ -5,6 +5,12 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
+<loc>http://HarvestingClouds.com/post/ebook-6-step-migration-strategy-systematic-approach-to-migrating-your-workloads-to-microsoft-azure/</loc>
+<lastmod>2020-03-27T00:00:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
 <loc>http://HarvestingClouds.com/post/azure-for-aws-professionals-index/</loc>
 <lastmod>2020-03-05T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
