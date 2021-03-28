@@ -6,6 +6,24 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Service Tags are now supported for Defining Routes in Route Tables</title>
+<description><![CDATA[<p>Let us assume that you have to define routing for a particular Azure service e.g. Azure Storage. Any communication to the Azure storage service should happen via your defined route e.g. a virtual appliance. To be able to define this route table you will need to define many routes for all the IP addresses corresponding to the Azure Storage service. Microsoft publishes all these IP addresses in a JSON format that you can leverage. This JSON file is available here: <a href="https://www.microsoft.com/en-us/download/details.aspx?id=56519" target="_blank">Azure IP Ranges and Service Tags – Public Cloud</a></p>
+<p>This current process will involve around 504 routes corresponding to each IP address space published by Microsoft for Azure Storage service alone. To make matters even more complex, you have a limit on the total number of routes allowed in a subscription. You can have a max of 200 Route Tables and only 400 routes allowed per Route Tables. You can check all the service limits here: <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits" target="_blank">Azure subscription and service limits, quotas, and constraints</a></p>
+<h3>Solution</h3>
+<p>Microsoft has published the solution for this problem. You can now leverage the Service Tags when defining User Defined Routes (or UDRs) in a Route Table. I believe this addresses a long-requested feature and makes the task to route any Microsoft service-related communication easy. </p>
+<p>This service is currently in <strong>Public Preview</strong> (at the time of writing this blog post). Also, this service is only available via APIs i.e. via REST, PowerShell, CLI, and can also be used in ARM templates. This feature is <strong>not</strong> currently available through the Azure Portal.</p>
+<p>You can now specify a Service Tag for the address prefix parameter in a user-defined route for your route table. You can choose from tags representing over 60 Microsoft and Azure services to simplify route creation and maintenance. </p>
+<ul>
+<li>You no longer need to manually update routes when services change or add to their list of endpoints. Routes with Service Tags will update automatically to include new changes. </li>
+<li>This also eliminates the need for regularly updating routes based on the IP data in the weekly JSON file downloads that Microsoft provides. </li>
+<li>This also helps reduce the likelihood of running into the routes per route table limit (400) which is common when configuring routing for multiple Microsoft and Azure services. By using Service Tags, you can avoid this, since the tag condenses all ranges for that service into one group. </li>
+<li>For example, Microsoft lists more than 4,500 prefixes that collectively represent the Azure address space. You can now use one route with the AzureCloud Service Tag which will include all of these. </li>
+</ul>
+<p>Learn more about this capability here: <a href="https://azure.microsoft.com/en-us/updates/public-preview-service-tags-for-user-defined-routing/" target="_blank">Public preview: Service Tags for User Defined Routing</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/service-tags-are-now-supported-for-defining-routes-in-route-tables</link>
+<pubDate>Sat, 27 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>eBook - 6 Step Migration Strategy – Systematic Approach to Migrating your Workloads to Microsoft Azure</title>
 <description><![CDATA[<p>I have authored this eBook titled &quot;<strong><em>6 Step Migration Strategy – Systematic Approach to Migrating your Workloads to Microsoft Azure</em></strong>&quot; which I am making available to everyone for <strong>free</strong>. It is a quick and short read that is meant to help set up the migration process for your department. Use this eBook as a blueprint to kickstart your migration to the cloud.</p>
 <p>You can download the eBook by clicking on this link: <a href="http://harvestingclouds.com/eBooks/6%20Step%20Migration%20Strategy%20%E2%80%93%20Systematic%20Approach%20to%20Migrating%20your%20Workloads%20to%20Microsoft%20Azure.pdf" target="_blank">6 Step Migration Strategy – Systematic Approach to Migrating your Workloads to Microsoft Azure</a></p>
