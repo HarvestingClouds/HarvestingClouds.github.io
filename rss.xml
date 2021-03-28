@@ -24,6 +24,84 @@
 <pubDate>Sat, 27 Mar 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>How to Copy data from Google Cloud Platform (GCP) Storage to Microsoft Azure Storage Block Blob</title>
+<description><![CDATA[<p>Copying from Google Cloud to Microsoft Azure has been a challenge that Microsoft has addressed in the latest release of AzCopy. Via the latest release i.e. <strong>v10.9.0</strong>, Microsoft has brought the capabilities importing from Google Cloud Platform (GCP) Storage to Microsoft Azure Storage Block Blob. Additionally, this latest release will also have support for scanning logs that can have low or high output based on the requirements. Tags will be preserved when copying the blobs and the list command will include &quot;Last Modified Time&quot; related information.</p>
+<p>General syntax to copy is as shown below:</p>
+<pre><code>azcopy copy 'https://storage.cloud.google.com/&lt;bucket-name&gt;/&lt;object-name&gt;' 'https://&lt;storage-account-name&gt;.blob.core.windows.net/&lt;container-name&gt;/&lt;blob-name&gt;'</code></pre>
+<p>An example is as below:</p>
+<pre><code>azcopy copy 'https://storage.cloud.google.com/mybucket/myobject' 'https://mystorageaccount.blob.core.windows.net/mycontainer/myblob'</code></pre>
+<p>This feature is currently in preview at the time of writing of this blog. You can read more about how to practically use AzCopy to copy form the GCP Storage to Microsoft Azure Storage block blob here: <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-google-cloud?toc=/azure/storage/blobs/toc.json" target="_blank">Copy data from Google Cloud Storage to Azure Storage by using AzCopy</a>.</p>]]></description>
+<link>http://HarvestingClouds.com/post/how-to-copy-data-from-google-cloud-platform-gcp-storage-to-microsoft-azure-storage-block-blob</link>
+<pubDate>Thu, 25 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Simplified process for publishing VM Images to Azure Marketplace</title>
+<description><![CDATA[<p>Microsoft has announced a new capability now to publish the VM Images to Marketplace. You can now publish a VM Image in Shared Image Gallery (SIG) to Azure Marketplace. This capability simplifies your image preparation, testing, and submission process as you no longer have to extract VHDs, upload them, and generate SAS URIs. With this capability, you can now manage the full image lifecycle within Azure. You can simply create your image from the VM or a VHD into Shared Image Gallery, then select the SIG Image to publish it in Partner Center.</p>
+<h2>Step by step process</h2>
+<p>Here is how the step by step process looks like:</p>
+<ol>
+<li>Select an approved base image. This is the Windows or Linux Operating System image that Microsoft has approved to be leveraged as a base for the OS image.</li>
+<li>Create a VM from the approved base image. </li>
+<li>Configure the VM. In this step, you install the binaries and perform configurations as per your requirements. You also install all the required updates and patches on the VM and ensure that the VM meets the security standards.</li>
+<li>Generalize the VM and Capture the image for the VM. </li>
+<li>Publish the VM from the Shared Image Gallery (SIG) to the Marketplace</li>
+</ol>
+<p>The option to Capture the image is from the VM blade click on the Capture button at the top.</p>
+<img src="/images/1616970203606101db85ee0.png" alt="Capture option">
+<p>During the Capture process ensure to use the option to &quot;Share image to Shared image gallery&quot;</p>
+<img src="/images/1616970211606101e3f0fae.png" alt="Option to share image to gallery">
+<p>To check the detailed walkthrough check this official documentation: <a href="https://docs.microsoft.com/en-us/azure/marketplace/azure-vm-create-using-approved-base" target="_blank">How to create a virtual machine using an approved base</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/simplified-process-for-publishing-vm-images-to-azure-marketplace</link>
+<pubDate>Tue, 23 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Dynamic data masking granular permissions for Azure SQL and Azure Synapse Analytics</title>
+<description><![CDATA[<p><strong>Dynamic Data Masking</strong> now supports granular permissions. This support is now available for:</p>
+<ul>
+<li>Azure SQL Database, </li>
+<li>Azure Synapse Analytics, and </li>
+<li>Azure SQL Managed Instance</li>
+</ul>
+<p>This feature allows you to grant and deny <strong>UNMASK permission</strong> at the schema-level, the table-level, and the column-level. This enhancement provides a more granular way to control and limit unauthorized access to SQL assets on Azure and improve data security management.</p>
+<p>You can read more about this feature towards the end of the doucmentation here: <a href="https://docs.microsoft.com/en-us/azure/azure-sql/database/dynamic-data-masking-overview#permissions" target="_blank">Dynamic data masking - Permissions section</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/dynamic-data-masking-granular-permissions-for-azure-sql-and-azure-synapse-analytics</link>
+<pubDate>Thu, 18 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>SQL insights in Azure Monitor</title>
+<description><![CDATA[<p>Microsoft Azure Monitor now has SQL monitoring capabilities. This feature is provided out of the box now. </p>
+<p>Using this you can monitor:</p>
+<ol>
+<li>Azure SQL Databases</li>
+<li>Azure SQL Managed Instance</li>
+<li>SQL Server on Azure VM</li>
+</ol>
+<p>Now you can monitor things like:</p>
+<ul>
+<li>CPU Utilization percentage</li>
+<li>Memory Utilization percentage</li>
+<li>Data IO percentage</li>
+<li>Number of User Connections</li>
+<li>Active Temp Tables</li>
+<li>Memory Grants Pending</li>
+<li>Processes blocked</li>
+<li>Deadlocks/sec</li>
+<li>Total data file size</li>
+<li>Total log file size</li>
+<li>Total log file used size</li>
+<li>Free space in tempdb</li>
+<li>Memory broker clerk size, etc.</li>
+</ul>
+<h2>Where are the SQL Insights</h2>
+<p>You can access the SQL insights by navigating to the Monitor in the Azure portal. And then in the Insights section, you can navigate to the &quot;<strong>SQL (preview)</strong>&quot; option.</p>
+<img src="/images/16169741476061114326387.png" alt="SQL Monitoring solution">
+<h2>Pricing</h2>
+<p>There is no separate pricing for the SQL Insights. All costs are incurred by the virtual machines that gather the data, the Log Analytics workspaces that store the data, and any alert rules configured on the data.</p>
+<p>You can learn more about the SQL insights from the official documentation here: <a href="https://docs.microsoft.com/en-us/azure/azure-monitor/insights/sql-insights-overview" target="_blank">Monitor your SQL deployments with SQL insights</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/sql-insights-in-azure-monitor</link>
+<pubDate>Thu, 18 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure for AWS professionals - Index</title>
 <description><![CDATA[<p>This is the Index for the series regarding <strong>Microsoft Azure</strong>  and <strong>Amazon's AWS</strong> services comparisons. This series takes a very <strong>practical</strong> and <strong>hands-on</strong> approach (rather than just focusing on the theory). You don't need to follow all the blog posts. You can only check the ones where you want to draw the comparison or check how to work with specific services.</p>
 <p>If you are well versed with one platform this series is to cross-train you on the competitor platform. The intention is to know the pros and cons of each platform and begin with the basic services. You need to know the competition well before you can advocate any platform.</p>
@@ -167,7 +245,7 @@
 <h2>Where is the Option</h2>
 <p>In the <strong>Inbound security rules</strong>, this option is available for the Source. In the <strong>Outbound security rules</strong>, this option is available for the Destination. Once you select the service tag as the option, then you are presented with a drop-down for the Service Tag selection. Internet is the default option for the Service Tag. You can type and search for the particular service tag e.g. Azure Storage, Azure Backup, etc.</p>
 <img src="/images/16169643636060eb0bc8678.png" alt="Service Tag option">
-<p>You can read more about Service Tags here: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview" blank="_blank">Virtual network service tags</a>.</p>]]></description>
+<p>You can read more about Service Tags here: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview" target="_blank">Virtual network service tags</a>.</p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-for-aws-professionals-networking-azure-06-using-service-tags-to-define-rules-in-nsgs</link>
 <pubDate>Tue, 12 May 2020 00:00:00 +0500</pubDate>
 </item>
