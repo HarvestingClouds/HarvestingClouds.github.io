@@ -221,13 +221,13 @@
 <pubDate>Thu, 11 Mar 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Managing the backup-related alerts via the Azure Monitor</title>
+<title>Azure Backup - Managing the backup-related alerts via the Azure Monitor</title>
 <description><![CDATA[<p>You can now manage <strong>backup-related alerts</strong> via the standard <strong>Azure Monitor</strong> experience for alert management. This integration ensures that you can leverage the alert management experience within the &quot;Azure Monitor&quot; as a single pane of glass for managing all alerts in your environment.</p>
 <p>This also means that you can leverage Action Groups to send notifications to email, SMS, Azure app push notifications, and voice calls. You can also leverage Action Groups to take actions when an alert is triggered.</p>
 <p>All you need to do is navigate to the Alerts section in the Monitor and you will be able to monitor and manage the alerts directly from this pane.</p>
 <p>Currently, this feature is supported for the following workloads: Azure Databases for PostgreSQL server, Azure Blobs, and Azure Managed Disks. Support for other workloads will be added in the near future. Alerts are currently generated for security-related scenarios and job failure scenarios, with more enhancements planned in the short term.</p>
 <p>You can read more about this feature here: <a href="https://docs.microsoft.com/en-us/azure/backup/backup-azure-monitoring-built-in-monitor#azure-monitor-alerts-for-azure-backup-preview" target="_blank">Azure Monitor alerts for Azure Backup</a></p>]]></description>
-<link>http://HarvestingClouds.com/post/managing-the-backup-related-alerts-via-the-azure-monitor</link>
+<link>http://HarvestingClouds.com/post/azure-backup-managing-the-backup-related-alerts-via-the-azure-monitor</link>
 <pubDate>Fri, 05 Mar 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
@@ -246,6 +246,50 @@ You can select the target of the audit logs as either one or many selections fro
 <p>This strengthens the security posture even further for your SQL Databases.</p>]]></description>
 <link>http://HarvestingClouds.com/post/auditing-of-microsoft-operations-in-an-azure-sql-database</link>
 <pubDate>Thu, 04 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Microsoft retiring many older services by 29 February 2024</title>
+<description><![CDATA[<p>Microsoft has recently announced that they are retiring a lot of older services. They have provided a generous deadline of &quot;29th February, 2024&quot; for many services to move to the newer version of these services. On that day the older services will be deleted by Microsoft. </p>
+<p>I have created a list of the prominent ones that Microsoft has announced will retire on 29th Feb, 2024 are:</p>
+<ul>
+<li>Update your scripts to use Az PowerShell modules</li>
+<li>Switch to Azure Data Lake Storage Gen2</li>
+<li>Classic Application Insights</li>
+<li>AKS legacy Azure AD integration</li>
+<li>Jenkins plug-ins for Azure</li>
+<li>Network Performance Monitor</li>
+<li>Azure Network Watcher Connection Monitor (classic)</li>
+<li>Azure Batch ‘CloudServiceConfiguration’ pools</li>
+<li>Azure Application Gateway analytics</li>
+<li>Switch Azure Media Services REST API and SDKs to v3</li>
+<li>Classic Azure Migrate</li>
+<li>Update the Azure Cosmos DB Java SDK</li>
+<li>Azure Stack Edge Pro FPGA</li>
+<li>Azure Batch rendering VM images &amp; licensing</li>
+<li>The standard version of Custom Voice</li>
+<li>Azure Cognitive Services Text Analytics v2.x</li>
+<li>Upgrade your Azure AD Connect sync to a newer version</li>
+<li>Azure Batch Transcription and Customization Rest API v2</li>
+</ul>
+<p>There are few other services that Microsoft has announced will retire a bit earlier.</p>
+<p>At least the first one in the above list can be easily taken care of. You can automatically migrate your scripts at least to the newer Az PowerShell modules by leveraging the migration tool and steps from here: <a href="https://docs.microsoft.com/en-us/powershell/azure/quickstart-migrate-azurerm-to-az-automatically?view=azps-5.7.0" target="_blank">Automatically migrate PowerShell scripts from AzureRM to the Az PowerShell module</a>.</p>]]></description>
+<link>http://HarvestingClouds.com/post/microsoft-retiring-many-older-services-by-29-february-2024</link>
+<pubDate>Thu, 25 Feb 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Backup - Cross Region Restore (CRR) for Azure Virtual Machines is now generally available</title>
+<description><![CDATA[<p>We discussed the Cross Region Restore (CRR) for Azure Virtual Machines in Azure Backup in an earlier post. You can view that post here: <a href="" target="_blank">Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup</a></p>
+<p>Now, this feature for Virtual Machines is <strong>generally available</strong>. </p>
+<p>Note that:</p>
+<ul>
+<li>Azure zonal pinned VMs that are backed up with RS vault enabled with this feature will now be provided with options to restore in any zone of customer choice.</li>
+<li>Azure Backup supports all <strong>managed and unmanaged VMs</strong> for Cross Region Restore. Classic VMs remains to be unsupported.</li>
+<li>Microsoft is starting with the <strong>replication RPO of up to 12 hours</strong> in the secondary region even though the storage SLA of geo-replication is 15 mins.</li>
+<li>The pricing is unchanged and stays the same. This is really good of Microsoft to not increase the pricing of the feature.</li>
+</ul>
+<p>While Microsoft has moved the preview of  CRR for Azure VMs to GA, CRR for SQL/SAP HANA databases running in Azure VMs will continue to be in preview.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-is-now-generally-available</link>
+<pubDate>Sat, 20 Feb 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Enabling soft delete for blobs in an Azure Storage Account</title>
@@ -302,7 +346,7 @@ You can select the target of the audit logs as either one or many selections fro
 <pubDate>Wed, 10 Feb 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Configuring Azure Backup for Azure File Shares</title>
+<title>Azure Backup - Configuring Azure Backup for Azure File Shares</title>
 <description><![CDATA[<p>Azure Recovery Services Vaults can backup File shares within the Azure Storage Accounts. This provides an additional layer of security from any accidental deletion of the File share contents or any corruption of the data on the files in the file share.</p>
 <p><strong>Note</strong>: This blog post assumes that you already have a recovery service vault. If you don't you can create one easily by navigating to the Recovery service vault section in the Azure portal. </p>
 <h3>Step by step backup configurations</h3>
@@ -319,11 +363,11 @@ You can select the target of the audit logs as either one or many selections fro
 <p>Once the backup policy is created, click on the &quot;Enable backup&quot; button to submit the deployment to configure the backup.</p>
 <img src="/images/161699692560616a3d6111f.png" alt="Backup policy and Enable backup">
 <p>Note that when you configure the backup it creates a lock on the Storage Account. You should not delete this lock otherwise the backup will not work as desired.</p>]]></description>
-<link>http://HarvestingClouds.com/post/configuring-azure-backup-for-azure-file-shares</link>
+<link>http://HarvestingClouds.com/post/azure-backup-configuring-azure-backup-for-azure-file-shares</link>
 <pubDate>Tue, 02 Feb 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Backup Center in Microsoft Azure</title>
+<title>Azure Backup - Backup Center in Microsoft Azure</title>
 <description><![CDATA[<p>The <strong>Backup Center</strong> provides a single pane of glass into the whole backup posture of the Azure environment. It provides a <strong>single unified management experience</strong> in Azure for enterprises to govern, monitor, operate, and analyze backups at scale.</p>
 <p>With the Backup Center you can manage:</p>
 <ol>
@@ -340,8 +384,50 @@ You can select the target of the audit logs as either one or many selections fro
 <p>The backup center is currently supported for Azure VM backup, SQL in Azure VM backup, SAP HANA in Azure VM backup, Azure Files backup, Azure Blobs backup, Azure Managed Disks backup, and Azure Database for PostgreSQL Server backup.</p>
 <img src="/images/16169881876061481b27edc.png" alt="Backup Center">
 <p>You can learn more about the Backup Center here: <a href="https://docs.microsoft.com/en-us/azure/backup/backup-center-overview" target="_blank">Overview of Backup center</a></p>]]></description>
-<link>http://HarvestingClouds.com/post/backup-center-in-microsoft-azure</link>
+<link>http://HarvestingClouds.com/post/azure-backup-backup-center-in-microsoft-azure</link>
 <pubDate>Sat, 10 Oct 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Backup - Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup</title>
+<description><![CDATA[<p>In the last post, we looked at the redundancy options for a Recovery Services Vault. In this post, we will look at how to take control of the replicated data.</p>
+<p>By default, the data that is replicated to the secondary region is available to restore in the secondary region only if Azure declares a disaster in the primary region. But now you can also control the cross-region restore (CRR) yourself. You can trigger a cross-region restore regardless of whether the primary region is available or not. Azure Backup now supports restoring Azure Virtual Machines as well as disks from a secondary region.</p>
+<p>Behind the scene, Azure Backup leverages storage accounts’ read-access geo-redundant storage (<strong>RA-GRS</strong>) capability to support restores from a secondary region. If you enable cross-region-restore, Microsoft upgrades your backup storage from GRS to read-access geo-redundant storage (RA-GRS). Charges for storage are separate from the cost of Azure Backup.</p>
+<p><strong>Note</strong> that due to delays in storage replication from primary to secondary, there will be <strong>latency</strong> in the backed-up data being available for a restore in the secondary region.</p>
+<p>Cross-Region Restore (CRR) supports the following data sources:</p>
+<ul>
+<li>Azure VMs</li>
+<li>SQL databases on Azure VMs </li>
+<li>SAP HANA databases on Azure VMs</li>
+</ul>
+<h3>Configurations</h3>
+<p>To update the Cross-Region Restore (CRR) settings: </p>
+<ol>
+<li>Navigate to the recovery services vault and click on the <strong>Properties</strong> under Settings</li>
+<li>Then click on the &quot;<strong>Update</strong>&quot; link under the Backup Configuration</li>
+<li>In the Backup Configurations blade, make sure that the setting for redundancy is set to &quot;Geo-Redundant&quot;. Then select &quot;<strong>Enable</strong>&quot; for the &quot;<strong>Cross Region Restore</strong>&quot; setting.</li>
+</ol>
+<p>Finally, click on the Save button to save the settings.</p>
+<img src="/images/16170496926062385cf189b.png" alt="Cross-Region Restore">
+<p><strong>Note</strong>: Cross Region Restore is currently non-reversible storage property. This means that you won't be able to disable the property after enabling it. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup</link>
+<pubDate>Thu, 04 Jun 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Backup - Set Storage Redundancy for Recovery Services Vault</title>
+<description><![CDATA[<p>When you create a Recovery Services Vault in Azure, the default for the Storage Redundancy now is &quot;Geo-redundant&quot;. Earlier this was not a customizable setting and was default to Locally-redundant. As a Business Continuity and Disaster Recovery (<strong>BCDR</strong>) strategy it makes sense to have Backup as Geo-redundant. This will ensure that the backup will be replicated to a secondary paired region. In the event of disaster level event if the primary region goes down then you will have access to the data in the secondary region. </p>
+<p>You can find which is the secondary paired region based on the region where you have deployed the resources by referring the table in this link: <a href="https://docs.microsoft.com/en-us/azure/best-practices-availability-paired-regions#azure-regional-pairs" target="_blank">Business continuity and disaster recovery (BCDR): Azure Paired Regions</a></p>
+<h3>Where to update configurations</h3>
+<p>To update the redundancy settings: </p>
+<ol>
+<li>Navigate to the recovery services vault and click on the <strong>Properties</strong> under Settings</li>
+<li>Then click on the &quot;Update&quot; link under the Backup Configuration</li>
+<li>In the Backup Configurations blade, the setting for redundancy is the first one and is available under the &quot;Storage replication type&quot;</li>
+</ol>
+<img src="/images/161704808060623210d5ee6.png" alt="Storage Replication Type">
+<p><strong>Note</strong>: This setting can not be changed if you have any item being protected in the vault. You will only be able to modify if you don't have anything protected. </p>
+<p>By default, the data that is replicated to the secondary region is available to restore in the secondary region only if Azure declares a disaster in the primary region. But now you can also control the cross-region restore (CRR) yourself. We will look at that feature in the next blog post.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-backup-set-storage-redundancy-for-recovery-services-vault</link>
+<pubDate>Tue, 02 Jun 2020 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>How to get alerts based on your spending in Azure</title>
