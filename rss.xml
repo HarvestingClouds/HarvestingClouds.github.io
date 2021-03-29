@@ -128,6 +128,80 @@
 <pubDate>Tue, 16 Mar 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Enabling soft delete for blobs in an Azure Storage Account</title>
+<description><![CDATA[<p>Data protection is a key feature that should always factor into the security posture of your organization. Imagine if someone gets access to your Storage Account and deletes the contents of a Storage Account. Or if an employee accidentally deletes the contents of a container inside the Storage account. </p>
+<p>Microsoft has added the support for soft delete. You can enable this while creating the storage account under the &quot;Data protection&quot;. You have 4 key options that you can enable. These options are:</p>
+<ol>
+<li>Turn on point-in-time restore for container</li>
+<li>Turn on soft delete for blobs</li>
+<li>Turn on soft delete for containers</li>
+<li>Turn on soft delete for file shares</li>
+</ol>
+<p>These options are shown below.</p>
+<img src="/images/161699099660615314d836a.png" alt="Soft delete options in a Storage Account creation">
+<h3>Accessing the Soft Delete capabilities for a blob</h3>
+<p>If you have enabled the soft delete for blobs, then you will view a toggle to &quot;<strong>Show deleted blobs</strong>&quot;. Any deleted blobs which was deleted within the configured number of days during the creation of the storage account will show up with the status as &quot;Deleted&quot;. </p>
+<img src="/images/16169913746061548e330dd.png" alt="Soft delete option after blob deletion">
+<p>You can then either right-click or click on the three dots at the end of the line for the blob with Status as &quot;Deleted&quot;. You will see the option for &quot;View previous versions&quot;. Click on this option to see any deleted versions of this blob.</p>
+<img src="/images/16169915476061553bf39a3.png" alt="View Previous Versions">
+<p>From the deleted versions of the blob, you can select any of the version and then you can either download that blob (by clicking on the <strong>Download version</strong> button) or restore it (by clicking on the <strong>Make current version</strong> button).</p>
+<img src="/images/161699157160615553cb0ef.png" alt="Restore or Download Previous version">
+<p>After restoring the blob, it will show up with the status as Active.</p>
+<p><strong>Note</strong>: </p>
+<ol>
+<li>The soft delete feature retains the data for only a fixed number of days. You define this number based on your recovery strategy during the creation of the storage account. </li>
+<li>If you delete the Storage Account then you can't restore the blobs. </li>
+</ol>
+<p>You can read more about this feature in the official documentation here: <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview" target="_blank">Soft delete for blobs</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/enabling-soft-delete-for-blobs-in-an-azure-storage-account</link>
+<pubDate>Mon, 15 Feb 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Setting up the Routing Preferences in Azure</title>
+<description><![CDATA[<p>Routing preferences determine how your traffic routes between Azure and the Internet. There are two options to select when it comes to routing:</p>
+<ol>
+<li>Microsoft Network</li>
+<li>Internet</li>
+</ol>
+<p>Selecting <strong>Microsoft global network</strong> delivers traffic via Microsoft global network closest to the user. <strong>Internet</strong> route option uses transit ISP network. Egress data transfer price varies based on the routing selection. The Microsoft global network has lower latency and is very fast. It is also very secure and is the default choice. You should select this option for any enterprise customers. Internet option on the other hand provides a cost-optimized alternative. </p>
+<h3>How to set Routing Preferences for a VM</h3>
+<p>You can set the Route Preferences for a <strong>VM</strong> via its public IP address. The public IP address can be associated with resources such as virtual machines, virtual machine scale sets, internet-facing load balancers, etc. </p>
+<p>While creating the public IP address, you can provide the preference as shown below.</p>
+<img src="/images/1616986538606141aa081ec.png" alt="Routing Preference">
+<h3>How to set Routing Preferences for a Storage Account</h3>
+<p>You can also set the routing preference for <strong>Azure storage</strong> resources such as blobs, files, web, and Azure DataLake. This is done when creating the Azure Storage Account. The setting is under the <strong>Networking</strong> part of the creation wizard as shown below.</p>
+<img src="/images/16169902506061502acf0c0.png" alt="Routing preferences for a Storage Account">
+<p><strong>Note</strong>: </p>
+<ol>
+<li>The routing preference option of a Public IP can’t be changed once created.</li>
+<li>By default, traffic is routed via the Microsoft global network for all Azure services.</li>
+</ol>
+<p>You can read more about Routing preferences here: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/routing-preference-overview" target="_blank">Routing Preference - Microsoft documentation</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/setting-up-the-routing-preferences-in-azure</link>
+<pubDate>Wed, 10 Feb 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Backup Center in Microsoft Azure</title>
+<description><![CDATA[<p>The <strong>Backup Center</strong> provides a single pane of glass into the whole backup posture of the Azure environment. It provides a <strong>single unified management experience</strong> in Azure for enterprises to govern, monitor, operate, and analyze backups at scale.</p>
+<p>With the Backup Center you can manage:</p>
+<ol>
+<li>Backup instances - all instances across different vaults</li>
+<li>Backup policies - all policies across different vaults</li>
+<li>Vaults - all Recovery Services Vaults</li>
+</ol>
+<p>You can also monitor:</p>
+<ol>
+<li>All backup jobs and filter for Failed jobs</li>
+<li>Fetch backup reports</li>
+</ol>
+<p>You can also control the policy compliance for Backup directly from the backup center.</p>
+<p>The backup center is currently supported for Azure VM backup, SQL in Azure VM backup, SAP HANA in Azure VM backup, Azure Files backup, Azure Blobs backup, Azure Managed Disks backup, and Azure Database for PostgreSQL Server backup.</p>
+<img src="/images/16169881876061481b27edc.png" alt="Backup Center">
+<p>You can learn more about the Backup Center here: <a href="https://docs.microsoft.com/en-us/azure/backup/backup-center-overview" target="_blank">Overview of Backup center</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/backup-center-in-microsoft-azure</link>
+<pubDate>Sat, 10 Oct 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>How to get alerts based on your spending in Azure</title>
 <description><![CDATA[<p>Azure has very advanced Cost Management capabilities. One of these capabilities is to create alerts based on your spending. You can define budgets and if you are close to spending more than a percentage of that budget then you can get alerted via email, SMS, App push notification, or even a voice call. You can even take actions if the budget exceeds a certain percentage. </p>
 <p>You take action if the alert is triggered by leveraging the Action Groups in Azure. You can check how to create Action Groups in this post: <a href="http://harvestingclouds.com/post/creating-the-action-groups-for-alerts-in-microsoft-azure/" target="_blank">Creating the Action Groups for alerts in Microsoft Azure</a>.</p>
