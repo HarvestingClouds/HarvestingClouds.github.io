@@ -128,6 +128,45 @@
 <pubDate>Tue, 16 Mar 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Understanding the Azure Route Server</title>
+<description><![CDATA[<p><strong>Azure Route Server</strong> is a new offering from Microsoft that simplifies the routing in your infrastructure, especially if you have a Network Virtual Appliance or NVA. It eliminates the need to manually configure or maintain route tables. It is a fully managed service and is configured with high availability.</p>
+<p>This service works with:</p>
+<ol>
+<li>Network Virtual Appliance or NVA</li>
+<li>ExpressRoute</li>
+<li>Azure VPN Gateway</li>
+</ol>
+<p>You can enable or disable the route exchange on the Azure Route Server with a simple command. Also, you don't need to manually configure or maintain route tables.</p>
+<p>With NVAs, it allows you to exchange routing information directly through Border Gateway Protocol (BGP) routing protocol between any NVA that supports the BGP routing protocol and the Azure Virtual Network.</p>
+<h3>Pre-requisite</h3>
+<ol>
+<li>For you to be able to set up an Azure Route Server, you need to have an empty subnet in your virtual network with the name &quot;<strong>RouteServerSubnet</strong>&quot;. This subnet should have an address space with a prefix of at least &quot;<strong>/27</strong>&quot; or higher.</li>
+<li>The NVA should allow the BGP protocol to leverage the benefits of having the Azure Route Server.</li>
+</ol>
+<h3>Benefits</h3>
+<p>Azure Route Server simplifies the configuration, management, and deployment of your NVA in your virtual network.</p>
+<ol>
+<li>You no longer need to manually update the routing table on your NVA whenever your virtual network addresses are updated.</li>
+<li>You no longer need to update User-Defined Routes manually whenever your NVA announces new routes or withdraw old ones.</li>
+<li>You can peer multiple instances of your NVA with Azure Route Server.</li>
+<li>The interface between NVA and Azure Route Server is based on a common standard protocol i.e. BGP.</li>
+<li>You can deploy Azure Route Server in any of your new or existing virtual networks.</li>
+</ol>
+<p>You can read more about this service here: <a href="https://docs.microsoft.com/en-us/azure/route-server/overview" target="_blank">Azure Route Server</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/understanding-the-azure-route-server</link>
+<pubDate>Thu, 11 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Managing the backup-related alerts via the Azure Monitor</title>
+<description><![CDATA[<p>You can now manage <strong>backup-related alerts</strong> via the standard <strong>Azure Monitor</strong> experience for alert management. This integration ensures that you can leverage the alert management experience within the &quot;Azure Monitor&quot; as a single pane of glass for managing all alerts in your environment.</p>
+<p>This also means that you can leverage Action Groups to send notifications to email, SMS, Azure app push notifications, and voice calls. You can also leverage Action Groups to take actions when an alert is triggered.</p>
+<p>All you need to do is navigate to the Alerts section in the Monitor and you will be able to monitor and manage the alerts directly from this pane.</p>
+<p>Currently, this feature is supported for the following workloads: Azure Databases for PostgreSQL server, Azure Blobs, and Azure Managed Disks. Support for other workloads will be added in the near future. Alerts are currently generated for security-related scenarios and job failure scenarios, with more enhancements planned in the short term.</p>
+<p>You can read more about this feature here: <a href="https://docs.microsoft.com/en-us/azure/backup/backup-azure-monitoring-built-in-monitor#azure-monitor-alerts-for-azure-backup-preview" target="_blank">Azure Monitor alerts for Azure Backup</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/managing-the-backup-related-alerts-via-the-azure-monitor</link>
+<pubDate>Fri, 05 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Auditing of Microsoft operations in an Azure SQL Database</title>
 <description><![CDATA[<p>Microsoft has added the capability to audit the actions of Microsoft support engineers when helping you to troubleshoot issues related to your Azure SQL Databases. This option is easy to configure and is available with the auditing capabilities of the Azure SQL Database from the Server level auditing.</p>
 <p>To configure this, navigate to the Azure SQL Database and click on the &quot;<strong>Auditing</strong>&quot; option under the security settings. In the right pane, select the &quot;<strong>View server settings</strong>&quot;.</p>
