@@ -128,6 +128,23 @@
 <pubDate>Tue, 16 Mar 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Auditing of Microsoft operations in an Azure SQL Database</title>
+<description><![CDATA[<p>Microsoft has added the capability to audit the actions of Microsoft support engineers when helping you to troubleshoot issues related to your Azure SQL Databases. This option is easy to configure and is available with the auditing capabilities of the Azure SQL Database from the Server level auditing.</p>
+<p>To configure this, navigate to the Azure SQL Database and click on the &quot;<strong>Auditing</strong>&quot; option under the security settings. In the right pane, select the &quot;<strong>View server settings</strong>&quot;.</p>
+<img src="/images/161699778560616d990d05f.png" alt="Auditing option">
+<p>In the server level auditing settings, toggle the setting for &quot;<em>Enable Auditing of Microsoft support operations</em>&quot; to audit all the activities done by the Microsoft support.
+You can select the target of the audit logs as either one or many selections from the below:</p>
+<ol>
+<li>Storage</li>
+<li>Log Analytics</li>
+<li>Event Hub</li>
+</ol>
+<img src="/images/161699780160616da90e305.png" alt="Enable Auditing of Microsoft support operations">
+<p>This strengthens the security posture even further for your SQL Databases.</p>]]></description>
+<link>http://HarvestingClouds.com/post/auditing-of-microsoft-operations-in-an-azure-sql-database</link>
+<pubDate>Thu, 04 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Enabling soft delete for blobs in an Azure Storage Account</title>
 <description><![CDATA[<p>Data protection is a key feature that should always factor into the security posture of your organization. Imagine if someone gets access to your Storage Account and deletes the contents of a Storage Account. Or if an employee accidentally deletes the contents of a container inside the Storage account. </p>
 <p>Microsoft has added the support for soft delete. You can enable this while creating the storage account under the &quot;Data protection&quot;. You have 4 key options that you can enable. These options are:</p>
@@ -145,6 +162,7 @@
 <p>You can then either right-click or click on the three dots at the end of the line for the blob with Status as &quot;Deleted&quot;. You will see the option for &quot;View previous versions&quot;. Click on this option to see any deleted versions of this blob.</p>
 <img src="/images/16169915476061553bf39a3.png" alt="View Previous Versions">
 <p>From the deleted versions of the blob, you can select any of the version and then you can either download that blob (by clicking on the <strong>Download version</strong> button) or restore it (by clicking on the <strong>Make current version</strong> button).</p>
+<p>Alternatively, you can click on the deleted blob's name and a pane will open up. In this pane, you can click on the &quot;Undelete&quot; button. If you have multiple versions then to undelete you will have to select the version first.</p>
 <img src="/images/161699157160615553cb0ef.png" alt="Restore or Download Previous version">
 <p>After restoring the blob, it will show up with the status as Active.</p>
 <p><strong>Note</strong>: </p>
@@ -179,6 +197,27 @@
 <p>You can read more about Routing preferences here: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/routing-preference-overview" target="_blank">Routing Preference - Microsoft documentation</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/setting-up-the-routing-preferences-in-azure</link>
 <pubDate>Wed, 10 Feb 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Configuring Azure Backup for Azure File Shares</title>
+<description><![CDATA[<p>Azure Recovery Services Vaults can backup File shares within the Azure Storage Accounts. This provides an additional layer of security from any accidental deletion of the File share contents or any corruption of the data on the files in the file share.</p>
+<p><strong>Note</strong>: This blog post assumes that you already have a recovery service vault. If you don't you can create one easily by navigating to the Recovery service vault section in the Azure portal. </p>
+<h3>Step by step backup configurations</h3>
+<p>To backup the file share, navigate to the backup vault and go to the &quot;<strong>Protected items</strong>&quot; and click on the &quot;<strong>Backup items</strong>&quot;. On the right-hand side, click on the &quot;<strong>Azure Storage (Azure Files)</strong>&quot;.</p>
+<img src="/images/1616996299606167cb9f0db.png" alt="Backup Items">
+<p>From the Backup items pane, you can select the &quot;<strong>+ Add</strong>&quot; button to add new backup items to the vault.</p>
+<img src="/images/1616996331606167eb5a048.png" alt="Add new">
+<p>In the Backup Goal, select the &quot;Azure File Share&quot; for the question &quot;What do you want to backup?&quot;. Click on the Backup button to start the configurations.</p>
+<img src="/images/16169964976061689194f24.png" alt="Backup Goal">
+<p>The next step is to select the Storage Account on which the File share exists. Once the storage account is selected, you can select the File share by clicking on the &quot;<strong>Add</strong>&quot; button, selecting the file share, and then clicking Ok in the popup.</p>
+<img src="/images/161699688160616a11e2817.png" alt="Storage Account and File Share selection">
+<p>The next step is to configure the backup policy. By default, a policy is created for you. It is highly recommended to customize this policy as per your business requirements. At a bare minimum, you should provide a unique and descriptive name for this policy. Remember that this policy can be reused multiple times for other File share backups as well. </p>
+<p>Also, provide a backup schedule and the retention of daily backup points. Optionally, you can configure weekly, monthly, and yearly backup retention values. </p>
+<p>Once the backup policy is created, click on the &quot;Enable backup&quot; button to submit the deployment to configure the backup.</p>
+<img src="/images/161699692560616a3d6111f.png" alt="Backup policy and Enable backup">
+<p>Note that when you configure the backup it creates a lock on the Storage Account. You should not delete this lock otherwise the backup will not work as desired.</p>]]></description>
+<link>http://HarvestingClouds.com/post/configuring-azure-backup-for-azure-file-shares</link>
+<pubDate>Tue, 02 Feb 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Backup Center in Microsoft Azure</title>
