@@ -102,7 +102,7 @@
 <pubDate>Thu, 18 Mar 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Creating alerts based on Azure Forecasts</title>
+<title>Creating alerts based on Azure Forecasts for spending</title>
 <description><![CDATA[<p>You can now create alerts based on the Azure Forecasts. This can help adjust your spending before you hit the budget target. Think about it, if you are going to hit the budget on the 25th day of the month instead of the last day you would want to know about it as early as possible. The earlier you know, the better you can get to manage the spending.</p>
 <h3>How to configure Alerts based on Forecasts</h3>
 <p>Navigate to &quot;Cost Management + Billing&quot; and select the &quot;<strong>Cost Management</strong>&quot; option.</p>
@@ -123,8 +123,89 @@
 <p>Provide the Action Group to alert via SMS or emails. You can alert via email by providing individual email ids or distribution list's id for &quot;Alert recipients (email)&quot; entry.</p>
 <img src="/images/16169792926061255c9682b.png" alt="Set alerts section">
 <p>You can read more about this feature at the official blog here: <a href="https://azure.microsoft.com/en-us/blog/prevent-exceeding-azure-budget-with-forecasted-cost-alerts/" target="_blank">Prevent exceeding Azure budget with forecasted cost alerts</a></p>]]></description>
-<link>http://HarvestingClouds.com/post/creating-alerts-based-on-azure-forecasts</link>
+<link>http://HarvestingClouds.com/post/creating-alerts-based-on-azure-forecasts-for-spending</link>
 <pubDate>Tue, 16 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>How to get alerts based on your spending in Azure</title>
+<description><![CDATA[<p>Azure has very advanced Cost Management capabilities. One of these capabilities is to create alerts based on your spending. You can define budgets and if you are close to spending more than a percentage of that budget then you can get alerted via email, SMS, App push notification, or even a voice call. You can even take actions if the budget exceeds a certain percentage. </p>
+<p>You take actions if the alert is triggered by leveraging the Action Groups in Azure.</p>
+<h3>How to configure the Alerts</h3>
+<p>Navigate to &quot;Cost Management + Billing&quot; and select the &quot;<strong>Cost Management</strong>&quot; option.</p>
+<img src="/images/1616979222606125161f60d.png" alt="Cost Management">
+<p>In the Cost Management blade, select the option for &quot;<strong>Budgets</strong>&quot; and then click on &quot;<strong>+ Add</strong>&quot;.</p>
+<img src="/images/161697925560612537d527b.png" alt="Budgets inside Cost Management">
+<p>In the next screen under &quot;<strong>Create a budget</strong>&quot; select the appropriate values for the following:</p>
+<ul>
+<li>Budget scope</li>
+<li>Budget name</li>
+<li>Reset period - under most circumstances this should be Billing month</li>
+<li>Creation date</li>
+<li>Expiration date</li>
+<li>Provide an amount for the Budget</li>
+</ul>
+<img src="/images/16169792766061254c6544e.png" alt="Create Budget">
+<p>In the next screen for &quot;Set alerts&quot;, under the Alert conditions, provide the percentage of the budget. E.g. if you provided the budget as $150 and selected the percentage of budget as 80% then the alert would be triggered at $120.</p>
+<p>Provide the Action Group to alert via SMS or emails. You can alert via email by providing individual email ids or distribution list's id for &quot;Alert recipients (email)&quot; entry.</p>
+<img src="/images/16169834056061356dbd7ce.png" alt="Set alerts section">
+<p>That's it! Now the alert is up and running. If you want to test the alert then update the budget and the alert percentage to close the spending and the alert should be triggered in short while. </p>
+<p>This is a very helpful feature that lets you take the control of your spending and stay on top of the overall usage. </p>]]></description>
+<link>http://HarvestingClouds.com/post/how-to-get-alerts-based-on-your-spending-in-azure</link>
+<pubDate>Sat, 30 May 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Creating the Action Groups for alerts in Microsoft Azure</title>
+<description><![CDATA[<p>In the previous post, we discussed what the Action Groups are and what they are used for. You can read the blog at this link: <a href="" target="_blank">Understanding the Action Groups for alerts in Microsoft Azure</a>. In this post we are taking a look in the Azure portal to understand how to create the Action Groups. </p>
+<h3>Action Groups Location</h3>
+<p>The action groups are located under the Azure Monitor, in the Alerts section. Here, click on the &quot;<strong>Manage actions</strong>&quot; button to modify and create action groups.</p>
+<img src="/images/161698167360612ea9b1846.png" alt="Manage actions">
+<h3>Creating Action Groups</h3>
+<p>In the Manage actions blade, click on the &quot;<strong>+ Add action group</strong>&quot; button. </p>
+<img src="/images/161698169360612ebd3cde3.png" alt="Add action group">
+<p>Enter the basics information in the first blade to Create an action group.</p>
+<img src="/images/161698170760612ecb01b15.png" alt="Basics information">
+<p>In the notifications tab, select the type of notifications. Also add additional information for Email, SMS, Azure app Push Notifications, and Voice, etc.</p>
+<img src="/images/161698172360612edbd40bc.png" alt="Notification settings">
+<p>Under the Actions tab, select if you want to perform any action. The possible values for action are:</p>
+<ol>
+<li>Automation Runbook</li>
+<li>Azure Function</li>
+<li>ITSM</li>
+<li>Logic App</li>
+<li>Secure Webhook</li>
+<li>Webhook</li>
+</ol>
+<img src="/images/161698175260612ef807104.png" alt="Actions inside Action Group">
+<p>Next, add the Tags and review the final information. Click on the Create button once done.</p>
+<p>Now that the Action Group is ready, you can use this in any alerts that you will create. The notifications and actions inside the Action Group will be triggered whenever the alert is triggered.</p>
+<p>For further details, you can refer the official documentation here: <a href="https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups" target="_blank">Create and manage action groups in the Azure portal</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/creating-the-action-groups-for-alerts-in-microsoft-azure</link>
+<pubDate>Tue, 26 May 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Understanding the Action Groups for alerts in Microsoft Azure</title>
+<description><![CDATA[<p>Action Groups is a very useful concept in Microsoft Azure. It is used to define two things when an alert is triggered. The first is to define how to send notifications and to whom when an action group is triggered via an alert. Secondly, it defines if any action should be taken when an alert is fired.</p>
+<p>Using the Action Groups you can <strong>send notifications</strong> via the following methods when an action group triggers:</p>
+<ol>
+<li>Group emails, </li>
+<li>SMS, </li>
+<li>Azure app notifications, and </li>
+<li>Voice calls. </li>
+<li>You can also send emails to an Azure Resource Manager role using Action Groups. </li>
+</ol>
+<p>Optionally, you can also <strong>take actions</strong> using the following features of Azure, when an action group is triggered:</p>
+<ol>
+<li>Automation Runbook</li>
+<li>Azure Function</li>
+<li>ITSM</li>
+<li>Logic App</li>
+<li>Secure Webhook</li>
+<li>Webhook</li>
+</ol>
+<p>Action Groups are located in the Azure Monitor under the &quot;Alerts&quot; section. Navigate to &quot;Manage actions&quot; to create or modify action groups.</p>
+<p>In the next blog post, we will look at how to create Action Groups in the Azure Portal.</p>]]></description>
+<link>http://HarvestingClouds.com/post/understanding-the-action-groups-for-alerts-in-microsoft-azure</link>
+<pubDate>Mon, 25 May 2020 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure for AWS professionals - Index</title>
