@@ -278,7 +278,7 @@ You can select the target of the audit logs as either one or many selections fro
 </item>
 <item>
 <title>Azure Backup - Cross Region Restore (CRR) for Azure Virtual Machines is now generally available</title>
-<description><![CDATA[<p>We discussed the Cross Region Restore (CRR) for Azure Virtual Machines in Azure Backup in an earlier post. You can view that post here: <a href="" target="_blank">Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup</a></p>
+<description><![CDATA[<p>We discussed the Cross Region Restore (CRR) for Azure Virtual Machines in Azure Backup in an earlier post. You can view that post here: <a href="http://harvestingclouds.com/post/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup/" target="_blank">Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup</a></p>
 <p>Now, this feature for Virtual Machines is <strong>generally available</strong>. </p>
 <p>Note that:</p>
 <ul>
@@ -389,7 +389,8 @@ You can select the target of the audit logs as either one or many selections fro
 </item>
 <item>
 <title>Azure Backup - Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup</title>
-<description><![CDATA[<p>In the last post, we looked at the redundancy options for a Recovery Services Vault. In this post, we will look at how to take control of the replicated data.</p>
+<description><![CDATA[<p>In the last post, we looked at the redundancy options for a Recovery Services Vault. You can  view that post here: <a href="http://harvestingclouds.com/post/azure-backup-set-storage-redundancy-for-recovery-services-vault/" target="_blank">Set Storage Redundancy for Recovery Services Vault</a></p>
+<p>In this post, we will look at how to take control of the replicated data.</p>
 <p>By default, the data that is replicated to the secondary region is available to restore in the secondary region only if Azure declares a disaster in the primary region. But now you can also control the cross-region restore (CRR) yourself. You can trigger a cross-region restore regardless of whether the primary region is available or not. Azure Backup now supports restoring Azure Virtual Machines as well as disks from a secondary region.</p>
 <p>Behind the scene, Azure Backup leverages storage accounts’ read-access geo-redundant storage (<strong>RA-GRS</strong>) capability to support restores from a secondary region. If you enable cross-region-restore, Microsoft upgrades your backup storage from GRS to read-access geo-redundant storage (RA-GRS). Charges for storage are separate from the cost of Azure Backup.</p>
 <p><strong>Note</strong> that due to delays in storage replication from primary to secondary, there will be <strong>latency</strong> in the backed-up data being available for a restore in the secondary region.</p>
@@ -425,7 +426,7 @@ You can select the target of the audit logs as either one or many selections fro
 </ol>
 <img src="/images/161704808060623210d5ee6.png" alt="Storage Replication Type">
 <p><strong>Note</strong>: This setting can not be changed if you have any item being protected in the vault. You will only be able to modify if you don't have anything protected. </p>
-<p>By default, the data that is replicated to the secondary region is available to restore in the secondary region only if Azure declares a disaster in the primary region. But now you can also control the cross-region restore (CRR) yourself. We will look at that feature in the next blog post.</p>]]></description>
+<p>By default, the data that is replicated to the secondary region is available to restore in the secondary region only if Azure declares a disaster in the primary region. But now you can also control the cross-region restore (CRR) yourself. We will look at that feature in the next blog post that you can access here: <a href="http://harvestingclouds.com/post/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup/" target="_blank">Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-backup-set-storage-redundancy-for-recovery-services-vault</link>
 <pubDate>Tue, 02 Jun 2020 00:00:00 +0500</pubDate>
 </item>

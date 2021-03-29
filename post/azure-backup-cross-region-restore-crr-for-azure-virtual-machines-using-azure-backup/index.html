@@ -78,7 +78,8 @@
                 <span class="glyphicon glyphicon-time"></span> Jun 04, 2020
                 <hr>
 
-                <p class="post-content"><p>In the last post, we looked at the redundancy options for a Recovery Services Vault. In this post, we will look at how to take control of the replicated data.</p>
+                <p class="post-content"><p>In the last post, we looked at the redundancy options for a Recovery Services Vault. You can  view that post here: <a href="http://harvestingclouds.com/post/azure-backup-set-storage-redundancy-for-recovery-services-vault/" target="_blank">Set Storage Redundancy for Recovery Services Vault</a></p>
+<p>In this post, we will look at how to take control of the replicated data.</p>
 <p>By default, the data that is replicated to the secondary region is available to restore in the secondary region only if Azure declares a disaster in the primary region. But now you can also control the cross-region restore (CRR) yourself. You can trigger a cross-region restore regardless of whether the primary region is available or not. Azure Backup now supports restoring Azure Virtual Machines as well as disks from a secondary region.</p>
 <p>Behind the scene, Azure Backup leverages storage accounts’ read-access geo-redundant storage (<strong>RA-GRS</strong>) capability to support restores from a secondary region. If you enable cross-region-restore, Microsoft upgrades your backup storage from GRS to read-access geo-redundant storage (RA-GRS). Charges for storage are separate from the cost of Azure Backup.</p>
 <p><strong>Note</strong> that due to delays in storage replication from primary to secondary, there will be <strong>latency</strong> in the backed-up data being available for a restore in the secondary region.</p>
@@ -234,8 +235,8 @@
                         <ul class="list-inline">
                             <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/net" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">net</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/actiongroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">actiongroups</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ActiveDirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">activedirectory</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ActiveDirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AD</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/alert" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">alert</a>
@@ -367,8 +368,8 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/policies" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">policies</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/policy" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">policy</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/portal" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">portal</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PowerShell</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="32 total posts" data-original-title="33 total posts" data-toggle="tooltip">powershell</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PowerShell</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/preview" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">preview</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/protection" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">protection</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/publish" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">publish</a>
@@ -381,8 +382,8 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/report" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">report</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/reservedinstances" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">reservedinstances</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/resourcegroup" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">resourcegroup</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/resourcegroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ResourceGroups</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/resourcegroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">resourcegroups</a>
+<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/resourcegroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ResourceGroups</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/resourcemanager" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">resourcemanager</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/roles" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">roles</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/routetable" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">routetable</a>
