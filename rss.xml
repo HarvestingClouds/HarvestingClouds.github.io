@@ -104,6 +104,7 @@
 <item>
 <title>Creating alerts based on Azure Forecasts for spending</title>
 <description><![CDATA[<p>You can now create alerts based on the Azure Forecasts. This can help adjust your spending before you hit the budget target. Think about it, if you are going to hit the budget on the 25th day of the month instead of the last day you would want to know about it as early as possible. The earlier you know, the better you can get to manage the spending.</p>
+<p>You can customize notifications and also take action if the alert is triggered by leveraging the Action Groups in Azure. You can check how to create Action Groups in this post: <a href="http://harvestingclouds.com/post/creating-the-action-groups-for-alerts-in-microsoft-azure/" target="_blank">Creating the Action Groups for alerts in Microsoft Azure</a>.</p>
 <h3>How to configure Alerts based on Forecasts</h3>
 <p>Navigate to &quot;Cost Management + Billing&quot; and select the &quot;<strong>Cost Management</strong>&quot; option.</p>
 <img src="/images/1616979222606125161f60d.png" alt="Cost Management">
@@ -129,7 +130,7 @@
 <item>
 <title>How to get alerts based on your spending in Azure</title>
 <description><![CDATA[<p>Azure has very advanced Cost Management capabilities. One of these capabilities is to create alerts based on your spending. You can define budgets and if you are close to spending more than a percentage of that budget then you can get alerted via email, SMS, App push notification, or even a voice call. You can even take actions if the budget exceeds a certain percentage. </p>
-<p>You take actions if the alert is triggered by leveraging the Action Groups in Azure.</p>
+<p>You take action if the alert is triggered by leveraging the Action Groups in Azure. You can check how to create Action Groups in this post: <a href="http://harvestingclouds.com/post/creating-the-action-groups-for-alerts-in-microsoft-azure/" target="_blank">Creating the Action Groups for alerts in Microsoft Azure</a>.</p>
 <h3>How to configure the Alerts</h3>
 <p>Navigate to &quot;Cost Management + Billing&quot; and select the &quot;<strong>Cost Management</strong>&quot; option.</p>
 <img src="/images/1616979222606125161f60d.png" alt="Cost Management">
@@ -155,7 +156,7 @@
 </item>
 <item>
 <title>Creating the Action Groups for alerts in Microsoft Azure</title>
-<description><![CDATA[<p>In the previous post, we discussed what the Action Groups are and what they are used for. You can read the blog at this link: <a href="" target="_blank">Understanding the Action Groups for alerts in Microsoft Azure</a>. In this post we are taking a look in the Azure portal to understand how to create the Action Groups. </p>
+<description><![CDATA[<p>In the previous post, we discussed what the Action Groups are and what they are used for. You can read the previous blog at this link: <a href="http://harvestingclouds.com/post/understanding-the-action-groups-for-alerts-in-microsoft-azure/" target="_blank">Understanding the Action Groups for alerts in Microsoft Azure</a>. In this post, we are taking a look in the Azure portal to understand how to create the Action Groups. </p>
 <h3>Action Groups Location</h3>
 <p>The action groups are located under the Azure Monitor, in the Alerts section. Here, click on the &quot;<strong>Manage actions</strong>&quot; button to modify and create action groups.</p>
 <img src="/images/161698167360612ea9b1846.png" alt="Manage actions">
@@ -203,7 +204,7 @@
 <li>Webhook</li>
 </ol>
 <p>Action Groups are located in the Azure Monitor under the &quot;Alerts&quot; section. Navigate to &quot;Manage actions&quot; to create or modify action groups.</p>
-<p>In the next blog post, we will look at how to create Action Groups in the Azure Portal.</p>]]></description>
+<p>In the next blog post, we will look at how to create Action Groups in the Azure Portal. You can check the next blog here: <a href="http://harvestingclouds.com/post/creating-the-action-groups-for-alerts-in-microsoft-azure/" target="_blank">Creating the Action Groups for alerts in Microsoft Azure</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/understanding-the-action-groups-for-alerts-in-microsoft-azure</link>
 <pubDate>Mon, 25 May 2020 00:00:00 +0500</pubDate>
 </item>
