@@ -131,8 +131,8 @@
 <title>Configuring the Azure Route Server</title>
 <description><![CDATA[<p>In the last 2 posts, we looked at what Azure Route Server is and how to configure it. You can view those posts here: </p>
 <ul>
-<li><a href="" target="_blank">Understanding the Azure Route Server</a></li>
-<li><a href="" target="_blank">Creating the Azure Route Server</a></li>
+<li><a href="http://harvestingclouds.com/post/understanding-the-azure-route-server/" target="_blank">Understanding the Azure Route Server</a></li>
+<li><a href="http://harvestingclouds.com/post/creating-the-azure-route-server/" target="_blank">Creating the Azure Route Server</a></li>
 </ul>
 <p>In this post, we will look at configuring the Azure Route Server. The below steps are involved in configuring the Route Server:</p>
 <ol>
@@ -187,7 +187,7 @@
 </ul>
 <p>If you check the Resource Group that you used for deployment, it will look empty. But when you click on the check box for &quot;Show hidden types&quot; you will be able to view the Virtual Hub that was deployed for the Route Server. </p>
 <img src="/images/161703712860620748445e8.png" alt="Hidden type for Virtual Hub">
-<p>In the next post, we will look at configuring the Route Server.</p>]]></description>
+<p>In the next post, we will look at configuring the Route Server. You can view the post here: <a href="http://harvestingclouds.com/post/configuring-the-azure-route-server/" target="_blank">Configuring the Azure Route Server</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/creating-the-azure-route-server</link>
 <pubDate>Mon, 15 Mar 2021 00:00:00 +0500</pubDate>
 </item>
@@ -216,7 +216,7 @@
 <li>The interface between NVA and Azure Route Server is based on a common standard protocol i.e. BGP.</li>
 <li>You can deploy Azure Route Server in any of your new or existing virtual networks.</li>
 </ol>
-<p>You can read more about this service here: <a href="https://docs.microsoft.com/en-us/azure/route-server/overview" target="_blank">Azure Route Server</a></p>]]></description>
+<p>In the next blog post, we will create an Azure Route Server in the Azure portal. You can view that post here: <a href="http://harvestingclouds.com/post/creating-the-azure-route-server/" target="_blank">Creating the Azure Route Server</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/understanding-the-azure-route-server</link>
 <pubDate>Thu, 11 Mar 2021 00:00:00 +0500</pubDate>
 </item>
