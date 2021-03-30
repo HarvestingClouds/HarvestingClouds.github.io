@@ -11,6 +11,12 @@
 <priority>1.00</priority>
 </url>
 <url>
+<loc>http://HarvestingClouds.com/post/finding-ip-address-ranges-for-suse-linux-enterprise-images-to-work-in-microsoft-azure-behind-firewall-or-nsgs/</loc>
+<lastmod>2021-03-26T00:00:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
 <loc>http://HarvestingClouds.com/post/how-to-copy-data-from-google-cloud-platform-gcp-storage-to-microsoft-azure-storage-block-blob/</loc>
 <lastmod>2021-03-25T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
@@ -103,6 +109,12 @@
 <url>
 <loc>http://HarvestingClouds.com/post/azure-backup-configuring-azure-backup-for-azure-file-shares/</loc>
 <lastmod>2021-02-02T00:00:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
+<loc>http://HarvestingClouds.com/post/connectivity-requirements-for-rdp-licensing-server-connectivity-and-firewall-rules/</loc>
+<lastmod>2021-01-28T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.00</priority>
 </url>

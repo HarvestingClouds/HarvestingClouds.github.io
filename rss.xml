@@ -24,6 +24,25 @@
 <pubDate>Sat, 27 Mar 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Finding IP address ranges for SUSE Linux Enterprise images to work in Microsoft Azure behind Firewall or NSGs</title>
+<description><![CDATA[<p>For the <strong>SUSE Linux Enterprise Server</strong> (<strong>SLES</strong>) images to work in the Microsoft Azure environment, it needs to communicate with the SUSE servers. Specifically, it needs to communicate with the SUSE registration servers and the repository servers. If the VM deployed from SUSE images, is deployed behind a Firewall or NSG then this communication will be blocked by default and will need to be opened up. </p>
+<p>So where will we get the IP addresses or URLs for the SUSE server?</p>
+<h3>Solution</h3>
+<p>The SUSE team publishes the required IP addresses in the below 2 XML files. These are dynamic links that the SUSE team keeps updating and should be referred if any communication is broken.</p>
+<p>The <strong>URLs</strong> for the IP addresses are:</p>
+<ul>
+<li><a href="https://susepubliccloudinfo.suse.com/v1/microsoft/servers/smt.xml" target="_blank"><a href="https://susepubliccloudinfo.suse.com/v1/microsoft/servers/smt.xml">https://susepubliccloudinfo.suse.com/v1/microsoft/servers/smt.xml</a></a></li>
+<li><a href="https://susepubliccloudinfo.suse.com/v1/microsoft/servers/regionserver.xml" target="_blank"><a href="https://susepubliccloudinfo.suse.com/v1/microsoft/servers/regionserver.xml">https://susepubliccloudinfo.suse.com/v1/microsoft/servers/regionserver.xml</a></a></li>
+</ul>
+<p>It is recommended to open the IP addresses for the regions where our VMs are deployed. The required communication occurs on <strong>Port 443</strong> i.e. HTTPS.</p>
+<h3>Long term solution</h3>
+<p>Long term solution is to deploy a SUSE <strong>RMT</strong> (or <strong>Repository Mirroring Tool</strong>) server in the environment. For older versions of SLES, you may require SMT instead. It is highly recommended to upgrade and use RMT instead. </p>
+<p>&quot;<em>RMT server establishes a proxy system for SUSE Customer Center with repositories and registration targets. This helps you to centrally manage software updates within a firewall on a per-system basis while maintaining your corporate security policies and regulatory compliance.</em>&quot;</p>
+<p>Here is a guide for configuring the RMT: <a href="https://documentation.suse.com/sles/15-SP1/single-html/SLES-rmt/index.html" target="_blank">Repository Mirroring Tool Guide</a>.</p>]]></description>
+<link>http://HarvestingClouds.com/post/finding-ip-address-ranges-for-suse-linux-enterprise-images-to-work-in-microsoft-azure-behind-firewall-or-nsgs</link>
+<pubDate>Fri, 26 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>How to Copy data from Google Cloud Platform (GCP) Storage to Microsoft Azure Storage Block Blob</title>
 <description><![CDATA[<p>Copying from Google Cloud to Microsoft Azure has been a challenge that Microsoft has addressed in the latest release of AzCopy. Via the latest release i.e. <strong>v10.9.0</strong>, Microsoft has brought the capabilities importing from Google Cloud Platform (GCP) Storage to Microsoft Azure Storage Block Blob. Additionally, this latest release will also have support for scanning logs that can have low or high output based on the requirements. Tags will be preserved when copying the blobs and the list command will include &quot;Last Modified Time&quot; related information.</p>
 <p>General syntax to copy is as shown below:</p>
@@ -389,6 +408,24 @@ You can select the target of the audit logs as either one or many selections fro
 <p>Note that when you configure the backup it creates a lock on the Storage Account. You should not delete this lock otherwise the backup will not work as desired.</p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-backup-configuring-azure-backup-for-azure-file-shares</link>
 <pubDate>Tue, 02 Feb 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Connectivity Requirements for RDP Licensing Server Connectivity and Firewall Rules</title>
+<description><![CDATA[<p>If you deploy an RDP License on a VM in Azure, then that VM needs to be able to talk to the RDP Licensing Server. The RDP License allows multiple users to log into the VM at the same time. By default, only 2 users can log into the VM concurrently. RDP License lets you increase that number based on the license. This is a typical use case for a Jump box VM deployment in Microsoft Azure.</p>
+<p>For the RDP license to work, it needs to validate with the RDP Licensing Server. For this, the Firewall needs to allow communication. To be able to allow this communication, you need to know the following:</p>
+<ol>
+<li>The IP address of the <strong>VM</strong> where the RDP license is configured</li>
+<li>The IP address of the <strong>RDP Licensing Server</strong></li>
+<li>The <strong>port numbers and the protocol</strong> on which to allow the communication</li>
+</ol>
+<p>The port numbers on which the communication occurs are as below:</p>
+<ol>
+<li><strong>TCP on port number 135</strong>. This is the main port where communication occurs.</li>
+<li><strong>TCP on 49152–65535</strong> i.e. <strong>RPC dynamic address range</strong>. A dynamic port is assigned from this range for validation-related communication.</li>
+</ol>
+<p>Using this information ensure that the Firewall in your environment is configured appropriately to allow communication.</p>]]></description>
+<link>http://HarvestingClouds.com/post/connectivity-requirements-for-rdp-licensing-server-connectivity-and-firewall-rules</link>
+<pubDate>Thu, 28 Jan 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure Backup - Troubleshooting the backup issues for SQL Server on Azure VM or SAP HANA on Azure VM (Database). </title>
