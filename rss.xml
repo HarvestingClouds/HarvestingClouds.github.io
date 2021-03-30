@@ -367,6 +367,89 @@ You can select the target of the audit logs as either one or many selections fro
 <pubDate>Tue, 02 Feb 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure Backup - Troubleshooting the backup issues for SQL Server on Azure VM or SAP HANA on Azure VM (Database). </title>
+<description><![CDATA[<p>When you have SQL databases on Azure VMs that are syncing with Azure Backup, you may run into various issues. These could be due to configurations or missing dependencies. In this blog post, we will take a look at a few of the common issues that I had faced and possible solutions to these issues.</p>
+<h3>1. First thing you should do for SAP HANA on Azure VM (Database).</h3>
+<p>Before you go down the path of troubleshooting, make sure that you have re-run the pre-registration script. You will either resolve the issues or will get more understanding of why the issues are coming. You can download the script form this link: <a href="https://aka.ms/scriptforpermsonhana" target="_blank">Pre-registration Script</a></p>
+<p>Note that you may need to re-discover the databases after running the script again. If you look in the official troubleshooting guide you will notice that most of the issues are resolved by this one thing i.e. re-running the pre-registration script.</p>
+<h3>2. Unhealthy status</h3>
+<p><strong>Possible cause # 1</strong>: </p>
+<ul>
+<li>The unhealthy status could simply mean that you have just configured the backup on a database and there is no backup for the database present in the Azure recovery services vault. In this scenario, you can either wait for the backup schedule to trigger and take the initial backup. Or you can trigger a manual backup.</li>
+</ul>
+<p><strong>Possible cause # 2</strong>:</p>
+<ul>
+<li>Another reason could be that the Backup service is not able to take the backups of the SQL databases on the Azure VM. You should navigate to the Monitoring section in the recovery services vault and click on the Backup jobs. Filter the jobs by the name of the database or the Azure VM name. Look for any failed jobs and check the error details. These failed jobs will also contain the details about the reason why the job failed. </li>
+</ul>
+<p>In one instance, my jobs were failing because the disk drive for Log was completely full. The resolution was to shut down the VM, expand the disk space via the Azure portal and then start the VM. Then expand the disk from the disk manager from within the VM. We manually triggered the full backup and it was successful. This in turn changed the status from Unhealthy to Healthy.</p>
+<h3>3. Unreachable or Not reachable status</h3>
+<p>The most common cause for this issue is that the Azure Backup service is not able to reach the VM. Chances are that the backup-related communication is being blocked somewhere in the network. The backup agent indicates to the VM that it should send the backup to Azure. The communication happens mostly <strong>Outbound from the VM</strong> to the below services in Azure:</p>
+<ol>
+<li>Azure Backup</li>
+<li>Azure Storage</li>
+<li>Azure Active Directory</li>
+</ol>
+<p>If any of the services is not allowed then the status changes to Unreachable. </p>
+<p>You may have two or both scenarios in your environment:</p>
+<ol>
+<li>Your VM has an NSG linked to the VM's network interface card or an NSG linked to the subnet in which the VM exists.</li>
+<li>Your VM is in an environment where all communication is gated via a Network Virtual Appliance (NVA) or Firewall.</li>
+</ol>
+<p>If you have NSGs then skip to the last section to see how to configure the NSGs for the backup service to work. If you have Firewall then continue here on how to troubleshoot.</p>
+<p>You should look for outbound communication from the VM to these services in the Firewall if you have any. You will need to validate against the public IP addresses for these public services. But how will you find the IP addresses for these. We will look at that next.</p>
+<h3>4. How to find the IP addresses for Azure services</h3>
+<p>Microsoft publishes the public IP addresses for all of its services in a <strong>JSON file</strong>. This is categorized by Service tags. These service tags correspond to each of the Azure services. </p>
+<p>You can download this JSON file by navigating to this link: <a href="https://www.microsoft.com/en-us/download/details.aspx?id=56519" target="_blank">Azure IP Ranges and Service Tags – Public Cloud</a></p>
+<p>After downloading this JSON, search for &quot;Storage&quot;, &quot;Active Directory&quot; and &quot;Backup&quot; services to find the section which defines a list of public IP addresses for that service. Note that there will be multiple IP address ranges for each service. Look for the region-specific ranges where you have deployed the VM and the backup vault.</p>
+<p>If you find an IP address from the list being blocked for any of the 3 services mentioned above, then you should follow the next section and work with your Firewall team to open these required rules. </p>
+<h3>5. Configuration of the Firewall to allow Azure backup</h3>
+<p>Note this only applies to the backup of SQL Server on Azure VM or SAP HANA on Azure VM (Database). Allow access to the following services in the Firewall for the network infrastructure where the Azure VM exists.</p>
+<table class="table"><caption class="visually-hidden">Allow access to service FQDNs</caption>
+<thead>
+<tr>
+<th>Service</th>
+<th>Domain  names to be accessed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure  Backup</td>
+<td><code>*.backup.windowsazure.com</code></td>
+</tr>
+<tr>
+<td>Azure  Storage</td>
+<td><code>*.blob.core.windows.net</code> <br><br> <code>*.queue.core.windows.net</code></td>
+</tr>
+<tr>
+<td>Azure  AD</td>
+<td>Allow  access to FQDNs under sections 56 and 59 according to <a href="/en-us/office365/enterprise/urls-and-ip-address-ranges#microsoft-365-common-and-office-online" data-linktype="absolute-path">this article</a></td>
+</tr>
+</tbody>
+</table>
+<h3>6. NSG configurations to allow Azure backup</h3>
+<p>Note this only applies to the backup of SQL Server on Azure VM or SAP HANA on Azure VM (Database). </p>
+<p>Go to the NSG i.e. Network Security Group of the Azure VM which is either linked via subnet or via the network interface of the VM. Navigate to the Outbound rules and add three rules to allow communication to the below destination Service Tags on all ports:</p>
+<ol>
+<li>Storage</li>
+<li>Azure Backup</li>
+<li>Azure Active Directory</li>
+</ol>
+<p>The rules will look like below:</p>
+<img src="/images/16170808506062b212f0139.png" alt="NSG Rules">
+<h3>7. Permissions issue or UserErrorSQLNoSysadminMembership</h3>
+<p>If you are getting the error for &quot;UserErrorSQLNoSysadminMembership&quot; then that means the permissions for SQL Server on Azure VM have not been set appropriately. This usually happens if you built the SQL server on the Azure VM yourself. That is you didn't use any marketplace image for SQL on Azure VM. </p>
+<p>You need to set the permissions as defined here: <a href="https://docs.microsoft.com/en-us/azure/backup/backup-azure-sql-database#set-vm-permissions" target="_blank">Set VM permissions</a>.</p>
+<p>If you are still facing issues, do refer the below links for official documentation: </p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/backup/tutorial-backup-sap-hana-db#prerequisites" target="_blank">Back up SAP HANA databases in an Azure VM</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/backup/tutorial-sql-backup" target="_blank">Back up a SQL Server database in an Azure VM</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/backup/backup-sql-server-azure-troubleshoot" target="_blank">Troubleshoot SQL Server database backup by using Azure Backup</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/backup/backup-azure-sap-hana-database-troubleshoot" target="_blank">Troubleshoot backup of SAP HANA databases on Azure</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-backup-troubleshooting-the-backup-issues-for-sql-server-on-azure-vm-or-sap-hana-on-azure-vm-database</link>
+<pubDate>Wed, 20 Jan 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Backup - Understanding the backup policy for SAP HANA in Azure VM (Database)</title>
 <description><![CDATA[<p>Azure Backup can be leveraged to discover and backup the SAP HANA database deployed in the Azure VMs. The backup behavior is governed by the &quot;<strong>Backup Policies</strong>&quot;. There are different policies specific to different kinds of workloads. In this post, we are looking at the backup policy for the backup of the SAP HANA in Azure VM (Database).</p>
 <h3>Policy Creation</h3>
