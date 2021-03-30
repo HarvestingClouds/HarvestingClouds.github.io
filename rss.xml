@@ -367,6 +367,96 @@ You can select the target of the audit logs as either one or many selections fro
 <pubDate>Tue, 02 Feb 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure Backup - Understanding the backup policy for SAP HANA in Azure VM (Database)</title>
+<description><![CDATA[<p>Azure Backup can be leveraged to discover and backup the SAP HANA database deployed in the Azure VMs. The backup behavior is governed by the &quot;<strong>Backup Policies</strong>&quot;. There are different policies specific to different kinds of workloads. In this post, we are looking at the backup policy for the backup of the SAP HANA in Azure VM (Database).</p>
+<h3>Policy Creation</h3>
+<p>Navigate to the recovery services key vault and then under the Manage, click on the <strong>Backup Policies</strong>. To create a new policy click on the &quot;<strong>+ Add</strong>&quot; button.</p>
+<img src="/images/1617070042606287da1f8be.png" alt="Backup policies">
+<p>For the policy type, select &quot;<strong>SAP HANA in Azure VM (Database)</strong>&quot;. This will open the blade to Create the policy for SAP HANA databases which are deployed in the Azure VMs.</p>
+<img src="/images/161707265960629213ac8e0.png" alt="Select Policy Type">
+<p>In the blade to create the policy, you need to provide the below information:</p>
+<ol>
+<li>Policy name - provide a descriptive name</li>
+<li>Full Backup - this is the schedule and retention of the full backup of the databases</li>
+<li>Differential Backup - this controls the differential backup of the databases</li>
+<li>Incremental Backup - this controls the incremental backup of the databases</li>
+<li>Log Backup - this defines the log backup for the databases</li>
+</ol>
+<img src="/images/16170729086062930cc12fb.png" alt="Create Policy">
+<p>For the <strong>full backup</strong> in the policy, if you enable it then at minimum you need to define:</p>
+<ol>
+<li>Frequency - daily or weekly</li>
+<li>Time and Time zone - when the backup will occur</li>
+<li>Retention for the daily backup. It can be a minimum of 7 days and up to a maximum of 9999 days.</li>
+</ol>
+<p>Optionally you can also configure the monthly, weekly, and yearly backup retention policies.</p>
+<img src="/images/16170729976062936570128.png" alt="Full Backup Policy">
+<p>The <strong>log backup policy</strong> determines the behavior of the log backups. At minimum you need to define:</p>
+<ol>
+<li>The frequency of the log backups - it can range from a minimum of 15 minutes to a maximum of once every 24 hours</li>
+<li>Retention of the log backups - it can range from a minimum of 7 days to a maximum of 14 days</li>
+</ol>
+<img src="/images/16170730066062936e31b78.png" alt="Log Backup Policy">
+<h3>Practical Backup Considerations</h3>
+<p>Below are some general backup considerations based on my experience in different projects. These are only generic considerations and should be evaluated against your organization's compliance standards and specific requirements.</p>
+<ul>
+<li>The time for backup should be when the systems are not being used by any of the teams. If you work in global teams i.e. working around the clock, then ensure the timing when the system is under the least load.</li>
+<li>Use smaller retention windows in the non-production environments than the production environments</li>
+<li>If the data is not critical then usually Full backup is taken Daily and retained for around 14 days in non-prod environments. Weekly, Monthly, and Yearly retention periods are not required. </li>
+<li>In the prod environment, the Full backup is still taken Daily but the retention period is increased to more than 30 days. Max you can select is 9999 days. Also, based on your SLAs and compliance standards you should enable the weekly, monthly, and yearly backup retention periods as well.</li>
+<li>Differential backup can be skipped in the non-production environments based on the criticality of the data in the lower environments</li>
+<li>Log backup can be reduced to once every 2 or 4 hours with a retention period of around 7 days in the non-prod environments. </li>
+<li>In the prod environments the Log backup can be set to 1 hour or less. The retention should be around 14 days based on the SLAs. Note that 14 days is the max you can go.</li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-backup-understanding-the-backup-policy-for-sap-hana-in-azure-vm-database</link>
+<pubDate>Mon, 14 Dec 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Backup - Understanding the backup policy for SQL Server in Azure VM</title>
+<description><![CDATA[<p>Azure Backup can be leveraged to discover and backup the SQL Server deployed in the Azure VMs. The backup behavior is governed by the &quot;<strong>Backup Policies</strong>&quot;. There are different policies specific to different kinds of workloads. In this post, we are looking at the backup policy for the backup of the SQL Server in Azure VM.</p>
+<h3>Policy Creation</h3>
+<p>Navigate to the recovery services key vault and then under the Manage, click on the <strong>Backup Policies</strong>. To create a new policy click on the &quot;<strong>+ Add</strong>&quot; button.</p>
+<img src="/images/1617070042606287da1f8be.png" alt="Backup policies">
+<p>For the policy type, select &quot;<strong>SQL Server in Azure VM</strong>&quot;. This will open the blade to Create the policy for &quot;SQL Server in Azure VM&quot;.</p>
+<img src="/images/16170703996062893f52933.png" alt="Select Policy Type">
+<p>In the blade to create the policy, you need to provide the below information:</p>
+<ol>
+<li>Policy name - provide a descriptive name</li>
+<li>Full Backup - this is the schedule and retention of the full backup of the databases on the SQL Server in Azure VM.</li>
+<li>Differential Backup - this controls the differential backup of the databases on the SQL Server in Azure VM</li>
+<li>Log Backup - this defines the log backup for the databases</li>
+<li>SQL Backup Compression - you can enable or disable the backup compression. The default value is disabled.</li>
+</ol>
+<img src="/images/161707060360628a0b9f421.png" alt="Create Policy">
+<p>For the <strong>full backup</strong> in the policy, if you enable it then at minimum you need to define:</p>
+<ol>
+<li>Frequency - daily or weekly</li>
+<li>Time and Time zone - when the backup will occur</li>
+<li>Retention for the daily backup</li>
+</ol>
+<p>Optionally you can also configure the monthly, weekly, and yearly backup retention policies.</p>
+<img src="/images/161707140060628d2891621.png" alt="Full Backup Policy">
+<p>The <strong>log backup policy</strong> determines the behavior of the log backups. At minimum you need to define:</p>
+<ol>
+<li>The frequency of the log backups - it can range from a minimum of 15 minutes to a maximum of once every 24 hours</li>
+<li>Retention of the log backups - it can range from minimum of 7 days to a maximum of 35 days</li>
+</ol>
+<img src="/images/161707140860628d30af713.png" alt="Log Backup Policy">
+<h3>Practical Backup Considerations</h3>
+<p>Below are some general backup considerations based on my experience in different projects. These are only generic considerations and should be evaluated against your organization's compliance standards and specific requirements.</p>
+<ul>
+<li>The time for backup should be when the systems are not being used by any of the teams. If you work in global teams i.e. working around the clock, then ensure the timing when the system is under the least load.</li>
+<li>Use smaller retention windows in the non-production environments than the production environments</li>
+<li>If the data is not critical then usually Full backup is taken Daily and retained for around 14 days in non-prod environments. Weekly, Monthly, and Yearly retention periods are not required. </li>
+<li>In the prod environment, the Full backup is still taken Daily but the retention period is increased to more than 30 days. Max you can select is 9999 days. Also, based on your SLAs and compliance standards you should enable the weekly, monthly, and yearly backup retention periods as well.</li>
+<li>Differential backup can be skipped in the non-production environments based on the criticality of the data in the lower environments</li>
+<li>Log backup can be reduced to once every 2 or 4 hours with a retention period of 7-14 days in the non-prod environments. </li>
+<li>In the prod environments the Log backup can be set to 1 hour or less. The retention should be 14-35 days based on the SLAs. Note that 35 is the max you can go.</li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-backup-understanding-the-backup-policy-for-sql-server-in-azure-vm</link>
+<pubDate>Fri, 11 Dec 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Backup - Backup Center in Microsoft Azure</title>
 <description><![CDATA[<p>The <strong>Backup Center</strong> provides a single pane of glass into the whole backup posture of the Azure environment. It provides a <strong>single unified management experience</strong> in Azure for enterprises to govern, monitor, operate, and analyze backups at scale.</p>
 <p>With the Backup Center you can manage:</p>
