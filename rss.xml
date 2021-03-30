@@ -388,6 +388,133 @@ You can select the target of the audit logs as either one or many selections fro
 <pubDate>Sat, 10 Oct 2020 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure Backup - Bring your own keys (BYOK) for recovery services vaults - 5 Assign the encryption key to the Recovery Services vault</title>
+<description><![CDATA[<p>In this post, we will assign the key from a Key Vault to a Recovery Services vault. This is to use the custom key with the key vault.</p>
+<p>First, make sure that you have a key in the key vault. Also, the key should be at least RSA 2048. The key should be in the <strong>Enabled</strong> state in the key vault. If you don't have one then you can generate one using the key vault. In a practical scenario, you should use your own custom keys. </p>
+<p>You can generate a custom key in the Key Vault by navigating to the &quot;Keys&quot; under settings. Next, click on the &quot;+ Generate/Import&quot; button. In the next blade to &quot;Create a key&quot; you can provide the values similar to below to generate a key. Click Create button to create a key.</p>
+<img src="/images/1617062101606268d5e9d33.png" alt="Generating a Key">
+<p>Now that you have a key in the Key vault, we can use this to encrypt the backup vault (i.e. the recovery services vault). Navigate to the recovery services vault and click on Properties. Here, click on the &quot;Update&quot; link under the Encryption Settings.</p>
+<img src="/images/1617062354606269d2c684c.png" alt="Encryption Settings">
+<p>To use your own key, select the check box for &quot;Use your own key&quot;. You can then either provide a URI for the key or select a key from a key vault. In this post, we will select the second option. Next, click on the &quot;Select key from Key Vault&quot; link to open a new blade.</p>
+<img src="/images/161706253660626a8857e91.png" alt="Selecting the option to use your own key">
+<p>In the new blade for &quot;Select key from Azure Key Vault&quot;, select the subscription, Key vault, and the Key that you want to use to encrypt. Click on the Select button and then the Save button to save the settings. </p>
+<img src="/images/161706262960626ae540618.png" alt="Selecting the Key from the Key Vault">
+<p>When you click Save the setting is not final. It submits a job that you can monitor in the Backup Jobs section under Monitoring in the recovery services vault. Once this job completes successfully, as shown below, only then the configurations are complete.</p>
+<img src="/images/161706301660626c685a4ea.png" alt="Backup Job">
+<p>Note that once you have enabled this setting you can't revert back to using the platform managed keys. The check box for &quot;Use your own key&quot; in the Encryption settings becomes disabled. You can however update the custom key being used to encrypt everything.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-5-assign-the-encryption-key-to-the-recovery-services-vault</link>
+<pubDate>Sun, 05 Jul 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Backup - Bring your own keys (BYOK) for recovery services vaults - 4 Enable Soft Delete and purge protection on the Azure Key Vault</title>
+<description><![CDATA[<p>Soft delete and purge protection provide key vault recovery features. These two features work together and differ only slightly. </p>
+<ul>
+<li><strong>Soft Delete</strong> - This is to prevent any accidental deletion of the key vault and its related objects like Keys, Secrets, and Certificates, etc. You can recover any deleted items up to a period that you define as a retention period (in a number of days). You can still purge the deleted resources and therefore permanently delete the resources.</li>
+<li><strong>Purge Protection</strong> - If you have purge protection, then the soft-deleted items can not be purged till a particular time (specified by the retention period for the Soft Delete). This along with the Soft delete setting ensures that the key vault-related resources that are deleted can not be purged before the time period is expired.</li>
+</ul>
+<p><strong>Note</strong> that both Soft Delete and Purge protection settings are required to use the key vault with the recovery services vault to provide your custom key for encryption. </p>
+<p>These settings are in the Properties section of the Key Vault. When you enable the Soft delete option, you also provide the retention period in days for the deleted vaults.</p>
+<img src="/images/16170602196062617b43ef8.png" alt="Soft delete and purge protection">
+<p>You can set up the Soft delete and purge protection during the creation of the key vault as well. </p>
+<p>When the key vault is deleted, which has the soft delete enabled, then:</p>
+<ul>
+<li>You can not create any other vault with the same name as the deleted vault</li>
+<li>You may list all of the key vaults and key vault objects in the soft-deleted state for your subscription as well as access deletion and recovery information about them. Users should be granted appropriate permissions to be able to list the keys of the deleted vaults.</li>
+<li>Only a specifically privileged user may restore a key vault or key vault object by issuing a recover command on the corresponding proxy resource.</li>
+<li>Only a specifically privileged user may forcibly delete a key vault or key vault object by issuing a delete command on the corresponding proxy resource.</li>
+</ul>
+<p><strong>Note</strong>: </p>
+<ul>
+<li>Unless a key vault or key vault object is recovered, at the end of the retention interval the service performs a purge of the soft-deleted key vault or key vault object and its content. Resource deletion may not be rescheduled.</li>
+<li>Once soft delete has been enabled, it cannot be disabled.</li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-4-enable-soft-delete-and-purge-protection-on-the-azure-key-vault</link>
+<pubDate>Wed, 01 Jul 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Backup - Bring your own keys (BYOK) for recovery services vaults - 3 Assign permissions to the vault to access the encryption key in the Azure Key Vault</title>
+<description><![CDATA[<p>In the previous blog, we created a managed identity. Now that identity needs to have permissions to the Key Vault. This will be used by the Azure Backup service to access the keys in the target Key Vault. </p>
+<p>Navigate to your Azure Key Vault that you want to use with the Backup vault. Click on the Access policies under Settings. Click on the &quot;+ Add Access Policy&quot; link.</p>
+<img src="/images/161705879260625be862fb1.png" alt="Access Policy">
+<p>In the new blade to &quot;<strong>Add access policy</strong>&quot; select the &quot;Key permissions&quot; by clicking on the drop down and selecting the below permissions:</p>
+<ul>
+<li>Get and List under the Key Management Operations</li>
+<li>Under the Cryptographic Operations select Unwrap Key and Wrap Key</li>
+</ul>
+<img src="/images/161705920660625d8641569.png" alt="Key Permissions">
+<p>Next, under the Select principal, click on the &quot;None selected&quot; link to bring up the blade to &quot;Select a principal&quot;. Here provide the Object ID of the managed identity of the recovery services vault. This was created in the previous step. Once you enter the Id, the name of the Vault along with the id will appear. Click on the name and it will be added to the &quot;Selected items&quot;. Click on the <strong>Select</strong> button at the bottom of the blade. Then click on the <strong>Add</strong> button to add the access policy.</p>
+<img src="/images/161705921360625d8da654a.png" alt="Selecting a Principal">
+<p>Note that the policy has not been added yet. To finally add the policy ensure to click on the Save button as shown below. This is a common mistake that I have seen people making and I am guilty of this myself as well. If you navigate away from this screen the policy will not be saved.</p>
+<img src="/images/161705922360625d973dd1b.png" alt="Saving the updated access policy">]]></description>
+<link>http://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-3-assign-permissions-to-the-vault-to-access-the-encryption-key-in-the-azure-key-vault</link>
+<pubDate>Mon, 29 Jun 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Backup - Bring your own keys (BYOK) for recovery services vaults - 2 Enable managed identity for your Recovery Services vault</title>
+<description><![CDATA[<p>Azure Backup uses system assigned managed identity to authenticate the Recovery Services vault to access encryption keys stored in the Azure Key Vault. We will be using this identity later to provide permissions inside the Key Vault. </p>
+<p>To enable the managed identity for the Recovery Services vault, navigate to the vault and select &quot;<strong>Identity</strong>&quot; under Settings. Toggle the Status to On. Click the save button to save the settings.</p>
+<img src="/images/1617058226606259b256fc7.png" alt="Identity settings">
+<p>You will get a warning explaining that you are setting up the managed identity for the vault and that the vault will be accessible via Active Directory managed identity. Hit Ok to proceed. Once the settings are saved, you will see an Object Id. Take a note of this Id. You will also see a button for &quot;<strong>Azure role assignments</strong>&quot; where you can manage the permissions for this managed identity.</p>
+<img src="/images/161705848260625ab254b59.png" alt="Saved Identity settings">
+<p><strong>Note</strong>: </p>
+<ul>
+<li>A system assigned managed identity is restricted to one per resource.</li>
+<li>It is tied to the lifecycle of this resource. This means that when the resource is deleted its managed identity will also be deleted.</li>
+<li>You can assign permissions to this identity in RBAC similar to how you assign permissions to individual users</li>
+<li>The managed identity is authenticated with Azure AD, so you don’t have to store any credentials in code.</li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-2-enable-managed-identity-for-your-recovery-services-vault</link>
+<pubDate>Thu, 25 Jun 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Backup - Bring your own keys (BYOK) for recovery services vaults - 1 Overview</title>
+<description><![CDATA[<p>You can bring your own keys (<strong>BYOK</strong>) to encrypt the data in the Azure Recovery Services vaults. These keys will be used to encrypt all the data stored for backup for all items. By default, the system uses &quot;<strong>platform-managed keys</strong>&quot;. The custom keys that you provide are referred to as &quot;<strong>customer-managed keys</strong>&quot;.</p>
+<p>This provides you with more granular control over the encryption process. This also ensures that only you as a customer control the data encryption and decryption. It is highly recommended for any sensitive data that you are protecting in the cloud.</p>
+<p>Please note that:</p>
+<ul>
+<li>You should configure the keys before protecting any items in the vault</li>
+<li>Once you have configured the keys these can not be changed afterward.</li>
+<li>The Recovery Services vault can be encrypted only with keys stored in an <strong>Azure Key Vault</strong>, located in the same region. </li>
+<li>Also, keys must be <strong>RSA 2048</strong> keys only and should be in the enabled state.</li>
+</ul>
+<p>To configure your vault to encrypt with customer-managed keys, the below steps must be followed. These steps should be followed in this order only:</p>
+<ol>
+<li>Enable managed identity for your Recovery Services vault</li>
+<li>Assign permissions to the vault to access the encryption key in the Azure Key Vault</li>
+<li>Enable soft-delete and purge protection on the Azure Key Vault</li>
+<li>Assign the encryption key to the Recovery Services vault</li>
+</ol>
+<p>We will look at these steps in detail in the following posts.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-1-overview</link>
+<pubDate>Sun, 21 Jun 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Backup - Soft Delete for Recovery Services Vault</title>
+<description><![CDATA[<p><strong>Soft Delete</strong> provides an additional layer of security for the data in the recovery services vault. This is like a recycle bin for the data in the vault. It prevents any accidental deletions of the protected items. If this option is enabled then when you delete any protected item, the data for that is retained for 14 days.</p>
+<h3>Configurations</h3>
+<p>To configure Soft Delete for a recovery services vault, navigate to its Properties. In here, click on the &quot;Update&quot; link under the <strong>Security Settings</strong>. This will open a pop-up blade where you can enable or disable the soft delete option. </p>
+<img src="/images/16170599216062605138ee3.png" alt="Security Settings - Soft Delete">
+<p><strong>Note</strong>: </p>
+<ul>
+<li>This option is enabled by default for new Recovery Services vaults. This section gives you the option to disable the setting if you require it.</li>
+<li>The additional 14 days of retention for backup data in the &quot;soft delete&quot; state don't incur any cost to you.</li>
+</ul>
+<p>Soft delete protection is available for these services:</p>
+<ul>
+<li>Soft delete for Azure virtual machines</li>
+<li>Soft delete for SQL Database in Azure VM </li>
+<li>Soft delete for SAP HANA in Azure VM workloads</li>
+</ul>
+<h3>Soft Delete Behavior</h3>
+<p>Once you have the soft delete enabled, go ahead and delete a VM from the Backup items under the protected items (non-critical and demo only). After you have deleted the VM, you will see that it is marked as Deleted, as shown below. The VM will continue to appear in the protected items list for the next 14 days. Click on the VM item for more options.</p>
+<img src="/images/1617064412606271dc8ffa5.png" alt="Deleted VM from the Backup Items">
+<p>In the next blade, you can see that there is an option for &quot;Undelete&quot; to recover the data for the VM's backups. There is also a message that says that when the protected item was deleted and for how long can you recover the data. After this period the data will be permanently deleted.</p>
+<img src="/images/1617064419606271e3bd738.png" alt="Undelete option">
+<p>You can learn more in the official documentation here: <a href="https://docs.microsoft.com/en-us/azure/backup/backup-azure-security-feature-cloud" target="_blank">Soft delete for Azure Backup</a> </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-backup-soft-delete-for-recovery-services-vault</link>
+<pubDate>Sun, 14 Jun 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Backup - Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup</title>
 <description><![CDATA[<p>In the last post, we looked at the redundancy options for a Recovery Services Vault. You can  view that post here: <a href="http://harvestingclouds.com/post/azure-backup-set-storage-redundancy-for-recovery-services-vault/" target="_blank">Set Storage Redundancy for Recovery Services Vault</a></p>
 <p>In this post, we will look at how to take control of the replicated data.</p>
@@ -409,7 +536,11 @@ You can select the target of the audit logs as either one or many selections fro
 </ol>
 <p>Finally, click on the Save button to save the settings.</p>
 <img src="/images/16170496926062385cf189b.png" alt="Cross-Region Restore">
-<p><strong>Note</strong>: Cross Region Restore is currently non-reversible storage property. This means that you won't be able to disable the property after enabling it. </p>]]></description>
+<p><strong>Note</strong>: Cross Region Restore is currently non-reversible storage property. This means that you won't be able to disable the property after enabling it. </p>
+<p>Once you have the option enabled, when you will navigate to the Protected Items -&gt; Backup Items -&gt; Azure Virtual Machine -&gt; select a VM that is protected and has a valid backup. You will view a new option to &quot;Restore to Secondary Region&quot;. </p>
+<img src="/images/16170528126062448cb338f.png" alt="Option to restore the VM to Secondary Region">
+<p>To be able to use this option, you don't just need there to be a valid backup but also need that backup to be replicated to the secondary region. If your primary region is &quot;East US&quot; then you need to have at least one copy in the &quot;West US&quot; region. Also, note that you will only be able to restore to a secondary region that is a paired region of the region where you have deployed the resources.</p>
+<p>You can find which is the secondary paired region based on the region where you have deployed the resources by referring the table in this link: <a href="https://docs.microsoft.com/en-us/azure/best-practices-availability-paired-regions#azure-regional-pairs" target="_blank">Business continuity and disaster recovery (BCDR): Azure Paired Regions</a> </p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup</link>
 <pubDate>Thu, 04 Jun 2020 00:00:00 +0500</pubDate>
 </item>
