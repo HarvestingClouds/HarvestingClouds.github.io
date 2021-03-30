@@ -221,6 +221,30 @@
 <pubDate>Thu, 11 Mar 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure Backup Series - Index</title>
+<description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Backup service</strong>.</p>
+<p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/azure-backup-set-storage-redundancy-for-recovery-services-vault" target="_blank">Set Storage Redundancy for Recovery Services Vault</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup" target="_blank">Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-soft-delete-for-recovery-services-vault" target="_blank">Soft Delete for Recovery Services Vault</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-1-overview" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 1 Overview</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-2-enable-managed-identity-for-your-recovery-services-vault" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 2 Enable managed identity for your Recovery Services vault</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-3-assign-permissions-to-the-vault-to-access-the-encryption-key-in-the-azure-key-vault" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 3 Assign permissions to the vault to access the encryption key in the Azure Key Vault</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-4-enable-soft-delete-and-purge-protection-on-the-azure-key-vault" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 4 Enable Soft Delete and purge protection on the Azure Key Vault</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-5-assign-the-encryption-key-to-the-recovery-services-vault" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 5 Assign the encryption key to the Recovery Services vault</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-backup-center-in-microsoft-azure" target="_blank">Backup Center in Microsoft Azure</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-understanding-the-backup-policy-for-sql-server-in-azure-vm" target="_blank">Understanding the backup policy for SQL Server in Azure VM</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-understanding-the-backup-policy-for-sap-hana-in-azure-vm-database" target="_blank">Understanding the backup policy for SAP HANA in Azure VM (Database)</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-troubleshooting-the-backup-issues-for-sql-server-on-azure-vm-or-sap-hana-on-azure-vm-database" target="_blank">Troubleshooting the backup issues for SQL Server on Azure VM or SAP HANA on Azure VM (Database)</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-configuring-azure-backup-for-azure-file-shares" target="_blank">Configuring Azure Backup for Azure File Shares</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-is-now-generally-available" target="_blank">Cross Region Restore (CRR) for Azure Virtual Machines is now generally available</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-backup-managing-the-backup-related-alerts-via-the-azure-monitor" target="_blank">Managing the backup-related alerts via the Azure Monitor</a></li>
+</ol>]]></description>
+<link>http://HarvestingClouds.com/post/azure-backup-series-index</link>
+<pubDate>Sat, 06 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Backup - Managing the backup-related alerts via the Azure Monitor</title>
 <description><![CDATA[<p>You can now manage <strong>backup-related alerts</strong> via the standard <strong>Azure Monitor</strong> experience for alert management. This integration ensures that you can leverage the alert management experience within the &quot;Azure Monitor&quot; as a single pane of glass for managing all alerts in your environment.</p>
 <p>This also means that you can leverage Action Groups to send notifications to email, SMS, Azure app push notifications, and voice calls. You can also leverage Action Groups to take actions when an alert is triggered.</p>
@@ -439,6 +463,7 @@ You can select the target of the audit logs as either one or many selections fro
 <h3>7. Permissions issue or UserErrorSQLNoSysadminMembership</h3>
 <p>If you are getting the error for &quot;UserErrorSQLNoSysadminMembership&quot; then that means the permissions for SQL Server on Azure VM have not been set appropriately. This usually happens if you built the SQL server on the Azure VM yourself. That is you didn't use any marketplace image for SQL on Azure VM. </p>
 <p>You need to set the permissions as defined here: <a href="https://docs.microsoft.com/en-us/azure/backup/backup-azure-sql-database#set-vm-permissions" target="_blank">Set VM permissions</a>.</p>
+<h3>More Information</h3>
 <p>If you are still facing issues, do refer the below links for official documentation: </p>
 <ul>
 <li><a href="https://docs.microsoft.com/en-us/azure/backup/tutorial-backup-sap-hana-db#prerequisites" target="_blank">Back up SAP HANA databases in an Azure VM</a></li>

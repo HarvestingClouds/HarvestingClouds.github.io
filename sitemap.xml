@@ -59,6 +59,12 @@
 <priority>1.00</priority>
 </url>
 <url>
+<loc>http://HarvestingClouds.com/post/azure-backup-series-index/</loc>
+<lastmod>2021-03-06T00:00:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
 <loc>http://HarvestingClouds.com/post/azure-backup-managing-the-backup-related-alerts-via-the-azure-monitor/</loc>
 <lastmod>2021-03-05T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
