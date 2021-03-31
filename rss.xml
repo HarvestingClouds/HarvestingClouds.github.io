@@ -602,6 +602,74 @@ You can select the target of the audit logs as either one or many selections fro
 <pubDate>Fri, 11 Dec 2020 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure SQL - Sync to other databases - 4 - Configure sync group</title>
+<description><![CDATA[<p>In our last post, we discussed how to add sync members. After the new sync group members are created and deployed, Configure sync group is highlighted in the New sync group page.</p>
+<p>To begin navigate to the Azure SQL database and click on the &quot;Sync to other databases&quot; section. Click on the <strong>Tables</strong> section as highlighted below.</p>
+<img src="/images/161723418060650904a5f3d.png" alt="Sync Group">
+<p>Click on the ellipse in the tables section. It will open up the blade and select the database to which we want to sync and refresh the schema. </p>
+<img src="/images/16172341876065090b38177.png" alt="Selecting Tables">
+<p>As shown below, select the database and select the tables to sync along with columns selection, and click save.</p>
+<img src="/images/16172341946065091270898.png" alt="Populated Table and its Schema">
+<p>To trigger the sync process navigate to the Database sync group page and click on sync as shown below. This will ensure that the databases are synced as per the direction you have specified.</p>
+<img src="/images/161723420060650918693fe.png" alt="Trigger Sync">
+<p>To stop the syncing process, click on the Stop button as shown below. </p>
+<img src="/images/161723421460650926ea517.png" alt="Stop Syncing">
+<p>After a successful syncing, you will be able to see the synced tables and related schema in the db_test01 database from the db_test02 database.</p>
+<p>To read more about the sync groups, check the official documentation here: <a href="https://docs.microsoft.com/en-us/azure/azure-sql/database/sql-data-sync-sql-server-configure" target="_blank">Set up SQL Data Sync between databases in Azure SQL Database and SQL Server</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-sync-to-other-databases-4-configure-sync-group</link>
+<pubDate>Thu, 03 Dec 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL - Sync to other databases - 3 - Add sync members</title>
+<description><![CDATA[<p>In the previous post, we saw how to create the sync group for the Azure SQL Database. If you haven’t gone through the post on how to create a sync group then please check that post first. In this post, we will learn how to add the sync members for the already created sync group.</p>
+<p>To begin, navigate to the existing sync group and click on it to open the new blade as shown below.</p>
+<img src="/images/161723379960650787b5b36.png" alt="Databases section under Sync groups">
+<p>Click on the Databases section to add the databases as members of the sync group.</p>
+<img src="/images/16172338056065078da820a.png" alt="Select Sync members">
+<p>Next, click on “Add an Azure Database”. Provide the following details about the target database to add it as a member for syncing.</p>
+<img src="/images/1617233811606507932ded7.png" alt="Configure Azure Database">
+<p>Once you click Ok, you will see the databases added under the &quot;Member Database&quot; section as shown below.</p>
+<img src="/images/161723381760650799cd29e.png" alt="Member Database section">
+<p>You can add more azure SQL databases by clicking on the “Add an Azure Database”. If you want to add the on-premises SQL database into the member database then go with the “Add an On-Premises Database” option.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-sync-to-other-databases-3-add-sync-members</link>
+<pubDate>Wed, 25 Nov 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL - Sync to other databases - 2 - Create sync group</title>
+<description><![CDATA[<p>In the previous blog, you read about what is Sync to other databases features of the Azure SQL databases. In this blog, we will learn how to create the sync group.</p>
+<p>To start navigate to the Azure SQL database on which you want to create the sync group. In this click on the &quot;Sync to other databases&quot; option. Click on the “<strong>New Sync Group</strong>” as shown below. It will open the “Create Data Sync Group” blade.</p>
+<img src="/images/16172332036065053355738.png" alt="New sync group option">
+<p>This will open the new blade for &quot;Create Data Sync Group&quot;.</p>
+<img src="/images/161723320960650539938fe.png" alt="Create Data Sync Group blade">
+<p>Following are the details you need to provide while creating the sync group:-</p>
+<ol>
+<li>Provide the meaningful name to the sync group name.</li>
+<li>Sync Metadata Database – Microsoft recommends creating a New database for this property. But for the sake of the demo, I am using the existing database.</li>
+<li>Automatic Sync – If you select On, then enter a number and select Seconds, Minutes, Hours, or Days in the Sync Frequency section.
+The first sync begins after the selected interval period elapses from the time the configuration is saved.</li>
+<li>Conflict Resolution – It has two options: Hub win and Member win. Hub win means when conflicts occur, data in the hub database overwrite conflicting data in the member database.
+Member win means when conflicts occur, data in the member database overwrite conflicting data in the hub database.</li>
+<li>Private Link – This option is in preview mode as of now and will be managed by Microsoft.
+Once you click on Ok, It will create the Sync group as shown below.</li>
+</ol>
+<img src="/images/16172332156065053f084d8.png" alt="Added Sync Groups">
+<p>You can add more azure SQL databases by clicking on the “Add an Azure Database”. If you want to add the on-premises SQL database into the member database then go with the “Add an On-Premises Database” option.</p>
+<p>That's all there is to it. In the next posts, we will delve deeper into sync group and related options.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-sync-to-other-databases-2-create-sync-group</link>
+<pubDate>Tue, 17 Nov 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL - Sync to other databases - 1 - Overview</title>
+<description><![CDATA[<p>“Sync to other databases” is a feature of the Azure SQL Databases. Azure SQL Data Sync is a service that is used to replicate the tables in the Azure SQL database to another Azure SQL database or on-premises databases. Data can be replicated one way or bidirectional. The important note is that Azure Managed Instance doesn’t support the Sync Data feature as of now. </p>
+<p>The concept is around Hub and members databases. All the databases in the member group can sync up with the Hub. The member databases can be on-premises databases or on cloud databases.</p>
+<h3>Where to access this feature</h3>
+<p>Navigate to the SQL databases and click on the “Sync to other databases” in the settings as shown below. </p>
+<img src="/images/1617232808606503a8eecaf.png" alt="Sync to other databases">
+<p>In the upcoming posts, we will look into this feature in detail.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-sync-to-other-databases-1-overview</link>
+<pubDate>Thu, 12 Nov 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Backup - Backup Center in Microsoft Azure</title>
 <description><![CDATA[<p>The <strong>Backup Center</strong> provides a single pane of glass into the whole backup posture of the Azure environment. It provides a <strong>single unified management experience</strong> in Azure for enterprises to govern, monitor, operate, and analyze backups at scale.</p>
 <p>With the Backup Center you can manage:</p>
