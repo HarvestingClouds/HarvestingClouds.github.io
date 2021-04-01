@@ -11,25 +11,25 @@
     <title>Taking automatic action on Azure VM Alert Generation :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
-    <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="https://harvestingclouds.com/rss.xml"/>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="/favicon.ico"/>
-    <link rel="shortcut icon" href="http://HarvestingClouds.com/favicon.ico"/>
+    <link rel="shortcut icon" href="https://harvestingclouds.com/favicon.ico"/>
 
     <!-- Bootstrap CSS file -->
-    <link href="http://HarvestingClouds.com/js/plugins/bootstrap-3.0.3/css/cerulean.min.css" rel="stylesheet"/>
-    <link href="http://HarvestingClouds.com/js/plugins/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://HarvestingClouds.com/js/plugins/bootstrap-3.0.3/plugins/social-buttons.css" rel="stylesheet"/>
+    <link href="https://harvestingclouds.com/js/plugins/bootstrap-3.0.3/css/cerulean.min.css" rel="stylesheet"/>
+    <link href="https://harvestingclouds.com/js/plugins/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://harvestingclouds.com/js/plugins/bootstrap-3.0.3/plugins/social-buttons.css" rel="stylesheet"/>
 
     <!-- syntax highlighter css file -->
-    <link href="http://HarvestingClouds.com/js/plugins/highlight/styles/github.css" rel="stylesheet"/>
+    <link href="https://harvestingclouds.com/js/plugins/highlight/styles/github.css" rel="stylesheet"/>
 
     <!-- lightbox for images -->
-    <link href="http://HarvestingClouds.com/js/plugins/lightbox/ekko-lightbox.min.css" rel="stylesheet"/>
+    <link href="https://harvestingclouds.com/js/plugins/lightbox/ekko-lightbox.min.css" rel="stylesheet"/>
 
     <!-- blog custom CSS file -->
-    <link href="http://HarvestingClouds.com/css/style.css" rel="stylesheet"/>
+    <link href="https://harvestingclouds.com/css/style.css" rel="stylesheet"/>
 </head><body>
 <!-- Header -->
 <header class="navbar navbar-default
@@ -61,8 +61,8 @@
             </div>
 
             <ul class="nav navbar-nav page-links">
-                <li><a href="http://HarvestingClouds.com/posts.html">All Posts</a></li>
-                    <li><a href="http://HarvestingClouds.com/page/about-me">About Me</a></li>
+                <li><a href="https://harvestingclouds.com/posts.html">All Posts</a></li>
+                    <li><a href="https://harvestingclouds.com/page/about-me">About Me</a></li>
             </ul>
 
         </nav>
@@ -83,9 +83,9 @@
 <p>Note: This feature is supported only for the V2 Virtual Machines, i.e. the VMs created using ARM portal.</p>
 </blockquote>
 <p>To access this feature open your Virtual Machine. Then go to the Manage alerts section in the Settings:</p>
-<p><img src="http://HarvestingClouds.com/images/14618976705722c9c653752.png" alt="Setting - Manage alerts" /></p>
+<p><img src="https://harvestingclouds.com/images/14618976705722c9c653752.png" alt="Setting - Manage alerts" /></p>
 <p>Then open an existing alert or click on &quot;Add alert&quot; to create a new one. Specify the criteria for the alert. Scroll down to the bottom and you can view the new section to link the alert to an Automation Runbook.</p>
-<p><img src="http://HarvestingClouds.com/images/14618978425722ca722a741.png" alt="Automation Runbook for Alert" /></p>
+<p><img src="https://harvestingclouds.com/images/14618978425722ca722a741.png" alt="Automation Runbook for Alert" /></p>
 <h3>Under the hood</h3>
 <p>The alert will send data to your Runbook in a special format. Your Runbook should be expecting this. Under the hood this happens via WebHooks. The alert data is passed via a HTTP POST request. The Automation webhook service extracts the alert data from the POST request and passes it to the runbook in a parameter called <strong>&quot;WebhookData&quot;</strong>. The Runbook will look like below:</p>
 <pre><code>[OutputType("PSAzureOperationResponse")]
@@ -105,14 +105,14 @@ if ($WebhookData)
 
                 <div class="post-info">
                         <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
+                        <a href="https://harvestingclouds.com/category/azure">Azure</a>
                         &nbsp;&nbsp;
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/virtualmachine">virtualmachine</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/vm">vm</a>&nbsp;&nbsp;
+                        <a href="https://harvestingclouds.com/tag/azure">azure</a>&nbsp;&nbsp;
+                        <a href="https://harvestingclouds.com/tag/virtualmachine">virtualmachine</a>&nbsp;&nbsp;
+                        <a href="https://harvestingclouds.com/tag/vm">vm</a>&nbsp;&nbsp;
                 </div>
 
             </article>
@@ -123,7 +123,7 @@ if ($WebhookData)
                     <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
                 </div>
                 <div class="col-sm-4 col-md-4">
-                    <a class="btn btn-primary" href="http://HarvestingClouds.com/posts.html"><i class="fa fa-navicon"></i> View All
+                    <a class="btn btn-primary" href="https://harvestingclouds.com/posts.html"><i class="fa fa-navicon"></i> View All
                         Post</a>
                 </div>
                 <div class="col-sm-4 col-md-4">
@@ -153,7 +153,7 @@ if ($WebhookData)
                     </div>
         
                     <div class="panel-body">
-                        <a target="_blank" href="http://HarvestingClouds.com/rss.xml" class="btn btn-social-icon btn-outline"><i class="fa fa-rss"></i></a>
+                        <a target="_blank" href="https://harvestingclouds.com/rss.xml" class="btn btn-social-icon btn-outline"><i class="fa fa-rss"></i></a>
         
                             <a target="_blank" href="https://twitter.com/20aman" class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
                             <a target="_blank" href="https://ca.linkedin.com/in/20aman" class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin"></i></a>
@@ -170,11 +170,11 @@ if ($WebhookData)
                 </div>
         
                 <ul class="list-group">
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/taking-automatic-action-on-azure-vm-alert-generation">Taking automatic action on Azure VM Alert Generation</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/roadmap-solutions-to-help-with-migration-from-azure-asm-to-arm-portal">ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/migrating-from-azure-asm-to-arm-portal">Migrating from Azure ASM to ARM portal</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/powershell-dsc-partial-configurations">PowerShell DSC - Partial Configurations</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/azure-container-service-hits-general-availability">Azure Container Service hits General Availability</a></li>
+                        <li class="list-group-item"><a href="https://harvestingclouds.com/post/taking-automatic-action-on-azure-vm-alert-generation">Taking automatic action on Azure VM Alert Generation</a></li>
+                        <li class="list-group-item"><a href="https://harvestingclouds.com/post/roadmap-solutions-to-help-with-migration-from-azure-asm-to-arm-portal">ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal</a></li>
+                        <li class="list-group-item"><a href="https://harvestingclouds.com/post/migrating-from-azure-asm-to-arm-portal">Migrating from Azure ASM to ARM portal</a></li>
+                        <li class="list-group-item"><a href="https://harvestingclouds.com/post/powershell-dsc-partial-configurations">PowerShell DSC - Partial Configurations</a></li>
+                        <li class="list-group-item"><a href="https://harvestingclouds.com/post/azure-container-service-hits-general-availability">Azure Container Service hits General Availability</a></li>
                 </ul>
             </div>
         
@@ -185,10 +185,10 @@ if ($WebhookData)
                 </div>
         
                 <ul class="list-group">
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/category/azure">Azure</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/category/general">General</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/category/powershell">PowerShell</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/category/web-development">Web Development</a></li>
+                        <li class="list-group-item"><a href="https://harvestingclouds.com/category/azure">Azure</a></li>
+                        <li class="list-group-item"><a href="https://harvestingclouds.com/category/general">General</a></li>
+                        <li class="list-group-item"><a href="https://harvestingclouds.com/category/powershell">PowerShell</a></li>
+                        <li class="list-group-item"><a href="https://harvestingclouds.com/category/web-development">Web Development</a></li>
                 </ul>
             </div>
         
@@ -198,7 +198,7 @@ if ($WebhookData)
                         <strong>Archives</strong>
                     </div>
         
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="http://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://harvestingclouds.com/archive/april-2016">April 2016</a></li></ul>
                 </div>
         
             <!-- Tags -->
@@ -209,26 +209,26 @@ if ($WebhookData)
         
                     <div class="panel-body">
                         <ul class="list-inline">
-                            <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/net" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">net</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">activedirectory</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">announcement</a>
-<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">automation</a>
-<a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">azure</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/csharp" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">csharp</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/dsc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dsc</a>
-<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/general" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">general</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/gridmvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">gridmvc</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
-<a style="font-size: 14px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">powershell</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualmachine</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vm</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/webdevelopment" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">webdevelopment</a>
-<a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/windows" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">windows</a>
+                            <a style="font-size: 12px" class="tag_cloud" href="https://harvestingclouds.com/tag/net" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">net</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://harvestingclouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">activedirectory</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://harvestingclouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://harvestingclouds.com/tag/announcement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">announcement</a>
+<a style="font-size: 17px" class="tag_cloud" href="https://harvestingclouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://harvestingclouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://harvestingclouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">automation</a>
+<a style="font-size: 30px" class="tag_cloud" href="https://harvestingclouds.com/tag/azure" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://harvestingclouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://harvestingclouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://harvestingclouds.com/tag/csharp" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">csharp</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://harvestingclouds.com/tag/dsc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dsc</a>
+<a style="font-size: 17px" class="tag_cloud" href="https://harvestingclouds.com/tag/general" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">general</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://harvestingclouds.com/tag/gridmvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">gridmvc</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://harvestingclouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://harvestingclouds.com/tag/powershell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">powershell</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://harvestingclouds.com/tag/virtualmachine" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualmachine</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://harvestingclouds.com/tag/vm" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vm</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://harvestingclouds.com/tag/webdevelopment" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">webdevelopment</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://harvestingclouds.com/tag/windows" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">windows</a>
 
                         </ul>
                     </div>
@@ -247,17 +247,17 @@ if ($WebhookData)
 </footer>
 
 <!-- Jquery and Bootstrap Script files -->
-<script src="http://HarvestingClouds.com/js/jquery-2.0.3.min.js"></script>
-<script src="http://HarvestingClouds.com/js/plugins/bootstrap-3.0.3/js/bootstrap.min.js"></script>
-<script src="http://HarvestingClouds.com/js/plugins/highlight/highlight.pack.js"></script>
-<script src="http://HarvestingClouds.com/js/plugins/lightbox/ekko-lightbox.min.js"></script>
+<script src="https://harvestingclouds.com/js/jquery-2.0.3.min.js"></script>
+<script src="https://harvestingclouds.com/js/plugins/bootstrap-3.0.3/js/bootstrap.min.js"></script>
+<script src="https://harvestingclouds.com/js/plugins/highlight/highlight.pack.js"></script>
+<script src="https://harvestingclouds.com/js/plugins/lightbox/ekko-lightbox.min.js"></script>
 
 <script>
     var __blogURL = 'http://HarvestingClouds.com';
 </script>
 
-<script src="http://HarvestingClouds.com/js/blog.js"></script>
-<script src="http://HarvestingClouds.com/js/search.js"></script>
+<script src="https://harvestingclouds.com/js/blog.js"></script>
+<script src="https://harvestingclouds.com/js/search.js"></script>
 
 <!-- google analytics -->
 <script>
