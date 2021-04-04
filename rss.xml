@@ -6,6 +6,87 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Simplifying Azure Bastion - 1 What is Azure Bastion</title>
+<description><![CDATA[<h3>1. Details about Azure Bastion</h3>
+<p>Azure Bastion is a fully platform-managed PaaS service that provides RDP/SSH over TLS i.e. port 443 to all the VMs in the network. Think of this as a managed Jump Box or Jump Server service provided by Microsoft. The service is deployed via a managed host into your virtual network. This host is like a fully managed Jump box and is kept up to date by Microsoft. </p>
+<p>Note that you will need to deploy one host for each of your virtual networks. Using one host, you will be able to connect to all the VMs in the same virtual network. The Bastion host needs a Public IP address. All the rest of the VMs don't need any public IP address.</p>
+<p>Here are key points about Azure Bastion:</p>
+<ul>
+<li>Azure Bastion provides an integrated platform alternative to manually deploying and managing jump servers or Jump boxes to shield your virtual machines.</li>
+<li>It is a fully platform-managed PaaS service</li>
+<li>Bastion host is provisioned inside your virtual network</li>
+<li>Secure and seamless RDP/SSH connectivity to your virtual machines directly from the Azure portal over TLS</li>
+<li>Virtual machines do not need a public IP address, agent, or special client software</li>
+<li>One Bastion host is needed per virtual network</li>
+<li>The public IP of the Bastion resource on which RDP/SSH will be accessed (over port 443)</li>
+<li>You don't need an RDP or SSH client. Use the Azure portal to let you get RDP/SSH access to your virtual machine directly in the browser.</li>
+<li>Azure Bastion doesn't move or store customer data out of the region it is deployed in.</li>
+</ul>
+<h3>2. Shortcomings or Areas of Improvement</h3>
+<p>The below features are currently either not available or are not supported:</p>
+<ul>
+<li>IPv6 is not supported. Azure Bastion supports IPv4 only.</li>
+<li>Only text copy/paste is supported. Features, such as file copy, are not supported yet.</li>
+<li>It doesn't work with AADJ VM extension-joined machines using Azure AD users.</li>
+<li>Azure Bastion currently supports only en-us-qwerty keyboard layout inside the VM.</li>
+</ul>
+<h3>3. Architecture - How Azure Bastion works</h3>
+<p>Bastion Hosts are Jump servers that are deployed with a public IP address. These reside at the perimeter of your network. All the other VMs do not need any public IP address. You will be able to connect to the VMs via this Bastion host. The VMs can be deployed in one or many different subnets in the same virtual network. </p>
+<p>You need to have a dedicated subnet with the name as AzureBastionSubnet. This subnet must be at least /27 or larger. This subnet should be deployed before creating the Bastion host.</p>
+<p>You connect to the Bastion server directly from within the browser on port 443. The Bastion host in turn connects to the VM at port 3389 for RDP and 22 for SSH.</p>
+<p>The subnet for the Azure Bastion host needs to have connectivity to the rest of the subnets. This is available by default. If you have NSGs then Bastion-related communication should be allowed. We will look at these rules in detail in a later post.</p>
+<p>Note that UDR is not supported on an Azure Bastion subnet. You don’t need to force traffic from an Azure Bastion subnet to Azure Firewall because the communication between Azure Bastion and your VMs is private.</p>
+<p>Microsoft keeps Azure Bastion hardened and always up to date for you to ensure that it can withstand attacks from outside.</p>
+<img src="/images/161713753660638f80c8e4f.png" alt="Azure Bastion Architecture">
+<h3>4. Benefits of using Azure Bastion</h3>
+<p>There are various benefits of using Azure Bastion. The main one being able to RDP/SSH to your VMs without exposing them via any public IP address. Below is the list of various benefits of having Azure Bastion in your virtual networks:</p>
+<ul>
+<li>Secure and seamless RDP and SSH access to your virtual machines</li>
+<li>No Public IP exposure on the VM</li>
+<li>Help limit threats such as port scanning and other types of malware targeting your VMs</li>
+<li>Fully managed, autoscaling, and hardened PaaS service</li>
+<li>Uses a modern HTML5-based web client and standard SSL ports. This makes Firewall and other security rules very easy to manage.</li>
+<li>Existing authentication works i.e. Existing credentials and SSH keys will still be used for connecting to the VMs</li>
+<li>Same single pane of glass experience to connect to all the VMs</li>
+<li>Bastion host servers are designed and configured to withstand attacks. The Azure platform protects against zero-day exploits by keeping the Azure Bastion hardened and always up to date for you.</li>
+</ul>
+<h3>5. Concurrency Considerations</h3>
+<p>Both RDP and SSH are a usage-based protocol. High usage of sessions will cause the bastion host to support a lower total number of sessions. The numbers below assume normal day-to-day workflows.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Workload Type*</th>
+<th>Limit**</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Light</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>50</td>
+</tr>
+<tr>
+<td>Heavy</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>These workload types are defined here: <a href="https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/remote-desktop-workloads" target="_blank">Remote Desktop workloads</a></p>
+<h3>6. Pricing</h3>
+<p>There are two components of the pricing related to Azure Bastion:</p>
+<ol>
+<li><strong>Fixed charge</strong> for the service. This is the charge billed hourly for deploying the service. E.g. in an East US location, this charge is around $0.19 per hour.</li>
+<li><strong>Outbound data transfer charges</strong>. This is the charge based on the total outbound data transfer. This is further tiered into various categories based on the total consumption.</li>
+</ol>
+<p>The pricing details can be found here: <a href="https://azure.microsoft.com/en-ca/pricing/details/azure-bastion/" target="_blank">Azure Bastion pricing</a></p>
+<p>You can read more information about Azure Bastion in the official documentation here: <a href="https://docs.microsoft.com/en-us/azure/bastion/bastion-overview" target="_blank">Azure Bastion Overview</a>. </p>]]></description>
+<link>https://HarvestingClouds.com/post/simplifying-azure-bastion-1-what-is-azure-bastion</link>
+<pubDate>Sat, 03 Apr 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Service Tags are now supported for Defining Routes in Route Tables</title>
 <description><![CDATA[<p>Let us assume that you have to define routing for a particular Azure service e.g. Azure Storage. Any communication to the Azure storage service should happen via your defined route e.g. a virtual appliance. To be able to define this route table you will need to define many routes for all the IP addresses corresponding to the Azure Storage service. Microsoft publishes all these IP addresses in a JSON format that you can leverage. This JSON file is available here: <a href="https://www.microsoft.com/en-us/download/details.aspx?id=56519" target="_blank">Azure IP Ranges and Service Tags – Public Cloud</a></p>
 <p>This current process will involve around 504 routes corresponding to each IP address space published by Microsoft for Azure Storage service alone. To make matters even more complex, you have a limit on the total number of routes allowed in a subscription. You can have a max of 200 Route Tables and only 400 routes allowed per Route Tables. You can check all the service limits here: <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits" target="_blank">Azure subscription and service limits, quotas, and constraints</a></p>

@@ -72,25 +72,88 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="https://HarvestingClouds.com/post/service-tags-are-now-supported-for-defining-routes-in-route-tables">Service Tags are now supported for Defining Routes in Route Tables</a></h3>
+                    <h3><a href="https://HarvestingClouds.com/post/simplifying-azure-bastion-1-what-is-azure-bastion">Simplifying Azure Bastion - 1 What is Azure Bastion</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Mar 27, 2021
+                    <span class="glyphicon glyphicon-time"></span> Apr 03, 2021
                 
                         <hr>
-                        <p class="post-content"><p>Let us assume that you have to define routing for a particular Azure service e.g. Azure Storage. Any communication to the Azure storage service should happen via your defined route e.g. a virtual appliance. To be able to define this route table you will need to define many routes for all the IP addresses corresponding to the Azure Storage service. Microsoft publishes all these IP addresses in a JSON format that you can leverage. This JSON file is available here: <a href="https://www.microsoft.com/en-us/download/details.aspx?id=56519" target="_blank">Azure IP Ranges and Service Tags – Public Cloud</a></p>
-<p>This current process will involve around 504 routes corresponding to each IP address space published by Microsoft for Azure Storage service alone. To make matters even more complex, you have a limit on the total number of routes allowed in a subscription. You can have a max of 200 Route Tables and only 400 routes allowed per Route Tables. You can check all the service limits here: <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits" target="_blank">Azure subscription and service limits, quotas, and constraints</a></p>
-<h3>Solution</h3>
-<p>Microsoft has published the solution for this problem. You can now leverage the Service Tags when defining User Defined Routes (or UDRs) in a Route Table. I believe this addresses a long-requested feature and makes the task to route any Microsoft service-related communication easy. </p>
-<p>This service is currently in <strong>Public Preview</strong> (at the time of writing this blog post). Also, this service is only available via APIs i.e. via REST, PowerShell, CLI, and can also be used in ARM templates. This feature is <strong>not</strong> currently available through the Azure Portal.</p>
-<p>You can now specify a Service Tag for the address prefix parameter in a user-defined route for your route table. You can choose from tags representing over 60 Microsoft and Azure services to simplify route creation and maintenance. </p>
+                        <p class="post-content"><h3>1. Details about Azure Bastion</h3>
+<p>Azure Bastion is a fully platform-managed PaaS service that provides RDP/SSH over TLS i.e. port 443 to all the VMs in the network. Think of this as a managed Jump Box or Jump Server service provided by Microsoft. The service is deployed via a managed host into your virtual network. This host is like a fully managed Jump box and is kept up to date by Microsoft. </p>
+<p>Note that you will need to deploy one host for each of your virtual networks. Using one host, you will be able to connect to all the VMs in the same virtual network. The Bastion host needs a Public IP address. All the rest of the VMs don't need any public IP address.</p>
+<p>Here are key points about Azure Bastion:</p>
 <ul>
-<li>You no longer need to manually update routes when services change or add to their list of endpoints. Routes with Service Tags will update automatically to include new changes. </li>
-<li>This also eliminates the need for regularly updating routes based on the IP data in the weekly JSON file downloads that Microsoft provides. </li>
-<li>This also helps reduce the likelihood of running into the routes per route table limit (400) which is common when configuring routing for multiple Microsoft and Azure services. By using Service Tags, you can avoid this, since the tag condenses all ranges for that service into one group. </li>
-<li>For example, Microsoft lists more than 4,500 prefixes that collectively represent the Azure address space. You can now use one route with the AzureCloud Service Tag which will include all of these. </li>
+<li>Azure Bastion provides an integrated platform alternative to manually deploying and managing jump servers or Jump boxes to shield your virtual machines.</li>
+<li>It is a fully platform-managed PaaS service</li>
+<li>Bastion host is provisioned inside your virtual network</li>
+<li>Secure and seamless RDP/SSH connectivity to your virtual machines directly from the Azure portal over TLS</li>
+<li>Virtual machines do not need a public IP address, agent, or special client software</li>
+<li>One Bastion host is needed per virtual network</li>
+<li>The public IP of the Bastion resource on which RDP/SSH will be accessed (over port 443)</li>
+<li>You don't need an RDP or SSH client. Use the Azure portal to let you get RDP/SSH access to your virtual machine directly in the browser.</li>
+<li>Azure Bastion doesn't move or store customer data out of the region it is deployed in.</li>
 </ul>
-<p>Learn more about this capability here: <a href="https://azure.microsoft.com/en-us/updates/public-preview-service-tags-for-user-defined-routing/" target="_blank">Public preview: Service Tags for User Defined Routing</a></p></p>
+<h3>2. Shortcomings or Areas of Improvement</h3>
+<p>The below features are currently either not available or are not supported:</p>
+<ul>
+<li>IPv6 is not supported. Azure Bastion supports IPv4 only.</li>
+<li>Only text copy/paste is supported. Features, such as file copy, are not supported yet.</li>
+<li>It doesn't work with AADJ VM extension-joined machines using Azure AD users.</li>
+<li>Azure Bastion currently supports only en-us-qwerty keyboard layout inside the VM.</li>
+</ul>
+<h3>3. Architecture - How Azure Bastion works</h3>
+<p>Bastion Hosts are Jump servers that are deployed with a public IP address. These reside at the perimeter of your network. All the other VMs do not need any public IP address. You will be able to connect to the VMs via this Bastion host. The VMs can be deployed in one or many different subnets in the same virtual network. </p>
+<p>You need to have a dedicated subnet with the name as AzureBastionSubnet. This subnet must be at least /27 or larger. This subnet should be deployed before creating the Bastion host.</p>
+<p>You connect to the Bastion server directly from within the browser on port 443. The Bastion host in turn connects to the VM at port 3389 for RDP and 22 for SSH.</p>
+<p>The subnet for the Azure Bastion host needs to have connectivity to the rest of the subnets. This is available by default. If you have NSGs then Bastion-related communication should be allowed. We will look at these rules in detail in a later post.</p>
+<p>Note that UDR is not supported on an Azure Bastion subnet. You don’t need to force traffic from an Azure Bastion subnet to Azure Firewall because the communication between Azure Bastion and your VMs is private.</p>
+<p>Microsoft keeps Azure Bastion hardened and always up to date for you to ensure that it can withstand attacks from outside.</p>
+<img src="/images/161713753660638f80c8e4f.png" alt="Azure Bastion Architecture">
+<h3>4. Benefits of using Azure Bastion</h3>
+<p>There are various benefits of using Azure Bastion. The main one being able to RDP/SSH to your VMs without exposing them via any public IP address. Below is the list of various benefits of having Azure Bastion in your virtual networks:</p>
+<ul>
+<li>Secure and seamless RDP and SSH access to your virtual machines</li>
+<li>No Public IP exposure on the VM</li>
+<li>Help limit threats such as port scanning and other types of malware targeting your VMs</li>
+<li>Fully managed, autoscaling, and hardened PaaS service</li>
+<li>Uses a modern HTML5-based web client and standard SSL ports. This makes Firewall and other security rules very easy to manage.</li>
+<li>Existing authentication works i.e. Existing credentials and SSH keys will still be used for connecting to the VMs</li>
+<li>Same single pane of glass experience to connect to all the VMs</li>
+<li>Bastion host servers are designed and configured to withstand attacks. The Azure platform protects against zero-day exploits by keeping the Azure Bastion hardened and always up to date for you.</li>
+</ul>
+<h3>5. Concurrency Considerations</h3>
+<p>Both RDP and SSH are a usage-based protocol. High usage of sessions will cause the bastion host to support a lower total number of sessions. The numbers below assume normal day-to-day workflows.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Workload Type*</th>
+<th>Limit**</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Light</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>50</td>
+</tr>
+<tr>
+<td>Heavy</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>These workload types are defined here: <a href="https://docs.microsoft.com/en-us/windows-server/remote/remote-desktop-services/remote-desktop-workloads" target="_blank">Remote Desktop workloads</a></p>
+<h3>6. Pricing</h3>
+<p>There are two components of the pricing related to Azure Bastion:</p>
+<ol>
+<li><strong>Fixed charge</strong> for the service. This is the charge billed hourly for deploying the service. E.g. in an East US location, this charge is around $0.19 per hour.</li>
+<li><strong>Outbound data transfer charges</strong>. This is the charge based on the total outbound data transfer. This is further tiered into various categories based on the total consumption.</li>
+</ol>
+<p>The pricing details can be found here: <a href="https://azure.microsoft.com/en-ca/pricing/details/azure-bastion/" target="_blank">Azure Bastion pricing</a></p>
+<p>You can read more information about Azure Bastion in the official documentation here: <a href="https://docs.microsoft.com/en-us/azure/bastion/bastion-overview" target="_blank">Azure Bastion Overview</a>. </p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -100,12 +163,12 @@
                 
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
-                                <a href="https://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                                <a href="https://HarvestingClouds.com/tag/bastion">bastion</a>&nbsp;&nbsp;
+                                <a href="https://HarvestingClouds.com/tag/connectivity">connectivity</a>&nbsp;&nbsp;
                                 <a href="https://HarvestingClouds.com/tag/microsoft">microsoft</a>&nbsp;&nbsp;
                                 <a href="https://HarvestingClouds.com/tag/microsoftazure">microsoftazure</a>&nbsp;&nbsp;
-                                <a href="https://HarvestingClouds.com/tag/network">network</a>&nbsp;&nbsp;
-                                <a href="https://HarvestingClouds.com/tag/routetables">routetables</a>&nbsp;&nbsp;
-                                <a href="https://HarvestingClouds.com/tag/virtualnetwork">virtualnetwork</a>&nbsp;&nbsp;
+                                <a href="https://HarvestingClouds.com/tag/rdp">rdp</a>&nbsp;&nbsp;
+                                <a href="https://HarvestingClouds.com/tag/ssh">ssh</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -172,11 +235,11 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/simplifying-azure-bastion-1-what-is-azure-bastion">Simplifying Azure Bastion - 1 What is Azure Bastion</a></li>
                         <li class="list-group-item"><a href="https://HarvestingClouds.com/post/service-tags-are-now-supported-for-defining-routes-in-route-tables">Service Tags are now supported for Defining Routes in Route Tables</a></li>
                         <li class="list-group-item"><a href="https://HarvestingClouds.com/post/finding-ip-address-ranges-for-suse-linux-enterprise-images-to-work-in-microsoft-azure-behind-firewall-or-nsgs">Finding IP address ranges for SUSE Linux Enterprise images to work in Microsoft Azure behind Firewall or NSGs</a></li>
                         <li class="list-group-item"><a href="https://HarvestingClouds.com/post/how-to-copy-data-from-google-cloud-platform-gcp-storage-to-microsoft-azure-storage-block-blob">How to Copy data from Google Cloud Platform (GCP) Storage to Microsoft Azure Storage Block Blob</a></li>
                         <li class="list-group-item"><a href="https://HarvestingClouds.com/post/simplified-process-for-publishing-vm-images-to-azure-marketplace">Simplified process for publishing VM Images to Azure Marketplace</a></li>
-                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/dynamic-data-masking-granular-permissions-for-azure-sql-and-azure-synapse-analytics">Dynamic data masking granular permissions for Azure SQL and Azure Synapse Analytics</a></li>
                 </ul>
             </div>
         
@@ -205,7 +268,7 @@
                         <strong>Archives</strong>
                     </div>
         
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2021">March 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2021">February 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2021">January 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2020">December 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2020">November 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2020">October 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2020">July 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/june-2020">June 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2020">May 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2020">March 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2020">February 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2020">January 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2019">December 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2019">November 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2019">October 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2019">September 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2019">August 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2019">July 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/june-2019">June 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2019">May 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2019">April 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2019">March 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2019">February 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2019">January 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2018">December 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2018">November 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2018">October 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2018">September 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2018">August 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2018">July 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2018">March 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2018">February 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2018">January 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2017">December 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2017">November 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2017">October 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2017">January 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2016">November 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2016">October 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2021">April 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2021">March 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2021">February 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2021">January 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2020">December 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2020">November 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2020">October 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2020">July 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/june-2020">June 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2020">May 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2020">March 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2020">February 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2020">January 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2019">December 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2019">November 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2019">October 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2019">September 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2019">August 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2019">July 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/june-2019">June 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2019">May 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2019">April 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2019">March 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2019">February 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2019">January 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2018">December 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2018">November 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2018">October 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2018">September 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2018">August 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2018">July 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2018">March 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2018">February 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2018">January 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2017">December 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2017">November 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2017">October 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2017">January 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2016">November 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2016">October 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
                 </div>
         
             <!-- Tags -->
@@ -220,8 +283,8 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/actiongroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">actiongroups</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ActiveDirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/activedirectory" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">activedirectory</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ad" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AD</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ad" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/alert" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">alert</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/alerts" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">alerts</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/analytics" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">analytics</a>
@@ -242,15 +305,15 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/awareness" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">awareness</a>
 <a style="font-size: 17px" class="tag_cloud" href="https://HarvestingClouds.com/tag/aws" title="58 total posts" data-original-title="59 total posts" data-toggle="tooltip">aws</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azue" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">azue</a>
-<a style="font-size: 19px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azure" title="75 total posts" data-original-title="76 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 18px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azure" title="75 total posts" data-original-title="76 total posts" data-toggle="tooltip">azure</a>
 <a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azure" title="30 total posts" data-original-title="31 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuread" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azuread</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureautomation" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">azureautomation</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureawareness" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureawareness</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azurepolicies" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">azurepolicies</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureportal" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureportal</a>
-<a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureresourcemanager" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureresourcemanager" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">azureresourcemanager</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureresourcemanager" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresecurity" title="18 total posts" data-original-title="19 total posts" data-toggle="tooltip">azuresecurity</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresiterecovery" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azuresiterecovery</a>
@@ -258,6 +321,7 @@
 <a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresql" title="31 total posts" data-original-title="32 total posts" data-toggle="tooltip">azuresql</a>
 <a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/backup" title="18 total posts" data-original-title="19 total posts" data-toggle="tooltip">backup</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/bash" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">bash</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/bastion" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">bastion</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/batch" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">batch</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/billing" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">billing</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/blob" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">blob</a>
@@ -270,6 +334,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/compute" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">compute</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/configuration" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">configuration</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/configurations" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">configurations</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/connectivity" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">connectivity</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/console" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">console</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/copy" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">copy</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/cost" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">cost</a>
@@ -338,8 +403,8 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mcsa" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsa</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mcsd" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsd</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mcse" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcse</a>
-<a style="font-size: 30px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoft" title="191 total posts" data-original-title="192 total posts" data-toggle="tooltip">microsoft</a>
-<a style="font-size: 29px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoftazure" title="190 total posts" data-original-title="191 total posts" data-toggle="tooltip">microsoftazure</a>
+<a style="font-size: 30px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoft" title="192 total posts" data-original-title="193 total posts" data-toggle="tooltip">microsoft</a>
+<a style="font-size: 29px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoftazure" title="191 total posts" data-original-title="192 total posts" data-toggle="tooltip">microsoftazure</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/migration" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">migration</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/monitoring" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">monitoring</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
@@ -361,13 +426,14 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/query" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">query</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/querylanguage" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">querylanguage</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/rbac" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">rbac</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/rdp" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">rdp</a>
 <a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/recovery" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">recovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/remoteapp" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">RemoteApp</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/report" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">report</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/reservedinstances" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">reservedinstances</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcegroup" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">resourcegroup</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcegroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ResourceGroups</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcegroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">resourcegroups</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcegroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ResourceGroups</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcemanager" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">resourcemanager</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/roles" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">roles</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/routetable" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">routetable</a>
@@ -396,13 +462,14 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/snapshots" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">snapshots</a>
 <a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/sql" title="31 total posts" data-original-title="32 total posts" data-toggle="tooltip">sql</a>
 <a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/sqldatabase" title="31 total posts" data-original-title="32 total posts" data-toggle="tooltip">sqldatabase</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ssh" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ssh</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ssis" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ssis</a>
 <a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/storage" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">storage</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/subnet" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">subnet</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/subnets" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">subnets</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/tag" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">tag</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/tags" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Tags</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/tags" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">tags</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/tags" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Tags</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/tde" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">tde</a>
 <a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/templates" title="20 total posts" data-original-title="21 total posts" data-toggle="tooltip">Templates</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/templates" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">templates</a>
