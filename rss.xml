@@ -6,6 +6,40 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Simplifying Azure Bastion - 2 Create an Azure Bastion Host</title>
+<description><![CDATA[<p>In the previous post, we looked at what the Azure Bastion service is. We discuss its architecture, how it works, key benefits, pricing, etc. In this post, we will look at how to create the Azure Bastion service in the Azure portal.</p>
+<p>As we noted in the previous post, the Azure Bastion host is linked to a particular virtual network. In this post, when we will perform the deployment, you will notice that the deployment will be done related to a particular virtual network that we will need to select. This should be the virtual network into which your virtual machines are also deployed which you want to RDP or SSH into via the Azure Bastion service.</p>
+<h3>Pre-requisites</h3>
+<p>Before you start setting up the Azure Bastion host, you need to have a subnet in your Virtual network where you are deploying it.</p>
+<ol>
+<li>The subnet must be named <strong>AzureBastionSubnet</strong>.</li>
+<li>The subnet must be at least <strong>/27 or larger</strong>.</li>
+</ol>
+<p>In order to make a connection, the following <strong>roles</strong> are required:</p>
+<ol>
+<li>Reader role on the virtual machine</li>
+<li>Reader role on the NIC with private IP of the virtual machine</li>
+<li>Reader role on the Azure Bastion resource</li>
+</ol>
+<h3>Creating the Azure Bastion host</h3>
+<p>To create a Bastion host, you can navigate to the <strong>Bastions</strong> section in the Azure portal. Click on the &quot;+ Add&quot; button to add a new Bastion host.</p>
+<img src="/images/16171514666063c5ea66c5f.png" alt="Bastion section">
+<p>A new blade for &quot;Create a Bastion&quot; will open up. In this new blade, provide the details for:</p>
+<ul>
+<li>Subscription and the Resource Group where you want to deploy the Bastion service.</li>
+<li>Provide a name for the Bastion host and the region where it should be deployed. Note that the region should be the same as where the Virtual Network and the VMs are located.</li>
+<li>Next, select the target Virtual network. It will automatically select the subnet with the name as AzureBastionSubnet. Note that this subnet should have the size as /27 or larger. If there is no such subnet then you will get an error. </li>
+<li>Next, either create a new public IP address or use an existing public IP for the Bastion host.</li>
+</ul>
+<img src="/images/16171514816063c5f962004.png" alt="Create a new Bastion">
+<p>In the next screen provide the Tags. Review all the settings and then create the Bastion host. </p>
+<p>That's all there is to it. Once the deployment is complete we will be ready to leverage this to connect to the other VMs in the virtual network. </p>
+<p>Note that we will not be able to connect to the Bastion host itself. It is a fully managed service and is used under the hood to connect to the VMs via RDP or SSH internally. We will be able to connect to other VMs in the network, over port 443 directly from the Azure portal, directly in the browser.</p>
+<p>In the next post, we will look at how to connect to VMs using the Azure Bastion host.</p>]]></description>
+<link>https://HarvestingClouds.com/post/simplifying-azure-bastion-2-create-an-azure-bastion-host</link>
+<pubDate>Wed, 07 Apr 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Simplifying Azure Bastion - 1 What is Azure Bastion</title>
 <description><![CDATA[<h3>1. Details about Azure Bastion</h3>
 <p>Azure Bastion is a fully platform-managed PaaS service that provides RDP/SSH over TLS i.e. port 443 to all the VMs in the network. Think of this as a managed Jump Box or Jump Server service provided by Microsoft. The service is deployed via a managed host into your virtual network. This host is like a fully managed Jump box and is kept up to date by Microsoft. </p>
