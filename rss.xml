@@ -6,6 +6,63 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Simplifying Azure Bastion - 4 Connecting to Linux VMs using Azure Bastion over SSH</title>
+<description><![CDATA[<p>In the previous blog, we saw how to RDP to a Windows VM using Bastion. In this post, we will look at how to SSH to a Linux VM using the Bastion service.</p>
+<p>To connect to the VM via Bastion, first, navigate to the Linux VM in Azure. Click on the Connect button. In the pop-out menu, click on the Bastion option.</p>
+<img src="/images/16171654566063fc90b1e71.png" alt="Bastion Option">
+<p>Next, click on the Use Bastion button on the next screen.</p>
+<img src="/images/16171654646063fc98dfab9.png" alt="Use Bastion button">
+<p>In the next screen to &quot;<strong>Connect using Azure Bastion</strong>&quot; make note of the following:</p>
+<ol>
+<li>At the top you will see the Bastion host being used for the connection. This is for your information only. You do not need to take any action here. You may need this if you run into any issues and have to troubleshoot.</li>
+<li>I recommend leaving the check box for &quot;Open in new window&quot; checked. This ensures that the connection opens in a new tab or window and uses the maximum area. If you uncheck this then the connection will open in a new blade to the right and the view will be limited.</li>
+<li>Next provide the Username that will be used to connect via SSH to the Linux VM</li>
+<li>Authentication type is important. Select the one that you want to leverage. The next entry will update as per the selection here.</li>
+<li>Provide the additional information for the selection you made in the previous point. </li>
+<li>The advanced settings are optional and can be skipped. This does not relate to all authentication types.</li>
+<li>Finally click on the Connect button to connect to the VM</li>
+</ol>
+<p>The options for <strong>authentication types</strong> are as follows:</p>
+<ol>
+<li>Password - This is to use the normal username and password-based authentication</li>
+<li>SSH Private Key - This option is used when you want to provide the key phrase manually</li>
+<li>SSH Private Key from Local File - This is to upload the private key file from the local computer. You can optionally provide a passphrase for this.</li>
+<li>SSH Private Key from Azure Key Vault - This is to use a private key file that you have previously uploaded to the Azure Key Vault.</li>
+</ol>
+<img src="/images/16171654726063fca09b5cc.png" alt="Connecting via Bastion">
+<p>Once you click on the <strong>Connect</strong> button, the SSH session to the VM opens up in a new tab.</p>
+<img src="/images/16171655386063fce2774b2.png" alt="Connected VM">
+<p><strong>Note</strong>: Almost all the Caveats from the previous blog for RDP to Windows VM also apply to the SSH to Linux VMs.</p>]]></description>
+<link>https://HarvestingClouds.com/post/simplifying-azure-bastion-4-connecting-to-linux-vms-using-azure-bastion-over-ssh</link>
+<pubDate>Sat, 10 Apr 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Simplifying Azure Bastion - 3 Connecting to Windows VMs using Azure Bastion</title>
+<description><![CDATA[<p>In the last post, we deployed the Azure Bastion service. In this post, we will look at how to connect to a Windows VM via RDP using the Bastion service.</p>
+<h3>Connecting to the Windows VM via RDP</h3>
+<p>To start an RDP connection to a Windows host, navigate to the virtual machine that you want to connect to. Click on the Connect button. In the pop-out option, select the Bastion option. Click on the &quot;Use Bastion&quot; button on the next screen.</p>
+<img src="/images/16171549706063d39a0fac1.png" alt="Option to connect via Bastion">
+<p>In the next screen to &quot;Connect using Azure Bastion&quot;, enter the credentials for the VM to which you are trying to connect. Keep the check box for &quot;Open in new window&quot; checked. If you don't select this checkbox then the RDP session will open in another blade to the right. I prefer to open the RDP session in a new window for maximum screen space.</p>
+<img src="/images/16171549776063d3a15cb2c.png" alt="Entering Credentials">
+<p>Your VM will open in a new tab. You will be able to perform many actions that you can do via direct RDP (with exception of a few).</p>
+<img src="/images/16171549836063d3a7d8a71.png" alt="Connected VM">
+<h3>Caveats during the connectivity</h3>
+<p>There are some caveats when connecting via the Bastion service. Here are a few that I have encountered or was able to generate.</p>
+<p>The first one is the pop-up blocked alert. When you are trying to connect using the option to open in the new window, then if you have a pop-up blocker enabled and the Azure portal is not whitelisted then you will see the below alert in the portal when trying to connect. The connection will not succeed.</p>
+<img src="/images/16171550396063d3df0bde5.png" alt="Pop up blocked">
+<p><strong>Solution</strong>: click on the small icon for blocked pop-up in the address bar of the browser, as shown below, and select to Allow the pop-ups from the Azure portal.</p>
+<img src="/images/16171550466063d3e6c5171.png" alt="Allowing Pop ups">
+<p>When trying to connect for the first time or trying to connect on a new browser, the Bastion service will request you to allow the Text and Image related clipboard access. I highly recommend allowing this. If you opt to not allow this access then later, you won't be able to share any clipboard with the session.</p>
+<img src="/images/16171550566063d3f05a651.png" alt="Text and image clipboard access">
+<p>If for any reason the connection is interrupted then you will see a dialog saying &quot;Disconnected&quot;. You will have the option to <strong>Reconnect</strong> or exit by clicking on the <strong>Close</strong> button.</p>
+<img src="/images/16171551196063d42fe0568.png" alt="Disconnected pop up">
+<p>Connection Error may come e.g. when restarting the VM. It will automatically attempt to reconnect in few seconds. You can also force reconnect by clicking on the &quot;Reconnect&quot; button.</p>
+<img src="/images/16171551266063d436edb5f.png" alt="Connection Error">
+<p>As you can see that using the Bastion service to connect to the Windows VMs is a very easy and straightforward process. In the next post, we will look at how to connect to a Linux VM via SSH using the Bastion service.</p>]]></description>
+<link>https://HarvestingClouds.com/post/simplifying-azure-bastion-3-connecting-to-windows-vms-using-azure-bastion</link>
+<pubDate>Thu, 08 Apr 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Simplifying Azure Bastion - 2 Create an Azure Bastion Host</title>
 <description><![CDATA[<p>In the previous post, we looked at what the Azure Bastion service is. We discuss its architecture, how it works, key benefits, pricing, etc. In this post, we will look at how to create the Azure Bastion service in the Azure portal.</p>
 <p>As we noted in the previous post, the Azure Bastion host is linked to a particular virtual network. In this post, when we will perform the deployment, you will notice that the deployment will be done related to a particular virtual network that we will need to select. This should be the virtual network into which your virtual machines are also deployed which you want to RDP or SSH into via the Azure Bastion service.</p>
