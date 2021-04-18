@@ -6,6 +6,44 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Simplifying Azure Bastion - 6 Clipboard access and going Full screen</title>
+<description><![CDATA[<p>When working with Azure Bastion you connect to various VMs via the Bastion host. For Windows VMs, you connect via RDP and for Linux VMs you connect via SSH. In both scenarios, you will need to copy and paste the text from the local machine to the remote VM. In Bastion this is managed via the Clipboard manager on the Bastion host.</p>
+<p>Before you start make sure that you know how to connect to the VMs and various caveats linked to that as we discussed in the earlier posts.</p>
+<h3>Clipboard Access</h3>
+<p>When trying to connect for the first time or trying to connect on a new browser, the Bastion service will request you to allow the Text and Image related clipboard access. I highly recommend allowing this. If you opt to not allow this access then later, you won't be able to share any clipboard with the session.</p>
+<p><strong>Note</strong>: Only text copy/paste is supported.</p>
+<img src="/images/16171550566063d3f05a651.png" alt="Allow Clipboard access">
+<p>When you are in the remote session, launch the Bastion clipboard access tool palette by selecting the two arrows on the left-center of the session.</p>
+<img src="/images/1617171691606414ebdf8a2.png" alt="Pop out option">
+<p>In the pop-out window, any text you have copied on the local machine will automatically appear in the text box in this window. You can review or modify the text in this window and the clipboard in the remote VM will be updated automatically. </p>
+<img src="/images/1617171699606414f37cae9.png" alt="Clipboard">
+<h3>Full Screen</h3>
+<p>Another very useful option that is available in the pop-out option is to go full screen. Just click on the button as indicated below to enter the full-screen mode. This is recommended when you have to work on the remote VM for a long period of time.</p>
+<img src="/images/1617171707606414fb514f6.png" alt="Full Screen Option">
+<p>Press the Escape button to exit the Full Screen.</p>]]></description>
+<link>https://HarvestingClouds.com/post/simplifying-azure-bastion-6-clipboard-access-and-going-full-screen</link>
+<pubDate>Sun, 18 Apr 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Simplifying Azure Bastion - 5 Connecting to VM Scale Sets (VMSS) using Azure Bastion</title>
+<description><![CDATA[<p>In the previous two posts, we saw how to RDP to a Windows VM and how to SSH to a Linux VM. In this post, we will see how to connect to the instances of a Virtual Machine Scale Set (VMSS). Note that in the case of VMSS, Bastion will automatically decide whether to use RDP or SSH based on the operating system of the instance.</p>
+<p>To start, navigate to your Virtual Machine Scale Set (VMSS) and click on the Instances. Select the instance to which you want to connect.</p>
+<img src="/images/16171677706064059a3857c.png" alt="Selecting VMSS Instance">
+<p>To connect to the VM via Bastion, first, navigate to the Linux VM in Azure. Click on the Connect button. In the pop-out menu, click on the Bastion option.</p>
+<img src="/images/1617167778606405a231982.png" alt="Bastion Connectivity option">
+<p>Next, click on the Use Bastion button on the next screen.</p>
+<img src="/images/1617167785606405a9a1532.png" alt="Use Bastion">
+<p>In the &quot;Connect using Bastion&quot; screen, note the Bastion host being used to connect. This is only for information. You may need this information to troubleshoot if you run into any issues.</p>
+<p>Next, I recommend leaving the check box for &quot;Open in new window&quot; checked. This ensures that the connection opens in a new tab or window and uses the maximum area. If you uncheck this then the connection will open in a new blade to the right and the view will be limited.</p>
+<p>Provide the credentials of the instance that you are trying to connect. </p>
+<p>Hit the Connect button to connect to the instance.</p>
+<img src="/images/1617167792606405b0c6bf2.png" alt="Connect using Bastion details">
+<p>A new window/tab will open in the browser with the VM connected.</p>
+<img src="/images/1617167800606405b826bb3.png" alt="Connected VM">]]></description>
+<link>https://HarvestingClouds.com/post/simplifying-azure-bastion-5-connecting-to-vm-scale-sets-vmss-using-azure-bastion</link>
+<pubDate>Sat, 17 Apr 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Simplifying Azure Bastion - 4 Connecting to Linux VMs using Azure Bastion over SSH</title>
 <description><![CDATA[<p>In the previous blog, we saw how to RDP to a Windows VM using Bastion. In this post, we will look at how to SSH to a Linux VM using the Bastion service.</p>
 <p>To connect to the VM via Bastion, first, navigate to the Linux VM in Azure. Click on the Connect button. In the pop-out menu, click on the Bastion option.</p>

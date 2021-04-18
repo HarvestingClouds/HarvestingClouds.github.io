@@ -72,38 +72,26 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="https://HarvestingClouds.com/post/simplifying-azure-bastion-4-connecting-to-linux-vms-using-azure-bastion-over-ssh">Simplifying Azure Bastion - 4 Connecting to Linux VMs using Azure Bastion over SSH</a></h3>
+                    <h3><a href="https://HarvestingClouds.com/post/simplifying-azure-bastion-6-clipboard-access-and-going-full-screen">Simplifying Azure Bastion - 6 Clipboard access and going Full screen</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Apr 10, 2021
+                    <span class="glyphicon glyphicon-time"></span> Apr 18, 2021
                 
                         <hr>
-                        <p class="post-content"><p>In the previous blog, we saw how to RDP to a Windows VM using Bastion. In this post, we will look at how to SSH to a Linux VM using the Bastion service.</p>
-<p>To connect to the VM via Bastion, first, navigate to the Linux VM in Azure. Click on the Connect button. In the pop-out menu, click on the Bastion option.</p>
-<img src="/images/16171654566063fc90b1e71.png" alt="Bastion Option">
-<p>Next, click on the Use Bastion button on the next screen.</p>
-<img src="/images/16171654646063fc98dfab9.png" alt="Use Bastion button">
-<p>In the next screen to &quot;<strong>Connect using Azure Bastion</strong>&quot; make note of the following:</p>
-<ol>
-<li>At the top you will see the Bastion host being used for the connection. This is for your information only. You do not need to take any action here. You may need this if you run into any issues and have to troubleshoot.</li>
-<li>I recommend leaving the check box for &quot;Open in new window&quot; checked. This ensures that the connection opens in a new tab or window and uses the maximum area. If you uncheck this then the connection will open in a new blade to the right and the view will be limited.</li>
-<li>Next provide the Username that will be used to connect via SSH to the Linux VM</li>
-<li>Authentication type is important. Select the one that you want to leverage. The next entry will update as per the selection here.</li>
-<li>Provide the additional information for the selection you made in the previous point. </li>
-<li>The advanced settings are optional and can be skipped. This does not relate to all authentication types.</li>
-<li>Finally click on the Connect button to connect to the VM</li>
-</ol>
-<p>The options for <strong>authentication types</strong> are as follows:</p>
-<ol>
-<li>Password - This is to use the normal username and password-based authentication</li>
-<li>SSH Private Key - This option is used when you want to provide the key phrase manually</li>
-<li>SSH Private Key from Local File - This is to upload the private key file from the local computer. You can optionally provide a passphrase for this.</li>
-<li>SSH Private Key from Azure Key Vault - This is to use a private key file that you have previously uploaded to the Azure Key Vault.</li>
-</ol>
-<img src="/images/16171654726063fca09b5cc.png" alt="Connecting via Bastion">
-<p>Once you click on the <strong>Connect</strong> button, the SSH session to the VM opens up in a new tab.</p>
-<img src="/images/16171655386063fce2774b2.png" alt="Connected VM">
-<p><strong>Note</strong>: Almost all the Caveats from the previous blog for RDP to Windows VM also apply to the SSH to Linux VMs.</p></p>
+                        <p class="post-content"><p>When working with Azure Bastion you connect to various VMs via the Bastion host. For Windows VMs, you connect via RDP and for Linux VMs you connect via SSH. In both scenarios, you will need to copy and paste the text from the local machine to the remote VM. In Bastion this is managed via the Clipboard manager on the Bastion host.</p>
+<p>Before you start make sure that you know how to connect to the VMs and various caveats linked to that as we discussed in the earlier posts.</p>
+<h3>Clipboard Access</h3>
+<p>When trying to connect for the first time or trying to connect on a new browser, the Bastion service will request you to allow the Text and Image related clipboard access. I highly recommend allowing this. If you opt to not allow this access then later, you won't be able to share any clipboard with the session.</p>
+<p><strong>Note</strong>: Only text copy/paste is supported.</p>
+<img src="/images/16171550566063d3f05a651.png" alt="Allow Clipboard access">
+<p>When you are in the remote session, launch the Bastion clipboard access tool palette by selecting the two arrows on the left-center of the session.</p>
+<img src="/images/1617171691606414ebdf8a2.png" alt="Pop out option">
+<p>In the pop-out window, any text you have copied on the local machine will automatically appear in the text box in this window. You can review or modify the text in this window and the clipboard in the remote VM will be updated automatically. </p>
+<img src="/images/1617171699606414f37cae9.png" alt="Clipboard">
+<h3>Full Screen</h3>
+<p>Another very useful option that is available in the pop-out option is to go full screen. Just click on the button as indicated below to enter the full-screen mode. This is recommended when you have to work on the remote VM for a long period of time.</p>
+<img src="/images/1617171707606414fb514f6.png" alt="Full Screen Option">
+<p>Press the Escape button to exit the Full Screen.</p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -114,6 +102,7 @@
                             <span class="glyphicon glyphicon-bookmark"></span>
                 
                                 <a href="https://HarvestingClouds.com/tag/bastion">bastion</a>&nbsp;&nbsp;
+                                <a href="https://HarvestingClouds.com/tag/connectivity">connectivity</a>&nbsp;&nbsp;
                                 <a href="https://HarvestingClouds.com/tag/microsoft">microsoft</a>&nbsp;&nbsp;
                                 <a href="https://HarvestingClouds.com/tag/microsoftazure">microsoftazure</a>&nbsp;&nbsp;
                                 <a href="https://HarvestingClouds.com/tag/rdp">rdp</a>&nbsp;&nbsp;
@@ -188,11 +177,11 @@
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/simplifying-azure-bastion-6-clipboard-access-and-going-full-screen">Simplifying Azure Bastion - 6 Clipboard access and going Full screen</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/simplifying-azure-bastion-5-connecting-to-vm-scale-sets-vmss-using-azure-bastion">Simplifying Azure Bastion - 5 Connecting to VM Scale Sets (VMSS) using Azure Bastion</a></li>
                         <li class="list-group-item"><a href="https://HarvestingClouds.com/post/simplifying-azure-bastion-4-connecting-to-linux-vms-using-azure-bastion-over-ssh">Simplifying Azure Bastion - 4 Connecting to Linux VMs using Azure Bastion over SSH</a></li>
                         <li class="list-group-item"><a href="https://HarvestingClouds.com/post/simplifying-azure-bastion-3-connecting-to-windows-vms-using-azure-bastion">Simplifying Azure Bastion - 3 Connecting to Windows VMs using Azure Bastion</a></li>
                         <li class="list-group-item"><a href="https://HarvestingClouds.com/post/simplifying-azure-bastion-2-create-an-azure-bastion-host">Simplifying Azure Bastion - 2 Create an Azure Bastion Host</a></li>
-                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/simplifying-azure-bastion-1-what-is-azure-bastion">Simplifying Azure Bastion - 1 What is Azure Bastion</a></li>
-                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/service-tags-are-now-supported-for-defining-routes-in-route-tables">Service Tags are now supported for Defining Routes in Route Tables</a></li>
                 </ul>
             </div>
         
@@ -245,12 +234,12 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/app" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">app</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/applicationinsights" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ApplicationInsights</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/appservice" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">appservice</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/arm" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/arm" title="22 total posts" data-original-title="23 total posts" data-toggle="tooltip">ARM</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/arm" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/armtemplates" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">armtemplates</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/asr" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/asr" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">asr</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/asr" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/audit" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">audit</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/auditing" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">auditing</a>
 <a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/automation" title="25 total posts" data-original-title="26 total posts" data-toggle="tooltip">automation</a>
@@ -265,8 +254,8 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureawareness" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureawareness</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azurepolicies" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">azurepolicies</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureportal" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureportal</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureresourcemanager" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">azureresourcemanager</a>
 <a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureresourcemanager" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">AzureResourceManager</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureresourcemanager" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">azureresourcemanager</a>
 <a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresecurity" title="18 total posts" data-original-title="19 total posts" data-toggle="tooltip">azuresecurity</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresiterecovery" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azuresiterecovery</a>
@@ -274,7 +263,7 @@
 <a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresql" title="31 total posts" data-original-title="32 total posts" data-toggle="tooltip">azuresql</a>
 <a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/backup" title="18 total posts" data-original-title="19 total posts" data-toggle="tooltip">backup</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/bash" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">bash</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/bastion" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">bastion</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/bastion" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">bastion</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/batch" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">batch</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/billing" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">billing</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/blob" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">blob</a>
@@ -287,7 +276,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/compute" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">compute</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/configuration" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">configuration</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/configurations" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">configurations</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/connectivity" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">connectivity</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/connectivity" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">connectivity</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/console" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">console</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/copy" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">copy</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/cost" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">cost</a>
@@ -356,8 +345,8 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mcsa" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsa</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mcsd" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsd</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mcse" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcse</a>
-<a style="font-size: 30px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoft" title="195 total posts" data-original-title="196 total posts" data-toggle="tooltip">microsoft</a>
-<a style="font-size: 29px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoftazure" title="194 total posts" data-original-title="195 total posts" data-toggle="tooltip">microsoftazure</a>
+<a style="font-size: 30px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoft" title="197 total posts" data-original-title="198 total posts" data-toggle="tooltip">microsoft</a>
+<a style="font-size: 29px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoftazure" title="196 total posts" data-original-title="197 total posts" data-toggle="tooltip">microsoftazure</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/migration" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">migration</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/monitoring" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">monitoring</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
@@ -379,14 +368,14 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/query" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">query</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/querylanguage" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">querylanguage</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/rbac" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">rbac</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/rdp" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">rdp</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/rdp" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">rdp</a>
 <a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/recovery" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">recovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/remoteapp" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">RemoteApp</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/report" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">report</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/reservedinstances" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">reservedinstances</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcegroup" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">resourcegroup</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcegroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ResourceGroups</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcegroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">resourcegroups</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcegroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ResourceGroups</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcemanager" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">resourcemanager</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/roles" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">roles</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/routetable" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">routetable</a>
@@ -399,7 +388,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/sample" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Sample</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/sap" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">sap</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/scale" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">scale</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/scaleset" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">scaleset</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/scaleset" title="12 total posts" data-original-title="13 total posts" data-toggle="tooltip">scaleset</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/script" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">script</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/script" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Script</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/search" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">search</a>
@@ -415,7 +404,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/snapshots" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">snapshots</a>
 <a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/sql" title="31 total posts" data-original-title="32 total posts" data-toggle="tooltip">sql</a>
 <a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/sqldatabase" title="31 total posts" data-original-title="32 total posts" data-toggle="tooltip">sqldatabase</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ssh" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">ssh</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ssh" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">ssh</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ssis" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ssis</a>
 <a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/storage" title="21 total posts" data-original-title="22 total posts" data-toggle="tooltip">storage</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/subnet" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">subnet</a>
@@ -442,7 +431,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/visualstudio" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">VisualStudio</a>
 <a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vm" title="14 total posts" data-original-title="15 total posts" data-toggle="tooltip">vm</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vmimage" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vmimage</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vmss" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vmss</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vmss" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">vmss</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vmware" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vmware</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vmware" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">VMWare</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vpc" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">vpc</a>
