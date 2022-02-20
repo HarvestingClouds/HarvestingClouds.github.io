@@ -6,6 +6,23 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure Bastion Series - Index</title>
+<description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Bastion service</strong>.</p>
+<p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
+<ol>
+<li><a href="https://harvestingclouds.com/post/simplifying-azure-bastion-1-what-is-azure-bastion/" target="_blank">What is Azure Bastion</a></li>
+<li><a href="https://harvestingclouds.com/post/simplifying-azure-bastion-2-create-an-azure-bastion-host/" target="_blank">Creating an Azure Bastion Host</a></li>
+<li><a href="https://harvestingclouds.com/post/simplifying-azure-bastion-3-connecting-to-windows-vms-using-azure-bastion/" target="_blank">Connecting to Windows VMs using Azure Bastion</a></li>
+<li><a href="https://harvestingclouds.com/post/simplifying-azure-bastion-4-connecting-to-linux-vms-using-azure-bastion-over-ssh/" target="_blank">Connecting to Linux VMs using Azure Bastion</a></li>
+<li><a href="https://harvestingclouds.com/post/simplifying-azure-bastion-5-connecting-to-vm-scale-sets-vmss-using-azure-bastion/" target="_blank">Connecting to VM Scale Sets (VMSS) using Azure Bastion</a></li>
+<li><a href="https://harvestingclouds.com/post/simplifying-azure-bastion-6-clipboard-access-and-going-full-screen/" target="_blank">Clipboard access and going full screen</a></li>
+<li><a href="https://harvestingclouds.com/post/simplifying-azure-bastion-7-nsg-and-firewall-configurations/" target="_blank">NSG and Firewall configurations</a></li>
+<li><a href="https://harvestingclouds.com/post/simplifying-azure-bastion-8-managing-azure-bastion-session-management-monitoring-and-alerting/" target="_blank">Managing Azure Bastion - Session Management, Monitoring and Alerting</a></li>
+</ol>]]></description>
+<link>https://HarvestingClouds.com/post/azure-bastion-series-index</link>
+<pubDate>Sun, 25 Apr 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Simplifying Azure Bastion - 8 Managing Azure Bastion - Session Management, Monitoring and Alerting</title>
 <description><![CDATA[<p>In the previous few posts, we looked at various aspects of the Azure Bastion service. In this post, we will look at various monitoring and alerting capabilities related to Azure Bastion. </p>
 <h3>Monitoring remote sessions</h3>
