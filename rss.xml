@@ -6,6 +6,84 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Simplifying Azure Bastion - 8 Managing Azure Bastion - Session Management, Monitoring and Alerting</title>
+<description><![CDATA[<p>In the previous few posts, we looked at various aspects of the Azure Bastion service. In this post, we will look at various monitoring and alerting capabilities related to Azure Bastion. </p>
+<h3>Monitoring remote sessions</h3>
+<p>You can monitor all the remote sessions being facilitated by Azure Bastion. To do this navigate to the Azure Bastion host. Click on the &quot;Sessions&quot; under settings. On the right side, you will be able to view all the active sessions. Click on the Refresh button to update the list with any added or removed session.</p>
+<p>Note that in the list you will see many pieces of valuable information. Few important ones are:</p>
+<ol>
+<li>Target Host Name - Hostname of the VM that has an active session.</li>
+<li>UserName - User name that was used to connect to the VM.</li>
+<li>Protocol - RDP or SSH protocol, that is used to connect to the target VMs (by the Bastion host). It is ssh for Linux and RDP for Windows VMs.</li>
+</ol>
+<img src="/images/16172197836064d0c7aa98f.png" alt="Monitoring remote sessions">
+<h3>Managing remote sessions - Deleting the sessions</h3>
+<p>If required, you can delete any session from the list of active sessions. To do this simply right-click on the session name in the list and click on the Delete in the pop-up menu.</p>
+<img src="/images/16172197906064d0cedd0d8.png" alt="Option to delete a session">
+<p>The person connected to the VM via Azure Bastion will see a prompt similar to the below. Even after a reconnection attempt from this prompt the connection won't be successful. If the end-user wants to connect again then they will have to initiate the connection again from the Azure portal.</p>
+<img src="/images/16172197976064d0d59163b.png" alt="Disconnected session">
+<h3>Monitoring Azure Bastion</h3>
+<p>The monitoring capabilities are integrated with Azure Monitor. Navigate to the <strong>Monitor</strong> service in the Azure portal and then click on the &quot;<strong>Metrics</strong>&quot; option in the left settings pane. On the right side, set the Scope to the Azure Bastion host, that you want to monitor. Next, select one of the available metrics from the list of Metric dropdown. </p>
+<p>The options available for Metric are:</p>
+<ol>
+<li>Availability - Bastion communication status </li>
+<li>Saturation - Total memory</li>
+<li>Saturation - Used CPU</li>
+<li>Saturation - Used memory</li>
+<li>Traffic - Session count</li>
+</ol>
+<p>The one shown in the screenshot below is for &quot;Traffic - <strong>Session count</strong>&quot;.</p>
+<img src="/images/16172198356064d0fb2edca.png" alt="Metrics for Bastion Monitoring">
+<h3>Creating Alerts on Azure Bastions</h3>
+<p>From the Monitor, you can also create Alerts related to Azure Bastion. This experience is also similar to creating an alert for any other service in Azure. To create a new alert, click on the &quot;+ New alert rule&quot; button under the Alert section.</p>
+<p>In the &quot;Create alert rule&quot;, select the scope and set it to the Azure Bastion service. Then click on the &quot;Add condition&quot; button. This will bring a pop-up blade to &quot;Configure signal logic&quot;. This is the condition on which the alert will be triggered. Check all the signals available here.</p>
+<p>Additionally, you can select or create an Action Group to send notifications and take actions whenever an alert is triggered.</p>
+<img src="/images/16172198416064d101ed680.png" alt="Alerts for Bastion">]]></description>
+<link>https://HarvestingClouds.com/post/simplifying-azure-bastion-8-managing-azure-bastion-session-management-monitoring-and-alerting</link>
+<pubDate>Sat, 24 Apr 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Simplifying Azure Bastion - 7 NSG and Firewall configurations</title>
+<description><![CDATA[<p>In the earlier posts, we saw how to set up the Azure Bastion service and how to connect to VMs using this service. In this post, we will see what ports are involved and on which side to allow this communication. That is which ports are involved in the outbound communication between the target VMs and Bastion host and which ports are involved in the inbound communication. You will need this information when dealing with any NSGs or Firewalls.</p>
+<h3>Key Points</h3>
+<p>Azure Bastion is a fully managed platform PaaS service from Azure that is hardened internally to provide you with secure RDP/SSH connectivity. You don't need to apply any NSGs on the Azure Bastion subnet. Because Azure Bastion connects to your virtual machines over private IP, you can configure your NSGs to allow RDP/SSH from Azure Bastion only. This removes the hassle of managing NSGs each time you need to securely connect to your virtual machines.</p>
+<p><strong>Note</strong>: UDR is not supported on an Azure Bastion subnet. You don’t need to force traffic from an Azure Bastion subnet to Azure Firewall because the communication between Azure Bastion and your VMs is private. Therefore unless you have a complex deployment you will need to define the rules only at the NSG levels.</p>
+<h4>Inbound rules for the Azure Bastion Subnet</h4>
+<p><strong>Note</strong>: These are the rules for the <strong>Inbound</strong> or <strong>Ingress</strong> communication for the Azure Bastion host. These are <strong>applied to</strong> the NSG for the Bastion subnet.</p>
+<p>Navigate to the &quot;Inbound security rules&quot; in the NSG and click on the &quot;+ Add&quot; button to add individual rules. As a best practice, leave a range of 10 or higher when providing priority to the rules. Ensure that the order is correct and in the required sequence. </p>
+<p>Add <strong>the rules</strong> for the following:</p>
+<ol>
+<li>Inbound on 443 from the Internet - Allow HTTPS inbound on port 443 for TCP protocol. Use the service tag of &quot;Internet&quot; for the Source and &quot;Any&quot; for the destination. This rule is required for you to be able to make HTTPS connections to the Azure Bastion host from the Azure portal.</li>
+<li>Azure Bastion control plane - Allow 443 for TCP protocol. Use the service tag of &quot;GatewayManager&quot; for the Source and &quot;Any&quot; for the destination. This rule is required for the Azure Bastion control plane, i.e. Gateway Manager to be able to talk to Azure Bastion</li>
+<li>Azure Bastion data plane communication - Allow 443 for TCP protocol. Use the service tag of &quot;AzureLoadBalancer&quot; for the Source and &quot;Any&quot; for the destination. This rule allows communication between the underlying components of Azure Bastion.</li>
+<li>Azure Load Balancer Health probes - Allow 5701 and 8080 for &quot;Any&quot; protocol. Use the service tag of &quot;VirtualNetwork&quot; for the Source and also &quot;VirtualNetwork&quot; for the destination. This rule enables Azure Load Balancer to detect connectivity.</li>
+</ol>
+<img src="/images/16172164676064c3d372f83.png" alt="Inbound for the Azure Bastion Subnet">
+<h4>Outbound rules for the Azure Bastion Subnet</h4>
+<p><strong>Note</strong>: These are the rules for the <strong>Outbound</strong> or <strong>Egress</strong> communication for the Azure Bastion host. These are <strong>applied to</strong> the NSG for the Bastion subnet.</p>
+<p>Navigate to the &quot;Outbound security rules&quot; in the NSG and click on the &quot;+ Add&quot; button to add individual rules. As a best practice, leave a range of 10 or higher when providing priority to the rules. Ensure that the order is correct and in the required sequence. </p>
+<p>Add <strong>the rules</strong> for the following:</p>
+<ol>
+<li>Traffic to target VMs - Allow SSH and RDP outbound on ports 22 and 3389 for Any protocol. Use the &quot;Any&quot; for the Source and the service tag of &quot;VirtualNetwork&quot; for the destination. This rule allows Bastion to be able to connect to target VMs for SSH and RDP connectivity.</li>
+<li>Azure Bastion data plane communication - Allow outbound on ports 443 for TCP protocol. Use the &quot;Any&quot; for the Source and the service tag of &quot;AzureCloud&quot; for the destination. This rule allows outbound communication for the components of Azure Bastion to talk to each other.</li>
+<li>Azure Cloud communication - Allow outbound on ports 5701 and 8080 for Any protocol. Use the &quot;VirtualNetwork&quot; for the Source and also the service tag of &quot;VirtualNetwork&quot; for the destination. This rules is required for Azure Bastion to send diagnostics logs, metering logs, and other information to various public endpoints within Azure cloud.</li>
+<li>Internet communication - Allow outbound on port 80 for Any protocol. Use the &quot;Any&quot; for the Source and the service tag of &quot;Internet&quot; for the destination. This rule is required for session and certificate validation.</li>
+</ol>
+<img src="/images/16172164756064c3db1bc20.png" alt="Outbound for the Azure Bastion Subnet">
+<h4>Inbound rules for the Target VM's NSG</h4>
+<p><strong>Note</strong>: These are the rules for the <strong>Inbound</strong> or <strong>Ingress</strong> communication for the Target VM that you will RDP to via the Bastion host. These are <strong>applied to</strong> the NSG for the subnet of the Target VM or directly to the network interface card of the VM. </p>
+<p>You will need to allow ports 3389 (RDP) and 22 (SSH) inbound on the target VM. This needs to be allowed for the Bastion host to be able to make the RDP and SSH connections respectively to the target VM.</p>
+<p><strong>Note</strong>  </p>
+<ol>
+<li>You don't need both ports i.e. 3389 (RDP) and 22 (SSH). You should limit it to either one based on the operating system within the VM. For Windows VMs you will select the 3389 port and for the Linux VMs, you will select port number 22. This is shown as number 4 in the below screenshot.</li>
+<li>You should update the Source IP address range to the address range of the Bastion subnet i.e. &quot;<strong>AzureBastionSubnet</strong>&quot; subnet only. This is shown as number 5 in the below screenshot.</li>
+</ol>
+<img src="/images/16172164676064c3d372f83.png" alt="Inbound for the Target VM">
+<p>You can read more about these in the official documentation here: <a href="https://docs.microsoft.com/en-us/azure/bastion/bastion-nsg" target="_blank">Working with NSG access and Azure Bastion</a></p>]]></description>
+<link>https://HarvestingClouds.com/post/simplifying-azure-bastion-7-nsg-and-firewall-configurations</link>
+<pubDate>Tue, 20 Apr 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Simplifying Azure Bastion - 6 Clipboard access and going Full screen</title>
 <description><![CDATA[<p>When working with Azure Bastion you connect to various VMs via the Bastion host. For Windows VMs, you connect via RDP and for Linux VMs you connect via SSH. In both scenarios, you will need to copy and paste the text from the local machine to the remote VM. In Bastion this is managed via the Clipboard manager on the Bastion host.</p>
 <p>Before you start make sure that you know how to connect to the VMs and various caveats linked to that as we discussed in the earlier posts.</p>
