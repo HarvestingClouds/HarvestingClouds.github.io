@@ -24,7 +24,8 @@
 </item>
 <item>
 <title>Simplifying Azure Bastion - 8 Managing Azure Bastion - Session Management, Monitoring and Alerting</title>
-<description><![CDATA[<p>In the previous few posts, we looked at various aspects of the Azure Bastion service. In this post, we will look at various monitoring and alerting capabilities related to Azure Bastion. </p>
+<description><![CDATA[<p>This blog is a part of the Azure Bastion series. You can find the Index of this series here: <a href="https://harvestingclouds.com/post/azure-bastion-series-index/" target="_blank">Azure Bastion Series</a>.</p>
+<p>In the previous few posts, we looked at various aspects of the Azure Bastion service. In this post, we will look at various monitoring and alerting capabilities related to Azure Bastion. </p>
 <h3>Monitoring remote sessions</h3>
 <p>You can monitor all the remote sessions being facilitated by Azure Bastion. To do this navigate to the Azure Bastion host. Click on the &quot;Sessions&quot; under settings. On the right side, you will be able to view all the active sessions. Click on the Refresh button to update the list with any added or removed session.</p>
 <p>Note that in the list you will see many pieces of valuable information. Few important ones are:</p>
@@ -61,7 +62,8 @@
 </item>
 <item>
 <title>Simplifying Azure Bastion - 7 NSG and Firewall configurations</title>
-<description><![CDATA[<p>In the earlier posts, we saw how to set up the Azure Bastion service and how to connect to VMs using this service. In this post, we will see what ports are involved and on which side to allow this communication. That is which ports are involved in the outbound communication between the target VMs and Bastion host and which ports are involved in the inbound communication. You will need this information when dealing with any NSGs or Firewalls.</p>
+<description><![CDATA[<p>This blog is a part of the Azure Bastion series. You can find the Index of this series here: <a href="https://harvestingclouds.com/post/azure-bastion-series-index/" target="_blank">Azure Bastion Series</a>.</p>
+<p>In the earlier posts, we saw how to set up the Azure Bastion service and how to connect to VMs using this service. In this post, we will see what ports are involved and on which side to allow this communication. That is which ports are involved in the outbound communication between the target VMs and Bastion host and which ports are involved in the inbound communication. You will need this information when dealing with any NSGs or Firewalls.</p>
 <h3>Key Points</h3>
 <p>Azure Bastion is a fully managed platform PaaS service from Azure that is hardened internally to provide you with secure RDP/SSH connectivity. You don't need to apply any NSGs on the Azure Bastion subnet. Because Azure Bastion connects to your virtual machines over private IP, you can configure your NSGs to allow RDP/SSH from Azure Bastion only. This removes the hassle of managing NSGs each time you need to securely connect to your virtual machines.</p>
 <p><strong>Note</strong>: UDR is not supported on an Azure Bastion subnet. You don’t need to force traffic from an Azure Bastion subnet to Azure Firewall because the communication between Azure Bastion and your VMs is private. Therefore unless you have a complex deployment you will need to define the rules only at the NSG levels.</p>
@@ -102,7 +104,8 @@
 </item>
 <item>
 <title>Simplifying Azure Bastion - 6 Clipboard access and going Full screen</title>
-<description><![CDATA[<p>When working with Azure Bastion you connect to various VMs via the Bastion host. For Windows VMs, you connect via RDP and for Linux VMs you connect via SSH. In both scenarios, you will need to copy and paste the text from the local machine to the remote VM. In Bastion this is managed via the Clipboard manager on the Bastion host.</p>
+<description><![CDATA[<p>This blog is a part of the Azure Bastion series. You can find the Index of this series here: <a href="https://harvestingclouds.com/post/azure-bastion-series-index/" target="_blank">Azure Bastion Series</a>.</p>
+<p>When working with Azure Bastion you connect to various VMs via the Bastion host. For Windows VMs, you connect via RDP and for Linux VMs you connect via SSH. In both scenarios, you will need to copy and paste the text from the local machine to the remote VM. In Bastion this is managed via the Clipboard manager on the Bastion host.</p>
 <p>Before you start make sure that you know how to connect to the VMs and various caveats linked to that as we discussed in the earlier posts.</p>
 <h3>Clipboard Access</h3>
 <p>When trying to connect for the first time or trying to connect on a new browser, the Bastion service will request you to allow the Text and Image related clipboard access. I highly recommend allowing this. If you opt to not allow this access then later, you won't be able to share any clipboard with the session.</p>
@@ -121,7 +124,8 @@
 </item>
 <item>
 <title>Simplifying Azure Bastion - 5 Connecting to VM Scale Sets (VMSS) using Azure Bastion</title>
-<description><![CDATA[<p>In the previous two posts, we saw how to RDP to a Windows VM and how to SSH to a Linux VM. In this post, we will see how to connect to the instances of a Virtual Machine Scale Set (VMSS). Note that in the case of VMSS, Bastion will automatically decide whether to use RDP or SSH based on the operating system of the instance.</p>
+<description><![CDATA[<p>This blog is a part of the Azure Bastion series. You can find the Index of this series here: <a href="https://harvestingclouds.com/post/azure-bastion-series-index/" target="_blank">Azure Bastion Series</a>.</p>
+<p>In the previous two posts, we saw how to RDP to a Windows VM and how to SSH to a Linux VM. In this post, we will see how to connect to the instances of a Virtual Machine Scale Set (VMSS). Note that in the case of VMSS, Bastion will automatically decide whether to use RDP or SSH based on the operating system of the instance.</p>
 <p>To start, navigate to your Virtual Machine Scale Set (VMSS) and click on the Instances. Select the instance to which you want to connect.</p>
 <img src="/images/16171677706064059a3857c.png" alt="Selecting VMSS Instance">
 <p>To connect to the VM via Bastion, first, navigate to the Linux VM in Azure. Click on the Connect button. In the pop-out menu, click on the Bastion option.</p>
@@ -140,7 +144,8 @@
 </item>
 <item>
 <title>Simplifying Azure Bastion - 4 Connecting to Linux VMs using Azure Bastion over SSH</title>
-<description><![CDATA[<p>In the previous blog, we saw how to RDP to a Windows VM using Bastion. In this post, we will look at how to SSH to a Linux VM using the Bastion service.</p>
+<description><![CDATA[<p>This blog is a part of the Azure Bastion series. You can find the Index of this series here: <a href="https://harvestingclouds.com/post/azure-bastion-series-index/" target="_blank">Azure Bastion Series</a>.</p>
+<p>In the previous blog, we saw how to RDP to a Windows VM using Bastion. In this post, we will look at how to SSH to a Linux VM using the Bastion service.</p>
 <p>To connect to the VM via Bastion, first, navigate to the Linux VM in Azure. Click on the Connect button. In the pop-out menu, click on the Bastion option.</p>
 <img src="/images/16171654566063fc90b1e71.png" alt="Bastion Option">
 <p>Next, click on the Use Bastion button on the next screen.</p>
@@ -171,7 +176,8 @@
 </item>
 <item>
 <title>Simplifying Azure Bastion - 3 Connecting to Windows VMs using Azure Bastion</title>
-<description><![CDATA[<p>In the last post, we deployed the Azure Bastion service. In this post, we will look at how to connect to a Windows VM via RDP using the Bastion service.</p>
+<description><![CDATA[<p>This blog is a part of the Azure Bastion series. You can find the Index of this series here: <a href="https://harvestingclouds.com/post/azure-bastion-series-index/" target="_blank">Azure Bastion Series</a>.</p>
+<p>In the last post, we deployed the Azure Bastion service. In this post, we will look at how to connect to a Windows VM via RDP using the Bastion service.</p>
 <h3>Connecting to the Windows VM via RDP</h3>
 <p>To start an RDP connection to a Windows host, navigate to the virtual machine that you want to connect to. Click on the Connect button. In the pop-out option, select the Bastion option. Click on the &quot;Use Bastion&quot; button on the next screen.</p>
 <img src="/images/16171549706063d39a0fac1.png" alt="Option to connect via Bastion">
@@ -197,7 +203,8 @@
 </item>
 <item>
 <title>Simplifying Azure Bastion - 2 Create an Azure Bastion Host</title>
-<description><![CDATA[<p>In the previous post, we looked at what the Azure Bastion service is. We discuss its architecture, how it works, key benefits, pricing, etc. In this post, we will look at how to create the Azure Bastion service in the Azure portal.</p>
+<description><![CDATA[<p>This blog is a part of the Azure Bastion series. You can find the Index of this series here: <a href="https://harvestingclouds.com/post/azure-bastion-series-index/" target="_blank">Azure Bastion Series</a>.</p>
+<p>In the previous post, we looked at what the Azure Bastion service is. We discuss its architecture, how it works, key benefits, pricing, etc. In this post, we will look at how to create the Azure Bastion service in the Azure portal.</p>
 <p>As we noted in the previous post, the Azure Bastion host is linked to a particular virtual network. In this post, when we will perform the deployment, you will notice that the deployment will be done related to a particular virtual network that we will need to select. This should be the virtual network into which your virtual machines are also deployed which you want to RDP or SSH into via the Azure Bastion service.</p>
 <h3>Pre-requisites</h3>
 <p>Before you start setting up the Azure Bastion host, you need to have a subnet in your Virtual network where you are deploying it.</p>
@@ -231,7 +238,8 @@
 </item>
 <item>
 <title>Simplifying Azure Bastion - 1 What is Azure Bastion</title>
-<description><![CDATA[<h3>1. Details about Azure Bastion</h3>
+<description><![CDATA[<p>This blog is a part of the Azure Bastion series. You can find the Index of this series here: <a href="https://harvestingclouds.com/post/azure-bastion-series-index/" target="_blank">Azure Bastion Series</a>.</p>
+<h3>1. Details about Azure Bastion</h3>
 <p>Azure Bastion is a fully platform-managed PaaS service that provides RDP/SSH over TLS i.e. port 443 to all the VMs in the network. Think of this as a managed Jump Box or Jump Server service provided by Microsoft. The service is deployed via a managed host into your virtual network. This host is like a fully managed Jump box and is kept up to date by Microsoft. </p>
 <p>Note that you will need to deploy one host for each of your virtual networks. Using one host, you will be able to connect to all the VMs in the same virtual network. The Bastion host needs a Public IP address. All the rest of the VMs don't need any public IP address.</p>
 <p>Here are key points about Azure Bastion:</p>
