@@ -6,6 +6,94 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Windows Admin Center in the Azure portal - Under the hood</title>
+<description><![CDATA[<p>In the previous post, we looked at how to set up the Windows Admin Center. In this post, we will take a look at what the setup performed under the hood.</p>
+<p>There are various actions that are performed when installing the Windows Admin Center in the Azure portal. The primary actions are:</p>
+<ul>
+<li>Updating the NSG (Network Security Group) for the VM to open inbound and outbound traffic</li>
+<li>Installation of the relevant extension</li>
+</ul>
+<p>Let's look at these in detail.</p>
+<img src="/images/1647382583623110376c860.png" alt="Installation Notifications">
+<h2>Extension Added</h2>
+<p>The setup installs the extension for the Admin Center as shown below. The <strong>name</strong> of the extension is &quot;AdminCenter and the <strong>type</strong> of the extension is &quot;Microsoft.AdminCenter.AdminCenter&quot;. Make sure that the status is set to &quot;Provisioning succeeded&quot;. If not, then you won't be able to connect to the Windows Admin Center.</p>
+<img src="/images/16473828796231115f03049.png" alt="Extension for Admin Center">
+<h2>Outbound rule added in the NSG</h2>
+<p>Next, navigate to the NSG of the VM and look at the outbound rules. You will find that the setup added an outbound rule allowing the TCP traffic on port 443 i.e. HTTPS to the Service Tag for Windows Admin Center. The priority is set to the smallest i.e. 100 so that this rule will be evaluated first.</p>
+<img src="/images/1647383471623113afbfbd7.png" alt="Outbound rule">
+<h2>Inbound rule added in the NSG</h2>
+<p>Next, navigate to the NSG of the VM and look at the inbound rules. If you selected, the setup opened the management port e.g. 6516 for Windows Admin Center connectivity to the VM for any protocol, any source, and any destination. The priority is set to the smallest i.e. 100 so that this rule will be evaluated first.</p>
+<p>NOTE: This is only good for testing. In a production scenario, you should either restrict this rule to a particular IP address or make sure you have connectivity to the virtual network where the VM is deployed.</p>
+<img src="/images/1647383498623113ca4332d.png" alt="Inbound rule">
+<p>Now that we know how it works, in the next post, we will start working with the Windows Admin Center to manage our servers.</p>]]></description>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-under-the-hood</link>
+<pubDate>Mon, 28 Feb 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Windows Admin Center in the Azure portal - Setting it up</title>
+<description><![CDATA[<p>In the previous blog, we talked about what is Windows Admin Center. In this blog, we will look at setting it up in the Azure portal.</p>
+<h2>Setup</h2>
+<p>The setup for Windows Admin Center is very easy and most of the stuff is automated for you. Just navigate to the VM after ensuring that it meets the pre-requisites (as detailed in the previous blog). It can only be from one of these OS: Windows Server 2016, Windows Server 2019 or Windows Server 2022 and needs to have at least 3 GiB of memory. Right now it is available only in the Azure public cloud.</p>
+<p>Follow these steps to set it up:</p>
+<ol>
+<li>Under settings, navigate to the option for &quot;Windows Admin Center&quot; as shown below.</li>
+<li>Select the Inbound port for connectivity to the Windows Admin Center. Also, select the first check box for opening inbound connectivity to this port. <strong>NOTE</strong>: This is only required if you don't have connectivity to the virtual network of the VM. Select the second check box to open the outbound connectivity for Windows Admin Center to install.</li>
+<li>Once selections are made, click on the Install button.</li>
+</ol>
+<img src="/images/164738159262310c58a433d.png" alt="Windows Admin Center Setup">
+<p>That's all there is to the setup. Next, we will see what it does under the hood and how to connect to and work with the Windows Admin Center.</p>]]></description>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-setting-it-up</link>
+<pubDate>Sat, 26 Feb 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Windows Admin Center in the Azure portal - Easiest Server Management</title>
+<description><![CDATA[<p>Performing administrative tasks on Windows servers is one of the main activities in the day-to-day life of a system admin. If you are managing Azure infrastructure and also performing server management then you need to go to the Azure portal daily and also need to log into the VMs from time to time. What if you can perform both activities from just one area without the need to log into the VM. This is where the <strong>Windows Admin Center</strong> comes into the picture.</p>
+<p><strong>Windows Admin Center</strong> is now available directly in the Azure portal for Windows server VMs. It helps you manage various aspects of the server without requiring you to log into the VM itself via RDP (remote desktop) or remote into it via PowerShell.</p>
+<h2>Functionality support</h2>
+<p>At the time of writing of this post, the below functionality is supported:</p>
+<ul>
+<li>Certificates</li>
+<li>Devices</li>
+<li>Events</li>
+<li>Files and file sharing</li>
+<li>Firewall</li>
+<li>Installed apps</li>
+<li>Local users and groups</li>
+<li>Performance Monitor</li>
+<li>PowerShell</li>
+<li>Processes</li>
+<li>Registry</li>
+<li>Remote Desktop</li>
+<li>Roles and features</li>
+<li>Scheduled tasks</li>
+<li>Services</li>
+<li>Storage</li>
+<li>Updates</li>
+</ul>
+<h2>Pre-requisities</h2>
+<p>To be able to install the Windows Admin Center in Azure, you need to ensure the following:</p>
+<ul>
+<li>The OS of the VM should be Windows Server 2016, Windows Server 2019, or Windows Server 2022</li>
+<li>At least 3 GiB of memory</li>
+<li>Be in any region of an Azure public cloud (it's not supported in Azure China, Azure Government, or other non-public clouds)</li>
+</ul>
+<p>There are also <strong>networking requirements</strong> to allow the traffic:</p>
+<ul>
+<li>Outbound internet access or an outbound port rule allowing HTTPS traffic to the Windows Admin Center service tag</li>
+<li>An inbound port rule if using a public IP address to connect to the VM (not recommended)</li>
+</ul>
+<p>Note that the inbound rule is only required when using the Public IP address. If you are connected to the virtual network and have connectivity to the VM then the inbound rule is not required. These rules are auto-created when enabling the Windows Admin Center.</p>
+<h2>Requirements for connecting VM</h2>
+<p>The VM or laptop you will use to connect to the Windows Admin Center (via Azure portal), also has a couple of requirements:</p>
+<ul>
+<li>You should be using a modern browser. Officially supported browsers are Edge and Chrome.</li>
+<li>Either connectivity via the Public IP or access to the virtual network that's connected to the VM. The latter is the recommended and more secure approach.</li>
+</ul>
+<p>In the next post, we will set it up and will also take a look under the hood.</p>]]></description>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-easiest-server-management</link>
+<pubDate>Fri, 25 Feb 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Bastion Series - Index</title>
 <description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Bastion service</strong>.</p>
 <p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
@@ -210,7 +298,7 @@
 <p>Before you start setting up the Azure Bastion host, you need to have a subnet in your Virtual network where you are deploying it.</p>
 <ol>
 <li>The subnet must be named <strong>AzureBastionSubnet</strong>.</li>
-<li>The subnet must be at least <strong>/27 or larger</strong>.</li>
+<li>The subnet must be at least <strong>/26 or larger</strong>.</li>
 </ol>
 <p>In order to make a connection, the following <strong>roles</strong> are required:</p>
 <ol>
