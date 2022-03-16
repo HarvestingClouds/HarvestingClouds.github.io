@@ -471,8 +471,82 @@ catch
 <pubDate>Sat, 05 Feb 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Enhanced Monitoring Agent for SAP workloads in Azure - Fix for a common issue</title>
+<description><![CDATA[<p>If you have followed our previous blog to validate and troubleshoot the SAP enhanced monitoring extension in Azure and are facing an issue where the extension gets installed and shows as provisioning succeeded but still doesn't integrate with the SAP system. When you run <em>dump ccm</em> for the SAP OS Collector you get the status as &quot;False&quot; for the &quot;Enhanced Monitoring Access&quot;. </p>
+<h2>Easy fix</h2>
+<p>The easy fix for this is to <strong>restart the SAP Host Agent</strong>.  Just run the below commands (as a user with root authorization) to restart the saphostexec process:</p>
+<pre><code>./saphostexec -restart </code></pre>
+<p>Now validate the integration status again by running the below commands:</p>
+<pre><code>cd /usr/sap/hostctrl/exe
+./saposcol -d
+dump ccm</code></pre>
+<p>The status should now be set to True for the &quot;Enhanced Monitoring Access&quot;. </p>
+<h2>Problem with the Easy Fix</h2>
+<p>The problem that you may encounter is that when you reboot the VM, there are chances that the status can again switch back to False. The potential reason for this is that the SAP OS Collector becomes ready first before the Azure Enhanced Monitoring agent becomes ready. This causes the issue as the SAP OS Collector reports that the extension is not available even though it is installed. This is why restarting the host agent fixes the issue temporarily. </p>
+<h2>Permanent Resolution</h2>
+<p>The recommendation is to increase the Azure Extension wait time to <strong>6 minutes</strong>. To set the wait time to 6 minutes, the below environment is needed to be set.</p>
+<pre><code>SAPOSCOL_AZURE_EXTENSION_WAITTIME=360</code></pre>
+<p>Run the below command to set the environment variable:</p>
+<pre><code>echo "export SAPOSCOL_AZURE_EXTENSION_WAITTIME=360" &gt;&gt; /etc/profile</code></pre>
+<p>This would update the system-wide profile.</p>
+<p>Let us know if this fixed your issue. If you found alternate fixes, please post those in the comments below.</p>]]></description>
+<link>https://HarvestingClouds.com/post/enhanced-monitoring-agent-for-sap-workloads-in-azure-fix-for-a-common-issue</link>
+<pubDate>Thu, 20 Jan 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Troubleshooting & Validating - Enhanced Monitoring Agent for SAP workloads in Azure</title>
+<description><![CDATA[<p>In the previous blog post, we saw how to install the enhanced monitoring extension for SAP workloads in Azure. We looked at various caveats linked to the installation and pre-requisites etc. You can view that post here: <a href="https://harvestingclouds.com/post/installing-enhanced-monitoring-agent-for-sap-workloads-in-azure/" target="_blank">Installing Enhanced Monitoring Agent for SAP workloads in Azure</a>. In this post, we are going to troubleshoot the extension-related common issues for SAP workloads in Azure.</p>
+<h2>1. Checking the pre-requisites</h2>
+<p>As discussed in the previous post, ensure that the below pre-requisites are in place before you start:</p>
+<ul>
+<li>This extension needs internet access to the URL &quot;management.azure.com&quot;. If this is not set up or you have locked the access, please ensure that you open this access in your environment. </li>
+<li>If you have already had an older version of the extension already installed, make sure to uninstall the older VM extension before switching between the standard and the new version of the Azure Extension for SAP.</li>
+<li>Make sure you are using SAP Host Agent 7.21 PL 47 or higher.</li>
+<li>You have SUSE SLES 15 or higher. Or you have Red Hat Enterprise Linux 8.1 or higher.</li>
+<li>You are using Azure Ultra Disk or Standard Managed Disks for your SAP workloads</li>
+</ul>
+<h2>2. Validating the extension is installed successfully or not</h2>
+<p>Run the below command to search for the enhanced monitoring extension-related files. </p>
+<pre><code>ls -al /var/lib/waagent/ | grep AzureCAT</code></pre>
+<p>There should be 3 processing that should be installed:</p>
+<ul>
+<li>Microsoft.AzureCAT.AzureEnahncedMonitoring.MonitorX64Linux_xxxxxx.zip</li>
+<li>Microsoft.AzureCAT.AzureEnahncedMonitoring.MonitorX64Linux.xx.manifest.xml</li>
+<li>Microsoft.AzureCAT.AzureEnahncedMonitoring.MonitorX64Linux-version</li>
+</ul>
+<p>The output should look something like the below:</p>
+<img src="/images/16474607316232417b546d3.png" alt="Azure Enahnced Monitoring Files">
+<h2>3. Validating the extension process is up and running or not</h2>
+<p>Command (requires sudo):</p>
+<pre><code>ps -ax | grep AzureCAT</code></pre>
+<p>The output should have an entry for the relevant process running as shown below:</p>
+<img src="/images/16474609136232423169a20.png" alt="Azure CAT Process">
+<h2>4. Check Enhanced Monitoring status in SAP OS Collector</h2>
+<p>Run the below commands (may required sudo access):</p>
+<pre><code>cd /usr/sap/hostctrl/exe
+./saposcol -d
+dump ccm</code></pre>
+<p>Scroll down and check the output:
+<strong>Required result</strong>: The Enhanced Monitoring Access should have TRUE in front of it and the output will contain various metrics. If not then keep following the post for troubleshooting tips.</p>
+<img src="/images/1647461596623244dc5deb0.png" alt="Enhanced Monitoring Access - Correct Configs">
+<h2>5. Validating the Extension is sending metrics</h2>
+<p>Validate the extension by running the below command from inside the SAP VM:</p>
+<pre><code>curl http://127.0.0.1:11812/azure4sap/metrics</code></pre>
+<p>This should output various metrics. If it doesn't then the extension is not working and you need to troubleshoot further.</p>
+<h2>6. Validating and Fixing the Extension</h2>
+<p>This step resolves most of the issues. Test the extension by just running the below cmdlet.</p>
+<pre><code>Test-AzVMAEMExtension -ResourceGroupName "Your-Resource-Group-Name" -VMName "Your-VM-Name"</code></pre>
+<p>The PowerShell cmdlet will deploy/redeploy the extension and fix any configuration issues. You might have to wait up to one hour until all counters start showing up.</p>
+<p><strong>Reboot</strong> the VM once and validate the extension again using the previous steps.</p>
+<h2>References</h2>
+<p>Troubleshooting SAP note: 2191498 - SAP on Linux with Azure: Enhanced Monitoring - SAP ONE Support Launchpad.</p>
+<p>Link: <a href="https://launchpad.support.sap.com/#/notes/2191498" target="_blank"><a href="https://launchpad.support.sap.com/#/notes/2191498">https://launchpad.support.sap.com/#/notes/2191498</a></a></p>]]></description>
+<link>https://HarvestingClouds.com/post/troubleshooting-validating-enhanced-monitoring-agent-for-sap-workloads-in-azure</link>
+<pubDate>Sun, 16 Jan 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Installing Enhanced Monitoring Agent for Multiple SAP workloads in Azure - Code Sample</title>
-<description><![CDATA[<p>In the previous blog post, we saw how to install the enhanced monitoring extension for SAP workloads in Azure. We looked at various caveats linked to the installation and pre-requisites etc. In this post, I want to share the script sample for installing the extension for multiple VMs in a single go.</p>
+<description><![CDATA[<p>In the previous blog post, we saw how to install the enhanced monitoring extension for SAP workloads in Azure. We looked at various caveats linked to the installation and pre-requisites etc. You can view that post here: <a href="https://harvestingclouds.com/post/installing-enhanced-monitoring-agent-for-sap-workloads-in-azure/" target="_blank">Installing Enhanced Monitoring Agent for SAP workloads in Azure</a>. In this post, I want to share the script sample for installing the extension for multiple VMs in a single go.</p>
 <h2>Latest Sample Location on GitHub</h2>
 <p>You can find the latest script sample in my GitHub repository here: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Install-SAPMonitoringExtensionInLoop" target="_blank"><a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Install-SAPMonitoringExtensionInLoop">https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Install-SAPMonitoringExtensionInLoop</a></a></p>
 <p>The raw version can be found directly here: <a href="https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/master/Scripts/Install-SAPMonitoringExtensionInLoop/Install-SAPMonitoringExtensionInLoop.ps1" target="_blank"><a href="https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/master/Scripts/Install-SAPMonitoringExtensionInLoop/Install-SAPMonitoringExtensionInLoop.ps1">https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/master/Scripts/Install-SAPMonitoringExtensionInLoop/Install-SAPMonitoringExtensionInLoop.ps1</a></a></p>
@@ -562,7 +636,7 @@ foreach($currentRG in $allSapRGs)
 <pubDate>Fri, 14 Jan 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Installing Enhanced Monitoring Agent for SAP workloads in Azure</title>
+<title>Enhanced Monitoring Agent for SAP workloads in Azure - Details and Installation </title>
 <description><![CDATA[<p>For any SAP deployment in the Microsoft Azure, you want to deploy the enhanced Azure Extension for SAP, which is available in the Azure Extension Repository in the global Azure datacenters. The new extension was built to be able to monitor all Azure resources of a virtual machine. It supports additional storage options, for example, Standard Disks and operating systems.</p>
 <h2>Pre-requisites</h2>
 <p>The pre-requisites are as follows:</p>
@@ -585,18 +659,20 @@ Set-AzContext -SubscriptionName &lt;subscription name&gt;
 #Install the Azure Enhanced Monitoring Extension
 Set-AzVMAEMExtension -ResourceGroupName &lt;resource group name&gt; -VMName &lt;virtual machine name&gt; -InstallNewExtension</code></pre>
 <h2>Installing on multiple VMs</h2>
-<p>You can loop on the above script and can install the Monitoring extension on multiple VMs. I will also provide a code sample to do this easily and will post a blog about the same.</p>
+<p>You can loop on the above script and can install the Monitoring extension on multiple VMs. I will also provide a code sample to do this easily and will post a blog about the same. You can view that post and the sample code here: <a href="https://harvestingclouds.com/post/installing-enhanced-monitoring-agent-for-multiple-sap-workloads-in-azure-code-sample/" target="_blank">Installing Enhanced Monitoring Agent for Multiple SAP workloads in Azure - Code Sample</a>.</p>
 <h2>Testing the extension</h2>
 <p>You can test the extension by running the below PowerShell cmdlet.</p>
 <pre><code>Test-AzVMAEMExtension -ResourceGroupName "Your-Resource-Group-Name" -VMName "Your-VM-Name"</code></pre>
 <h2>Supportability for this Extension</h2>
 <p>Support for the Azure Extension for SAP is provided through SAP support channels. If you need assistance with the Azure VM extension for SAP solutions, please open a support case with SAP Support. Microsoft support cases are generally closed for this reason. We also look at troubleshooting this extension in an upcoming blog.</p>
-<p>References: </p>
+<h2>Details on the Metrics provided</h2>
+<p>The detail of the metrics provided is documented in the SAP Note 2178632. You can find this note located here: <a href="https://launchpad.support.sap.com/#/notes/2178632" target="_blank">2178632 - Key Monitoring Metrics for SAP on Microsoft Azure - SAP ONE Support Launchpad</a>.</p>
+<p><strong>Other References</strong>: </p>
 <ul>
 <li><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/vm-extension-for-sap-new" target="_blank">New Version of Azure VM extension for SAP solutions</a></li>
 <li><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/vm-extension-for-sap" target="_blank">Implement the Azure VM extension for SAP solutions</a></li>
 </ul>]]></description>
-<link>https://HarvestingClouds.com/post/installing-enhanced-monitoring-agent-for-sap-workloads-in-azure</link>
+<link>https://HarvestingClouds.com/post/enhanced-monitoring-agent-for-sap-workloads-in-azure-details-and-installation</link>
 <pubDate>Wed, 12 Jan 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
