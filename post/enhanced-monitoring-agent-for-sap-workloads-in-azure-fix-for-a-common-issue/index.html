@@ -108,8 +108,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <hr>
 
                 <p class="post-content"><p>If you have followed our previous blog to validate and troubleshoot the SAP enhanced monitoring extension in Azure and are facing an issue where the extension gets installed and shows as provisioning succeeded but still doesn't integrate with the SAP system. When you run <em>dump ccm</em> for the SAP OS Collector you get the status as &quot;False&quot; for the &quot;Enhanced Monitoring Access&quot;. </p>
+<p>If you want to review the previous troubleshooting and validation blog you can visit the same here: <a href="https://harvestingclouds.com/post/troubleshooting-validating-enhanced-monitoring-agent-for-sap-workloads-in-azure/" target="_blank">Troubleshooting &amp; Validating - Enhanced Monitoring Agent for SAP workloads in Azure</a></p>
 <h2>Easy fix</h2>
-<p>The easy fix for this is to <strong>restart the SAP Host Agent</strong>.  Just run the below commands (as a user with root authorization) to restart the saphostexec process:</p>
+<p>The easy fix for this is to <strong>restart the SAP Host Agent</strong>.  Just run the below commands (as a user with root authorization) to restart the <strong><em>saphostexec</em></strong> process:</p>
 <pre><code>./saphostexec -restart </code></pre>
 <p>Now validate the integration status again by running the below commands:</p>
 <pre><code>cd /usr/sap/hostctrl/exe
