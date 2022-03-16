@@ -6,7 +6,312 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
-<title>Windows Admin Center in the Azure portal - Under the hood</title>
+<title>Windows Admin Center in the Azure portal - 11 Automating deployment</title>
+<description><![CDATA[<p>In this post, we will look at how to automate the deployment and how to extend that to perform deployment on multiple VMs at once. You can automated via different ways including ARM templates and PowerShell.</p>
+<h2>Automating with ARM Template</h2>
+<p>When using ARM Templates, all you need to do is to deploy a resource of type &quot;<em>Microsoft.Compute/virtualMachines/extensions</em>&quot;. The extension name that you are deploying is &quot;<strong>AdminCenter</strong>&quot; and the publisher is &quot;<strong>Microsoft.AdminCenter</strong>&quot;. Extension type is also &quot;<strong>AdminCenter</strong>&quot;.</p>
+<p>The latest template can be found here: <a href="https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/azure/manage-vm#automate-windows-admin-center-deployment-using-an-arm-template" target="_blank">Automate Windows Admin Center deployment using an ARM template</a></p>
+<h2>Automating with PowerShell</h2>
+<p>With PowerShell you are performing the below 3 operations to install the extension:</p>
+<ol>
+<li>Getting the Network Security Group and adding the outbound rule to allow HTTPS traffic on port 443 to the WindowsAdminCenter Service Tag</li>
+<li>Getting the Network Security Group and adding the inbound rule to allow traffic on the Windows Admin Center management port for allowed (or all) IP addresses. You should either not have this rule in case of connectivity on a private IP address. Or lock it down to specific IPs in case of connectivity via Public IP addresses.</li>
+<li>Installing the &quot;<strong>AdminCenter</strong>&quot; extension using the &quot;<strong>Set-AzVMExtension</strong>&quot; PowerShell cmdlet.</li>
+</ol>
+<p>Use the below PowerShell script from official Microsoft documentation:</p>
+<pre><code>$resourceGroupName = &lt;get VM's resource group name&gt;
+$vmLocation = &lt;get VM location&gt;
+$vmName = &lt;get VM name&gt;
+$vmNsg = &lt;get VM's primary nsg&gt;
+$salt = &lt;unique string used for hashing&gt;
+
+$wacPort = "6516"
+$Settings = @{"port" = $wacPort; "salt" = $salt}
+
+# Open outbound port rule for WAC service
+Get-AzNetworkSecurityGroup -Name $vmNsg -ResourceGroupName $resourceGroupName | Add-AzNetworkSecurityRuleConfig -Name "PortForWACService" -Access "Allow" -Direction "Outbound" -SourceAddressPrefix "VirtualNetwork" -SourcePortRange "*" -DestinationAddressPrefix "WindowsAdminCenter" -DestinationPortRange "443" -Priority 100 -Protocol Tcp | Set-AzNetworkSecurityGroup
+
+# Open inbound port rule on VM to be able to connect to WAC
+Get-AzNetworkSecurityGroup -Name $vmNsg -ResourceGroupName $resourceGroupName | Add-AzNetworkSecurityRuleConfig -Name "PortForWAC" -Access "Allow" -Direction "Inbound" -SourceAddressPrefix "*" -SourcePortRange "*" -DestinationAddressPrefix "*" -DestinationPortRange $wacPort -Priority 100 -Protocol Tcp | Set-AzNetworkSecurityGroup
+
+# Install VM extension
+Set-AzVMExtension -ResourceGroupName $resourceGroupName -Location $vmLocation -VMName $vmName -Name "AdminCenter" -Publisher "Microsoft.AdminCenter" -Type "AdminCenter" -TypeHandlerVersion "0.0" -settings $Settings</code></pre>
+<h2>Extending PowerShell to deploy on multiple VMs</h2>
+<p>You can extend the PowerShell or the ARM Template to deploy the Windows Admin Center to multiple VMs. You can even leverage Azure DevOps pipelines to deploy these across different environments. I provide the below sample to deploy via PowerShell on multiple VMs in Resource Groups that are identified via a wildcard search. You can modify this script as per your requirements. </p>
+<p>You can find the complete up to date script at GitHub here: <a href="https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/master/Scripts/Enable-WindowsAdminCenter/Enable-WindowsAdminCenter.ps1" target="_blank"><a href="https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/master/Scripts/Enable-WindowsAdminCenter/Enable-WindowsAdminCenter.ps1">https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/master/Scripts/Enable-WindowsAdminCenter/Enable-WindowsAdminCenter.ps1</a></a></p>
+<pre><code>#Author: Aman Sharma @ http://HarvestingClouds.com
+
+#Variables
+$subscriptionName = "Your Subscription Name"
+$salt = "&lt;unique string used for hashing&gt;"
+$wacPort = "6516"
+$Settings = @{"port" = $wacPort; "salt" = $salt}
+
+try
+{
+    #Setting the Azure context
+    $env = Get-AzEnvironment -Name "AzureCloud"
+    Connect-AzAccount -Environment $env
+    Set-AzContext -SubscriptionName $subscriptionName
+
+    #Selecting all RGs that begins with the text. Notice the wildcard in the name
+    #Update this as per your requirements
+    $allRequiredRGs = Get-AzResourceGroup -Name "RG-*"
+
+    #Iterating on the Resource Groups
+    foreach($currentRG in $allRequiredRGs)
+    {
+        #Fetch all VMs in the current Resource Group
+        $currentRGName = $currentRG.ResourceGroupName
+        $VMs = Get-AzVM -ResourceGroupName $currentRGName
+
+        #Iterating on all the VMs
+        foreach ($vm in $VMs) 
+        {
+            $vmLocation = $vm.Location
+            $vmName = $vm.Name
+
+            #Finding VM's NSG dynamically
+            $vmNsgId = (Get-AzNetworkInterface -ResourceId $vm.NetworkProfile.NetworkInterfaces.Id).NetworkSecurityGroup.Id
+            $vmNsg = Get-AzResource -ResourceId $vmNsgId
+            $vmNsgName = $vmNsg.Name
+
+            # Open outbound port rule for WAC service
+            $vmNsg | Add-AzNetworkSecurityRuleConfig -Name "PortForWACService" -Access "Allow" -Direction "Outbound" -SourceAddressPrefix "VirtualNetwork" -SourcePortRange "*" -DestinationAddressPrefix "WindowsAdminCenter" -DestinationPortRange "443" -Priority 100 -Protocol Tcp | Set-AzNetworkSecurityGroup
+
+            # Install VM extension
+            Set-AzVMExtension -ResourceGroupName $currentRGName -Location $vmLocation -VMName $vmName -Name "AdminCenter" -Publisher "Microsoft.AdminCenter" -Type "AdminCenter" -TypeHandlerVersion "0.0" -settings $Settings
+
+            # Open inbound port rule on VM to be able to connect to WAC
+            $vmNsg | Add-AzNetworkSecurityRuleConfig -Name "PortForWAC" -Access "Allow" -Direction "Inbound" -SourceAddressPrefix "*" -SourcePortRange "*" -DestinationAddressPrefix "*" -DestinationPortRange $wacPort -Priority 100 -Protocol Tcp | Set-AzNetworkSecurityGroup
+
+        }
+
+    }
+}
+catch 
+{
+    Write-Host -ForegroundColor Red "Error while installing extension."
+    $Error[0]
+    Write-Host -ForegroundColor Red "Error occured at:"
+    $Error[0].InvocationInfo.PositionMessage
+}</code></pre>]]></description>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-11-automating-deployment</link>
+<pubDate>Tue, 08 Mar 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Windows Admin Center in the Azure portal - 10 Troubleshooting common issues</title>
+<description><![CDATA[<p>In this post, we will look at troubleshooting common issues with the Windows Admin Center.</p>
+<h2>1. Dealing with the Security prompt while connecting to the Windows Admin Center</h2>
+<p>If you get a security prompt while connecting to the Windows Admin Center, then click on the &quot;Advanced&quot; button and then click on the link as shown below to continue.</p>
+<img src="/images/1647387071623121bfddaae.png" alt="Security Prompt">
+<p><strong>PRO TIP</strong>: If you are not able to see the link or the complete text after clicking on the &quot;Advanced&quot; button, press F11 to enter the full-screen mode. This should make the entire text and the link visible. Another way is to set the zoom level to a low number to ensure the whole text is visible.</p>
+<h2>2. Tools Not loading or Not able to connect</h2>
+<p>If when trying to access the tools you keep getting the below spinning circle. </p>
+<img src="/images/16474124956231850fab392.png" alt="Spinning wheel">
+<p>And then it keeps turning into &quot;<strong>couldn't load</strong>&quot; errors.</p>
+<img src="/images/1647412504623185187a091.png" alt="Couldn't load error">
+<h3>Solution</h3>
+<p>Navigate to other tools and then back to the required tool to check if the issue is not limited to the required tool or is across the board for all other tools. If this issue is prevalent with all the tools then try the following steps.</p>
+<ul>
+<li><strong>Step #1</strong> - Try refreshing the browser and connecting again to the Windows Admin Center. I know it sounds basic but this saves you from unnecessary troubleshooting.</li>
+<li><strong>Step #2</strong> - Make sure that the VM is in the up and running state. We have seen this issue multiple times in our environment.</li>
+<li><strong>Step #3</strong> - Make sure that the NSG rules have not been altered and that the network connectivity is still there. If you are connecting from a different location than before, make sure that the inbound connectivity is allowed from your new location to the VM. Network connectivity is another big reason for connectivity failures.</li>
+<li><strong>Step #4</strong> - Make sure that the Windows Admin Center service is running on your VM. RDP to the VM and check if ServerManagementGateway / Windows Admin Center service is in the Running state or not.</li>
+<li><strong>Step #5</strong> - Make sure you are connecting from Microsoft Edge or Chrome and that you are not using incognito mode.</li>
+</ul>
+<p>In most cases, step #2 or #3 will help you resolve the connectivity issues.</p>
+<h2>3. Windows Admin Center extension not installing</h2>
+<p>The most usual reason for this error is that your VM doesn't meet the requirements for the Windows Admin Center. Make sure that you are running the Windows Server 2016, 2019 or 2022 as the operating system on the VM and that you have a minimum of 3 GiB memory.</p>
+<p>Review all the requirements here: <a href="https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/azure/manage-vm#requirements" target="_blank">Windows Admin Center requirements</a></p>
+<p>The networking restrictions in your environment are another main cause of causing installation issues. If there are User Defined Routes (via Route Tables) and an Azure Firewall or any Network Virtual Appliance that may cause unsupported configuration.</p>]]></description>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-10-troubleshooting-common-issues</link>
+<pubDate>Mon, 07 Mar 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Windows Admin Center in the Azure portal - 9 Securing inbound connectivity</title>
+<description><![CDATA[<h2>The security concern</h2>
+<p>As we saw in one of the previous posts, when setting up Windows Admin Center it opens the inbound connectivity on the port specified for &quot;Any&quot; Source. This is shown in the Inbound security rules of the Network Security Group (NSG) for the VM.</p>
+<img src="/images/1647383498623113ca4332d.png" alt="Inbound Security Rule">
+<p>This is a <strong>potential security risk</strong> as it leaves the system vulnerable and the port open for access for all attackers on the public internet.</p>
+<h2>The Solution #1</h2>
+<p>The solution is very simple. The solution is to lock it down to only a specific IP address or a range of IP addresses. This limits which IP addresses can access Windows Admin Center on the VM. </p>
+<p>To be able to do this, you will need to update the Inbound rule on the Network Security Group as shown above and then update the &quot;<strong>Source</strong>&quot; for the rule. Instead of &quot;<strong>Any</strong>&quot; change that to the public IP address of the VM from where you are connecting to the Windows Admin Center (within Azure portal). If you know a range of IPs that you will be using then you can specify the range instead.</p>
+<h2>How to find your current Public IP address</h2>
+<p>Your ISP will provide you with a dynamic public IP address (unless you purchased a static public IP). To be able to find your public IP address just search for &quot;what is my IP address&quot; and you will find many third-party websites that will show you your current public IP address and possible geographic location. One such website is provided below, just as a reference:</p>
+<p><a href="https://www.whatismyip.com/" target="_blank"><a href="https://www.whatismyip.com/">https://www.whatismyip.com/</a></a></p>
+<h2>The Solution #2</h2>
+<p>The second solution is to simply remove the inbound NSG rule and allow access only on the private IP address. This would mean that you would need to have connectivity to the VM's virtual network from where you are trying to access the Windows Admin Center on the VM (via Azure portal). </p>
+<p>This is a much more secure solution and ensures that there is no connectivity allowed from the public IP to the VM.</p>]]></description>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-9-securing-inbound-connectivity</link>
+<pubDate>Sun, 06 Mar 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Windows Admin Center in the Azure portal - 8 Caveats</title>
+<description><![CDATA[<p>In the previous posts, we looked at different aspects of the Windows Admin Center from setting it up, to configuring it, and using various tools in it. In this post, we will look at various caveats and know limitations of this product.</p>
+<h2>1. Usage with Virtual Appliances</h2>
+<p>Inbound connectivity being redirected by another service (i.e. Network Virtual Appliances, Azure Firewall, etc.) is not supported. You must have inbound connectivity from the Azure portal to one of the direct IP addresses of your VM on the port Windows Admin Center is installed. </p>
+<p>Network Virtual Appliance could be a third-party firewall like Palo Alto, Check Point, etc. Azure Firewall, a cloud-native network security service, is another solution that can exist between the communication. If via User Defined Routes (within Route Tables) or any other way the communication is not direct then the Windows Admin Center will not work. Hopefully, this restriction will be removed in near future.</p>
+<h2>2. Extending Windows Admin Center to Other VMs</h2>
+<p>Microsoft doesn't support extensions to Windows Admin Center in the Azure portal at the time of writing this post. If you manually installed Windows Admin Center in the VM to manage multiple systems, installing this VM extension reduces the functionality to managing just the VM in which the extension is installed. You will need to uninstall the extension to get back the functionality of managing multiple VMs at once.</p>
+<h2>3. Usage with Non-public cloud</h2>
+<p>Windows Admin Center is currently supported only on the Azure public cloud. It is not supported in Azure China, Azure Government, or other non-public clouds.</p>
+<h2>4. Supported Browsers/Apps</h2>
+<p>Windows Admin Center is currently supported only on the Microsoft Edge or Chrome browsers. Chrome Incognito mode isn't supported for now. Also, the Azure portal desktop app is not supported.</p>
+<p>Reference: <a href="https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/azure/manage-vm" target="_blank">Use Windows Admin Center in the Azure portal to manage a Windows Server VM</a></p>]]></description>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-8-caveats</link>
+<pubDate>Sat, 05 Mar 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Windows Admin Center in the Azure portal - 7 Various Tools - Part 2</title>
+<description><![CDATA[<p>In the previous post, we looked at the first 9 tools in the Windows Admin Center. In this post, we will explore more tools present in it. These tools are what provide server management functionality.</p>
+<h2>10. Processes</h2>
+<p>With Processes, you can view all the processes on the VM. You can also start a new process or end an existing one.</p>
+<img src="/images/1647400410623155dad04b6.png" alt="Processes">
+<h2>11. Registry</h2>
+<p>In the Registry tool, you can view the existing registries. You can also export or create a new registry.</p>
+<img src="/images/1647400418623155e2dc812.png" alt="Registry ">
+<h2>12. Remote Desktop</h2>
+<p>From the remote desktop, you can connect to the VM and perform VM operations (that you can't from the Windows admin center. First, you provide the credentials and connect to the VM.</p>
+<img src="/images/1647400433623155f19644a.png" alt="Remote Desktop - Connection Wizard">
+<p>Then, once you are connected you can perform operations on the VM, or disconnect. You also have the option to send the Ctrl+Alt+Del keyboard combination to the VM.</p>
+<img src="/images/1647400426623155ea7d2e6.png" alt="Remote Desktop - Connect Experience">
+<h2>13. Roles &amp; features</h2>
+<p>From roles and features, you can view current roles and features and also add/install new ones.</p>
+<img src="/images/1647401197623158ed1a8fa.png" alt="Roles & features">
+<h2>14. Scheduled tasks</h2>
+<p>With scheduled tasks, you can view the &quot;Task Scheduler Library&quot;. Here you can view all the existing tasks or you can create new tasks. You can also enable and disable existing tasks.</p>
+<img src="/images/1647401208623158f86de42.png" alt="Scheduled tasks">
+<h2>15. Security</h2>
+<p>Security is where you can access the Virus and threat protection. You can create or schedule a new scan and view the protection history. You can schedule daily or weekly scans here.</p>
+<img src="/images/16474012186231590256f12.png" alt="Security">
+<h2>16. Services</h2>
+<p>The Services tool is similar to the &quot;services.msc&quot; management tool on the VM. It lets you manage all the services. You can Start and Stop any service. You can also change different settings for a service like a startup mode, log-on account, recovery options, etc.</p>
+<img src="/images/16474012276231590b59444.png" alt="Services ">
+<h2>17. Storage</h2>
+<p>Storage tool is similar to disk management. You can view all the disks and volumes in the VM here. You can also create a new volume or initialize a disk here. Imagine you added or upgraded a disk in the Azure portal. You can then visit this tool and initialize that new disk and create a volume from the same.</p>
+<img src="/images/164740127162315937ae87f.png" alt="Storage ">
+<h2>18. Updates</h2>
+<p>Updates tool lets you manage the updates on the VM. You can view available updates and also trigger the installation of the same. You can also view the Update history.</p>
+<img src="/images/16474012786231593e78d56.png" alt="Updates ">
+<p>These are all the tools that are available in the Windows Admin Center today. The best way to learn about each is to play around and experiment with these tools on a demo VM.</p>
+<p>In the next post, we will look at some caveats with the Windows Admin Center.</p>]]></description>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-7-various-tools-part-2</link>
+<pubDate>Fri, 04 Mar 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Windows Admin Center in the Azure portal - 6 Various Tools - Part 1</title>
+<description><![CDATA[<p>In the previous post, we looked at various sections of the Windows Admin Center. In this post, we will explore the different tools present in it. These tools are what provide server management functionality. Without waiting let's jump right into it.</p>
+<h2>1. Certificates</h2>
+<p>The certificates section allows you to review and manage the certificates on the VM. It shows you how many have expired and how many are healthy. It also allows you to view various certificates and to import certificates into a particular store. You can also view certificate-related events.</p>
+<img src="/images/1647396946623148520f69b.png" alt="Certificates">
+<h2>2. Devices</h2>
+<p>The devices tool is basically your &quot;Device Manager&quot;. It lets you view and enable or disable devices. It also lets you update the driver for the selected device. You can view details regarding each device and it's driver e.g. driver date and version, etc.</p>
+<img src="/images/16473969626231486213bbc.png" alt="Devices">
+<h2>3. Events</h2>
+<p>The events tool is essentially your &quot;event viewer&quot;. It lets you view the following types of events:</p>
+<ol>
+<li>Administrative logs</li>
+<li>Windows logs</li>
+<li>Applications and services logs</li>
+</ol>
+<p>You can also export or clear the logs from here as well.</p>
+<img src="/images/16473969826231487688ad6.png" alt="Events">
+<h2>4. Files &amp; file sharing</h2>
+<p>In the Files and file sharing you can manage the files on the VM. With Files, you can browse to the files, rename these, create new folders, delete files, move these, upload files, etc. With file shares, you can view different file shares, create new shares, edit the settings of the shares, grant permissions, enable SMB encryption, etc.</p>
+<img src="/images/1647396994623148825677e.png" alt="Files & file sharing">
+<h2>5. Firewall</h2>
+<p>The firewall tool lets you manage the firewall on the VM. It lets you view the firewall status for the Domain, Private and Public areas. It also lets you view the inbound and outbound rules. You can also create new rules for the incoming and outgoing traffic here.</p>
+<img src="/images/1647397044623148b49ccb6.png" alt="Firewall">
+<h2>6. Installed apps</h2>
+<p>In the installed apps, you can view all the installed apps. You can also remove any app directly from here as well.</p>
+<img src="/images/1647397055623148bf03de1.png" alt="Installed apps">
+<h2>7. Local users &amp; groups</h2>
+<p>The tool for local users and groups you can manage all users and groups. For users, you can view current users, manage their memberships and create new local users. Under groups, you can view groups, add users to the existing groups, create new groups, delete existing groups, etc.</p>
+<img src="/images/164739748262314a6a3750f.png" alt="Local users & groups">
+<h2>8. Performance Monitor</h2>
+<p>In performance monitor, you need to create a workspace to view the performance counters. </p>
+<img src="/images/164739749362314a75563ea.png" alt="Performance Monitor">
+<p>You can view all the counters that you can locally on the laptop. You can save the settings once you have set these up for easy viewing next time.</p>
+<img src="/images/164739750362314a7f3cb2e.png" alt="Performance Monitor - Workspace">
+<h2>9. PowerShell</h2>
+<p>The PowerShell tool lets you connect to a PowerShell session as if you are logged into the VM. You can run all the PowerShell commands as if you are inside the VM.</p>
+<img src="/images/164739751462314a8aa4343.png" alt="PowerShell">
+<p>In the next post, we will continue looking at more tools within Windows Admin Center.</p>]]></description>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-6-various-tools-part-1</link>
+<pubDate>Thu, 03 Mar 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Windows Admin Center in the Azure portal - 5 Working with it</title>
+<description><![CDATA[<p>In the last post, we saw how to connect to the <strong>Windows Admin Center</strong>. In this post, we will explore it in detail. It helps you to manage the Windows Server directly from the Azure portal similar to the on-premises version of the Windows Admin Center. </p>
+<h2>Getting Familiar with the UI</h2>
+<p>Let's start by getting familiar with the User Interface (UI) of the Windows Admin Center.</p>
+<img src="/images/16473882546231265ee4848.png" alt="Windows Admin Center UI">
+<p>As you see above, the various parts of the Windows Admin Center are as below. Note that the line item corresponds to the number in the above screenshot.</p>
+<ol>
+<li>At the top you select the <strong>connection type</strong>. You have <strong>Server Manager</strong> selected. Other choices include Computer Management and Cluster Management. These choices are not relevant right now but will be helpful in the near future to manage the Computers and Clusters.</li>
+<li>The main page can be accessed from the <strong>Overview</strong> screen. This is the default screen that is presented when you open Windows Admin Center. We will discuss more on this in points #5 and #6 below.</li>
+<li>There are <strong>various tools</strong> in this section. Use the vertical scroll bar to view all of these tools.</li>
+<li>You can view different <strong>Settings on the VM</strong> from here.</li>
+<li>You can use the <strong>Connect</strong> option in the Overview page to either do Remote Desktop or open a PowerShell session to the computer.</li>
+<li>The main page for the <strong>Overview</strong> provides lots of detail for the VM including internal computer name, domain, operating system, version, memory, disk space, processor, uptime, etc. This also provides the graph for CPU, memory, and network usage.</li>
+<li>This option shows you various <strong>PowerShell script samples</strong> for the tool that you have selected from the #3 section above. E.g. for the Installed apps section, it shows you commonly used scripts like enabling and disabling features, removing apps, etc.</li>
+<li>This is the <strong>notification</strong> section for the whole Windows Admin Center</li>
+<li>This is the <strong>Settings</strong> section for the whole Windows Admin Center which includes accounts management (with which you connected to it), language/region selection, personalization (selection of light or dark modes), and various other settings.</li>
+</ol>
+<h2>Using Azure services in Windows Admin Center</h2>
+<p>To be able to use Azure services in the Windows Admin Center you need to register the gateway with Azure. You can do so by navigating to the settings and then going to Account i.e. the first setting. Then click on the link for &quot;<em>Register with Azure</em>&quot;.</p>
+<img src="/images/164738927262312a588b93e.png" alt="Register Gateway with Azure">
+<h2>VM Settings</h2>
+<p>Navigate to the VM settings by clicking on the Settings under the tools section (on the left bottom corner). Here you can manage the below settings:</p>
+<ol>
+<li>File Shares (SMB Server) settings</li>
+<li>Environment Variables - both user and system variables</li>
+<li>Power Configurations</li>
+</ol>
+<img src="/images/164739386162313c45e5c12.png" alt="VM Level Settings">
+<p>You can not only view the settings but also add/update the settings. E.g. you can create a new environment variable for the user or system. Or you can update the power configuration to a balanced, high-performance, or power saver.</p>
+<h2>Windows Admin Center Settings</h2>
+<p>The Windows Admin Center Settings can be accessed by clicking on the gear icon on the top right section. These settings are clubbed into 3 categories which include:</p>
+<ol>
+<li>User settings</li>
+<li>Development settings</li>
+<li>Gateway settings</li>
+</ol>
+<img src="/images/164739458862313f1c3bfba.png" alt="Windows Admin Center Settings">
+<p>User settings deal with the account, language, region, personalization-related settings. This is where you select if you want the default light mode or the dark mode.</p>
+<p>The development settings section is where you can enable the toolset to build extensions for the Windows Admin Center itself. It allows you to collect performance data as well.</p>
+<p>The gateway section allows you to control the gateway settings i.e. how you connect to the Windows Admin Center.</p>
+<p>In the next post, we will look at various tools present in the Windows Admin Center.</p>]]></description>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-5-working-with-it</link>
+<pubDate>Wed, 02 Mar 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Windows Admin Center in the Azure portal - 4 Connecting to it</title>
+<description><![CDATA[<p>In the previous blogs, we saw how to set up the <strong>Windows Admin Center</strong> and looked at what happens under the hood in setting it up. Now let's look at how to connect to it.</p>
+<h2>Connecting</h2>
+<p>To connect to the Windows Admin Center: </p>
+<ol>
+<li>Navigate to the VM, then under the <strong>Settings</strong> click on the &quot;<strong>Windows Admin Center</strong>&quot;. </li>
+<li>In the middle of the blade, select the public or private IP address of the VM to connect to.</li>
+<li>And then click on the &quot;<strong>Connect</strong>&quot; button.</li>
+</ol>
+<img src="/images/164738651362311f9150f66.png" alt="Connect to Windows Admin Center">
+<p>Next, it will ask you to log in to Windows Admin Center using your machine's admin credentials. Note these are the local machine admin credentials (and not the Azure portal user credentials).</p>
+<img src="/images/1647386801623120b13805f.png" alt="Sign in">
+<p>If you get a security prompt, then click on &quot;Advanced&quot; and then click on the link as shown below to continue.</p>
+<img src="/images/1647387071623121bfddaae.png" alt="Security Prompt">
+<p><strong>PRO TIP</strong>: If you are not able to see the link or the complete text after clicking on the &quot;Advanced&quot; button, press F11 to enter the full-screen mode. This should make the entire text and the link visible. Another way is to set the zoom level to a low number to ensure the whole text is visible.</p>
+<p>Finally, click on the gateway to connect.</p>
+<img src="/images/164738723862312266b6596.png" alt="Windows Admin Center Gateway">
+<p>You are now finally connected with the Windows Admin Center. Explore the different options available to you here to manage your server.</p>
+<img src="/images/16473874856231235dd79bd.png" alt="Windows Admin Center">
+<p>We will explore these options in detail in the upcoming posts.</p>]]></description>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-4-connecting-to-it</link>
+<pubDate>Tue, 01 Mar 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Windows Admin Center in the Azure portal - 3 Under the hood</title>
 <description><![CDATA[<p>In the previous post, we looked at how to set up the Windows Admin Center. In this post, we will take a look at what the setup performed under the hood.</p>
 <p>There are various actions that are performed when installing the Windows Admin Center in the Azure portal. The primary actions are:</p>
 <ul>
@@ -25,12 +330,17 @@
 <p>Next, navigate to the NSG of the VM and look at the inbound rules. If you selected, the setup opened the management port e.g. 6516 for Windows Admin Center connectivity to the VM for any protocol, any source, and any destination. The priority is set to the smallest i.e. 100 so that this rule will be evaluated first.</p>
 <p>NOTE: This is only good for testing. In a production scenario, you should either restrict this rule to a particular IP address or make sure you have connectivity to the virtual network where the VM is deployed.</p>
 <img src="/images/1647383498623113ca4332d.png" alt="Inbound rule">
+<h2>Communication details</h2>
+<p>Traffic from the Azure portal to Windows Admin Center running on your VM uses HTTPS. Therefore all traffic is encrypted. Your Azure VM is managed using PowerShell and WMI over WinRM.</p>
+<h2>Implementation details</h2>
+<p>As we saw Windows Admin Center is installed via an extension on the VM. From official documentation this is how the extension provides the functionality: This extension connects to an external service that manages certificates and DNS records so that you can easily connect to your VM. Each Azure VM that uses the Windows Admin Center extension gets a public DNS record that Microsoft maintains in Azure DNS. We hash the record name with a salt to anonymize the VM's IP address when saving it in DNS - the IP addresses aren't saved in plain text in DNS. This DNS record is used to issue a certificate for Windows Admin Center on the VM, enabling encrypted communication with the VM.</p>
+<p>Reference: <a href="https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/azure/manage-vm" target="_blank">Use Windows Admin Center in the Azure portal to manage a Windows Server VM</a></p>
 <p>Now that we know how it works, in the next post, we will start working with the Windows Admin Center to manage our servers.</p>]]></description>
-<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-under-the-hood</link>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-3-under-the-hood</link>
 <pubDate>Mon, 28 Feb 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Windows Admin Center in the Azure portal - Setting it up</title>
+<title>Windows Admin Center in the Azure portal - 2 Setting it up</title>
 <description><![CDATA[<p>In the previous blog, we talked about what is Windows Admin Center. In this blog, we will look at setting it up in the Azure portal.</p>
 <h2>Setup</h2>
 <p>The setup for Windows Admin Center is very easy and most of the stuff is automated for you. Just navigate to the VM after ensuring that it meets the pre-requisites (as detailed in the previous blog). It can only be from one of these OS: Windows Server 2016, Windows Server 2019 or Windows Server 2022 and needs to have at least 3 GiB of memory. Right now it is available only in the Azure public cloud.</p>
@@ -42,13 +352,15 @@
 </ol>
 <img src="/images/164738159262310c58a433d.png" alt="Windows Admin Center Setup">
 <p>That's all there is to the setup. Next, we will see what it does under the hood and how to connect to and work with the Windows Admin Center.</p>]]></description>
-<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-setting-it-up</link>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-2-setting-it-up</link>
 <pubDate>Sat, 26 Feb 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Windows Admin Center in the Azure portal - Easiest Server Management</title>
+<title>Windows Admin Center in the Azure portal - 1 Intro to the Easiest Server Management</title>
 <description><![CDATA[<p>Performing administrative tasks on Windows servers is one of the main activities in the day-to-day life of a system admin. If you are managing Azure infrastructure and also performing server management then you need to go to the Azure portal daily and also need to log into the VMs from time to time. What if you can perform both activities from just one area without the need to log into the VM. This is where the <strong>Windows Admin Center</strong> comes into the picture.</p>
 <p><strong>Windows Admin Center</strong> is now available directly in the Azure portal for Windows server VMs. It helps you manage various aspects of the server without requiring you to log into the VM itself via RDP (remote desktop) or remote into it via PowerShell.</p>
+<h2>Cost</h2>
+<p>There is no cost to using the Windows Admin Center in the Azure portal.</p>
 <h2>Functionality support</h2>
 <p>At the time of writing of this post, the below functionality is supported:</p>
 <ul>
@@ -90,7 +402,7 @@
 <li>Either connectivity via the Public IP or access to the virtual network that's connected to the VM. The latter is the recommended and more secure approach.</li>
 </ul>
 <p>In the next post, we will set it up and will also take a look under the hood.</p>]]></description>
-<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-easiest-server-management</link>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-1-intro-to-the-easiest-server-management</link>
 <pubDate>Fri, 25 Feb 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
