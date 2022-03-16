@@ -6,6 +6,26 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Windows Admin Center in the Azure portal - Index</title>
+<description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Windows Admin Center in the Azure portal </strong>.</p>
+<p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
+<ol>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-1-intro-to-the-easiest-server-management/" target="_blank">Intro to the Easiest Server Management</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-2-setting-it-up/" target="_blank">Setting it up</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-3-under-the-hood/" target="_blank">Under the hood</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-4-connecting-to-it/" target="_blank">Connecting to it</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-5-working-with-it/" target="_blank">Working with it</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-6-various-tools-part-1/" target="_blank">Various Tools - Part 1</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-7-various-tools-part-2/" target="_blank">Various Tools - Part 2</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-8-caveats/" target="_blank">Caveats</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-9-securing-inbound-connectivity/" target="_blank">Securing inbound connectivity</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-10-troubleshooting-common-issues/" target="_blank">Troubleshooting common issues</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-11-automating-deployment/" target="_blank">Automating deployment</a></li>
+</ol>]]></description>
+<link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-index</link>
+<pubDate>Sun, 15 May 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Windows Admin Center in the Azure portal - 11 Automating deployment</title>
 <description><![CDATA[<p>In this post, we will look at how to automate the deployment and how to extend that to perform deployment on multiple VMs at once. You can automated via different ways including ARM templates and PowerShell.</p>
 <h2>Automating with ARM Template</h2>

@@ -101,101 +101,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-11-automating-deployment">Windows Admin Center in the Azure portal - 11 Automating deployment</a></h3>
+                    <h3><a href="https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-index">Windows Admin Center in the Azure portal - Index</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Mar 08, 2022
+                    <span class="glyphicon glyphicon-time"></span> May 15, 2022
                 
                         <hr>
-                        <p class="post-content"><p>In this post, we will look at how to automate the deployment and how to extend that to perform deployment on multiple VMs at once. You can automated via different ways including ARM templates and PowerShell.</p>
-<h2>Automating with ARM Template</h2>
-<p>When using ARM Templates, all you need to do is to deploy a resource of type &quot;<em>Microsoft.Compute/virtualMachines/extensions</em>&quot;. The extension name that you are deploying is &quot;<strong>AdminCenter</strong>&quot; and the publisher is &quot;<strong>Microsoft.AdminCenter</strong>&quot;. Extension type is also &quot;<strong>AdminCenter</strong>&quot;.</p>
-<p>The latest template can be found here: <a href="https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/azure/manage-vm#automate-windows-admin-center-deployment-using-an-arm-template" target="_blank">Automate Windows Admin Center deployment using an ARM template</a></p>
-<h2>Automating with PowerShell</h2>
-<p>With PowerShell you are performing the below 3 operations to install the extension:</p>
+                        <p class="post-content"><p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Windows Admin Center in the Azure portal </strong>.</p>
+<p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
 <ol>
-<li>Getting the Network Security Group and adding the outbound rule to allow HTTPS traffic on port 443 to the WindowsAdminCenter Service Tag</li>
-<li>Getting the Network Security Group and adding the inbound rule to allow traffic on the Windows Admin Center management port for allowed (or all) IP addresses. You should either not have this rule in case of connectivity on a private IP address. Or lock it down to specific IPs in case of connectivity via Public IP addresses.</li>
-<li>Installing the &quot;<strong>AdminCenter</strong>&quot; extension using the &quot;<strong>Set-AzVMExtension</strong>&quot; PowerShell cmdlet.</li>
-</ol>
-<p>Use the below PowerShell script from official Microsoft documentation:</p>
-<pre><code>$resourceGroupName = &lt;get VM's resource group name&gt;
-$vmLocation = &lt;get VM location&gt;
-$vmName = &lt;get VM name&gt;
-$vmNsg = &lt;get VM's primary nsg&gt;
-$salt = &lt;unique string used for hashing&gt;
-
-$wacPort = "6516"
-$Settings = @{"port" = $wacPort; "salt" = $salt}
-
-# Open outbound port rule for WAC service
-Get-AzNetworkSecurityGroup -Name $vmNsg -ResourceGroupName $resourceGroupName | Add-AzNetworkSecurityRuleConfig -Name "PortForWACService" -Access "Allow" -Direction "Outbound" -SourceAddressPrefix "VirtualNetwork" -SourcePortRange "*" -DestinationAddressPrefix "WindowsAdminCenter" -DestinationPortRange "443" -Priority 100 -Protocol Tcp | Set-AzNetworkSecurityGroup
-
-# Open inbound port rule on VM to be able to connect to WAC
-Get-AzNetworkSecurityGroup -Name $vmNsg -ResourceGroupName $resourceGroupName | Add-AzNetworkSecurityRuleConfig -Name "PortForWAC" -Access "Allow" -Direction "Inbound" -SourceAddressPrefix "*" -SourcePortRange "*" -DestinationAddressPrefix "*" -DestinationPortRange $wacPort -Priority 100 -Protocol Tcp | Set-AzNetworkSecurityGroup
-
-# Install VM extension
-Set-AzVMExtension -ResourceGroupName $resourceGroupName -Location $vmLocation -VMName $vmName -Name "AdminCenter" -Publisher "Microsoft.AdminCenter" -Type "AdminCenter" -TypeHandlerVersion "0.0" -settings $Settings</code></pre>
-<h2>Extending PowerShell to deploy on multiple VMs</h2>
-<p>You can extend the PowerShell or the ARM Template to deploy the Windows Admin Center to multiple VMs. You can even leverage Azure DevOps pipelines to deploy these across different environments. I provide the below sample to deploy via PowerShell on multiple VMs in Resource Groups that are identified via a wildcard search. You can modify this script as per your requirements. </p>
-<p>You can find the complete up to date script at GitHub here: <a href="https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/master/Scripts/Enable-WindowsAdminCenter/Enable-WindowsAdminCenter.ps1" target="_blank"><a href="https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/master/Scripts/Enable-WindowsAdminCenter/Enable-WindowsAdminCenter.ps1">https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/master/Scripts/Enable-WindowsAdminCenter/Enable-WindowsAdminCenter.ps1</a></a></p>
-<pre><code>#Author: Aman Sharma @ http://HarvestingClouds.com
-
-#Variables
-$subscriptionName = "Your Subscription Name"
-$salt = "&lt;unique string used for hashing&gt;"
-$wacPort = "6516"
-$Settings = @{"port" = $wacPort; "salt" = $salt}
-
-try
-{
-    #Setting the Azure context
-    $env = Get-AzEnvironment -Name "AzureCloud"
-    Connect-AzAccount -Environment $env
-    Set-AzContext -SubscriptionName $subscriptionName
-
-    #Selecting all RGs that begins with the text. Notice the wildcard in the name
-    #Update this as per your requirements
-    $allRequiredRGs = Get-AzResourceGroup -Name "RG-*"
-
-    #Iterating on the Resource Groups
-    foreach($currentRG in $allRequiredRGs)
-    {
-        #Fetch all VMs in the current Resource Group
-        $currentRGName = $currentRG.ResourceGroupName
-        $VMs = Get-AzVM -ResourceGroupName $currentRGName
-
-        #Iterating on all the VMs
-        foreach ($vm in $VMs) 
-        {
-            $vmLocation = $vm.Location
-            $vmName = $vm.Name
-
-            #Finding VM's NSG dynamically
-            $vmNsgId = (Get-AzNetworkInterface -ResourceId $vm.NetworkProfile.NetworkInterfaces.Id).NetworkSecurityGroup.Id
-            $vmNsg = Get-AzResource -ResourceId $vmNsgId
-            $vmNsgName = $vmNsg.Name
-
-            # Open outbound port rule for WAC service
-            $vmNsg | Add-AzNetworkSecurityRuleConfig -Name "PortForWACService" -Access "Allow" -Direction "Outbound" -SourceAddressPrefix "VirtualNetwork" -SourcePortRange "*" -DestinationAddressPrefix "WindowsAdminCenter" -DestinationPortRange "443" -Priority 100 -Protocol Tcp | Set-AzNetworkSecurityGroup
-
-            # Install VM extension
-            Set-AzVMExtension -ResourceGroupName $currentRGName -Location $vmLocation -VMName $vmName -Name "AdminCenter" -Publisher "Microsoft.AdminCenter" -Type "AdminCenter" -TypeHandlerVersion "0.0" -settings $Settings
-
-            # Open inbound port rule on VM to be able to connect to WAC
-            $vmNsg | Add-AzNetworkSecurityRuleConfig -Name "PortForWAC" -Access "Allow" -Direction "Inbound" -SourceAddressPrefix "*" -SourcePortRange "*" -DestinationAddressPrefix "*" -DestinationPortRange $wacPort -Priority 100 -Protocol Tcp | Set-AzNetworkSecurityGroup
-
-        }
-
-    }
-}
-catch 
-{
-    Write-Host -ForegroundColor Red "Error while installing extension."
-    $Error[0]
-    Write-Host -ForegroundColor Red "Error occured at:"
-    $Error[0].InvocationInfo.PositionMessage
-}</code></pre></p>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-1-intro-to-the-easiest-server-management/" target="_blank">Intro to the Easiest Server Management</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-2-setting-it-up/" target="_blank">Setting it up</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-3-under-the-hood/" target="_blank">Under the hood</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-4-connecting-to-it/" target="_blank">Connecting to it</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-5-working-with-it/" target="_blank">Working with it</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-6-various-tools-part-1/" target="_blank">Various Tools - Part 1</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-7-various-tools-part-2/" target="_blank">Various Tools - Part 2</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-8-caveats/" target="_blank">Caveats</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-9-securing-inbound-connectivity/" target="_blank">Securing inbound connectivity</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-10-troubleshooting-common-issues/" target="_blank">Troubleshooting common issues</a></li>
+<li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-11-automating-deployment/" target="_blank">Automating deployment</a></li>
+</ol></p>
                         <br/>
                 
                         <div class="post-info">
@@ -208,7 +134,6 @@ catch
                                 <a href="https://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
                                 <a href="https://HarvestingClouds.com/tag/microsoft">microsoft</a>&nbsp;&nbsp;
                                 <a href="https://HarvestingClouds.com/tag/microsoftazure">microsoftazure</a>&nbsp;&nbsp;
-                                <a href="https://HarvestingClouds.com/tag/windows">windows</a>&nbsp;&nbsp;
                         </div>
                 
                     <hr>
@@ -279,11 +204,11 @@ catch
                 </div>
         
                 <ul class="list-group">
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-index">Windows Admin Center in the Azure portal - Index</a></li>
                         <li class="list-group-item"><a href="https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-11-automating-deployment">Windows Admin Center in the Azure portal - 11 Automating deployment</a></li>
                         <li class="list-group-item"><a href="https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-10-troubleshooting-common-issues">Windows Admin Center in the Azure portal - 10 Troubleshooting common issues</a></li>
                         <li class="list-group-item"><a href="https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-9-securing-inbound-connectivity">Windows Admin Center in the Azure portal - 9 Securing inbound connectivity</a></li>
                         <li class="list-group-item"><a href="https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-8-caveats">Windows Admin Center in the Azure portal - 8 Caveats</a></li>
-                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-7-various-tools-part-2">Windows Admin Center in the Azure portal - 7 Various Tools - Part 2</a></li>
                 </ul>
             </div>
         
@@ -312,7 +237,7 @@ catch
                         <strong>Archives</strong>
                     </div>
         
-                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2022">March 2022</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2022">February 2022</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2021">April 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2021">March 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2021">February 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2021">January 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2020">December 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2020">November 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2020">October 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2020">July 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/june-2020">June 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2020">May 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2020">March 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2020">February 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2020">January 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2019">December 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2019">November 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2019">October 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2019">September 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2019">August 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2019">July 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/june-2019">June 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2019">May 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2019">April 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2019">March 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2019">February 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2019">January 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2018">December 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2018">November 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2018">October 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2018">September 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2018">August 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2018">July 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2018">March 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2018">February 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2018">January 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2017">December 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2017">November 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2017">October 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2017">January 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2016">November 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2016">October 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2022">May 2022</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2022">March 2022</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2022">February 2022</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2021">April 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2021">March 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2021">February 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2021">January 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2020">December 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2020">November 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2020">October 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2020">July 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/june-2020">June 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2020">May 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2020">March 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2020">February 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2020">January 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2019">December 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2019">November 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2019">October 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2019">September 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2019">August 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2019">July 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/june-2019">June 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2019">May 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2019">April 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2019">March 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2019">February 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2019">January 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2018">December 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2018">November 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2018">October 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2018">September 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2018">August 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2018">July 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2018">March 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2018">February 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2018">January 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2017">December 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2017">November 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2017">October 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2017">January 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2016">November 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2016">October 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
                 </div>
         
             <!-- Tags -->
@@ -325,10 +250,10 @@ catch
                         <ul class="list-inline">
                             <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/net" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">net</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/actiongroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">actiongroups</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/activedirectory" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">activedirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ActiveDirectory</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ad" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ad</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/activedirectory" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">activedirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AD</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ad" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/alert" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">alert</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/alerts" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">alerts</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/analytics" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">analytics</a>
@@ -340,8 +265,8 @@ catch
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/arm" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/armtemplates" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">armtemplates</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/asr" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/asr" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">asr</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/asr" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/audit" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">audit</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/auditing" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">auditing</a>
 <a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/automation" title="25 total posts" data-original-title="26 total posts" data-toggle="tooltip">automation</a>
@@ -349,8 +274,8 @@ catch
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/awareness" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">awareness</a>
 <a style="font-size: 16px" class="tag_cloud" href="https://HarvestingClouds.com/tag/aws" title="58 total posts" data-original-title="59 total posts" data-toggle="tooltip">aws</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azue" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">azue</a>
-<a style="font-size: 15px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azure" title="41 total posts" data-original-title="42 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 18px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azure" title="75 total posts" data-original-title="76 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 15px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azure" title="42 total posts" data-original-title="43 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuread" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azuread</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureautomation" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">azureautomation</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureawareness" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureawareness</a>
@@ -360,8 +285,8 @@ catch
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureresourcemanager" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">azureresourcemanager</a>
 <a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresecurity" title="18 total posts" data-original-title="19 total posts" data-toggle="tooltip">azuresecurity</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresiterecovery" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azuresiterecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresiterecovery" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresiterecovery" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azuresiterecovery</a>
 <a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresql" title="31 total posts" data-original-title="32 total posts" data-toggle="tooltip">azuresql</a>
 <a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/backup" title="18 total posts" data-original-title="19 total posts" data-toggle="tooltip">backup</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/bash" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">bash</a>
@@ -447,8 +372,8 @@ catch
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mcsa" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsa</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mcsd" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsd</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mcse" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcse</a>
-<a style="font-size: 30px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoft" title="211 total posts" data-original-title="212 total posts" data-toggle="tooltip">microsoft</a>
-<a style="font-size: 29px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoftazure" title="210 total posts" data-original-title="211 total posts" data-toggle="tooltip">microsoftazure</a>
+<a style="font-size: 30px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoft" title="212 total posts" data-original-title="213 total posts" data-toggle="tooltip">microsoft</a>
+<a style="font-size: 29px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoftazure" title="211 total posts" data-original-title="212 total posts" data-toggle="tooltip">microsoftazure</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/migration" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">migration</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/monitoring" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">monitoring</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
@@ -491,8 +416,8 @@ catch
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/sap" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">sap</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/scale" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">scale</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/scaleset" title="12 total posts" data-original-title="13 total posts" data-toggle="tooltip">scaleset</a>
-<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/script" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">script</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/script" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Script</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/script" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">script</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/search" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">search</a>
 <a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/security" title="19 total posts" data-original-title="20 total posts" data-toggle="tooltip">security</a>
 <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/serial" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">serial</a>
