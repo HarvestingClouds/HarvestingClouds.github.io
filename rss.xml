@@ -437,6 +437,169 @@ catch
 <pubDate>Fri, 25 Feb 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Mount point changes and Non-standard SWAP disk creation on Linux VMs in Azure</title>
+<description><![CDATA[<p>When you try to modify the SWAP disk or work with the temporary disk and want to change the mount point and related configurations. For example, you may want to change the default mount point of &quot;/mnt&quot; to &quot;/mnt/resources&quot;. The issue we have seen is that the changes work but only till you restart. Once you restart the VM then the configurations are reverted and the issue still persists. You always want to restart the VM to verify that the configurations stay as per your requirements after the reboot.</p>
+<p>When searching online the official documentation takes you here: <a href="https://docs.microsoft.com/en-us/troubleshoot/azure/virtual-machines/swap-file-not-recreated-linux-vm-restart" target="_blank">Swap file is not re-created after a Linux VM restarts</a>. Make sure you have reviewed that and have tried the steps in that link. </p>
+<h2>General Relevant Linux Commands</h2>
+<p>Below commands are very helpful when troubleshooting this type of issues to check various configurations:</p>
+<ol>
+<li><strong><em>df -Th</em></strong> - This allows you to check the drives i.e. mapped formatted and partitioned drives. This command displays information about total space and available space on a file system formatted in a table.</li>
+<li><strong><em>free -h</em></strong> - This command allows you to check the memory and swap space. It shows you total, used, shared, cache, and available memory.</li>
+<li><strong><em>swapon -s</em></strong> - This command is used to check the swap status.</li>
+<li><strong><em>cat /etc/fstab</em></strong> - This shows you the content of the fstab in the &quot;/etc&quot; directory. This is the Linux system's filesystem table. This is a configuration table designed to ease the burden of mounting and unmounting file systems to a machine.</li>
+<li><strong><em>fdisk -l</em></strong> - This is for format disk. It is a dialog-driven command in Linux used for creating and manipulating disk partition table. &quot;-l&quot; option is used to list all disk partitions.</li>
+<li><strong><em>lsblk</em></strong> - This command lists information about all available or the specified block devices.</li>
+</ol>
+<p>Use these commands to view the current state of your VM disks and to validate the settings.</p>
+<h2>The working fix</h2>
+<p>If your issue still persists then try the steps below.</p>
+<p><strong>Step 1</strong> - Create the directory where you want to mount the temp (or ephemeral) disk</p>
+<pre><code>mkdir /mnt/resource</code></pre>
+<p><strong>Step 2</strong> - Create the configuration file for custom ephemeral disk mount in the cloud configuration daemon folder.</p>
+<pre><code>touch /etc/cloud/cloud.cfg.d/00-custom-ephemeral-mount.cfg</code></pre>
+<p><strong>Step 3</strong> - Update the contents of the file by using the below command.</p>
+<pre><code>echo "mounts:
+- ["ephemeral0", "/mnt/resource"]" &gt;&gt; /etc/cloud/cloud.cfg.d/00-custom-ephemeral-mount.cfg</code></pre>
+<p><strong>Step 4</strong> - Edit the /etc/waagent.conf file and change the mount point over there using &quot;string editing&quot; tool command. Waagent is the Azure Agent configuration file.</p>
+<pre><code>sed -i 's/ResourceDisk.Format=n/ResourceDisk.Format=y/g' /etc/waagent.conf</code></pre>
+<p><strong>Step 5</strong> - Per the application/database requirements allocate the swap size in /etc/waagent.conf file. Search and update the below line as per your requirements</p>
+<pre><code>ResourceDisk.SwapSizeMB=x
+#Replace x with your required Swap size in MBs e.g. ResourceDisk.SwapSizeMB= 2048MB</code></pre>
+<p><strong>Step 6</strong> - Reboot the server and validate the settings.</p>
+<p>This should fix your settings. Let us know if it did or not. Share other tips that helped in your scenario in the comments below.</p>]]></description>
+<link>https://HarvestingClouds.com/post/mount-point-changes-and-non-standard-swap-disk-creation-on-linux-vms-in-azure</link>
+<pubDate>Sat, 05 Feb 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Installing Enhanced Monitoring Agent for Multiple SAP workloads in Azure - Code Sample</title>
+<description><![CDATA[<p>In the previous blog post, we saw how to install the enhanced monitoring extension for SAP workloads in Azure. We looked at various caveats linked to the installation and pre-requisites etc. In this post, I want to share the script sample for installing the extension for multiple VMs in a single go.</p>
+<h2>Latest Sample Location on GitHub</h2>
+<p>You can find the latest script sample in my GitHub repository here: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Install-SAPMonitoringExtensionInLoop" target="_blank"><a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Install-SAPMonitoringExtensionInLoop">https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Install-SAPMonitoringExtensionInLoop</a></a></p>
+<p>The raw version can be found directly here: <a href="https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/master/Scripts/Install-SAPMonitoringExtensionInLoop/Install-SAPMonitoringExtensionInLoop.ps1" target="_blank"><a href="https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/master/Scripts/Install-SAPMonitoringExtensionInLoop/Install-SAPMonitoringExtensionInLoop.ps1">https://raw.githubusercontent.com/HarvestingClouds/PowerShellSamples/master/Scripts/Install-SAPMonitoringExtensionInLoop/Install-SAPMonitoringExtensionInLoop.ps1</a></a></p>
+<h2>The script sample and details</h2>
+<p>Just like for a single VM, the script uses the &quot;<strong><em>Set-AzVMAEMExtension</em></strong>&quot; cmdlet to install the extension with the &quot;<strong><em>InstallNewExtension</em></strong>&quot; switch. In this scenario, we pull all VMs from a single or multiple resource groups. The resource group is selected either based on the wildcard match or you can specify a particular resource group name as well. Each VM is then checked if this is Linux or Windows. Make sure that all the VMs have SAP workloads before proceeding with the installation. You can also uninstall the extension if it is not aplicable on any of the VM later.</p>
+<p>The script sample is also provided below for your easy reference.</p>
+<pre><code>&lt;#  
+ .NOTES
+    ==============================================================================================
+    File:       Install-MonitoringExtensionInLoop.ps1
+
+    Purpose:    To Install Monitoring Extension In Loop
+
+    Version:    1.0.0.0 
+
+    Author:     Aman Sharma
+    ==============================================================================================
+ .SYNOPSIS
+    Installs monitoring extension in loop on Linux VMs
+
+ .DESCRIPTION
+    This script is used to Installs monitoring extension in loop on Linux VMs
+
+ .EXAMPLE
+    C:\PS&gt;  .\Install-MonitoringExtensionInLoop.ps1
+
+    Description
+    -----------
+    This command executes the script with default parameters.
+
+ .INPUTS
+    None.
+
+ .OUTPUTS
+    None.
+
+ .LINK
+    https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/deployment-guide#2ad55a0d-9937-4943-9dd2-69bc2b5d3de0
+#&gt;
+
+#Inputs
+$subscriptionName = "you-subscription-name"
+
+#Adding Azure Account and Subscription
+$env = Get-AzEnvironment -Name "AzureCloud"
+Connect-AzAccount -Environment $env
+Set-AzContext -SubscriptionName $subscriptionName
+
+#Selecting all RGs that begins with the text. Notice the wildcard in the name
+#TODO: Update this to a specific resource group or a similar query with wildcards
+$allSapRGs = Get-AzResourceGroup -Name "RG-IT-*"
+
+foreach($currentRG in $allSapRGs)
+{
+    #Fetch all resources in the RG
+    $currentRGName = $currentRG.ResourceGroupName
+    $VMs = Get-AzVM -ResourceGroupName $currentRGName
+
+    #Iterating on the VMs
+    foreach ($vm in $VMs) 
+    {
+        $VMName = $vm.name
+        $osType = $vm.StorageProfile.OsDisk.OsType
+        Write-Host "Working on VM: $VMName"
+
+        if ($osType -eq "Linux") {
+            Write-Host "VM $VMName is a Linux VM. Proceeding with the installation."
+            try {
+                Set-AzVMAEMExtension -ResourceGroupName $currentRGName -VMName $VMName -InstallNewExtension
+
+                Write-Host -ForegroundColor Green "Installed the extension on the VM $VMName"
+            }
+            catch {
+                Write-Host -ForegroundColor Red "Error while installing extension."
+                $Error[0]
+                Write-Host -ForegroundColor Red "Error occured at:"
+                $Error[0].InvocationInfo.PositionMessage
+            }
+        }
+        else {
+            Write-Host "VM $VMName is not a Linux VM"
+        }
+
+    }
+}</code></pre>]]></description>
+<link>https://HarvestingClouds.com/post/installing-enhanced-monitoring-agent-for-multiple-sap-workloads-in-azure-code-sample</link>
+<pubDate>Fri, 14 Jan 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Installing Enhanced Monitoring Agent for SAP workloads in Azure</title>
+<description><![CDATA[<p>For any SAP deployment in the Microsoft Azure, you want to deploy the enhanced Azure Extension for SAP, which is available in the Azure Extension Repository in the global Azure datacenters. The new extension was built to be able to monitor all Azure resources of a virtual machine. It supports additional storage options, for example, Standard Disks and operating systems.</p>
+<h2>Pre-requisites</h2>
+<p>The pre-requisites are as follows:</p>
+<ul>
+<li>This extension needs internet access to the URL &quot;management.azure.com&quot;. If this is not set up or you have locked the access, please ensure that you open this access in your environment. </li>
+<li>If you have already had an older version of the extension already installed, make sure to uninstall the older VM extension before switching between the standard and the new version of the Azure Extension for SAP.</li>
+<li>Make sure you are using SAP Host Agent 7.21 PL 47 or higher.</li>
+<li>You have SUSE SLES 15 or higher. Or you have Red Hat Enterprise Linux 8.1 or higher.</li>
+<li>You are using Azure Ultra Disk or Standard Managed Disks for your SAP workloads</li>
+</ul>
+<h2>Installing on a single VM</h2>
+<p>Before proceeding, you want to ensure that you have the Azure PowerShell module installed. You can do so by simply running the below cmdlet. You can learn more here: <a href="https://docs.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-7.3.2" target="_blank">Install the Azure Az PowerShell module</a>.</p>
+<pre><code>Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force</code></pre>
+<p>Installing on a single VM is as easy as running the &quot;<strong><em>Set-AzVMAEMExtension</em></strong>&quot; PowerShell cmdlet with the &quot;<strong><em>InstallNewExtension</em></strong>&quot; switch. Run the below script to install it on a specific VM.</p>
+<pre><code>#Set the Azure context
+$env = Get-AzEnvironment -Name &lt;name of the environment&gt;
+Connect-AzAccount -Environment $env
+Set-AzContext -SubscriptionName &lt;subscription name&gt;
+
+#Install the Azure Enhanced Monitoring Extension
+Set-AzVMAEMExtension -ResourceGroupName &lt;resource group name&gt; -VMName &lt;virtual machine name&gt; -InstallNewExtension</code></pre>
+<h2>Installing on multiple VMs</h2>
+<p>You can loop on the above script and can install the Monitoring extension on multiple VMs. I will also provide a code sample to do this easily and will post a blog about the same.</p>
+<h2>Testing the extension</h2>
+<p>You can test the extension by running the below PowerShell cmdlet.</p>
+<pre><code>Test-AzVMAEMExtension -ResourceGroupName "Your-Resource-Group-Name" -VMName "Your-VM-Name"</code></pre>
+<h2>Supportability for this Extension</h2>
+<p>Support for the Azure Extension for SAP is provided through SAP support channels. If you need assistance with the Azure VM extension for SAP solutions, please open a support case with SAP Support. Microsoft support cases are generally closed for this reason. We also look at troubleshooting this extension in an upcoming blog.</p>
+<p>References: </p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/vm-extension-for-sap-new" target="_blank">New Version of Azure VM extension for SAP solutions</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/sap/vm-extension-for-sap" target="_blank">Implement the Azure VM extension for SAP solutions</a></li>
+</ul>]]></description>
+<link>https://HarvestingClouds.com/post/installing-enhanced-monitoring-agent-for-sap-workloads-in-azure</link>
+<pubDate>Wed, 12 Jan 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Bastion Series - Index</title>
 <description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Bastion service</strong>.</p>
 <p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
