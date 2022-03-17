@@ -739,6 +739,49 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Mon, 03 Jan 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Quick Tip - Finding SLA of any Azure service</title>
+<description><![CDATA[<p>If you are architecting a solution around Azure services, you will need to find the Service-level agreements (SLA) for the related Azure services. This is important to be factored into your solution designs as it will impact the availability and uptime of the service in your solution. </p>
+<h2>Finding the SLA of Azure Services</h2>
+<p>To find the Service-level agreements (SLAs) for any Azure service navigate to this link: <a href="https://azure.microsoft.com/en-us/support/legal/sla/" target="_blank">Service-level agreements for Azure services</a>. </p>
+<p>Here you can search for any Azure service and find the SLA for the same. E.g. to find the SLA for Azure Site Recovery (ASR) navigate to the Management category and then click on the &quot;Azure Site Recovery&quot; option. </p>
+<img src="/images/16474896396232b267a380a.png" alt="Finding SLAs">
+<p>This will take you to the SLA details link for the ASR.</p>
+<h2>Providing an internal SLA for the services</h2>
+<p>Note that in addition to Microsoft's SLA your internal department may need to follow some processes related to the services that will reduce the SLA further. Ensure that you factor these external factors into your solution and its related SLAs. E.g. for Azure Site Recovery (ASR) the SLA from Microsoft is very less, but your internal department may need to take additional steps post and pre-failover via ASR. You will need to factor these into your internal department's SLA for the service.</p>
+<p>A general rule of thumb is to simulate failure and check how much time it takes for your solution or services to recover from the failure. Add some reasonable (and proportional) buffer to the observed times to formulate the internal SLAs. Ensure that any external factors, human errors, or one-time issues are not affecting these numbers during such exercises.</p>
+<p>Hopefully, this helps you in better designing solutions in the cloud. Let us know your tips related to SLAs in the comments below.</p>]]></description>
+<link>https://HarvestingClouds.com/post/quick-tip-finding-sla-of-any-azure-service</link>
+<pubDate>Wed, 29 Dec 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Quick Tip - Understanding uptime and downtime linked to any Cloud SLA numbers</title>
+<description><![CDATA[<p>When you are in any conversation related to the Cloud SLAs you will hear numbers like the SLA is 99.9% or 99.99% or more. What are those numbers and how they translate into uptime and downtime in a year? Let's take a closer look to understand these details.</p>
+<h2>99.9% uptime SLA</h2>
+<p>Let's start with 99.9% SLA i.e. <strong>three nines</strong>. SLA level of 99.9% uptime/availability means that you can have up to the following periods of allowed downtime or unavailability.</p>
+<ul>
+<li>Daily: 1m 26s</li>
+<li>Weekly: 10m 4s</li>
+<li>Monthly: 43m 49s</li>
+<li>Quarterly: 2h 11m 29s</li>
+<li>Yearly: 8h 45m 56s</li>
+</ul>
+<h2>99.99% uptime SLA</h2>
+<p>SLA level of 99.99% i.e. <strong>four nines</strong> uptime/availability means that you can have up to the following periods of allowed downtime or unavailability.</p>
+<ul>
+<li>Daily: 8s</li>
+<li>Weekly: 1m 0s</li>
+<li>Monthly: 4m 22s</li>
+<li>Quarterly: 13m 8s</li>
+<li>Yearly: 52m 35s</li>
+</ul>
+<h2>Find uptime and downtime for any SLA</h2>
+<p>Use various online SLA calculators to determine the numbers easily for yourself. One such calculator is provided below (just as a reference):
+<a href="https://uptime.is/" target="_blank"><a href="https://uptime.is/">https://uptime.is/</a></a></p>
+<p>This is very simple tip, but helps you in any cloud related SLA conversation to have better understanding of the related numbers.</p>]]></description>
+<link>https://HarvestingClouds.com/post/quick-tip-understanding-uptime-and-downtime-linked-to-any-cloud-sla-numbers</link>
+<pubDate>Tue, 28 Dec 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Bastion Series - Index</title>
 <description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Bastion service</strong>.</p>
 <p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
