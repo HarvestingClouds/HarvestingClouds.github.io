@@ -26,6 +26,61 @@
 <pubDate>Sun, 15 May 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Capacity Reservations experience now available within Azure Site Recovery (ASR)</title>
+<description><![CDATA[<p>Capacity Reservations ensure that you get the capacity (in terms of CPU and memory) to start your VMs when you need those. This is a most common requirement when you are performing a failover in a disaster scenario. At that time, chances are that everyone else will also try to perform a failover and there can be a capacity crunch. This often results in &quot;Capacity Allocation&quot; errors and your VMs will not come up. The solution is to either select an alternate SKU (if that is available) or reserve the capacity beforehand. </p>
+<p>Now, this experience is inbuilt into Azure Site Recovery (ASR). You have two places where you can set this up. </p>
+<h2>During Enabling Replication</h2>
+<p>When you are enabling the replication, you can select the Capacity Reservation Settings. You will be reserving the capacity for the target region where you will failover during a Disaster Recovery scenario.</p>
+<img src="/images/164754634562338fe936985.png" alt="Enabling Replication Wizard">
+<p>All you need to do is to select the Capacity Reservation Group. Click on the link above for the &quot;<em>View or Edit Capacity Reservation group assignment</em>&quot;. This will open up a window as shown below. Select the group and you are done.</p>
+<img src="/images/164754635162338fefda5b5.png" alt="Capacity Reservers group selection">
+<h2>For Already Replicated VMs</h2>
+<p>For the VMs that are already being replicated, you also have the option to update the Capacity Reservation settings. To this navigate to your Recovery Services Vault. Then navigate to the &quot;Replicated items&quot; under &quot;Protected items&quot; -&gt; then select the VM for which you want to update the settings. Then navigate to the Compute settings under General. This is where you will see the &quot;Capacity Reservation Settings&quot;. </p>
+<p>Similar to what you did during enabling the replication, you can select a Capacity Reservation Group here.</p>
+<img src="/images/16475804966234155069e29.png" alt="Capacity Reservation under Compute Settings">
+<p><strong>References</strong>: </p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview" target="_blank">On-demand Capacity Reservation</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/site-recovery/azure-to-azure-common-questions#capacity" target="_blank">Why to use Capacity Reservations</a></li>
+</ul>]]></description>
+<link>https://HarvestingClouds.com/post/capacity-reservations-experience-now-available-within-azure-site-recovery-asr</link>
+<pubDate>Mon, 14 Mar 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Understanding Capacity Reservations in Azure</title>
+<description><![CDATA[<p><strong>Capacity Reservations</strong> ensure that you get the capacity (in terms of CPU and memory) to start your VMs when you need those. This is a most common requirement when you are performing a failover in a disaster scenario. At that time, chances are that everyone else will also try to perform a failover and there can be a capacity crunch. This often results in &quot;Capacity Allocation&quot; errors and your VMs will not come up. The solution is to either select an alternate SKU (if that is available) or reserve capacity beforehand. </p>
+<h2>Differences</h2>
+<p><strong>Capacity Reservation</strong> is different from <strong>Reserved Instances</strong>. Here are the key differences:</p>
+<ol>
+<li><strong>Time considerations (Term)</strong> - Reserved Instance is a commitment to use a resource for a period of time. You get a discount for this commitment. E.g. 1-year or 3-year commitment on a VM. Capacity Reservation doesn't have a time/term commitment. It can be for any duration of time. The capacity is reserved and available immediately until the reservation is deleted.</li>
+<li><strong>Linking</strong> - Reserved Instance is linked only to the VM size. The Capacity Reservation is defined with the combination of VM size, location, and quantity of instances to be reserved.</li>
+<li><strong>Capacity Guarantee (SLA)</strong> - Reserver Instances don't guarantee the capacity. If the VM SKU is out of capacity you will get a Capacity Allocation error. Capacity Reservation guarantees capacity availability.</li>
+<li><strong>Region vs Availability Zones</strong> - Capacity Reservations can be done for a region or an Availability Zone. Reserver Instances are available at the region level e.g. East US or Central US etc.</li>
+<li><strong>Billing</strong> - Reserved Instances provide you a discount by committing to a term. Capacity Reservations cost you with pay-as-you-go rates for the underlying VM. More on this in the next section.</li>
+</ol>
+<h2>Pricing</h2>
+<p>Capacity Reservations are priced at the same rate as the underlying VM size (with pay-as-you-go rates). E.g. You have 4 D4s_v3 VMs for which you reserve the capacity. Then you will be charged for 8 VMs. 4 running VMs (as per their usage) and 4 capacity reservations (regardless of whether you use these or not).</p>
+<p>But if you have the Reserved Instances, then Reserved Capacity is provided free of cost.</p>
+<p>Also, when you are using the capacity that you reserved via Capacity Reservations then there is no additional charge for the reservation (other than the VM cost for the up and running VM).</p>
+<h2>Caveats</h2>
+<ul>
+<li>While creating the Capacity Reservation, the capacity should be available in the target region or Availability Zone, otherwise, the reservation will fail (just like VM creation).</li>
+<li>Spot VMs and Azure Dedicated Host Nodes are not supported</li>
+<li>Availability Sets are not supported</li>
+<li>Deployment constraints like Proximity Placement Group, Update domains, and UltraSSD storage are also not supported</li>
+<li>Only Av2, B, D, E, &amp; F VM series are supported right now. The SKUs will expand in near future.</li>
+<li>Only the subscription that created the reservation can use it.</li>
+<li>Reservations are only available to paid Azure customers</li>
+</ul>
+<p><strong>References</strong>: </p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview" target="_blank">On-demand Capacity Reservation</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/site-recovery/azure-to-azure-common-questions#capacity" target="_blank">Why to use Capacity Reservations</a></li>
+</ul>]]></description>
+<link>https://HarvestingClouds.com/post/understanding-capacity-reservations-in-azure</link>
+<pubDate>Sat, 12 Mar 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Windows Admin Center in the Azure portal - 11 Automating deployment</title>
 <description><![CDATA[<p>This blog is a part of the <strong>Windows Admin Center in the Azure portal</strong> series. You can find the <strong>Index</strong> of this series here: <a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-index/" target="_blank">Windows Admin Center in the Azure portal</a>.</p>
 <p>In this post, we will look at how to automate the deployment and how to extend that to perform deployment on multiple VMs at once. You can automated via different ways including ARM templates and PowerShell.</p>
@@ -437,6 +492,52 @@ catch
 <pubDate>Fri, 25 Feb 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Protecting Recovery Services Vaults with Resource Guard and Multi-user authorizations</title>
+<description><![CDATA[<p>You want to control access to Recovery Services Vault and what kind of operations are allowed on the same, you can now do so using the <strong>Resource Guard</strong>. It is another resource in Azure that you can </p>
+<h2>Scenario and Permissions</h2>
+<p>Let's assume that there are two people at your organization. One who is responsible for the security and another who is responsible for performing backup-related operations. The security wants to limit the backup administrator's operations. Let's classify these people into two roles:</p>
+<ol>
+<li><strong>Backup Admin</strong> - He is the owner of the Recovery Services Vault and needs to perform various operations.</li>
+<li><strong>Security Admin</strong> - He is the gatekeeper of the critical operations that occur on the vault and controls permissions that the Backup admin needs to perform his job. </li>
+</ol>
+<p><strong>Permissions on the Resource Guard</strong> - The Security admin needs to be the owner of the Resource Guard. The Backup admin must not have any permission to the Resource Guard.</p>
+<h2>Caveats</h2>
+<p>Below are some of the caveats that you should be aware of:</p>
+<ul>
+<li>The Backup admin must not have Contributor permissions to the Resource Guard in any scenario. The Resource Guard must be owned by a different user than the backup admin.</li>
+<li>You can place Resource Guard in a subscription or tenant different from the one containing the Recovery Services vault to provide better protection.</li>
+<li>This feature is currently supported for Recovery Services vaults only and not available for Backup vaults.</li>
+<li>Ensure that your subscriptions containing the Recovery Services vault as well as the Resource Guard (in different subscriptions or tenants) are registered to use Microsoft.RecoveryServices provider.</li>
+</ul>
+<h2>Resource Guard Creation</h2>
+<p>Just search for &quot;Resource Guard&quot; in the search box on the Azure portal and navigate to the section. Click on the &quot;+ Create&quot; button to create a new Resource Guard. Fill in the name and other defaults and hit Create. That's it. </p>
+<img src="/images/164755043562339fe30ffee.png" alt="Resource Guard Creation">
+<p>Navigate to the resource guard resource once ready.</p>
+<h2>Enabling and Disabling Operations in Resource Guard</h2>
+<p>Follow the below steps to enable/disable the protected operations. The numbers correspond to the numbers in the screenshot.</p>
+<ol>
+<li>Navigate to your Resource Guard resource. Then navigate to the properties section.</li>
+<li>Provide a description. This would appear in the vaults that are protected using this Resource Guard.</li>
+<li>Enable and Disable the protected operations next as shown below.</li>
+</ol>
+<img src="/images/16475508836233a1a3173cd.png" alt="Properties of the Resource Guard">
+<h2>Adding Backup admin as Reader on the Resource Guard</h2>
+<p>To enable MUA on a vault, the backup admin of the vault must have a Reader role on the Resource Guard or subscription containing the Resource Guard. Grant the Reader role to the backup admin user from the &quot;Role assignments&quot; under the &quot;Access control (IAM)&quot; for the Resource Guard resource.</p>
+<h2>Enabling Multi-User Authorization on the Recovery Services Vault</h2>
+<p>To set up the Multi-User Authorization on the Recovery Services Vault, navigate to the vault and link it to the Resource Guard resource. To do this navigate to the properties of the vault and select the &quot;Update&quot; link under the Multi-User Authorization setting.</p>
+<img src="/images/16475511876233a2d3d09f3.png" alt="Multi-User Authorization Setting">
+<p>Next, select the check box for the &quot;Protect with Resource Guard&quot; and select the radio button for the &quot;Select Resource Guard&quot;. To select the actual resource for the Resource Guard, click on the &quot;Select Resource Guard&quot; link.</p>
+<img src="/images/16475513316233a363659d3.png" alt="Multi-User Authorization Setting - Details">
+<p>In the next blade, select your directory and then the resource guard resource under that from the list. Hit select and then Save in the previous blade. </p>
+<img src="/images/16475513356233a367d62f1.png" alt="Selecting the Resource Guard for the Vault">
+<p>This should set it up for you. Now the operations you disabled can't be performed on the recovery services vault by the backup admin.</p>
+<h2>Authorize critical (protected) operations</h2>
+<p>If for any reason you want to allow the critical i.e. protected operations then the recommended approach is to leverage Privileged Identity Management (PIM) and have the backup admin elevate their access from Reader to a Contributor on the Resource Guard resource. An alternative is to manually update these role assignments on the Resource Guard resource. PIM is the recommended approach as it time bounds the authorization providing just-in-time (JIT) access that is auto-revoked after allowed time.</p>
+<p><strong>Official documentation link</strong>: <a href="https://docs.microsoft.com/en-us/azure/backup/multi-user-authorization" target="_blank">Multi-user authorization using Resource Guard</a></p>]]></description>
+<link>https://HarvestingClouds.com/post/protecting-recovery-services-vaults-with-resource-guard-and-multi-user-authorizations</link>
+<pubDate>Fri, 18 Feb 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Mount point changes and Non-standard SWAP disk creation on Linux VMs in Azure</title>
 <description><![CDATA[<p>When you try to modify the SWAP disk or work with the temporary disk and want to change the mount point and related configurations. For example, you may want to change the default mount point of &quot;/mnt&quot; to &quot;/mnt/resources&quot;. The issue we have seen is that the changes work but only till you restart. Once you restart the VM then the configurations are reverted and the issue still persists. You always want to restart the VM to verify that the configurations stay as per your requirements after the reboot.</p>
 <p>When searching online the official documentation takes you here: <a href="https://docs.microsoft.com/en-us/troubleshoot/azure/virtual-machines/swap-file-not-recreated-linux-vm-restart" target="_blank">Swap file is not re-created after a Linux VM restarts</a>. Make sure you have reviewed that and have tried the steps in that link. </p>
@@ -780,6 +881,27 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <p>This is very simple tip, but helps you in any cloud related SLA conversation to have better understanding of the related numbers.</p>]]></description>
 <link>https://HarvestingClouds.com/post/quick-tip-understanding-uptime-and-downtime-linked-to-any-cloud-sla-numbers</link>
 <pubDate>Tue, 28 Dec 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Upgrade to Azure Storage account with Data Lake Gen2 easily with new feature</title>
+<description><![CDATA[<p>Now there is in-built capability in the Azure Storage Accounts to upgrade to the Data Lake Gen2. You no longer need to copy over the data. Note that this option is available only for the &quot;<strong><em>StorageV2 (general purpose v2)</em></strong>&quot; storage account types. It is not available for the v1 storage accounts.</p>
+<h2>Upgrade Experience</h2>
+<p>To find the upgrade option, simply navigate to your storage account and then navigate to the Settings section. You will see an option to perform the &quot;<strong><em>Data Lake Gen2 upgrade</em></strong>&quot;. It gives you a step-by-step experience with this upgrade process.</p>
+<img src="/images/16475365296233699135ba3.png" alt="Finding the upgrade option">
+<h2>More Details</h2>
+<p>The three steps for performing the upgrade are as below.</p>
+<ul>
+<li><strong>Step 1</strong>: Review account changes before upgrading - here you review and agree to the changes being performed as part of the upgrade.</li>
+<li><strong>Step 2</strong>: Validate account before upgrading - checking for any unsupported features and providing a report.</li>
+<li><strong>Step 3</strong>: Upgrade account - performing the actual upgrade.</li>
+</ul>
+<img src="/images/16475365366233699807e35.png" alt="Upgrade option details">
+<p>During step 3, you are presented with all the unsupported configurations. These features are also checked during step 2 i.e. the validation step and a report is provided before the upgrade is performed. E.g. If you have versioning enabled then that will be found in the Validation step. You will have to navigate to the Data Protection and disable the same. After disabling you will be able to run through the wizard again. </p>
+<img src="/images/164753706562336ba98f6f1.png" alt="Unsupported changes">
+<p>If there are still errors, then an &quot;<strong>error.json</strong>&quot; file is created with blob-level error details. This is created in a container named &quot;<strong>hnsonerror</strong>&quot;. E.g. If a Blob has auto-snapshot, or if it has an active lease, then these will be tracked in this error.json file. Rectify these errors at the blob level and then retry the experience.</p>
+<p><strong>Reference</strong>: <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/upgrade-to-data-lake-storage-gen2-how-to?tabs=azure-portal" target="_blank">Upgrade Azure Blob Storage with Azure Data Lake Storage Gen2 capabilities</a></p>]]></description>
+<link>https://HarvestingClouds.com/post/upgrade-to-azure-storage-account-with-data-lake-gen2-easily-with-new-feature</link>
+<pubDate>Tue, 21 Dec 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure Bastion Series - Index</title>
