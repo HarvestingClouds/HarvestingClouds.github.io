@@ -938,6 +938,63 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Sun, 12 Dec 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Automate locking of all resources of a particular type - Code Sample</title>
+<description><![CDATA[<p>Locking is a concept that is available on all Azure resources. Locks are a very important but very less known feature in Azure. This prevents unintended operation on a particular resource. </p>
+<p><strong>NOTE</strong>: We visited this concept in the past. Here we want to re-iterate this for our readers as I have observed many issues at various customers that could have been prevented if they were leveraging locks for all their critical resources.</p>
+<p>You have two types of locks in Azure:</p>
+<ol>
+<li><strong>ReadOnly</strong> - You won't' be able to alter any configuration of the resource</li>
+<li><strong>DoNotDelete</strong> - You will be able to add configurations but will not be able to remove configurations or even delete the resource</li>
+</ol>
+<p><strong>Do Not Delete</strong> is the lock, that as a best practice, you should apply on all critical resources in the environment. Once this lock is there on the resources, even the global administrator will not be able to delete the resources. The only way to delete the resources will be to delete the lock first and then delete the resources. </p>
+<h2>The Script Sample Details</h2>
+<p>This script sample leverages this concept of locks and uses the below cmdlet to apply the locks on various critical resources in the environment. </p>
+<pre><code>New-AzureRmResourceLock -LockLevel CanNotDelete -LockName DoNotDelete -ResourceName $vNet.Name -ResourceType $vNet.Type -ResourceGroupName $vNet.ResourceGroupName -LockNotes "Do Not Delete Lock" -Confirm -Force</code></pre>
+<p>The above command uses <strong><em>New-AzureRmResourceLock</em></strong> cmdlet to create the Do Not Delete lock on a Virtual Network. </p>
+<p>This script iterates through all subscriptions that your account has access to and then applies the lock to all resources of type:</p>
+<ol>
+<li>Virtual Network</li>
+<li>Route Tables</li>
+<li>Express Routes</li>
+<li>Virtual Network Gateways</li>
+<li>Virtual Network Gateway Connections</li>
+<li>Recovery Services Vaults (i.e. ASR Vaults)</li>
+</ol>
+<p>You can add more resource types that you deem as critical in your environment. </p>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Apply-LocksOnVariousAzureResources" target="_blank">Apply-LocksOnVariousAzureResources.ps1</a></p>]]></description>
+<link>https://HarvestingClouds.com/post/automate-locking-of-all-resources-of-a-particular-type-code-sample</link>
+<pubDate>Sun, 05 Dec 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Automating the enabling of BYOS licensing for all SUSE VMs in Azure - Code Sample</title>
+<description><![CDATA[<p>In Azure, you have two deployment models to choose from when deploying SUSE Linux Enterprise VMs (SLES):</p>
+<ul>
+<li>PAYG - Pay as you go</li>
+<li>BYOS - Bring your own subscription</li>
+</ul>
+<p>If you selected Pay as you go in the beginning and want to switch to bring your own subscription (i.e. BYOS) model and do not want to do this per VM manually, then you can leverage the code sample from this post to automate the process easily.</p>
+<p><strong>Cost difference</strong>: We did the math and found that BYOS works out to be cheaper especially if you also are going to deploy SUSE Manager to manage your VMs in the environment. Let us know if you are interested and I can share the calculations.</p>
+<p><strong>Advantages with BYOS</strong>: Other than the cost difference there are two main advantages that you get with BYOS:</p>
+<ol>
+<li>You get direct support from the SUSE support team. With the Pay-as-you-go model, you need to open a ticket with Microsoft, and then when Microsoft support deems that the issue pertains to SUSE OS, then SUSE subject matter expert is involved to help you.</li>
+<li>You get extended support for the OS versions that are out of general support.</li>
+</ol>
+<p>The second advantage itself is huge that even if you need to pay extra you would want that in your enterprise enviornments.</p>
+<h2>Script Location</h2>
+<p>The complete script can be found on the GitHub here:
+<a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Enable-SUSEBYOSLicense" target="_blank">Enable-SUSEBYOSLicense</a></p>
+<h2>Script Workings</h2>
+<p>The script works by setting the license type property of the VM to &quot;<strong>SLES_BYOS</strong>&quot;.</p>
+<pre><code>$vm.LicenseType = "SLES_BYOS"</code></pre>
+<p>The script then leverages the &quot;<em>Update-AzVM</em>&quot; cmdlet to update the VM with the license property.</p>
+<pre><code>Update-AzVM -VM $vm -ResourceGroupName $currentRGName</code></pre>
+<p>Make sure you update the input subscription name and also the Resource Group name. In the script, it uses Wildcard to find all resource groups that start with the string mentioned before &quot;*&quot;. You can use a similar wilcard match for the string or you can provide a specific Resource Group name.</p>
+<p>Let me know if this helped you in any way in the comments below or at GitHub.</p>]]></description>
+<link>https://HarvestingClouds.com/post/automating-the-enabling-of-byos-licensing-for-all-suse-vms-in-azure-code-sample</link>
+<pubDate>Fri, 03 Dec 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Bastion Series - Index</title>
 <description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Bastion service</strong>.</p>
 <p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
