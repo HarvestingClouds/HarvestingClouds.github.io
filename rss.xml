@@ -995,6 +995,31 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Fri, 03 Dec 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Switching SUSE VMs from PAYG to BYOS model</title>
+<description><![CDATA[<p>In Azure, you have two deployment models to choose from when deploying SUSE Linux Enterprise VMs (SLES):</p>
+<ul>
+<li>PAYG - Pay as you go</li>
+<li>BYOS - Bring your own subscription</li>
+</ul>
+<p>If you selected Pay as you go in the beginning and want to switch to bring your own subscription (i.e. BYOS) model and do not want to do this per VM manually, then you can leverage the code sample from this post to automate the process easily.</p>
+<p><strong>Cost difference</strong>: We did the math and found that BYOS works out to be cheaper especially if you also are going to deploy SUSE Manager to manage your VMs in the environment. Let us know if you are interested and I can share the calculations.</p>
+<p><strong>Advantages with BYOS</strong>: Other than the cost difference there are two main advantages that you get with BYOS:</p>
+<ol>
+<li>You get direct support from the SUSE support team. With the Pay-as-you-go model, you need to open a ticket with Microsoft, and then when Microsoft support deems that the issue pertains to SUSE OS, then SUSE subject matter expert is involved to help you.</li>
+<li>You get extended support for the OS versions that are out of general support.</li>
+</ol>
+<p>The second advantage itself is huge that even if you need to pay extra you would want that in your enterprise environments.</p>
+<h2>Switching to BYOS from the Portal</h2>
+<p>You can switch a VM from PAYG to BYOS directly from the Azure portal. To do this navigate to the VM within the Azure portal and navigate to the Configurations section as shown below. Then in the drop down select the option for &quot;<strong><em>SUSE Enterprise Linux</em></strong>&quot;. Review and select &quot;Yes&quot; radio button to use an existing SUSE subscription. Select the checkbox to confirm that you have an eligible SUSE subscription that you can attach to this VM.</p>
+<img src="/images/164778365062372ee24ee49.png" alt="SUSE BYOS Configuration">
+<h2>Automating the Process</h2>
+<p>In the next post, we will look at the code sample for automating the process of upgrading the licensing from PAYG to BYOS. You can check this out here:
+<a href="https://harvestingclouds.com/post/automating-the-enabling-of-byos-licensing-for-all-suse-vms-in-azure-code-sample/" target="_blank">Automating the enabling of BYOS licensing for all SUSE VMs in Azure - Code Sample</a></p>
+<p><strong>Official Reference</strong>: <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/azure-hybrid-benefit-linux" target="_blank">How Azure Hybrid Benefit for PAYG Marketplace VMs applies for Linux virtual machines</a></p>]]></description>
+<link>https://HarvestingClouds.com/post/switching-suse-vms-from-payg-to-byos-model</link>
+<pubDate>Thu, 02 Dec 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Bastion Series - Index</title>
 <description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Bastion service</strong>.</p>
 <p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
