@@ -1083,6 +1083,29 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Thu, 11 Nov 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Moving an Azure Virtual Machine (VM) to an Availability Zone the automated way - with complete Code Sample</title>
+<description><![CDATA[<p><strong>Availability Zones</strong> is the new concept to increase the availability of an Azure Virtual Machine (VM). It provides different datacenter with independent cooling, power, and network within one Azure Region. If you have an application deployed redundantly across more than one VM, then you definitely want to leverage Availability Zones to increase the availability and SLA of the workload.</p>
+<p>Unfortunately, you can't move an Azure VM from a non-availability zone deployment to an availability zone. You also can't switch the zone after deploying the VM into one zone. The script sample in this post, help you address both of these scenarios in an automated manner.</p>
+<h2>Word of Caution</h2>
+<p>The script works by deleting the VM and then recreating it within an availability zone. If the script errors out in the middle, then you will end up with no VM. The script exports the VM configurations into a JSON file for this situation as a fallback option. But you need to know how to use that to recreate your VM. You should do below two things to ensure you don't run into issues:</p>
+<ul>
+<li>Try the script first for non-production and non-critical VMs. I recommend creating a dummy/temporary VM and then trying the script.</li>
+<li>Ensure that there is a backup for any production/critical VMs before moving these into Availability Zones to ensure you have something to fail back to.</li>
+</ul>
+<h3>Script location in GitHub</h3>
+<p>You can view and download the latest version of the script, directly from GitHub here: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Move-AzVMToAvailabilityZone" target="_blank">Move-AzVMToAvailabilityZone.ps1</a></p>
+<h3>Script Working</h3>
+<p>The script has a custom function called <strong><em>Export-VMConfig</em></strong>. It uses this function to export the VM configurations into a JSON file. This file serves as a backup (only for the configurations) in case anything goes wrong during the script execution. You can use this to recreate the VM.</p>
+<p>The script then stops the VM using the <strong><em>Stop-AzVM</em></strong> command. It then creates a snapshot of the OS disk and then, creates an Azure Disk with Zone information from that snapshot. Then the script performs the same thing for all of the data disks. Then it deletes the Azure VM using the <strong><em>Remove-AzVM</em></strong> cmdlet. Then it starts building the configurations for the new VM using the <strong><em>New-AzVMConfig</em></strong> cmdlet. </p>
+<p>The script reapplies the tags and diagnostic profile information.  Then it sets the OS disk as per the OS of the original VM. Then it adds the data disks. Then it adds NIC(s) and keeps the same NIC as primary. If there is a Public IP from the Basic SKU then the script removes it because it doesn't support zones. </p>
+<p>Finally, the script recreates the VM using the <strong><em>New-AzVM</em></strong> cmdlet.</p>
+<h3>Manual action after the script execution</h3>
+<p>After the new VM has been validated, I recommend waiting anywhere from 24hrs to a week before cleaning up the residual non-availability zone resources. Once you are ready, delete the older OS and data disks and related snapshots. These should be not attached to any VMs.</p>
+<p>I hope that the script helps you in moving your existing infrastructure to avail the redundancy options provided by the Availability Zones in Azure.</p>]]></description>
+<link>https://HarvestingClouds.com/post/moving-an-azure-virtual-machine-vm-to-an-availability-zone-the-automated-way-with-complete-code-sample</link>
+<pubDate>Sat, 16 Oct 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Bastion Series - Index</title>
 <description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Bastion service</strong>.</p>
 <p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
