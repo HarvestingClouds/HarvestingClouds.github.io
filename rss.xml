@@ -1052,12 +1052,35 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <p>The second advantage itself is huge that even if you need to pay extra you would want that in your enterprise environments.</p>
 <h2>Switching to BYOS from the Portal</h2>
 <p>You can switch a VM from PAYG to BYOS directly from the Azure portal. To do this navigate to the VM within the Azure portal and navigate to the Configurations section. Then in the drop-down select the option for &quot;<strong><em>Red Hat Enterprise Linux</em></strong>&quot;. Review and select the &quot;Yes&quot; radio button to use an existing RHEL subscription. Select the checkbox to confirm that you have an eligible RHEL subscription that you can attach to this VM.</p>
+<img src="/images/164778843962374197dcb82.png" alt="RHEL BYOS Configuration">
 <h2>Automating the Process</h2>
 <p>In the next post, we will look at the code sample for automating the process of upgrading the licensing from PAYG to BYOS. You can check this out here:
 <a href="https://harvestingclouds.com/post/automating-the-enabling-of-byos-licensing-for-all-red-hat-enterprise-linux-rhel-vms-in-azure-code-sample/" target="_blank">Automating the enabling of BYOS licensing for all Red Hat Enterprise Linux (RHEL) VMs in Azure - Code Sample</a></p>
 <p><strong>Official Reference</strong>: <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/azure-hybrid-benefit-linux" target="_blank">How Azure Hybrid Benefit for PAYG Marketplace VMs applies for Linux virtual machines</a></p>]]></description>
 <link>https://HarvestingClouds.com/post/switching-red-hat-enterprise-linux-rhel-vms-from-payg-to-byos-model</link>
 <pubDate>Thu, 25 Nov 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Export all custom Azure Policies - Code Sample</title>
+<description><![CDATA[<p><strong>Azure Policies</strong> are a key component in any Azure governance strategy. These help you allow or deny particular operations in your environment. These can also help you audit your environment for compliance with your standards (both out of the box and custom). There are two types of Azure policies:</p>
+<ol>
+<li><strong>Built-In</strong> - also called out of the box, that are provided by Microsoft</li>
+<li><strong>Custom</strong> - that you build for your environment as per your policies and standards.</li>
+</ol>
+<p>It is a best practice to store all the custom policies in a version control system e.g. Azure DevOps repositories. If the policies were built directly within the Azure Policies definitions, then you would want to export all of the policies. Exporting one policy at a time can be time-consuming and also prone to end-user errors. You can leverage the script sample from this blog post to automate exporting all the custom policies in your environment (for all subscriptions).</p>
+<h2>Script location in GitHub</h2>
+<p>The complete script to export all the custom Azure policies across various subscriptions, can be found here:</p>
+<p><a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Export-AllAzureCustomPolicies" target="_blank">Export-AllAzureCustomPolicies</a></p>
+<h2>Script working</h2>
+<p>The script works by iterating over various subscriptions and then fetching the Azure policies in that subscription. It filters on the &quot;<strong><em>PolicyType</em></strong>&quot; property to filter out only the policies that are Custom. </p>
+<pre><code>$policies = Get-AzPolicyDefinition | where {$_.Properties.PolicyType -eq 'Custom'}</code></pre>
+<p>Once all the custom policies have been fetched, the script then iterates through all policies using a &quot;<em>foreach</em>&quot; loop. For each policy, it sets the policy name to the subscription name then an underscore, and then the policy name. The file type is set to &quot;.json&quot;. </p>
+<pre><code>$fileName = $currentSubscription.Name + "_" + $policyName + ".json"</code></pre>
+<p>The script then exports the policy to a JSON file using the <strong><em>ConvertTo-Json</em></strong> cmdlet.</p>
+<pre><code>$policy | ConvertTo-Json -Depth 10 | Out-File ".\Export-AzurePolicies\Output\$fileName"</code></pre>
+<p>Give it a try in your environment. Once you have exported JSON files for all the custom policies, make sure to move this into a version control system like Azure DevOps repositories.</p>]]></description>
+<link>https://HarvestingClouds.com/post/export-all-custom-azure-policies-code-sample</link>
+<pubDate>Thu, 11 Nov 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure Bastion Series - Index</title>
