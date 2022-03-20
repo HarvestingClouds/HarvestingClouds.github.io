@@ -1020,11 +1020,11 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <li>PAYG - Pay as you go</li>
 <li>BYOS - Bring your own subscription</li>
 </ul>
-<p>We also looked at the advantages of BYOS over the PAYG model. You can review the previous post here: <a href="" target="_blank">Switching RHEL VMs from PAYG to BYOS model</a>.</p>
+<p>We also looked at the advantages of BYOS over the PAYG model. You can review the previous post here: <a href="https://harvestingclouds.com/post/switching-red-hat-enterprise-linux-rhel-vms-from-payg-to-byos-model/" target="_blank">Switching RHEL VMs from PAYG to BYOS model</a>.</p>
 <p>In this post, we look at automating the process via a complete code sample.</p>
 <h2>Script Location</h2>
 <p>The complete script can be found on the GitHub here:
-<a href="" target="_blank">Enable-RHELBYOSLicense</a></p>
+<a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Enable-RHELBYOSLicense" target="_blank">Enable-RHELBYOSLicense</a></p>
 <h2>Script Workings</h2>
 <p>The script works by setting the license type property of the VM to &quot;<strong>RHEL_BYOS</strong>&quot;.</p>
 <pre><code>$vm.LicenseType = "RHEL_BYOS"</code></pre>
@@ -1054,7 +1054,7 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <p>You can switch a VM from PAYG to BYOS directly from the Azure portal. To do this navigate to the VM within the Azure portal and navigate to the Configurations section. Then in the drop-down select the option for &quot;<strong><em>Red Hat Enterprise Linux</em></strong>&quot;. Review and select the &quot;Yes&quot; radio button to use an existing RHEL subscription. Select the checkbox to confirm that you have an eligible RHEL subscription that you can attach to this VM.</p>
 <h2>Automating the Process</h2>
 <p>In the next post, we will look at the code sample for automating the process of upgrading the licensing from PAYG to BYOS. You can check this out here:
-<a href="" target="_blank">Automating the enabling of BYOS licensing for all RHEL VMs in Azure - Code Sample</a></p>
+<a href="https://harvestingclouds.com/post/automating-the-enabling-of-byos-licensing-for-all-red-hat-enterprise-linux-rhel-vms-in-azure-code-sample/" target="_blank">Automating the enabling of BYOS licensing for all Red Hat Enterprise Linux (RHEL) VMs in Azure - Code Sample</a></p>
 <p><strong>Official Reference</strong>: <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/azure-hybrid-benefit-linux" target="_blank">How Azure Hybrid Benefit for PAYG Marketplace VMs applies for Linux virtual machines</a></p>]]></description>
 <link>https://HarvestingClouds.com/post/switching-red-hat-enterprise-linux-rhel-vms-from-payg-to-byos-model</link>
 <pubDate>Thu, 25 Nov 2021 00:00:00 +0500</pubDate>
