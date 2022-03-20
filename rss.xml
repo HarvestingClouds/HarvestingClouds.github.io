@@ -904,6 +904,40 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Tue, 21 Dec 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Finding the optimal Availability Zone for your Microsoft Azure subscription</title>
+<description><![CDATA[<p>When you start designing your solutions in Microsoft Azure for high availability, you think of <strong>Availability Zones</strong>. Within a region, these are physically separate locations that are tolerant to local failures. For your business-critical workloads, availability zones help you achieve resiliency and reliability. </p>
+<h2>Need for identifying the right numbers</h2>
+<p>The biggest caveat with Availability Zones is that they don't correspond to a specific location within a region. These are enumerated when you create a subscription and are different for each subscription (even within the same tenant). Even within a subscription, these are different for each region. </p>
+<p>Let's look at an example. Let's assume you have two subscriptions within the &quot;East US&quot; location. One for Dev and another for Prod. Generally, you will see three availability zones, numbered 1, 2, and 3. The location that is referred to as number 1, may or may not be the same location that is referred to as number 1 in the Prod subscription.</p>
+<p>Therefore it is important that for every subscription and for every region you find the optimal zones. </p>
+<h2>How to define optimal Availability Zones</h2>
+<p>The most optimal Availability Zone is the one that is the best in the below 2 factors:</p>
+<ol>
+<li><strong>Latency</strong> - It should have the lowest latency</li>
+<li><strong>Bandwidth</strong> - It should have the highest latency</li>
+</ol>
+<p>Not that these are important when deploying the solution in highly available designs. Another concept related to HA design is identifying the primary and the secondary zones.</p>
+<ul>
+<li>Selecting <strong>primary</strong> Availability Zone - Not that the one with the lowest latency and highest bandwidth should become your primary Availability Zone.</li>
+<li>Selection <strong>secondary</strong> Availability Zone - The next best availability zone becomes the secondary zone.</li>
+</ul>
+<h2>Determining the Optimal Availability Zones</h2>
+<p>To determine the Optimal Availability Zones, you want to deploy 3 VMs in your subscription. Each VM should be deployed in a different Availability Zone. Then run the Latency and Bandwidth tests between each pair of VMs. Also, ensure to run the tests in both directions. E.g. from VM1 to VM2 and then from VM2 to VM1. </p>
+<h2>Automated Script</h2>
+<p>The whole process for finding the optimal availability zones has been automated. This is now as easy as running the script from the below source:</p>
+<ul>
+<li><a href="https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/AvZone-Latency-Test" target="_blank">Availability Zone Latency Test Script</a></li>
+</ul>
+<p>The script should be run from a VM within the Virtual Network of the subscription (for which you are trying to identify the optimal zones). This script automatically creates 3 VMs in 3 different availability zones and then runs the latency and bandwidth tests. In the end, it deletes the VMs and also provides you with a detailed report.</p>
+<p>The report looks something like this: </p>
+<img src="/images/16477799956237209b34a38.png" alt="Test Report">
+<p>The top table shows you <strong>latency</strong> in micro seconds. Lower the number the better it is. As you can see zone 3 to zone 1 is the lowest latency of 56.1 micro seconds. <strong>Bandwith</strong> is shown in the bottom table and is measured in MBs transferred per second. Higher the number, the better it is. As you can see, zone 1 to zone 3, zone 3 to zone 2, show the highest number of 478 MB/sec. If you take both latency and bandwidth into consideration then zone 1 and zone 3 are the best combinations for this subscription. </p>
+<p>Also, this test should be run at least 3 times and at different times of the day to get more in-depth and accurate results.</p>
+<p>Changing an availability zone later is a tedious task. Hopefully, this post helps you determine the right availability zones from the start and lay a good foundation for your environment.</p>]]></description>
+<link>https://HarvestingClouds.com/post/finding-the-optimal-availability-zone-for-your-microsoft-azure-subscription</link>
+<pubDate>Sun, 12 Dec 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Bastion Series - Index</title>
 <description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Bastion service</strong>.</p>
 <p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
