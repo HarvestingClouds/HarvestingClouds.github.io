@@ -23,7 +23,51 @@
 <li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-11-automating-deployment/" target="_blank">Automating deployment</a></li>
 </ol>]]></description>
 <link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-index</link>
-<pubDate>Sun, 15 May 2022 00:00:00 +0500</pubDate>
+<pubDate>Sun, 20 Mar 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Script Samples - Series Index</title>
+<description><![CDATA[<p>This blog is an <strong>Index</strong> of various blogs and related script samples in the series &quot;<strong>Azure Script Samples</strong>&quot;:</p>
+<ol>
+<li><a href="https://HarvestingClouds.com/post/script-sample-format-ea-billing-usage-csv-for-tags/" target="_blank">Format EA Billing Usage Csv for Tags</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-export-all-azure-automation-account-runbooks-and-variables/" target="_blank">Export All Azure Automation Account Runbooks and Variables</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-export-all-oms-log-analytics-saved-searches/" target="_blank">Export All OMS Log Analytics Saved Searches</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-check-azure-site-recovery-asr-prerequisite-services/" target="_blank">Check Azure Site Recovery (ASR) Prerequisite Services</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-set-azure-site-recovery-asr-prerequisite-services/" target="_blank">Set Azure Site Recovery (ASR) Prerequisite Services</a></li>
+<li><a href="https://HarvestingClouds.com/post/updating-a-custom-rbac-role-in-azure/" target="_blank">Updating a Custom RBAC Role in Azure</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-azure-automation-runbook-for-asr-recovery-plan/" target="_blank">Azure Automation - Runbook for ASR Recovery Plan</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-azure-automation-get-vm-information-from-asr-recovery-plan-context/" target="_blank">Azure Automation - Get VM Information from ASR Recovery Plan Context</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-azure-automation-sending-email-notification/" target="_blank">Azure Automation - Sending Email Notification</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-azure-automation-get-vm-information-from-actual-azure-virtual-machine/" target="_blank">Azure Automation - Get VM Information from actual Azure Virtual Machine</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-azure-automation-check-vm-availability/" target="_blank">Azure Automation - Check VM Availability</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-apply-locks-on-various-azure-resources/" target="_blank">Apply Locks on Various Azure Resources</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-check-for-pending-reboots-on-various-vms-in-your-environment/" target="_blank">Check for Pending Reboots on various VMs in your environment</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-apply-rbac-role-to-users-on-resources/" target="_blank">Apply RBAC Role to Users on Resources</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-getting-azure-resource-reports/" target="_blank">Getting Azure Resource Reports</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-generate-azure-resources-report-by-tags-v30/" target="_blank">Generate Azure Resources Report by Tags v3.0</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-set-tags-on-azure-resources/" target="_blank">Set Tags on Azure Resources</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-creating-multiple-resource-groups-with-rbac-role-assignment/" target="_blank">Creating Multiple Resource Groups with RBAC Role Assignment</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-checking-if-the-prompt-for-current-script-is-elevated-or-not/" target="_blank">Checking if the Prompt for current script is Elevated or not</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-vm-operations-setting-up-the-vm-backup/" target="_blank">VM Operations - Setting up the VM Backup</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-vm-operations-convert-vm-to-managed-disk-vm/" target="_blank">VM Operations - Convert VM to Managed Disk VM</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-vm-operations-change-azure-vm-size/" target="_blank">VM Operations - Change Azure VM Size</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-vm-operations-apply-hub-licensing-to-existing-vms/" target="_blank">VM Operations - Apply HUB Licensing to Existing VMs</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-vm-operations-export-vm-configurations/" target="_blank">VM Operations - Export VM Configurations</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-vm-operations-working-with-vm-snapshots-and-moving-the-managed-vms-across-subscriptions-and-regions/" target="_blank">VM Operations - Working with VM Snapshots and moving the Managed VMs across subscriptions and regions</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-removing-locks-from-azure-resources/" target="_blank">Removing Locks from Azure Resources</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-generate-report-for-route-tables-with-associated-subnets-and-related-information/" target="_blank">Generate Report for Route Tables with associated Subnets and related information</a></li>
+<li><a href="https://HarvestingClouds.com/post/script-sample-disassociate-and-associate-subnets-to-route-tables/" target="_blank">Disassociate and Associate Subnets to Route Tables</a></li>
+<li><a href="https://harvestingclouds.com/post/automatically-trigger-on-demand-azure-vm-backup-for-multiple-vms-code-sample/" target="_blank">Automatically trigger on-demand Azure VM Backup for multiple VMs</a></li>
+<li><a href="https://harvestingclouds.com/post/automatically-trigger-on-demand-sap-hana-on-azure-vm-backup-for-multiple-databases-code-sample/" target="_blank">Automatically trigger on-demand SAP HANA on Azure VM Backup for multiple Databases</a></li>
+<li><a href="https://harvestingclouds.com/post/moving-an-azure-virtual-machine-vm-to-an-availability-zone-the-automated-way-with-complete-code-sample/" target="_blank">Moving an Azure Virtual Machine (VM) to an Availability Zone the automated way</a></li>
+<li><a href="https://harvestingclouds.com/post/export-all-custom-azure-policies-code-sample/" target="_blank">Export all custom Azure Policies</a></li>
+<li><a href="https://harvestingclouds.com/post/automating-the-enabling-of-byos-licensing-for-all-red-hat-enterprise-linux-rhel-vms-in-azure-code-sample/" target="_blank">Automating the enabling of BYOS licensing for all Red Hat Enterprise Linux (RHEL) VMs in Azure</a></li>
+<li><a href="https://harvestingclouds.com/post/automating-the-enabling-of-byos-licensing-for-all-suse-vms-in-azure-code-sample/" target="_blank">Automating the enabling of BYOS licensing for all SUSE VMs in Azure</a></li>
+<li><a href="https://harvestingclouds.com/post/automate-locking-of-all-resources-of-a-particular-type-code-sample/" target="_blank">Automate locking of all resources of a particular type</a></li>
+<li><a href="https://harvestingclouds.com/post/installing-enhanced-monitoring-agent-for-multiple-sap-workloads-in-azure-code-sample/" target="_blank">Installing Enhanced Monitoring Agent for Multiple SAP workloads in Azure</a></li>
+</ol>]]></description>
+<link>https://HarvestingClouds.com/post/azure-script-samples-series-index</link>
+<pubDate>Sat, 19 Mar 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Capacity Reservations experience now available within Azure Site Recovery (ASR)</title>
@@ -1106,23 +1150,27 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Sat, 16 Oct 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Automatically trigger on-demand SAP HANA on Azure VM Backup for multiple Databases - Code Sample</title>
-<description><![CDATA[<p>Let's assume you have various <strong>SAP HANA databases on Azure VMs</strong> that are being backed up in Azure Recovery Services Vault using the Backup services i.e. the daily backup. Before performing any major activity in your environment, you will want to take an on-demand backup. This helps you to have a fallback option if anything goes wrong during the activity. To extend the expiry date you may want to update the policy temporarily as the on-demand backup for SAP HANA on Azure VMs, doesn't allow the feature to specify the expiry date.</p>
-<p>The script I present in this post automates the triggering of this on-demand backup for multiple SAP HANA databases. The script takes the name of VMs and related SAP HANA database information in a csv file as input.</p>
-<p><strong>NOTE</strong>: As the feature to trigger the SAP HANA database is available only with the CLI cmdlet, we are using the CLI command. Please ensure that you have AZ CLI also installed in your environment by following the instructions here: <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli" target="_blank">How to install the Azure CLI</a>.</p>
+<title>Automatically trigger on-demand Azure VM Backup for multiple VMs - Code Sample</title>
+<description><![CDATA[<p>Over the period of time, you will have multiple VMs being protected in Azure Recovery Services Vault using the Backup services i.e. the daily VM Backup. Before performing any major activity in your environment, you will want to take an on-demand backup with an extended expiry date. This helps you to have a fallback option if anything goes wrong during the activity. </p>
+<p>The script I present in this post automates the triggering of this on-demand backup for multiple VMs and also lets you specify a date for the expiry of this backup. The script takes the name of VMs in a csv file as input.</p>
 <h2>Script location</h2>
 <p>The latest version of the script can be found in GitHub here:
-<a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Trigger-AzSAPHANAOnDemandBackup" target="_blank">Trigger-AzSAPHANAOnDemandBackup</a></p>
-<p>The input CSV file sample is also located at the same location. Use this file to provide the VM names and related SAP HANA database information as an input to the script. Update the path to this file in the script input variables. Update this file as per your environment.</p>
+<a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Trigger-AzVMOnDemandBackup" target="_blank">Trigger-AzVMOnDemandBackup</a></p>
+<p>The input CSV file is also located at the same location. Use this file to provide the VM names as an input to the script. Update the path to this file in the script input variables.</p>
 <h2>Script Working</h2>
-<p>The script starts by checking if the input config file (with VM names) exists or not. If not, then the script prints the message to check the path and exit. It then imports the CSV file. Then it sets the context to the right recovery services vault and starts iterating through the VMs. Then it sets the item and container variables as below. </p>
-<pre><code>$itemName = "SAPHanaDatabase;$instanceName;$databaseName"
-$containerName = "VMAppContainer;Compute;$VMResourceGroup;$vmName"</code></pre>
-<p>Finally, it triggers the on-demand backup using the below az cli command.</p>
-<pre><code>az backup protection backup-now --resource-group $rgOfVault --item-name $itemName --vault-name $vaultName --container-name $containerName --backup-type Full --output table</code></pre>
-<p>I hope this script helps you save lots of time during on-demand backup creation. If you have any improvements you would like to see in the script feel free to provide that as a comment here or a pull request on GitHub.</p>]]></description>
-<link>https://HarvestingClouds.com/post/automatically-trigger-on-demand-sap-hana-on-azure-vm-backup-for-multiple-databases-code-sample</link>
-<pubDate>Tue, 24 Aug 2021 00:00:00 +0500</pubDate>
+<p>The script starts by checking if the input config file (with VM names) exists or not. If not, then the script prints the message to check the path and exit. It then imports the CSV file. Then it sets the context to the right recovery services vault and starts iterating through the VMs. Then it fetches the backup container for the current VM using the below command. </p>
+<pre><code>$backupcontainer = Get-AzRecoveryServicesBackupContainer `
+            -ContainerType "AzureVM" `
+            -FriendlyName $vmName</code></pre>
+<p>It uses the container to fetch the backup item corresponding to the current VM. </p>
+<pre><code>$item = Get-AzRecoveryServicesBackupItem `
+            -Container $backupcontainer `
+            -WorkloadType "AzureVM"</code></pre>
+<p>Finally, it triggers the on-demand backup using the <strong><em>Backup-AzRecoveryServicesBackupItem</em></strong> cmdlet.</p>
+<pre><code>Backup-AzRecoveryServicesBackupItem -Item $item -ExpiryDateTimeUTC $dateTillExpiry</code></pre>
+<p>I hope this script helps you save lots of time during on-demand backup creation. If you have any improvements you would like to see in the script feel free to provide that as a comment here or a pull request on the GitHub.</p>]]></description>
+<link>https://HarvestingClouds.com/post/automatically-trigger-on-demand-azure-vm-backup-for-multiple-vms-code-sample</link>
+<pubDate>Mon, 23 Aug 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Automatically trigger on-demand Azure VM Backup for multiple VMs - Code Sample</title>
@@ -4863,42 +4911,6 @@ tr:nth-child(even) {
 </ol>]]></description>
 <link>https://HarvestingClouds.com/post/azure-tips-tricks-series-index</link>
 <pubDate>Mon, 25 Feb 2019 00:00:00 +0500</pubDate>
-</item>
-<item>
-<title>Azure Script Samples - Series Index</title>
-<description><![CDATA[<p>This blog is an <strong>Index</strong> of various blogs and related script samples in the series &quot;<strong>Azure Script Samples</strong>&quot;:</p>
-<ol>
-<li><a href="https://HarvestingClouds.com/post/script-sample-format-ea-billing-usage-csv-for-tags/" target="_blank">Format EA Billing Usage Csv for Tags</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-export-all-azure-automation-account-runbooks-and-variables/" target="_blank">Export All Azure Automation Account Runbooks and Variables</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-export-all-oms-log-analytics-saved-searches/" target="_blank">Export All OMS Log Analytics Saved Searches</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-check-azure-site-recovery-asr-prerequisite-services/" target="_blank">Check Azure Site Recovery (ASR) Prerequisite Services</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-set-azure-site-recovery-asr-prerequisite-services/" target="_blank">Set Azure Site Recovery (ASR) Prerequisite Services</a></li>
-<li><a href="https://HarvestingClouds.com/post/updating-a-custom-rbac-role-in-azure/" target="_blank">Updating a Custom RBAC Role in Azure</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-azure-automation-runbook-for-asr-recovery-plan/" target="_blank">Azure Automation - Runbook for ASR Recovery Plan</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-azure-automation-get-vm-information-from-asr-recovery-plan-context/" target="_blank">Azure Automation - Get VM Information from ASR Recovery Plan Context</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-azure-automation-sending-email-notification/" target="_blank">Azure Automation - Sending Email Notification</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-azure-automation-get-vm-information-from-actual-azure-virtual-machine/" target="_blank">Azure Automation - Get VM Information from actual Azure Virtual Machine</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-azure-automation-check-vm-availability/" target="_blank">Azure Automation - Check VM Availability</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-apply-locks-on-various-azure-resources/" target="_blank">Apply Locks on Various Azure Resources</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-check-for-pending-reboots-on-various-vms-in-your-environment/" target="_blank">Check for Pending Reboots on various VMs in your environment</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-apply-rbac-role-to-users-on-resources/" target="_blank">Apply RBAC Role to Users on Resources</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-getting-azure-resource-reports/" target="_blank">Getting Azure Resource Reports</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-generate-azure-resources-report-by-tags-v30/" target="_blank">Generate Azure Resources Report by Tags v3.0</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-set-tags-on-azure-resources/" target="_blank">Set Tags on Azure Resources</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-creating-multiple-resource-groups-with-rbac-role-assignment/" target="_blank">Creating Multiple Resource Groups with RBAC Role Assignment</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-checking-if-the-prompt-for-current-script-is-elevated-or-not/" target="_blank">Checking if the Prompt for current script is Elevated or not</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-vm-operations-setting-up-the-vm-backup/" target="_blank">VM Operations - Setting up the VM Backup</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-vm-operations-convert-vm-to-managed-disk-vm/" target="_blank">VM Operations - Convert VM to Managed Disk VM</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-vm-operations-change-azure-vm-size/" target="_blank">VM Operations - Change Azure VM Size</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-vm-operations-apply-hub-licensing-to-existing-vms/" target="_blank">VM Operations - Apply HUB Licensing to Existing VMs</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-vm-operations-export-vm-configurations/" target="_blank">VM Operations - Export VM Configurations</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-vm-operations-working-with-vm-snapshots-and-moving-the-managed-vms-across-subscriptions-and-regions/" target="_blank">VM Operations - Working with VM Snapshots and moving the Managed VMs across subscriptions and regions</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-removing-locks-from-azure-resources/" target="_blank">Removing Locks from Azure Resources</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-generate-report-for-route-tables-with-associated-subnets-and-related-information/" target="_blank">Generate Report for Route Tables with associated Subnets and related information</a></li>
-<li><a href="https://HarvestingClouds.com/post/script-sample-disassociate-and-associate-subnets-to-route-tables/" target="_blank">Disassociate and Associate Subnets to Route Tables</a></li>
-</ol>]]></description>
-<link>https://HarvestingClouds.com/post/azure-script-samples-series-index</link>
-<pubDate>Sat, 23 Feb 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure Tips & Tricks - Quickly assign and check the Azure Policy and Initiative Compliance status of your resources with new Azure feature</title>
