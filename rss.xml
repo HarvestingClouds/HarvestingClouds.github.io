@@ -1196,6 +1196,63 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Mon, 23 Aug 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Automate Azure Route Table testing using Network Watcher and PowerShell scripting - Code Sample</title>
+<description><![CDATA[<p>In any enterprise environment, you will have lots of customer <strong>User Defined Routes</strong> or <strong>UDRs</strong> written within <strong>Azure Route Tables</strong>. You will want to test all of these route tables and check if the &quot;<em>Next Hop</em>&quot; is as per the route tables set by you or not. This could prove to be a tedious task if done manually. I have automated this task using PowerShell scripting. I am sharing the sample in this post. </p>
+<p><strong>NOTE</strong>: You should enable Network Watcher in your environment for this script sample to work. Also, note that you need to enable the Network watcher only in the region where your resources exist.</p>
+<h2>Script location</h2>
+<p>The latest version of the script can be found in GitHub here:
+<a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Test-NetworkWatcherRouteNextHop" target="_blank">Test-NetworkWatcherRouteNextHop</a>.</p>
+<p>A sample input CSV file is also located at the same location.</p>
+<h2>Script Working</h2>
+<p>For the script to work, make sure that you have filled the input CSV file as per your environment. In every test, there will be a source and a destination for the communication pair. The script primary looks for the below information from the csv file:</p>
+<ol>
+<li><strong>SourceSubscription</strong> - The subscription for the source.</li>
+<li><strong>SourceRG</strong> - The resource group of the source VM</li>
+<li><strong>SourceVMName</strong> - Name of the source VM</li>
+<li><strong>Source IP - Indicative</strong> - Actual IP address of the source VM. Please ignore the &quot;indicative&quot; text</li>
+<li><strong>DestinationIP-Actual</strong> - Actual IP address of the destination VM</li>
+<li><strong>SourceLocation</strong> - Azure region location of the source VM</li>
+</ol>
+<p><strong>NOTE</strong>: Within the script update the Network Watcher names as per your primary and secondary regions in Azure where &quot;<strong><em>Get-AzNetworkWatcher</em></strong>&quot; cmdlet is used. E.g. to fetch the Network Watcher in the East US 2 region the command used is as below.</p>
+<pre><code>$nw = Get-AzNetworkWatcher -Name NetworkWatcher_eastus2 -ResourceGroupName NetworkWatcherRG</code></pre>
+<p>The script then fetches the VM using the <strong><em>Get-AzVM</em></strong> cmdlet.</p>
+<pre><code>$vm = Get-AzVM -Name $SourceVMName -ResourceGroupName $SourceVMResourceGroupName</code></pre>
+<p>Finally, it executes the test by using the <strong><em>Get-AzNetworkWatcherNextHop</em></strong> command.</p>
+<pre><code>$nextHop = Get-AzNetworkWatcherNextHop -NetworkWatcher $nw -TargetVirtualMachineId $vm.Id -SourceIPAddress $SourceVMIPAddress -DestinationIPAddress $DestinationIPAddress</code></pre>
+<p>To get the results it uses the output of the above command.</p>
+<pre><code>$eachVM.NextHopType = $nextHop.NextHopType
+$eachVM.IPAddressResult = $nextHop.NextHopIpAddress
+$eachVM.RouteTableID = $nextHop.RouteTableId</code></pre>
+<p>You can then compare the output with the expected output to check if the test case passed or failed. </p>
+<p>If you have any improvements you would like to see in the script feel free to provide that as a comment here or a pull request on GitHub.</p>]]></description>
+<link>https://HarvestingClouds.com/post/automate-azure-route-table-testing-using-network-watcher-and-powershell-scripting-code-sample</link>
+<pubDate>Wed, 21 Jul 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Getting a report for all VMs and it's related OS and Data Disks - Code Sample</title>
+<description><![CDATA[<p>In the past, I wrote a script sample to output all VMs related reports. Now, this report is easily available in the Azure portal when you are viewing the VMs. You can even apply any filters and add/remove any columns for more data. Then you can download the csv for the data you see. </p>
+<p>One thing that is not available is a <strong>report of VMs and their related OS and Data disks</strong>. You may need this sometime as per your requirements. In this post, I am sharing one such script that pulls a report around all VMs and their all related disks.</p>
+<h2>Script location</h2>
+<p>The latest version of the script can be found in GitHub here:
+<a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Get-AzResourceInfo-VMsAndAllRelatedDisks" target="_blank">Get-AzResourceInfo-VMsAndAllRelatedDisks</a></p>
+<p>A sample output CSV file and a sample excel report (based on the output csv) are also located at the same location.</p>
+<h2>Script Working</h2>
+<p>The script selects all subscriptions and iterates over those. Then within each subscription, it fetches all Resource Groups and iterates over those. The script also indicates a way for filtering over Resource Groups (while fetching these) by using wildcards.</p>
+<p>For each Resource Group, it fetches all resources and iterates over these. Then it filters out the resources of type virtual machines. Specifically, it uses the filter to match the type to &quot;<strong><em>Microsoft.Compute/virtualMachines</em></strong>&quot;.</p>
+<pre><code>$resource.Type -eq "Microsoft.Compute/virtualMachines"</code></pre>
+<p>Then for every VM, it fetches three different types of information and adds each as a separate row to the output CSV:</p>
+<ol>
+<li>The VM itself</li>
+<li>OS disk details</li>
+<li>Data disk details - one-row entry for each data disk</li>
+</ol>
+<p>The script uses a value/column for &quot;attachedToVM&quot; for all types of rows to indicate which VM the entry belongs to. The script also outputs &quot;<strong>ResourceType</strong>&quot; column that you can further use to filter data. </p>
+<p>Now that you have the data, you can create custom reports as per your requirements. One such report is provided in the same location for your easy reference.</p>
+<p>If you have any improvements you would like to see in the script feel free to provide that as a comment here or a pull request on GitHub.</p>]]></description>
+<link>https://HarvestingClouds.com/post/getting-a-report-for-all-vms-and-its-related-os-and-data-disks-code-sample</link>
+<pubDate>Thu, 15 Jul 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Bastion Series - Index</title>
 <description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Bastion service</strong>.</p>
 <p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
