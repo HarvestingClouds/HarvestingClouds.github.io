@@ -1150,27 +1150,22 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Sat, 16 Oct 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Automatically trigger on-demand Azure VM Backup for multiple VMs - Code Sample</title>
-<description><![CDATA[<p>Over the period of time, you will have multiple VMs being protected in Azure Recovery Services Vault using the Backup services i.e. the daily VM Backup. Before performing any major activity in your environment, you will want to take an on-demand backup with an extended expiry date. This helps you to have a fallback option if anything goes wrong during the activity. </p>
-<p>The script I present in this post automates the triggering of this on-demand backup for multiple VMs and also lets you specify a date for the expiry of this backup. The script takes the name of VMs in a csv file as input.</p>
+<title>Automatically trigger on-demand SAP HANA on Azure VM Backup for multiple Databases - Code Sample</title>
+<description><![CDATA[<p>Let's assume you have various <strong>SAP HANA databases on Azure VMs</strong> that are being backed up in Azure Recovery Services Vault using the Backup services i.e. the daily backup. Before performing any major activity in your environment, you will want to take an on-demand backup. This helps you to have a fallback option if anything goes wrong during the activity. To extend the expiry date you may want to update the policy temporarily as the on-demand backup for SAP HANA on Azure VMs, doesn't allow the feature to specify the expiry date.</p>
+<p>The script I present in this post automates the triggering of this on-demand backup for multiple SAP HANA databases. The script takes the name of VMs and related SAP HANA database information in a csv file as input.</p>
+<p><strong>NOTE</strong>: As the feature to trigger the SAP HANA database is available only with the CLI cmdlet, we are using the CLI command. Please ensure that you have AZ CLI also installed in your environment by following the instructions here: <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli" target="_blank">How to install the Azure CLI</a>.</p>
 <h2>Script location</h2>
-<p>The latest version of the script can be found in GitHub here:
-<a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Trigger-AzVMOnDemandBackup" target="_blank">Trigger-AzVMOnDemandBackup</a></p>
-<p>The input CSV file is also located at the same location. Use this file to provide the VM names as an input to the script. Update the path to this file in the script input variables.</p>
+<p>The latest version of the script can be found in GitHub here: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Trigger-AzSAPHANAOnDemandBackup" target="_blank">Trigger-AzSAPHANAOnDemandBackup</a></p>
+<p>The input CSV file sample is also located at the same location. Use this file to provide the VM names and related SAP HANA database information as an input to the script. Update the path to this file in the script input variables. Update this file as per your environment.</p>
 <h2>Script Working</h2>
-<p>The script starts by checking if the input config file (with VM names) exists or not. If not, then the script prints the message to check the path and exit. It then imports the CSV file. Then it sets the context to the right recovery services vault and starts iterating through the VMs. Then it fetches the backup container for the current VM using the below command. </p>
-<pre><code>$backupcontainer = Get-AzRecoveryServicesBackupContainer `
-            -ContainerType "AzureVM" `
-            -FriendlyName $vmName</code></pre>
-<p>It uses the container to fetch the backup item corresponding to the current VM. </p>
-<pre><code>$item = Get-AzRecoveryServicesBackupItem `
-            -Container $backupcontainer `
-            -WorkloadType "AzureVM"</code></pre>
-<p>Finally, it triggers the on-demand backup using the <strong><em>Backup-AzRecoveryServicesBackupItem</em></strong> cmdlet.</p>
-<pre><code>Backup-AzRecoveryServicesBackupItem -Item $item -ExpiryDateTimeUTC $dateTillExpiry</code></pre>
-<p>I hope this script helps you save lots of time during on-demand backup creation. If you have any improvements you would like to see in the script feel free to provide that as a comment here or a pull request on the GitHub.</p>]]></description>
-<link>https://HarvestingClouds.com/post/automatically-trigger-on-demand-azure-vm-backup-for-multiple-vms-code-sample</link>
-<pubDate>Mon, 23 Aug 2021 00:00:00 +0500</pubDate>
+<p>The script starts by checking if the input config file (with VM names) exists or not. If not, then the script prints the message to check the path and exit. It then imports the CSV file. Then it sets the context to the right recovery services vault and starts iterating through the VMs. Then it sets the item and container variables as below.</p>
+<pre><code>$itemName = "SAPHanaDatabase;$instanceName;$databaseName"
+$containerName = "VMAppContainer;Compute;$VMResourceGroup;$vmName"</code></pre>
+<p>Finally, it triggers the on-demand backup using the below az cli command.</p>
+<pre><code>az backup protection backup-now --resource-group $rgOfVault --item-name $itemName --vault-name $vaultName --container-name $containerName --backup-type Full --output table</code></pre>
+<p>I hope this script helps you save lots of time during on-demand backup creation. If you have any improvements you would like to see in the script feel free to provide that as a comment here or a pull request on GitHub.</p>]]></description>
+<link>https://HarvestingClouds.com/post/automatically-trigger-on-demand-sap-hana-on-azure-vm-backup-for-multiple-databases-code-sample</link>
+<pubDate>Tue, 24 Aug 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Automatically trigger on-demand Azure VM Backup for multiple VMs - Code Sample</title>
