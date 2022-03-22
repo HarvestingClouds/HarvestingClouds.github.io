@@ -1060,6 +1060,16 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Thu, 02 Dec 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Easily and automatically generate architecture diagrams in Azure with the Resource Visualizer</title>
+<description><![CDATA[<p>Imagine you are in a rush and you need to create a diagram of your environment urgently. You wish there was a way to just select the resources and generate the diagram, that not only shows all the resources in the environment but also shows you the relation between different resources. And now there is such a way in Azure.</p>
+<p><strong>Resource Visualizer</strong> is a new feature that is now integrated into the Azure portal. Access from any Resource Group's setting and quickly generate a diagram for all the resources in the resource group. </p>
+<img src="/images/164790946662391a5aea37b.png" alt="Resource Visualizer">
+<p>One of the neat features is that you can click on the &quot;<strong><em>Choose resources</em></strong>&quot; button at the top to select the resources you need in the visualizer (and exclude others). You can also zoom in and out by using the zoom controls at the bottom right corner. If you are not able to adjust and need to reset, you can click on the &quot;<strong><em>Zoom to fit</em></strong>&quot; button at the top. </p>
+<p>I am sure this feature will become a go-to for quickly generating diagrams with dependencies for providing walk-throughs and creating architectural diagrams in Microsoft Azure. </p>]]></description>
+<link>https://HarvestingClouds.com/post/easily-and-automatically-generate-architecture-diagrams-in-azure-with-the-resource-visualizer</link>
+<pubDate>Mon, 29 Nov 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Automating the enabling of BYOS licensing for all Red Hat Enterprise Linux (RHEL) VMs in Azure - Code Sample</title>
 <description><![CDATA[<p>In the previous post we looked at the difference between two deployment models to choose from when deploying Red Hat Enterprise Linux VMs (RHEL):</p>
 <ul>
@@ -1105,6 +1115,24 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <p><strong>Official Reference</strong>: <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/azure-hybrid-benefit-linux" target="_blank">How Azure Hybrid Benefit for PAYG Marketplace VMs applies for Linux virtual machines</a></p>]]></description>
 <link>https://HarvestingClouds.com/post/switching-red-hat-enterprise-linux-rhel-vms-from-payg-to-byos-model</link>
 <pubDate>Thu, 25 Nov 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Find all preview features that you can try now in Azure easily</title>
+<description><![CDATA[<p>You can easily find all the preview features in Azure. You can also find detailed information about each of these features directly within the Azure portal. If you like a feature you can then try it out as well. Let's see where and how to do this.</p>
+<h2>Finding all the preview features</h2>
+<p>You can find all the preview features by navigating to the Azure subscription. Once within the subscription, you can scroll down in the settings and search for &quot;<strong>Preview features</strong>&quot;. This is the less known area that shows you all the latest pre-release features that are available for you to try out. </p>
+<img src="/images/16479205106239457e6366a.png" alt="Preview features in Azure">
+<p>Every feature has below details:</p>
+<ol>
+<li>For every preview feature there is a column for State. This shows if you are already registered or not registered for this feature. </li>
+<li>Next it shows the provider that features pertains to. </li>
+<li>It also shows the release date of the feature.</li>
+<li>Finally, there is a link to the documentation to this feature for more details.</li>
+</ol>
+<p>You also have the option to filter the available features by text (at the top).</p>
+<p>Review this section periodically to check the latest features that are available for you to try. I hope you find this tip useful.</p>]]></description>
+<link>https://HarvestingClouds.com/post/find-all-preview-features-that-you-can-try-now-in-azure-easily</link>
+<pubDate>Mon, 15 Nov 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Export all custom Azure Policies - Code Sample</title>
