@@ -1180,6 +1180,47 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Sat, 16 Oct 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>New Feature Alert - Zone redundant storage (ZRS) for Azure Disk Storage and Azure Storage Accounts</title>
+<description><![CDATA[<p>With <strong>Availability Zones</strong> there is a new way for the data to be made redundant as well in a zone-aware deployment. This is known as &quot;<strong>Zone Redundant Storage</strong>&quot; or <strong>ZRS</strong>. This option replicates the data across different availability zones and therefore protects you against the datacenter level failures. It is highly recommended for the architecture involving highly available (HA) design/solution.</p>
+<h2>ZRS for Managed Disks</h2>
+<p>ZRS as an option for the managed disk is the new feature that has just been introduced.</p>
+<p>Note that this option is available for: </p>
+<ul>
+<li>Azure Premium SSDs</li>
+<li>Standard SSDs</li>
+</ul>
+<p>At the time of writing of this post, this option is only available for the below regions:</p>
+<ul>
+<li>West Europe  </li>
+<li>North Europe </li>
+<li>West US 2 </li>
+<li>France Central</li>
+</ul>
+<p>When you will try to create a new managed disk, while selecting the disk size, you can modify its redundancy option. If you are using one of the region mentioned above, you will view &quot;Zone-redundant storage&quot; as the option for the <strong>disk SKU</strong>. You will have the option to select either premium SSD or Standard SSD only.</p>
+<img src="/images/1647932669623974fde0111.png" alt="ZRS Option for Managed Disks">
+<h2>ZRS and GZRS options for Storage Accounts</h2>
+<p>For the Storage Accounts, this feature is more widely available across various regions. This feature has been available for some time now for the storage accounts.</p>
+<p>When creating new storage accounts, you can select ZRS and GZRS for the storage account data redundancy. These stand for:</p>
+<ul>
+<li><strong>ZRS</strong> - Zone-redundant storage - data is replicated across different zones.</li>
+<li><strong>GZRS</strong> - Geo-zone-redundant storage - this is a mix of GRS and ZRS. In addition to data being replicated across zones, it is also replicated across different geo regions.</li>
+</ul>
+<img src="/images/164793267762397505de820.png" alt="ZRS Option for Storage Accounts">
+<h2>Biggest Advantages</h2>
+<p>There are lots of advantages to leveraging ZRS storage redundancy in your solutions. The big ones include:</p>
+<ul>
+<li>If a virtual machine becomes unavailable in an affected zone, you can continue to work with the disk by mounting it to a virtual machine in a different zone. </li>
+<li>You can also use the ZRS option with shared disks to provide improved availability for clustered or distributed applications E.g. SQL FCI, SAP ASCS/SCS, or GFS2.</li>
+</ul>
+<p><strong>References</strong>: </p>
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/updates/zone-redundant-storage-zrs-for-azure-disk-storage-now-generally-available/" target="_blank">Zone redundant storage (ZRS) for Azure Disk Storage</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy#redundancy-in-the-primary-region" target="_blank">Azure Storage redundancy in the primary region</a></li>
+</ul>]]></description>
+<link>https://HarvestingClouds.com/post/new-feature-alert-zone-redundant-storage-zrs-for-azure-disk-storage-and-azure-storage-accounts</link>
+<pubDate>Mon, 20 Sep 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Automatically trigger on-demand SAP HANA on Azure VM Backup for multiple Databases - Code Sample</title>
 <description><![CDATA[<p>Let's assume you have various <strong>SAP HANA databases on Azure VMs</strong> that are being backed up in Azure Recovery Services Vault using the Backup services i.e. the daily backup. Before performing any major activity in your environment, you will want to take an on-demand backup. This helps you to have a fallback option if anything goes wrong during the activity. To extend the expiry date you may want to update the policy temporarily as the on-demand backup for SAP HANA on Azure VMs, doesn't allow the feature to specify the expiry date.</p>
 <p>The script I present in this post automates the triggering of this on-demand backup for multiple SAP HANA databases. The script takes the name of VMs and related SAP HANA database information in a csv file as input.</p>
