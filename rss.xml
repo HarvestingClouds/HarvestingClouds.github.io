@@ -1221,6 +1221,67 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Mon, 20 Sep 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Simplifying the Azure Backup Center</title>
+<description><![CDATA[<p><strong>Azure Backup Center</strong> is the new one-stop-shop for all your backup management related tasks within Microsoft Azure. It unifies the backup data from various vaults across different subscriptions within your tenant.</p>
+<h2>Navigating to the Backup Center</h2>
+<img src="/images/1648000888623a7f78dec92.png" alt="Backup Center homepage">
+<img src="/images/1648000897623a7f8116ec9.png" alt="Datasource type">
+<h2>Support Matrix</h2>
+<p>Let's check out what all you can do with the Backup Center.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Syntax</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: right;">Test Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Header</td>
+<td style="text-align: center;">Title</td>
+<td style="text-align: right;">Here's this</td>
+</tr>
+<tr>
+<td style="text-align: left;">Paragraph</td>
+<td style="text-align: center;">Text</td>
+<td style="text-align: right;">And more</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Heading1</th>
+<th>Heading 2</th>
+<th>Heading 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h2>Unsupported Scenario</h2>
+<p>Currently, the only unsupported scenario is updating the vault settings at scale. You have to navigate to each individual vault to update its settings.</p>
+<p><strong>References</strong>: </p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/backup/backup-center-overview" target="_blank">Overview of Backup center</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/backup/backup-center-support-matrix" target="_blank">Support matrix for Backup center</a></li>
+</ul>]]></description>
+<link>https://HarvestingClouds.com/post/simplifying-the-azure-backup-center</link>
+<pubDate>Tue, 14 Sep 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Automatically trigger on-demand SAP HANA on Azure VM Backup for multiple Databases - Code Sample</title>
 <description><![CDATA[<p>Let's assume you have various <strong>SAP HANA databases on Azure VMs</strong> that are being backed up in Azure Recovery Services Vault using the Backup services i.e. the daily backup. Before performing any major activity in your environment, you will want to take an on-demand backup. This helps you to have a fallback option if anything goes wrong during the activity. To extend the expiry date you may want to update the policy temporarily as the on-demand backup for SAP HANA on Azure VMs, doesn't allow the feature to specify the expiry date.</p>
 <p>The script I present in this post automates the triggering of this on-demand backup for multiple SAP HANA databases. The script takes the name of VMs and related SAP HANA database information in a csv file as input.</p>
