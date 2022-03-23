@@ -1224,6 +1224,14 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <title>Simplifying the Azure Backup Center</title>
 <description><![CDATA[<p><strong>Azure Backup Center</strong> is the new one-stop-shop for all your backup management related tasks within Microsoft Azure. It unifies the backup data from various vaults across different subscriptions within your tenant.</p>
 <h2>Navigating to the Backup Center</h2>
+<p>To navigate to the <strong>Backup Center</strong>, just go to all Services and just search for it. Or better approach is to find it by searching for it at the top search bar. Once launched you get the view shown in the below image. Note at the middle top section that you can filter the data being shown by following categories:</p>
+<ul>
+<li>Subscription (across your tenant that you have access to)</li>
+<li>Resource Group</li>
+<li>Location</li>
+<li>Type (type of the backup data)</li>
+<li>Vault (where it is being protected)</li>
+</ul>
 <img src="/images/1648000888623a7f78dec92.png" alt="Backup Center homepage">
 <p>The Datasource types that you can manage directly from the Backup Center include:</p>
 <ul>
