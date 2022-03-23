@@ -110,51 +110,88 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p class="post-content"><p><strong>Azure Backup Center</strong> is the new one-stop-shop for all your backup management related tasks within Microsoft Azure. It unifies the backup data from various vaults across different subscriptions within your tenant.</p>
 <h2>Navigating to the Backup Center</h2>
 <img src="/images/1648000888623a7f78dec92.png" alt="Backup Center homepage">
+<p>The Datasource types that you can manage directly from the Backup Center include:</p>
+<ul>
+<li>Azure Virtual machines</li>
+<li>SQL in Azure VM</li>
+<li>Azure Files (Azure Storage)</li>
+<li>SAP HANA in Azure VM</li>
+<li>Azure Disks</li>
+<li>Azure Blobs (Azure Storage)</li>
+<li>Azure Datacenter for PostgreSQL servers</li>
+</ul>
 <img src="/images/1648000897623a7f8116ec9.png" alt="Datasource type">
-<h2>Support Matrix</h2>
+<h2>Allowed Actions</h2>
 <p>Let's check out what all you can do with the Backup Center.</p>
+<style>
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+</style>
 <table>
-<thead>
-<tr>
-<th style="text-align: left;">Syntax</th>
-<th style="text-align: center;">Description</th>
-<th style="text-align: right;">Test Text</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Header</td>
-<td style="text-align: center;">Title</td>
-<td style="text-align: right;">Here's this</td>
-</tr>
-<tr>
-<td style="text-align: left;">Paragraph</td>
-<td style="text-align: center;">Text</td>
-<td style="text-align: right;">And more</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<table>
-<thead>
-<tr>
-<th>Heading1</th>
-<th>Heading 2</th>
-<th>Heading 3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A</td>
-<td>B</td>
-<td>C</td>
-</tr>
-<tr>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-</tr>
-</tbody>
+  <tr>
+    <td>
+      <b>Category</b>
+    </td>
+    <td>
+      <b>Actions</b>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>Monitoring</b>
+    </td>
+    <td>
+      <ul>
+        <li>View all Jobs</li>
+        <li>View all backup instances</li>
+        <li>View all backup policies</li>
+        <li>View all vaults</li>
+        <li>View Azure Monitor alerts at scale</li>
+        <li>View Azure Backup metrics and write metric alert rules</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>Actions</b>
+    </td>
+    <td>
+      <ul>
+        <li>Configure backup</li>
+        <li>Restore Backup Instance</li>
+        <li>Create vault</li>
+        <li>Create backup policy</li>
+        <li>Execute on-demand backup for a backup instance</li>
+        <li>Stop backup for a backup instance</li>
+        <li>Execute cross-region restore job from Backup center</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>Insights</b>
+    </td>
+    <td>
+      <ul>
+        <li>View Backup Reports</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>Governance</b>
+    </td>
+    <td>
+      <ul>
+        <li>View and assign built-in and custom Azure Policies under category Backup</li>
+        <li>View datasources not configured for backup</li>
+      </ul>
+    </td>
+  </tr>
 </table>
 <h2>Unsupported Scenario</h2>
 <p>Currently, the only unsupported scenario is updating the vault settings at scale. You have to navigate to each individual vault to update its settings.</p>
