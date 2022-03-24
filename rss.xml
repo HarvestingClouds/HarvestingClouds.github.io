@@ -1180,6 +1180,39 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Sat, 16 Oct 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure Recovery Services Vaults vs Backup Vaults</title>
+<description><![CDATA[<p><strong>Azure Recovery Services Vaults</strong> has been the place where you configured all backups. Azure <strong>Backup Vaults</strong> is the new area where you configure any new backup features. Let's look at the difference between the two experiences when dealing with the backup of key resources and data.</p>
+<h2>The resources they protect</h2>
+<p>The key difference between the two vault types is the type of datasource that can be protected by that vault. Let's take a look at each vault's supported datasource types.</p>
+<p><strong>Azure Recovery Services vaults</strong> can protect the following types of datasources:</p>
+<ul>
+<li>Azure Virtual machines</li>
+<li>SQL in Azure VM</li>
+<li>Azure Files (Azure Storage)</li>
+<li>SAP HANA in Azure VM</li>
+<li>Azure Backup Server</li>
+<li>Azure Backup Agent</li>
+<li>DPM</li>
+</ul>
+<p><strong>Azure Backup vaults</strong> can protect the following types of datasources:</p>
+<ul>
+<li>Azure Database for PostgreSQL servers</li>
+<li>Azure Blobs (Azure Storage)</li>
+<li>Azure Disks</li>
+<li>Kubernetes Service</li>
+<li>AVS Virtual machines</li>
+</ul>
+<img src="/images/1648101762623c098286f87.png" alt="Supported datasources for each vault type">
+<h2>Backup Center - a single pane of glass to backup management</h2>
+<p>Azure Backup Center is the place that unifies the management of the backup of all the datasources across different vaults. We explored this in detail in the below two blog posts. Check these out to learn more about the backup center:</p>
+<ul>
+<li><a href="" target="_blank">Simplifying the Azure Backup Center - Part 1</a></li>
+<li><a href="" target="_blank">Simplifying the Azure Backup Center - Part 2</a></li>
+</ul>]]></description>
+<link>https://HarvestingClouds.com/post/azure-recovery-services-vaults-vs-backup-vaults</link>
+<pubDate>Tue, 28 Sep 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>New Feature Alert - Zone redundant storage (ZRS) for Azure Disk Storage and Azure Storage Accounts</title>
 <description><![CDATA[<p>With <strong>Availability Zones</strong> there is a new way for the data to be made redundant as well in a zone-aware deployment. This is known as &quot;<strong>Zone Redundant Storage</strong>&quot; or <strong>ZRS</strong>. This option replicates the data across different availability zones and therefore protects you against the datacenter level failures. It is highly recommended for the architecture involving highly available (HA) design/solution.</p>
 <h2>ZRS for Managed Disks</h2>
@@ -1221,7 +1254,50 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Mon, 20 Sep 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Simplifying the Azure Backup Center</title>
+<title>Simplifying the Azure Backup Center - Part 2</title>
+<description><![CDATA[<p>In the previous post, we looked at the overview of the <strong>Backup Center</strong>. In this post, we will look closely at various sections and actions within it. When you launch Backup Center, as we saw in the previous post, you are presented with the Overview screen. This screen is powerful in itself in presenting you with a unified view of backup of various datasource types across your environment. Other parts of the Backup Center are clubbed into the following three main categories:</p>
+<ol>
+<li>Management</li>
+<li>Monitoring &amp; Reporting</li>
+<li>Policy and Compliance</li>
+</ol>
+<p>Let's look at these three areas in detail.</p>
+<h2>1. Management</h2>
+<p>The management section lets you manage various aspects of your backup. The first aspect is the <strong>backup instances</strong>. Here you can view and manage various backup instances filtered by your datasource type. The key thing to note is that the view and various columns that are shown automatically update based on the datasource type selected. You can also set up new backup and /or trigger restore from the existing backup by using the buttons at the top of the page. </p>
+<img src="/images/1648095666623bf1b2aca48.png" alt="Backup Instances">
+<p>Next section &quot;Backup Policies&quot; let's you view and manage backup policies across your environment. You can make updates as required. You can also create new backup policies as well.</p>
+<img src="/images/1648095675623bf1bb25e2f.png" alt="Backup Policies">
+<p>The third and the last section in this category is the ability to view Vaults (both backup and recovery services vaults) across your environment. You can navigate to those vaults by clicking on the corresponding row. You can also create a new vault from here.</p>
+<img src="/images/1648095681623bf1c1cccca.png" alt="Vaults">
+<h2>2. Monitoring and Reporting</h2>
+<p>The monitoring and reporting section helps you with supporting your backup infrastructure. It has the following three sections:</p>
+<ol>
+<li><strong>Backup jobs</strong> - shows you all the backup-related jobs, across your environment.</li>
+<li><strong>Alerts</strong> - shows you all alerts related to your backup data across different vaults.</li>
+<li><strong>Metrics</strong> - provide monitoring of various metrics on the backup data. The main two metrics available are &quot;Backup health events&quot; and &quot;Restore health events&quot;.</li>
+<li><strong>Backup reports</strong> - detailed reporting into the backup data linked to log analytics.</li>
+</ol>
+<img src="/images/1648096240623bf3f0133b7.png" alt="Backup jobs">
+<h2>3. Policy and Compliance</h2>
+<p>The policy and compliance section is all about the governance of the backup data. The main sub-sections in this section are:</p>
+<ol>
+<li><strong>Backup compliance</strong> - it shows you the compliance of various resources related to backup based on the policies and initiatives applied in your environment. It looks for the backup category for the policies and initiatives.</li>
+<li><strong>Azure policies for backup</strong> - All the Azure policies, filtered by the &quot;backup&quot; category. You can also view the initiatives here by updating the drop down based filters.</li>
+<li><strong>Protectable datasources</strong> - These are all the resources that can be protected. </li>
+</ol>
+<p>Protectable datasources is very important section as it helps you easily find all the resources for which you haven't configured the protection. Filter by datasource type to view the resources that can be protected for that type. E.g. in the image below it shows you all the VMs that can be protected via the backup services.</p>
+<img src="/images/1648096247623bf3f789f98.png" alt="Protectable datasources">
+<p>That is all there is to it. Explore all these sections one by one and play around with different options available in each. Backup Center is very powerful in unifying the backup experience and providing a single pane of glass to monitor and manage your backups.</p>
+<p><strong>References</strong>: </p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/backup/backup-center-overview" target="_blank">Overview of Backup center</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/backup/backup-center-support-matrix" target="_blank">Support matrix for Backup center</a></li>
+</ul>]]></description>
+<link>https://HarvestingClouds.com/post/simplifying-the-azure-backup-center-part-2</link>
+<pubDate>Fri, 17 Sep 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Simplifying the Azure Backup Center - Part 1</title>
 <description><![CDATA[<p><strong>Azure Backup Center</strong> is the new one-stop-shop for all your backup management related tasks within Microsoft Azure. It unifies the backup data from various vaults across different subscriptions within your tenant.</p>
 <h2>Navigating to the Backup Center</h2>
 <p>To navigate to the <strong>Backup Center</strong>, just go to all Services and just search for it. Or better approach is to find it by searching for it at the top search bar. Once launched you get the view shown in the below image. Note at the middle top section that you can filter the data being shown by following categories:</p>
@@ -1318,12 +1394,13 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 </table>
 <h2>Unsupported Scenario</h2>
 <p>Currently, the only unsupported scenario is updating the vault settings at scale. You have to navigate to each individual vault to update its settings.</p>
+<p>In the next post, we will look more closely at various sections and actions within the Backup Center.</p>
 <p><strong>References</strong>: </p>
 <ul>
 <li><a href="https://docs.microsoft.com/en-us/azure/backup/backup-center-overview" target="_blank">Overview of Backup center</a></li>
 <li><a href="https://docs.microsoft.com/en-us/azure/backup/backup-center-support-matrix" target="_blank">Support matrix for Backup center</a></li>
 </ul>]]></description>
-<link>https://HarvestingClouds.com/post/simplifying-the-azure-backup-center</link>
+<link>https://HarvestingClouds.com/post/simplifying-the-azure-backup-center-part-1</link>
 <pubDate>Tue, 14 Sep 2021 00:00:00 +0500</pubDate>
 </item>
 <item>

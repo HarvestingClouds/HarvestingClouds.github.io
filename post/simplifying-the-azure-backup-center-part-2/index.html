@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="BloggerCMS" />
+    <meta name="description" content="Blog about all things regarding private and public clouds">
+    <meta name="author" content="@20aman">
+
+    <title>Simplifying the Azure Backup Center - Part 2 :: Harvesting Clouds</title>
+
+    <!-- rss feed url -->
+    <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="https://HarvestingClouds.com/rss.xml"/>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <link rel="shortcut icon" href="https://HarvestingClouds.com/favicon.ico"/>
+
+    <!-- Bootstrap CSS file -->
+    <link href="https://HarvestingClouds.com/js/plugins/bootstrap-3.0.3/css/cerulean.min.css" rel="stylesheet"/>
+    <link href="https://HarvestingClouds.com/js/plugins/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://HarvestingClouds.com/js/plugins/bootstrap-3.0.3/plugins/social-buttons.css" rel="stylesheet"/>
+
+    <!-- syntax highlighter css file -->
+    <link href="https://HarvestingClouds.com/js/plugins/highlight/styles/github.css" rel="stylesheet"/>
+
+    <!-- lightbox for images -->
+    <link href="https://HarvestingClouds.com/js/plugins/lightbox/ekko-lightbox.min.css" rel="stylesheet"/>
+
+    <!-- blog custom CSS file -->
+    <link href="https://HarvestingClouds.com/css/style.css" rel="stylesheet"/>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-75855204-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-75855204-1');
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WZR2M45');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Start Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4896769256137556"
+     crossorigin="anonymous"></script>
+<!-- End Google AdSense  -->
+</head><body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZR2M45"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Header -->
+<header class="navbar navbar-default
+ navbar-fixed-top bs-docs-nav" role="banner">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a href="https://HarvestingClouds.com" class="navbar-brand">Harvesting Clouds</a>
+
+        </div>
+
+
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <div class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="searchQuery form-control" placeholder="Search Posts">
+                </div>
+
+                <button type="button" class="searchButton btn btn-default"><i class="glyphicon glyphicon-search"></i>
+                    Submit
+                </button>
+            </div>
+
+            <ul class="nav navbar-nav page-links">
+                <li><a href="https://HarvestingClouds.com/posts.html">All Posts</a></li>
+                    <li><a href="https://HarvestingClouds.com/page/about-me">About Me</a></li>
+            </ul>
+
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 main-content">
+            <article>
+                <h3>Simplifying the Azure Backup Center - Part 2</h3>
+                <span class="glyphicon glyphicon-user"></span> @20aman
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> Sep 17, 2021
+                <hr>
+
+                <p class="post-content"><p>In the previous post, we looked at the overview of the <strong>Backup Center</strong>. In this post, we will look closely at various sections and actions within it. When you launch Backup Center, as we saw in the previous post, you are presented with the Overview screen. This screen is powerful in itself in presenting you with a unified view of backup of various datasource types across your environment. Other parts of the Backup Center are clubbed into the following three main categories:</p>
+<ol>
+<li>Management</li>
+<li>Monitoring &amp; Reporting</li>
+<li>Policy and Compliance</li>
+</ol>
+<p>Let's look at these three areas in detail.</p>
+<h2>1. Management</h2>
+<p>The management section lets you manage various aspects of your backup. The first aspect is the <strong>backup instances</strong>. Here you can view and manage various backup instances filtered by your datasource type. The key thing to note is that the view and various columns that are shown automatically update based on the datasource type selected. You can also set up new backup and /or trigger restore from the existing backup by using the buttons at the top of the page. </p>
+<img src="/images/1648095666623bf1b2aca48.png" alt="Backup Instances">
+<p>Next section &quot;Backup Policies&quot; let's you view and manage backup policies across your environment. You can make updates as required. You can also create new backup policies as well.</p>
+<img src="/images/1648095675623bf1bb25e2f.png" alt="Backup Policies">
+<p>The third and the last section in this category is the ability to view Vaults (both backup and recovery services vaults) across your environment. You can navigate to those vaults by clicking on the corresponding row. You can also create a new vault from here.</p>
+<img src="/images/1648095681623bf1c1cccca.png" alt="Vaults">
+<h2>2. Monitoring and Reporting</h2>
+<p>The monitoring and reporting section helps you with supporting your backup infrastructure. It has the following three sections:</p>
+<ol>
+<li><strong>Backup jobs</strong> - shows you all the backup-related jobs, across your environment.</li>
+<li><strong>Alerts</strong> - shows you all alerts related to your backup data across different vaults.</li>
+<li><strong>Metrics</strong> - provide monitoring of various metrics on the backup data. The main two metrics available are &quot;Backup health events&quot; and &quot;Restore health events&quot;.</li>
+<li><strong>Backup reports</strong> - detailed reporting into the backup data linked to log analytics.</li>
+</ol>
+<img src="/images/1648096240623bf3f0133b7.png" alt="Backup jobs">
+<h2>3. Policy and Compliance</h2>
+<p>The policy and compliance section is all about the governance of the backup data. The main sub-sections in this section are:</p>
+<ol>
+<li><strong>Backup compliance</strong> - it shows you the compliance of various resources related to backup based on the policies and initiatives applied in your environment. It looks for the backup category for the policies and initiatives.</li>
+<li><strong>Azure policies for backup</strong> - All the Azure policies, filtered by the &quot;backup&quot; category. You can also view the initiatives here by updating the drop down based filters.</li>
+<li><strong>Protectable datasources</strong> - These are all the resources that can be protected. </li>
+</ol>
+<p>Protectable datasources is very important section as it helps you easily find all the resources for which you haven't configured the protection. Filter by datasource type to view the resources that can be protected for that type. E.g. in the image below it shows you all the VMs that can be protected via the backup services.</p>
+<img src="/images/1648096247623bf3f789f98.png" alt="Protectable datasources">
+<p>That is all there is to it. Explore all these sections one by one and play around with different options available in each. Backup Center is very powerful in unifying the backup experience and providing a single pane of glass to monitor and manage your backups.</p>
+<p><strong>References</strong>: </p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/backup/backup-center-overview" target="_blank">Overview of Backup center</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/backup/backup-center-support-matrix" target="_blank">Support matrix for Backup center</a></li>
+</ul></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="https://HarvestingClouds.com/category/azure-backup">Azure Backup</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="https://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                        <a href="https://HarvestingClouds.com/tag/Azure Backup">Azure Backup</a>&nbsp;&nbsp;
+                        <a href="https://HarvestingClouds.com/tag/backup">backup</a>&nbsp;&nbsp;
+                        <a href="https://HarvestingClouds.com/tag/backup center">backup center</a>&nbsp;&nbsp;
+                        <a href="https://HarvestingClouds.com/tag/microsoft">microsoft</a>&nbsp;&nbsp;
+                        <a href="https://HarvestingClouds.com/tag/microsoftazure">microsoftazure</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
+
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="https://HarvestingClouds.com/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
+            </div>
+
+        </div>
+
+        <div class="sidebar col-md-4">
+        
+            <!-- Follow Panel -->
+                <div class="panel panel-primary text-center">
+                    <div class="panel-heading">
+                        <strong>Follow Me</strong>
+                    </div>
+        
+                    <div class="panel-body">
+                        
+                            <a target="_blank" href="https://youtube.com/channel/UCIfsXMJ8HMJkx1lMP-lngzw" class="btn btn-social-icon btn-youtube"><i class="fa fa-youtube"></i></a>
+        
+        <a target="_blank" href="https://HarvestingClouds.com/rss.xml" class="btn btn-social-icon btn-outline"><i class="fa fa-rss"></i></a>
+        
+                        
+                            <a target="_blank" href="https://twitter.com/20aman" class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
+                            <a target="_blank" href="https://ca.linkedin.com/in/20aman" class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                            <a target="_blank" href="https://github.com/HarvestingClouds" class="btn btn-social-icon btn-github"><i class="fa fa-github"></i></a>
+                    </div>
+                </div>
+        
+            <!-- Custom Values from Settings page -->
+        
+        <!-- Blog Series -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <strong>Key Posts and Series</strong>
+                </div>
+        
+                <ul class="list-group">
+                        <li class="list-group-item"><a href="https://www.amazon.com/Quick-Practical-Guide-ARM-Templates/dp/1980629757" target="_blank">Book On Amazon - Quick and Practical Guide to ARM Templates</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/eBooks/6%20Step%20Migration%20Strategy%20%E2%80%93%20Systematic%20Approach%20to%20Migrating%20your%20Workloads%20to%20Microsoft%20Azure.pdf" target="_blank">eBook - 6 Step Migration Strategy – Systematic Approach to Migrating your Workloads to Microsoft Azure</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/azure-backup-series-index/">Azure Backup - Series</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/azure-for-aws-professionals-index">Azure for AWS professionals - Series</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/data-factory-basics-and-azure-sql-basics-series-index/">Azure Data Factory and Azure SQL Basics - Series</a></li>                
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/demystifying-azure-security-series-index/">Demystifying Azure Security - Series</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/azure-tips-tricks-series-index/">Azure Tips & Tricks - Series</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/azure-script-samples-series-index/">Azure Script Samples - Series</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/azure-site-recovery-asr-series-index/">Azure Site Recovery (ASR) - Series</a></li>
+                </ul>
+            </div>
+        
+        
+            <!-- Latest Posts -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <strong>Latest Posts</strong>
+                </div>
+        
+                <ul class="list-group">
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-index">Windows Admin Center in the Azure portal - Index</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/azure-script-samples-series-index">Azure Script Samples - Series Index</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/capacity-reservations-experience-now-available-within-azure-site-recovery-asr">Capacity Reservations experience now available within Azure Site Recovery (ASR)</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/understanding-capacity-reservations-in-azure">Understanding Capacity Reservations in Azure</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-11-automating-deployment">Windows Admin Center in the Azure portal - 11 Automating deployment</a></li>
+                </ul>
+            </div>
+        
+            <!-- Categories -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <strong>Categories</strong>
+                </div>
+        
+                <ul class="list-group">
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/category/azure">Azure</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/category/azure-backup">Azure Backup</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/category/azure-sql">Azure SQL</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/category/azure-script-sample">Azure Script Sample</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/category/azure-security">Azure Security</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/category/azure-vs-aws">Azure vs AWS</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/category/general">General</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/category/powershell">PowerShell</a></li>
+                        <li class="list-group-item"><a href="https://HarvestingClouds.com/category/web-development">Web Development</a></li>
+                </ul>
+            </div>
+        
+            <!-- Archives -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <strong>Archives</strong>
+                    </div>
+        
+                    <ul class="archives list-group"><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2022">March 2022</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2022">February 2022</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2022">January 2022</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2021">December 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2021">November 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2021">October 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2021">September 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2021">August 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2021">July 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2021">April 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2021">March 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2021">February 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2021">January 2021</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2020">December 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2020">November 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2020">October 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2020">July 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/june-2020">June 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2020">May 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2020">March 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2020">February 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2020">January 2020</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2019">December 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2019">November 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2019">October 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2019">September 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2019">August 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2019">July 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/june-2019">June 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2019">May 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2019">April 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2019">March 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2019">February 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2019">January 2019</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2018">December 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2018">November 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2018">October 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2018">September 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2018">August 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2018">July 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/march-2018">March 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/february-2018">February 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2018">January 2018</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/december-2017">December 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2017">November 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2017">October 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/january-2017">January 2017</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/november-2016">November 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/october-2016">October 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/september-2016">September 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/august-2016">August 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/july-2016">July 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/may-2016">May 2016</a></li><li class="list-group-item archive_link"><a href="https://HarvestingClouds.com/archive/april-2016">April 2016</a></li></ul>
+                </div>
+        
+            <!-- Tags -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <strong>Tags Cloud</strong>
+                    </div>
+        
+                    <div class="panel-body">
+                        <ul class="list-inline">
+                            <a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/net" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">net</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/actiongroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">actiongroups</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/activedirectory" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">activedirectory</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ActiveDirectory</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AD</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ad" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">ad</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/adls" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">adls</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/alert" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">alert</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/alerts" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">alerts</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/analytics" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">analytics</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/app" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">app</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/applicationinsights" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ApplicationInsights</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/appservice" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">appservice</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/architecture" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">architecture</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/arm" title="22 total posts" data-original-title="23 total posts" data-toggle="tooltip">ARM</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/arm" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">arm</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/armtemplates" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">armtemplates</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/asr" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">asr</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/asr" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">ASR</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/audit" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">audit</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/auditing" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">auditing</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/automation" title="25 total posts" data-original-title="26 total posts" data-toggle="tooltip">automation</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/automation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Automation</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/availability" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">availability</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/zones" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">zones</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/awareness" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">awareness</a>
+<a style="font-size: 16px" class="tag_cloud" href="https://HarvestingClouds.com/tag/aws" title="59 total posts" data-original-title="60 total posts" data-toggle="tooltip">aws</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azue" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">azue</a>
+<a style="font-size: 18px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azure" title="88 total posts" data-original-title="89 total posts" data-toggle="tooltip">Azure</a>
+<a style="font-size: 18px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azure" title="82 total posts" data-original-title="83 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuread" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azuread</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureautomation" title="10 total posts" data-original-title="11 total posts" data-toggle="tooltip">azureautomation</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureawareness" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureawareness</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/backup" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">Backup</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azurepolicies" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">azurepolicies</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureportal" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureportal</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureresourcemanager" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">AzureResourceManager</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureresourcemanager" title="9 total posts" data-original-title="10 total posts" data-toggle="tooltip">azureresourcemanager</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/script" title="9 total posts" data-original-title="10 total posts" data-toggle="tooltip">Script</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/sample" title="9 total posts" data-original-title="10 total posts" data-toggle="tooltip">Sample</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresecurity" title="19 total posts" data-original-title="20 total posts" data-toggle="tooltip">azuresecurity</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/security" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Security</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresiterecovery" title="15 total posts" data-original-title="16 total posts" data-toggle="tooltip">azuresiterecovery</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresiterecovery" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/azuresql" title="31 total posts" data-original-title="32 total posts" data-toggle="tooltip">azuresql</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/backup" title="26 total posts" data-original-title="27 total posts" data-toggle="tooltip">backup</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/center" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">center</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vault" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">vault</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/bash" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">bash</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/bastion" title="9 total posts" data-original-title="10 total posts" data-toggle="tooltip">bastion</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/batch" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">batch</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/billing" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">billing</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/blob" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">blob</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/book" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">book</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/bootstrap" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">bootstrap</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/bucket" title="14 total posts" data-original-title="15 total posts" data-toggle="tooltip">bucket</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/byos" title="12 total posts" data-original-title="13 total posts" data-toggle="tooltip">byos</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/certifications" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">certifications</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/cloud" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">cloud</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/code" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">code</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/command" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">command</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/compute" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">compute</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/configuration" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">configuration</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/configurations" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">configurations</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/connectivity" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">connectivity</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/console" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">console</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/copy" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">copy</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/cost" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">cost</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/costmanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">costmanagement</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/csharp" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">csharp</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/custom" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">custom</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/policies" title="9 total posts" data-original-title="10 total posts" data-toggle="tooltip">policies</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/custompolicy" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">custompolicy</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/customroles" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">customroles</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/data" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">data</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/database" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">database</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/datacenter" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">datacenter</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/datafactory" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">datafactory</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/datamask" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">datamask</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/datasecurity" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">datasecurity</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/definitions" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">definitions</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/desktop" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">desktop</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/detection" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">detection</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/diagnose" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">diagnose</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/diagrams" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">diagrams</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/disasterrecovery" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">disasterrecovery</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/dnamicdatamask" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dnamicdatamask</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/document" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">document</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/documentation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">documentation</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/dr" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dr</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/dsc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dsc</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/dynamic" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dynamic</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/dynamicdatamasking" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">dynamicdatamasking</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ebook" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ebook</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ec" title="12 total posts" data-original-title="13 total posts" data-toggle="tooltip">ec</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/email" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">email</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/encryption" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">encryption</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/endpoint" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">endpoint</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/endpoints" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">endpoints</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/export" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">export</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/factory" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">factory</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/firewall" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">firewall</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/format" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">format</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/function" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">function</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/functions" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">functions</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/gateway" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">gateway</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/gcp" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">gcp</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/general" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">general</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/github" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">github</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/googlecloud" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">googlecloud</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/gridmvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">gridmvc</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/hana" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">hana</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/high" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">high</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/hub" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">hub</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/identity" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">identity</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/index" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">index</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/initiative" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">initiative</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/initiativedefinition" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">initiativedefinition</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/insights" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">insights</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/json" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">JSON</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/keyvault" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">KeyVault</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/language" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">language</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/license" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">license</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/licensing" title="9 total posts" data-original-title="10 total posts" data-toggle="tooltip">licensing</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/linux" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">linux</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/lock" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">lock</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/locks" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">locks</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/log" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">log</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/loganalytics" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">loganalytics</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/logic" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">logic</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/logicapps" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">logicapps</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/manageddisks" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">manageddisks</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/march" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">march</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mask" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mask</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/masking" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">masking</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mcsa" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsa</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mcsd" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcsd</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mcse" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mcse</a>
+<a style="font-size: 30px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoft" title="244 total posts" data-original-title="245 total posts" data-toggle="tooltip">microsoft</a>
+<a style="font-size: 29px" class="tag_cloud" href="https://HarvestingClouds.com/tag/microsoftazure" title="243 total posts" data-original-title="244 total posts" data-toggle="tooltip">microsoftazure</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/migration" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">migration</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/monitoring" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">monitoring</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/navigate" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">navigate</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/network" title="25 total posts" data-original-title="26 total posts" data-toggle="tooltip">network</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/notification" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">notification</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/nsg" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">nsg</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/oms" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">oms</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/password" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">password</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/payg" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">payg</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/policy" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">policy</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/portal" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">portal</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/powershell" title="34 total posts" data-original-title="35 total posts" data-toggle="tooltip">powershell</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/powershell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">PowerShell</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/preview" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">preview</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/protection" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">protection</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/publish" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">publish</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/python" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">python</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/query" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">query</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/querylanguage" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">querylanguage</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/rbac" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">rbac</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/rdp" title="9 total posts" data-original-title="10 total posts" data-toggle="tooltip">rdp</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/recovery" title="31 total posts" data-original-title="32 total posts" data-toggle="tooltip">recovery</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/services" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">services</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/red" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">red</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/hat" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">hat</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/enterprise" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">enterprise</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/redundancy" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">redundancy</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/remoteapp" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">RemoteApp</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/report" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">report</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/reservedinstances" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">reservedinstances</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcegroup" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">resourcegroup</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcegroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ResourceGroups</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcegroups" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">resourcegroups</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resourcemanager" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">resourcemanager</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/resource" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">resource</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/visualizer" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">visualizer</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/rhel" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">rhel</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/roles" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">roles</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/routetable" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">routetable</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/routetables" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">routetables</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/routing" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">routing</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/runbook" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">runbook</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/runbooks" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Runbooks</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/s" title="14 total posts" data-original-title="15 total posts" data-toggle="tooltip">s</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/sample" title="16 total posts" data-original-title="17 total posts" data-toggle="tooltip">sample</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/sap" title="14 total posts" data-original-title="15 total posts" data-toggle="tooltip">sap</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/on" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">on</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vm" title="15 total posts" data-original-title="16 total posts" data-toggle="tooltip">vm</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/scale" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">scale</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/scaleset" title="12 total posts" data-original-title="13 total posts" data-toggle="tooltip">scaleset</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/script" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">script</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/search" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">search</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/security" title="20 total posts" data-original-title="21 total posts" data-toggle="tooltip">security</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/serial" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">serial</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/series" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">series</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/server" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">server</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/serverless" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">serverless</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/service" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">service</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/servicetags" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">servicetags</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/session" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">session</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/shell" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">shell</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/sla" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">sla</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/snapshots" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">snapshots</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/sql" title="31 total posts" data-original-title="32 total posts" data-toggle="tooltip">sql</a>
+<a style="font-size: 14px" class="tag_cloud" href="https://HarvestingClouds.com/tag/sqldatabase" title="31 total posts" data-original-title="32 total posts" data-toggle="tooltip">sqldatabase</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ssh" title="9 total posts" data-original-title="10 total posts" data-toggle="tooltip">ssh</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/ssis" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ssis</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/storage" title="24 total posts" data-original-title="25 total posts" data-toggle="tooltip">storage</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/subnet" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">subnet</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/subnets" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">subnets</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/suse" title="6 total posts" data-original-title="7 total posts" data-toggle="tooltip">suse</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/tag" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">tag</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/tags" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">tags</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/tags" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">Tags</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/tde" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">tde</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/templates" title="20 total posts" data-original-title="21 total posts" data-toggle="tooltip">Templates</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/templates" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">templates</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/threat" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">threat</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/tips" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">tips</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/transparent" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">transparent</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/transparentdataencryption" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">transparentdataencryption</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/tricks" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">tricks</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/troubleshooting" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">troubleshooting</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/udr" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">udr</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/update" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">update</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/updates" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">updates</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/uptime" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">uptime</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/virtual" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">virtual</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/virtualdesktop" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualdesktop</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/virtualmachine" title="26 total posts" data-original-title="27 total posts" data-toggle="tooltip">virtualmachine</a>
+<a style="font-size: 13px" class="tag_cloud" href="https://HarvestingClouds.com/tag/virtualnetwork" title="27 total posts" data-original-title="28 total posts" data-toggle="tooltip">virtualnetwork</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/visualstudio" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">VisualStudio</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vmimage" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vmimage</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vmss" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">vmss</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vmware" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">VMWare</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vmware" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vmware</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/vpc" title="7 total posts" data-original-title="8 total posts" data-toggle="tooltip">vpc</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/waf" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">waf</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/webdevelopment" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">webdevelopment</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/webinar" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">webinar</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/windows" title="13 total posts" data-original-title="14 total posts" data-toggle="tooltip">windows</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/zone" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">zone</a>
+<a style="font-size: 12px" class="tag_cloud" href="https://HarvestingClouds.com/tag/zrs" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">zrs</a>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <hr/>
+        <p class="text-center">&copy; <script> document.write( new Date().getFullYear()) </script> <strong><a href="https://HarvestingClouds.com">Harvesting Clouds</a></strong></p>
+    </div>
+</footer>
+
+<!-- Jquery and Bootstrap Script files -->
+<script src="https://HarvestingClouds.com/js/jquery-2.0.3.min.js"></script>
+<script src="https://HarvestingClouds.com/js/plugins/bootstrap-3.0.3/js/bootstrap.min.js"></script>
+<script src="https://HarvestingClouds.com/js/plugins/highlight/highlight.pack.js"></script>
+<script src="https://HarvestingClouds.com/js/plugins/lightbox/ekko-lightbox.min.js"></script>
+
+<script>
+    var __blogURL = 'https://HarvestingClouds.com';
+</script>
+
+<script src="https://HarvestingClouds.com/js/blog.js"></script>
+<script src="https://HarvestingClouds.com/js/search.js"></script>
+
+</body>
+</html>
+<!-- for pagination -->
+<script>
+    $(function () {
+
+        ///////////////////////////////////////////////////
+        // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
+        var $nextPostSelector = $('.nextpost');
+        ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
+
+        $.ajax({
+            url: __blogURL + "/data/blog.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.posts !== undefined && data.posts !== null) {
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
+                }
+            },
+            error: function (e) {
+                $prevPostSelector.hide();
+                $nextPostSelector.hide();
+            }
+        });
+
+        // for Disqus
+        var disqus_shortname = 'harvestingclouds';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+    });
+</script>
