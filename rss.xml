@@ -1180,6 +1180,33 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Sat, 16 Oct 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure Backup Series - Index</title>
+<description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Backup service</strong>.</p>
+<p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
+<ol>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-set-storage-redundancy-for-recovery-services-vault" target="_blank">Set Storage Redundancy for Recovery Services Vault</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup" target="_blank">Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-soft-delete-for-recovery-services-vault" target="_blank">Soft Delete for Recovery Services Vault</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-1-overview" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 1 Overview</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-2-enable-managed-identity-for-your-recovery-services-vault" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 2 Enable managed identity for your Recovery Services vault</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-3-assign-permissions-to-the-vault-to-access-the-encryption-key-in-the-azure-key-vault" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 3 Assign permissions to the vault to access the encryption key in the Azure Key Vault</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-4-enable-soft-delete-and-purge-protection-on-the-azure-key-vault" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 4 Enable Soft Delete and purge protection on the Azure Key Vault</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-5-assign-the-encryption-key-to-the-recovery-services-vault" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 5 Assign the encryption key to the Recovery Services vault</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-backup-center-in-microsoft-azure" target="_blank">Backup Center in Microsoft Azure</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-understanding-the-backup-policy-for-sql-server-in-azure-vm" target="_blank">Understanding the backup policy for SQL Server in Azure VM</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-understanding-the-backup-policy-for-sap-hana-in-azure-vm-database" target="_blank">Understanding the backup policy for SAP HANA in Azure VM (Database)</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-troubleshooting-the-backup-issues-for-sql-server-on-azure-vm-or-sap-hana-on-azure-vm-database" target="_blank">Troubleshooting the backup issues for SQL Server on Azure VM or SAP HANA on Azure VM (Database)</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-configuring-azure-backup-for-azure-file-shares" target="_blank">Configuring Azure Backup for Azure File Shares</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-is-now-generally-available" target="_blank">Cross Region Restore (CRR) for Azure Virtual Machines is now generally available</a></li>
+<li><a href="https://HarvestingClouds.com/post/azure-backup-managing-the-backup-related-alerts-via-the-azure-monitor" target="_blank">Managing the backup-related alerts via the Azure Monitor</a></li>
+<li><a href="https://harvestingclouds.com/post/simplifying-the-azure-backup-center-part-1/" target="_blank">Simplifying the Azure Backup Center - Part 1</a></li>
+<li><a href="https://harvestingclouds.com/post/simplifying-the-azure-backup-center-part-2/" target="_blank">Simplifying the Azure Backup Center - Part 2</a></li>
+<li><a href="https://harvestingclouds.com/post/azure-recovery-services-vaults-vs-backup-vaults/" target="_blank">Azure Recovery Services Vaults vs Backup Vaults</a></li>
+</ol>]]></description>
+<link>https://HarvestingClouds.com/post/azure-backup-series-index</link>
+<pubDate>Thu, 30 Sep 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Recovery Services Vaults vs Backup Vaults</title>
 <description><![CDATA[<p><strong>Azure Recovery Services Vaults</strong> has been the place where you configured all backups. Azure <strong>Backup Vaults</strong> is the new area where you configure any new backup features. Let's look at the difference between the two experiences when dealing with the backup of key resources and data.</p>
 <h2>The resources they protect</h2>
@@ -1204,10 +1231,10 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 </ul>
 <img src="/images/1648101762623c098286f87.png" alt="Supported datasources for each vault type">
 <h2>Backup Center - a single pane of glass to backup management</h2>
-<p>Azure Backup Center is the place that unifies the management of the backup of all the datasources across different vaults. We explored this in detail in the below two blog posts. Check these out to learn more about the backup center:</p>
+<p><strong>Azure Backup Center</strong> is the place that unifies the management of the backup of all the datasources across different vaults. We explored this in detail in the below two blog posts. Check these out to learn more about the backup center:</p>
 <ul>
-<li><a href="" target="_blank">Simplifying the Azure Backup Center - Part 1</a></li>
-<li><a href="" target="_blank">Simplifying the Azure Backup Center - Part 2</a></li>
+<li><a href="https://harvestingclouds.com/post/simplifying-the-azure-backup-center-part-1/" target="_blank">Simplifying the Azure Backup Center - Part 1</a></li>
+<li><a href="https://harvestingclouds.com/post/simplifying-the-azure-backup-center-part-2/" target="_blank">Simplifying the Azure Backup Center - Part 2</a></li>
 </ul>]]></description>
 <link>https://HarvestingClouds.com/post/azure-recovery-services-vaults-vs-backup-vaults</link>
 <pubDate>Tue, 28 Sep 2021 00:00:00 +0500</pubDate>
@@ -1255,7 +1282,8 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 </item>
 <item>
 <title>Simplifying the Azure Backup Center - Part 2</title>
-<description><![CDATA[<p>In the previous post, we looked at the overview of the <strong>Backup Center</strong>. In this post, we will look closely at various sections and actions within it. When you launch Backup Center, as we saw in the previous post, you are presented with the Overview screen. This screen is powerful in itself in presenting you with a unified view of backup of various datasource types across your environment. Other parts of the Backup Center are clubbed into the following three main categories:</p>
+<description><![CDATA[<p>In the previous post, we looked at the overview of the <strong>Backup Center</strong>. You can read the first part here: <a href="https://harvestingclouds.com/post/simplifying-the-azure-backup-center-part-1/" target="_blank">Simplifying the Azure Backup Center - Part 1</a> </p>
+<p>In this post, we will look closely at various sections and actions within it. When you launch Backup Center, as we saw in the previous post, you are presented with the Overview screen. This screen is powerful in itself in presenting you with a unified view of backup of various datasource types across your environment. Other parts of the Backup Center are clubbed into the following three main categories:</p>
 <ol>
 <li>Management</li>
 <li>Monitoring &amp; Reporting</li>
@@ -1394,7 +1422,7 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 </table>
 <h2>Unsupported Scenario</h2>
 <p>Currently, the only unsupported scenario is updating the vault settings at scale. You have to navigate to each individual vault to update its settings.</p>
-<p>In the next post, we will look more closely at various sections and actions within the Backup Center.</p>
+<p>In the next post, we will look more closely at various sections and actions within the Backup Center. You can read the second part here: <a href="https://harvestingclouds.com/post/simplifying-the-azure-backup-center-part-2/" target="_blank">Simplifying the Azure Backup Center - Part 2</a></p>
 <p><strong>References</strong>: </p>
 <ul>
 <li><a href="https://docs.microsoft.com/en-us/azure/backup/backup-center-overview" target="_blank">Overview of Backup center</a></li>
@@ -2047,30 +2075,6 @@ $eachVM.RouteTableID = $nextHop.RouteTableId</code></pre>
 <p>In the next blog post, we will create an Azure Route Server in the Azure portal. You can view that post here: <a href="https://HarvestingClouds.com/post/creating-the-azure-route-server/" target="_blank">Creating the Azure Route Server</a></p>]]></description>
 <link>https://HarvestingClouds.com/post/understanding-the-azure-route-server</link>
 <pubDate>Thu, 11 Mar 2021 00:00:00 +0500</pubDate>
-</item>
-<item>
-<title>Azure Backup Series - Index</title>
-<description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Backup service</strong>.</p>
-<p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
-<ol>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-set-storage-redundancy-for-recovery-services-vault" target="_blank">Set Storage Redundancy for Recovery Services Vault</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup" target="_blank">Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-soft-delete-for-recovery-services-vault" target="_blank">Soft Delete for Recovery Services Vault</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-1-overview" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 1 Overview</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-2-enable-managed-identity-for-your-recovery-services-vault" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 2 Enable managed identity for your Recovery Services vault</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-3-assign-permissions-to-the-vault-to-access-the-encryption-key-in-the-azure-key-vault" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 3 Assign permissions to the vault to access the encryption key in the Azure Key Vault</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-4-enable-soft-delete-and-purge-protection-on-the-azure-key-vault" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 4 Enable Soft Delete and purge protection on the Azure Key Vault</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-5-assign-the-encryption-key-to-the-recovery-services-vault" target="_blank">Bring your own keys (BYOK) for recovery services vaults - 5 Assign the encryption key to the Recovery Services vault</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-backup-center-in-microsoft-azure" target="_blank">Backup Center in Microsoft Azure</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-understanding-the-backup-policy-for-sql-server-in-azure-vm" target="_blank">Understanding the backup policy for SQL Server in Azure VM</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-understanding-the-backup-policy-for-sap-hana-in-azure-vm-database" target="_blank">Understanding the backup policy for SAP HANA in Azure VM (Database)</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-troubleshooting-the-backup-issues-for-sql-server-on-azure-vm-or-sap-hana-on-azure-vm-database" target="_blank">Troubleshooting the backup issues for SQL Server on Azure VM or SAP HANA on Azure VM (Database)</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-configuring-azure-backup-for-azure-file-shares" target="_blank">Configuring Azure Backup for Azure File Shares</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-is-now-generally-available" target="_blank">Cross Region Restore (CRR) for Azure Virtual Machines is now generally available</a></li>
-<li><a href="https://HarvestingClouds.com/post/azure-backup-managing-the-backup-related-alerts-via-the-azure-monitor" target="_blank">Managing the backup-related alerts via the Azure Monitor</a></li>
-</ol>]]></description>
-<link>https://HarvestingClouds.com/post/azure-backup-series-index</link>
-<pubDate>Sat, 06 Mar 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure Backup - Managing the backup-related alerts via the Azure Monitor</title>
