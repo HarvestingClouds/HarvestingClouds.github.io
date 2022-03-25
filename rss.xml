@@ -23,7 +23,7 @@
 <li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-11-automating-deployment/" target="_blank">Automating deployment</a></li>
 </ol>]]></description>
 <link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-index</link>
-<pubDate>Sun, 20 Mar 2022 00:00:00 +0500</pubDate>
+<pubDate>Thu, 24 Mar 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure Script Samples - Series Index</title>
@@ -1504,6 +1504,87 @@ $eachVM.RouteTableID = $nextHop.RouteTableId</code></pre>
 <p>If you have any improvements you would like to see in the script feel free to provide that as a comment here or a pull request on GitHub.</p>]]></description>
 <link>https://HarvestingClouds.com/post/automate-azure-route-table-testing-using-network-watcher-and-powershell-scripting-code-sample</link>
 <pubDate>Wed, 21 Jul 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Block all public access to Azure Storage Accounts - via Azure policy - with complete sample</title>
+<description><![CDATA[<p>In the last post, we looked at how to block all public access to Azure Storage Accounts via manual configurations on the Storage Account. In this post, we are looking at how to automatically enforce this in your environment not just for existing storage accounts but also for any new storage accounts that will be created in the future. As the title suggests, we are going to use Azure policy to achieve this. </p>
+<p>You have <strong>two key options</strong> when it comes to any Azure policy. You can either use it only to audit which resources are not compliant. Or you can enforce the required settings. We ideally want the latter effect, so that if someone changes the settings the settings are auto-corrected.</p>
+<h2>Finding the required resources within the policy</h2>
+<p>You first need to find the relevant resources. The <strong>two conditions</strong> you need to apply within the policy are:</p>
+<ol>
+<li>You need to filter for all <strong>Storage Account</strong> resources</li>
+<li>Then you need to filter for Storage Accounts for which &quot;<strong>allowBlobPublicAccess</strong>&quot; is not equal to &quot;<strong>false</strong>&quot; i.e. for which the allow blob public access is enabled.</li>
+</ol>
+<p>For the first condition i.e. to filter by Storage account resource you use the below condition within the policy:</p>
+<pre><code>{
+          "field": "type",
+          "equals": "Microsoft.Storage/storageAccounts"
+ }</code></pre>
+<p>For the second condition, i.e. to filter for Storage Accounts for which &quot;<strong>allowBlobPublicAccess</strong>&quot; is not equal to &quot;<strong>false</strong>&quot; you can use the below condition:</p>
+<pre><code>{
+          "not": {
+            "field": "Microsoft.Storage/storageAccounts/allowBlobPublicAccess",
+            "equals": "false"
+          }
+}</code></pre>
+<h2>Option 1 - Auditing for compliance</h2>
+<p>If you want to only Audit these storage accounts for which the allow blob public access is enabled, for the effect you can specify to only &quot;<strong>audit</strong>&quot; as shown below:</p>
+<pre><code>  "then": {
+    "effect": "audit"
+  }</code></pre>
+<p>This will only show the non-compliant storage accounts under the compliance report. </p>
+<h2>Option 2 - Enforcing the setting (Recommended)</h2>
+<p>To go one step further you want to enforce the setting. You have two ways to do this:</p>
+<ol>
+<li>Deny the operation</li>
+<li>Reapply the settings. </li>
+</ol>
+<p>To deny the operation simply specify the effect as &quot;<strong>deny</strong>&quot; as shown below:</p>
+<pre><code>  "then": {
+    "effect": "deny"
+  }</code></pre>
+<p>To reapply the settings automatically you can use the below &quot;<strong>modify</strong>&quot; effect in the policy. You need to specify the guid for the role with which the effect will be applied. And then you specify the &quot;<strong>addOrReplace</strong>&quot; operation to update the setting as shown below:</p>
+<pre><code>"then": {
+      "effect": "modify",
+      "details": {
+        "roleDefinitionIds": [
+          "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+        ],
+        "operations": [
+          {
+            "operation": "addOrReplace",
+            "field": "Microsoft.Storage/storageAccounts/allowBlobPublicAccess",
+            "value": false
+          }
+        ]
+      }
+    }</code></pre>
+<p><strong>NOTE</strong>: You can create Exemptions in the policy if you have a genuine case where the access needs to be opened. E.g. a public static website hosted on the Storage Account.</p>
+<h2>Complete Policy Sample GitHub Location</h2>
+<p>To find the complete policy sample can be found in the GitHub at this location: <a href="https://github.com/HarvestingClouds/AzurePolicySamples/blob/main/Storage/DisableBlobPublicAccess.json" target="_blank">DisableBlobPublicAccess.json</a></p>
+<p><strong>Reference</strong>: <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-prevent" target="_blank">Prevent anonymous public read access to containers and blobs</a></p>]]></description>
+<link>https://HarvestingClouds.com/post/block-all-public-access-to-azure-storage-accounts-via-azure-policy-with-complete-sample</link>
+<pubDate>Sat, 17 Jul 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Block all public access to Azure Storage Accounts - via manual setting</title>
+<description><![CDATA[<p>In the recent past, there have been so many instances where critical data was unintentionally exposed because public access was enabled on the Azure Storage Accounts. Outside people were able to access the blobs and containers publically. Now there is a way to block all public access with just a click of a button.</p>
+<h2>Finding the setting - Allow blob public access</h2>
+<p>To find this setting, navigate to the storage account for which you want to enable this setting. Then navigate to <strong>Configuration</strong> under Settings. Find the configuration for &quot;<strong><em>Allow Blob public access</em></strong>&quot; and set it to &quot;<strong><em>Disabled</em></strong>&quot; to disable any public blob access.</p>
+<img src="/images/1648111273623c2ea98665f.png" alt="Allow Blob public access">
+<h2>More ways to secure the storage account</h2>
+<p>There are various ways to further lockdown and secure your storage account. Let's look at a few of these.</p>
+<h3>Locking the Networking to only selected networks</h3>
+<p>One of the most important settings is to update the Storage Account's networking settings to not allow access from &quot;<strong>All Networks</strong>&quot;. You should lock it down to specific networks only or to specified Public IP addresses only.</p>
+<img src="/images/1648173827623d2303100ce.png" alt="Storage Networking settings">
+<h3>Other security related settings</h3>
+<p>Another security-related configuration is to require secure transfer. This means that when the data travels to and from the storage account HTTPS should be used instead of HTTP. In the case of file shares, the encrypted connection should be used as well.</p>
+<img src="/images/1648173837623d230d988d3.png" alt="Other Storage Configurations">
+<h2>Next Steps</h2>
+<p>In the next post, we will look at automatically enforcing blocking of the public access to storage accounts across your subscription with Azure policies. We will have this policy apply for any existing and new Storage Accounts.</p>
+<p><strong>Reference</strong>: <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-prevent" target="_blank">Prevent anonymous public read access to containers and blobs</a></p>]]></description>
+<link>https://HarvestingClouds.com/post/block-all-public-access-to-azure-storage-accounts-via-manual-setting</link>
+<pubDate>Thu, 15 Jul 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Getting a report for all VMs and it's related OS and Data Disks - Code Sample</title>
