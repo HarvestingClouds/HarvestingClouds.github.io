@@ -26,6 +26,42 @@
 <pubDate>Thu, 24 Mar 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>How to create and use the Storage Event Trigger in Azure Data Factory</title>
+<description><![CDATA[<p>In the Azure Data factory, you can create different types of triggers. Those are: </p>
+<ul>
+<li>Schedule, </li>
+<li>Tumbling window, </li>
+<li>Storage events, </li>
+<li>Custom events. </li>
+</ul>
+<p>In this post, we will be talking about the <strong>Storage events</strong> type trigger.</p>
+<p>Make sure the subscription is registered with the <strong>Event Grid resource provider</strong>, otherwise you will get an error while publishing the changes. How to register the event grid resource provider go to the link: <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types" target="_blank">Register Azure resource Providers</a>.</p>
+<h2>How to create a trigger from the portal</h2>
+<p>Go to the author tab of the Azure Data Factory which is #1 in the screenshot and then select your main pipeline. </p>
+<h3>Step 1</h3>
+<p>Click on the ‘Add trigger’ then click on ‘New/edit’ to create the new trigger. From the Type dropdown, select the ‘Storage events’.</p>
+<img src="/images/1648184947623d4e7305735.png" alt="01">
+<p>The next step is to select the subscription, storage account, and the container name within that storage account.</p>
+<img src="/images/1648184956623d4e7c202d6.png" alt="02">
+<p>The next input parameters are “Blob path begins with” and “Blob path ends with properties” that allow you to specify the filters for the blob paths for which the events will trigger. One of the below properties needs to be defined for the storage event trigger to work.</p>
+<img src="/images/1648184963623d4e83b1878.png" alt="03">
+<p>Next, select the event on which you want to create the storage events trigger. You can select both or at least one type of event should be selected. If there are any blobs with 0 bytes then &quot;Ignore empty blobs&quot; will ignore those blobs to have a selection on them.</p>
+<img src="/images/1648184970623d4e8a8e879.png" alt="04">
+<p>Click Continue to create the preview of the changes on the trigger. If there would be any blobs in the mentioned container that matches the conditions provided while configuring the trigger then it will show all the blobs that satisfied those conditions. Click continue to finish the preview.</p>
+<img src="/images/1648185016623d4eb82ae39.png" alt="05">
+<p>If your pipeline has parameters, you can specify them on the &quot;Trigger runs parameter&quot; blade next. The storage event trigger captures the folder path and file name of the blob into the properties <code>@triggerBody().folderPath</code> and <code>@triggerBody().fileName</code>. To use the values of these properties in a pipeline, you must map the properties to pipeline parameters. After mapping the properties to parameters, you can access the values captured by the trigger through the <code>@pipeline().parameters.parameterName</code> expression throughout the pipeline.</p>
+<img src="/images/1648185023623d4ebf82ab4.png" alt="06">
+<p>To test the trigger, go to the container for which you have defined the trigger and upload any blob which matches with your ‘Blob path ends with’ filter. Once the upload is done, go to the monitor section of the Azure data factory and you will be able to see the trigger and pipeline run logs under the Trigger runs and Pipeline runs.</p>
+<img src="/images/1648185030623d4ec683124.png" alt="07">
+<p>Below you can view the Trigger runs section:</p>
+<img src="/images/1648185130623d4f2a225e6.png" alt="08">
+<p>Below you can view the Pipeline runs section:</p>
+<img src="/images/1648185138623d4f321fcb6.png" alt="09">
+<p>As you can see the storage events trigger is very easy to set up in Azure Data Factory and provide a very powerful tool in your arsenal to automate various complex scenarios.</p>]]></description>
+<link>https://HarvestingClouds.com/post/how-to-create-and-use-the-storage-event-trigger-in-azure-data-factory</link>
+<pubDate>Wed, 23 Mar 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Script Samples - Series Index</title>
 <description><![CDATA[<p>This blog is an <strong>Index</strong> of various blogs and related script samples in the series &quot;<strong>Azure Script Samples</strong>&quot;:</p>
 <ol>
