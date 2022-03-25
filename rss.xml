@@ -1507,7 +1507,7 @@ $eachVM.RouteTableID = $nextHop.RouteTableId</code></pre>
 </item>
 <item>
 <title>Block all public access to Azure Storage Accounts - via Azure policy - with complete sample</title>
-<description><![CDATA[<p>In the last post, we looked at how to block all public access to Azure Storage Accounts via manual configurations on the Storage Account. In this post, we are looking at how to automatically enforce this in your environment not just for existing storage accounts but also for any new storage accounts that will be created in the future. As the title suggests, we are going to use Azure policy to achieve this. </p>
+<description><![CDATA[<p>In the last post, we looked at how to block all public access to Azure Storage Accounts via manual configurations on the Storage Account. You can view that post here: <a href="https://harvestingclouds.com/post/block-all-public-access-to-azure-storage-accounts-via-manual-setting/" target="_blank">Block all public access to Azure Storage Accounts - via manual setting</a>. In this post, we are looking at how to automatically enforce this in your environment not just for existing storage accounts but also for any new storage accounts that will be created in the future. As the title suggests, we are going to use Azure policy to achieve this. </p>
 <p>You have <strong>two key options</strong> when it comes to any Azure policy. You can either use it only to audit which resources are not compliant. Or you can enforce the required settings. We ideally want the latter effect, so that if someone changes the settings the settings are auto-corrected.</p>
 <h2>Finding the required resources within the policy</h2>
 <p>You first need to find the relevant resources. The <strong>two conditions</strong> you need to apply within the policy are:</p>
@@ -1581,7 +1581,7 @@ $eachVM.RouteTableID = $nextHop.RouteTableId</code></pre>
 <p>Another security-related configuration is to require secure transfer. This means that when the data travels to and from the storage account HTTPS should be used instead of HTTP. In the case of file shares, the encrypted connection should be used as well.</p>
 <img src="/images/1648173837623d230d988d3.png" alt="Other Storage Configurations">
 <h2>Next Steps</h2>
-<p>In the next post, we will look at automatically enforcing blocking of the public access to storage accounts across your subscription with Azure policies. We will have this policy apply for any existing and new Storage Accounts.</p>
+<p>In the next post, we will look at automatically enforcing blocking of the public access to storage accounts across your subscription with Azure policies. We will have this policy apply for any existing and new Storage Accounts. You can view that post here: <a href="https://harvestingclouds.com/post/block-all-public-access-to-azure-storage-accounts-via-azure-policy-with-complete-sample/" target="_blank">Block all public access to Azure Storage Accounts - via Azure policy - with complete sample</a>.</p>
 <p><strong>Reference</strong>: <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-prevent" target="_blank">Prevent anonymous public read access to containers and blobs</a></p>]]></description>
 <link>https://HarvestingClouds.com/post/block-all-public-access-to-azure-storage-accounts-via-manual-setting</link>
 <pubDate>Thu, 15 Jul 2021 00:00:00 +0500</pubDate>
