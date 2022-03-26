@@ -1216,6 +1216,52 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Sat, 16 Oct 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Designing Tagging Strategy for Microsoft Azure - Part 1 - Basics</title>
+<description><![CDATA[<p>One of the most useful yet most ignored features within Microsoft Azure is <strong>Tagging</strong>. Tags provide a way to add additional data to your resources. Having a strong tagging strategy from the beginning can provide more insights into your environment. They are especially helpful in understanding how the cost is distributed in your environment. In this post, we are going to look at a few strategies to implement tagging in your environment. </p>
+<h2>Where and What Tags to consider</h2>
+<p>Think of <strong>Tags</strong> as additional <strong>metadata</strong> that is added to the resources within Azure. Everything is a resource and therefore can have tags. At a bare minimum, any resource that generates billing should have a tag applied. </p>
+<p>The <strong>first thing</strong> you need to define when it comes to tagging is what tags you should consider enforcing/applying in your environment. Here are some that I recommend:</p>
+<ol>
+<li><strong>ApplicationOwner</strong> - Owner of the application to which the resource belongs.</li>
+<li><strong>ContactDL</strong> - Distribution List (DL) that can be contacted by the cloud operations team in case there is any action that needs to be taken related to the resource.</li>
+<li><strong>DepartmentName</strong> - Department to which the resource belongs.</li>
+<li><strong>ApplicationName</strong> - Application name for which the resource has been deployed</li>
+<li><strong>CostCenter</strong> - Cost center that should be billed (within the organization).</li>
+<li><strong>ResourceBuildDate</strong> - Date when the resource was first deployed</li>
+<li><strong>ResourceUpdateDate</strong> - Date when the resource was updated in any way.</li>
+<li><strong>BusinessCriticality</strong> - Business criticality of the application. The highest criticality applications should be deployed in a redundant fashion.</li>
+</ol>
+<p><strong>Managing shared resources</strong> - There will be many resources (e.g. virtual networks) that will be used by various departments. These should be tied to the cloud operations team. The expense for these resources should either be shared equally by each department or a weighted distribution based on the overall cloud resources consumption. </p>
+<h2>How to enforce Tags</h2>
+<p>Once you have defined the tagging strategy, you will need to ensure that the tags are applied for each and every resource that should have tags on them. The easiest way to enforce this is by using <strong>Azure Policy</strong>. We will be looking at this in the next blog.</p>
+<h2>Strategy 1 - Applying Tags for each resource</h2>
+<p>The easiest and most basic strategy is to apply the tags for each and every resource. You simply define Azure policies to enforce the tagging for all resources. Also, you define the policy for each and every tag you want to enforce.</p>
+<p>The downside to this policy are:</p>
+<ol>
+<li>Some resources don't have the ability to apply tags when creating these from the Azure portal. So you will need to apply these resources programmatically via ARM Templates, Bicep configurations, Azure CLI, PowerShell, etc.</li>
+<li>You will need to manage the tags at the resource level. Even if the basic tags like BusinessCriticality etc. are not specified, the resource creation will fail.</li>
+</ol>
+<p>To enhance this strategy you can try to calculate some tags and auto-apply those when each resource is created or updated. E.g. Build Date can be auto-calculated, validated and applied to each resource during its creation time. </p>
+<h2>Strategy 2 -  Applying Tags at the Subscription and inheriting at each resource</h2>
+<p>The next strategy is to specify the key tags at the subscription level and then apply these automatically at the lower levels. You can use Azure policies to auto-apply this. The biggest advantage of this strategy is that you don't need to apply these tags for each and every resource. You just apply the tags at the subscription level and then auto-apply these to each resource within the subscription when those resources are deployed. An example would be a tag for the environment. If you have a subscription for each environment (i.e. one for dev, another for test/QA, and another one for staging and a separate one for production), then you can have an environment tag defined at the subscription level and auto-applied to each resource deployed within that subscription.</p>
+<p>The downside to this strategy is that you can use this only for the most generic resources. E.g. within your subscription, you will have different resource groups for different departments, so you can't have the tag for DepartmentName applied at the subscription level (unless you have a subscription corresponding to one department only).</p>
+<h2>Strategy 3 -  Applying Tags at the Resource Groups and inheriting at each resource</h2>
+<p>Similar to the above strategy, in this third strategy, you enforce the tags at the resource group level and then automatically apply these to each resource that is deployed within the resource group. </p>
+<p>Similar to the above strategy you get the advantage of auto applying tags and not think about those when planning to deploy individual resources. As a best practice, you should still plan for the tags for each resource, but these will be auto inherited if you miss any. E.g. If you are creating a Resource Group for a specific department and a specific application within that department then you can easily define the DepartmentName and ApplicationName at the Resource Group level and then auto inherits those for each resource that is deployed within that resource group.</p>
+<p>The only disadvantage is that any resource-specific tags still need to be applied at the resource level. E.g. Business Criticality may vary for each resource even within a resource group.</p>
+<h2>Strategy 4 - A mix of the above strategies</h2>
+<p>The best strategy is a mix of all the above strategies as below:</p>
+<ol>
+<li>The most generic tags should only be deployed at the <strong>subscription level</strong> and then auto inherited for all resources under that subscription</li>
+<li>The <strong>Resource Group</strong> should enforce tags that are specific to that group and then auto inherit for all resources under that resource group</li>
+<li>The <strong>resource-specific tags</strong> should be either auto-calculated and applied or enforced for each resource. You should also auto-calculate, validate, and auto-apply as many resources as you can.</li>
+</ol>
+<p>E.g. you can have an environment tag at the subscription level, a department and application tag at the resource group level, a build data and update date at the resource level auto calculated and applied, and other tags enforced at the resource level. </p>
+<p>In the next posts, we will look at ways to apply these strategies with policy samples.</p>]]></description>
+<link>https://HarvestingClouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-1-basics</link>
+<pubDate>Sat, 02 Oct 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Backup Series - Index</title>
 <description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Backup service</strong>.</p>
 <p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
