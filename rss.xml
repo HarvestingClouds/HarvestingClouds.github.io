@@ -1216,6 +1216,190 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Sat, 16 Oct 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Designing Tagging Strategy for Microsoft Azure - Part 3 - Enforcing Tags at the Subscription level and Inheriting on underlying resources</title>
+<description><![CDATA[<p>In the last post, we looked at enforcing the tags at the resource level. In this post, we are looking at policies and various nuances in implementing the second strategy i.e. enforcing tags at the Subscription level and inheriting at each resource.</p>
+<h2>Add or Replace Tags on a Subscription</h2>
+<p>As the subscription will already exist, it doesn't make sense to &quot;<strong>require tags</strong>&quot; on the subscription. Instead, you will &quot;<strong>add or replace a tag</strong>&quot; on the subscription level.</p>
+<p>You can add or replace a tag on a subscription by using the below Azure policy. This is an extension of the in-built policies. This combines multiple policies into a single one to simplify the management of policies.</p>
+<p>The below policy is enforcing the <strong>Environment</strong> tag on the Subscription. It adds the tag if it is not present. If it is present and the value is not &quot;Dev&quot; then it updates the the tag's value to Dev. </p>
+<p><strong>Note</strong>: You can parameterize the tag name and its value as well very easily. You can check in-built policies for reference. Or let me know if this is something you want to see and I can create a parameterized sample.</p>
+<pre><code>"policyRule": {
+  "if": {
+    "allOf": [
+      {
+        "field": "type",
+        "equals": "Microsoft.Resources/subscriptions"
+      },
+      {
+        "anyOf": [
+          {
+            "field": "tags['Environment']",
+            "exists": "false"
+          },
+          {
+            "field": "tags['Environment']",
+            "notEquals": "Dev"
+          }
+        ]
+      }
+    ]
+  },
+  "then": {
+    "effect": "modify",
+    "details": {
+      "roleDefinitionIds": [
+        "/providers/microsoft.authorization/roleDefinitions/4a9ae827-6dc8-4573-8ac7-8239d42aa03f"
+      ],
+      "operations": [
+        {
+          "operation": "addOrReplace",
+          "field": "tags['Environment']",
+          "value": "Dev"
+        }
+      ]
+    }
+  }
+}</code></pre>
+<h2>Inheriting Tags from Subscription</h2>
+<p>You can easily inherit the tags from a subscription down to its underlying resources by using an Azure policy specifically for this purpose. You have <strong>two approaches for inheriting</strong> the tags from the subscription level:</p>
+<ol>
+<li>Inherit the tags and their value only if this tag is missing from the resource</li>
+<li>Inherit and replace the tag if it doesn't match the value of the same tag at the subscription level</li>
+</ol>
+<p>Which approach works for you depends on your requirements. For both these scenarios, there are in-built Azure policies provided by Microsoft. Let's look at both of these. </p>
+<h3>1. Inheriting the tag - only if it is missing</h3>
+<p>In the below policy, you check that all of the below conditions should be met before the action can be taken:</p>
+<ul>
+<li>The Environment tag does not exist on the resource</li>
+<li>The Environment tag at the subscription level is not equal to an empty value</li>
+</ul>
+<p>If both of these conditions are true i.e. the Environment tag is missing and has a valid value at the subscription level, then the &quot;modify&quot; effect is applied. Within this effect, the tag from the subscription level is applied at the resource level.</p>
+<p><strong>Note</strong>: You can parameterize any values within this sample policy. Also, you can extend this policy to multiple tags (without creating additional policies).</p>
+<pre><code>"policyRule": {
+  "if": {
+    "allOf": [
+      {
+        "field": "tags['Environment']]",
+        "exists": "false"
+      },
+      {
+        "value": "[subscription().tags['Environment']]",
+        "notEquals": ""
+      }
+    ]
+  },
+  "then": {
+    "effect": "modify",
+    "details": {
+      "roleDefinitionIds": [
+        "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+      ],
+      "operations": [
+        {
+          "operation": "addOrReplace",
+          "field": "tags['Environment']",
+          "value": "[subscription().tags['Environment']]"
+        }
+      ]
+    }
+  }
+}</code></pre>
+<h3>2. Inherit and replace the tag if it doesn't match the value of the same tag at the subscription level</h3>
+<p>In the below policy, you check that all of the below conditions should be met before the action can be taken:</p>
+<ul>
+<li>The Environment tag at the resource level doesn't have the same value as the one at the subscription level</li>
+<li>The Environment tag at the subscription level is not equal to an empty value</li>
+</ul>
+<p>If both of these conditions are true i.e. the Environment tag doesn't have the same value as the one at the subscription level and it has a valid value at the subscription level, then the &quot;modify&quot; effect is applied. Within this effect, the tag from the subscription level is applied at the resource level.</p>
+<p><strong>Note</strong>: You can parameterize any values within this sample policy. Also, you can extend this policy to multiple tags (without creating additional policies).</p>
+<pre><code>"policyRule": {
+  "if": {
+    "allOf": [
+      {
+        "field": "tags['Environment']]",
+        "notEquals": "[subscription().tags['Environment']]"
+      },
+      {
+        "value": "[subscription().tags['Environment']]",
+        "notEquals": ""
+      }
+    ]
+  },
+  "then": {
+    "effect": "modify",
+    "details": {
+      "roleDefinitionIds": [
+        "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+      ],
+      "operations": [
+        {
+          "operation": "addOrReplace",
+          "field": "tags['Environment']",
+          "value": "[subscription().tags['Environment']]"
+        }
+      ]
+    }
+  }
+}</code></pre>
+<h2>Complete Policy Samples on GitHub</h2>
+<p>You can find the complete policy samples on the GitHub in my policy samples repository here: <a href="https://github.com/HarvestingClouds/AzurePolicySamples/tree/main/Tagging" target="_blank">AzurePolicySamples - Tagging/</a>.</p>]]></description>
+<link>https://HarvestingClouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-3-enforcing-tags-at-the-subscription-level-and-inheriting-on-underlying-resources</link>
+<pubDate>Thu, 07 Oct 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Designing Tagging Strategy for Microsoft Azure - Part 2 - Enforcing Tags at the Resource level</title>
+<description><![CDATA[<p>In the last post, we looked at the importance of tagging in Azure and various tagging strategies. You can view that post here: <a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-1-basics/" target="_blank">Designing Tagging Strategy for Microsoft Azure - Part 1 - Basics</a>. In this post, we are looking at policies and various nuances in implementing the first strategy i.e. enforcing tags at the resource level. </p>
+<h2>Requiring Tags on a resource</h2>
+<p>You can require a tag on a resource by using the below Azure policy. This is an extension of the in-built policy that requires one tag. This extends it to two tags and shows you how you can add even more tags using just one policy.</p>
+<pre><code>"policyRule": {
+  "if": {
+        "anyOf": [
+          {
+            "field": "tags['ApplicationOwner']",
+            "exists": "false"
+          },
+          {
+            "field": "tags['DepartmentName']",
+            "exists": "false"
+          }
+        ]
+  },
+  "then": {
+    "effect": "deny"
+  }
+}</code></pre>
+<p>The above policy requires two tags:</p>
+<ol>
+<li>ApplicationOwner - Person responsible for the resource</li>
+<li>DepartmentName - Name of the department to which the resource belongs</li>
+</ol>
+<h2>Requiring a Tag and also enforcing a format</h2>
+<p>Let's assume that you require the ApplicationOwner tag. But you also want to ensure that the user trying to deploy it are using an email id. E.g. if the domain is HarvestingClouds.com then the email id will look something like xxxx@harvestingclouds.com, where &quot;xxxx&quot; could be anything. In policy you will match this by using the &quot;<em>&quot; wildcard character. The match should be then with &quot;<b><i></em>@harvestingclouds.com</i></b>&quot;. The policy will look something like below:</p>
+<pre><code>"policyRule": {
+  "if": {
+    "not": {
+      "allOf": [
+        {
+          "field": "tags['ApplicationOwner']",
+          "exists": "true"
+        },
+        {
+          "field": "tags['ApplicationOwner']",
+          "like": "*@harvestingclouds.com"
+        }
+      ]
+    }
+  },
+  "then": {
+    "effect": "deny"
+  }
+}</code></pre>
+<h2>Complete Policy Samples on GitHub</h2>
+<p>You can find the complete policy samples on the GitHub in my policy samples repository here: <a href="https://github.com/HarvestingClouds/AzurePolicySamples/tree/main/Tagging" target="_blank">AzurePolicySamples - Tagging/</a>.</p>]]></description>
+<link>https://HarvestingClouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-2-enforcing-tags-at-the-resource-level</link>
+<pubDate>Mon, 04 Oct 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Designing Tagging Strategy for Microsoft Azure - Part 1 - Basics</title>
 <description><![CDATA[<p>One of the most useful yet most ignored features within Microsoft Azure is <strong>Tagging</strong>. Tags provide a way to add additional data to your resources. Having a strong tagging strategy from the beginning can provide more insights into your environment. They are especially helpful in understanding how the cost is distributed in your environment. In this post, we are going to look at a few strategies to implement tagging in your environment. </p>
 <h2>Where and What Tags to consider</h2>
