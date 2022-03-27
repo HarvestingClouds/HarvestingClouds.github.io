@@ -1216,6 +1216,105 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Sat, 16 Oct 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Designing Tagging Strategy for Microsoft Azure - Part 4 - Enforcing Tags at the Resource Group level and Inheriting on underlying resources</title>
+<description><![CDATA[<p>In the last post, we looked at enforcing the tags at the subscription level and inheriting those at the resource level. In this post, we are looking at policies and various nuances in implementing the third strategy i.e. enforcing tags at the Resource Group level and inheriting at each resource.</p>
+<h2>Require Tags on a Resource Group</h2>
+<p>You can require tags on a Resource Group by using the below Azure policy. This is an extension of the in-built policies. This extends the policy to leverage multiple tags in a single policy.</p>
+<p>The below policy is enforcing the <strong>ApplicationOwner</strong> and <strong>DepartmentName</strong> tags on the Resource Groups. It denies the creation of Resource Groups if any one of the tag is not present.</p>
+<p><strong>Note</strong>: You can parameterize the tag name and its value as well very easily. You can check in-built policies for reference. Or let me know if this is something you want to see and I can create a parameterized sample.</p>
+<pre><code>"policyRule": {
+  "if": {
+    "allOf": [
+      {
+        "field": "type",
+        "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+      },
+      {
+        "anyOf": [
+          {
+            "field": "tags['ApplicationOwner']",
+            "exists": "false"
+          },
+          {
+            "field": "tags['DepartmentName']",
+            "exists": "false"
+          }
+        ]
+      }
+    ]
+  },
+  "then": {
+    "effect": "deny"
+  }
+}</code></pre>
+<p>You will get an error similar to below when trying to create a resource group after you have defined and assigned this policy in your subscription.</p>
+<img src="/images/1648366287624012cfc9f08.png" alt="Resource Group creation error due to tagging policy">
+<p>When you get the above error after trying to create the Resource Group without tags (if you have the policy assigned already to enforce tags on RGs), then click on line #1 in the screenshot. In the pop-up blade that opens up, click on &quot;Raw Error&quot; as shown above as #2. Then scroll down to see the details of the policy that stopped the resource group creation.</p>
+<h2>Inheriting Tags from Resource Groups</h2>
+<p>You can easily inherit the tags from a Resource Group down to its underlying resources by using an Azure policy specifically for this purpose. You have <strong>three approaches for inheriting</strong> the tags from the resource group level:</p>
+<ol>
+<li>Inherit the tags and their value only if this tag is missing from the resource</li>
+<li>Inherit and replace the tag if it doesn't match the value of the same tag at the resource group level</li>
+<li>Inheriting the tags regardless of what is specified at the resource level</li>
+</ol>
+<p>Which approach works for you depends on your requirements. Let's look at sample policies for both of these scenarios.  The first two approaches are identical to what we discussed in the last post for the subscription level. You can view those here and just replace subscription with resource group level functions: <a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-3-enforcing-tags-at-the-subscription-level-and-inheriting-on-underlying-resources/" target="_blank">Enforcing Tags at the Subscription level and Inheriting on underlying resources</a>.</p>
+<p>We have seen approach 3 being the most common and we will discuss that next.</p>
+<h3>Inheriting the tags regardless of what is specified at the resource level</h3>
+<p>In the below policy, you check that all of the below conditions should be met before the action can be taken:</p>
+<ul>
+<li>The ApplicationOwner and DepartmentName tags exist at the resource group level </li>
+<li>Both of these tags does not have an empty value at the resource group level</li>
+</ul>
+<p>If both of these conditions are true then the &quot;modify&quot; effect is applied. Within this effect, the tags from the resource group level are applied at the resource level.</p>
+<p><strong>Note</strong>: You can parameterize any values within this sample policy. Also, you can extend this policy to multiple tags (without creating additional policies).</p>
+<pre><code>"policyRule": {
+  "if": {
+    "allOf": [
+      {
+        "value": "[resourceGroup().tags['ApplicationOwner']]",
+        "exists": "true"
+      },
+      {
+        "value": "[resourceGroup().tags['ApplicationOwner']]",
+        "notEquals": ""
+      },
+      {
+        "value": "[resourceGroup().tags['DepartmentName']]",
+        "exists": "true"
+      },
+      {
+        "value": "[resourceGroup().tags['DepartmentName']]",
+        "notEquals": ""
+      }
+    ]
+  },
+  "then": {
+    "effect": "modify",
+    "details": {
+      "roleDefinitionIds": [
+        "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+      ],
+      "operations": [
+        {
+          "operation": "addOrReplace",
+          "field": "tags['ApplicationOwner']",
+          "value": "[resourceGroup().tags['ApplicationOwner']]"
+        },
+        {
+          "operation": "addOrReplace",
+          "field": "tags['DepartmentName']",
+          "value": "[resourceGroup().tags['DepartmentName']]"
+        }
+      ]
+    }
+  }
+}</code></pre>
+<h2>Complete Policy Samples on GitHub</h2>
+<p>You can find the complete policy samples on the GitHub in my policy samples repository here: <a href="https://github.com/HarvestingClouds/AzurePolicySamples/tree/main/Tagging" target="_blank">AzurePolicySamples - Tagging/</a>.</p>]]></description>
+<link>https://HarvestingClouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-4-enforcing-tags-at-the-resource-group-level-and-inheriting-on-underlying-resources</link>
+<pubDate>Sun, 10 Oct 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Designing Tagging Strategy for Microsoft Azure - Part 3 - Enforcing Tags at the Subscription level and Inheriting on underlying resources</title>
 <description><![CDATA[<p>In the last post, we looked at enforcing the tags at the resource level. In this post, we are looking at policies and various nuances in implementing the second strategy i.e. enforcing tags at the Subscription level and inheriting at each resource.</p>
 <h2>Add or Replace Tags on a Subscription</h2>
