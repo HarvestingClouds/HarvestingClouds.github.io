@@ -1204,7 +1204,12 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <li><a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-5-combining-strategies/" target="_blank">Combining strategies</a></li>
 <li><a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-6-auto-calculate-and-apply-tags/" target="_blank">Auto calculate and auto-apply Tags</a></li>
 <li><a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-7-enforcing-tagging-standards-with-azure-policies/" target="_blank">Enforcing tagging standards with Azure Policies</a></li>
-</ol>]]></description>
+</ol>
+<p><strong>Additinal Links</strong>:</p>
+<ul>
+<li><a href="https://harvestingclouds.com/tag/policy/" target="_blank">All Azure policy related blogs</a></li>
+<li><a href="https://harvestingclouds.com/tag/tag/" target="_blank">All Tagging related blogs</a></li>
+</ul>]]></description>
 <link>https://HarvestingClouds.com/post/designing-tagging-strategy-for-microsoft-azure-index</link>
 <pubDate>Wed, 27 Oct 2021 00:00:00 +0500</pubDate>
 </item>
@@ -2156,6 +2161,83 @@ $eachVM.RouteTableID = $nextHop.RouteTableId</code></pre>
 <p>If you have any improvements you would like to see in the script feel free to provide that as a comment here or a pull request on GitHub.</p>]]></description>
 <link>https://HarvestingClouds.com/post/getting-a-report-for-all-vms-and-its-related-os-and-data-disks-code-sample</link>
 <pubDate>Thu, 15 Jul 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Restricting resource types from creation in Azure via Azure Policy</title>
+<description><![CDATA[<p>As a best practice, you should restrict the <strong>type of resources</strong> that can be created in your environment. Even if these are required these should be created by creating an exemption in the policy temporarily. What this does is, it restricts end-users from accidentally creating those resources and disrupting your environment. </p>
+<h2>Resource Types to restrict</h2>
+<p>One such example is <strong>Route Tables</strong>. If someone in your organization with contributor rights creates a Route Table that is applied on a critical subnet then that user can divert all traffic from that subnet. </p>
+<p><strong>Public IP Addresses</strong> are another big one that you want to restrict. Any public IP in your environment needs to have a valid business justification. These are the connection to the outside world and therefore you need to ensure that if one exists in your environment then that has proper safeguards (like Firewall) etc. in place. </p>
+<p>Classic resources should also be limited. You want to conform to the latest standards (ARM-based) and stay away from classic compute and storage resources within Azure.</p>
+<p>We recommend the below resource types to consider restricting in your environment as a starting place. You can then extend these and add/remove any types as per your requirements:</p>
+<ul>
+<li>Route Tables</li>
+<li>Public IP addresses</li>
+<li>DNS Zones</li>
+<li>Network Watchers</li>
+<li>Search Services</li>
+<li>Bastion Hosts</li>
+<li>Elastic Pools</li>
+<li>Classic Compute</li>
+<li>Classic Storage</li>
+</ul>
+<h2>Policy Sample</h2>
+<p>The below policy sample implements the restrictions and limits the resource types (that we discussed above) from being created at all. If any of the mentioned resource type is created then the policy denies that resource creation operation.</p>
+<pre><code>{
+    "mode": "All",
+    "policyRule": {
+      "if": {
+        "anyOf": [
+          {
+            "field": "type",
+            "like": "Microsoft.Network/dnszones*"
+          },
+          {
+            "field": "type",
+            "like": "Microsoft.Network/networkWatchers*"
+          },
+          {
+            "field": "type",
+            "like": "Microsoft.Search/searchServices*"
+          },
+          {
+            "field": "type",
+            "like": "Microsoft.Network/publicIPAddresses*"
+          },
+          {
+            "field": "type",
+            "like": "Microsoft.Network/bastionHosts*"
+          },
+          {
+            "field": "type",
+            "like": "Microsoft.Sql/servers/elasticpools*"
+          },
+          {
+            "field": "type",
+            "like": "Microsoft.Network/routeTables*"
+          },
+          {
+            "field": "type",
+            "like": "Microsoft.ClassicCompute/*"
+          },
+          {
+            "field": "type",
+            "like": "Microsoft.ClassicStorage/*"
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    },
+    "parameters": {}
+  }</code></pre>
+<h2>Additional Considerations - restricting VM SKUs</h2>
+<p>In addition to restricting the resource types, you should also restrict VM SKUs. A SKU from the high performance computing series like HBv3-series can eat up your budget very fast. So as a good practice you should be restricting the SKUs to only the ones that you allow. You will need to maintain the list and update it as different projects require additional SKUs or want to upgrade to the latest series. But that is easily done and hardly takes any time. The benefits far outweigh this one small downside.</p>
+<h2>Complete Policy Samples on GitHub</h2>
+<p>You can find the complete policy samples on the GitHub in my policy samples repository here: <a href="https://github.com/HarvestingClouds/AzurePolicySamples/tree/main/Enforcing%20Standards" target="_blank">AzurePolicySamples - Enforcing Standards</a>.</p>]]></description>
+<link>https://HarvestingClouds.com/post/restricting-resource-types-from-creation-in-azure-via-azure-policy</link>
+<pubDate>Wed, 23 Jun 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Enforcing Naming Convention for Resource Group via Azure Policy</title>
