@@ -2158,8 +2158,81 @@ $eachVM.RouteTableID = $nextHop.RouteTableId</code></pre>
 <pubDate>Thu, 15 Jul 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Enforcing Naming Convention for Resource Group via Azure Policy</title>
+<description><![CDATA[<p>Having the right naming convention is very important for your environment. If you already have a naming convention defined then you should try to enforce it in your environment. One such way to do this is via Azure policy. In this post, we will look at how we can do this with a policy sample.</p>
+<h2>Sample naming convention</h2>
+<p>Let's assume that the naming convention for the Resource Groups has the below features/restrictions:</p>
+<ul>
+<li>The name should start with &quot;RG-&quot;</li>
+<li>The name should end with the environment i.e. dev, test, or prod</li>
+<li>The name should also end with the location i.e. US East, US West, etc.</li>
+</ul>
+<p>E.g. the name should be something like RG-AccoutingRecordsApp-Dev-USE to denote that the resource group is for the accounting department for some &quot;records app&quot;. This resource group is in a dev environment and within the US East location.</p>
+<h2>Enforcing the naming convention</h2>
+<p>To enforce the naming convention we will have negative conditions so that later we can apply the deny operation to stop the resource group from even creating. Also note that all of the conditions should be met. If any of the conditions is not met then the resource group creation will fail.</p>
+<p>Policy sample:</p>
+<pre><code>{
+    "mode": "All",
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+          },
+          {
+            "anyOf": [
+              {
+                "field": "name",
+                "notLike": "RG-*"
+              },
+              {
+                "allOf": [
+                  {
+                    "field": "name",
+                    "notLike": "*-DEV-USE"
+                  },
+                  {
+                    "field": "name",
+                    "notLike": "*-DEV-USW"
+                  },
+                  {
+                    "field": "name",
+                    "notLike": "*-TEST-USE"
+                  },
+                  {
+                    "field": "name",
+                    "notLike": "*-TEST-USW"
+                  },
+                  {
+                    "field": "name",
+                    "notLike": "*-PROD-USE"
+                  },
+                  {
+                    "field": "name",
+                    "notLike": "*-PROD-USW"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    },
+    "parameters": {}
+  }</code></pre>
+<h2>Complete Policy Samples on GitHub</h2>
+<p>You can find the complete policy samples on the GitHub in my policy samples repository here: <a href="https://github.com/HarvestingClouds/AzurePolicySamples/tree/main/Enforcing%20Standards" target="_blank">AzurePolicySamples - Enforcing Standards</a>.</p>]]></description>
+<link>https://HarvestingClouds.com/post/enforcing-naming-convention-for-resource-group-via-azure-policy</link>
+<pubDate>Fri, 18 Jun 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Enforcing resources to have the same location as the containing resource group via Azure Policy</title>
-<description><![CDATA[<p>In the previous post, we saw how to restrict the locations of resources and resource groups. In this post, we will look at how to enforce the resources to adhere to the location of the containing resource groups. If a resource group is in the US East location then all the resources within that resource group can be enforced to be in the same location i.e. US East.</p>
+<description><![CDATA[<p>In the previous post, we saw how to restrict the locations of resources and resource groups. You can view that post here: <a href="https://harvestingclouds.com/post/enforcing-location-restrictions-in-your-environment-via-azure-policy/" target="_blank">Enforcing location restrictions in your environment via Azure Policy
+</a>. In this post, we will look at how to enforce the resources to adhere to the location of the containing resource groups. If a resource group is in the US East location then all the resources within that resource group can be enforced to be in the same location i.e. US East.</p>
 <h2>Implementing restrictions via Azure Policy</h2>
 <p>While trying to implement this restriction we need to consider the fact that the resource groups can only be in a geographical location while the resources have a special location called &quot;global&quot;. So the restrictions will have:</p>
 <ul>
