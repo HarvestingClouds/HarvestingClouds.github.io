@@ -107,7 +107,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <span class="glyphicon glyphicon-time"></span> Oct 10, 2021
                 <hr>
 
-                <p class="post-content"><p>In the last post, we looked at enforcing the tags at the subscription level and inheriting those at the resource level. In this post, we are looking at policies and various nuances in implementing the third strategy i.e. enforcing tags at the Resource Group level and inheriting at each resource.</p>
+                <p class="post-content"><p>This blog is a part of the <strong>Designing Tagging Strategy for Microsoft Azure</strong> series. You can find the <strong>Index</strong> of this series here: <a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-index/" target="_blank">Designing Tagging Strategy for Microsoft Azure</a>.</p>
+<p>In the last post, we looked at enforcing the tags at the subscription level and inheriting those at the resource level. In this post, we are looking at policies and various nuances in implementing the third strategy i.e. enforcing tags at the Resource Group level and inheriting at each resource.</p>
 <h2>Require Tags on a Resource Group</h2>
 <p>You can require tags on a Resource Group by using the below Azure policy. This is an extension of the in-built policies. This extends the policy to leverage multiple tags in a single policy.</p>
 <p>The below policy is enforcing the <strong>ApplicationOwner</strong> and <strong>DepartmentName</strong> tags on the Resource Groups. It denies the creation of Resource Groups if any one of the tag is not present.</p>

@@ -107,7 +107,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <span class="glyphicon glyphicon-time"></span> Oct 07, 2021
                 <hr>
 
-                <p class="post-content"><p>In the last post, we looked at enforcing the tags at the resource level. In this post, we are looking at policies and various nuances in implementing the second strategy i.e. enforcing tags at the Subscription level and inheriting at each resource.</p>
+                <p class="post-content"><p>This blog is a part of the <strong>Designing Tagging Strategy for Microsoft Azure</strong> series. You can find the <strong>Index</strong> of this series here: <a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-index/" target="_blank">Designing Tagging Strategy for Microsoft Azure</a>.</p>
+<p>In the last post, we looked at enforcing the tags at the resource level. In this post, we are looking at policies and various nuances in implementing the second strategy i.e. enforcing tags at the Subscription level and inheriting at each resource.</p>
 <h2>Add or Replace Tags on a Subscription</h2>
 <p>As the subscription will already exist, it doesn't make sense to &quot;<strong>require tags</strong>&quot; on the subscription. Instead, you will &quot;<strong>add or replace a tag</strong>&quot; on the subscription level.</p>
 <p>You can add or replace a tag on a subscription by using the below Azure policy. This is an extension of the in-built policies. This combines multiple policies into a single one to simplify the management of policies.</p>
