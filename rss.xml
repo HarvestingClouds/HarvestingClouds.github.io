@@ -1193,6 +1193,22 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Thu, 11 Nov 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Designing Tagging Strategy for Microsoft Azure - Index</title>
+<description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding <strong>Designing Tagging Strategy for Microsoft Azure</strong>.</p>
+<p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
+<ol>
+<li><a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-1-basics/" target="_blank">Basics and strategies in detail</a></li>
+<li><a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-2-enforcing-tags-at-the-resource-level/" target="_blank">Enforcing Tags at the Resource level</a></li>
+<li><a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-3-enforcing-tags-at-the-subscription-level-and-inheriting-on-underlying-resources/" target="_blank">Enforcing Tags at the Subscription level and Inheriting on underlying resources</a></li>
+<li><a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-4-enforcing-tags-at-the-resource-group-level-and-inheriting-on-underlying-resources/" target="_blank">Enforcing Tags at the Resource Group level and Inheriting on underlying resources</a></li>
+<li><a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-5-combining-strategies/" target="_blank">Combining strategies</a></li>
+<li><a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-6-auto-calculate-and-apply-tags/" target="_blank">Auto calculate and auto-apply Tags</a></li>
+<li><a href="https://harvestingclouds.com/post/designing-tagging-strategy-for-microsoft-azure-part-7-enforcing-tagging-standards-with-azure-policies/" target="_blank">Enforcing tagging standards with Azure Policies</a></li>
+</ol>]]></description>
+<link>https://HarvestingClouds.com/post/designing-tagging-strategy-for-microsoft-azure-index</link>
+<pubDate>Wed, 27 Oct 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Designing Tagging Strategy for Microsoft Azure - Part 7 - Enforcing tagging standards with Azure Policies</title>
 <description><![CDATA[<h2>Enforce the tagging standards</h2>
 <p>As discussed in the previous blogs, if you have any standards you want to enforce for the tagging you can do that directly within the Azure policy as well. E.g. for the ApplicationOwner Tag i.e. the owner of the application related to the resource deployed should be an email id. You can enforce this easily via an Azure policy.</p>
