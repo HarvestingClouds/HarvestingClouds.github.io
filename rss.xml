@@ -2158,6 +2158,115 @@ $eachVM.RouteTableID = $nextHop.RouteTableId</code></pre>
 <pubDate>Thu, 15 Jul 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Enforcing resources to have the same location as the containing resource group via Azure Policy</title>
+<description><![CDATA[<p>In the previous post, we saw how to restrict the locations of resources and resource groups. In this post, we will look at how to enforce the resources to adhere to the location of the containing resource groups. If a resource group is in the US East location then all the resources within that resource group can be enforced to be in the same location i.e. US East.</p>
+<h2>Implementing restrictions via Azure Policy</h2>
+<p>While trying to implement this restriction we need to consider the fact that the resource groups can only be in a geographical location while the resources have a special location called &quot;global&quot;. So the restrictions will have:</p>
+<ul>
+<li>The location field should be equal to the resource group's location. You can compare by using the function: <strong><em>resourceGroup().location</em></strong></li>
+<li>The location field can be equal to &quot;<em>global</em>&quot;</li>
+</ul>
+<p>Policy sample:</p>
+<pre><code>{
+    "mode": "Indexed",
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "location",
+            "notEquals": "[resourceGroup().location]"
+          },
+          {
+            "field": "location",
+            "notEquals": "global"
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    },
+    "parameters": {}
+  }</code></pre>
+<p>Note that the policy has negative conditions as the effect is denying the resource creation/update operation.</p>
+<h2>Complete Policy Samples on GitHub</h2>
+<p>You can find the complete policy samples on the GitHub in my policy samples repository here: <a href="https://github.com/HarvestingClouds/AzurePolicySamples/tree/main/Location%20Restrictions" target="_blank">AzurePolicySamples - Location Restrictions</a>.</p>]]></description>
+<link>https://HarvestingClouds.com/post/enforcing-resources-to-have-the-same-location-as-the-containing-resource-group-via-azure-policy</link>
+<pubDate>Sat, 12 Jun 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Enforcing location restrictions in your environment via Azure Policy</title>
+<description><![CDATA[<p>You want to always deploy resources in a limited set of locations within Microsoft Azure that makes sense to your business. Usually, this decision is based on the following criteria:</p>
+<ul>
+<li>The primary location within Azure that is closest to you</li>
+<li>Optional - The location that provides the best cost for the Express Route, closest to you and based on your preferred provider</li>
+<li>The secondary location that is usually a paired region for the primary location</li>
+<li>Additional locations based on your extended offices or different geographical branches</li>
+</ul>
+<p>Once you have defined the regions where your resources will be deployed, you want to lock this down via Azure policies so that even by accident, no one deploys resources to any other region. This helps with governance and supportability in the longer run. Let's look at how to apply this next. For this post, let's assume that the locations selected are East US and West US i.e. the resources can only be deployed within these two regions.</p>
+<h2>Location restrictions at the Resource Group level</h2>
+<p>For the resource group level you want to have the following conditions and then <strong>deny</strong> the operations if true:</p>
+<ol>
+<li>The type of the resource is the Resource Group</li>
+<li>The field for &quot;location&quot; is not in the allowed list of locations.</li>
+</ol>
+<p>The &quot;<strong>allOf</strong>&quot; operator before all these conditions ensure that all the conditions should be met at the same time.</p>
+<p>Policy sample: </p>
+<pre><code>{
+    "mode": "All",
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+          },
+          {
+            "field": "location",
+            "notIn": [
+              "eastus",
+              "westus"
+            ]
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    },
+    "parameters": {}
+  }</code></pre>
+<h2>Location restrictions at the Resource level</h2>
+<p>The one main caveat with some resources is that they are not deployed in a specific geographic region. They have a special region named &quot;<strong>global</strong>&quot; where such resources are deployed. We will factor this into the list of allowed locations when defining the policy. </p>
+<p>Also we don't need to specify the type, which ensures that this policy is applied to all resource types.</p>
+<p>Policy sample: </p>
+<pre><code>{
+    "mode": "Indexed",
+    "policyRule": {
+      "if": {
+        "not": {
+          "field": "location",
+          "in": [
+            "eastus",
+            "westus",
+            "global"
+          ]
+        }
+      },
+      "then": {
+        "effect": "deny"
+      }
+    },
+    "parameters": {}
+  }</code></pre>
+<h3>Additional considerations</h3>
+<p>You also want to sometimes restrict the resources to the location of the resource group where they are deployed. We will be looking at this in our next blog post.</p>
+<h2>Complete Policy Samples on GitHub</h2>
+<p>You can find the complete policy samples on the GitHub in my policy samples repository here: <a href="https://github.com/HarvestingClouds/AzurePolicySamples/tree/main/Location%20Restrictions" target="_blank">AzurePolicySamples - Location Restrictions</a>.</p>]]></description>
+<link>https://HarvestingClouds.com/post/enforcing-location-restrictions-in-your-environment-via-azure-policy</link>
+<pubDate>Fri, 04 Jun 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Bastion Series - Index</title>
 <description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Bastion service</strong>.</p>
 <p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
