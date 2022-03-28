@@ -1153,6 +1153,20 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Thu, 25 Nov 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure policies now let you customize non-compliance messages</title>
+<description><![CDATA[<p>Azure policies now let you <strong>customize non-compliance messages</strong>. This looks like a small feature but helps a lot whenever a resource is not allowed by the policy. Instead of searching for why the policy denied the operation you can look at the non-compliance message and get a more in-depth idea. </p>
+<p>That also means that the message should be descriptive enough in the first place. You should strategize and ensure that every policy assignment has a non-compliance message and that these messages are descriptive enough.</p>
+<h2>Where to provide the non-compliance message</h2>
+<p>You provide the non-compliance message when <strong>creating or editing the policy assignments</strong>. There is now a specific tab for the &quot;Non-compliance messages&quot; where you can provide a single text message. This message will give end-users an idea as to why the operation was denied for them.</p>
+<img src="/images/16484917456241fce16513e.png" alt="Edit Policy Assignments">
+<h2>Where do you see these in action</h2>
+<p>When your operation is denied by a policy e.g. creation of a resource group, then you can click on the &quot;<strong><em>View error details -&gt;</em></strong>&quot; link at the top and then go to view the error details in the &quot;<strong><em>Raw Error</em></strong>&quot; tab. Here you will see a message property in the JSON that will have your descriptive non-compliance message.</p>
+<img src="/images/16484917506241fce67b843.png" alt="Error message during resource group creation">
+<p>I hope you will be able to proatively leverage this feature and enrich the end-user experience.</p>]]></description>
+<link>https://HarvestingClouds.com/post/azure-policies-now-let-you-customize-non-compliance-messages</link>
+<pubDate>Sun, 21 Nov 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Find all preview features that you can try now in Azure easily</title>
 <description><![CDATA[<p>You can easily find all the preview features in Azure. You can also find detailed information about each of these features directly within the Azure portal. If you like a feature you can then try it out as well. Let's see where and how to do this.</p>
 <h2>Finding all the preview features</h2>
