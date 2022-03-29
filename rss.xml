@@ -2436,6 +2436,60 @@ $eachVM.RouteTableID = $nextHop.RouteTableId</code></pre>
 <pubDate>Fri, 04 Jun 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure Key Vault service SLA raised to 99.99% from 99.9%</title>
+<description><![CDATA[<p><strong>Azure Key Vault</strong> service is now even more resilient. The SLA for this service has been raised to <strong>99.99%</strong>. Earlier this SLA was only 99.9%.</p>
+<p>With this update, Azure Key Vault guarantees that valid Key Vault requests will have availability 99.99% of the time. </p>
+<p>Let's understand what that change translates to. The permissible <strong>downtime or unavailability time</strong> has been reduced as follows.</p>
+<ul>
+<li><strong>Daily</strong>: From 1m 26s to 8s</li>
+<li><strong>Weekly</strong>: From 10m 4s to 1m</li>
+<li><strong>Monthly</strong>: From 43m 49s to 4m 22s</li>
+<li><strong>Quarterly</strong>: From 2h 11m 29s to 13m 8s</li>
+<li><strong>Yearly</strong>: From 8h 45m 56s to 52m 35s</li>
+</ul>
+<p>As you can see from the above numbers, even if the SLA doesn't look much bigger change, it actually is a very big difference in the allowed downtime.</p>
+<p>Reference: <a href="https://azure.microsoft.com/en-us/updates/akv-sla-raised-to-9999/" target="_blank">Azure Key Vault SLA raised to 99.99%</a></p>]]></description>
+<link>https://HarvestingClouds.com/post/azure-key-vault-service-sla-raised-to-9999-from-999</link>
+<pubDate>Sat, 22 May 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Site Recovery now supports cross-continental disaster recovery - although only for 3 region pairs</title>
+<description><![CDATA[<p>If you even had to create a strategy for your organization around Business Continuity/Disaster Recovery in Azure for Virtual Machines, the key product/offering you leverage is Azure Site Recovery or ASR. It actively replicates the data across different region and provides ability to failover in case of a disaster. </p>
+<p>Azure Site Recovery now supports cross-continental disaster recovery giving a new meaning to failover. This feature is available for 3 region pairs. These pairs are:</p>
+<ol>
+<li>Southeast Asia and Australia East</li>
+<li>Southeast Asia and Australia Southeast</li>
+<li>West Europe and South Central US</li>
+</ol>
+<p>This means that a workload running in Southeast Asia can be replicated to Australia East and failed over across continents in case of a disaster. </p>
+<p>Official announcement link: <a href="https://azure.microsoft.com/en-us/updates/asr-cross-continental-dr/" target="_blank">Azure Site Recovery now supports cross-continental disaster recovery for 3 region pairs</a>.</p>]]></description>
+<link>https://HarvestingClouds.com/post/azure-site-recovery-now-supports-cross-continental-disaster-recovery-although-only-for-3-region-pairs</link>
+<pubDate>Tue, 11 May 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Log analytics workspace name uniqueness is now per resource group</title>
+<description><![CDATA[<p><strong>Azure monitor log analytics workspace name</strong> needed to be unique globally so far (similar to storage account names). Microsoft has implemented changes on the backend around how the names are handled in the background. The main change that is an outcome of this is that the log analytics workspace name no longer needs to be globally unique. Instead, it needs to be unique only within a resource group level.</p>
+<p>This provides a lot more flexibility in providing whatever names you want to assign to the log analytics workspace and following your naming standards without worrying that someone else across the globe could be using the same name. </p>
+<h2>Workspace uniqueness updates</h2>
+<p><strong>Workspace uniqueness</strong> is maintained as follow:</p>
+<ul>
+<li><strong>Workspace ID</strong> – global uniqueness remained unchanged.</li>
+<li><strong>Workspace resource ID</strong> – also needs to be globally unique.</li>
+<li><strong>Workspace name</strong> – needs to be unique per resource group.</li>
+</ul>
+<h2>Cross workspace queries</h2>
+<p>Cross workspace queries should now reference workspaces by either: </p>
+<ul>
+<li>Qualified name, or</li>
+<li>Workspace ID, or</li>
+<li>Azure Resource ID</li>
+</ul>
+<p>Cross workspace queries referenced by resource name (i.e. the workspace name) will fail due to ambiguous names when you have multiple workspaces with that name.</p>
+<p><strong>Official update link</strong>: <a href="https://azure.microsoft.com/en-us/updates/general-availability-log-analytics-workspace-name-uniqueness-is-now-per-resource-group/" target="_blank">Log analytics workspace name uniqueness is now per resource group</a>.</p>]]></description>
+<link>https://HarvestingClouds.com/post/log-analytics-workspace-name-uniqueness-is-now-per-resource-group</link>
+<pubDate>Wed, 05 May 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Bastion Series - Index</title>
 <description><![CDATA[<p>This is the <strong>Index</strong> for the series of blog posts regarding the <strong>Azure Bastion service</strong>.</p>
 <p><strong>Note</strong> that this Index is updated regularly as more posts are added around this topic.</p>
