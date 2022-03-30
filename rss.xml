@@ -23,7 +23,21 @@
 <li><a href="https://harvestingclouds.com/post/windows-admin-center-in-the-azure-portal-11-automating-deployment/" target="_blank">Automating deployment</a></li>
 </ol>]]></description>
 <link>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-index</link>
-<pubDate>Thu, 24 Mar 2022 00:00:00 +0500</pubDate>
+<pubDate>Tue, 29 Mar 2022 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>An Easter Egg or hidden feature within the Azure Portal - Simplified View of all resources</title>
+<description><![CDATA[<p>My friend Eric Bogenschuetz first showed me about this hidden feature within the Azure portal. This is a borderline easter egg of some sort. Let's look at what it is and how to find it. </p>
+<h2>The hidden feature</h2>
+<p>The latest view to view all resources within a Resource Group or all resources for the whole environment within the Azure portal is very advanced with lots of async queries running behind the scene and a lot of features/filtering capabilities etc. Sometimes this view can take time to reflect the changes if there are lots of changes happening at the same time. You are required to refresh the whole page sometimes to circumvent this issue if after multiple refreshes the view still doesn't refresh for you. Luckily there is a &quot;<strong>Simplified View</strong>&quot; within the Azure portal that can tone down the optimizations and provide you with a very simplified view of all your resources.</p>
+<h2>How to access it</h2>
+<p>To access this hidden feature, simply click on the &quot;<strong>Refresh</strong>&quot; button 5 times within the Resource Group or All Resources in general. You will have to wait between each refresh to let it finish refreshing the view. When you will click the 5th time, instead of refreshing the page, the portal prompts you to switch to a simplified view, as shown below.</p>
+<img src="/images/16486063276243bc7729ef7.png" alt="Prompt to switch">
+<p>If you click on the blue button for &quot;Switch to simplified view&quot; you are shown the simplified view as shown below.</p>
+<img src="/images/16486063366243bc80638e9.png" alt="Simplified view">
+<p>Give it a try yourself. Let me know if you find this interesting.</p>]]></description>
+<link>https://HarvestingClouds.com/post/an-easter-egg-or-hidden-feature-within-the-azure-portal-simplified-view-of-all-resources</link>
+<pubDate>Mon, 28 Mar 2022 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>How to create and use the Storage Event Trigger in Azure Data Factory</title>

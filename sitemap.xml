@@ -6,7 +6,13 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
 <loc>https://HarvestingClouds.com/post/windows-admin-center-in-the-azure-portal-index/</loc>
-<lastmod>2022-03-24T00:00:00+05:00</lastmod>
+<lastmod>2022-03-29T00:00:00+05:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.00</priority>
+</url>
+<url>
+<loc>https://HarvestingClouds.com/post/an-easter-egg-or-hidden-feature-within-the-azure-portal-simplified-view-of-all-resources/</loc>
+<lastmod>2022-03-28T00:00:00+05:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.00</priority>
 </url>
