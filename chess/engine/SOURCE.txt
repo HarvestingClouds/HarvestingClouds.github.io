@@ -1,0 +1,12 @@
+Stockfish.js 17.1.0 lite single-threaded WebAssembly.
+Copyright 2025 Chess.com, LLC, Nathan Rugg and Stockfish contributors.
+This independent UCI worker is licensed under GNU GPL version 3.
+License: Copying.txt (in this directory)
+Authors: AUTHORS (in this directory)
+Unmodified binary and worker: npm stockfish@17.1.0
+Corresponding source (verified upstream v17.1.0 tag):
+https://github.com/nmrugg/stockfish.js/tree/f9512ef9aff391026813a56855dd086cb72a2d58
+Source archive:
+https://github.com/nmrugg/stockfish.js/archive/f9512ef9aff391026813a56855dd086cb72a2d58.tar.gz
+Build instructions are in that source README.md and build.js --help.
+This lite network is smaller/weaker than the full desktop Stockfish build.

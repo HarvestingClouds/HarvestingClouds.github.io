@@ -1,0 +1,4 @@
+Lichess puzzle database: https://database.lichess.org/#puzzles
+License: https://creativecommons.org/publicdomain/zero/1.0/
+686 validated pilot records. Per-puzzle source attribution is retained in the catalog.
+Stockfish GPL license, authors and corresponding-source directions: ../engine/

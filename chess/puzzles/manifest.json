@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "builtAt": "2026-11-04T04:19:32.659Z",
+  "source": {
+    "name": "Lichess puzzle database",
+    "url": "https://database.lichess.org/#puzzles",
+    "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attribution": "Lichess CC0 puzzle database; original puzzle IDs, game links, ratings and theme tags retained."
+  },
+  "candidates": 1000,
+  "unique": 1000,
+  "validated": 686,
+  "rejected": 314,
+  "duplicates": 0,
+  "pending": 0,
+  "shards": [
+    {
+      "url": "/puzzles/catalog-e56e26b1e79920cf.json",
+      "count": 100,
+      "sha256": "e56e26b1e79920cfc5bb1662fb7e0d3d8250e7239975dcb4fa105de07343f57d"
+    },
+    {
+      "url": "/puzzles/catalog-37e7757a54449a71.json",
+      "count": 100,
+      "sha256": "37e7757a54449a712a2aa274cf37be07c57528d6368b9556cbbe634b4b1dec89"
+    },
+    {
+      "url": "/puzzles/catalog-1d7ba215119816a6.json",
+      "count": 100,
+      "sha256": "1d7ba215119816a6efc6014794cbc593d722dbffc8e789fee49c33e14d3a1aff"
+    },
+    {
+      "url": "/puzzles/catalog-a69855613fce7175.json",
+      "count": 100,
+      "sha256": "a69855613fce71751f5efd9cac84ef2d04f99e212a30eed4efc767d7ada478da"
+    },
+    {
+      "url": "/puzzles/catalog-c6d09cdb59ce0597.json",
+      "count": 100,
+      "sha256": "c6d09cdb59ce05975790f2f6a7bd74a7b2bedd0aa8d69f20912438a030f002bb"
+    },
+    {
+      "url": "/puzzles/catalog-e77f3ad8753236ae.json",
+      "count": 100,
+      "sha256": "e77f3ad8753236ae34bc3007a1b36279008c426ae7dad0d0f9d4588fb22b43b2"
+    },
+    {
+      "url": "/puzzles/catalog-5058fb1b1fec51c6.json",
+      "count": 86,
+      "sha256": "5058fb1b1fec51c60f571fb3cce340eb4b18a17cfd803fdc55b353c30ad5d725"
+    }
+  ],
+  "byBand": {
+    "Beginner": 83,
+    "Easy": 82,
+    "Developing": 72,
+    "Intermediate": 69,
+    "Club Player": 61,
+    "Advanced": 67,
+    "Strong": 57,
+    "Expert": 55,
+    "Master": 49,
+    "Advanced Master": 39,
+    "Expert Master": 27,
+    "Elite": 25
+  },
+  "byTheme": {
+    "mate": 306,
+    "mateIn1": 156,
+    "middlegame": 308,
+    "oneMove": 156,
+    "kingsideAttack": 68,
+    "opening": 44,
+    "advantage": 164,
+    "short": 316,
+    "endgame": 334,
+    "crushing": 215,
+    "long": 178,
+    "hangingPiece": 22,
+    "interference": 3,
+    "veryLong": 35,
+    "master": 100,
+    "rookEndgame": 35,
+    "fork": 86,
+    "smotheredMate": 4,
+    "mateIn2": 120,
+    "morphysMate": 2,
+    "operaMate": 17,
+    "discoveredAttack": 30,
+    "sacrifice": 56,
+    "exposedKing": 29,
+    "skewer": 19,
+    "defensiveMove": 22,
+    "pin": 39,
+    "backRankMate": 40,
+    "masterVsMaster": 8,
+    "advancedPawn": 32,
+    "attraction": 27,
+    "promotion": 14,
+    "quietMove": 21,
+    "queenRookEndgame": 10,
+    "deflection": 27,
+    "mateIn3": 27,
+    "pawnEndgame": 7,
+    "intermezzo": 5,
+    "cornerMate": 2,
+    "pillsburysMate": 8,
+    "superGM": 1,
+    "bishopEndgame": 6,
+    "queenEndgame": 3,
+    "queensideAttack": 18,
+    "clearance": 10,
+    "enPassant": 2,
+    "discoveredCheck": 16,
+    "doubleCheck": 7,
+    "mateIn4": 3,
+    "attackingF2F7": 5,
+    "knightEndgame": 6,
+    "arabianMate": 2,
+    "xRayAttack": 1,
+    "hookMate": 2,
+    "zugzwang": 3,
+    "swallowstailMate": 2,
+    "trappedPiece": 3,
+    "capturingDefender": 2,
+    "epauletteMate": 1,
+    "vukovicMate": 1
+  },
+  "reasons": {
+    "source-continuation-not-supported": 69,
+    "inconclusive-search": 225,
+    "ambiguous-learner-decision": 7,
+    "inconclusive-objective": 11,
+    "non-mating-objective-ended-game": 1,
+    "objective-not-achieved": 1
+  },
+  "validation": {
+    "engine": "Stockfish 17.1 Lite WASM",
+    "depth": 18,
+    "movetime": 250,
+    "scope": "Independent full-strength Stockfish searches at every source-line position, with legal replay and objective checks. Finite-search evidence, not proof of uniquely best play. Ambiguous source lines are quarantined; immediate mating alternatives are accepted by chess rules."
+  }
+}
