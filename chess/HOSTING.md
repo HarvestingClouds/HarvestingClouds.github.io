@@ -1,43 +1,107 @@
-# Host Knight School at /chess/
+# Knight School: portable website package
 
-## Upload
+This package replaces the earlier Next.js hosting ZIP. It runs the same React
+application, but its production CSS and JavaScript are in an ordinary `assets`
+folder, with relative URLs. It has **no `_next` folder dependency**, no Next.js
+server, and no need to change your parent website's Jekyll configuration.
 
-1. Extract the hosting ZIP on your computer.
-2. Upload the entire `chess` folder into your website's public document root.
-   The result must be `https://YOUR-WEBSITE/chess/index.html`, with `_next`,
-   `engine`, `puzzles` and `licenses` folders inside that same `chess` folder.
-3. Open `https://YOUR-WEBSITE/chess/`. Link to `/chess/` from your main website.
+## Test locally on Windows
 
-This is a static HTML/CSS/JavaScript/WebAssembly export. There is no Node.js
-server, database server, API key or npm install required on the hosting server.
-Keep the `_next` folder, including its leading underscore. Do not rename
-`chess`, upload only `index.html`, or open it directly using a `file://` URL.
-The `/chess` prefix is compiled into the export; another path needs a rebuild.
-No existing website files need to be replaced.
+1. Extract the entire ZIP into a normal folder. Do not run files inside the ZIP.
+2. Double-click **PREVIEW.cmd** in the extracted folder.
+3. Keep the terminal open. It prints the local address and opens your browser
+   at `http://127.0.0.1:PORT/chess/`, choosing a free port automatically.
+4. Close the preview with Ctrl+C.
+
+The launcher uses an existing Node.js installation or Python 3. It installs
+nothing, needs no administrator privileges, and binds only to localhost.
+If neither runtime is installed, it reports that explicitly; you can still
+upload the static `chess` folder to your website without a server-side runtime.
+On macOS/Linux, run `node preview.mjs` or `python3 preview.py`.
+
+**Do not double-click `chess/index.html`.** That uses `file://`, where browser
+security blocks important worker/data operations. The page now shows a clear
+local-preview instruction instead of a broken, unstyled application.
+
+## Upload to Harvesting Clouds or another website
+
+Upload the entire **chess** folder into your public document root:
+
+```text
+YOUR EXISTING WEBSITE/
+  chess/
+    index.html
+    assets/
+      knight-school.css
+      knight-school.js
+    engine/
+      stockfish-17.1-lite-single-03e3232.js
+      stockfish-17.1-lite-single-03e3232.wasm
+      Copying.txt
+      AUTHORS
+      SOURCE.txt
+    puzzles/
+      manifest.json
+      catalog-....json
+    licenses/
+  ...all your existing website files stay unchanged...
+```
+
+Open **https://harvestingclouds.com/chess/** (or your own domain's `/chess/`).
+Add a normal `/chess/` link to your existing website navigation.
+
+Replace the old `chess/index.html` with the one from this ZIP and upload the new
+`chess/assets` folder. Merely adding the new assets while keeping the OLD HTML
+will not work: the old HTML still requests `_next` files. An old `_next` folder
+can be removed once no previous version is in use, but is not used by this build.
+Never replace your parent website's index, CNAME, theme or generator settings.
+
+For GitHub Pages, commit the new files, wait for the Pages deployment to finish,
+then hard-refresh. This package needs no `.nojekyll` marker; all required folders
+are ordinary names accepted by Jekyll. If you added `.nojekyll` only for the old
+chess package, this version no longer requires it. Do not remove a marker your
+parent website otherwise relies on.
+
+## Check that the upload is complete
+
+These URLs must return the actual file with HTTP 200, not HTML or a 404:
+
+- `/chess/assets/knight-school.css`
+- `/chess/assets/knight-school.js`
+- `/chess/puzzles/manifest.json`
+- `/chess/engine/stockfish-17.1-lite-single-03e3232.js`
+- `/chess/engine/stockfish-17.1-lite-single-03e3232.wasm`
+
+If page source still mentions `/chess/_next/`, you are seeing the old HTML,
+an incomplete upload, or a cached deployment. The new page refers to
+`./assets/knight-school.css` and `./assets/knight-school.js` with version queries.
+The loader displays an explicit message if JavaScript cannot be downloaded.
 
 ## Hosting requirements
 
-- Use HTTPS. Localhost is also supported for local testing.
-- Serve `index.html` as the directory index and redirect `/chess` to `/chess/`.
-- Exclude `/chess/` and its assets from any parent SPA rewrite, CMS catch-all
-  rule, login redirect or HTML error-page fallback.
+- Use HTTPS for a public website. Localhost is supported for local testing.
+- Serve `index.html` as the directory index; redirect `/chess` to `/chess/`.
+- Exclude this folder and its assets from parent SPA/CMS catch-all rewrites,
+  login redirects and HTML error-page fallbacks.
 - Serve `.js` as JavaScript, `.css` as `text/css`, `.json` as `application/json`,
   and `.wasm` as `application/wasm`. Preserve binary files unchanged.
-- Allow same-origin Web Workers and WASM. The single-threaded engine does not
-  require COOP/COEP headers or cross-origin isolation.
-- If your host applies a restrictive Content Security Policy, allow the
-  exported Next.js inline bootstrap/theme scripts using hashes or the host's
-  supported policy, same-origin scripts/assets/workers, and WebAssembly
-  compilation (`wasm-unsafe-eval`). Do not disable your site's protection
-  globally just to embed this app; scope any required policy to `/chess/`.
-- Avoid long-lived caching for `index.html` and `puzzles/manifest.json`.
-  Content-hashed `_next` files and puzzle shards may be cached long-term.
+- Allow same-origin workers and WebAssembly. This single-threaded engine
+  requires no COOP/COEP headers or cross-origin isolation.
+- If you apply a restrictive Content Security Policy, permit the inline
+  theme/loader scripts with your host's supported hashes or nonce mechanism,
+  same-origin scripts/assets/workers, and WebAssembly compilation
+  (`wasm-unsafe-eval`). Scope any policy change to the sub-app rather than
+  weakening the whole website.
+- Revalidate `index.html`, `assets/knight-school.js`, `assets/knight-school.css`
+  and `puzzles/manifest.json` on updates. The index adds a content-derived
+  version query to its CSS/JavaScript URLs; do not strip it.
 
-The app's internal sections use client state, not server routes. A bookmark
-such as `/chess/?academy=puzzles` opens the Puzzle Academy. Do not rewrite
-missing `.js`, `.wasm` or `.json` files to `index.html`.
+Sections use client-side state, not server routes. The Puzzle Academy bookmark
+is `/chess/?academy=puzzles`. No server-side Node/npm installation is required.
+Relative asset URLs also allow serving the `chess` folder as a local server's
+document root or putting the app in another normal subfolder.
 
-## Embed instead of linking (optional)
+## Optional iframe embedding
 
 Linking is recommended. If your website permits same-origin frames:
 
@@ -46,45 +110,38 @@ Linking is recommended. If your website permits same-origin frames:
         style="width:100%;height:900px;border:0" allow="autoplay"></iframe>
 ```
 
-Keep the full page accessible by a normal `/chess/` link, especially on phones.
-Restrictive iframe sandboxing can block storage, scripts, workers or audio.
-Music still respects the sound toggle and browser user-interaction rules.
+Keep a normal full-page link available for phones. Restrictive iframe sandboxes
+can block storage, scripts, workers and audio. Audio still respects the sound
+toggle and browser user-interaction requirements.
 
-## Data, privacy and updates
+## Data, privacy and licenses
 
-No player games, browser storage, credentials or account data are included.
-Lessons, 686 validated pilot puzzles, the Stockfish worker/WASM, audio
-synthesis and the application UI are included. Sounds need no external files.
-Puzzle data is a finite pilot, not the complete Lichess database; engine checks
-are bounded searches, not exhaustive proofs.
+The package contains lessons, 686 validated pilot puzzles, the local Stockfish
+worker/WASM, UI and synthesized sounds. It contains no personal games,
+credentials or browser storage. Puzzle coverage is a finite pilot and engine
+validation is bounded search, not exhaustive proof.
 
-Games and progress are stored in the visitor's browser, without cloud sync.
-Data from localhost does not automatically transfer to your website. Browser
-storage is origin-scoped, not path-isolated: other trusted apps on the same
-domain can access it. Use a separate origin if you need isolation, with a
-separately built root-path export. Clearing site data removes local progress.
-Take existing game/repertoire backups before moving domains; there is no
-complete Puzzle Academy backup/restore interface.
+Progress and games stay in each visitor's browser, without cloud sync.
+Localhost data does not automatically transfer to your public domain.
+Storage is origin-scoped, not isolated from other apps on the same origin.
+Clearing site data removes local progress. Existing game/repertoire backup
+features remain available; there is no complete Puzzle Academy backup UI.
 
-To update, rebuild and upload the new package to the same `/chess/` location.
-Do not delete visitors' site data. Preserve old hashed assets during a rolling
-update if visitors may still have the previous version open.
+Keep `chess/licenses/` and the engine's `Copying.txt`, `AUTHORS`, and `SOURCE.txt`
+when redistributing. Stockfish.js 17.1.0 uses GPLv3; its exact corresponding-source
+archive and build directions are in `SOURCE.txt`. Lichess puzzle data is CC0
+with source attribution preserved for each puzzle.
 
-## License notices
+## Rebuild
 
-Keep `chess/licenses/` and `chess/engine/Copying.txt`, `AUTHORS`, and `SOURCE.txt`
-when redistributing. The engine is Stockfish.js 17.1.0, GNU GPLv3; its exact
-corresponding-source archive and build directions are linked in `SOURCE.txt`.
-Lichess puzzle data is CC0 with per-puzzle source attribution.
-
-## Rebuild from the source repository
-
-Requires the repository's supported Node.js/npm and installed dependencies:
+From the source repository with dependencies installed:
 
 ```powershell
+npm run typecheck:chess
 npm run export:static --workspace @knight-school/web
 ```
 
-Output: `apps/chess/static-export/` containing this guide and the `chess/`
-upload folder. The export uses separate `.next-export` build files and leaves
-the default root-path development configuration unchanged.
+Output: `apps/chess/static-export/`. The export-only Vite build bundles the
+existing application into a classic production JavaScript file and extracted
+CSS; it does not rebuild or replace the website implementation. Normal Next.js
+development remains unchanged.
