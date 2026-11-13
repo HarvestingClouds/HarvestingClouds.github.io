@@ -67,4 +67,11 @@ a:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 4px; }
 .summary { margin-block: 24px; padding: 16px 20px; border: 1px solid var(--cp-border); border-radius: 16px; background: var(--cp-surface); }
 nav { display: flex; flex-wrap: wrap; gap: 12px 24px; }
 footer { padding: 24px 0 36px; border-top: 1px solid var(--cp-border); }
+.site-footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 11px; color: var(--cp-text-soft); }
+.footer-brand, .footer-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; }
+.footer-brand { gap: 7px; }
+.small-knight { font-size: 18px; color: var(--cp-accent); }
+.site-footer nav { gap: 8px 16px; }
+.site-footer a { font-size: 10px; padding: 4px 2px; color: inherit; }
+@media (max-width: 760px) { .site-footer { flex-direction: column; align-items: flex-start; gap: 8px; } }
 @media (max-width: 480px) { main { padding-block: 24px; } ul { padding-left: 22px; } }
