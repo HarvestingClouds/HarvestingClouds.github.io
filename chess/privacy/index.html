@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <title>Privacy Policy | Knight School</title>
+  <meta name="description" content="How Knight School handles guest progress, optional Google and email accounts, cloud sync, backups, and deletion requests.">
+  <link rel="canonical" href="https://harvestingclouds.com/chess/privacy/">
+  <link rel="stylesheet" href="../legal.css">
+</head>
+<body>
+  <header><a class="brand" href="../"><span aria-hidden="true">&#9822;</span>Knight School</a></header>
+  <main>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Effective and last updated: November 13, 2026</p>
+    <div class="summary"><strong>Your learning, your choice.</strong> You can learn as a guest without creating an account. Optional accounts synchronize saved chess progress using Supabase. Google sign-in does not give Knight School access to Google Drive, Gmail, contacts, or calendars.</div>
+    <p>This policy covers Knight School at <a href="https://harvestingclouds.com/chess/">harvestingclouds.com/chess/</a>, operated by Harvesting Clouds (the site operator, "we"). For privacy questions or requests, email <a href="mailto:20aman@gmail.com">20aman@gmail.com</a>. Other websites and services linked from the app have their own privacy practices.</p>
+
+    <h2>1. Information we handle</h2>
+    <ul>
+      <li><strong>Guest learning data:</strong> lesson completion, opening repertoires and notes, revision schedules, puzzle attempts and training ratings, personal puzzles, saved games and analysis, and resumable computer games are stored in your browser using localStorage and IndexedDB.</li>
+      <li><strong>Optional account information:</strong> when you create an email account or sign in with Google, Supabase Authentication handles your account ID, email address, authentication information and session tokens. Google may provide basic profile information such as your name, profile picture and Google account identifier as part of the sign-in response. This information may be retained in your authentication profile even if the app does not display it. We do not receive your Google password.</li>
+      <li><strong>Synced chess data:</strong> while signed in, the saved learning data described above is uploaded to your account's Supabase database records. Imported PGNs, player names, annotations and personal notes can be included if you save them. Do not put sensitive information about yourself or others in these fields.</li>
+      <li><strong>Technical and support data:</strong> hosting and authentication providers may process IP addresses, browser/device information, request times and security logs to deliver and protect the service. If you email us, we receive your address, message and any attachments you choose to send.</li>
+    </ul>
+
+    <h2>2. How information is used</h2>
+    <p>We use information to authenticate you, keep your progress, synchronize accounts across devices, restore backups, resolve conflicting progress, provide support, and maintain service security. Knight School does not sell personal information, use Google user data for advertising, or use Google user data to train generalized AI or machine-learning models. The chess sub-app does not implement advertising trackers or third-party analytics.</p>
+    <p>Google user data is used for account sign-in and identification, not to read files or communicate on your behalf. We do not request Google Drive, Gmail, contacts or calendar permissions. Google Drive backup is not a feature of this version.</p>
+
+    <h2>3. Where data goes and who can access it</h2>
+    <p>The website is served through GitHub Pages on the Harvesting Clouds domain. Supabase provides optional authentication and cloud storage; Google provides Google sign-in when you choose it. Email providers may process confirmation, password-reset and support messages. These providers process information needed to deliver their services, potentially in countries other than where you live. The storage region and backup settings depend on the deployed Supabase project.</p>
+    <p>Cloud progress is separated by account using database access policies. It is not published to other learners. Authorized site administrators and service providers may access data for operation, support, security or legal obligations. Cloud sync is not end-to-end encrypted against the operator or its providers. We may disclose information when legally required or reasonably necessary to protect rights and prevent abuse.</p>
+    <p>Learn more in the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>, <a href="https://supabase.com/privacy">Supabase Privacy Policy</a> and <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
+
+    <h2>4. Local storage, sessions and backups</h2>
+    <p>Guest and account progress use separate browser caches. Session tokens are stored by the authentication SDK in browser localStorage to keep you signed in. Theme and sound preferences remain device-local. Browser storage on this domain shares the same security boundary as other apps on this domain.</p>
+    <p>Signing out returns you to guest mode but does not erase the account's cached progress. Use a trusted browser and clear this site's data after using a shared device. Clearing browser data deletes local progress, cached sessions and unsynced work; it does not delete your cloud account. Downloaded progress backups contain personal chess data and are under your control.</p>
+    <p>Legal pages can be read without signing in or enabling cloud sync. Core chess analysis runs locally using Stockfish; it is not sent to an external analysis or AI service. Saved analysis may still be synchronized as account progress.</p>
+
+    <h2>5. Retention and deletion</h2>
+    <p>Local data remains until you remove it, clear site data, or your browser removes it. Cloud account information and progress are retained while your account exists, subject to service operation and applicable legal requirements. Deleted progress can retain a revision marker to prevent older devices from restoring it during synchronization.</p>
+    <p>To request access, correction, export or deletion of your cloud account, email <a href="mailto:20aman@gmail.com?subject=Knight%20School%20privacy%20request">20aman@gmail.com</a>, preferably from the address associated with the account. We may ask for reasonable verification before acting. Never email a password or login token. There is no self-service account-deletion button in this version. Deleting the authentication account removes its active cloud progress through the database relationship; provider backups, security logs and records that must be retained may persist according to provider retention or legal requirements. Deletion does not remotely erase device caches or downloaded backups.</p>
+    <p>You can download saved learning data using <strong>Account &amp; sync &gt; Download complete progress</strong>. You can revoke Google sign-in access in your <a href="https://myaccount.google.com/connections">Google Account connections settings</a>. Revoking Google access does not by itself delete Knight School cloud progress; contact us to request account deletion.</p>
+
+    <h2>6. Children and privacy rights</h2>
+    <p>Optional accounts are not intended for children under 13, or under a higher minimum age required locally. We do not knowingly collect account information from children below that age. If you believe a child has provided such information, contact us so we can investigate and remove it as appropriate. Parents or guardians should supervise children's use of guest learning.</p>
+    <p>Depending on your location, you may have rights to access, correct, delete or obtain a copy of information, restrict or object to certain processing, or complain to your local data-protection authority. Contact us to exercise applicable rights. We do not require a Google account to use guest learning.</p>
+
+    <h2>7. Security and policy updates</h2>
+    <p>We use HTTPS and account access controls, but no online service or browser storage can be guaranteed completely secure or always available. Protect your account and keep independent backups. We may update this policy as the service changes; the date above identifies the current version. Material changes will be described on this page.</p>
+    <p>Questions: <a href="mailto:20aman@gmail.com">20aman@gmail.com</a>.</p>
+  </main>
+  <footer><nav aria-label="Legal navigation"><a href="../">Back to Knight School</a><a href="../terms/">Terms of Service</a><a href="mailto:20aman@gmail.com">Contact</a></nav></footer>
+</body>
+</html>

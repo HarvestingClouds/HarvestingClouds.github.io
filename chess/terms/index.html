@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <title>Terms of Service | Knight School</title>
+  <meta name="description" content="Terms for using Knight School chess lessons, puzzles, local Stockfish analysis, optional accounts, and progress synchronization.">
+  <link rel="canonical" href="https://harvestingclouds.com/chess/terms/">
+  <link rel="stylesheet" href="../legal.css">
+</head>
+<body>
+  <header><a class="brand" href="../"><span aria-hidden="true">&#9822;</span>Knight School</a></header>
+  <main>
+    <h1>Terms of Service</h1>
+    <p class="updated">Effective and last updated: November 13, 2026</p>
+    <div class="summary">Knight School is a chess-learning service. Learn as a guest or use an optional account to synchronize progress. Keep your own backups; training ratings and engine recommendations are educational estimates, not guarantees.</div>
+    <p>These terms apply to Knight School at <a href="https://harvestingclouds.com/chess/">harvestingclouds.com/chess/</a>, operated by Harvesting Clouds ("we", "us"). By using the service, you agree to these terms. If you do not agree, do not use the service. Contact the site operator at <a href="mailto:20aman@gmail.com">20aman@gmail.com</a>.</p>
+
+    <h2>1. Eligibility and accounts</h2>
+    <p>You may use guest learning without registering. Optional accounts are available only when configured by the operator. To create an account, you must be at least 13, meet any higher minimum age required where you live, and have a parent or guardian's permission if you are not old enough to agree to these terms yourself. Parents or guardians should supervise children's use of guest learning.</p>
+    <p>Provide accurate account information, protect your login credentials, and use only accounts you are authorized to access. Notify us if you suspect unauthorized use. Google sign-in is optional and subject to Google's terms; it does not grant access to your Google Drive or other Google content.</p>
+
+    <h2>2. Acceptable use</h2>
+    <p>Use Knight School lawfully and for legitimate learning, practice and game review. Do not attempt to access another person's data, bypass authentication or storage limits, introduce malicious content, disrupt the service, abuse signup or email features, or infringe others' rights. Do not use the engine to cheat in games or events that prohibit outside assistance. Follow the fair-play rules of the platform or event where you play.</p>
+
+    <h2>3. Your chess content</h2>
+    <p>You retain your rights in the games, notes, repertoires and other content you provide. You are responsible for having permission to import or store that content, including information about other players. By saving content to an account, you permit us and our service providers to store, copy and transmit it as needed to provide synchronization, backups, support and security. This permission does not transfer ownership or authorize selling your content.</p>
+    <p>Avoid entering sensitive personal information in PGNs, notes or backups. The <a href="../privacy/">Privacy Policy</a> explains account data, Google sign-in information, provider processing, local caches and deletion requests.</p>
+
+    <h2>4. Learning and analysis limitations</h2>
+    <p>Lessons, puzzles, coaching and engine analysis are provided for education. Puzzle collections are finite; validation and engine searches are bounded and may be incomplete or incorrect. Training ratings, difficulty targets, move-quality labels and progress indicators are local estimates, not official chess ratings, certifications, or Chess.com's proprietary classifications. We do not promise improvement, tournament results, or the correctness of every recommendation.</p>
+    <p>Knight School is not affiliated with or endorsed by Google, Chess.com, Lichess or the Stockfish project merely because it supports their services, uses open-source software, or attributes licensed content.</p>
+
+    <h2>5. Storage, synchronization and backups</h2>
+    <p>Guest data is stored in your browser. Account mode uses a separate device cache and, when available, Supabase cloud storage. Data can be lost through cleared browser storage, device failure, synchronization conflicts, service changes or outages. Signing out does not erase cached account progress. Use a trusted device and clear site data when appropriate.</p>
+    <p>Cloud synchronization is not an unlimited archive or a guaranteed backup service. Current per-account limits are 10,000 progress records, 20 MB total record data and 4 MB per record; deletion markers count toward record limits. Some progress modules are synchronized as a single record, so concurrent changes can require manual recovery. One active tab per account is supported. Download independent complete backups regularly and review confirmations before restoring or replacing progress.</p>
+
+    <h2>6. Software, content and third-party services</h2>
+    <p>The app contains site content and third-party software or datasets with their own rights and licenses. Stockfish is distributed under GPLv3; its license and corresponding-source information accompany the engine. Lichess puzzle data is attributed in the collection and provided under CC0. Other dependency notices accompany the app. These terms do not limit permissions granted by applicable open-source or data licenses.</p>
+    <p>GitHub Pages, Supabase, Google and email services have their own terms and availability limits. We do not control external websites or guarantee their continued availability. The current service has no in-app checkout or paid subscription; any future paid offering would require separate pricing and applicable terms.</p>
+
+    <h2>7. Availability, suspension and ending use</h2>
+    <p>We may maintain, change, limit or discontinue features, or restrict accounts that violate these terms or threaten the service. Where reasonably practical, we will give notice of material service changes. You may stop using the app at any time and request account deletion by emailing <a href="mailto:20aman@gmail.com?subject=Knight%20School%20account%20deletion">20aman@gmail.com</a>. Reasonable account verification may be required. Cloud account deletion does not erase copies already downloaded or cached on devices.</p>
+
+    <h2>8. Disclaimers and liability</h2>
+    <p>To the extent permitted by applicable law, the service is provided "as is" and "as available," without warranties of uninterrupted operation, accuracy, fitness for a particular purpose, or preservation of data. To that same extent, the operator is not liable for indirect or consequential losses, lost learning records or missed opportunities arising from use of the service.</p>
+    <p>Nothing in these terms excludes liability that cannot lawfully be excluded or limits mandatory consumer rights. Applicable law may give you rights beyond these terms.</p>
+
+    <h2>9. Changes and contact</h2>
+    <p>We may revise these terms as features or requirements change. The updated date above identifies the current version; material changes will be described on this page. If you disagree with revised terms, stop using the service. Questions or concerns: <a href="mailto:20aman@gmail.com">20aman@gmail.com</a>.</p>
+  </main>
+  <footer><nav aria-label="Legal navigation"><a href="../">Back to Knight School</a><a href="../privacy/">Privacy Policy</a><a href="mailto:20aman@gmail.com">Contact</a></nav></footer>
+</body>
+</html>
