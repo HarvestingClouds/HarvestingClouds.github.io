@@ -1,0 +1,28 @@
+{
+  "portRepository": "https://github.com/manthedan/0x88",
+  "portCommit": "e991e1bc3df70a35976f55ffd45078f8265a1f8b",
+  "engines": {
+    "plentychess": {
+      "version": "8.0.0",
+      "license": "GPL-3.0",
+      "upstream": "https://github.com/Yoshie2000/PlentyChess/tree/50ad9f1b523063cbbbf599fe0547f42870fe2906",
+      "network": "0178r.bin, GPL-3.0, processed with the pinned upstream NNUE helper",
+      "files": [
+        { "name": "plentychess-emscripten.js", "bytes": 70903, "sha256": "fe98220301e57b4afad6b5429001403bb46a612f74514dda44508691cc247a09" },
+        { "name": "plentychess-emscripten.wasm", "bytes": 395075, "sha256": "bc65d81536c9fe27b9b5de90c9ecc106056d3f4afba5e038f4087301a8c039e1" },
+        { "name": "plentychess-emscripten.data", "bytes": 53111616, "sha256": "5cedef19778f1bb784e181fc013543127d1fdcde227795710b1a48f6e53d79cd" },
+        { "name": "plentychess-emscripten-single-thread-corresponding-source.tar.gz", "bytes": 30768044, "sha256": "b53391706151a91e6b492d88e261d883de5d5db41a2a2a42c6a673d846fe9a0d" }
+      ]
+    },
+    "viridithas": {
+      "version": "20.0.0",
+      "license": "MIT (upstream v20); preserve the GPL-3.0 browser port source and notices",
+      "upstream": "https://github.com/cosmobobak/viridithas/tree/0631113e2215714c54d397cce9a8caebc5e6f8ee",
+      "network": "sandhi-s2-b200.nnue, CC0-1.0, embedded in the scalar WASM",
+      "files": [
+        { "name": "viridithas.wasm", "bytes": 55763466, "sha256": "058707d8941e01a27a85274f8ebdc4bda98ce865fb94d0a23066baea405e5683" },
+        { "name": "viridithas-wasip1-corresponding-source.tar.gz", "bytes": 60464623, "sha256": "f1587c79d7d39fa7a12f42598ca6bad0fdee498ebbfd3fd7d6793589ffe2eeb5" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "engines": {
+    "plentychess": {
+      "type": "worker",
+      "url": "./engine/browser/worker.js?engine=plentychess&v=b9b37e0326587e1d"
+    },
+    "viridithas": {
+      "type": "worker",
+      "url": "./engine/browser/worker.js?engine=viridithas&v=b9b37e0326587e1d"
+    }
+  }
+}

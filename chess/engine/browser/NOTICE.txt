@@ -1,0 +1,52 @@
+KNIGHT SCHOOL - BUNDLED BROWSER ENGINES
+
+These are real, independent, single-thread WebAssembly engines. They run in
+owned Workers over UCI; no remote engine server or SharedArrayBuffer is needed.
+Only the selected engine's runtime/network downloads during normal use.
+
+PLENTYCHESS 8.0.0 - Yoshie2000 and contributors
+Engine and network: GNU GPL version 3. Preserve GPL-3.0.txt.
+Engine: https://github.com/Yoshie2000/PlentyChess
+Pinned upstream: 50ad9f1b523063cbbbf599fe0547f42870fe2906 (b-v8.0.0)
+Network: https://github.com/Yoshie2000/PlentyNetworks (0178r.bin, GPL-3.0)
+The verified processed network is in plentychess-emscripten.data.
+Corresponding source, patches, build scripts and network-processing inputs:
+plentychess/plentychess-emscripten-single-thread-corresponding-source.tar.gz
+
+VIRIDITHAS 20.0.0 - cosmobobak and contributors
+This explicitly pinned upstream release uses MIT, not the current release's
+AGPL license. Preserve viridithas/LICENSE-MIT.txt. The embedded v109 network,
+sandhi-s2-b200.nnue, is CC0-1.0; preserve viridithas/NETWORK-CC0.txt.
+Engine: https://github.com/cosmobobak/viridithas
+Pinned upstream: 0631113e2215714c54d397cce9a8caebc5e6f8ee (v20.0.0)
+Network: https://github.com/cosmobobak/viridithas-networks/releases/tag/v109
+Corresponding source including browser modifications and build scripts:
+viridithas/viridithas-wasip1-corresponding-source.tar.gz
+This scalar WASI build creates a new native instance per search. Original FEN
+and complete supplied move history are replayed; transposition tables are not
+retained between searches.
+
+BROWSER PORTS - 0x88 contributors (GPL-3.0-or-later)
+https://github.com/manthedan/0x88
+Pinned port commit: e991e1bc3df70a35976f55ffd45078f8265a1f8b
+Preserve GPL-3.0.txt and BOTH corresponding-source archives with these
+unmodified binary/network files. manifest.json records sizes and SHA-256
+hashes. The application rejects mismatched runtime assets before execution.
+The archives include the original source, local patches, build scripts,
+network assets/provenance and third-party notices for the delivered builds.
+
+WASI RUNTIME - @bjorn3/browser_wasi_shim 0.4.2
+MIT OR Apache-2.0. Preserve WASI-LICENSE-MIT.txt and WASI-LICENSE-APACHE.txt.
+https://github.com/bjorn3/browser_wasi_shim
+Knight School's Worker adapter and acquisition/build script are in source/.
+
+REPRODUCING / DEPLOYING
+In the Knight School source checkout, install the pinned npm dependencies,
+then run: npm run source:browser-engines --workspace @knight-school/web
+That explicitly downloads the pinned port artifacts, verifies every size and
+SHA-256, preserves their source archives and builds the Worker adapter.
+Normal dev/build/export only verify local assets; they never silently download.
+Keep this entire directory in the uploaded chess/ folder, including sources
+and license texts. Do not remove the large source archives to reduce ZIP size.
+Engine programs remain independent UCI modules; no commercial engine weights,
+native executables, credentials or bridge tokens are bundled.
